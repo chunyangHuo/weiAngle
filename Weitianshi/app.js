@@ -3,7 +3,7 @@ App({
     // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
     onLaunch: function (options) {
         var options = options;
-        let url=this.globalData.url
+        let url=this.globalData.url;
         //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
         if (options.shareTicket) {
             //获取code
@@ -19,7 +19,7 @@ App({
                             success(res) {
                                 let encryptedData = res.encryptedData;
                                 let iv = res.iv;
-                                console.log(code, path, encryptedData, iv)
+                                console.log(code, path, encryptedData, iv,url)
                                 //向后台发送信息
                                 wx.request({
                                     url: url + '/api/log/clickLogRecord',
@@ -90,7 +90,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -117,7 +117,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
@@ -206,11 +206,11 @@ App({
                 console.log(res)
                 if (res.confirm == true) {
                     wx.navigateTo({
-                        url: '/pages/myProject/personInfo/personInfo',
+                        url: '/pages/register/personInfo/personInfo',
                     })
                 } else {
                     wx.switchTab({
-                        url: '/pages/resource/resource',
+                        url: '/pages/match/match/match/match',
                     })
                 }
             }
@@ -297,7 +297,7 @@ App({
                     var complete = res.data.is_complete;
                     if (user_id == 0) {
                         wx.navigateTo({
-                            url: '../myProject/personInfo/personInfo'
+                            url: '/pages/register/personInfo/personInfo',
                         })
                     } else if (user_id != 1 && complete == 1) {
                         wx.navigateTo({
@@ -305,12 +305,12 @@ App({
                         })
                     } else if (user_id != 1 && complete == 0) {
                         wx.navigateTo({
-                            url: '../myProject/companyInfo/companyInfo'
+                            url: '/pages/register/companyInfo/companyInfo'
                         })
                     }
                 } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
                     wx.navigateTo({
-                        url: '../myProject/personInfo/personInfo'
+                        url: '/pages/register/personInfo/personInfo'
                     })
                 }
             },
@@ -330,7 +330,7 @@ App({
         //判断用户是否授权了小程序
         if (encryptedData) {
             wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                 data: {
                     code: code,
                     encryptedData: encryptedData,
@@ -352,7 +352,7 @@ App({
             })
         } else {
             wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                 data: {
                     code: code,
                 },
@@ -370,12 +370,13 @@ App({
                     console.log("向后台发送信息失败")
                 },
             })
+
         }
     },*/
 
     //初始本地缓存
     globalData: {
         error: 0,
-        url: "https://dev.weitianshi.cn"
+        url: "https://www.weitianshi.cn"
     }
 });
