@@ -3,6 +3,7 @@ App({
     // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
     onLaunch: function (options) {
         var options = options;
+        let url=this.globalData.url
         //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
         if (options.shareTicket) {
             //获取code
@@ -21,7 +22,7 @@ App({
                                 console.log(code, path, encryptedData, iv)
                                 //向后台发送信息
                                 wx.request({
-                                    url: url + 'api/log/clickLogRecord',
+                                    url: url + '/api/log/clickLogRecord',
                                     data: {
                                         code: code,
                                         path: path,
@@ -242,7 +243,7 @@ App({
                                         console.log(code, path)
                                         //发送请求到后台
                                         wx.request({
-                                            url: url + '/log/shareLogRecord',
+                                            url: url + '/api/log/shareLogRecord',
                                             method: "POST",
                                             data: {
                                                 code: code,
@@ -260,7 +261,7 @@ App({
                                 console.log(code, path)
                                 //发送请求到后台
                                 wx.request({
-                                    url: url + '/log/shareLogRecord',
+                                    url: url + '/api/log/shareLogRecord',
                                     method: "POST",
                                     data: {
                                         code: code,
