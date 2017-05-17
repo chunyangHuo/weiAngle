@@ -9,27 +9,27 @@ App({
             wx.login({
                 success: function (login) {
                     let code = login.code;
-                    if(code){
-                        let path=options.path;
-                        let shareTicket=options.shareTicket;
+                    if (code) {
+                        let path = options.path;
+                        let shareTicket = options.shareTicket;
                         //获取群ID
                         wx.getShareInfo({
                             shareTicket: shareTicket,
-                            success(res){
-                                let  encryptedData = res.encryptedData;
+                            success(res) {
+                                let encryptedData = res.encryptedData;
                                 let iv = res.iv;
-                                console.log(code, path, encryptedData,iv)
+                                console.log(code, path, encryptedData, iv)
                                 //向后台发送信息
                                 wx.request({
-                                    url: url +'api/log/clickLogRecord',
-                                    data:{
-                                        code:code,
-                                        path:path,
+                                    url: url + 'api/log/clickLogRecord',
+                                    data: {
+                                        code: code,
+                                        path: path,
                                         encryptedData: encryptedData,
-                                        iv:iv
+                                        iv: iv
                                     },
-                                    method:"POST",
-                                    success(res){
+                                    method: "POST",
+                                    success(res) {
                                         console.log(res)
                                     }
                                 })
@@ -40,9 +40,11 @@ App({
             })
         }
     },
+
     onError: function (msg) {
         console.log(msg)
     },
+
     //进入页面判断是否有open_session
     loginPage: function (cb) {
         var that = this;
@@ -214,22 +216,24 @@ App({
         })
     },
 
-    //分布页面函数
+    //分享页面函数
     sharePage: function (id) {
         let path = "/pages/my/sharePage/sharePage?user_id=" + id;
-        //获取code
-        wx.login({
-            success(res){
-                let code=res.code
-                if(code){
-                    let json = {
-                        title: '投资名片—智能精准匹配投融资双方的神器',
-                        path: path,
-                        //分享成功后的回调
-                        success: function (res) {
-                            let shareTicket = res.shareTickets[0];
+        let url=this.globalData.url;
+        let json = {
+            title: '投资名片—智能精准匹配投融资双方的神器',
+            path: path,
+            //分享成功后的回调
+            success: function (res) {
+                console.log(1)
+                let shareTicket = res.shareTickets[0];
+                //获取code
+                wx.login({
+                    success(res){
+                        let code=res.code;
+                        if(code){
                             //如果是分享到群里
-                            if (shareTicket){
+                            if (shareTicket) {
                                 wx.getShareInfo({
                                     shareTicket: shareTicket,
                                     success: function (res) {
@@ -252,7 +256,7 @@ App({
                                         })
                                     },
                                 })
-                            } else{//如果不是分享到群里
+                            } else {//如果不是分享到群里
                                 console.log(code, path)
                                 //发送请求到后台
                                 wx.request({
@@ -267,12 +271,12 @@ App({
                                     }
                                 })
                             }
-                        },
+                        }
                     }
-                    return json;
-                }
-            }
-        })
+                })
+            },
+        }
+        return json
     },
 
     //根据用户信息完整度跳转不同的页面
@@ -366,55 +370,11 @@ App({
                 },
             })
         }
-    },
-  
-    //微信登录状态维护
-    checkSession: function () {
-        wx.checkSession({
-            success: function () {
-            },
-            fail: function () {
-                console.log("向后台发送信息失败")
-            }
-        })
-    } else {
-        wx.request({
-            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
-            data: {
-                code: code,
-            },
-            method: 'POST',
-            success: function (res) {
-                console.log("这里是没拿到UserInfo后调用returnOauth")
-                console.log(res);
-                that.globalData.open_session = res.data.open_session;
-                that.globalData.session_time = Date.now();
-                that.globalData.user_id = res.data.user_id;
-                console.log(that.globalData.session_time)
-                wx.setStorageSync("user_id", res.data.user_id)
-            },
-            fail: function () {
-                console.log("向后台发送信息失败")
-            },
-        })
-    }
-},
+    },*/
 
-//微信登录状态维护
-checkSession: function () {
-    wx.checkSession({
-        success: function () {
-        },
-        fail: function () {
-            //登录态过期
-            wx.login() //重新登录
-        }
-    })
-},*/
-
-//初始本地缓存
-globalData: {
-    error: 0,
+    //初始本地缓存
+    globalData: {
+        error: 0,
         url: "https://dev.weitianshi.cn"
-}
+    }
 });
