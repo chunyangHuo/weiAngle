@@ -14,6 +14,10 @@ Page({
         that.setData({
             user_id: user_id,
         })
+        //分享至群打点准备
+        wx.showShareMenu({
+            withShareTicket: true,
+        })
         //我的个人信息
         wx.request({
           url: url+'/api/user/getUserAllInfo',
