@@ -213,7 +213,7 @@ Page({
                     wx.setStorageSync('y_payAreaId', y_payAreaId)
                     // console.log(y_payArea, y_payAreaId);
 
-// =====================================================================
+                    // =====================================================================
                     //投资领域
                     wx.setStorageSync('enchangeValue', y_domainValue);
                     wx.setStorageSync('enchangeId', y_domainId);

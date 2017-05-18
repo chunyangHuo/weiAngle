@@ -206,11 +206,11 @@ App({
                 console.log(res)
                 if (res.confirm == true) {
                     wx.navigateTo({
-                        url: '/pages/register/personInfo/personInfo',
+                        url: '/pages/myProject/personInfo/personInfo',
                     })
                 } else {
                     wx.switchTab({
-                        url: '/pages/match/match/match/match',
+                        url: '/pages/resource/resource',
                     })
                 }
             }
@@ -284,37 +284,43 @@ App({
     infoJump: function (data) {
         var user_id = wx.getStorageSync("user_id");
         // 核对用户信息是否完整
-        wx.request({
-            url: this.globalData.url + '/api/user/checkUserInfo',
-            data: {
-                user_id: user_id
-            },
-            method: 'POST',
-            success: function (res) {
-                // console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                // console.log(res);
-                if (res.data.status_code == 2000000) {
-                    var complete = res.data.is_complete;
-                    if (user_id == 0) {
+        if(user_id!=0){
+            wx.request({
+                url: this.globalData.url + '/api/user/checkUserInfo',
+                data: {
+                    user_id: user_id
+                },
+                method: 'POST',
+                success: function (res) {
+                    // console.log("检查用户信息是否完整,如果不完整则返回个人信息")
+                    // console.log(res);
+                    if (res.data.status_code == 2000000) {
+                        var complete = res.data.is_complete;
+                        if (user_id == 0) {
+                            wx.navigateTo({
+                                url: '/pages/myProject/personInfo/personInfo',
+                            })
+                        } else if (user_id != 1 && complete == 1) {
+                            wx.navigateTo({
+                                url: data
+                            })
+                        } else if (user_id != 1 && complete == 0) {
+                            wx.navigateTo({
+                                url: '/pages/myProject/companyInfo/companyInfo'
+                            })
+                        }
+                    } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
                         wx.navigateTo({
-                            url: '/pages/register/personInfo/personInfo',
-                        })
-                    } else if (user_id != 1 && complete == 1) {
-                        wx.navigateTo({
-                            url: data
-                        })
-                    } else if (user_id != 1 && complete == 0) {
-                        wx.navigateTo({
-                            url: '/pages/myProject/companyInfo/companyInfo'
+                            url: '/pages/myProject/personInfo/personInfo'
                         })
                     }
-                } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
-                    wx.navigateTo({
-                        url: '/pages/register/personInfo/personInfo'
-                    })
-                }
-            },
-        });
+                },
+            });
+        }else{
+            wx.navigateTo({
+                url: '/pages/myProject/personInfo/personInfo',
+            })
+        }
     },
 
     //test

@@ -101,11 +101,11 @@ Page({
     //分享当前页面
     onShareAppMessage: function () {
         var pro_intro = this.data.project.pro_intro;
+        console.log(pro_intro)
         return {
-            title: '项目-' + pro_intro,
-            path: '/pages/yourDetail/yourDetail?pro_id=' + that.data.id
+            title:  pro_intro,
+            path: '/pages/yourDetail/yourDetail?pro_id=' + this.data.id
         }
-        console.log(data.project.pro_intro);
     },
     //添加人脉
     addNetWork: function () {
