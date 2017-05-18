@@ -305,7 +305,7 @@ App({
                         })
                     } else if (user_id != 1 && complete == 0) {
                         wx.navigateTo({
-                            url: '/pages/register/companyInfo/companyInfo'
+                            url: '/pages/myProject/companyInfo/companyInfo'
                         })
                     }
                 } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
