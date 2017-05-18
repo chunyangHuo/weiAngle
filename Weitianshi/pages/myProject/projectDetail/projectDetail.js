@@ -176,7 +176,7 @@ Page({
         var pro_intro = this.data.project.pro_intro;
         return {
             title: '项目-' + pro_intro,
-            path: '/pages/myProject/myDetail?pro_id' + that.data.id
+            path: '/pages/myProject/projectDetail/projectDetail?pro_id' + this.data.id
         }
     },
     //跳转到我的页面

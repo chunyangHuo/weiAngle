@@ -104,7 +104,7 @@ Page({
         console.log(pro_intro)
         return {
             title:  pro_intro,
-            path: '/pages/yourDetail/yourDetail?pro_id=' + this.data.id
+            path: '/pages/yourProject/yourDetail/yourDetail?pro_id=' + this.data.id
         }
     },
     //添加人脉
