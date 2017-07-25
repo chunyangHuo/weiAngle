@@ -36,7 +36,7 @@ Page({
 
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: app.globalData.url_common + '/api/category/getWxProjectCategory',
+          url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 console.log("领域,金额,阶段的列表数据调用")

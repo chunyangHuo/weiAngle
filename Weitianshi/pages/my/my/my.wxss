@@ -65,7 +65,8 @@ page {
 
 .user_left .flex:first-child {
   align-items: flex-end;
-  margin-bottom: 96rpx;
+  /*margin-bottom: 96rpx;*/
+   margin-bottom: 0;
 }
 
 .user_right {
@@ -105,6 +106,9 @@ page {
   font-size: 28rpx;
   color: #999;
   margin-bottom: 20rpx;
+}
+.user_company{
+  margin-top:80rpx;
 }
 
 #user_mobile {
@@ -537,16 +541,15 @@ page {
   height: 616rpx;
   width: 534rpx;
   background-color: white;
-  margin: 308rpx 64rpx;
-  opacity: 1;
+  margin-top: 206rpx;
+  margin-left: 64rpx;
   padding: 56rpx 44rpx 48rpx 44rpx;
 }
 
 .modalBox {
-  background: #000;
-  /*opacity: 0.5;*/
+  background: rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 150%;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
@@ -588,10 +591,16 @@ page {
   text-align: left;
   margin-bottom: 48rpx;
 }
-
+.IdentificationNumber{
+  display: block;
+}
+.IdentificationNumCompany{
+  position:relative;
+}
 .modalBtn {
-  margin-top: 130rpx;
-  margin-left: 174rpx;
+  position:absolute;
+  top:342rpx;
+  left:52rpx;
 }
 
 .modalYes {
@@ -600,10 +609,14 @@ page {
   letter-spacing: 0;
   line-height: 56rpx;
   text-align: center;
-  border: 2px solid #40587a;
+  border: 1rpx solid #40587a;
   border-radius: 200rpx;
   width: 180rpx;
   height: 60rpx;
+   margin-right:40rpx;
+}
+.modalYes:first{
+  margin-right:40rpx;
 }
 
 .informationText {
@@ -622,17 +635,27 @@ page {
 }
 
 .informationYes {
-  border: 2px solid #40587a;
+  border: 2rpx solid #40587a;
   border-radius: 200px;
   width: 182rpx;
   height: 60rpx;
   font-size: 28rpx;
   color: #40587a;
   letter-spacing: 0;
-  line-height: 56rpx;
+  line-height: 60rpx;
   text-align: center;
   margin-right:46rpx;
 }
 .informationYes:first{
   margin-right:0;
+}
+/*税号的横杠*/
+.oneLine{
+  display:block;
+  width:42rpx;
+  border-top:1rpx solid #99a9bf;
+  margin-top:19rpx;
+}
+.oneLine:first-child{
+  margin-left:112rpx;
 }

@@ -13,7 +13,7 @@ Page({
 
     //获取用户信息
     wx.request({
-      url: url + '/api/user/getUserAllInfo',
+      url: url_common + '/api/user/getUserAllInfo',
       data: {
         share_id: 0,
         user_id: user_id,
@@ -55,12 +55,14 @@ Page({
     var company = e.detail.value;
     console.log(company)
     wx.request({
-      url: url_common + '/api/dataTeam/checkCompany ',
+      url: url_common + '/api/dataTeam/checkCompany',
       data:{
         com_name:company
       },
       method: 'POST',
-      success: function (res) {}
+      success: function (res) {
+        console.log(res)
+      }
     })
     that.setData({
       company: company
@@ -100,7 +102,7 @@ Page({
     // 修复bug临时使用(公司,职位,姓名改为非必填)
     if (name != '' && company != '' && career != '') {
       wx.request({
-        url: url + '/api/wx/updateUser',
+        url: url_common + '/api/user/updateUser',
         data: {
           user_id: user_id,
           user_real_name: name,

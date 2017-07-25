@@ -1,7 +1,4 @@
 <import src="/pages/Template/Template.wxml"></import>
-<!--<view class="title">
-  您的项目会推送给匹配的投资人,去电脑上创建更方面
-</view>-->
 <view id="myProject">
   <!--<view class="card">
     <view class="text">投资领域*</view>

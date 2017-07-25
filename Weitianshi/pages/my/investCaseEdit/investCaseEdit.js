@@ -33,7 +33,7 @@ Page({
         var that = this;
         var industry = wx.getStorageSync("industry");
         wx.request({
-            url: app.globalData.url_common + '/api/category/getWxProjectCategory',
+          url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 var stage = res.data.data.stage;
@@ -187,7 +187,7 @@ Page({
                 console.log(case_index)
             } else {
                 wx.request({
-                    url: url + '/api/user/createUserProjectCase',
+                    url: url_common + '/api/user/createUserProjectCase',
                     data: {
                         user_id: user_id,
                         case_name: case_name,

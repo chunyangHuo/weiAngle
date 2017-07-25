@@ -1,0 +1,56 @@
+/* pages/my/identity/identityResult/identityResult.wxss */
+
+.statusPic {
+  height: 176rpx;
+  width: 176rpx;
+  /* margin: 200rpx 0 64rpx 288rpx; */
+   margin:130rpx 0 64rpx 288rpx;
+}
+
+.statusTitle {
+  font-size: 32rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 32rpx;
+
+  text-align: center;
+  margin-bottom:80rpx;
+}
+
+.textContent {
+  /* background: #fafafa; */
+  background: black;
+  border-radius: 4rpx;
+  width: 558rpx;
+  height: 112rpx;
+  margin-left:96rpx;
+}
+
+.QRCode {
+  height: 160rpx;
+  width: 160rpx;
+  margin: 56rpx 294rpx;
+}
+
+.contextContent {
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.btnYes {
+  background: #40587a;
+  border-radius: 8rpx;
+  width: 654rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 88rpx;
+  text-align: center;
+  margin-left: 48rpx;
+  margin-top: 134rpx;
+}

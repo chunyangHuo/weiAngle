@@ -1,7 +1,6 @@
 {
     "pages": [
-        "pages/projectDetai/projectDetai",
-        "pages/oneKeyInfo/oneKeyInfo",
+      
         "pages/match/match/match/match",
         "pages/my/my/my",
         "pages/search/filter4/filter4",
@@ -11,14 +10,13 @@
         "pages/form/industry/industry",
         "pages/form/scale/scale",
         "pages/form/stage/stage",
-       "pages/form/businessContribution/businessContribution",
+        "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",
         "pages/scanCode/bpScanSuccess/bpScanSuccess",
         "pages/scanCode/cardScan/cardScan",
         "pages/scanCode/cardScanEdit/cardScanEdit",
-        "pages/scanCode/bpScan/bpScan",
         "pages/register/personInfo/personInfo",
         "pages/register/companyInfo/companyInfo",
         "pages/identity/chooseIdentity/chooseIdentity",
@@ -28,10 +26,10 @@
         "pages/identity/investorFA/investorFA",
         "pages/identity/entrepreneurFA/entrepreneurFA",
         "pages/message/message/message",
-        "pages/message/applyMyProject/applyMyProject",
-        "pages/message/myApplyProject/myApplyProject",
-        "pages/message/bePushedProject/bePushedProject",
-        "pages/message/myPushProject/myPushProject",
+        "pages/message/viewProjectUser/viewProjectUser",
+       "pages/message/applyProject/applyProject",
+        "pages/message/potentialProject/potentialProject",
+        "pages/message/pushProject/pushProject",
         "pages/message/beAddedContacts/beAddedContacts",
         "pages/message/browseMe/browseMe",
         "pages/search/search1/search1",
@@ -61,7 +59,10 @@
         "pages/my/investCaseEdit/investCaseEdit",
         "pages/my/cardEdit/cardEdit",
         "pages/my/projectFinance/projectFinance",
-        "pages/my/qrCode/qrCode"
+        "pages/my/qrCode/qrCode",
+        "pages/my/identity/indentity/indentity",
+        "pages/my/identity/identityEdit/identityEdit",
+        "pages/my/identity/identityResult/identityResult"
         
     ],
     "window": {

@@ -1,0 +1,73 @@
+<import src="/pages/Template/Template.wxml" />
+<view class="swiper-tab">
+
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">申请查看我的项目</view>
+
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我申请查看的项目</view>
+
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:470px" bindchange="bindChange">
+  <!--申请查看我的项目  -->
+  <swiper-item>
+    <scroll-view scroll-y="true">
+      <view class="browseMeTitle flex" style="justify-content: space-between;">
+        <view class="title flex">
+          <view class="block"></view>
+          申请查看我的项目
+        </view>
+        <!--动态改变数字-->
+        <view class="num">
+          共<label>99</label> 个
+        </view>
+      </view>
+      <view id="introduce">这里是一句话介绍</view>
+      <!--名片内容  -->
+      <view class="outsideBox">
+        <view class="redPoint"></view>
+        <image src="/img/img-quanwang@2x.png" class="connection"></image>
+        <view class="applyMyProject">
+          <view class="introduceBox flex">
+            <view class="userName">张三</view>
+            <view class="userPosition">投资总监</view>
+            <view class="userPart flex">
+              <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+              <view class="userPart1">卖方FA</view>
+            </view>
+            <view class="userPic" class="userPic"></view>
+          </view>
+          <view class="userCompany">杭州投着乐网络科技有限公司</view>
+          <view class="investmentGroup flex">
+            <view class="investmentGroupTitle">投资领域：</view>
+            <view class="investmentGroupContent">智能服务、电商</view>
+          </view>
+          <view class="roundGroup flex">
+            <view class="roundGroupTitle">投资轮次：</view>
+            <view class="roundGroupContent">种子轮、天使轮、A轮、B轮</view>
+          </view>
+          <!-- <view class="flex">
+            <view class="flex refuseBox">
+              <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
+              <view class="refuseBtn">拒绝</view>
+            </view>
+            <view class="flex agreeBox">
+            <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
+            <view class="agreeBtn">同意查看</view>
+            </view>
+          </view> -->
+          <view class="classname">
+            <view class="agreed">已同意</view>
+          </view>
+        </view>
+        <view id="time">05-04 19:00</view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!--我申请查看的项目  -->
+  <swiper-item>
+    <scroll-view scroll-y="true">
+      <block>
+        <template is="personModal"></template>
+      </block>
+    </scroll-view>
+  </swiper-item>
+</swiper>

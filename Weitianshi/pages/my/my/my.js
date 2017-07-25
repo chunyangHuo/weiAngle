@@ -32,13 +32,13 @@ Page({
         user_id: user_id,
       })
       //分享至群打点准备
-      wx.showShareMenu({
+     /* wx.showShareMenu({
         withShareTicket: true,
-      })
+      })*/
       if (user_id != 0) {
         //载入我的个人信息
         wx.request({
-          url: url + '/api/user/getUserAllInfo',
+          url: url_common + '/api/user/getUserAllInfo',
           data: {
             share_id: 0,
             user_id: user_id,
@@ -104,6 +104,11 @@ Page({
   attention: function () {
     wx.navigateTo({
       url: '/pages/message/beAddedContacts/beAddedContacts'
+    })
+  },
+  pushTo:function(){
+    wx.navigateTo({
+      url: '/pages/message/potentialProject/potentialProject'
     })
   },
   //寻找案源
@@ -210,36 +215,42 @@ Page({
     var that = this;
     var user_id = this.data.user_id;
     var modal = this.data.modal;
-    var companyName = this.data.user.user_company_name;
+    var com_name = this.data.user.user_company_name;
     var status_code = this.data.status_code;
-//判断,如果公司名称小于3,直接提示去完善信息
-    if (companyName.length > 3) {
       wx.request({
         url: url_common + '/api/dataTeam/taxNumber',
         data: {
           user_id: user_id,
-          com_name: companyName
+          com_name: com_name
         },
         method: 'POST',
         success: function (res) {
-          console.log(res);
-          console.log("税号")
-          var com_name = res.data.com_name;
-          var tax_member = res.data.tax_member;
-          that.setData({
-            com_name: com_name,
-            tax_member: tax_member,
-            modalStyle: 0
-          })
+          let data = res.data;
+          if (data.status_code == 460004) {
+            console.log(data)
+            that.setData({
+              modalStyle: 1,
+              modalBox: 1
+            })
+          } else if (data.status_code == 2000000) {
+            console.log(res);
+            console.log("税号")
+            that.setData({
+              modalStyle: 0,
+              modalBox: 1
+            })
+            let data = res.data.data;
+            let com_name = data.com_name;
+            var tax_member = data.tax_mumber;
+            that.setData({
+              data: data,
+              com_name: com_name,
+              tax_member: tax_member,
+              modalStyle: 0
+            })
+          }
         }
       })
-    } else {
-      console.log(2222)
-      that.setData({
-        modalStyle :　1,
-        modalBox:1
-      })
-    }
   },
   //完善公司信息
   writeInformation: function () {
@@ -259,5 +270,23 @@ Page({
     this.setData({
       modalBox: 0
     })
-  }
+  },
+  //复制税号
+  copyNum: function () {
+    let num = this.data.tax_member;
+    wx.setClipboardData({
+      data: num,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success'
+        })
+        wx.getClipboardData({
+          success: function (res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+   }
 });

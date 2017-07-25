@@ -84,7 +84,7 @@ Page({
             time: "1",
         });
         wx.request({
-            url: url + '/api/wx/sendMobileCode',
+          url: url_common + '/api/auth/authCaptcha',
             data: {
                 user_mobile: telphone
             },
@@ -173,7 +173,7 @@ Page({
                 // console.log(name, telphone, checkCode, code);
                 if (name !== "" && result == "1") {
                     wx.request({
-                        url: url + '/api/wx/bindUser',
+                      url: url_common + '/api/user/bindUser',
                         data: {
                             user_real_name: name,
                             user_mobile: telphone,

@@ -45,7 +45,7 @@ App({
 
         //获取各分类的信息并存入缓存
         wx.request({
-            url: url_common + '/api/category/getWxProjectCategory',
+          url: url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 var thisData = res.data.data;
@@ -82,9 +82,9 @@ App({
     loginPage: function (cb) {
         var that = this;
         //群分享打点准备
-        wx.showShareMenu({
-            withShareTicket: true
-        })
+        /* wx.showShareMenu({
+             withShareTicket: true
+         })*/
         if (this.globalData.open_session) {
             console.log("open_session已经存在")
             var timeNow = Date.now();
@@ -312,7 +312,7 @@ App({
         var user_id = this.globalData.user_id;
         // 核对用户信息是否完整
         wx.request({
-            url: this.globalData.url + '/api/user/checkUserInfo',
+            url: this.globalData.url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },
@@ -417,6 +417,20 @@ App({
         }
     },
 
+    //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
+    initPage: function (that, others) {
+        var user_id = wx.getStorageSync('user_id');
+        that.setData({
+            user_id: user_id,
+            requestCheck: true,
+            currentPage: 1,
+            page_end: false
+        })
+        if (others) {
+            that.setData(others)
+        }
+    },
+
     //添加人脉
     addContacts(that, addType, user_id, followed_id, callBack1, callBack2) {
         if (addType == 1) {
@@ -456,17 +470,40 @@ App({
         wx.setStorageSync("stageFilter", '');
     },
 
-    //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
-    initPage: function (that, others) {
-        var user_id = wx.getStorageSync('user_id');
-        that.setData({
-            user_id: user_id,
-            requestCheck: true,
-            currentPage: 1,
-            page_end: false
-        })
-        if (others) {
-            that.setData(others)
+    //重新封装console.log
+    console(x) {
+        if (this.globalData.url == 'https://wx.weitianshi.cn') {
+
+        } else {
+            console.log(x)
+        }
+    },
+
+    // 时间戳转换
+    changeTime: function (x) {
+        var n = x * 1000;
+        var date = new Date(n);
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+        var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        return (Y + M + D)
+    },
+    changeTimeStyle: function (x) {
+        var n = x * 1000;
+        var date = new Date(n);
+        var Y = date.getFullYear() + '.';
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '.';
+        var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        return (Y + M + D)
+    },
+
+    // 邮箱检验
+    checkEmail(data) {
+        var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        if (myreg.test(data)) {
+            return true
+        } else {
+            return false
         }
     },
 

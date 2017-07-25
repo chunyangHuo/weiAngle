@@ -1,0 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
+<block wx:for="{{messageList}}" wx:key="index">
+  <template is="identityList" data="{{item:item,groupIdentityList:groupIdentityList}}"></template>
+</block>

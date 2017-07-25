@@ -19,13 +19,13 @@ Page({
                 user_id: user_id
             })
             //分享至群打点准备
-            wx.showShareMenu({
+            /*wx.showShareMenu({
                 withShareTicket: true,
-            })
+            })*/
             console.log(user_id)
             //载入我的个人信息
             wx.request({
-                url: url + '/api/user/getUserAllInfo',
+                url: url_common + '/api/user/getUserAllInfo',
                 data: {
                     share_id: 0,
                     user_id: QR_id,

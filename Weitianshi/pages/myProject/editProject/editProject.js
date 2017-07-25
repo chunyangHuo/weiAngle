@@ -75,10 +75,10 @@ Page({
 
         // 获取项目信息
         wx.request({
-            url: url + '/api/project/showProjectDetail',
+          url: url_common + '/api/project/getProjectDetail',
             data: {
                 user_id: options.user_id,
-                pro_id: options.pro_id
+                project_id: options.pro_id
             },
             method: 'POST',
             success: function (res) {
@@ -262,14 +262,11 @@ Page({
         var pro_finance_scale = this.data.scale_index;
         var is_exclusive = this.data.tipsIndex;
         var pro_goodness = this.data.pro_goodness;
-
         this.setData({
             upLoad: 0
         })
-
         //保存项目更改
         that.updata(that)
-
         //跳出提示模态框 
         wx.showModal({
             titel: "友情提示",
@@ -317,8 +314,6 @@ Page({
                 }
             }
         })
-
-
     },
 
     //点击发布
@@ -388,10 +383,10 @@ Page({
         var upLoad = that.data.upLoad;
         // console.log(2222)
         wx.request({
-            url: url + '/api/project/updateProject',
+          url: url_common + '/api/project/updateProject',
             data: {
                 user_id: user_id,
-                pro_id: pro_id,
+                project_id: pro_id,
                 pro_intro: describe,
                 industry: industryId,
                 pro_finance_stage: console_stage,

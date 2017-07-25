@@ -1,0 +1,132 @@
+<view class="classname">
+  <view class="visitCard flex" bindtap="scanIDcard">
+    <view class="visitCardMessage">名片</view>
+    <image src="/img/icon-mingpian-n@2x.png" class="pushIdCard"></image>
+    <!-- <image src="/img/icon-mingpian-s@2x.png" class="pushIdCard"></image> -->
+  </view>
+  <view class="personList">
+    <view class="userBox">
+      <view class="userNameContent flex">
+        <view class="personListTile">姓名*</view>
+        <view class="flex">
+          <view class="personListContent">请输入姓名</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="userPhoneContent flex">
+        <view class="personListTile">手机*</view>
+        <view class="flex">
+          <view class="personListContent">请输入手机号码</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="userBrandContent flex">
+        <view class="personListTile">品牌</view>
+        <view class="flex">
+          <view class="personListContent">请输入品牌</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="userCompanyContent flex">
+        <view class="personListTile">公司*</view>
+        <view class="flex">
+          <view class="personListContent">请输入公司</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="userPositionContent flex">
+        <view class="personListTile">职位*</view>
+        <view class="flex">
+          <view class="personListContent">请输入职位</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="userEmailContent flex">
+        <view class="personListTile">邮箱</view>
+        <view class="flex">
+          <view class="personListContent">请输入邮箱</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="userDescribeContent flex">
+        <view class="personListTile">个人描述</view>
+        <view class="flex">
+          <view class="personListContent">请输入个人描述</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="point">选填（建议填写，完善的信息有助于精准对接）</view>
+  <view class="investList">
+    <view class="investBox">
+      <view class="investContent flex">
+        <view class="investListTile">投资领域</view>
+        <view class="flex">
+          <view class="personListContent">请选择</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="investBox">
+      <view class="investContent flex">
+        <view class="investListTile">投资轮次</view>
+        <view class="flex">
+          <view class="personListContent">请选择</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="investBox">
+      <view class="investContent flex">
+        <view class="investListTile">投资金额</view>
+        <view class="flex">
+          <view class="personListContent">请选择</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="investBox">
+      <view class="investContent flex">
+        <view class="investListTile">投资地区</view>
+        <view class="flex">
+          <view class="personListContent">请选择</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    <view class="investBox">
+      <view class="investContent flex">
+        <view class="investListTile">成功案例</view>
+        <view class="flex">
+          <view class="personListContent">请选择</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="choice">
+   <view class="userBox">
+      <view class="userDescribeContent flex">
+        <view class="personListTile">申请使用为FA量身定制的saas系统</view>
+        <view class="flex">
+          <view class="personListContent">请选择</view>
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
+    </view>
+</view>
+<view class="btn">提交</view>

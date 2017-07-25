@@ -42,7 +42,7 @@ Page({
         wx.setStorageSync('tips', 4);
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: app.globalData.url_common + '/api/category/getWxProjectCategory',
+          url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 console.log("各种条目分类")
@@ -169,7 +169,6 @@ Page({
         var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
         var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
         var is_exclusive = this.data.tips_index * 1;
-
         //弹出PC端url提示文本模态框
         wx.showModal({
             titel: "友情提示",
@@ -234,7 +233,7 @@ Page({
         // console.log(user_id, describe, industryId, console_stage, console_expect, provinceNum, cityNum, tips)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
             wx.request({
-                url: url + '/api/project/insertProject',
+                url: url_common + '/api/project/createProject',
                 data: {
                     user_id: user_id,
                     pro_intro: describe,
@@ -251,7 +250,7 @@ Page({
                     console.log(res)
                     if (res.data.status_code == 2000000) {
                         //数据清空
-                        wx.setStorageSync('project_id', res.data.project_index);
+                        wx.setStorageSync('project_id', res.data.project_id);
                         wx.setStorageSync('describe', "");
                         wx.setStorageSync('console_stage', 0);
                         wx.setStorageSync('console_expect', 0);

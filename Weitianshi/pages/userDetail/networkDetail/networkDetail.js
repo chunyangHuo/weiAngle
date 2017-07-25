@@ -23,13 +23,13 @@ Page({
             user_id: user_id,
         })
         //分享至群打点准备
-        wx.showShareMenu({
+        /*wx.showShareMenu({
             withShareTicket: true,
-        })
+        })*/
 
         //用戶的个人信息
         wx.request({
-            url: url + '/api/user/getUserAllInfo',
+            url: url_common + '/api/user/getUserAllInfo',
             data: {
                 share_id: 0,
                 user_id: user_id,
@@ -37,7 +37,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
+                app.console(res)
                 var user = res.data.user_info;
                 var count = res.data.count;
                 var invest = res.data.invest_info;
@@ -46,6 +46,7 @@ Page({
                 var invest_case = res.data.invest_case;
                 var tel = user.user_mobile;
                 var button_type = res.data.button_type;
+                app.console(user.active_status)
                 if (tel.indexOf("*") != -1) {
                     that.setData({
                         blue: 1
@@ -99,10 +100,11 @@ Page({
         var followed_user_id = this.data.user_id;//当前用户的
         let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
         let button_type = this.data.button_type;
+        console.log(button_type)
         // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
         //判断用户信息是否完整
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: view_id
             },

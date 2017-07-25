@@ -1,5 +1,5 @@
 <!--发布投资需求和资源需求的按钮-->
-<template name="publish">
+<template name="publish">   
   <view wx:if="{{hasPublic==0}}">
     <view class="publish publish2 publish_find_project" bindtap="{{jumpProject}}">
       <view>{{text.text1}}</view>
@@ -24,11 +24,10 @@
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
       </view>
-      <view class="user_play_time" wx:if="{{playTime==1}}">刚刚活跃</view>
+      <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司：暂无编辑</view>
-      <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
-        <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
+      <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：<label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
       </view>
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机：暂无编辑</view>
       <view class="user_email flex" wx:if="{{user.user_email}}">
@@ -69,7 +68,7 @@
       <view class="attention-people">{{text}}</view>
     </view>
     <!--潜在项目-->
-    <view class="user_potential user_tips">
+    <view class="user_potential user_tips" bindtap="pushTo">
       <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
       <label class="potentialNum"></label>
       <view wx:if="{{!user.user_potential}}" class="potential-Num">-</view>
@@ -259,18 +258,18 @@
 
 <!--融资需求卡片-->
 <template name="financingCard">
-  <view class="card" data-id="{{item.pro_id}}" bindtap="projectDetail">
+  <view class="card" data-id="{{item.project_id}}" bindtap="projectDetail">
     <view class="user_info flex">
-      <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-      <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+      <view class="user_text" wx:if="{{item.user.user_avatar_text}}">{{item.user.user_avatar_text}}</view>
+      <image class="user_pic" src="{{item.user.user_avatar_url}}" wx:if="{{item.user.user_avatar_url}}"></image>
       <view class="user_info_right">
         <view class="flex nameFrame">
-          <view class="user_name">{{item.user_name}}</view>
-          <view class="user_career">{{item.user_career}}</view>
+          <view class="user_name">{{item.user.user_name}}</view>
+          <view class="user_career">{{item.user.user_career}}</view>
 
           <!--<view class="pro_time">{{item.pro_time}}</view>-->
         </view>
-        <view class="user_company">{{item.user_company}}</view>
+        <view class="user_company">{{item.user.user_company}}</view>
       </view>
     </view>
     <view class="pro_info">
@@ -334,7 +333,7 @@
 <template name="selectedCard">
   <view class="selectProjectDetail">
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
+      <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.project_id}}' data-index="{{index}}" bindtap="yourDetail">
         <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
         <view class="sort">
           <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
@@ -357,16 +356,16 @@
     <!--名片-->
     <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-        <image wx:if="{{myProject.user_avatar_url}}" class="others_pic" src="{{myProject.user_avatar_url}}" />
-        <view wx:if="{{!myProject.user_avatar_url}}" class="others_nopic">{{myProject.user_avatar_text}}</view>
+        <image wx:if="{{myProject.user.user_avatar_url}}" class="others_pic" src="{{myProject.user.user_avatar_url}}" />
+        <view wx:if="{{!myProject.user.user_avatar_url}}" class="others_nopic">{{myProject.user.user_avatar_text}}</view>
       </view>
       <view class="weui-cell__bd">
         <view class="flex" style="align-items: baseline;">
-          <view class="others_name">{{myProject.user_name}}</view>
-          <view class="others_email">{{myProject.user_career}}</view>
+          <view class="others_name">{{myProject.user.user_name}}</view>
+          <view class="others_email">{{myProject.user.user_career}}</view>
         </view>
         <view class="others_company flex">
-          {{myProject.user_company}}
+          {{myProject.user.user_company}}
           <image class='choiced' src="/img/choiced.png" />
         </view>
 
@@ -460,5 +459,164 @@
 
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
- <view class="pointToPC">去电脑上创建项目更方便</view>
+  <view class="flex">
+    <view class="pointToPC" bindtap="upLoad">
+    <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
+    去电脑上创建项目更方便
+    <label class="pointPcToNet">></label>
+    </view>
+  </view>
+</template>
+<!--潜在项目样式  -->
+<template name="pushToSb">
+  <view class="classname">
+    <view class="outBox">
+          <view class="insideBox">
+            <view class="flex">
+              <view class="describle">项目一句话介绍</view>
+              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+            </view>
+            <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
+            <view class="allProjectDetail flex">
+              <view class="projectDetailLine">300-500万</view>
+              <view class="projectDetailLine">10%</view>
+              <view class="projectDetailLine">天使轮</view>
+              <view class="projectDetailLine">杭州</view>
+            </view>
+            <view class="flex otherInfo">
+              <view>
+                <imag src="{{user.user_avatar_url}}" class="others_pic" />
+                <view>{{user.user_avatar_text}}</view>
+              </view>
+              <view>
+                <view class="flex userInfo">
+                  <view class="userName">姓名</view>
+                  <view class="userCareer">投资经理</view>
+                  <view class="userCompany">杭州投着乐网络科技邮箱公司</view>
+                </view>
+              </view>
+            </view>
+            <view class="projectInfo flex">
+              <view class="seeNum">1人看过项目</view>
+              <view class="interest flex">
+                <view class="btnHaveInterest">感兴趣</view>
+                <view class="btnNoInterest">没兴趣</view>
+                <!-- <view class="haveInterest">感兴趣</view> -->
+              </view>
+            </view>
+          </view>
+          <view id="time">05-04 19:00</view>
+    </view>
+  </view>
+</template>
+
+<!--身份认证列表-->
+<template name="identityList">
+  <view class="indentityBox">
+  <view class="indentityInside flex" bindtap="{{item.event}}" data-id="{{groupIdentityList[index].sort}}">
+    <image src="{{item.iconPath}}"  class="picture"></image>
+    <view class="inforBox">
+      <view class="identityName">{{item.identityName}}</view>
+       <view class="indentityExplain">{{item.indentityExplain}}</view> 
+    </view>
+    <view>
+       <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image> 
+    </view>
+  </view>
+</view>
+</template>
+<!--信息模块  -->
+<template name="personModal">
+    <view class="browseMeTitle flex" style="justify-content: space-between;">
+      <view class="title flex">
+         <view class="block"></view>
+          推送给我的项目
+      </view>
+        <!--动态改变数字-->
+      <view class="num">
+          共<label>99</label> 个
+      </view>
+    </view>
+      <!--名片-->
+    <view class="classname">
+        <view class="outBox">
+          <view class="insideBox">
+            <view class="flex">
+              <view class="describle">项目一句话介绍</view>
+              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+            </view>
+            <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
+            <view class="allProjectDetail flex">
+              <view class="projectDetailLine">300-500万</view>
+              <view class="projectDetailLine">10%</view>
+              <view class="projectDetailLine">天使轮</view>
+              <view class="projectDetailLine">杭州</view>
+            </view>
+            <view class="flex otherInfo">
+              <view>
+                <imag src="{{user.user_avatar_url}}" class="others_pic" />
+                <view>{{user.user_avatar_text}}</view>
+              </view>
+              <view>
+                <view class="flex userInfo">
+                  <view class="userName">姓名</view>
+                  <view class="userCareer">投资经理</view>
+                  <view class="userCompany">杭州投着乐网络科技邮箱公司</view>
+                </view>
+              </view>
+            </view>
+            <view class="projectInfo flex">
+              <view class="seeNum">1人看过项目</view>
+              <view class="interest flex">
+                <view class="btnHaveInterest">感兴趣</view>
+                <view class="btnNoInterest">没兴趣</view>
+                <!-- <view class="haveInterest">感兴趣</view> -->
+              </view>
+            </view>
+          </view>
+          <view id="time">05-04 19:00</view>
+        </view>
+    </view>
+    <view class="classname">
+      <view class="outBox">
+          <view class="insideBox">
+            <view class="flex">
+              <view class="describle">项目一句话介绍</view>
+              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+            </view>
+            <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
+            <view class="allProjectDetail flex">
+              <view class="projectDetailLine">300-500万</view>
+              <view class="projectDetailLine">10%</view>
+              <view class="projectDetailLine">天使轮</view>
+              <view class="projectDetailLine">杭州</view>
+            </view>
+            <view class="flex otherInfo">
+              <view>
+                <imag src="{{user.user_avatar_url}}" class="others_pic" />
+                <view>{{user.user_avatar_text}}</view>
+              </view>
+              <view>
+                <view class="flex userInfo">
+                  <view class="userName">姓名</view>
+                  <view class="userCareer">投资经理</view>
+                  <view class="userCompany">杭州投着乐网络科技邮箱公司</view>
+                </view>
+              </view>
+            </view>
+            <view class="projectInfo flex">
+              <view class="seeNum">1人看过项目</view>
+              <view class="interest flex">
+                <view class="btnHaveInterest">感兴趣</view>
+                <view class="btnNoInterest">没兴趣</view>
+                <!-- <view class="haveInterest">感兴趣</view> -->
+              </view>
+            </view>
+          </view>
+          <view id="time">05-04 19:00</view>
+      </view>
+    </view>
 </template>

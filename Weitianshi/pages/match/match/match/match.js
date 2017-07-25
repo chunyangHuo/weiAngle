@@ -48,35 +48,26 @@ Page({
         //消除人脉缓存
         app.contactsCacheClear();
 
-        // wx.setStorageSync("user_id", "V0VznXa0") 
-        // wx.setStorageSync("user_id", "1ryE5Enr")
 
         //登录状态维护
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
             if (user_id != 0) {
-                //获取我的项目匹配到的投资人
+                //获取我的项目信息
                 wx.request({
-                    url: url + '/api/project/getMyProject',
+                    url: url_common + '/api/project/getMyProjectList',
                     data: {
-                        user_id: user_id
+                        user_id: user_id,
+                        type:'match'
                     },
                     method: 'POST',
                     success: function (res) {
-                        console.log("获取我的项目匹配到的投资人")
+                        console.log("获取我的项目信息")
                         console.log(res)
                         var myProject = res.data.data;
-                        //将匹配出来的四个人放入缓存
-                        var investors = [];
-                        var cards = res.data.data;
-                        cards.forEach((x) => {
-                            investors.push(x.match_investors)
-                        })
-                        wx.setStorageSync('investors', investors);
                         //刷新数据
                         that.setData({
                             myProject: myProject,
-                            investors: investors,
                             myPublic_page_end: false,
                             myPublicProject_page: 1
                         })
@@ -249,7 +240,7 @@ Page({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
         })
     },
-    //点击项目融资详情
+    //点击我的项目详情
     detail: function (e) {
         var thisData = e.currentTarget.dataset;
         var index = thisData.index;
@@ -293,29 +284,26 @@ Page({
                         title: 'loading',
                     })
                     wx.request({
-                        url: url + '/api/project/getMyProject',
+                        url: url_common + '/api/project/getMyProjectList',
                         data: {
                             user_id: user_id,
                             page: myPublicProject_page,
+                            type:'match'
                         },
                         method: 'POST',
                         success: function (res) {
                             var myPublic_page_end = res.data.page_end;
                             var newPage = res.data.data;//新请求到的数据
                             var myProject = that.data.myProject;//现在显示的数据
-                            var investors = that.data.investors;
                             console.log("触发刷新")
                             console.log(myPublicProject_page, myPublic_page_end)
                             console.log("分页加载项目融资")
                             console.log(res.data);
                             newPage.forEach((x) => {
                                 myProject.push(x)
-                                investors.push(x.match_investors)
                             })
-                            wx.setStorageSync("investors", investors)
                             that.setData({
                                 myProject: myProject,
-                                investors: investors,
                                 myPublicCheck: true,
                                 myPublic_page_end: myPublic_page_end
                             })

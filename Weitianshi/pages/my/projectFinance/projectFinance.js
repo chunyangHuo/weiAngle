@@ -32,7 +32,7 @@ Page({
         }
         //获取我的项目匹配到的投资人
         wx.request({
-            url: url + '/api/project/getMyProject',
+            url: url_common + '/api/project/getMyProjectList',
             data: {
                 user_id: user_id
             },
@@ -64,8 +64,10 @@ Page({
         var myPublicProject_page = this.data.myPublicProject_page;
         var myPublicCheck = this.data.myPublicCheck;
         var myPublic_page_end = this.data.myPublic_page_end;
+        var user_id=wx.getStorageSync('user_id');
+        var followed_user_id = this.data.followed_user_id;
         if (myPublicCheck) {
-            if (user_id != '') {
+            if (followed_user_id ) {
                 //判断数据是不是已经全部显示了
                 if (myPublic_page_end == false) {
                     myPublicProject_page++;
@@ -77,29 +79,66 @@ Page({
                         title: 'loading',
                     })
                     wx.request({
-                        url: url + '/api/project/getMyProject',
+                        url: url_common + '/api/project/getMyProjectList',
                         data: {
-                            user_id: user_id,
+                            user_id: followed_user_id,
                             page: myPublicProject_page,
+                            type:'profile'
                         },
                         method: 'POST',
                         success: function (res) {
                             var myPublic_page_end = res.data.page_end;
                             var newPage = res.data.data;//新请求到的数据
                             var myProject = that.data.myProject;//现在显示的数据
-                            var investors = that.data.investors;
                             console.log("触发刷新")
                             console.log(myPublicProject_page, myPublic_page_end)
                             console.log("分页加载项目融资")
                             console.log(res.data);
-                            newPage.forEach((x) => {
-                                myProject.push(x)
-                                investors.push(x.match_investors)
-                            })
-                            wx.setStorageSync("investors", investors)
+                            myProject=myProject.concat(newPage)
                             that.setData({
                                 myProject: myProject,
-                                investors: investors,
+                                myPublicCheck: true,
+                                myPublic_page_end: myPublic_page_end
+                            })
+                            wx.hideLoading()
+                        },
+                    })
+                } else {
+                    rqj.errorHide(that, "没有更多了", that, 3000)
+                    that.setData({
+                        myPublicCheck: true
+                    })
+                }
+            }else{
+                //判断数据是不是已经全部显示了
+                if (myPublic_page_end == false) {
+                    myPublicProject_page++;
+                    this.setData({
+                        myPublicProject_page: myPublicProject_page,
+                        myPublicCheck: false
+                    });
+                    wx.showLoading({
+                        title: 'loading',
+                    })
+                    wx.request({
+                        url: url_common + '/api/project/getMyProjectList',
+                        data: {
+                            user_id: user_id,
+                            page: myPublicProject_page,
+                            type:'profile'
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                            var myPublic_page_end = res.data.page_end;
+                            var newPage = res.data.data;//新请求到的数据
+                            var myProject = that.data.myProject;//现在显示的数据
+                            console.log("触发刷新")
+                            console.log(myPublicProject_page, myPublic_page_end)
+                            console.log("分页加载项目融资")
+                            console.log(res.data);
+                            myProject = myProject.concat(newPage)
+                            that.setData({
+                                myProject: myProject,
                                 myPublicCheck: true,
                                 myPublic_page_end: myPublic_page_end
                             })
@@ -138,7 +177,7 @@ Page({
         var currentTab=this.data.currentTab;
         if(currentTab!=1){
             wx.navigateTo({
-                url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
+                url: '/pages/myProject/editProject/editProject?project_id=' + id + "&&user_id=" + user_id,
             })
         }
     },

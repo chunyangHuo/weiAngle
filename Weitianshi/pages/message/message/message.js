@@ -48,8 +48,6 @@ Page({
     onShow: function () {
         //消除人脉缓存
         app.contactsCacheClear();
-
-
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var messageList = this.data.messageList;
@@ -80,18 +78,52 @@ Page({
                 console.log(that.data.messageList)
             }
         })
+        wx.request({
+          url: url_common +'/api/user/getUserGroupByStatus',
+          data:{
+            user_id:user_id
+          },
+          method:'POST',
+          success:function(res){
+            // 0:未认证1:待审核 2 审核通过 3审核未通过
+            let status= res.data.status;
+            console.log(status);
+            that.setData({
+              status:status
+            })
+          }
+        })
     },
 
-    //跳转到人脉申请页面
+    // 跳转到人脉申请页面
     beAddedContacts: function () {
-        console.log("跳转")
         wx.navigateTo({
             url: '/pages/message/beAddedContacts/beAddedContacts',
         })
-    }
+    },
     //  beAddedContacts: function (e) {
     //   wx.navigateTo({
     //     url: '/pages/message/beAddedContacts/beAddedContacts',
     //   })
-    // }
+    // },
+    // 身份认证跳转
+    toIdentity:function(){
+    console.log("跳转身份认证")
+      wx.navigateTo({
+        url: '/pages/my/identity/indentity/indentity',
+      })
+    },
+    // 项目申请跳转
+    projectApply:function(){
+      wx.navigateTo({
+        url: '/pages/message/applyProject/applyProject',
+      })
+    },
+    // 项目推送
+    projectPush:function(){
+      wx.navigateTo({
+        url: '/pages/message/pushProject/pushProject',
+      })
+    },
+
 })

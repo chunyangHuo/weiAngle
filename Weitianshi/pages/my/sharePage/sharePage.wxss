@@ -62,3 +62,12 @@
 .giveProject{
   background:#e6e6e6;
 }
+.user_play_time {
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #ccc;
+  line-height: 20rpx;
+  text-align: left;
+  margin-bottom: 60rpx;
+  margin-top:16rpx;
+}

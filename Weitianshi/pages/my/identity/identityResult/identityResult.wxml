@@ -1,0 +1,21 @@
+<view class="classname">
+  <!-- <view class="classname">
+    <image src="/img/img-shenhetongguo@2x.png" class="statusPic"></image>
+    <view class="statusTitle">恭喜您,买方FA认证审核通过</view>
+  </view>
+   <view class="classname">
+    <image src="/img/img-weitongguo@2x.png" class="statusPic"></image>
+    <view class="statusTitle">买方FA认证审核未通过</view>
+  </view> -->
+   <view class="classname">
+    <image src="/img/img-shenhezhong@2x.png" class="statusPic"></image>
+    <view class="statusTitle">买家FA认证审核中</view>
+  </view>
+  <textarea class="textContent" />
+  <image src="/img/img-fageerweima@2x.png" class="QRCode"></image>
+  <!-- <view class="contextContent">认证会员将由微天使创始人直接服务</view> -->
+  <view class="contextContent">联系FA哥，加速审核</view>
+  <!-- <view class="contextContent">联系FA哥，重新审核</view> -->
+  <view class="contextContent">扫码加微信weitianshicn</view>
+  <view class="btnYes">确定</view>
+</view>

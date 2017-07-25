@@ -88,7 +88,7 @@ Page({
         var user_id = this.data.user_id;
         //获取用户信息
         wx.request({
-            url: url + '/api/user/getUserAllInfo',
+            url: url_common + '/api/user/getUserAllInfo',
             data: {
                 share_id: 0,
                 user_id: user_id,

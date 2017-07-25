@@ -31,32 +31,36 @@
     <view bindtap="myNetwork">我的人脉</view>
     <view bindtap="addNetwork">加入人脉</view>
   </view>
-
-  <!--税号-->
-  <view class="modalBox" hidden="{{modalBox==0}}">
-    <view class="IdentificationNum">
-      <view class="IdentificationTitle">-公司税号-</view>
-      <view class="IdentificationNumText">*未办理三证合一、五证合一的公司不适用此税号</view>
-      <view class="IdentificationNumCompany" wx:if="{{modalStyle == 0}}">
-        <view class="companyTitle">公司</view>
-        <view class="companyName">{{tax_name}}</view>
-        <view class="companyTitle">税号</view>
-        <view class="IdentificationNumber">{{tax_member}}</view>
-        <view class="modalBtn">
-          <view class="modalYes" bindtap="laterOn">确定</view>
-        </view>
-      </view>
-      <view class="IdentificationNumCompany" wx:if="{{modalStyle == 1}}">
-        <view class="informationText">暂未查询到税号</view>
-        <view class="informationText">请先完善公司全称或稍后再试</view>
-        <view class="informationBtn flex">
-          <view class="informationYes" catchtap="writeInformation">去完善</view>
-          <view class="informationYes" catchtap="laterOn">稍后再试</view>
-        </view>
-      </view>
-    </view>
-  </view>
 </scroll-view>
 <view class="showModal" hidden="{{modal==0}}" bindtap="hideModal">
   <image src="/img/img-share@3x.png"></image>
+</view>
+<!--税号-->
+<view class="modalBox" hidden="{{modalBox==0}}">
+  <view class="IdentificationNum">
+    <view class="flex">
+      <label class="oneLine"></label>
+      <view class="IdentificationTitle">公司税号</view>
+      <label class="oneLine"></label>
+    </view>
+    <view class="IdentificationNumText">*未办理三证合一、五证合一的公司不适用此税号</view>
+    <view class="IdentificationNumCompany" wx:if="{{modalStyle == 0}}">
+      <view class="companyTitle">公司</view>
+      <view class="companyName">{{data.com_name}}</view>
+      <view class="companyTitle">税号</view>
+      <text class="IdentificationNumber">{{tax_member}}</text>
+      <view class="modalBtn flex">
+        <view class="modalYes" bindtap="copyNum">复制税号</view>
+        <view class="modalYes" bindtap="laterOn">确定</view>
+      </view>
+    </view>
+    <view class="IdentificationNumCompany" wx:if="{{modalStyle == 1}}">
+      <view class="informationText">暂未查询到税号</view>
+      <view class="informationText">请先完善公司全称或稍后再试</view>
+      <view class="informationBtn flex">
+        <view class="informationYes" catchtap="writeInformation">去完善</view>
+        <view class="informationYes" catchtap="laterOn">稍后再试</view>
+      </view>
+    </view>
+  </view>
 </view>

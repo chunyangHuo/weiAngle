@@ -21,7 +21,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         // console.log(user_id);
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },
@@ -70,7 +70,7 @@ Page({
             rs = rs + company.substr(i, 1).replace(pattern, '');
         }
         wx.request({
-          url: url_common + '/api/dataTeam/checkCompany ',
+          url: url_common + '/api/dataTeam/checkCompany',
           data: {
             com_name: company
           },
@@ -138,7 +138,7 @@ Page({
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({
-                url: url + '/api/wx/updateUser',
+              url: url_common + '/api/user/updateUser',
                 data: {
                     user_id: user_id,
                     user_company_name: company,

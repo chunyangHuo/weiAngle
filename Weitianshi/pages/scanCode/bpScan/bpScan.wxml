@@ -1,6 +1,7 @@
 <!--pages/myProject/scanCode/scanCode.wxml-->
 <view class="bigBox">
-  <view class="followPerson">
+<!--跟进人-->
+  <!--<view class="followPerson">
     <view class="followPersonBox flex">
       <image src="/img/myOn.png" class="titlePic"></image>
       <view class="title">跟进人</view>
@@ -17,7 +18,7 @@
         <label class="createTime">1991-01-01</label>
       </view>
     </view>
-  </view>
+  </view>-->
   <view class="brightPoint">
     <view class="brightPointBox flex">
       <image src="/img/img-star.png" class="titlePic"></image>

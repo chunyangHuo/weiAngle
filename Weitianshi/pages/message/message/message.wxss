@@ -12,22 +12,28 @@
 }
 
 .messageList {
-  height: 56rpx;
-  padding: 40rpx 20rpx 40rpx 50rpx;
+  height: 32rpx;
+  padding: 50rpx 42rpx 50rpx 36rpx;
   align-items: center;
+  position: relative;
 }
 
 .messageList .title {
-  font-size: 36rpx;
+  font-size: 32rpx;
   text-align: left;
   color: #333;
-  line-height: 54rpx;
+  line-height: 32rpx;
   width: 400rpx;
-  margin-top:6rpx;
+  margin-top: 6rpx;
 }
 
 .title {
   justify-content: space-between;
+  font-size: 32rpx;
+  text-align: left;
+  color: #333;
+  line-height: 32rpx;
+  width: 400rpx;
 }
 
 .title_icon {
@@ -36,12 +42,12 @@
   margin-right: 46rpx;
 }
 
-.addedContacts .title {
+/* .addedContacts .title {
   font-size: 36rpx;
   text-align: left;
   color: #333;
   line-height: 54rpx;
-}
+} */
 
 .flex {
   display: flex;
@@ -76,4 +82,79 @@
   height: 36rpx;
   display: block;
   padding: 0 8rpx;
+}
+
+/*身份认证 */
+
+.messageBox {
+  background: #fff;
+  width: 375px;
+  height: 132rpx;
+  position: relative;
+  margin-bottom: 32rpx;
+}
+
+.messageInside {
+  padding: 50rpx 34rpx 50rpx 32rpx;
+}
+
+.identity {
+  background: #40587a;
+  border-radius: 4rpx;
+  width: auto;
+  height: 54rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 54rpx;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 20rpx;
+  position: absolute;
+  right: 34rpx;
+}
+
+.identityIcon {
+  border-radius: 2rpx;
+  width: 32rpx;
+  height: 24rpx;
+  margin-right: 36rpx;
+}
+
+/*审核信息  */
+
+.identifyContent {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  text-align: center;
+  white-space: nowrap;
+  justify-content: space-between;
+  position: absolute;
+  right: 34rpx;
+  width: 120rpx;
+}
+
+.on {
+  color: #ccc;
+}
+
+/*底部信息提示  */
+
+.bottomBox {
+  margin-top:352rpx;
+}
+
+.contactPerson {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 28rpx;
+  text-align: center;
+  margin-bottom:16rpx;
+}
+
+.wechatNumber {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: center;
 }

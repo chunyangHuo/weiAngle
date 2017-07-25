@@ -21,9 +21,9 @@
       </view>
 
       <!--已发布的项目-->
-      <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject" wx:for-index="proindex">
+      <block wx:for="{{myProject}}" wx:key="{{project_id}}" wx:for-item="myProject" wx:for-index="proindex">
         <view class="weui-panel__bd" style="background:white;margin:16px">
-          <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{proindex}}" bindtap="detail">
+          <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{proindex}}" bindtap="detail">
             <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
             <view class="sort">
               <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="sort.industry_id">
@@ -43,7 +43,7 @@
             <view class="foryou" style="text-align:left">为您对接到的资本</view>
             <view class="weui-media-box__info people">
               <block wx:for="{{myProject.match_investors}}" wx:for-item="match_investors" wx:key="investor_id">
-                <view class="person" data-id="{{myProject.pro_id}}" data-index="{{proindex}}" catchtap="">
+                <view class="person" data-id="{{myProject.project_id}}" data-index="{{proindex}}" catchtap="">
                   <image class="headPic" wx:if="{{match_investors.investor_logo_url}}" src="{{match_investors.investor_logo_url}}" />
                   <view class="headPic others_nopic" wx:if="{{!match_investors.investor_logo_url}}">{{match_investors.investor_logo_text}}</view>
                   <view>{{match_investors.investor_name}}</view>
@@ -71,7 +71,7 @@
 
       <!--已匹配的项目-->
       <view class="others">
-        <block wx:for="{{yourProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
+        <block wx:for="{{yourProject}}" wx:key="{{project_id}}" wx:for-item="myProject">
           <template is="selectedCard" data="{{myProject:myProject}}"></template>
         </block>
 

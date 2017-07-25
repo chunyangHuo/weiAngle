@@ -1,5 +1,5 @@
 page {
-  background: white;
+  /*background: white;*/
   height: 100%;
 }
 
@@ -13,6 +13,13 @@ scroll-view {
   color: #ccc;
   border-bottom: 5rpx solid #333;
   text-align: center;
+}
+
+.more {
+  color: #009eff;
+  font-size: 12px;
+  text-align: center;
+  display: block;
 }
 
 .swiper-box {
@@ -82,6 +89,8 @@ scroll-view {
 }
 
 .theOne {
+  position: absolute;
+  right: 48rpx;
   background: #40587a;
   color: white;
   display: inline-block;
@@ -136,17 +145,18 @@ scroll-view {
   color: #666;
 }
 
-.others_company {
+/*.others_company {
   font-size: 24rpx;
   color: #666;
   padding-bottom: 16rpx;
-}
+}*/
 
+/*
 .others_email {
   font-size: 24rpx;
   color: #333;
   padding-left: 16rpx;
-}
+}*/
 
 .others_tips {
   border: 1px solid #333;
@@ -227,9 +237,9 @@ scroll-view {
 .floatBtn button {
   width: 100%;
   justify-content: center;
-  color: #cccccc;
+  color: #fff;
   border-radius: 0;
-  background: #f2f2f2;
+  background: #ccc;
 }
 
 .edit {
@@ -270,19 +280,27 @@ scroll-view {
 /*头像*/
 
 .others_pic {
-  width: 120rpx;
-  height: 120rpx;
+  width: 48rpx;
+  height: 48rpx;
   display: inline-block;
   text-align: center;
   border-radius: 50%;
+  margin-top: 18rpx;
+  margin-right: 16rpx;
 }
 
 .others_nopic {
-  font-size: 64rpx;
+  font-size: 28rpx;
   color: #40587a;
   background: #f2f2f2;
-  padding: 28rpx 40rpx;
+  /*padding: 14rpx 20rpx;*/
   border-radius: 50%;
+  width: 48rpx;
+  height: 48rpx;
+  text-align: center;
+  margin-top: 18rpx;
+  margin-right: 16rpx;
+  line-height: 48rpx;
 }
 
 .load {
@@ -294,5 +312,336 @@ scroll-view {
   height: 160rpx;
   padding-left: 295rpx;
   padding-top: 170rpx;
-  padding-bottom: 295rpx;
+  /*padding-bottom: 295rpx;*/
+  position: absolute;
+}
+
+/*加人脉*/
+
+.addNetwork {
+  background: #40587a;
+  border-radius: 200rpx;
+  width: 120rpx;
+  height: 48rpx;
+  color: #fff;
+}
+
+.addNetwork .addNet {
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 54rpx;
+  display: block;
+  text-align: center;
+}
+
+.netWork {
+  opacity: 0.8;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+.addPerson {
+  border-radius: 200rpx;
+  width: 120rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 12rpx;
+  top: 38rpx;
+}
+
+.addPersonBtn {
+  background: #40587a;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  border-radius: 100px;
+  color: #fff;
+  padding: 14rpx 0;
+  line-height: 20rpx;
+  text-align: center;
+  position: static;
+}
+
+.addPersonBtn::after {
+  border: 0;
+}
+
+.waitPerson {
+  position: absolute;
+  right: 12rpx;
+  font-size: 20rpx;
+  color: #999;
+  line-height: 20rpx;
+  text-align: center;
+  top: 38rpx;
+  background: none;
+}
+
+.waitPersonBtn {
+  background: #fff;
+  border: 1rpx solid #ccc;
+  border-radius: 100px;
+  width: 118rpx;
+  /*height: 48rpx;*/
+  color: #fff;
+  padding: 14rpx 0;
+  line-height: 20rpx;
+  text-align: center;
+  position: static;
+}
+
+/*新的内容*/
+
+.projectDetailTop {
+  /*height: 420rpx;*/
+  width: 90%;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10);
+  border-radius: 8rpx;
+  margin: 32rpx 32rpx 38rpx 36rpx;
+}
+
+.projectDetailBox {
+  padding: 32rpx;
+  height: auto;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.describle {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 48rpx;
+  text-align: left;
+  width: 480rpx;
+}
+
+.industry {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 26rpx;
+  text-align: left;
+  margin: 36rpx 0 24rpx 0;
+}
+
+.allProjectDetail {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 34rpx;
+}
+
+.ProjectCluesLine {
+  width: 67%;
+  height: 2rpx;
+  margin: 10rpx 18rpx 0 18rpx;
+  font-size: 0;
+  background: #e6e6e6;
+}
+
+.otherInfo {
+  border-top: 1rpx solid #e6e6e6;
+  height: 94rpx;
+  position: relative;
+}
+
+.userCareer {
+  font-size: 24rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: left;
+  margin-right: 16rpx;
+  margin-top: 34rpx;
+  white-space: nowrap;
+}
+
+.userCompany {
+  font-size: 20rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 20rpx;
+  text-align: left;
+  margin-top: 36rpx;
+  width: 320rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.userName {
+  font-size: 28rpx;
+  color: #3a3e4a;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+  margin-right: 16rpx;
+  margin-top: 32rpx;
+  white-space: nowrap;
+}
+
+.userIcon {
+  width: 12rpx;
+  height: 16rpx;
+}
+
+.userInfo {
+  width: 460rpx;
+}
+
+/*项目亮点*/
+
+.brightBox {
+  padding: 32rpx;
+  text-align: left;
+}
+
+.brightPoint {
+  background: #fafafa;
+  border-radius: 2px;
+  padding: 32rpx 24rpx 32rpx 24rpx;
+}
+
+.titlePic {
+  width: 28rpx;
+  height: 28rpx;
+  padding-right: 14rpx;
+  display: inline-block;
+}
+
+.star {
+  margin-bottom: 26rpx;
+}
+
+.brightContent {
+  height: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  background: #fafafa;
+}
+
+.brightContentAfter {
+  height: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+button::after {
+  border: none;
+}
+
+.projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
+}
+
+.industryIcon {
+  margin: 0 16rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.industryIcon:first-child {
+  margin-left: 0;
+}
+
+.lockBackground {
+  z-index: -1;
+  width: 100%;
+  height: 942rpx;
+  position: relative;
+}
+
+.projectDetailLine {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+}
+
+.projectDetailLine:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLine:last-child {
+  border-right: none;
+}
+
+.contactPerson {
+  font-size: 20rpx;
+  color: #40587a;
+  line-height: 20rpx;
+  text-align: left;
+  margin-right: 4rpx;
+}
+
+.contactPersonBox {
+  position: absolute;
+  top: 40rpx;
+  right: 2rpx;
+}
+
+/*认证细腻  */
+
+.accreditation {
+  background: #fff1e8;
+  height: 88rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 88rpx;
+  text-align: left;
+  padding-left: 32rpx;
+}
+
+.toAccreditation {
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  margin-top:18rpx;
+  margin-left:184rpx;
+}
+.push {
+  height: 88rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  background: #40587a;
+  text-align: center;
+  color: #fff;
+}
+.pushing{
+  background:#cccccc;
+  height: 88rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  text-align: center;
+  color: #fff;
 }

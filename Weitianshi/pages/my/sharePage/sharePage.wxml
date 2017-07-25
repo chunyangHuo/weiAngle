@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view id="my" scroll-y="true">
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user,count:count,text:'加他为人脉',show:0,IdentificationShow:0}}"></template>
+  <template is="userInfo" data="{{user:user,count:count,text:'加他为人脉',show:0,IdentificationShow:0,playTime:1}}"></template>
 
   <!--个人描述-->
   <template is="userIntro" data="{{user:user}}"></template>

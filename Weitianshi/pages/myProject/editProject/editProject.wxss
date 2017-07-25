@@ -98,8 +98,24 @@ page {
   line-height: 82rpx;
   width:98%;
 }
-
-.grey{
-
+/*去电脑端上传*/
+.pointToPC {
+  background: #fff1e8;
+  width: 87%;
+  height: 80rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 80rpx;
+  padding: 0 48rpx;
 }
-
+.pointPcToNet{
+  position:absolute;
+  right:48rpx;
+}
+.pointPcIcon{
+  width:24rpx;
+  height:18rpx;
+  margin-right:8rpx;
+}
