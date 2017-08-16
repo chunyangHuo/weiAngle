@@ -27,14 +27,26 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-       console.log(res)
-       console.log("申请查看我的项目")
        let contentList = res.data.data;
        let count = res.data.count;
        that.setData({
          count: count,
          contentList: contentList
        })
+      }
+    })
+    //向后台发送信息取消红点
+    wx.request({
+      url: url_common + '/api/message/setMessageToRead',
+      data: {
+        user_id: user_id,
+        type_id: 1,
+        project_id: project_id
+      },
+      method: "POST",
+      success: function (res) {
+        console.log(res)
+        console.log("发送成功")
       }
     })
     that.setData({

@@ -10,7 +10,6 @@ Page({
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
-    cancel:false
   },
 
   onLoad: function (options) {
@@ -70,6 +69,7 @@ Page({
       },
       method: "POST",
       success: function (res) {
+        console.log("我是推送给我的红点")
         console.log(res)
       }
     })
@@ -89,7 +89,7 @@ Page({
     let type = this.data.type;
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let cancel = this.data.cancel;
+    let pushProjectList = this.data.pushProjectList;
     if (current == 1) {
       //向后台发送信息取消红点 我推送的项目
       wx.request({
@@ -101,27 +101,39 @@ Page({
         method: "POST",
         success: function (res) {
           console.log(res)
-          if (res.data.status_code == 2000000){
+          if (res.data.status_code == 2000000) {
+            pushProjectList.forEach((x) => {
+              x.message_status = 1;
+            })
             that.setData({
-              cancel: true
+              pushProjectList: pushProjectList
             })
             console.log("yes,成功了")
           }
         }
       })
-    }else if(current == 0){
+    } else if (current == 0) {
       wx.request({
-            url: url_common + '/api/message/setMessageToRead',
-            data: {
-              user_id: user_id,
-              type_id: type
-            },
-            method: "POST",
-            success: function (res) {
-              console.log(res)
-              console.log("current=0")
-            }
-          })
+        url: url_common + '/api/message/setMessageToRead',
+        data: {
+          user_id: user_id,
+          type_id: type
+        },
+        method: "POST",
+        success: function (res) {
+          console.log(res)
+          if (res.data.status_code == 2000000) {
+            pushProjectList.forEach((x) => {
+              x.message_status = 1;
+            })
+            that.setData({
+              pushProjectList: pushProjectList
+            })
+            console.log("yes,成功了")
+          }
+
+        }
+      })
     }
     that.setData({ currentTab: e.detail.current });
   },
@@ -141,9 +153,13 @@ Page({
           },
           method: "POST",
           success: function (res) {
+            console.log(res)
             if (res.data.status_code == 2000000) {
+              pushProjectList.forEach((x) => {
+                x.message_status = 1;
+              })
               that.setData({
-                cancel: true
+                pushProjectList: pushProjectList
               })
               console.log("yes,成功了")
             }
@@ -159,7 +175,15 @@ Page({
           method: "POST",
           success: function (res) {
             console.log(res)
-            console.log("current=0")
+            if (res.data.status_code == 2000000) {
+              pushProjectList.forEach((x) => {
+                x.message_status = 1;
+              })
+              that.setData({
+                pushProjectList: pushProjectList
+              })
+              console.log("yes,成功了")
+            }
           }
         })
       }
@@ -284,8 +308,8 @@ Page({
     let push_id = e.currentTarget.dataset.push;
     let status = e.currentTarget.dataset.status;
     let pushToList = this.data.pushToList;
-    // status: 1 =>感兴趣 2=>不感兴趣
- 
+    // status: 1 =>感兴趣 2=>不感兴趣 0或3为待处理
+
     wx.request({
       url: url_common + '/api/message/handlePushProjectMessage',
       data: {
@@ -297,7 +321,7 @@ Page({
       success: function (res) {
         console.log(res)
         let statusCode = res.data.status_code;
-        if (statusCode == 2000000){
+        if (statusCode == 2000000) {
           if (status == 1) {
             console.log("感兴趣")
             pushToList.forEach((x) => {
@@ -318,10 +342,10 @@ Page({
               push_id: push_id
             })
           }
-        }else{
+        } else {
           console.log(statusCode)
         }
-       
+
       }
     })
   },
@@ -333,26 +357,26 @@ Page({
     // status 1:同意  2:拒绝
     let status = e.currentTarget.dataset.status;
     console.log(status)
-      wx.request({
-        url: url_common + '/api/message/handleApplyProjectMessage',
-        data: {
-          user_id : user_id,
-          record_id: record_id,
-          // status: status
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-          if (status==1){
-            console.log("同意查看")
-          }else if(status==2){
-            console.log("我拒绝")
-            that.setData({
-              record_id: record_id
-            })
-          }
+    wx.request({
+      url: url_common + '/api/message/handleApplyProjectMessage',
+      data: {
+        user_id : user_id,
+        record_id: record_id,
+        // status: status
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        if (status == 1) {
+          console.log("同意查看")
+        } else if (status == 2) {
+          console.log("我拒绝")
+          that.setData({
+            record_id: record_id
+          })
         }
-      })
+      }
+    })
   }
 })
 

@@ -209,6 +209,11 @@ Page({
           //一键尽调
           //公司信息
           let company_name = that.data.pro_company_name;
+          if(company_name==''){
+            that.setData({
+              nothing : 0
+            })
+          }
           // app.console(company_name)
           // let company_name = "阿里巴巴（中国）有限公司";
           // let company_name = "上海艺娱信息科技有限公司";

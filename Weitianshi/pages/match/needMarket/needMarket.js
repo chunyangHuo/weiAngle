@@ -31,7 +31,7 @@ Page({
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
-      
+      user_id : user
       },
       method: 'POST',
       success: function (res) {

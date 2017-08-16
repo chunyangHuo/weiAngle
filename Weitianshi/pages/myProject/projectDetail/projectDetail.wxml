@@ -221,7 +221,7 @@
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
             <!--FA签约-->
-            <view class="signFA" wx:if="{{!project.pro_FA}}">
+            <view class="signFA"  wx:if="{{project.pro_FA}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>

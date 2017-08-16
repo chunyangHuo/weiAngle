@@ -110,7 +110,7 @@ Page({
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
             wx.navigateBack({
-              delta: 4
+              delta: 1
             })
         }
       }

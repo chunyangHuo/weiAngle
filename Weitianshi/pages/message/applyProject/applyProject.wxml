@@ -19,7 +19,7 @@
   <swiper-item>
     <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
       <template is="allNumber" data="{{count:count,text:'我申请查看的项目'}}"></template>
-      <template is="personModal" data="{{list:applyList,type:1,push_id:0,cancel:cancel}}"></template>
+      <template is="personModal" data="{{list:applyList,type:1,push_id:0}}"></template>
       <template is="hasNothing" data="{{emptyNumber:applyList}}"></template>
     </scroll-view>
   </swiper-item>

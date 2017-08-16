@@ -6,7 +6,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 0,//选项卡
+    currentTab: 1,//选项卡
     type: 1 //我申請查看的項目
   },
 
@@ -89,8 +89,7 @@ Page({
     var that = this;
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let cancel = this.data.cancel;
-    console.log(cancel)
+    let applyList = this.data.applyList;
     if (current == 1) {
       //向后台发送信息取消红点
       wx.request({
@@ -103,10 +102,13 @@ Page({
         success: function (res) {
           console.log(res)
           console.log("yes,成功了")
-          that.setData({
-            cancel:true
+          applyList.forEach((x) => {
+            x.message_status = 1;
           })
-          console.log(cancel)
+          that.setData({
+            applyList: applyList
+          })
+          console.log(applyList)
         }
       })
     }
@@ -276,27 +278,28 @@ Page({
     let project_id = e.currentTarget.dataset.project;
     let applyList = this.data.applyList;
     // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
-    wx.request({
-      url: url_common + '/api/project/applyProject',
-      data: {
-        user_id : user_id,
-        project_id: project_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log("重新申请")
+    app.applyProjectTo(that, project_id, 1, applyList)
+    // wx.request({
+    //   url: url_common + '/api/project/applyProject',
+    //   data: {
+    //     user_id : user_id,
+    //     project_id: project_id
+    //   },
+    //   method: 'POST',
+    //   success: function (res) {
+    //     console.log("重新申请")
 
-        applyList.forEach((x) => {
-          if (x.project_id == project_id) {
-            console.log("进来了")
-            x.handle_status = 0
-          }
-        })
-        that.setData({
-          applyList: applyList
-        })
-      }
-    })
+    //     applyList.forEach((x) => {
+    //       if (x.project_id == project_id) {
+    //         console.log("进来了")
+    //         x.handle_status = 0
+    //       }
+    //     })
+    //     that.setData({
+    //       applyList: applyList
+    //     })
+    //   }
+    // })
   },
 
 })

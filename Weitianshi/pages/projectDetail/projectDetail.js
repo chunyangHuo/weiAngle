@@ -252,5 +252,44 @@ Page({
                 });
             }
         })
-    }
+    },
+    // 项目详情-里程碑 查看全部
+    moreInfo: function (e) {
+      app.console(e)
+      let id = e.target.dataset.id;
+      let that = this;
+      if (id == 3) {
+        that.setData({
+          moreInfoList: 3
+        })
+      } else if (id == 4) {
+        that.setData({
+          moreInfo: 4
+        })
+      }
+    },
+    noMoreInfo: function (e) {
+      let id = e.target.dataset.id;
+      let that = this;
+      if (id == 3) {
+        that.setData({
+          moreInfoList: 0
+        })
+      } else if (id == 4) {
+        that.setData({
+          moreInfo: 0
+        })
+      }
+    },
+    // 项目详情中的显示全部
+    allBrightPoint: function () {
+      this.setData({
+        isChecked: false
+      })
+    },
+    noBrightPoint: function () {
+      this.setData({
+        isChecked: true
+      })
+    },
 })
