@@ -119,7 +119,7 @@ Page({
       url: url_common + '/api/project/pushProjectToUser',
       data: {
         user_id: user_id,
-        pushed_user_id: "90ky197p",
+        pushed_user_id: pushed_user_id,
         pushed_project: projectList
       },
       method: 'POST',

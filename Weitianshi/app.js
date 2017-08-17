@@ -311,7 +311,7 @@ App({
     sharePage: function (user_id, share_id) {
       let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
       let url = this.globalData.url;
-      let url_common = this.globalData.url_co-  mmon;
+      let url_common = this.globalData.url_common;
       let json = {
         title: '投资名片—智能精准匹配投融资双方的神器',
         path: path,
