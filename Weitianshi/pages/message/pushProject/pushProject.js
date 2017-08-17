@@ -24,24 +24,6 @@ Page({
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
     let type = this.data.type;
-    // 我推送的项目
-    wx.request({
-      url: url_common + '/api/message/pushProjectList',
-      data: {
-        user_id : user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log("我推送的")
-        console.log(res)
-        let pushProjectList = res.data.data;
-        let count = res.data.count;
-        that.setData({
-          count: count,
-          pushProjectList: pushProjectList
-        })
-      }
-    })
     // 推送给我的项目
     wx.request({
       url: url_common + '/api/message/getProjectWithPushToMe',
@@ -60,7 +42,26 @@ Page({
         })
       }
     })
-    //向后台发送信息取消红点 推送给我的
+
+    // 我推送的项目
+    wx.request({
+      url: url_common + '/api/message/pushProjectList',
+      data: {
+        user_id : user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("我推送的")
+        console.log(res)
+        let pushProjectList = res.data.data;
+        let count = res.data.count;
+        that.setData({
+          count: count,
+          pushProjectList: pushProjectList
+        })
+      }
+    })
+    // 向后台发送信息取消红点 推送给我的
     wx.request({
       url: url_common + '/api/message/setMessageToRead',
       data: {
@@ -71,14 +72,6 @@ Page({
       success: function (res) {
         console.log("我是推送给我的红点")
         console.log(res)
-        if (res.data.status_code == 2000000) {
-          pushToList.forEach((x) => {
-            x.message_status = 1;
-          })
-          that.setData({
-            pushToList: pushToList
-          })
-        }
       }
     })
     that.setData({
@@ -98,28 +91,9 @@ Page({
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let pushProjectList = this.data.pushProjectList;
+    let pushToList = this.data.pushToList;
     if (current == 1) {
-      //向后台发送信息取消红点 我推送的项目
-      wx.request({
-        url: url_common + '/api/message/setFeedbackToRead',
-        data: {
-          user_id: user_id,
-          type: "push"
-        },
-        method: "POST",
-        success: function (res) {
-          console.log(res)
-          if (res.data.status_code == 2000000) {
-            pushProjectList.forEach((x) => {
-              x.message_status = 1;
-            })
-            that.setData({
-              pushProjectList: pushProjectList
-            })
-            console.log("yes,成功了")
-          }
-        }
-      })
+    
     } else if (current == 0) {
       wx.request({
         url: url_common + '/api/message/setMessageToRead',
@@ -137,9 +111,30 @@ Page({
             that.setData({
               pushToList: pushToList
             })
-            console.log("yes,成功了")
+            console.log("推送给我的项目")
           }
 
+        }
+      })
+      //向后台发送信息取消红点 我推送的项目
+      wx.request({
+        url: url_common + '/api/message/setFeedbackToRead',
+        data: {
+          user_id: user_id,
+          type: "push"
+        },
+        method: "POST",
+        success: function (res) {
+          console.log(res)
+          if (res.data.status_code == 2000000) {
+            pushProjectList.forEach((x) => {
+              x.message_status = 1;
+            })
+            that.setData({
+              pushProjectList: pushProjectList
+            })
+            console.log("我推送的项目")
+          }
         }
       })
     }

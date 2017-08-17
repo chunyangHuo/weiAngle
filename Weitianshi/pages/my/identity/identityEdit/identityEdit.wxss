@@ -101,7 +101,8 @@
   line-height: 88rpx;
   text-align: center;
   position: fixed;
-  top: 1126rpx;
+  /* top: 1126rpx; */
+  bottom:0;
 }
 
 .personListContentAfter {

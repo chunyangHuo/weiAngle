@@ -111,9 +111,33 @@ Page({
   bindChange: function (e) {
     var that = this;
     var current = e.detail.current;
+    let pushToList = this.data.pushToList;
+    let applyList = this.data.applyList;
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    if (current == 1) {
+    if (current == 0) {
+      // 推送给我的
+      wx.request({
+        url: url_common + '/api/message/setMessageToRead',
+        data: {
+          user_id: user_id,
+          type_id: "7"
+        },
+        method: "POST",
+        success: function (res) {
+          console.log(res)
+          if (res.data.status_code == 2000000) {
+            pushToList.forEach((x) => {
+              x.message_status = 1;
+            })
+            that.setData({
+              pushToList: pushToList
+            })
+            console.log("推送给我的项目")
+          }
+
+        }
+      })
       //向后台发送信息取消红点 我申请查看的
       wx.request({
         url: url_common + '/api/message/setFeedbackToRead',
@@ -123,15 +147,22 @@ Page({
         },
         method: "POST",
         success: function (res) {
-          console.log("yes,成功了")
+          applyList.forEach((x) => {
+            x.message_status = 1;
+          })
+          that.setData({
+            applyList: applyList
+          })
         }
       })
+
     }
   },
   /*点击tab切换*/
   swichNav: function (e) {
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
+      
       return false;
     } else {
       that.setData({
