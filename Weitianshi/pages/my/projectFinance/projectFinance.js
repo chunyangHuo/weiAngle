@@ -156,6 +156,7 @@ Page({
     },
     //项目详情
     detail: function (e) {
+      console.log(e)
         var thisData = e.currentTarget.dataset;
         var id = thisData.id;
         var index = thisData.index;

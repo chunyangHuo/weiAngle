@@ -85,16 +85,21 @@ Page({
          checkedNum++
        }
      })
-     if (checkedNum >=overTime) {
+     console.log(checkedNum)
+     if (checkedNum>5){
        dataList[index].check = !dataList[index].check;
        rqj.errorHide(that, "最多可选择五项", 1000)
-     } else if (overTime==0){
-       rqj.errorHide(that, "今日推送次数已用完", 1000)
-     } else {
-       that.setData({
-         dataList: dataList
-       })
-     }
+    }else{
+      if (checkedNum > overTime) {
+        console.log("我是错误提示哦")
+        dataList[index].check = !dataList[index].check;
+        rqj.errorHide(that, "今日推送次数已用完", 1000)
+      } else {
+        that.setData({
+          dataList: dataList
+        })
+      }
+    }
      dataList.forEach((x) => {
        if (x.check == true) {
          checkObject.push(x)

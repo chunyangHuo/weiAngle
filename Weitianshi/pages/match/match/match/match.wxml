@@ -92,7 +92,7 @@
   <!-- 资源对接 -->
   <swiper-item>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='resourceProject'>
-      <!-- <template is="publish" data="{{hasPublic:hasPublic2,user_industry:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template> -->
+       <template is="publish" data="{{hasPublic:hasPublic2,user_industry:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template> 
       <!-- <view class="others">
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
           <template is="resourceCard" data="{{item:item}}"></template>

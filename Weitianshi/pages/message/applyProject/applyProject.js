@@ -6,7 +6,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
     type: 1 //我申請查看的項目
   },
 
@@ -31,7 +31,7 @@ Page({
         let contentList = res.data.data;
         let count1 = res.data.count;
         that.setData({
-          count1: 　count1,
+          count1: count1,
           contentList: contentList
         })
       }
@@ -68,7 +68,7 @@ Page({
       page_end: false,
       page_endBoolean: false,
       push_page: 1,
-      cancel:false
+      cancel: false
     })
     //向后台发送信息取消红点
     wx.request({
@@ -90,7 +90,9 @@ Page({
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let applyList = this.data.applyList;
-    if (current == 1) {
+    let contentList = this.data.contentList;
+    let type = this.data.type;
+    if (current == 0) {
       //向后台发送信息取消红点
       wx.request({
         url: url_common + '/api/message/setFeedbackToRead',
@@ -100,8 +102,6 @@ Page({
         },
         method: "POST",
         success: function (res) {
-          console.log(res)
-          console.log("yes,成功了")
           applyList.forEach((x) => {
             x.message_status = 1;
           })
@@ -109,6 +109,22 @@ Page({
             applyList: applyList
           })
           console.log(applyList)
+        }
+      })
+      wx.request({
+        url: url_common + '/api/message/setMessageToRead',
+        data: {
+          user_id: user_id,
+          type_id: type
+        },
+        method: "POST",
+        success: function (res) {
+          contentList.forEach((x) => {
+            x.message_status = 1;
+          })
+          that.setData({
+            contentList: contentList
+          })
         }
       })
     }
@@ -224,7 +240,7 @@ Page({
     })
   },
   //点击跳转到用户详情
-  personDetail:function(e){
+  personDetail: function (e) {
     console.log(e);
     var id = e.currentTarget.dataset.project;
     app.console(id)
@@ -263,7 +279,7 @@ Page({
           })
         } else if (status == 2) {
           that.setData({
-            record_id :record_id
+            record_id: record_id
           })
         }
       }

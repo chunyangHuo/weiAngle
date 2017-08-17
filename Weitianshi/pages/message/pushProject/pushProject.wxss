@@ -405,7 +405,7 @@
   background: white;
 }
 
-/* .user_text {
+.user_text {
   background: #f2f2f2;
   line-height: 104rpx;
   text-align: center;
@@ -416,9 +416,9 @@
   position: absolute;
   right: 32rpx;
   top: 32rpx;
-} */
+} 
 
-.user_text {
+ .user_apply {
   width: 40rpx;
   height: 40rpx;
   display: block;
@@ -427,7 +427,7 @@
   font-size: 22rpx;
   background:#999999;
   line-height: 40rpx;
-}
+} 
 
 .investmentGroupContent, .roundGroupContent {
   white-space: nowrap;
