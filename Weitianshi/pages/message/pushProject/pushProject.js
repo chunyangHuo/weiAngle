@@ -71,6 +71,14 @@ Page({
       success: function (res) {
         console.log("我是推送给我的红点")
         console.log(res)
+        if (res.data.status_code == 2000000) {
+          pushToList.forEach((x) => {
+            x.message_status = 1;
+          })
+          that.setData({
+            pushToList: pushToList
+          })
+        }
       }
     })
     that.setData({
@@ -123,11 +131,11 @@ Page({
         success: function (res) {
           console.log(res)
           if (res.data.status_code == 2000000) {
-            pushProjectList.forEach((x) => {
+            pushToList.forEach((x) => {
               x.message_status = 1;
             })
             that.setData({
-              pushProjectList: pushProjectList
+              pushToList: pushToList
             })
             console.log("yes,成功了")
           }
@@ -176,11 +184,11 @@ Page({
           success: function (res) {
             console.log(res)
             if (res.data.status_code == 2000000) {
-              pushProjectList.forEach((x) => {
+              pushToList.forEach((x) => {
                 x.message_status = 1;
               })
               that.setData({
-                pushProjectList: pushProjectList
+                pushToList: pushToList
               })
               console.log("yes,成功了")
             }

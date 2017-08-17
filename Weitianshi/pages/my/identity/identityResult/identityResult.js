@@ -60,13 +60,15 @@ Page({
     }
   },
   // 点击确定返回原页面
-  btnYes: function () {
+  btnYes: function (options) {
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;
     console.log(type)
     let user_id = wx.getStorageSync('user_id');
     let authenticate_id = this.data.authenticate_id;
     let recertification = this.data.recertification;
+
+    
     wx.request({
       url: url_common + '/api/user/saveOtherAuthenticateFeed',
       data: {
@@ -78,22 +80,28 @@ Page({
       success: function (res) {
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
-          if (type) {
-            wx.navigateBack({
-              delta: 1
-            })
-          } else {
-            if (recertification){
-              console.log(recertification)
-              wx.navigateBack({
-                delta: 4
-              })
-            }else{
-              wx.navigateBack({
-                delta: 3
-              })
-            }
-          }
+          // if (type) {
+          //   wx.navigateBack({
+          //     delta: 1
+          //   })
+          // } else {
+          //   if (recertification){
+          //     console.log(recertification)
+          //     wx.navigateBack({
+          //       delta: 4
+          //     })
+          //   }else{
+          //     wx.navigateBack({
+          //       delta: 3
+          //     })
+          //   }
+          // }
+          var pages = getCurrentPages()
+          var num = pages.length-1;
+          console.log(num)
+          wx.navigateBack({
+            delta: num
+          })
         } else {
           console.log(statusCode)
         }
@@ -107,6 +115,8 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     console.log(type)
     let authenticate_id = this.data.authenticate_id;
+    var pages = getCurrentPages();
+    var num = pages.length-1;
     wx.request({
       url: url_common + '/api/user/saveOtherAuthenticateFeed',
       data: {
@@ -119,8 +129,9 @@ Page({
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
           wx.navigateBack({
-            delta: 1
+            delta: num
           })
+          console.log("我跳了啊")
         }
       }
     })

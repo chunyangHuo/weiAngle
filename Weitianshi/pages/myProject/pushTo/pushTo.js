@@ -85,9 +85,11 @@ Page({
          checkedNum++
        }
      })
-     if (checkedNum >overTime) {
+     if (checkedNum >=overTime) {
        dataList[index].check = !dataList[index].check;
        rqj.errorHide(that, "最多可选择五项", 1000)
+     } else if (overTime==0){
+       rqj.errorHide(that, "今日推送次数已用完", 1000)
      } else {
        that.setData({
          dataList: dataList
@@ -111,10 +113,11 @@ Page({
     let checkObject = this.data.checkObject;
     console.log(checkObject)
     let projectList = []
-    checkObject.forEach((x)=>{
-      projectList.push(x.project_id)
-    })
-    console.log(projectList)
+    if (checkObject){
+     checkObject.forEach((x) => {
+       projectList.push(x.project_id)
+     })
+   }
     wx.request({
       url: url_common + '/api/project/pushProjectToUser',
       data: {
@@ -124,7 +127,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
         wx.request({
@@ -144,18 +146,19 @@ Page({
               pushTimes: pushTimes
             })
             console.log(remainTimes)
-            if (remainTimes == 0){
-                rqj.errorHide(that, "每天最多推送5次", 1000)
-            }else{
-              wx.showToast({
-                title: '成功',
-                icon: 'success',
-                duration: 2000
-              })
+            if (pushTimes != 0){
+                wx.showToast({
+                  title: '成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+            } else if (remainTimes == 0){
+              rqj.errorHide(that, "今日推送次数已用完", 1000)
             }
           }
         })
-      
+        } else if (statusCode == 490001){
+          rqj.errorHide(that, "没有选择任何项目", 1000)
         }
       }
     })
