@@ -190,7 +190,7 @@ Page({
                                     url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
                                 });
                             } else {
-                                rqj.errorHide(that, "验证码错误", 1500)
+                                rqj.errorHide(that, res.data.error_msg, 1500)
                             }
                         }
                     })
