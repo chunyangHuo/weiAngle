@@ -49,9 +49,32 @@ Page({
     //项目详情
     projectDetail: function (e) {
       var project_id = e.currentTarget.dataset.project;
-      wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + project_id
+      // 判斷項目是不是自己的
+      wx.request({
+        url: url + '/api/project/projectIsMine',
+        data: {
+          project_id: project_id
+        },
+        method: 'POST',
+        success: function (res) {
+          var that = this;
+          var userId = res.data.user_id;
+          var user = wx.getStorageSync('user_id');
+          if (userId == user) {
+            wx.navigateTo({
+              url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
+            })
+          } else {
+            wx.navigateTo({
+              url: '/pages/projectDetail/projectDetail?id=' + project_id,
+            })
+          }
+        }
       })
+
+
+
+
     },
     //分享当前页面
     onShareAppMessage: function () {

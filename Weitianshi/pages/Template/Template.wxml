@@ -582,7 +582,7 @@
           <view class="flex otherInfo">
             <view >
               <image src="{{item.user.investor_logo_url}}" class="others_pic"  wx:if="{{item.user.investor_logo_url}}"/>
-              <view class="user_text flex" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
+              <view class="user_text flex user_image" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
             </view>
             <view>
               <view class="flex userInfo">
@@ -729,7 +729,7 @@
             </view>
             <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
             <image src="{{item.user.user_avatar_url}}" class="userPic"></image>
-            <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+            <view class="user_text user_apply" wx:if="{{item.user.user_avatar_text}}">{{item.user.user_avatar_text}}</view>
           </view>
           <view class="userCompany">{{item.user.user_company_name}}</view>
           <view class="investmentGroup flex" wx:if="{{item.user.industry != ''}}">

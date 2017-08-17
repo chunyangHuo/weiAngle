@@ -449,6 +449,10 @@
   display: block;
   margin-right: 16rpx;
   border-radius: 50%;
+  background:#999999;
+  font-size: 22rpx;
+  background:#999999;
+  line-height: 40rpx;
 }
 .interest {
   position: absolute;

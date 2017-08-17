@@ -11,7 +11,7 @@
     <image src="/img/img-shenhezhong@2x.png" class="statusPic"></image>
     <view class="statusTitle">{{group_title}}认证审核中</view>
   </view>
-  <textarea id="textContent" bindinput="leaveMessage" auto-height maxlength="503" placeholder="如需认证其他身份，可在此留言" />
+  <textarea id="textContent" bindinput="leaveMessage"  maxlength="503" placeholder="如需认证其他身份，可在此留言" />
   <image src="/img/img-fageerweima@2x.png" class="QRCode"></image>
   <view class="contextContent" wx:if="{{status == 2}}">认证会员将由微天使创始人直接服务</view>
   <view class="contextContent" wx:if="{{status == 1}}">联系FA哥，加速审核</view>

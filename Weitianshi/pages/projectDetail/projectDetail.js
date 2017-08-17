@@ -72,7 +72,7 @@ Page({
         let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
         let title = pro_intro;
         console.log(path)
-        return app.sharePage(path, title)
+        return app.shareProjectPage(path, title)
     },
 
     // 项目详情中的显示全部

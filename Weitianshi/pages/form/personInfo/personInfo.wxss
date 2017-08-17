@@ -39,4 +39,5 @@
   background: #fafafa;
   margin: 32rpx 32rpx 0 32rpx;
   font-size: 28rpx;
+  height:264rpx;
 }
