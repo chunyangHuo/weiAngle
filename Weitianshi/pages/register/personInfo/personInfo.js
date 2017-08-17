@@ -40,15 +40,9 @@ Page({
     //过滤特殊字符
     stripscript: function (e) {
         var that = this;
-        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
-        var rs = "";
         var name = e.detail.value;
-        console.log(name)
-        for (var i = 0; i < name.length; i++) {
-            rs = rs + name.substr(i, 1).replace(pattern, '');
-        }
         that.setData({
-            name: rs
+            name: name
         })
     },
 
