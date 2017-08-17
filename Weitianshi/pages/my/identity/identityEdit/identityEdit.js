@@ -7,6 +7,9 @@ Page({
         array: ['否', '是']
     },
     onLoad: function (option) {
+        console.log(11,wx.getStorageSync('enchangeValue'))
+        console.log(22,wx.getStorageSync('enchangeId'))
+        console.log(33,wx.getStorageSync('enchangeCheck'))
         let recertification = option.isUpdate;//用来判断是否是重新认证
         let that = this;
         // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
@@ -27,7 +30,6 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     // 0:未认证1:待审核 2 审核通过 3审核未通过
-                    console.log(res)
                     let status = res.data.status;
                     let group_id = res.data.group.group_id;
                     let authenticate_id = res.data.authenticate_id;
@@ -45,14 +47,17 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            console.log(res);
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
-                            console.log(invest_info)
                             that.setData({
                                 user_info: user_info,
-                                invest_info: invest_info
-                            })
+                                invest_info: invest_info,
+                                is_FA_part:user_info.is_FA_part,
+                                is_alliance: user_info.is_alliance,
+                                is_financing:user_info.is_finacing,
+                                is_identify_member:user_info.is_identify_member,
+                                is_saas:user_info.is_saas
+                            })    
                         }
                     })
                 }
@@ -67,7 +72,8 @@ Page({
                 success: function (res) {
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
-                    console.log(0,invest_info)
+                    console.log(0, invest_info)
+                    console.log(1,user_info)
                     that.setData({
                         user_info: user_info,
                         invest_info: invest_info,
@@ -79,22 +85,37 @@ Page({
 
     },
     onShow: function () {
-        let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
-        let enchangeValue = wx.getStorageSync('paymoneyenchangeValue') || [];
-
-        console.log(2,enchangeValue)
-
+        //更改某一项表单值后返回表单页面数据更新
+        let invest_info = this.data.invest_info;
+        let industryValue = wx.getStorageSync('industryCurrent1') || [];
+        let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
+        let stageValue = wx.getStorageSync('payenchangeValue') || [];
+        let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
 
         let newIndustry = [];
-        industryCurrent1.forEach(x => {
+        let newScale = [];
+        let newStage = [];
+        let newArea= [] ;
+        industryValue.forEach(x => {
             if (x.check === true) {
                 newIndustry.push(x)
             }
         })
-        let invest_info = this.data.invest_info;
+        scaleValue.forEach(x => {
+            newScale.push({ scale_money: x })
+        })
+        stageValue.forEach(x => {
+            newStage.push({ stage_name: x })
+        })
+        areaValue.forEach(x=>{
+            newArea.push({area_title:x})
+        })
+
         if (invest_info) {
             invest_info.invest_industry = newIndustry;
-            
+            invest_info.invest_scale = newScale;
+            invest_info.invest_stage=newStage;
+            invest_info.invest_area=newArea;
             this.setData({
                 invest_info: invest_info
             })
