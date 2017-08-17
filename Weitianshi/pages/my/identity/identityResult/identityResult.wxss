@@ -17,8 +17,7 @@
 }
 
 #textContent {
-  /* background: #fafafa;  */
-  background: yellow;
+  background: #fafafa;  
   border-radius: 4rpx;
   width: 558rpx;
   height: 112rpx;

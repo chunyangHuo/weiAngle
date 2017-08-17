@@ -244,7 +244,7 @@ App({
     },
 
     //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-    sharePage: function (path,title) {
+    shareProjectPage: function (path,title) {
         // let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
@@ -306,6 +306,69 @@ App({
             },
         }
         return json
+    },
+    //分享项目(user_id为数据所有人ID,share_Id为分享人的ID)
+    sharePage: function (user_id, share_id) {
+      let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+      let url = this.globalData.url;
+      let url_common = this.globalData.url_co-  mmon;
+      let json = {
+        title: '投资名片—智能精准匹配投融资双方的神器',
+        path: path,
+        //分享成功后的回调
+        success: function (res) {
+          console.log("分享成功")
+          let shareTicket = res.shareTickets[0];
+          //获取code
+          wx.login({
+            success(res) {
+              let code = res.code;
+              if (code) {
+                //如果是分享到群里
+                if (shareTicket) {
+                  wx.getShareInfo({
+                    shareTicket: shareTicket,
+                    success: function (res) {
+                      let encryptedData = res.encryptedData;
+                      let iv = res.iv;
+                      console.log(code, path)
+                      //发送请求到后台
+                      wx.request({
+                        url: url_common + '/api/log/shareLogRecord',
+                        method: "POST",
+                        data: {
+                          code: code,
+                          path: path,
+                          encryptedData: encryptedData,
+                          iv: iv
+                        },
+                        success(res) {
+                          console.log(res)
+                        }
+                      })
+                    },
+                  })
+                } else {//如果不是分享到群里
+                  console.log(code, path)
+                  //发送请求到后台
+                  wx.request({
+                    url: url_common + '/api/log/shareLogRecord',
+                    method: "POST",
+                    data: {
+                      code: code,
+                      path: path,
+                    },
+                    success(res) {
+                      console.log(res)
+                    }
+                  })
+                }
+              }
+            }
+          })
+        },
+      }
+      return json
     },
 
     //根据用户信息完整度跳转不同的页面

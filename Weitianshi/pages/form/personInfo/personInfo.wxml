@@ -18,7 +18,7 @@
   <input class="myName" id="weChat" value="{{user_weChat}}" bindinput="weChat" placeholder="请输入微信" />
 </view>
 <view wx:if="{{type == 7}}">
-  <textarea bindinput="personDescrible" class="myDescrible" auto-height maxlength="503" placeholder="请输入个人描述" value="{{user_describle}}" />
+  <textarea bindinput="personDescrible" class="myDescrible"  maxlength="503" placeholder="请输入个人描述" value="{{user_describle}}" />
 </view>
 <view class="btn" bindtap="save">保存</view>
 <!--错误提示-->

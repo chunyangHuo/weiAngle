@@ -4,17 +4,18 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    array: ['是', '否']
+    array: ['否', '是']
   },
   onLoad: function (option) {
-    let recertification = option.isUpdate;
+    let recertification = option.isUpdate;//用来判断是否是重新认证
     let that = this;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
     let group_id = option.group_id;
     let authenticate_id = option.authenticate_id;
     let user_id = wx.getStorageSync('user_id');
     that.setData({
-      group_id: group_id
+      group_id: group_id,
+      recertification: recertification
     })
     //请求数据
     if (recertification ==1){
@@ -197,7 +198,7 @@ Page({
   // 跳转投资地区
   toArea1: function () {
     wx.navigateTo({
-      url: '/pages/form/area1/area1',
+      url: '/pages/form/area2/area2',
     })
   },
   // 申请加入FA行业联盟
@@ -253,6 +254,7 @@ Page({
     let area = this.data.area;
     let stage = this.data.stage;
     let scale = this.data.scale;
+    let recertification = this.data.recertification;
     if (iden_name != '' && iden_company_name != '' && iden_company_career != '') {
       wx.request({
         url: url_common + '/api/user/saveUserAuthentication',
@@ -282,7 +284,7 @@ Page({
           let statusCode = res.data.status_code;
           if (statusCode == 2000000){
             wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id,
+              url: '/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification,
             })
           }
         }

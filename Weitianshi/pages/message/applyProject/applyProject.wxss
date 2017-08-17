@@ -432,7 +432,7 @@
   padding-bottom: 30rpx;
   background: white;
 }
-.user_text {
+ .user_apply {
   background: #f2f2f2;
   line-height: 104rpx;
   text-align: center;
@@ -443,6 +443,16 @@
   position: absolute;
   right: 32rpx;
   top: 32rpx;
+} 
+.user_image{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  font-size: 22rpx;
+  background:#999999;
+  line-height: 40rpx;
 }
 .investmentGroupContent, .roundGroupContent{
   white-space: nowrap;

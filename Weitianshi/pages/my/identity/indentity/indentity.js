@@ -72,14 +72,11 @@ Page({
   },
   // 跳转认证资料信息填写页面
   toIdentityEdit: function (e) {
-    console.log(e)
     let user_id = wx.getStorageSync('user_id');
     let group_id = e.currentTarget.dataset.group;
     // 重新认证的时候，才会有old_group_id
     let old_group_id = this.data.old_group_id;
     let old_authenticate_id = this.data.old_authenticate_id;
-    console.log(old_group_id)
-    console.log(group_id)
     if (old_group_id){
         wx.request({
           url: url_common + '/api/user/setUserGroup',

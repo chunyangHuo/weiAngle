@@ -13,30 +13,31 @@ Page({
     let group_id = options.group_id;
     let user_id = wx.getStorageSync('user_id');
     let type = options.type;
+    let recertification = options.recertification;
     let that = this;
     let authenticate_id = options.authenticate_id;
-      wx.request({
-        url: url_common + '/api/user/getUserGroupByStatus',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          // 0:未认证1:待审核 2 审核通过 3审核未通过
-          console.log(res)
-          let status = res.data.status;
-          let group_title = res.data.group.group_title;
-          let group_id = res.data.group.group_id;
-          let authenticate_id = res.data.authenticate_id;
-          that.setData({
-            status: status,
-            group_title: group_title,
-            group_id : group_id,
-            type: type,
-            authenticate_id: authenticate_id
-          })
-        }
-      })
+    wx.request({
+      url: url_common + '/api/user/getUserGroupByStatus',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        // 0:未认证1:待审核 2 审核通过 3审核未通过
+        console.log(res)
+        let status = res.data.status;
+        let group_title = res.data.group.group_title;
+        let group_id = res.data.group.group_id;
+        let authenticate_id = res.data.authenticate_id;
+        that.setData({
+          status: status,
+          group_title: group_title,
+          group_id: group_id,
+          type: type,
+          authenticate_id: authenticate_id
+        })
+      }
+    })
     // }
   },
 
@@ -62,9 +63,10 @@ Page({
   btnYes: function () {
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;
-    let user_id = wx.getStorageSync('user_id');
     console.log(type)
+    let user_id = wx.getStorageSync('user_id');
     let authenticate_id = this.data.authenticate_id;
+    let recertification = this.data.recertification;
     wx.request({
       url: url_common + '/api/user/saveOtherAuthenticateFeed',
       data: {
@@ -81,9 +83,16 @@ Page({
               delta: 1
             })
           } else {
-            wx.navigateBack({
-              delta: 3
-            })
+            if (recertification){
+              console.log(recertification)
+              wx.navigateBack({
+                delta: 4
+              })
+            }else{
+              wx.navigateBack({
+                delta: 3
+              })
+            }
           }
         } else {
           console.log(statusCode)
@@ -92,7 +101,7 @@ Page({
     })
   },
   //重新认证页面点击返回
-  reaccreditationYes:function(){
+  reaccreditationYes: function () {
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;
     let user_id = wx.getStorageSync('user_id');
@@ -109,38 +118,20 @@ Page({
       success: function (res) {
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
-            wx.navigateBack({
-              delta: 1
-            })
+          wx.navigateBack({
+            delta: 1
+          })
         }
       }
     })
   },
+  // 重新认证的
   reaccreditation: function () {
-    let leaveMessage = this.data.leaveMessage;
-    let type = this.data.type;
     let user_id = wx.getStorageSync('user_id');
     let authenticate_id = this.data.authenticate_id;
     let group_id = this.data.group_id;
-    console.log(group_id)
-    wx.request({
-      url: url_common + '/api/user/saveOtherAuthenticateFeed',
-      data: {
-        user_id: user_id,
-        authenticate_id: authenticate_id,
-        message_board: leaveMessage
-      },
-      method: 'POST',
-      success: function (res) {
-        let statusCode = res.data.status_code;
-        if (statusCode == 2000000) {
-          wx.navigateTo({
-            url: '/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id +'&&group_id='+group_id,
-          })
-        } else {
-          console.log(statusCode)
-        }
-      }
+    wx.navigateTo({
+      url: '/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id,
     })
   }
 })

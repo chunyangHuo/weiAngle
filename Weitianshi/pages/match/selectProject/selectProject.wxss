@@ -48,9 +48,9 @@ page {
 .outBox .describle {
   font-size: 34rpx;
   color: #666;
-  line-height: 34rpx;
+  line-height: 38rpx;
   text-align: left;
-  margin-bottom: 36rpx;
+  margin-bottom: 34rpx;
   /* width:1418rpx; */
   white-space: nowrap;
   overflow: hidden;
@@ -130,6 +130,18 @@ page {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+.user_text {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  background:#999999;
+  font-size: 22rpx;
+  background:#999999;
+  line-height: 40rpx;
+  text-align: center;
 }
 
 .userCareer, .userName {
