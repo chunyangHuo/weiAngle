@@ -748,6 +748,7 @@ App({
                                  getMatchList.forEach((x) => {
                                    if (x.project_id == project_id) {
                                      x.relationship_button = 0
+                                     x.handle_status = 0
                                    }
                                  })
                                  that.setData({
@@ -758,6 +759,7 @@ App({
                                  getMatchList.forEach((x) => {
                                    if (x.project_id == project_id) {
                                      x.relationship_button = 0
+                                     x.handle_status = 0
                                    }
                                  })
                                  that.setData({

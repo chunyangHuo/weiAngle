@@ -595,7 +595,7 @@ button::after {
 }
 
 .toAccreditation {
-  font-size: 24rpx;
+  /* font-size: 24rpx;
   color: #fff;
   line-height: 52rpx;
   text-align: center;
@@ -604,7 +604,18 @@ button::after {
   width: 136rpx;
   height: 52rpx;
   margin-top:18rpx;
-  margin-left:184rpx;
+  margin-right:32rpx; */
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  margin-top: 18rpx;
+  position: absolute;
+  right:32rpx;
 }
 .push {
   height: 88rpx;

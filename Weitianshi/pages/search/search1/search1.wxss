@@ -8,7 +8,7 @@
   padding-left: 32rpx;
   margin-bottom: 24rpx;
   font-size: 32rpx;
-  color: #999;
+  color: #333333;
   line-height: 112rpx;
 }
 
@@ -70,7 +70,7 @@
 .result {
   background: #fff;
   border-radius: 4rpx;
-  width: 343px;
+  width: 686rpx;
   height: 112rpx;
   margin-bottom: 24rpx;
   margin-left:32rpx;

@@ -3,7 +3,7 @@
   <view class="searchSth" bindtap="searchCompany">搜索</view>
 </view>
 <view class="flex prompt">
-  <image src="/img/img-shenhezhong@2x.png" class="exclamation"></image>
+  <image src="/img/icon-zhuyi@2x.png" class="exclamation"></image>
   <view class="noLetOut">公司名称仅自己可见,不对外泄露</view>
 </view>
 <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">

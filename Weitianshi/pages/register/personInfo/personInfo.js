@@ -215,7 +215,7 @@ Page({
                         that.setData({
                             error_text: '姓名不能为空'
                         });
-                        // console.log(error_text)
+
                     } else if (result == "0") {
                         that.setData({
                             error_text: "请正确输入手机号"

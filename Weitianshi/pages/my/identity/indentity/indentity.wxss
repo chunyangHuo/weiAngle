@@ -11,6 +11,7 @@
 
 .indentityInside {
   padding: 56rpx 32rpx 56rpx 94rpx;
+  border-radius:8rpx;
 }
 
 .picture {

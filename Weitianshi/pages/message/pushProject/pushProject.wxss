@@ -31,7 +31,9 @@
   width: 252rpx;
   height: 190rpx;
 }
-
+.hasNothing{
+  color:#666666;
+}
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -70,6 +72,7 @@
 .insideBox {
   padding: 32rpx 32rpx 24rpx 32rpx;
   background: #fff;
+  border-radius: 8rpx;
 }
 
 .outBox .describle {
@@ -339,7 +342,8 @@
   width: 68rpx;
   height: 68rpx;
   position: absolute;
-  right: 0;
+  right: -2rpx;
+  top:-2rpx;
 }
 
 .userPic {
@@ -455,4 +459,28 @@
 
 .readed {
   color: #40587a;
+}
+.projectDetailLight {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+  color: #40587a;
+}
+.projectDetailLine:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLine:last-child {
+  border-right: none;
+}
+
+.projectDetailLight:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLight:last-child {
+  border-right: none;
+}
+
+.noLight {
+  color: #999;
 }

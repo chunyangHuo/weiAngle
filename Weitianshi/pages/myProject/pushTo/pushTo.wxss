@@ -17,6 +17,7 @@
 
 .outBox {
   margin: 0 32rpx 24rpx 32rpx;
+  border-radius: 8rpx;
 }
 
 .projectInfoBox {
@@ -35,6 +36,7 @@
   line-height: 64rpx;
   text-align: left;
   padding-left: 32rpx;
+   border-radius: 8rpx 8rpx 0 0;
 }
 .checkedOne {
   border: 1px solid #333;
