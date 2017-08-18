@@ -570,15 +570,6 @@ App({
             return false
         }
     },
-
-    //初始本地缓存
-    globalData: {
-        error: 0,
-        // url: "https://wx.weitianshi.cn",
-        // url_common: "https://www.weitianshi.cn"
-        url: "https://wx.dev.weitianshi.cn",
-        url_common: "https://dev.weitianshi.cn"
-    },
     //去认证
     accreditation:function(status){
        var user_id = wx.getStorageSync('user_id');
@@ -875,5 +866,13 @@ App({
            }
          },
        });
-    }
+    },
+     //初始本地缓存
+    globalData: {
+        error: 0,
+        // url: "https://wx.weitianshi.cn",
+        // url_common: "https://www.weitianshi.cn"
+        url: "https://wx.dev.weitianshi.cn",
+        url_common: "https://dev.weitianshi.cn"
+    },
 });
