@@ -230,7 +230,6 @@ Page({
 
         // -------------------------项目领域处理部份---------------------------------
         let industryCard=this.data.industryCard;
-        let industryCurrent1=wx.getStorageSync("industry");
         
         //检查是否发布过投资信息
         wx.request({
@@ -245,20 +244,12 @@ Page({
                 if (res.data.data != '') {
                     //所选领域部分的数据处理
                     var industry = res.data.data.industry_tag;
+                    wx.setStorageSync('industryCurrent1', industry)
                     industryCard.value=[];
                     industry.forEach((x) => {
                         industryCard.value.push(x.industry_name);
                         industryCard.id.push(x.industry_id);
                     })
-
-                    industryCurrent1.forEach((x) => {
-                        if (industryCard.value.indexOf(x.industry_name) != -1) {
-                            console.log(x.industry_name)
-                            x.check = true;
-                        }
-                    })
-
-                    wx.setStorageSync("industryCurrent1", industryCurrent1)
                     that.setData({
                         industryCard:industryCard,
                     })

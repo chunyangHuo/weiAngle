@@ -23,7 +23,10 @@ Page({
         if (current == 0) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent0") || wx.getStorageSync("industry");
         } else if (current == 1) {
-            industryTags.tagsData = wx.getStorageSync("industryCurrent1") || wx.getStorageSync("industry");
+            let industryCurrent1=wx.getStorageSync('industryCurrent1');
+            industryCurrent1=app.industryDeal(industryCurrent1)
+            console.log(1,industryCurrent1)
+            industryTags.tagsData =industryCurrent1 || wx.getStorageSync("industry");
         } else if (current == 2) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent2") || wx.getStorageSync("industry");
         } else if (current == 3) {
@@ -66,7 +69,7 @@ Page({
             if (current == 0) {
                 wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
             } else if (current == 1) {
-                wx.setStorageSync("industryCurrent1", this.data.industryTags.tagsData);
+                // wx.setStorageSync("industryCurrent1", this.data.industryTags.tagsData);
             } else if (current == 2) {
                 wx.setStorageSync("industryCurrent2", this.data.industryTags.tagsData);
             } else if (current == 3) {

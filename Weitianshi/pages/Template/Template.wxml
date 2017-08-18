@@ -783,7 +783,6 @@
     <view class="hasNothing">暂无数据</view>
   </view> 
 </template>
-
 <template name="pushProjectTo">
   <block wx:for="{{contentList}}" wx:key="{{contentList}}">
     <view  class="{{item.record_id ==  record_id ? 'hide':''}}">

@@ -307,6 +307,7 @@ App({
         }
         return json
     },
+
     //分享项目(user_id为数据所有人ID,share_Id为分享人的ID)
     sharePage: function (user_id, share_id) {
       let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
@@ -404,6 +405,21 @@ App({
                 }
             },
         });
+    },
+
+    //industry多选标签数据预处理
+    industryDeal(data){
+        let industry=wx.getStorageSync('industry');
+        let newIndustry=industry;
+        newIndustry.forEach(x=>{
+            data.forEach(y=>{
+                if (x.industry_name==y.industry_name){
+                    console.log(x.industry_name)
+                    x.check=true
+                }
+            })
+        })
+        return newIndustry
     },
 
     //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
@@ -570,6 +586,7 @@ App({
             return false
         }
     },
+
     //去认证
     accreditation:function(status){
        var user_id = wx.getStorageSync('user_id');
@@ -869,6 +886,7 @@ App({
          },
        });
     },
+    
      //初始本地缓存
     globalData: {
         error: 0,

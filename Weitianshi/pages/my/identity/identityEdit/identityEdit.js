@@ -7,10 +7,9 @@ Page({
         array: ['否', '是']
     },
     onLoad: function (option) {
-        console.log(11,wx.getStorageSync('enchangeValue'))
-        console.log(22,wx.getStorageSync('enchangeId'))
-        console.log(33,wx.getStorageSync('enchangeCheck'))
-        let recertification = option.isUpdate;//用来判断是否是重新认证
+        console.log(wx.getStorageInfoSync())
+        //用来判断是否是重新认证
+        let recertification = option.isUpdate;
         let that = this;
         // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
         let group_id = option.group_id;
@@ -20,7 +19,7 @@ Page({
             group_id: group_id,
             recertification: recertification
         })
-        //请求数据
+        //请求数据  recertification 1: 重新认证  2: 第一次认证
         if (recertification == 1) {
             wx.request({
                 url: url_common + '/api/user/getUserGroupByStatus',
@@ -49,6 +48,7 @@ Page({
                         success: function (res) {
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
+                            wx.setStorageSync('industryCurrent1', invest_info.invest_industry)
                             that.setData({
                                 user_info: user_info,
                                 invest_info: invest_info,
@@ -72,8 +72,8 @@ Page({
                 success: function (res) {
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
-                    console.log(0, invest_info)
-                    console.log(1,user_info)
+                    console.log('user_id',user_info)
+                    console.log('invest_info',invest_info)
                     that.setData({
                         user_info: user_info,
                         invest_info: invest_info,
@@ -82,7 +82,6 @@ Page({
                 }
             })
         }
-
     },
     onShow: function () {
         //更改某一项表单值后返回表单页面数据更新
@@ -110,7 +109,7 @@ Page({
         areaValue.forEach(x=>{
             newArea.push({area_title:x})
         })
-
+        //如果是由更改表单某一项内容后返回该页面的话
         if (invest_info) {
             invest_info.invest_industry = newIndustry;
             invest_info.invest_scale = newScale;
