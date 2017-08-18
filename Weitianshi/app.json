@@ -59,7 +59,8 @@
         "pages/my/investCaseEdit/investCaseEdit",
         "pages/my/cardEdit/cardEdit",
         "pages/my/projectFinance/projectFinance",
-        "pages/my/qrCode/qrCode"    
+        "pages/my/qrCode/qrCode",
+        "pages/oneKeyResearch/oneKeyResearch"
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",
