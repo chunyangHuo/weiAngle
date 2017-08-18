@@ -17,6 +17,7 @@ Page({
         textBeyond1: false,//项目亮点的全部和收起是否显示标志
     },
     onLoad: function (options) {
+      console.log(options)
         var that = this;
         var id = options.id;//当前被查看用户的项目id
         var page = this.data.page;
@@ -291,5 +292,122 @@ Page({
       this.setData({
         isChecked: true
       })
+    },
+    // 查看bp
+    sendBp: function () {
+      app.console(this.data.checkEmail)
+      let that = this;
+      let user_id = wx.getStorageSync("user_id");
+      wx.request({
+        url: url_common + '/api/user/checkUserInfo',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          let userEmail = res.data.user_email;
+          if (userEmail) {
+            that.setData({
+              userEmail: userEmail,
+              sendPc: 1,
+              checkEmail: true,
+            })
+          } else {
+            that.setData({
+              sendPc: 1,
+              checkEmail: false
+            })
+          }
+        }
+      })
+    },
+    // 更改邮箱
+    writeBpEmail: function (e) {
+      let userEmail = e.detail.value;
+      app.console(userEmail)
+      if (userEmail) {
+        this.setData({
+          checkEmail: true,
+          userEmail: userEmail
+        })
+      } else {
+        this.setData({
+          checkEmail: false,
+          userEmail: userEmail
+        })
+      }
+    },
+    // 发送
+    bpModalSure: function (e) {
+      let that = this;
+      let index = e.currentTarget.dataset.index;
+      let sendPc = that.data.sendPc;
+      let project_id = that.data.id;
+      let userEmail = that.data.userEmail;
+      let companyName = that.data.company_name;
+      console.log(companyName)
+      let user_id = wx.getStorageSync('user_id');
+      // index 0:发送BP;  1:完善公司信息
+      if (index == 0) {
+        if (app.checkEmail(userEmail)) {
+          // 保存新邮箱
+          wx.request({
+            url: url_common + '/api/user/updateUser',
+            data: {
+              user_id: user_id,
+              user_email: userEmail
+            },
+            method: 'POST',
+            success: function (res) {
+              app.console(res)
+              that.setData({
+                userEmail: userEmail
+              })
+              app.console(userEmail)
+              if (res.data.status_code == 2000000) {
+                wx.request({
+                  url: url_common + '/api/mail/sendBp',
+                  data: {
+                    user_id: user_id,
+                    project_id: project_id
+                  },
+                  method: 'POST',
+                  success: function (res) {
+                    app.console(res)
+                  }
+                })
+                that.setData({
+                  sendPc: 0
+                })
+              } else {
+                app.console("fail")
+              }
+            }
+          })
+          that.setData({
+            sendPc: 0,
+            userEmail: userEmail
+          })
+        } else {
+          rqj.errorHide(that, '请正确填写邮箱', 1000)
+        }
+      } 
+
+    },
+    // 取消
+    bpModalCancel: function (options) {
+      app.console(options)
+      let index = options.currentTarget.dataset.index;
+      let that = this;
+      let sendPc = that.data.sendPc;
+      if (index == 0) {
+        that.setData({
+          sendPc: 0
+        })
+      } else if (index == 1) {
+        that.setData({
+          sendCompany: 0
+        })
+      }
     },
 })

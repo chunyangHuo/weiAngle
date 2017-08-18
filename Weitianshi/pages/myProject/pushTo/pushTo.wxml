@@ -39,7 +39,7 @@
 </view>
 <!-- 错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
- <view class="hasNone" wx:if="{{!dataList}}">
+ <view class="hasNone"  wx:if="{{dataList.length == 0}}">
   <image src="/img/img-kong@2x.png" class="iconStyle"></image>
   <view class="none">暂无项目</view>
   <view class="createProject" bindtap="createProject">创建项目</view>

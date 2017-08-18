@@ -36,10 +36,9 @@ Page({
       page_end: false,
     })
     wx.request({
-      url: url_common + '/api/project/getMyProjectList',
+      url: url_common + '/api/project/getMyProjectListOrderByMatch',
       data: {
         user_id: user_id,
-        type: 'push',
         pushed_user_id: pushed_user_id,
         page: 1
       },
@@ -47,11 +46,14 @@ Page({
       success: function (res) {
         console.log(res)
         let dataList = res.data.data;
+        console.log(dataList.length)
         let pushTimes = res.data.push_times;
         var page_end = res.data.page_end;
-        dataList.forEach((x, index) => {
-          dataList[index] = x;
-        })
+       if(dataList.length!=0){
+         dataList.forEach((x, index) => {
+           dataList[index] = x;
+         })
+       }
         // is_exclusive是否独家 1独家 2非独家 0其他
         that.setData({
           dataList: dataList,
@@ -135,10 +137,9 @@ Page({
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
         wx.request({
-          url: url_common + '/api/project/getMyProjectList',
+          url: url_common + '/api/project/getMyProjectListOrderByMatch',
           data: {
             user_id: user_id,
-            type: 'push',
             pushed_user_id: pushed_user_id
           },
           method: 'POST',

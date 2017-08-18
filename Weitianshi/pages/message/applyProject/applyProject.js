@@ -7,7 +7,8 @@ Page({
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
-    type: 1 //我申請查看的項目
+    type: 1, //我申請查看的項目,
+    hasRedPoint:true
   },
 
   onLoad: function (options) {
@@ -89,7 +90,7 @@ Page({
     let applyList = this.data.applyList;
     let contentList = this.data.contentList;
     let type = this.data.type;
-    if (current == 0) {
+    if (current == 1) {
       //向后台发送信息取消红点
       wx.request({
         url: url_common + '/api/message/setFeedbackToRead',
@@ -103,11 +104,17 @@ Page({
             x.message_status = 1;
           })
           that.setData({
-            applyList: applyList
+            hasRedPoint: false
           })
-          console.log(applyList)
+         
         }
       })
+    } else if(current == 0){
+      if (this.data.hasRedPoint === false){
+        that.setData({
+          applyList: applyList
+        })
+      }
       wx.request({
         url: url_common + '/api/message/setMessageToRead',
         data: {

@@ -125,7 +125,7 @@ Page({
                         // console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
                     }
                 });
-                //获取投资需求的匹配项目
+                //获取投资需求的匹配项目获取投资需求的匹配项目
                 wx.request({
                   url: url_common + '/api/investor/getMatchProjectList',
                     data: {
@@ -135,8 +135,9 @@ Page({
                     success: function (res) {
                         console.log("获取投资需求的匹配项目")
                         console.log(res)
-                        let count2 = res.data.data.match_count;
+                        // let count2 = res.data.data.match_count;
                         if (res.data.status_code !== 440004) {
+                          let count2 = res.data.data.match_count;
                             var yourProject = res.data.data.projects;
                             that.setData({
                                 yourProject: yourProject,
