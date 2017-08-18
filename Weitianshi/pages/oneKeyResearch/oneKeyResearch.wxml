@@ -1,4 +1,43 @@
 <view id="myDetail">
+  <view class="classname">
+    <view class="projectDetailTop">
+      <view class="projectDetailBox">
+        <view>
+          <view class="flex">
+            <view class="describle">
+              {{project.pro_intro}}
+            </view>
+            <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+            <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+          </view>
+          <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
+            <view class="industry">{{industy_sort}}</view>
+          </view>
+          <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
+            <view class="projectDetailLine" wx:if="{{project.pro_scale.scale_money}}">{{project.pro_scale.scale_money}}</view>
+            <view class="projectDetailLine" wx:if="{{project.pro_finance_stock_after!= 0}}">{{project.pro_finance_stock_after}}%</view>
+            <view class="projectDetailLine" wx:if="{{project.pro_stage.stage_name}}">{{project.pro_stage.stage_name}}</view>
+            <view class="projectDetailLine" wx:if="{{project.pro_area.area_title}}">{{project.pro_area.area_title}}</view>
+          </view>
+          <view class="ProjectClues flex">
+            <view class="classname">项目线索</view>
+            <view class="ProjectCluesLine"></view>
+            <view class="classname">佣金收讫</view>
+          </view>
+        </view>
+        <view class="ProjectDetailInfo flex">
+          <view class="flex sceenPerson" data-proid="{{id}}">
+            <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
+            <view class="viewTimeAll screenPersonColor">浏览：
+              <label>{{count.view_times_all}}</label>
+            </view>
+          </view>
+          <view class="applyPerson">申请查看：-</view>
+          <view class="investPerson">意向投资人：-</view>
+        </view>
+      </view>
+    </view>
+  </view>
   <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">详情</view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">一键尽调</view>
@@ -21,13 +60,16 @@
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label>
             </view>
             <!--项目资料-->
-            <view class="material" style="position:relative;" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
+            <view class="material" style="position:relative;" wx:if="{{project.pro_BP || project.pro_name || project.pro_company_name || project.pro_status || project.pro_company_scale || project.pro_website || project.contact}}">
               <view class="materialBox flex">
                 <image src="/img/icon-jieshao.png" class="titlePic"></image>
                 <view class="title">项目资料</view>
               </view>
               <view class="contentAll">
                 <view>
+                  <view class="titleRightBP" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">发送BP
+                    <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
+                  </view>
                   <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
                     <view class="pro_sort" wx:for="{{tagOfPro}}" wx:key="{{index}}">{{tagOfPro[index].tag_name}}</view>
                   </view>
@@ -56,26 +98,8 @@
                 </view>
               </view>
             </view>
-            <!--品牌-->
-            <!--<view class="companyBrand">
-              <view class="corePersonBox flex">
-                <image src="/img/myOn.png" class="titlePic"></image>
-                <view class="title"> 品牌</view>
-              </view>
-              <view class="contentAll">
-                <view class="grayName">品牌名称：
-                  <label class="materialContent">已上线</label>
-                </view>
-                <view class="grayName">产品链接：
-                  <label class="materialWeb materialContent">www.weitianshi.cn</label>
-                </view>
-                <view class="grayName">品牌名称
-                  <label class="materialContent">5-20人</label>
-                </view>
-              </view>
-            </view>-->
             <!--核心团队-->
-            <view class="corePerson" wx:if="{{teamOfPro.length !=0}}">
+            <view class="corePerson" wx:if="{{teamOfPro}}">
               <view class="corePersonBox flex">
                 <image src="/img/myOn.png" class="titlePic"></image>
                 <view class="title"> 核心团队</view>
@@ -148,7 +172,7 @@
               </view>
             </view>
             <!--里程碑-->
-            <view class="milestone" wx:if="{{project.pro_develop.length != 0}}">
+            <view class="milestone" wx:if="{{project.pro_develop}}">
               <view class="milestoneBox flex">
                 <image src="/img/img-mail.png" class="titlePic"></image>
                 <view class="title">里程碑</view>
@@ -166,7 +190,7 @@
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
             <!--FA签约-->
-            <view class="signFA" wx:if="{{!project.pro_FA}}">
+            <view class="signFA" wx:if="{{project.pro_FA}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>
@@ -537,3 +561,19 @@
 </view>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--邮箱-->
+<view class="modal" wx:if="{{sendPc == 1}}">
+  <view class="bpModal">
+    <view class="bpModalBox">
+      <view class="bpModalText">BP会发送到您的邮箱</view>
+      <input class="writeBpEmail" value="{{userEmail}}" bindinput="writeBpEmail" placeholder="请输入邮箱" />
+
+      <view class="choiceBox">
+        <view class="flex">
+          <view class="bpModalCancel" bindtap="bpModalCancel" data-index="0">取消</view>
+          <view class="bpModalSure {{checkEmail==true? '':'checkEmail'}}" bindtap="bpModalSure" data-index="0">发送</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

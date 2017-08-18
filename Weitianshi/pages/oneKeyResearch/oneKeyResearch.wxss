@@ -356,18 +356,9 @@ scroll-view {
   margin: 32rpx 32rpx 38rpx 36rpx;
 }
 
-.projectDetailType {
-  height: 92rpx;
-  width: 92rpx;
-  right: -3rpx;
-  top: -6rpx;
-  position: absolute;
-}
-
 .projectDetailBox {
   padding: 32rpx;
   height: auto;
-  position: relative;
 }
 
 .describle {
@@ -375,7 +366,13 @@ scroll-view {
   color: #333;
   line-height: 48rpx;
   text-align: left;
-  /* width: 480rpx; */
+  width: 480rpx;
+}
+
+.projectDetailType {
+  height: 36rpx;
+  width: 108rpx;
+  margin-left:23rpx;
 }
 
 .industry {
@@ -388,9 +385,6 @@ scroll-view {
 
 .allIndustry {
   margin: 36rpx 0 24rpx 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .allProjectDetail {
@@ -770,7 +764,7 @@ scroll-view {
   line-height: 34rpx;
   text-align: left;
   margin-right: 38rpx;
-  word-wrap: break-word;
+  word-wrap:break-word;
 }
 
 #oneKey .industrialChangeTextAfter {
@@ -779,7 +773,7 @@ scroll-view {
   color: #999;
   line-height: 34rpx;
   text-align: left;
-  word-wrap: break-word;
+  word-wrap:break-word;
 }
 
 /*工商信息*/
@@ -1130,8 +1124,6 @@ scroll-view {
   position: absolute;
   right: 32rpx;
   margin: 0;
-  height: 30rpx;
-  line-height: 30rpx;
 }
 
 #oneKey .oneKeyIcon {
@@ -1173,7 +1165,7 @@ scroll-view {
 
 .swiper-tab-list {
   display: inline-block;
-  width:50%;
+  width: 33.3%;
   font-size: 26rpx;
   color: #40587a;
   line-height: 62rpx;
@@ -1228,7 +1220,7 @@ scroll-view {
 }
 
 .titleRightBPIcon {
-  height: 20rpx;
+  height: 24rpx;
   width: 12rpx;
 }
 
@@ -1272,13 +1264,13 @@ scroll-view {
 }
 
 #projectBox .brightContent {
-  /* height: 72rpx; */
+  height: 72rpx;
   font-size: 26rpx;
   color: #666;
   line-height: 39rpx;
   text-align: left;
   overflow: hidden;
-  text-overflow: -o-ellipsis-lastline;
+  text-overflow: -o-ellipsis-lastline; 
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1304,8 +1296,7 @@ scroll-view {
   line-height: 44rpx;
   padding: 0 16rpx;
   margin-right: 24rpx;
-  flex-wrap: nowrap;
-  white-space:nowrap;
+  flex-wrap: norap;
 }
 
 .pro_sort_right {
@@ -1322,13 +1313,12 @@ scroll-view {
   margin-right: 8rpx;
   margin-bottom: 32rpx;
 }
-
-.grayName:last-child {
-  margin-bottom: 0;
+.grayName:last-child{
+  margin-bottom:0;
 }
 
 .personPosition {
-  margin-top: 2rpx;
+  margin-top:2rpx;
   font-size: 22rpx;
   color: #666;
   letter-spacing: 0;
@@ -1430,7 +1420,7 @@ scroll-view {
   line-height: 24rpx;
   text-align: left;
   margin-top: 48rpx;
-  margin-bottom: 24rpx;
+  margin-bottom:24rpx;
 }
 
 .purpose .purposeContent {
@@ -1681,46 +1671,36 @@ scroll-view {
   text-align: center;
 }
 
-.competitorPosition {
+.competitorPosition{
   font-size: 24rpx;
   color: #999;
   letter-spacing: 0;
   line-height: 24rpx;
   text-align: left;
-  margin-left: 32rpx;
+  margin-left:32rpx;
 }
 
-.more {
-  color: #009eff;
-  font-size: 12px;
+.more{
+    color:#009eff;
+    font-size: 12px;
 }
 
-.checkEmail {
-  color: #ccc;
+.checkEmail{
+    color: #ccc;
 }
-
-.coreMemberLeftBox {
-  width: 82rpx;
-  height: 82rpx;
-  margin-right: 14rpx;
+.coreMemberLeftBox{
+  width:82rpx;
+  height:82rpx;
+  margin-right:14rpx;
   border-radius: 50%;
 }
-
-.projectDetailLine {
+.projectDetailLine{
   padding: 0 16rpx;
-  border-right: 1rpx solid #999;
+border-right:1rpx solid #999999;
 }
-
-.projectDetailLine:first-child {
-  padding-left: 0;
+.projectDetailLine:first-child{
+  padding-left:0;
 }
-
-.projectDetailLine:last-child {
-  border-right: none;
+.projectDetailLine:last-child{
+  border-right:none;
 }
-
-/* .byPass {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-} */

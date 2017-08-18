@@ -54,7 +54,6 @@ Page({
     let new_company_name = this.data.newCompanyName;
     // 为上拉加载准备
     app.initPage(that);
-    app.console(index)
     that.setData({
       user_id: user_id,
       avatarUrl: avatarUrl,
@@ -65,15 +64,13 @@ Page({
     var stage_tag = [];
     var pro_goodness = "";
     app.loginPage(function () { });
-    //项目详情(不包括投资人)
-    var other_id = wx.getStorageSync('user_id');
-    if (user_id == other_id) {
       // 载入项目详情数据
       wx.request({
         url: url_common + '/api/project/getProjectDetail',
         data: {
           user_id: user_id,
           project_id: this.data.id,
+          scene: "scan_qrcode"
         },
         method: 'POST',
         success: function (res) {
@@ -397,7 +394,6 @@ Page({
           }
         },
       })
-    }
   },
   //下拉刷新
   onPullDownRefresh: function () {
