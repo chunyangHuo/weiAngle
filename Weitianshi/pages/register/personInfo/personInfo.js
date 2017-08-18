@@ -16,11 +16,7 @@ Page({
         getCode: "获取验证码",
         endTime: 60//多少秒后验证码得发
     },
-    //下拉刷新
-    onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
-        wx.stopPullDownRefresh()
-    },
+    
     onShow: function () {
         var that=this;
         if (this.data._time) {
@@ -34,6 +30,7 @@ Page({
             })
         }
     },
+
     onHide: function () {
     },
 
@@ -44,6 +41,12 @@ Page({
         that.setData({
             name: name
         })
+    },
+
+    //下拉刷新
+    onPullDownRefresh: function () {
+        // console.log("开启了下拉刷新")
+        wx.stopPullDownRefresh()
     },
 
     //手机号码验证
@@ -142,6 +145,7 @@ Page({
             }
         })
     },
+
     //获取验证码的值 
     checkCode2: function (e) {
         var that = this;

@@ -7,9 +7,6 @@ Page({
         array: ['否', '是']
     },
     onLoad: function (option) {
-        console.log(11,wx.getStorageSync('enchangeValue'))
-        console.log(22,wx.getStorageSync('enchangeId'))
-        console.log(33,wx.getStorageSync('enchangeCheck'))
         let recertification = option.isUpdate;//用来判断是否是重新认证
         let that = this;
         // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
