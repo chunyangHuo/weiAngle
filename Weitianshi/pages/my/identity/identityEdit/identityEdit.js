@@ -7,13 +7,8 @@ Page({
         array: ['否', '是']
     },
     onLoad: function (option) {
-<<<<<<< HEAD
-        let recertification = option.isUpdate;//用来判断是否是重新认证
-=======
-        console.log(wx.getStorageInfoSync())
         //用来判断是否是重新认证
         let recertification = option.isUpdate;
->>>>>>> test
         let that = this;
         // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
         let group_id = option.group_id;
