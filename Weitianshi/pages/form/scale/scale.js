@@ -25,6 +25,9 @@ Page({
         var enchangeCheck = wx.getStorageSync('paymoneyenchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('paymoneyenchangeValue') || [];
         var enchangeId = wx.getStorageSync('paymoneyenchangeId') || [];
+        console.log(1, enchangeCheck)
+        console.log(2, enchangeValue)
+        console.log(3, enchangeId)
         that.setData({
             payMoney: payMoney,
             enchangeCheck : enchangeCheck,

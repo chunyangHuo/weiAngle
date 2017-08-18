@@ -7,7 +7,13 @@ Page({
         array: ['否', '是']
     },
     onLoad: function (option) {
+<<<<<<< HEAD
         let recertification = option.isUpdate;//用来判断是否是重新认证
+=======
+        console.log(wx.getStorageInfoSync())
+        //用来判断是否是重新认证
+        let recertification = option.isUpdate;
+>>>>>>> test
         let that = this;
         // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
         let group_id = option.group_id;
@@ -17,7 +23,7 @@ Page({
             group_id: group_id,
             recertification: recertification
         })
-        //请求数据
+        //请求数据  recertification 1: 重新认证  2: 第一次认证
         if (recertification == 1) {
             wx.request({
                 url: url_common + '/api/user/getUserGroupByStatus',
@@ -46,6 +52,8 @@ Page({
                         success: function (res) {
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
+                            console.log('user_id', user_info)
+                            that.dealTags(invest_info);
                             that.setData({
                                 user_info: user_info,
                                 invest_info: invest_info,
@@ -69,8 +77,8 @@ Page({
                 success: function (res) {
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
-                    console.log(0, invest_info)
-                    console.log(1,user_info)
+                    console.log('user_id',user_info)
+                    that.dealTags(invest_info);
                     that.setData({
                         user_info: user_info,
                         invest_info: invest_info,
@@ -79,25 +87,18 @@ Page({
                 }
             })
         }
-
     },
     onShow: function () {
         //更改某一项表单值后返回表单页面数据更新
         let invest_info = this.data.invest_info;
-        let industryValue = wx.getStorageSync('industryCurrent1') || [];
+        let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
         let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
         let stageValue = wx.getStorageSync('payenchangeValue') || [];
         let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
 
-        let newIndustry = [];
         let newScale = [];
         let newStage = [];
         let newArea= [] ;
-        industryValue.forEach(x => {
-            if (x.check === true) {
-                newIndustry.push(x)
-            }
-        })
         scaleValue.forEach(x => {
             newScale.push({ scale_money: x })
         })
@@ -107,9 +108,9 @@ Page({
         areaValue.forEach(x=>{
             newArea.push({area_title:x})
         })
-
+        //如果是由更改表单某一项内容后返回该页面的话
         if (invest_info) {
-            invest_info.invest_industry = newIndustry;
+            invest_info.invest_industry = industryCurrent1;
             invest_info.invest_scale = newScale;
             invest_info.invest_stage=newStage;
             invest_info.invest_area=newArea;
@@ -313,4 +314,64 @@ Page({
             }
         }
     },
+    //多选标签预处理
+    dealTags(invest_info){
+        console.log('inves_info',invest_info)
+        let scale=wx.getStorageSync('scale')
+        let stage=wx.getStorageSync('stage')
+        let hotCity=wx.getStorageSync('hotCity')
+        //scale
+        let paymoneyenchangeCheck = [];
+        let paymoneyenchangeValue = [];
+        let paymoneyenchangeId = [];
+        scale.forEach((x,index)=>{
+            paymoneyenchangeCheck[index]=false;
+            invest_info.invest_scale.forEach(y=>{
+                if(x.scale_money===y.scale_money){
+                    paymoneyenchangeCheck[index]=true;
+                    paymoneyenchangeValue.push(x.scale_money);
+                    paymoneyenchangeId.push(x.scale_id)
+                }
+            })
+        })
+        //stage
+        let payenchangeCheck = [];
+        let payenchangeValue = [];
+        let payenchangeId = [];
+        stage.forEach((x,index)=>{
+            payenchangeCheck[index]=false;
+            invest_info.invest_stage.forEach(y=>{
+                if(x.stage_name===y.stage_name){
+                    payenchangeCheck[index]=true;
+                    payenchangeValue.push(x.stage_name);
+                    payenchangeId.push(x.stage_id)
+                }
+            })
+        })
+        //hotCity
+        let payareaenchangeCheck=[];
+        let payareaenchangeValue=[];
+        let payareaenchangeId=[];
+        hotCity.forEach((x,index)=>{
+            payareaenchangeCheck[index]=false;
+            invest_info.invest_area.forEach(y=>{
+                if(x.area_title===y.area_title){
+                    payareaenchangeCheck[index]=true;
+                    payareaenchangeValue.push(x.area_title);
+                    payareaenchangeId.push(x.area_id)
+                }
+            })
+        })
+
+        wx.setStorageSync('industryCurrent1', invest_info.invest_industry)
+        wx.setStorageSync('paymoneyenchangeCheck', paymoneyenchangeCheck)
+        wx.setStorageSync('paymoneyenchangeValue', paymoneyenchangeValue)
+        wx.setStorageSync('paymoneyenchangeId', paymoneyenchangeId)
+        wx.setStorageSync('payenchangeCheck', payenchangeCheck)
+        wx.setStorageSync('payenchangeValue', payenchangeValue)
+        wx.setStorageSync('payenchangeId', payenchangeId)
+        wx.setStorageSync('payareaenchangeCheck', payareaenchangeCheck)
+        wx.setStorageSync('payareaenchangeValue', payareaenchangeValue)
+        wx.setStorageSync('payenchangeId', payenchangeId)
+    }
 })
