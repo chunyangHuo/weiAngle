@@ -37,7 +37,7 @@ Page({
     })
     //向后台发送信息取消红点
     wx.request({
-      url: url_common + '/api/message/setMessageToRead',
+      url: url_common + '/api/message/setProjectApplyToRead',
       data: {
         user_id: user_id,
         type_id: 1,
@@ -49,6 +49,7 @@ Page({
         console.log("发送成功")
       }
     })
+
     that.setData({
       requestCheck: true,
       currentPage: 1,

@@ -71,8 +71,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log("我是推送给我的红点")
-        console.log(res)
       }
     })
     that.setData({
@@ -103,7 +101,6 @@ Page({
             },
             method: "POST",
             success: function (res) {
-                console.log(res)
                 if (res.data.status_code == 2000000) {
                     pushProjectList.forEach((x) => {
                         x.message_status = 1;
@@ -131,7 +128,6 @@ Page({
             that.setData({
               pushToList: pushToList
             })
-            console.log("推送给我的项目")
           }
 
         }
@@ -348,9 +344,15 @@ Page({
               pushToList: pushToList
             })
           } else if (status == 2) {
-            that.setData({
-              push_id: push_id
+            pushToList.forEach((x) => {
+              if (x.push_id == push_id) {
+                x.handle_status = 2
+              }
             })
+            that.setData({
+              pushToList: pushToList
+            })
+            console.log("不感兴趣")
           }
         } else {
           console.log(statusCode)

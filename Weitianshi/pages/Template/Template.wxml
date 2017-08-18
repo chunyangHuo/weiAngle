@@ -579,7 +579,7 @@
             <view class="{{item.pro_scale.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
             <view class="{{item.pro_finance_stock_after.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"   wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
             <view class="{{item.pro_stage.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
-            <view class="{{item.pro_area.area_title.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
+            <view class="{{item.pro_area.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
           </view>
           <view class="flex otherInfo">
             <view >

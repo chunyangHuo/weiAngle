@@ -151,6 +151,10 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
+                    let pages = getCurrentPages()
+                    console.log(pages)
+                    let num = pages.length - 1;
+                    console.log(num)
                     if (res.data.status_code == 2000000) {
                         var followed_user_id = wx.getStorageSync('followed_user_id');
                         console.log(followed_user_id);
@@ -216,13 +220,21 @@ Page({
                             }
                         } else {
                             if(type == 1 ){
-                             wx.navigateBack({
-                               delta: 1
-                             })
+                              let pages = getCurrentPages()
+                              let num = pages.length - 1;
+                              console.log(num)
+                              wx.navigateBack({
+                                delta: num
+                              })
                             }else{
+                         console.log(type)
+
                               if(type == 2){
+                                let pages = getCurrentPages()
+                                let num = pages.length - 1;
+                                console.log(num)
                                 wx.navigateBack({
-                                  delta: 2
+                                  delta: num
                                 })
                               }else{
                                 wx.switchTab({

@@ -16,7 +16,18 @@ Page({
         getCode: "获取验证码",
         endTime: 60//多少秒后验证码得发
     },
-    
+    onLoad:function(options){
+      let type = options.type;
+      let that = this;
+      that.setData({
+        type:type
+      })
+    },
+    //下拉刷新
+    onPullDownRefresh: function () {
+        // console.log("开启了下拉刷新")
+        wx.stopPullDownRefresh()
+    },
     onShow: function () {
         var that=this;
         if (this.data._time) {
@@ -158,6 +169,7 @@ Page({
     //点击跳转
     nextPage: function () {
         var that = this;
+        let type = this.data.type;
         wx.login({
             success: function (res) {
                 var name = that.data.name;
@@ -186,13 +198,20 @@ Page({
                             var user_career = res.data.user_career;
                             var user_company = res.data.user_company;
                             var uer_email = res.data.user_email;
+
                             // console.log(user_career, user_company, uer_email);  
                             if (res.data.status_code == 2000000) {
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 app.globalData.user_id = res.data.user_id;
-                                wx.navigateTo({
-                                    url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
-                                });
+                               if(type){
+                                 wx.navigateTo({
+                                   url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + '&&type='+ type,
+                                 });
+                               }else{
+                                 wx.navigateTo({
+                                   url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
+                                 });
+                               }
                             } else {
                                 rqj.errorHide(that, res.data.error_msg, 1500)
                             }
