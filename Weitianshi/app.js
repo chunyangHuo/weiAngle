@@ -414,7 +414,6 @@ App({
         newIndustry.forEach(x=>{
             data.forEach(y=>{
                 if (x.industry_name==y.industry_name){
-                    console.log(x.industry_name)
                     x.check=true
                 }
             })

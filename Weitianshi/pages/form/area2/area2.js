@@ -22,6 +22,11 @@ Page({
         var enchangeCheck = wx.getStorageSync('payareaenchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('payareaenchangeValue') || [];
         var enchangeId = wx.getStorageSync('payareaenchangeId') || [];
+
+        console.log(0, enchangeCheck)
+        console.log(1, enchangeValue)
+        console.log(2, enchangeCheck)
+        
         that.setData({
             payArea:payArea,
             enchangeCheck: enchangeCheck,
