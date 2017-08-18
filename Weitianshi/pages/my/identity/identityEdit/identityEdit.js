@@ -7,9 +7,30 @@ Page({
         array: ['否', '是']
     },
     onLoad: function (option) {
+        let that = this;
+        //请求各种标签列表项
+        wx.request({
+            url: app.globalData.url_common + '/api/category/getProjectCategory',
+            method: 'POST',
+            success: function (res) {
+                console.log("领域,金额,阶段的列表数据调用")
+                console.log(res)//所有标签
+                var thisData = res.data.data;
+                //添加false
+                that.for(thisData.area);
+                that.for(thisData.industry);
+                that.for(thisData.scale);
+                that.for(thisData.stage);
+
+                wx.setStorageSync('y_area', thisData.area);//地区
+                wx.setStorageSync('industry', thisData.industry);//投资领域
+                wx.setStorageSync('y_scale', thisData.scale);//投资金额
+                wx.setStorageSync('y_stage', thisData.stage);//投资阶段
+            }
+        })
+
         //用来判断是否是重新认证
         let recertification = option.isUpdate;
-        let that = this;
         // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
         let group_id = option.group_id;
         let authenticate_id = option.authenticate_id;
@@ -91,11 +112,14 @@ Page({
         let stageValue = wx.getStorageSync('payenchangeValue') || [];
         let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
         let scaleId = wx.getStorageSync('paymoneyenchangeId') || [];
-        let stageId = wx.getStorageSync('payenchangeId') || [];
+        let stageId = wx.getStorageSync('y_payStageId') || [];
         let areaId = wx.getStorageSync('payareaenchangeId') || [];
-        console.log(scaleId)
-        console.log(stageId)
-        console.log(areaId)
+        let industryId=[];
+
+        industryCurrent1.forEach(x=>{
+            industryId.push(x.industry_id)
+        })
+  
 
         let newScale = [];
         let newStage = [];
@@ -117,11 +141,17 @@ Page({
             invest_info.invest_area=newArea;
             this.setData({
                 invest_info: invest_info,
+                industryId:industryId,
                 scaleId: scaleId,
                 stageId: stageId,
                 areaId: areaId
             })
         }
+
+        console.log(0,industryId )
+        console.log(1,scaleId)
+        console.log(2,stageId)
+        console.log(3,areaId)
     },
     // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5  微信type:6 个人描述type:7
     //
@@ -292,7 +322,7 @@ Page({
                     is_identify_member: is_identify_member,
                     is_saas: is_saas,
                     is_FA_part: is_FA_part,
-                    industry: industry,
+                    industry: this.data.industryId,
                     area: this.data.areaId,
                     stage: this.data.stageId,
                     scale: this.data.scaleId
@@ -366,8 +396,14 @@ Page({
                 }
             })
         })
+        //industry
+        let industryId=[];
+        invest_info.invest_industry.forEach(x=>{
+            industryId.push(x.industry_id)
+        })
         
         that.setData({
+            industryId:industryId,
             areaId: payareaenchangeId,
             stageId: payenchangeId,
             scaleId: paymoneyenchangeId
@@ -383,5 +419,11 @@ Page({
         wx.setStorageSync('payareaenchangeCheck', payareaenchangeCheck)
         wx.setStorageSync('payareaenchangeValue', payareaenchangeValue)
         wx.setStorageSync('payareaenchangeId', payareaenchangeId)
-    }
+    },
+     //给所有添加checked属性
+    for: function (name) {
+        for (var i = 0; i < name.length; i++) {
+            name[i].checked = false;
+        }
+    },
 })
