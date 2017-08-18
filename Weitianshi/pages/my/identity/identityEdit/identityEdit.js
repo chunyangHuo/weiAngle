@@ -48,7 +48,7 @@ Page({
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
                             console.log('user_id', user_info)
-                            that.dealTags(invest_info);
+                            that.dealTags(that,invest_info);
                             that.setData({
                                 user_info: user_info,
                                 invest_info: invest_info,
@@ -73,7 +73,7 @@ Page({
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
                     console.log('user_id',user_info)
-                    that.dealTags(invest_info);
+                    that.dealTags(that,invest_info);
                     that.setData({
                         user_info: user_info,
                         invest_info: invest_info,
@@ -90,6 +90,12 @@ Page({
         let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
         let stageValue = wx.getStorageSync('payenchangeValue') || [];
         let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
+        let scaleId = wx.getStorageSync('paymoneyenchangeId') || [];
+        let stageId = wx.getStorageSync('payenchangeId') || [];
+        let areaId = wx.getStorageSync('payareaenchangeId') || [];
+        console.log(scaleId)
+        console.log(stageId)
+        console.log(areaId)
 
         let newScale = [];
         let newStage = [];
@@ -110,7 +116,10 @@ Page({
             invest_info.invest_stage=newStage;
             invest_info.invest_area=newArea;
             this.setData({
-                invest_info: invest_info
+                invest_info: invest_info,
+                scaleId: scaleId,
+                stageId: stageId,
+                areaId: areaId
             })
         }
     },
@@ -284,9 +293,9 @@ Page({
                     is_saas: is_saas,
                     is_FA_part: is_FA_part,
                     industry: industry,
-                    area: area,
-                    stage: stage,
-                    scale: scale
+                    area: this.data.areaId,
+                    stage: this.data.stageId,
+                    scale: this.data.scaleId
                 },
                 method: 'POST',
                 success: function (res) {
@@ -310,7 +319,7 @@ Page({
         }
     },
     //多选标签预处理
-    dealTags(invest_info){
+    dealTags(that,invest_info){
         console.log('inves_info',invest_info)
         let scale=wx.getStorageSync('scale')
         let stage=wx.getStorageSync('stage')
@@ -357,6 +366,12 @@ Page({
                 }
             })
         })
+        
+        that.setData({
+            areaId: payareaenchangeId,
+            stageId: payenchangeId,
+            scaleId: paymoneyenchangeId
+        })
 
         wx.setStorageSync('industryCurrent1', invest_info.invest_industry)
         wx.setStorageSync('paymoneyenchangeCheck', paymoneyenchangeCheck)
@@ -367,6 +382,6 @@ Page({
         wx.setStorageSync('payenchangeId', payenchangeId)
         wx.setStorageSync('payareaenchangeCheck', payareaenchangeCheck)
         wx.setStorageSync('payareaenchangeValue', payareaenchangeValue)
-        wx.setStorageSync('payenchangeId', payenchangeId)
+        wx.setStorageSync('payareaenchangeId', payareaenchangeId)
     }
 })
