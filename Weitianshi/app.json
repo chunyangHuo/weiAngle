@@ -88,8 +88,8 @@
                 "text": "精选"
             },
             {
-                "iconPath": "img/people.png",
-                "selectedIconPath": "img/peopleOn.png",
+                "iconPath": "img/icon-renmai-n@2x.png",
+                "selectedIconPath": "img/icon-renmai-s@2x.png",
                 "pagePath": "pages/contacts/contacts/contacts",
                 "text": "人脉"
             },

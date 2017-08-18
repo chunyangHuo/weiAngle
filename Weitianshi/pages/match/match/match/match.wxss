@@ -448,6 +448,7 @@ page {
 .insideBox {
   padding: 32rpx 32rpx 24rpx 32rpx;
   background: #fff;
+  border-radius: 8rpx;
 }
 
 .outBox .describle {
@@ -486,9 +487,10 @@ page {
 
 .otherInfo {
   position: relative;
-   padding-bottom: 0; 
-  border-bottom:none;
+  padding-bottom: 0;
+  border-bottom: none;
 }
+
 /* .otherInfo {
   position: relative;
   padding-bottom: 30rpx;
@@ -531,7 +533,7 @@ page {
   margin-top: 9rpx;
 }
 
-#styleLeft .userCompany,#styleLeft .userCareer,#styleLeft .userName {
+#styleLeft .userCompany, #styleLeft .userCareer, #styleLeft .userName {
   font-size: 22rpx;
   color: #999;
   line-height: 24rpx;
@@ -696,7 +698,7 @@ page {
   padding-left: 94rpx;
 }
 
-.connectionBtn{
+.connectionBtn {
   font-size: 28rpx;
   color: #ccc;
   letter-spacing: 0;
@@ -716,8 +718,9 @@ page {
   height: 26rpx;
   border-radius: 100%;
 }
-.iconFreeStyle{
-   width: 24rpx;
+
+.iconFreeStyle {
+  width: 24rpx;
   height: 26rpx;
 }
 
@@ -737,9 +740,9 @@ page {
 
 .userPart1 {
   margin-top: 4rpx;
-  width:66rpx;
-  height:33rpx;
-  font-size:20rpx;
+  width: 66rpx;
+  height: 33rpx;
+  font-size: 20rpx;
   line-height: 40rpx;
   align-items: flex-end;
 }
@@ -748,7 +751,8 @@ page {
   width: 68rpx;
   height: 68rpx;
   position: absolute;
-  right: 0;
+  right: -2rpx;
+  top: -2rpx;
 }
 
 .userPic {
@@ -806,7 +810,7 @@ page {
   line-height: 24rpx;
   text-align: center;
   /* margin-left: 370rpx; */
-  width:96rpx;
+  width: 96rpx;
   position: absolute;
   top: 34rpx;
   right: 0;

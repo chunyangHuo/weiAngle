@@ -3,6 +3,7 @@
 page {
   height: 100%;
 }
+
 /*新样式  */
 
 .browseMeTitle {
@@ -38,11 +39,17 @@ page {
   width: auto;
   height: auto;
   position: relative;
+  /* border-radius: 8rpx; */
+}
+
+.outBox:first-child {
+  margin-top: 32rpx;
 }
 
 .insideBox {
   padding: 32rpx 32rpx 24rpx 32rpx;
   background: #fff;
+  border-radius: 8rpx;
 }
 
 .outBox .describle {
@@ -131,15 +138,16 @@ page {
   overflow: hidden;
   white-space: nowrap;
 }
+
 .user_text {
   width: 40rpx;
   height: 40rpx;
   display: block;
   margin-right: 16rpx;
   border-radius: 50%;
-  background:#999999;
+  background: #999;
   font-size: 22rpx;
-  background:#999999;
+  background: #999;
   line-height: 40rpx;
   text-align: center;
 }
@@ -278,11 +286,13 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.investmentGroupContent{
+
+.investmentGroupContent {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .roundGroup {
   margin-bottom: none;
   border-bottom: 1rpx solid #e6e6e6;
@@ -335,7 +345,8 @@ page {
   width: 68rpx;
   height: 68rpx;
   position: absolute;
-  right: 0;
+  right: -2rpx;
+  top: -2rpx;
 }
 
 .userPic {
@@ -379,7 +390,7 @@ page {
   color: #ccc;
   line-height: 24rpx;
   text-align: center;
-   margin-left: 370rpx; 
+  margin-left: 370rpx;
   position: absolute;
   top: 34rpx;
   right: 0;
@@ -396,7 +407,9 @@ page {
 .noLight {
   color: #999;
 }
+
 /*创建项目  */
+
 .accreditation {
   background: #fff1e8;
   height: 88rpx;
@@ -406,6 +419,7 @@ page {
   text-align: left;
   padding-left: 32rpx;
 }
+
 .toAccreditation {
   font-size: 24rpx;
   color: #fff;
@@ -417,10 +431,11 @@ page {
   height: 52rpx;
   margin-top: 18rpx;
   position: absolute;
-  right:0;
+  right: 0;
 }
-.btnToAccreditation{
-  ont-size: 24rpx;
+
+.btnToAccreditation {
+  font-size: 24rpx;
   color: #fff;
   line-height: 52rpx;
   text-align: center;
@@ -430,12 +445,26 @@ page {
   height: 52rpx;
   margin-top: 18rpx;
   position: absolute;
-  right:32rpx;
+  right: 32rpx;
 }
-.highBox{
-  height:88rpx;
-  width:100%;
+
+.highBox {
+  height: 88rpx;
+  width: 100%;
 }
+
 .readed {
   color: #40587a;
+}
+
+.user_image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  font-size: 22rpx;
+  background: #f2f2f2;
+  line-height: 40rpx;
+  text-align: center;
 }

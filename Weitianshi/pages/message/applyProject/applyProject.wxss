@@ -1,5 +1,7 @@
 /* pages/message/applyProject/applyProject.wxss */
-
+page{
+  background: #f3f4f8;
+}
 .swiper-tab {
   width: 100%;
   text-align: center;
@@ -27,7 +29,7 @@
 
 .empty {
   padding-top: 0;
-  margin-top:344rpx;
+  margin-top: 344rpx;
   width: 252rpx;
   height: 190rpx;
 }
@@ -70,6 +72,7 @@
 .insideBox {
   padding: 32rpx 32rpx 24rpx 32rpx;
   background: #fff;
+  border-radius: 8rpx;
 }
 
 .outBox .describle {
@@ -242,14 +245,15 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 670rpx;
-  padding-left: 16rpx;
+  width: 691rpx;
+  /* padding-left: 16rpx; */
 }
-#introduce .introduce{
-   background: #f3f4f8;
+
+#introduce .introduce {
+  background:  #FAFAFA;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;
-  color: #666;
+  color:#666666;
   line-height: 88rpx;
   text-align: left;
   height: 88rpx;
@@ -257,8 +261,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 670rpx;
-  padding-left: 16rpx;
+  padding-left: 32rpx;
 }
+
 .applyMyProject .userPosition {
   font-size: 28rpx;
   color: #666;
@@ -357,10 +362,24 @@
   width: 68rpx;
   height: 68rpx;
   position: absolute;
-  right: 0;
+  right: -2rpx;
+  top:-2rpx;
 }
 
 .userPic {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+
+.user_text {
+  background: #f2f2f2;
+  line-height: 104rpx;
+  text-align: center;
+  font-size: 40rpx;
   width: 104rpx;
   height: 104rpx;
   border-radius: 100%;
@@ -432,7 +451,8 @@
   padding-bottom: 30rpx;
   background: white;
 }
- .user_apply {
+
+.user_apply {
   background: #f2f2f2;
   line-height: 104rpx;
   text-align: center;
@@ -443,26 +463,31 @@
   position: absolute;
   right: 32rpx;
   top: 32rpx;
-} 
-.user_image{
+}
+
+.user_image {
   width: 40rpx;
   height: 40rpx;
   display: block;
   margin-right: 16rpx;
   border-radius: 50%;
   font-size: 22rpx;
-  background:#999999;
+  background: #f2f2f2;
   line-height: 40rpx;
 }
-.investmentGroupContent, .roundGroupContent{
+
+.investmentGroupContent, .roundGroupContent {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .hide {
   display: none;
 }
+
 /*重新申请  */
+
 .toAccreditation {
   font-size: 24rpx;
   color: #fff;
@@ -475,8 +500,13 @@
   /* margin-top: 18rpx; */
   position: absolute;
   right: 0;
-  top:20rpx;
+  top: 20rpx;
 }
-.hidePoint{
-  display: none
+
+.hidePoint {
+  display: none;
+}
+
+.hasNothing {
+  color: #666;
 }

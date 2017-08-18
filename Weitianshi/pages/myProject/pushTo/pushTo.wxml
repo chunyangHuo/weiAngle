@@ -30,6 +30,7 @@
         </view>
       </view>
     </block>
+    <view style="height:54rpx;"></view>
   </scroll-view>
 </view>
 

@@ -11,7 +11,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options)
     let type = options.type;
     let that = this;
     that.setData({
@@ -27,7 +26,6 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log("申請查看我的")
-        console.log(res)
         let contentList = res.data.data;
         let count1 = res.data.count;
         that.setData({
@@ -46,7 +44,6 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log("我申请查看的项目")
-        console.log(res)
         let count = res.data.count;
         let applyList = res.data.data;
         that.setData({
@@ -241,16 +238,13 @@ Page({
   },
   //点击跳转到用户详情
   personDetail: function (e) {
-    console.log(e);
     var id = e.currentTarget.dataset.project;
-    app.console(id)
     wx.navigateTo({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
   // 点击同意
   btn: function (e) {
-    console.log(e)
     let contentList = this.data.contentList;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
@@ -266,7 +260,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         if (status == 1) {
           contentList.forEach((x) => {
             if (x.record_id == record_id) {
@@ -288,7 +281,6 @@ Page({
   //重新申请
   matchReApply: function (e) {
     console.log("重新申请")
-    console.log(e)
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
     let project_id = e.currentTarget.dataset.project;

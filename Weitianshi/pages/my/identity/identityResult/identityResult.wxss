@@ -1,4 +1,7 @@
 /* pages/my/identity/identityResult/identityResult.wxss */
+page {
+ background: #ffffff;
+}
 
 .statusPic {
   height: 176rpx;
@@ -20,12 +23,13 @@
   background: #fafafa;  
   border-radius: 4rpx;
   width: 558rpx;
-  height: 112rpx;
+  height: 64rpx;
   margin-left: 96rpx;
   font-size: 24rpx;
   color: #666;
   /* line-height: 24rpx; */
   text-align: left;
+  padding:24rpx 26rpx;
 }
 
 .QRCode {
