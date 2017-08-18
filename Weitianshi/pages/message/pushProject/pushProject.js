@@ -9,6 +9,7 @@ Page({
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目
+    hasRedPoint:true,
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
   },
 
@@ -93,7 +94,26 @@ Page({
     let pushProjectList = this.data.pushProjectList;
     let pushToList = this.data.pushToList;
     if (current == 1) {
-    
+        //向后台发送信息取消红点 我推送的项目
+        wx.request({
+            url: url_common + '/api/message/setFeedbackToRead',
+            data: {
+                user_id: user_id,
+                type: "push"
+            },
+            method: "POST",
+            success: function (res) {
+                console.log(res)
+                if (res.data.status_code == 2000000) {
+                    pushProjectList.forEach((x) => {
+                        x.message_status = 1;
+                    })
+                    that.setData({
+                        hasRedPoint: false
+                    })
+                }
+            }
+        })
     } else if (current == 0) {
       wx.request({
         url: url_common + '/api/message/setMessageToRead',
@@ -103,7 +123,7 @@ Page({
         },
         method: "POST",
         success: function (res) {
-          console.log(res)
+          console.log(1,res)
           if (res.data.status_code == 2000000) {
             pushToList.forEach((x) => {
               x.message_status = 1;
@@ -116,27 +136,14 @@ Page({
 
         }
       })
-      //向后台发送信息取消红点 我推送的项目
-      wx.request({
-        url: url_common + '/api/message/setFeedbackToRead',
-        data: {
-          user_id: user_id,
-          type: "push"
-        },
-        method: "POST",
-        success: function (res) {
-          console.log(res)
-          if (res.data.status_code == 2000000) {
-            pushProjectList.forEach((x) => {
+      if(this.data.hasRedPoint===false){
+          pushProjectList.forEach((x) => {
               x.message_status = 1;
-            })
-            that.setData({
+          })
+          that.setData({
               pushProjectList: pushProjectList
-            })
-            console.log("我推送的项目")
-          }
-        }
-      })
+          })
+      }
     }
     that.setData({ currentTab: e.detail.current });
   },
