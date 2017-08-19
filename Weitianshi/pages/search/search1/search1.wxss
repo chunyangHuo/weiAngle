@@ -1,8 +1,10 @@
 /* pages/my/searchCompany/searchCompany.wxss */
-
+.searchBox{
+    background: white;
+}
 .searchCompany {
   height: 112rpx;
-  width: 100%;
+  width: 80%;
   background: white;
   position: relative;
   padding-left: 32rpx;

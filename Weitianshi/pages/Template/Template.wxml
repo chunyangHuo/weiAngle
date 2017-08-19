@@ -27,8 +27,8 @@
           <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
           <view class="userPart1">{{user.authentication[0].group_title}}</view>
         </view> 
-        <view class="userAuthentication flex" catchtap="authentication"  wx:if="{{user.identify_status == 0 && IdentificationShow==1}}">认证</view>
-        <view class="userAuthentication flex" catchtap="authentication"  wx:if="{{user.identify_status == 3 && IdentificationShow==1}}">认证</view>
+        <view class="userAuthentication flex" catchtap="authentication"  wx:if="{{user.identify_status == 0 && IdentificationShow==1}}" data-identitystatus="{{0}}">认证</view>
+        <view class="userAuthentication flex" catchtap="authentication"  wx:if="{{user.identify_status == 3 && IdentificationShow==1}}" data-identitystatus="{{3}}">认证</view>
          <view class="userAuthentication flex"  wx:if="{{user.identify_status == 1 && IdentificationShow==1}}">认证中</view>
       </view>
       <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
@@ -480,50 +480,7 @@
     <label class="pointPcToNet">></label>
     </view>
   </view>
-</template>
-<!--潜在项目样式  -->
-<template name="pushToSb">
-  <view class="classname">
-    <view class="outBox">
-          <view class="insideBox">
-            <view class="flex">
-              <view class="describle">项目一句话介绍</view>
-              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
-              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
-            </view>
-            <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
-            <view class="allProjectDetail flex">
-              <view class="projectDetailLine">300-500万</view>
-              <view class="projectDetailLine">10%</view>
-              <view class="projectDetailLine">天使轮</view>
-              <view class="projectDetailLine">杭州</view>
-            </view>
-            <view class="flex otherInfo">
-              <view>
-                <imag src="{{user.user_avatar_url}}" class="others_pic" />
-                <view>{{user.user_avatar_text}}</view>
-              </view>
-              <view>
-                <view class="flex userInfo">
-                  <view class="userName">姓名</view>
-                  <view class="userCareer">投资经理</view>
-                  <view class="userCompany">杭州投着乐网络科技邮箱公司</view>
-                </view>
-              </view>
-            </view>
-            <view class="projectInfo flex">
-              <view class="seeNum">1人看过项目</view>
-              <view class="interest flex">
-                <view class="btnHaveInterest">感兴趣</view>
-                <view class="btnNoInterest">没兴趣</view>
-                <!-- <view class="haveInterest">感兴趣</view> -->
-              </view>
-            </view>
-          </view>
-          <view id="time">05-04 19:00</view>
-    </view>
-  </view>
-</template>
+</template>>
 
 <!--身份认证列表-->
 <template name="identityList">
@@ -599,8 +556,9 @@
           <view class="projectInfo flex" wx:if="{{type == 0}}">
             <view class="seeNum">{{item.view_count}}人看过项目</view>
             <view class="interest flex">
-              <view class="btnHaveInterest" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{1}}">感兴趣</view>
+
               <view class="btnNoInterest" catchtap="interesting"   data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{2}}">没兴趣</view>
+              <view class="btnHaveInterest" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{1}}">感兴趣</view>
               <view class="haveInterest"  wx:if="{{item.handle_status == 1}}">感兴趣</view> 
             </view>
           </view>
@@ -777,12 +735,14 @@
     </view>
   </block>
 </template>
+<!--没有内容时候的样式  -->
 <template name="hasNothing">
   <view class="empty flex"  wx:if="{{emptyNumber == ''}}" >
     <image src="/img/img-kong1@2x.png" class="noData"></image>
     <view class="hasNothing">暂无数据</view>
   </view> 
 </template>
+
 <template name="pushProjectTo">
   <block wx:for="{{contentList}}" wx:key="{{contentList}}">
     <view  class="{{item.record_id ==  record_id ? 'hide':''}}">
@@ -790,10 +750,10 @@
         <view class="introduce">{{item.project.pro_intro}}</view>
         <!--我推送的项目样式  -->
         <view wx:if="{{type != 0}}" class="flex">
-          <view class="status"  wx:if="{{item.handle_status == 0}}">未读</view>
+          <view class="status noRead"  wx:if="{{item.handle_status == 0}}">未读</view>
           <view class="status readed"  wx:if="{{item.handle_status == 1}}">感兴趣</view>
-          <view class="status"  wx:if="{{item.handle_status == 2}}">没兴趣</view> 
-          <view class="status"  wx:if="{{item.handle_status == 3}}">已读</view>
+          <view class="status statusNoInterest"  wx:if="{{item.handle_status == 2}}">没兴趣</view> 
+          <view class="status statusNoInterest"  wx:if="{{item.handle_status == 3}}">已读</view>
         </view>
       </view>
       <!--名片内容  -->

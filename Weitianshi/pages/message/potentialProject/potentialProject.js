@@ -7,17 +7,9 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
   },
   onLoad: function (e) {
-    console.log(e)
-    if (this.data.currentTab == 0) {
-      console.log(this.data.currentTab)
-    } else if (this.data.currentTab == 1) {
-      console.log(this.data.currentTab)
-    } else (
-      console.log(this.data.currentTab)
-    )
   },
   onShow: function (e) {
     console.log(e)
@@ -31,8 +23,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("我申请查看的项目")
-        console.log(res)
         let count = res.data.count;
         let applyList = res.data.data;
         that.setData({
@@ -49,8 +39,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("推送给我的")
-        console.log(res)
         let pushToList = res.data.data;
         let count1 = res.data.count;
         that.setData({
@@ -68,8 +56,8 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("匹配推荐")
         console.log(res)
+        if (res.data.status_code == 2000000){
         let count2 = res.data.data.match_count;
         let getMatchList = res.data.data.projects;
         console.log(getMatchList)
@@ -78,6 +66,12 @@ Page({
           count2: count2,
           getMatchList: getMatchList
         })
+      }else{
+          that.setData({
+            count2: 0,
+            getMatchList: 0
+          })
+      }
       }
     })
     // 取消红点 --推送给我的
@@ -110,12 +104,38 @@ Page({
   /*滑动切换tab*/
   bindChange: function (e) {
     var that = this;
+    hasRedPoint: true
     var current = e.detail.current;
     let pushToList = this.data.pushToList;
     let applyList = this.data.applyList;
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    if (current == 0) {
+    if (current == 1) {
+      我申请查看的
+      //向后台发送信息取消红点
+      wx.request({
+        url: url_common + '/api/message/setFeedbackToRead',
+        data: {
+          user_id: user_id,
+          type: "apply"
+        },
+        method: "POST",
+        success: function (res) {
+          applyList.forEach((x) => {
+            x.message_status = 1;
+          })
+          that.setData({
+            hasRedPoint: false
+          })
+
+        }
+      })
+    } else if (current == 0) {
+      if (this.data.hasRedPoint === false) {
+        that.setData({
+          applyList: applyList
+        })
+      }
       // 推送给我的
       wx.request({
         url: url_common + '/api/message/setMessageToRead',
@@ -133,29 +153,9 @@ Page({
             that.setData({
               pushToList: pushToList
             })
-            console.log("推送给我的项目")
           }
-
         }
       })
-      //向后台发送信息取消红点 我申请查看的
-      wx.request({
-        url: url_common + '/api/message/setFeedbackToRead',
-        data: {
-          user_id: user_id,
-          type: "apply"
-        },
-        method: "POST",
-        success: function (res) {
-          applyList.forEach((x) => {
-            x.message_status = 1;
-          })
-          that.setData({
-            applyList: applyList
-          })
-        }
-      })
-
     }
   },
   /*点击tab切换*/

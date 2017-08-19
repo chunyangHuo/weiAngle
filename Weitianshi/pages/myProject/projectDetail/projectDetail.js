@@ -39,11 +39,13 @@ Page({
     var id = options.id;
     let newCompanyName = options.companyName;
     var index = options.index;
+    let view_id = wx.getStorageSync('user_id');
     this.setData({
       index: index,
       id: id,
       currentTab: options.currentTab,
-      newCompanyName: newCompanyName     
+      newCompanyName: newCompanyName,
+      view_id: view_id    
     })
     console.log(newCompanyName)
   },
@@ -277,7 +279,7 @@ Page({
                       app.console("array")
                       app.console(project_labelArray)
                       // let project_labelArrayOne = project_labelArray[0]
-                      let project_views = JSON.parse(projectDetailsList[0].project_views);
+                      // let project_views = JSON.parse(projectDetailsList[0].project_views);
                       that.setData({
                         projectDetailsOne: projectDetailsOne,
                         project_labelArray: project_labelArray
@@ -491,13 +493,25 @@ Page({
     })
   },
   //分享当前页面
+  // onShareAppMessage: function () {
+  //   var pro_intro = this.data.project.pro_intro;
+  //   app.console(this.data.id)
+  //   return {
+  //     title: pro_intro,
+  //     path: '/pages/projectDetail/projectDetail?id=' + this.data.id
+  //   }
+  // },
+  //分享当前页面
   onShareAppMessage: function () {
+    console.log("分享页面内容")
     var pro_intro = this.data.project.pro_intro;
-    app.console(this.data.id)
-    return {
-      title: pro_intro,
-      path: '/pages/projectDetail/projectDetail?id=' + this.data.id
-    }
+    //id :当前页面的项目id
+    let id = this.data.id;
+    let share_id = this.data.view_id;
+    // let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
+    let title = pro_intro;
+    console.log(path)
+    return app.shareProjectPage(id, title,share_id)
   },
   //跳转到我的页面
   toMy: function () {
@@ -777,7 +791,7 @@ Page({
                       app.console("array")
                       app.console(project_labelArray)
                       // let project_labelArrayOne = project_labelArray[0]
-                      let project_views = JSON.parse(projectDetailsList[0].project_views);
+                      // let project_views = JSON.parse(projectDetailsList[0].project_views);
                       that.setData({
                         projectDetailsOne: projectDetailsOne,
                         project_labelArray: project_labelArray

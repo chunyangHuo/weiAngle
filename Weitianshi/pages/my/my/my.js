@@ -32,9 +32,9 @@ Page({
         user_id: user_id,
       })
       //分享至群打点准备
-     /* wx.showShareMenu({
-        withShareTicket: true,
-      })*/
+      /* wx.showShareMenu({
+         withShareTicket: true,
+       })*/
       if (user_id != 0) {
         //载入我的个人信息
         wx.request({
@@ -106,7 +106,7 @@ Page({
       url: '/pages/message/beAddedContacts/beAddedContacts'
     })
   },
-  pushTo:function(){
+  pushTo: function () {
     wx.navigateTo({
       url: '/pages/message/potentialProject/potentialProject'
     })
@@ -219,40 +219,40 @@ Page({
     var modal = this.data.modal;
     var com_name = this.data.user.user_company_name;
     var status_code = this.data.status_code;
-      wx.request({
-        url: url_common + '/api/dataTeam/taxNumber',
-        data: {
-          user_id: user_id,
-          com_name: com_name
-        },
-        method: 'POST',
-        success: function (res) {
-          let data = res.data;
-          if (data.status_code == 460004) {
-            console.log(data)
-            that.setData({
-              modalStyle: 1,
-              modalBox: 1
-            })
-          } else if (data.status_code == 2000000) {
-            console.log(res);
-            console.log("税号")
-            that.setData({
-              modalStyle: 0,
-              modalBox: 1
-            })
-            let data = res.data.data;
-            let com_name = data.com_name;
-            var tax_member = data.tax_mumber;
-            that.setData({
-              data: data,
-              com_name: com_name,
-              tax_member: tax_member,
-              modalStyle: 0
-            })
-          }
+    wx.request({
+      url: url_common + '/api/dataTeam/taxNumber',
+      data: {
+        user_id: user_id,
+        com_name: com_name
+      },
+      method: 'POST',
+      success: function (res) {
+        let data = res.data;
+        if (data.status_code == 460004) {
+          console.log(data)
+          that.setData({
+            modalStyle: 1,
+            modalBox: 1
+          })
+        } else if (data.status_code == 2000000) {
+          console.log(res);
+          console.log("税号")
+          that.setData({
+            modalStyle: 0,
+            modalBox: 1
+          })
+          let data = res.data.data;
+          let com_name = data.com_name;
+          var tax_member = data.tax_mumber;
+          that.setData({
+            data: data,
+            com_name: com_name,
+            tax_member: tax_member,
+            modalStyle: 0
+          })
         }
-      })
+      }
+    })
   },
   //完善公司信息
   writeInformation: function () {
@@ -291,10 +291,58 @@ Page({
       }
     })
   },
-  //去认证
-  authentication:function(){
-    wx.navigateTo({
-      url: '/pages/my/identity/indentity/indentity'
+  //去认证  status =0:未认证过  status = 1 认证中 status =2 认证成功 status =3 认证失败.需要重新认证
+  authentication: function (e) {
+    let status = e.currentTarget.dataset.identitystatus;
+    let user_id = this.data.user_id
+    console.log(status)
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以显示去认证
+            if (status == 0) {
+              wx.navigateTo({
+                url: '/pages/my/identity/indentity/indentity',
+              })
+            } else if (status == 3) {
+              wx.request({
+                url: url_common + '/api/user/getUserGroupByStatus',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  console.log(res)
+                  let user_id = wx.getStorageSync('user_id');
+                  let authenticate_id = res.data.authenticate_id;
+                  let group_id = res.data.group_id;
+                  wx.navigateTo({
+                    url: '/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id,
+                  })
+                }
+              })
+            }
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+
+
+      }
     })
   }
-});
+  });

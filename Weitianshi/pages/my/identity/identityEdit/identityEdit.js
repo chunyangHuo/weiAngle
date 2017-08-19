@@ -206,23 +206,34 @@ Page({
         let user_id = wx.getStorageSync('user_id');
         let group_id = this.data.group_id;
         let authenticate_id = this.data.authenticate_id;
+        let that = this;
         console.log(authenticate_id)
         wx.chooseImage({
+          count:1,
+          size:1048576,
             success: function (res) {
                 console.log(res)
                 var tempFilePaths = res.tempFilePaths
-                wx.uploadFile({
+                let size = res.tempFiles[0].size;
+                console.log(size)
+                if (size<=1048576){
+                  wx.uploadFile({
                     url: url_common + '/api/user/uploadCard', //仅为示例，非真实的接口地址
                     filePath: tempFilePaths[0],
                     name: 'file',
                     formData: {
-                        'user_id': user_id,
-                        'authenticate_id': authenticate_id
+                      'user_id': user_id,
+                      'authenticate_id': authenticate_id
                     },
                     success: function (res) {
-                        var data = res.data
+                      var data = res.data
                     }
-                })
+                  })
+                }else{
+                  console.log("上传说黑白")
+                  rqj.errorHide(that, "上传图片不能超过1M", 1500)
+                }
+              
             }
         })
     },

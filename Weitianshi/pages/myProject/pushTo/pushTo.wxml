@@ -4,8 +4,8 @@
 </view>
 <view class="s_frame">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
-    <block  wx:for="{{dataList}}" wx:key="{{index}}">
-      <view class="outBox {{item.check==true?'checkedOne':''}}"  bindtap="checkboxChange" data-id="{{item.project_id}}" data-index="{{index}}"  >
+    <block wx:for="{{dataList}}" wx:key="{{index}}">
+      <view class="outBox {{item.check==true?'checkedOne':''}}" bindtap="checkboxChange" data-id="{{item.project_id}}" data-index="{{index}}">
         <view class="matching">匹配度：<label class="matchingNum">{{dataList[index].match_weight}}%</label></view>
         <view class="projectInfoBox">
           <view class="classname">
@@ -15,10 +15,10 @@
               <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{dataList[index].is_exclusive == 2}}"></image>
             </view>
             <view class="industry">
-            <block  wx:for="{{item.pro_industry}}" wx:key="{{item.index}}" wx:for-item ='userIndustry'>
-              <label wx:if="{{index < item.pro_industry.length-1}}">{{userIndustry.industry_name}}、</label>  
-              <label wx:if="{{index == item.pro_industry.length-1}}">{{userIndustry.industry_name}}</label>  
-            </block>
+              <block wx:for="{{item.pro_industry}}" wx:key="{{item.index}}" wx:for-item='userIndustry'>
+                <label wx:if="{{index < item.pro_industry.length-1}}">{{userIndustry.industry_name}}、</label>
+                <label wx:if="{{index == item.pro_industry.length-1}}">{{userIndustry.industry_name}}</label>
+              </block>
             </view>
             <view class="allProjectDetail flex">
               <view class="projectDetailLine" wx:if="{{dataList[index].pro_scale}}">{{dataList[index].pro_scale.scale_money}}</view>
@@ -30,18 +30,18 @@
         </view>
       </view>
     </block>
+    <!--空状态  -->
+    <view class="hasNone" wx:if="{{dataList.length == 0}}">
+      <image src="/img/img-kong@2x.png" class="iconStyle"></image>
+      <view class="none">暂无项目</view>
+      <view class="createProject" bindtap="createProject">创建项目</view>
+    </view>
     <view style="height:54rpx;"></view>
   </scroll-view>
 </view>
 
-<view class="floatBtn flex pushPro"  bindtap="pushTo">
+<view class="floatBtn flex pushPro" bindtap="pushTo">
   <view class="pushProjectAfter">推送</view>
 </view>
 <!-- 错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
- <view class="hasNone"  wx:if="{{dataList.length == 0}}">
-  <image src="/img/img-kong@2x.png" class="iconStyle"></image>
-  <view class="none">暂无项目</view>
-  <view class="createProject" bindtap="createProject">创建项目</view>
-</view> 
-

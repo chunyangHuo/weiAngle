@@ -1234,6 +1234,8 @@ scroll-view {
 
 .contentAll view {
   text-align: left;
+  word-break:break-all;
+  flex-wrap:wrap;
 }
 
 .companyBrand view {
@@ -1306,6 +1308,7 @@ scroll-view {
   margin-right: 24rpx;
   flex-wrap: nowrap;
   white-space:nowrap;
+  margin-bottom:18rpx;
 }
 
 .pro_sort_right {

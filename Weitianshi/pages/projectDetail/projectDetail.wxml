@@ -336,7 +336,7 @@
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
   </view>
-  <view class="accreditation flex" wx:if="{{button_type ==3 && status !=0}}">
+  <view class="accreditation flex" wx:if="{{button_type ==3 && status !=0 && status !=3}}">
   <view class="classname">{{button_type}}</view>
   <view class="classname">{{status}}</view>
     <view>认证投资人、买家FA才可申请查看</view>

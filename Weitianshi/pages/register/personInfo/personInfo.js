@@ -19,9 +19,12 @@ Page({
     onLoad:function(options){
       let type = options.type;
       let that = this;
-      that.setData({
-        type:type
-      })
+      if (type){
+        that.setData({
+          type: type
+        })
+      }
+     
     },
     //下拉刷新
     onPullDownRefresh: function () {

@@ -1,4 +1,4 @@
-<view class="classname">
+<view class="searchBox">
   <input class="searchCompany" placeholder="请输入公司名称" bindinput="inputValue" value="{{company_name}}"/>
   <view class="searchSth" bindtap="searchCompany">搜索</view>
 </view>
