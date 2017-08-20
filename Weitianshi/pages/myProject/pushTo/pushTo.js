@@ -116,6 +116,7 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = this.data.pushed_user_id;
     let time = this.data.pushTimes;
+    let remainTimes = time.remain_times;
     let that = this;
     let checkObject = this.data.checkObject;
     console.log(checkObject)
@@ -125,49 +126,61 @@ Page({
        projectList.push(x.project_id)
      })
    }
-    wx.request({
-      url: url_common + '/api/project/pushProjectToUser',
-      data: {
-        user_id: user_id,
-        pushed_user_id: pushed_user_id,
-        pushed_project: projectList
-      },
-      method: 'POST',
-      success: function (res) {
-        let statusCode = res.data.status_code;
-        if (statusCode == 2000000) {
-        wx.request({
-          url: url_common + '/api/project/getMyProjectListOrderByMatch',
-          data: {
-            user_id: user_id,
-            pushed_user_id: pushed_user_id
-          },
-          method: 'POST',
-          success: function (res) {
-            console.log(res)
-            let dataList = res.data.data;
-            let pushTimes = res.data.push_times;
-            let remainTimes = pushTimes.remain_times;
-            that.setData({
-              pushTimes: pushTimes
-            })
-            console.log(remainTimes)
-            if (pushTimes != 0){
-                wx.showToast({
-                  title: '成功',
-                  icon: 'success',
-                  duration: 2000
+    if (remainTimes){
+      wx.request({
+        url: url_common + '/api/project/pushProjectToUser',
+        data: {
+          user_id: user_id,
+          pushed_user_id: pushed_user_id,
+          pushed_project: projectList
+        },
+        method: 'POST',
+        success: function (res) {
+          let statusCode = res.data.status_code;
+          if (statusCode == 2000000) {
+            wx.request({
+              url: url_common + '/api/project/getMyProjectListOrderByMatch',
+              data: {
+                user_id: user_id,
+                pushed_user_id: pushed_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log(res)
+                let dataList = res.data.data;
+                let pushTimes = res.data.push_times;
+                let remainTimes = pushTimes.remain_times;
+                that.setData({
+                  pushTimes: pushTimes,
+                  remainTimes: remainTimes
                 })
-            } else if (remainTimes == 0){
-              rqj.errorHide(that, "今日推送次数已用完", 1000)
-            }
+                console.log(remainTimes)
+          
+                if (remainTimes != 0) {
+                    wx.showToast({
+                      title: '成功',
+                      icon: 'success',
+                      duration: 2000
+                    })                 
+                } else if (remainTimes == 0) {
+                  console.log("remainTimes")
+                  wx.showToast({
+                    title: '成功',
+                    icon: 'success',
+                    duration: 2000
+                  })   
+                  rqj.errorHide(that, "今日推送次数已用完", 1000)
+                }
+              }
+            })
+          } else if (statusCode == 490001) {
+            rqj.errorHide(that, "没有选择任何项目", 1000)
           }
-        })
-        } else if (statusCode == 490001){
-          rqj.errorHide(that, "没有选择任何项目", 1000)
         }
-      }
-    })
+      })
+    }else{
+      rqj.errorHide(that, "今日推送次数已用完", 1000)
+    }
 
     //  错误信息提示
     // rqj.errorHide(that, "最多可选择五项", 1000)

@@ -1,5 +1,7 @@
 /* pages/message/applyProject/applyProject.wxss */
-
+page{
+  background: #f3f4f8;
+}
 .swiper-tab {
   width: 100%;
   text-align: center;
@@ -186,6 +188,7 @@
   line-height: 52rpx;
   padding: 0 32rpx;
   margin: 0 24rpx 0 185rpx;
+  border-radius: 4rpx;
 }
 
 .btnNoInterest {
@@ -224,7 +227,7 @@
 }
 
 #introduce {
-  background: #f3f4f8;
+  background: #FAFAFA;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;
   color: #666;
@@ -235,14 +238,22 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 670rpx;
-  padding-left: 16rpx;
   justify-content: space-between;
+  width: 691rpx;
 }
-.introduce{
+#introduce .introduce{
+ background:  #FAFAFA;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color:#666666;
+  line-height: 88rpx;
+  text-align: left;
+  height: 88rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 670rpx;
+  padding-left: 32rpx;
 }
 .applyMyProject .userPosition {
   font-size: 28rpx;
@@ -456,7 +467,12 @@
   text-align: right;
   padding-right:34rpx;
 }
-
+.noRead{
+  color:#cccccc;
+}
+.statusNoInterest{
+  color: #999999;
+}
 .readed {
   color: #40587a;
 }
@@ -483,4 +499,7 @@
 
 .noLight {
   color: #999;
+}
+.hightLight {
+  color: #40587a;
 }

@@ -250,20 +250,16 @@ Page({
           if (res.data.status_code == 2000000) {
             var complete = res.data.is_complete;
             if (complete == 1) {
-              //如果信息完整就正常申请添加人脉
+              //信息完整，正常的推送项目
               wx.navigateTo({
                 url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + personId,
               })
             } else if (complete == 0) {
-              //如果有user_id但信息不全则跳companyInfo页面
-              // wx.setStorageSync('followed_user_id', followed_user_id)
               wx.navigateTo({
                 url: '/pages/register/companyInfo/companyInfo'
               })
             }
           } else {
-            //如果没有user_id则跳personInfo
-            // wx.setStorageSync('followed_user_id', followed_user_id)
             wx.navigateTo({
               url: '/pages/register/personInfo/personInfo'
             })

@@ -136,7 +136,7 @@ Page({
                         console.log("获取投资需求的匹配项目")
                         console.log(res)
                         // let count2 = res.data.data.match_count;
-                        if (res.data.status_code !== 440004) {
+                        if (res.data.status_code == '2000000') {
                           let count2 = res.data.data.match_count;
                             var yourProject = res.data.data.projects;
                             that.setData({
@@ -149,7 +149,8 @@ Page({
                             })
                         } else {
                             that.setData({
-                                hasPublic: 0
+                                hasPublic: 0,
+                                count2 : 0
                             })
                         }
                     }
@@ -165,7 +166,7 @@ Page({
                     success: function (res) {
                         console.log("资源需求匹配结果")
                         console.log(res)
-                        if (res.data.status_code != "450002") {
+                          if (res.data.status_code == '2000000') {
                             wx.setStorageSync("resource_find", res.data.data.res_find);
                             wx.setStorageSync("resource_give", res.data.data.res_give);
                             wx.setStorageSync("resource_desc", res.data.data.res_desc);
@@ -192,7 +193,8 @@ Page({
                             })
                         } else {
                             that.setData({
-                                hasPublic2: 0
+                                hasPublic2: 0,
+                                count3 : 0
                             })
                         }
                     },

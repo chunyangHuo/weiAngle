@@ -220,21 +220,20 @@ Page({
                             }
                         } else {
                             if(type == 1 ){
-                              let pages = getCurrentPages()
+                              let pages = getCurrentPages();
                               let num = pages.length - 1;
                               console.log(num)
                               wx.navigateBack({
-                                delta: num
+                                delta: 1
                               })
                             }else{
                          console.log(type)
-
                               if(type == 2){
                                 let pages = getCurrentPages()
                                 let num = pages.length - 1;
                                 console.log(num)
                                 wx.navigateBack({
-                                  delta: num
+                                  delta: 2
                                 })
                               }else{
                                 wx.switchTab({

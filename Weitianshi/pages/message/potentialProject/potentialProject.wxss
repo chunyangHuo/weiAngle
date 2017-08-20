@@ -210,7 +210,7 @@
   margin: 20rpx 24rpx 0 185rpx;
 }
 
-.btnNoInterest {
+.btnHaveInterest {
   margin: 20rpx 0 0 0;
 }
 

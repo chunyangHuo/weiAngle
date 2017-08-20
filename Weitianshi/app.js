@@ -244,12 +244,11 @@ App({
     },
 
     //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-    shareProjectPage: function (path,title) {
-        // let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+    shareProjectPage: function (id,title,share_id) {
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
+        let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
         let json = {
-            // title: '投资名片—智能精准匹配投融资双方的神器',
             title:title,
             path: path,
             //分享成功后的回调
@@ -744,7 +743,6 @@ App({
                              console.log(res)
                              let statusCode = res.data.status_code;
                              if (statusCode == 2000000){
-                               console.log(this)
                                wx.showToast({
                                  title: '已提交申请',
                                  icon: 'success',
@@ -753,7 +751,7 @@ App({
                                if (content == 0) {
                                  console.log("申请查看")
                                  getMatchList.forEach((x) => {
-                                   if (x.project_id == project_id) {
+                                   if (x.project_id == project_id) { 
                                      x.relationship_button = 0
                                      x.handle_status = 0
                                    }
@@ -761,6 +759,7 @@ App({
                                  that.setData({
                                    getMatchList: getMatchList
                                  })
+                                 console.log(getMatchList)
                                } else if (content == 1) {
                                  console.log("重新查看")
                                  getMatchList.forEach((x) => {
