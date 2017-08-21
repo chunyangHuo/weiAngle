@@ -144,7 +144,7 @@ Page({
         //判断是不是自己的项目
         if (currentUser === user_id) {
           wx.navigateTo({
-            url: 'pages/myProject/projectDetail/ projectDetail?id=' + that.data.id,
+            url: 'pages/myProject/projectDetail/projectDetail?id=' + that.data.id,
           })
           return
         }
