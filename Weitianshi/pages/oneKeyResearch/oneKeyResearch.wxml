@@ -75,7 +75,7 @@
               </view>
             </view>-->
             <!--核心团队-->
-            <view class="corePerson" wx:if="{{teamOfPro.length !=0}}">
+            <view class="corePerson" wx:if="{{teamOfPro.length !=0||project.core_users}}">
               <view class="corePersonBox flex">
                 <image src="/img/myOn.png" class="titlePic"></image>
                 <view class="title"> 核心团队</view>

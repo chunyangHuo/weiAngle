@@ -1234,10 +1234,13 @@ scroll-view {
 
 .contentAll view {
   text-align: left;
+    word-break:break-all;
+  flex-wrap:wrap;
 }
 
 .companyBrand view {
   text-align: left;
+  margin-bottom:18rpx;
 }
 
 .contentBox {

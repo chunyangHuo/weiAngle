@@ -199,9 +199,9 @@ Page({
             method: 'POST',
             success: function (res) {
               app.console("产品信息")
-              app.console(res)
+             console.log(res)
               let nothing = res.data.data
-              app.console(nothing.project_product)
+              console.log(nothing.project_product)
               if (nothing == 0) {
                 that.setData({
                   nothing: nothing
@@ -236,7 +236,7 @@ Page({
                     app.console("项目信息")
                     app.console(res)
                     let projectDetailsList = res.data.data;
-                    app.console(projectDetailsList)
+                console.log(projectDetailsList)
                     if (projectDetailsList.length != 0) {
                       let projectDetailsOne = projectDetailsList[0];
                       let project_labelList = projectDetailsList[0].project_label;
@@ -247,7 +247,7 @@ Page({
                       app.console("array")
                       app.console(project_labelArray)
                       // let project_labelArrayOne = project_labelArray[0]
-                      let project_views = JSON.parse(projectDetailsList[0].project_views);
+                    //   let project_views = JSON.parse(projectDetailsList[0].project_views);
                       that.setData({
                         projectDetailsOne: projectDetailsOne,
                         project_labelArray: project_labelArray
