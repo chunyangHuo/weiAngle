@@ -64,7 +64,7 @@
         "pages/my/identity/indentity/indentity",
         "pages/my/identity/identityEdit/identityEdit",
         "pages/my/identity/identityResult/identityResult",
-        "pages/oneKeyResearch/oneKeyResearch" 
+        "pages/oneKeyResearch/oneKeyResearch"
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",
