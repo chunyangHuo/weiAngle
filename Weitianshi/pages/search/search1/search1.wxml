@@ -1,5 +1,5 @@
 <view class="searchBox">
-  <input class="searchCompany" placeholder="请输入公司名称" bindinput="inputValue" value="{{company_name}}"/>
+  <input class="searchCompany" placeholder="请输入公司名称" bindinput="inputValue" value="{{company_name}}" maxlength="40"/>
   <view class="searchSth" bindtap="searchCompany">搜索</view>
 </view>
 <view class="flex prompt">
