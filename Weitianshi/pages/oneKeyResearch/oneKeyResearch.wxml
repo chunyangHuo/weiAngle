@@ -19,13 +19,13 @@
                         <view class="projectDetailLine" wx:if="{{project.pro_stage.stage_name}}">{{project.pro_stage.stage_name}}</view>
                         <view class="projectDetailLine" wx:if="{{project.pro_area.area_title}}">{{project.pro_area.area_title}}</view>
                     </view>
-                    <view class="ProjectClues flex">
+                   <!--  <view class="ProjectClues flex">
                         <view class="classname">项目线索</view>
                         <view class="ProjectCluesLine"></view>
                         <view class="classname">佣金收讫</view>
-                    </view>
+                    </view> -->
                 </view>
-                <view class="ProjectDetailInfo flex">
+               <!--  <view class="ProjectDetailInfo flex">
                     <view class="flex sceenPerson" data-proid="{{id}}">
                         <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
                         <view class="viewTimeAll screenPersonColor">浏览：
@@ -34,7 +34,7 @@
                     </view>
                     <view class="applyPerson">申请查看：-</view>
                     <view class="investPerson">意向投资人：-</view>
-                </view>
+                </view> -->
             </view>
         </view>
     </view>
@@ -99,7 +99,7 @@
                             </view>
                         </view>
                         <!--核心团队-->
-                        <view class="corePerson" wx:if="{{teamOfPro!=''}}">
+                        <view class="corePerson" wx:if="{{teamOfPro!='' || project.core_users}}">
                             <view class="corePersonBox flex">
                                 <image src="/img/myOn.png" class="titlePic"></image>
                                 <view class="title"> 核心团队</view>
@@ -190,7 +190,7 @@
                             <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
                         </view>
                         <!--FA签约-->
-                        <view class="signFA" wx:if="{{project.pro_FA.commission !=0||project.pro_FA.stock_right !=0||project.pro_FA.stock_other!=0||project.pro_FA.stock_follow !=0}}">
+                        <!-- <view class="signFA" wx:if="{{project.pro_FA.commission !=0||project.pro_FA.stock_right !=0||project.pro_FA.stock_other!=0||project.pro_FA.stock_follow !=0}}">
                             <view class="signFABox flex">
                                 <image src="/img/img-money.png" class="titlePic"></image>
                                 <view class="title">FA签约</view>
@@ -223,7 +223,7 @@
                                     </view>
                                 </view>
                             </view>
-                        </view>
+                        </view> -->
                     </view>
                     <view style="height:24rpx;"></view>
                 </view>

@@ -481,7 +481,12 @@ App({
 
     // 时间戳转换
     changeTime: function (x) {
-        var n = x * 1000;
+        var n;
+        if (x.length === 13) {
+            n = x * 1
+        } else {
+            n = x * 1000
+        }
         var date = new Date(n);
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -489,7 +494,12 @@ App({
         return (Y + M + D)
     },
     changeTimeStyle: function (x) {
-        var n = x * 1000;
+        var n;
+        if (x.length === 13) {
+            n = x * 1
+        } else {
+            n = x * 1000
+        }
         var date = new Date(n);
         var Y = date.getFullYear() + '.';
         var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '.';

@@ -1226,10 +1226,16 @@ scroll-view {
 
 .contentAll view {
   text-align: left;
+   word-break:break-all;
+  flex-wrap:wrap;
 }
 
 .companyBrand view {
   text-align: left;
+
+}
+.pro_sorts{
+    margin-bottom:18rpx;
 }
 
 .contentBox {
