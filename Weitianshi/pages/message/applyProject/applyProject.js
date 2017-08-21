@@ -250,7 +250,7 @@ Page({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
-  // 点击同意
+  // 点击同意或者拒绝
   btn: function (e) {
     let contentList = this.data.contentList;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
@@ -278,22 +278,27 @@ Page({
             contentList: contentList
           })
         } else if (status == 2) {
+          contentList.forEach((x) => {
+            if (x.record_id == record_id) {
+              x.handle_status = 2
+            }
+          })
           that.setData({
-            record_id: record_id
+            contentList: contentList
           })
         }
       }
     })
   },
-  //重新申请
-  matchReApply: function (e) {
-    console.log("重新申请")
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let that = this;
-    let project_id = e.currentTarget.dataset.project;
-    let applyList = this.data.applyList;
-    // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
-    app.applyProjectTo(that, project_id, 1, applyList)
+  // //重新申请
+  // matchReApply: function (e) {
+  //   console.log("重新申请")
+  //   var user_id = wx.getStorageSync('user_id');//获取我的user_id
+  //   let that = this;
+  //   let project_id = e.currentTarget.dataset.project;
+  //   let applyList = this.data.applyList;
+  //   // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
+  //   app.applyProjectTo(that, project_id, 1, applyList)
     // wx.request({
     //   url: url_common + '/api/project/applyProject',
     //   data: {
@@ -315,6 +320,6 @@ Page({
     //     })
     //   }
     // })
-  },
+  // },
 
 })

@@ -84,6 +84,10 @@
   color: #666;
   line-height: 112rpx;
   text-align: center;
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .emptyBox{
   height:88rpx;

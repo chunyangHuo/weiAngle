@@ -568,7 +568,7 @@
             <view class="interest flex">
               <view class="appling" wx:if="{{item.handle_status == 0}}">申请中</view>
               <view class="agreeToRead" wx:if="{{item.handle_status == 1}}" >同意查看</view>
-              <view class="toAccreditation" wx:if="{{item.handle_status == 2}}" catchtap="matchReApply" data-project="{{item.project_id}}" data-content="{{1}}">重新申请</view>
+              <view class="refuseMe" wx:if="{{item.handle_status == 2}}">拒绝</view>
             </view>
           </view>
           <!--匹配推荐  -->

@@ -512,3 +512,13 @@ page {
 .hasNothing {
   color: #666;
 }
+
+.refuseMe {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: center;
+  position: absolute;
+  top: 34rpx;
+  right: 16rpx;
+}
