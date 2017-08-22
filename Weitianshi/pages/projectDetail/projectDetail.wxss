@@ -432,6 +432,8 @@ scroll-view {
   text-align: left;
   margin-right: 16rpx;
   margin-top: 34rpx;
+    text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
 }
 
