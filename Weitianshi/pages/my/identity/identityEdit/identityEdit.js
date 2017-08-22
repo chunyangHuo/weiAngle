@@ -70,16 +70,16 @@ Page({
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
                             console.log('user_id', user_info)
-                            that.dealTags(that,invest_info);
+                            that.dealTags(that, invest_info);
                             that.setData({
                                 user_info: user_info,
                                 invest_info: invest_info,
-                                is_FA_part:user_info.is_FA_part,
+                                is_FA_part: user_info.is_FA_part,
                                 is_alliance: user_info.is_alliance,
-                                is_financing:user_info.is_finacing,
-                                is_identify_member:user_info.is_identify_member,
-                                is_saas:user_info.is_saas
-                            })    
+                                is_financing: user_info.is_finacing,
+                                is_identify_member: user_info.is_identify_member,
+                                is_saas: user_info.is_saas
+                            })
                         }
                     })
                 }
@@ -94,8 +94,8 @@ Page({
                 success: function (res) {
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
-                    console.log('user_id',user_info)
-                    that.dealTags(that,invest_info);
+                    console.log('user_id', user_info)
+                    that.dealTags(that, invest_info);
                     that.setData({
                         user_info: user_info,
                         invest_info: invest_info,
@@ -115,44 +115,44 @@ Page({
         let scaleId = wx.getStorageSync('paymoneyenchangeId') || [];
         let stageId = wx.getStorageSync('y_payStageId') || [];
         let areaId = wx.getStorageSync('payareaenchangeId') || [];
-        let industryId=[];
+        let industryId = [];
 
-        industryCurrent1.forEach(x=>{
+        industryCurrent1.forEach(x => {
             industryId.push(x.industry_id)
         })
-  
+
 
         let newScale = [];
         let newStage = [];
-        let newArea= [] ;
+        let newArea = [];
         scaleValue.forEach(x => {
             newScale.push({ scale_money: x })
         })
         stageValue.forEach(x => {
             newStage.push({ stage_name: x })
         })
-        areaValue.forEach(x=>{
-            newArea.push({area_title:x})
+        areaValue.forEach(x => {
+            newArea.push({ area_title: x })
         })
         //如果是由更改表单某一项内容后返回该页面的话
         if (invest_info) {
             invest_info.invest_industry = industryCurrent1;
             invest_info.invest_scale = newScale;
-            invest_info.invest_stage=newStage;
-            invest_info.invest_area=newArea;
+            invest_info.invest_stage = newStage;
+            invest_info.invest_area = newArea;
             this.setData({
                 invest_info: invest_info,
-                industryId:industryId,
+                industryId: industryId,
                 scaleId: scaleId,
                 stageId: stageId,
                 areaId: areaId
             })
         }
 
-        console.log(0,industryId )
-        console.log(1,scaleId)
-        console.log(2,stageId)
-        console.log(3,areaId)
+        console.log(0, industryId)
+        console.log(1, scaleId)
+        console.log(2, stageId)
+        console.log(3, areaId)
     },
     // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5  微信type:6 个人描述type:7
     //写入内容
@@ -208,43 +208,43 @@ Page({
         let authenticate_id = this.data.authenticate_id;
         var that = this;
         wx.chooseImage({
-          count:1,
+            count: 1,
             success: function (res) {
                 console.log(res)
                 var tempFilePaths = res.tempFilePaths
                 let size = res.tempFiles[0].size;
-                if (size<=1048576){
-                  wx.uploadFile({
-                    url: url_common + '/api/user/uploadCard', //仅为示例，非真实的接口地址
-                    filePath: tempFilePaths[0],
-                    name: 'file',
-                    formData: {
-                      'user_id': user_id,
-                      'authenticate_id': authenticate_id
-                    },
-                    success: function (res) {
-                      console.log(res)
-                      let data = JSON.parse(res.data);
-                      console.log(data.status_code)
-                      if (data.status_code == 2000000){
-                        wx.showToast({
-                          title: '成功',
-                          icon: 'success',
-                          duration: 2000
-                        }) 
-                        that.setData({
-                          upLoadSuccess: true
-                        })              
-                      }
-                    }
-                  })
-                }else{
-                  rqj.errorHide(that, "上传图片不能超过1M", 1500)
-                  wx.showToast({
-                    title: '不能超过1M',
-                    duration: 2000,
-                    image: "/img/icon-chacha@2x.png"
-                  })
+                if (size <= 1048576) {
+                    wx.uploadFile({
+                        url: url_common + '/api/user/uploadCard', //仅为示例，非真实的接口地址
+                        filePath: tempFilePaths[0],
+                        name: 'file',
+                        formData: {
+                            'user_id': user_id,
+                            'authenticate_id': authenticate_id
+                        },
+                        success: function (res) {
+                            console.log(res)
+                            let data = JSON.parse(res.data);
+                            console.log(data.status_code)
+                            if (data.status_code == 2000000) {
+                                wx.showToast({
+                                    title: '成功',
+                                    icon: 'success',
+                                    duration: 2000
+                                })
+                                that.setData({
+                                    upLoadSuccess: true
+                                })
+                            }
+                        }
+                    })
+                } else {
+                    rqj.errorHide(that, "上传图片不能超过1M", 1500)
+                    wx.showToast({
+                        title: '不能超过1M',
+                        duration: 2000,
+                        image: "/img/icon-chacha@2x.png"
+                    })
                 }
             }
         })
@@ -372,20 +372,20 @@ Page({
         }
     },
     //多选标签预处理
-    dealTags(that,invest_info){
-        console.log('inves_info',invest_info)
-        let scale=wx.getStorageSync('scale')
-        let stage=wx.getStorageSync('stage')
-        let hotCity=wx.getStorageSync('hotCity')
+    dealTags(that, invest_info) {
+        console.log('inves_info', invest_info)
+        let scale = wx.getStorageSync('scale') || []
+        let stage = wx.getStorageSync('stage') || []
+        let hotCity = wx.getStorageSync('hotCity') || []
         //scale
         let paymoneyenchangeCheck = [];
         let paymoneyenchangeValue = [];
         let paymoneyenchangeId = [];
-        scale.forEach((x,index)=>{
-            paymoneyenchangeCheck[index]=false;
-            invest_info.invest_scale.forEach(y=>{
-                if(x.scale_money===y.scale_money){
-                    paymoneyenchangeCheck[index]=true;
+        scale.forEach((x, index) => {
+            paymoneyenchangeCheck[index] = false;
+            invest_info.invest_scale.forEach(y => {
+                if (x.scale_money === y.scale_money) {
+                    paymoneyenchangeCheck[index] = true;
                     paymoneyenchangeValue.push(x.scale_money);
                     paymoneyenchangeId.push(x.scale_id)
                 }
@@ -395,38 +395,39 @@ Page({
         let payenchangeCheck = [];
         let payenchangeValue = [];
         let payenchangeId = [];
-        stage.forEach((x,index)=>{
-            payenchangeCheck[index]=false;
-            invest_info.invest_stage.forEach(y=>{
-                if(x.stage_name===y.stage_name){
-                    payenchangeCheck[index]=true;
+        stage.forEach((x, index) => {
+            payenchangeCheck[index] = false;
+            invest_info.invest_stage.forEach(y => {
+                if (x.stage_name === y.stage_name) {
+                    payenchangeCheck[index] = true;
                     payenchangeValue.push(x.stage_name);
                     payenchangeId.push(x.stage_id)
                 }
             })
         })
         //hotCity
-        let payareaenchangeCheck=[];
-        let payareaenchangeValue=[];
-        let payareaenchangeId=[];
-        hotCity.forEach((x,index)=>{
-            payareaenchangeCheck[index]=false;
-            invest_info.invest_area.forEach(y=>{
-                if(x.area_title===y.area_title){
-                    payareaenchangeCheck[index]=true;
+        let payareaenchangeCheck = [];
+        let payareaenchangeValue = [];
+        let payareaenchangeId = [];
+        hotCity.forEach((x, index) => {
+            payareaenchangeCheck[index] = false;
+            invest_info.invest_area.forEach(y => {
+                if (x.area_title === y.area_title) {
+                    payareaenchangeCheck[index] = true;
                     payareaenchangeValue.push(x.area_title);
                     payareaenchangeId.push(x.area_id)
                 }
             })
         })
         //industry
-        let industryId=[];
-        invest_info.invest_industry.forEach(x=>{
-            industryId.push(x.industry_id)
-        })
-        
+        let industryId = [];
+        if(invest_info.invest_industry.length>0){
+            invest_info.invest_industry.forEach(x => {
+                industryId.push(x.industry_id)
+            })
+        } 
         that.setData({
-            industryId:industryId,
+            industryId: industryId,
             areaId: payareaenchangeId,
             stageId: payenchangeId,
             scaleId: paymoneyenchangeId
@@ -443,7 +444,7 @@ Page({
         wx.setStorageSync('payareaenchangeValue', payareaenchangeValue)
         wx.setStorageSync('payareaenchangeId', payareaenchangeId)
     },
-     //给所有添加checked属性
+    //给所有添加checked属性
     for: function (name) {
         for (var i = 0; i < name.length; i++) {
             name[i].checked = false;

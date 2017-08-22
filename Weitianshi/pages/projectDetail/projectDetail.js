@@ -294,7 +294,6 @@ Page({
           })
           // 里程碑
           let mileStoneArray = project.pro_develop;
-          console.log(project.pro_develop)
           mileStoneArray.forEach((x, index) => {
             mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
             mileStoneArray[index].dh_event = x.dh_event;
@@ -320,7 +319,6 @@ Page({
   },
   // 项目详情-里程碑 查看全部
   moreInfo: function (e) {
-    console.log(e)
     let id = e.target.dataset.id;
     let that = this;
     if (id == 3) {
@@ -359,7 +357,6 @@ Page({
   },
   // 查看bp
   sendBp: function () {
-    console.log(this.data.checkEmail)
     let that = this;
     let user_id = wx.getStorageSync("user_id");
     wx.request({
@@ -388,7 +385,6 @@ Page({
   // 更改邮箱
   writeBpEmail: function (e) {
     let userEmail = e.detail.value;
-    console.log(userEmail)
     if (userEmail) {
       this.setData({
         checkEmail: true,
@@ -423,11 +419,11 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
+            app.console(res)
             that.setData({
               userEmail: userEmail
             })
-            console.log(userEmail)
+            app.console(userEmail)
             if (res.data.status_code == 2000000) {
               wx.request({
                 url: url_common + '/api/mail/sendBp',
@@ -437,14 +433,12 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                  console.log(res)
                 }
               })
               that.setData({
                 sendPc: 0
               })
             } else {
-              console.log("fail")
             }
           }
         })
@@ -460,7 +454,6 @@ Page({
   },
   // 取消
   bpModalCancel: function (options) {
-    console.log(options)
     let index = options.currentTarget.dataset.index;
     let that = this;
     let sendPc = that.data.sendPc;
