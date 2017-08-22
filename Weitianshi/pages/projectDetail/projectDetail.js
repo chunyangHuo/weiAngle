@@ -1,4 +1,4 @@
-var rqj = require('../Template/Template.js')
+ var rqj = require('../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -51,14 +51,14 @@ Page({
   userDetail: function (e) {
     console.log(e);
     var id = e.currentTarget.dataset.id
-    app.console(id)
+    console.log(id)
     wx.navigateTo({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
   //下拉刷新
   onPullDownRefresh: function () {
-    // app.console("开启了下拉刷新")
+    // console.log("开启了下拉刷新")
     wx.stopPullDownRefresh()
   },
   //分享当前页面
@@ -268,7 +268,7 @@ Page({
           }
           tagOfPro.forEach((x, index) => {
             tagOfPro[index].tag_name = x.tag_name;
-            app.console(tagOfPro[index].tag_name)
+            console.log(tagOfPro[index].tag_name)
           })
           that.setData({
             tagOfPro: tagOfPro
@@ -281,7 +281,7 @@ Page({
           })
           // 融资信息
           let pro_history_financeList = project.pro_history_finance;
-          app.console(pro_history_financeList)
+          console.log(pro_history_financeList)
           pro_history_financeList.forEach((x, index) => {
             pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
             pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
@@ -294,7 +294,6 @@ Page({
           })
           // 里程碑
           let mileStoneArray = project.pro_develop;
-          app.console(project.pro_develop)
           mileStoneArray.forEach((x, index) => {
             mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
             mileStoneArray[index].dh_event = x.dh_event;
@@ -320,7 +319,6 @@ Page({
   },
   // 项目详情-里程碑 查看全部
   moreInfo: function (e) {
-    app.console(e)
     let id = e.target.dataset.id;
     let that = this;
     if (id == 3) {
@@ -359,7 +357,6 @@ Page({
   },
   // 查看bp
   sendBp: function () {
-    app.console(this.data.checkEmail)
     let that = this;
     let user_id = wx.getStorageSync("user_id");
     wx.request({
@@ -388,7 +385,6 @@ Page({
   // 更改邮箱
   writeBpEmail: function (e) {
     let userEmail = e.detail.value;
-    app.console(userEmail)
     if (userEmail) {
       this.setData({
         checkEmail: true,
@@ -437,14 +433,12 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                  app.console(res)
                 }
               })
               that.setData({
                 sendPc: 0
               })
             } else {
-              app.console("fail")
             }
           }
         })
@@ -460,7 +454,6 @@ Page({
   },
   // 取消
   bpModalCancel: function (options) {
-    app.console(options)
     let index = options.currentTarget.dataset.index;
     let that = this;
     let sendPc = that.data.sendPc;
