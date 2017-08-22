@@ -47,7 +47,7 @@ Page({
 
     //投资需求获取数据
     wx.request({
-      url: url + '/api/investors/investorMarket',
+      url: url_common + '/api/investor/getMarketInvestorList',
       data: {
           user_id:user
       },
@@ -224,6 +224,7 @@ Page({
   investNeed: function () {
     var that = this;
     var investPage = this.data.investPage;
+    let user = this.data.user;
     var investNeedcheck = this.data.investNeedcheck;
     investPage++;
     console.log(investPage,investNeedcheck)
@@ -232,9 +233,10 @@ Page({
     });
     if (investNeedcheck) {
       wx.request({
-        url: url + '/api/investors/investorMarket',
+        url: url_common + '/api/investor/getMarketInvestorList',
         data: {
-          page: investPage
+          page: investPage,
+          user_id: user
         },
         method: 'POST',
         success: function (res) {

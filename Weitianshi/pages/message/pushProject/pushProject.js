@@ -325,11 +325,9 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
           if (status == 1) {
-            console.log("感兴趣")
             pushToList.forEach((x) => {
               if (x.push_id == push_id) {
                 x.handle_status = 1
@@ -352,7 +350,6 @@ Page({
             that.setData({
               pushToList: pushToList
             })
-            console.log("不感兴趣")
           }
         } else {
           console.log(statusCode)

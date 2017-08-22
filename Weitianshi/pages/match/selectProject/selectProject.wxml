@@ -1,13 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
-  <!--已匹配的项目-->
-  <!-- <view class="others">
-    <block wx:for="{{slectProject}}" wx:key="{{myProject.project_id}}" wx:for-item="myProject">
-      <template is="selectedCard" data="{{myProject:myProject}}"></template>
-    </block>
-  </view> -->
-
-  <template is="personModal" data="{{list:slectProject,type:2}}"></template>
+  <template is="selectProject" data="{{list:slectProject,type:2}}"></template>
   <!--没有更多-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 

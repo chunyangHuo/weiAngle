@@ -407,9 +407,15 @@ Page({
               pushToList: pushToList
             })
           } else if (status == 2) {
-            that.setData({
-              push_id: push_id
+            pushToList.forEach((x) => {
+              if (x.push_id == push_id) {
+                x.handle_status = 2
+              }
             })
+            that.setData({
+              pushToList: pushToList
+            })
+            console.log(pushToList)
           }
         } else {
           console.log(statusCode)

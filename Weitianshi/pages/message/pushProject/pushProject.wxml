@@ -52,8 +52,8 @@
               <view class="projectInfo flex">
                 <view class="seeNum">{{item.view_count}}人看过项目</view>
                 <view class="interest flex">
-                  <view class="btnHaveInterest" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{1}}">感兴趣</view>
                   <view class="btnNoInterest" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{2}}">没兴趣</view>
+                  <view class="btnHaveInterest" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{1}}">感兴趣</view>
                   <view class="haveInterest" wx:if="{{item.handle_status == 1}}">感兴趣</view>
                 </view>
               </view>
