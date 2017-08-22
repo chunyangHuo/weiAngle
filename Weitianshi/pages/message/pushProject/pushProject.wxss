@@ -187,12 +187,11 @@ page{
   height: 52rpx;
   line-height: 52rpx;
   padding: 0 32rpx;
-  margin: 0 24rpx 0 185rpx;
-  border-radius: 4rpx;
+  margin: 20rpx 24rpx 0 185rpx;
 }
 
-.btnNoInterest {
-  margin: 0;
+.btnHaveInterest {
+  margin: 20rpx 0 0 0;
 }
 
 #time {
@@ -456,7 +455,6 @@ page{
 
 .interest {
   position: absolute;
-  margin-top: 20rpx;
   right: 0;
 }
 

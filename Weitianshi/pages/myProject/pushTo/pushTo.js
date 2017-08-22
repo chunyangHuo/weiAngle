@@ -88,19 +88,24 @@ Page({
        }
      })
      console.log(checkedNum)
-     if (checkedNum>5){
-       dataList[index].check = !dataList[index].check;
-       rqj.errorHide(that, "最多可选择五项", 1000)
-    }else{
-      if (checkedNum > overTime) {
-        console.log("我是错误提示哦")
+    if(overTime != 0){
+      console.log("我是推送次数")
+      if (checkedNum > 5) {
         dataList[index].check = !dataList[index].check;
-        rqj.errorHide(that, "今日推送次数已用完", 1000)
+        rqj.errorHide(that, "最多可选择五项", 1000)
       } else {
-        that.setData({
-          dataList: dataList
-        })
+        if (checkedNum > overTime) {
+          console.log("我是错误提示哦")
+          dataList[index].check = !dataList[index].check;
+          rqj.errorHide(that, "超过了推送限制", 1000)
+        } else {
+          that.setData({
+            dataList: dataList
+          })
+        }
       }
+    }else if(overTime == 0){
+      rqj.errorHide(that, "今日推送次数已用完", 1000)
     }
      dataList.forEach((x) => {
        if (x.check == true) {
@@ -138,41 +143,50 @@ Page({
         success: function (res) {
           let statusCode = res.data.status_code;
           if (statusCode == 2000000) {
-            wx.request({
-              url: url_common + '/api/project/getMyProjectListOrderByMatch',
-              data: {
-                user_id: user_id,
-                pushed_user_id: pushed_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log(res)
-                let dataList = res.data.data;
-                let pushTimes = res.data.push_times;
-                let remainTimes = pushTimes.remain_times;
-                that.setData({
-                  pushTimes: pushTimes,
-                  remainTimes: remainTimes
-                })
-                console.log(remainTimes)
-          
-                if (remainTimes != 0) {
-                    wx.showToast({
-                      title: '成功',
-                      icon: 'success',
-                      duration: 2000
-                    })                 
-                } else if (remainTimes == 0) {
-                  console.log("remainTimes")
-                  wx.showToast({
-                    title: '成功',
-                    icon: 'success',
-                    duration: 2000
-                  })   
-                  rqj.errorHide(that, "今日推送次数已用完", 1000)
-                }
-              }
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 2000
+            })      
+            wx.navigateBack({
+              delta: 1,
             })
+            // wx.request({
+            //   url: url_common + '/api/project/getMyProjectListOrderByMatch',
+            //   data: {
+            //     user_id: user_id,
+            //     pushed_user_id: pushed_user_id
+            //   },
+            //   method: 'POST',
+            //   success: function (res) {
+            //     console.log(res)
+            //     let dataList = res.data.data;
+            //     let pushTimes = res.data.push_times;
+            //     let remainTimes = pushTimes.remain_times;
+            //     that.setData({
+            //       pushTimes: pushTimes,
+            //       remainTimes: remainTimes
+            //     })
+            //     console.log(remainTimes)
+          
+            //     if (remainTimes != 0) {
+            //         wx.showToast({
+            //           title: '成功',
+            //           icon: 'success',
+            //           duration: 2000
+            //         })                 
+            //     } 
+            //     // else if (remainTimes == 0) {
+            //     //   console.log("remainTimes")
+            //     //   wx.showToast({
+            //     //     title: '成功',
+            //     //     icon: 'success',
+            //     //     duration: 2000
+            //     //   })   
+            //     //   rqj.errorHide(that, "今日推送次数已用完", 1000)
+            //     // }
+            //   }
+            // })
           } else if (statusCode == 490001) {
             rqj.errorHide(that, "没有选择任何项目", 1000)
           }
@@ -181,9 +195,6 @@ Page({
     }else{
       rqj.errorHide(that, "今日推送次数已用完", 1000)
     }
-
-    //  错误信息提示
-    // rqj.errorHide(that, "最多可选择五项", 1000)
   },
   //上拉加载
   loadMore: function () {

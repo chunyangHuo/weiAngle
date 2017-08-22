@@ -12,7 +12,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" bindscrolltolower="pushMore" scroll-top="{{scroll}}">
       <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
-      <template is="personModal" data="{{list:pushToList,type:0,push_id:push_id}}"></template>
+      <template is="personModal" data="{{list:pushToList,type:0}}"></template>
        <template is="hasNothing" data="{{emptyNumber:pushToList}}"></template>
     </scroll-view>
   </swiper-item>
@@ -28,7 +28,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="matchMore">
       <template is="allNumber" data="{{count:count2,text:'匹配推荐'}}"></template>
-      <template is="personModal" data="{{list:getMatchList,type:2,push_id:0}}"></template>
+      <template is="selectProject" data="{{list:getMatchList,type:2,push_id:0}}"></template>
       <template is="hasNothing" data="{{emptyNumber:getMatchList}}"></template>
     </scroll-view>
   </swiper-item>
