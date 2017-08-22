@@ -89,5 +89,5 @@
 
 <!--没有数据-->
 <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
-  <view class="nothing">没有数据</view>
+ <template is="hasNothing" data="{{emptyNumber:contacts}}"></template>
 </view>

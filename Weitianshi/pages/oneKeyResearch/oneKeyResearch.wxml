@@ -232,7 +232,7 @@
         <!--一键尽调页面的内容-->
         <swiper-item>
             <scroll-view scroll-y="true">
-                <view id="oneKey" wx:if="{{nothing != 0}}">
+                <view id="oneKey" wx:if="{{pro_company_name}}">
                     <view class="projectDetailsBox" wx:if="{{projectDetailsList.length != 0}}">
                         <view class="boxName">项目信息</view>
                         <view class="pro_sorts flex" wx:if="{{project_labelArray !=0}}">
@@ -253,18 +253,6 @@
                                 <image src="/img/icon-lingyu@2x.png" class="oneKeyIcon"></image>
                                 <label>{{projectDetailsOne.project_industry}}</label>
                             </view>
-                            <!--<view class="projectInfoText flex">
-              <image src="/img/icon-jine@2x.png" class="oneKeyIcon"></image>
-              <label>{{company.company_registered_capital}}
-                <label>|</label>
-              </label>
-              <label>{{project.pro_stage.stage_name}}
-                <label>|</label>
-              </label>
-              <label>{{project.pro_area.area_title}}
-                <label>|</label>
-              </label>
-            </view>-->
                             <view class="companyNet" wx:if="{{projectDetailsOne.project_website}}">
                                 <image src="/img/icon-wangzhan@2x.png" class="oneKeyIcon"></image>
                                 {{projectDetailsOne.project_website}}
@@ -535,7 +523,7 @@
                         <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">收起</view>
                     </view>
                 </view>
-                <view class="noMessage" wx:if="{{nothing == 0}}">
+                <view class="noMessage" wx:if="{{!pro_company_name}}">
                     <image src="/img/img-kong@2x.png" class="nothing"></image>
                     <view class="hasNoFind">暂未调查到相关信息</view>
                 </view>
@@ -543,7 +531,6 @@
         </swiper-item>
     </swiper>
 </view>
-
 <!--公司信息-->
 <view class="modal" wx:if="{{sendCompany == 1}}">
     <view class="bpModal">
@@ -567,7 +554,6 @@
         <view class="bpModalBox">
             <view class="bpModalText">BP会发送到您的邮箱</view>
             <input class="writeBpEmail" value="{{userEmail}}" bindinput="writeBpEmail" placeholder="请输入邮箱" />
-
             <view class="choiceBox">
                 <view class="flex">
                     <view class="bpModalCancel" bindtap="bpModalCancel" data-index="0">取消</view>
