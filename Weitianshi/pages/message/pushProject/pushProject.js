@@ -347,6 +347,11 @@ Page({
                 x.handle_status = 2
               }
             })
+            wx.showToast({
+              title: '没兴趣',
+              duration: 2000,
+              image:"/img/icon-chacha@2x.png"
+            })
             that.setData({
               pushToList: pushToList
             })

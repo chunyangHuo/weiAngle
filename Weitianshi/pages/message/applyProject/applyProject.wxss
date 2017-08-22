@@ -142,7 +142,7 @@ page {
 
 .allProjectDetail {
   font-size: 26rpx;
-  color: #666;
+  color: #999;
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 34rpx;
@@ -333,6 +333,7 @@ page {
 .refuseBox {
   padding-left: 88rpx;
   padding-right: 122rpx;
+  /* width: 50%; */
   border-right: 1rpx solid #e6e6e6;
 }
 
@@ -441,17 +442,18 @@ page {
 }
 
 .bottomTabAfter {
-  border-top: 1rpx solid #e6e6e6;
+  /* border-top: 1rpx solid #e6e6e6; */
   padding-top: 28rpx;
   background: white;
   padding-bottom: 30rpx;
 }
 
 .bottomTab {
-  border-top: 1rpx solid #e6e6e6;
+  /* border-top: 1rpx solid #e6e6e6; */
   padding-top: 28rpx;
   padding-bottom: 30rpx;
   background: white;
+  border-radius: 4rpx;
 }
 
 .user_apply {
@@ -476,6 +478,7 @@ page {
   font-size: 22rpx;
   background: #f2f2f2;
   line-height: 40rpx;
+  color: #40587a;
 }
 
 .investmentGroupContent, .roundGroupContent {
@@ -521,4 +524,9 @@ page {
   position: absolute;
   top: 34rpx;
   right: 16rpx;
+}
+
+.aLine {
+  border-top: 1rpx solid #e6e6e6; 
+  margin:0 32rpx;
 }

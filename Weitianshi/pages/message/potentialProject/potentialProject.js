@@ -111,7 +111,6 @@ Page({
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     if (current == 1) {
-      我申请查看的
       //向后台发送信息取消红点
       wx.request({
         url: url_common + '/api/message/setFeedbackToRead',
@@ -411,6 +410,11 @@ Page({
               if (x.push_id == push_id) {
                 x.handle_status = 2
               }
+            })
+            wx.showToast({
+              title: '没兴趣',
+              duration: 2000,
+              image: "/img/icon-chacha@2x.png"
             })
             that.setData({
               pushToList: pushToList

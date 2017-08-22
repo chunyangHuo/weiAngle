@@ -128,7 +128,7 @@ page{
 
 .allProjectDetail {
   font-size: 26rpx;
-  color: #666;
+  color:#999999;
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 34rpx;
@@ -177,17 +177,17 @@ page{
   right: 32rpx;
   white-space: nowrap;
   display: block;
-  top: -16rpx;
 }
 
 .btnHaveInterest, .btnNoInterest {
   font-size: 24rpx;
   color: #40587a;
-  border: 1px solid black;
+  border: 1px solid #40587A;
   height: 52rpx;
   line-height: 52rpx;
   padding: 0 32rpx;
   margin: 20rpx 24rpx 0 185rpx;
+  border-radius: 4rpx;
 }
 
 .btnHaveInterest {
@@ -218,6 +218,7 @@ page{
 .applyMyProject {
   padding: 32rpx;
   background: white;
+  border-radius: 4rpx;
 }
 
 .outsideBox {
@@ -439,7 +440,7 @@ page{
   margin-right: 16rpx;
   border-radius: 50%;
   font-size: 22rpx;
-  background:#999999;
+  background:#f2f2f2;
   line-height: 40rpx;
 } 
 

@@ -117,7 +117,7 @@ page {
 
 .allProjectDetail {
   font-size: 26rpx;
-  color: #666;
+  color:#999999;
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 34rpx;
@@ -467,4 +467,5 @@ page {
   background: #f2f2f2;
   line-height: 40rpx;
   text-align: center;
+  color:#40587a;
 }

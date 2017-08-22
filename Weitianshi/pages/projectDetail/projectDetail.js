@@ -24,11 +24,9 @@ Page({
     var user_id = '';
     var share_id = '';
     var view_id = '';
-
     that.setData({
       id: id,
     });
-
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
     if (!options.share_id) {
       user_id = wx.getStorageSync('user_id');//获取我的user_id==view_id
@@ -73,7 +71,7 @@ Page({
     let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
     let title = pro_intro;
     console.log(path)
-    return app.shareProjectPage(id, title,share_id)
+    return app.shareProjectPage(id, title, share_id)
   },
 
   // 项目详情中的显示全部
@@ -89,9 +87,61 @@ Page({
   },
   // 去认证
   toAccreditation: function () {
-    console.log(this.data.status)
     let status = this.data.status;
-    app.accreditation(status);
+    var user_id = wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以显示去认证
+            if (status == 0) {
+              wx.navigateTo({
+                url: '/pages/my/identity/indentity/indentity'
+              })
+            } else if (status == 3) {
+              console.log(status)
+              wx.showModal({
+                title: '友情提示',
+                content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+                confirmColor: "#333333;",
+                confirmText: "重新认证",
+                showCancel: false,
+                success: function (res) {
+                  wx.request({
+                    url: url_common + '/api/user/getUserGroupByStatus',
+                    data: {
+                      user_id: user_id
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                      let group_id = res.data.group.group_id;
+                      wx.navigateTo({
+                        url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
+                      })
+                    }
+                  })
+                }
+              })
+            }
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      },
+    });
   },
   // 申请查看
   applyProject: function (options) {
@@ -105,22 +155,28 @@ Page({
   //获取是否认证过和项目详情
   getInfo(that, user_id, id) {
     //是否认证过的状态获取 
-    wx.request({
-      url: url_common + '/api/user/getUserGroupByStatus',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        // 0:未认证1:待审核 2 审核通过 3审核未通过
-        let status = res.data.status;
-        that.setData({
-          status: status
-        })
-        console.log('buttonType', status)
-      }
-    })
-
+    if (user_id) {
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          let status = res.data.status;
+          console.log(res)
+          that.setData({
+            status: status
+          })
+          console.log('buttonType', status)
+        }
+      })
+    } else {
+      that.setData({
+        status: 5
+      })
+    }
     //项目详情
     wx.request({
       url: url_common + '/api/project/getProjectDetail',

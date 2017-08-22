@@ -701,14 +701,13 @@
             <view class="roundGroupTitle">投资轮次：</view>
             <view class="roundGroupContent">
               <block  wx:for="{{item.user.stage}}" wx:key="{{item.index}}" wx:for-item ='userStage'>
-                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.stage.length-1}}">
-                {{userStage.stage_name}}、</label>  
-                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.stage.length-1}}">
-                {{userStage.stage_name}}</label> 
+                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.stage.length-1}}">{{userStage.stage_name}}、</label>  
+                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.stage.length-1}}">{{userStage.stage_name}}</label> 
               </block>
             </view>
           </view>
           </view>
+          <view class="aLine"></view>
           <!--申请查看我的样式  -->
           <view wx:if="{{type == 0}}">
             <view class="bottomTab flex"  wx:if="{{item.handle_status == 0}}">
@@ -731,6 +730,7 @@
     </view>
   </block>
 </template>
+
 <!--没有内容时候的样式  -->
 <template name="hasNothing">
   <view class="empty flex"  wx:if="{{emptyNumber == ''}}" >
