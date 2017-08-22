@@ -512,10 +512,10 @@
   </view>
 </template>
 
-<!--我申请查看的项目+推送給我的 +匹配推荐 + 精选-->
+<!--我申请查看的项目+推送給我的-->
 <template name="personModal">
   <block wx:for="{{list}}"  wx:key="{{index}}"> 
-    <view class="outBox" >
+    <view class="outBox">
       <view class="redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status ==0 }}"></view>
       <view class="insideBox">
       <view  data-project="{{item.project_id}}"  catchtap="projectDetail">
