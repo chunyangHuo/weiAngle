@@ -106,8 +106,9 @@
                 "text": "我的"
             }
         ],
-        "selectedColor": "black",
-        "borderStyle": "white"
+        "selectedColor": "#40587A",
+        "borderStyle": "white",
+        "color":"#999999"
     },
     "networkTimeout": {
         "request": 20000,

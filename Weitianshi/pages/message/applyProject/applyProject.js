@@ -27,6 +27,7 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log("申請查看我的")
+        console.log(res)
         let contentList = res.data.data;
         let count1 = res.data.count;
         that.setData({
@@ -45,6 +46,7 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log("我申请查看的项目")
+        console.log(res)
         let count = res.data.count;
         let applyList = res.data.data;
         that.setData({
@@ -273,6 +275,11 @@ Page({
               x.handle_status = 1
             }
           })
+          wx.showToast({
+            title: '已同意',
+            icon: 'success',
+            duration: 2000
+          })
           console.log(contentList)
           that.setData({
             contentList: contentList
@@ -282,6 +289,11 @@ Page({
             if (x.record_id == record_id) {
               x.handle_status = 2
             }
+          })
+          wx.showToast({
+            title: '拒绝',
+            duration: 2000,
+            image: "/img/icon-chacha@2x.png"
           })
           that.setData({
             contentList: contentList

@@ -1,7 +1,7 @@
 <view class="classname">
   <view class="classname" wx:if="{{status == 2}}">
     <image src="/img/img-shenhetongguo@2x.png" class="statusPic"></image>
-    <view class="statusTitle">恭喜您,{{group_title}}认证审核通过</view>
+    <view class="statusTitle">恭喜您，{{group_title}}认证审核通过</view>
   </view>
   <view class="classname" wx:if="{{status == 3}}">
     <image src="/img/img-weitongguo@2x.png" class="statusPic"></image>

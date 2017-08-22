@@ -148,45 +148,11 @@ Page({
               icon: 'success',
               duration: 2000
             })      
-            wx.navigateBack({
-              delta: 1,
-            })
-            // wx.request({
-            //   url: url_common + '/api/project/getMyProjectListOrderByMatch',
-            //   data: {
-            //     user_id: user_id,
-            //     pushed_user_id: pushed_user_id
-            //   },
-            //   method: 'POST',
-            //   success: function (res) {
-            //     console.log(res)
-            //     let dataList = res.data.data;
-            //     let pushTimes = res.data.push_times;
-            //     let remainTimes = pushTimes.remain_times;
-            //     that.setData({
-            //       pushTimes: pushTimes,
-            //       remainTimes: remainTimes
-            //     })
-            //     console.log(remainTimes)
-          
-            //     if (remainTimes != 0) {
-            //         wx.showToast({
-            //           title: '成功',
-            //           icon: 'success',
-            //           duration: 2000
-            //         })                 
-            //     } 
-            //     // else if (remainTimes == 0) {
-            //     //   console.log("remainTimes")
-            //     //   wx.showToast({
-            //     //     title: '成功',
-            //     //     icon: 'success',
-            //     //     duration: 2000
-            //     //   })   
-            //     //   rqj.errorHide(that, "今日推送次数已用完", 1000)
-            //     // }
-            //   }
-            // })
+            setTimeout(function () {
+             wx.navigateBack({
+               delta:1
+             })
+            }, 2000)
           } else if (statusCode == 490001) {
             rqj.errorHide(that, "没有选择任何项目", 1000)
           }
