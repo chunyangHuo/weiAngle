@@ -75,7 +75,6 @@ Page({
                     })
                     console.log(ownerId, user_id)
                     if (ownerId === user_id) {
-                        console.log(1)
                         // 载入买家图谱数据
                         wx.request({
                             url: url_common + '/api/project/getProjectMatchInvestors',
@@ -426,8 +425,7 @@ Page({
                             },
                         })
                     } else {
-                        console.log(2)
-                        wx.navigateTo({
+                        wx.redirectTo({
                             url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=0',
                         })
                     }
