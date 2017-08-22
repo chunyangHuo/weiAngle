@@ -516,9 +516,8 @@ Page({
             url: '/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id,
         })
     },
-    // 查看bp
+    // 发送bp
     sendBp: function () {
-        app.console(this.data.checkEmail)
         let that = this;
         let user_id = wx.getStorageSync("user_id");
         wx.request({
@@ -538,7 +537,6 @@ Page({
                 } else {
                     that.setData({
                         sendPc: 1,
-                        checkEmail: false
                     })
                 }
             }
@@ -547,7 +545,6 @@ Page({
     // 更改邮箱
     writeBpEmail: function (e) {
         let userEmail = e.detail.value;
-        app.console(userEmail)
         if (userEmail) {
             this.setData({
                 checkEmail: true,
@@ -560,7 +557,7 @@ Page({
             })
         }
     },
-    // 发送
+    // 发送bp(确定)
     bpModalSure: function (e) {
         let that = this;
         let index = e.currentTarget.dataset.index;

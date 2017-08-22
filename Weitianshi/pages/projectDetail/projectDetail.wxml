@@ -17,11 +17,8 @@
             </block>
             <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
               <view class="projectDetailLine" wx:if="{{project.pro_scale!=''}}">{{project.pro_scale.scale_money}}</view>
-
               <view class="projectDetailLine" wx:if="{{pro_finance_stock_after!=0}}">{{project.pro_finance_stock_after}}%</view>
-
               <view class="projectDetailLine" wx:if="{{project.pro_stage!=''}}">{{project.pro_stage.stage_name}}</view>
-
               <view class="projectDetailLine" wx:if="{{project.pro_area != ''}}">{{project.pro_area.area_title}}</view>
             </view>
             <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}">
@@ -85,12 +82,6 @@
                 <view class="proposal grayName" wx:if="{{project.pro_BP.length != 0}}">商业计划书：
                   <label class="materialContent">{{project.pro_BP.file_title}}</label>
                 </view>
-                <!-- <view class="grayName" wx:if="{{project.pro_name != ''}}">项目名称：
-                    <label class="materialContent">{{project.pro_name}}</label>
-                  </view> -->
-                <!-- <view class="grayName" wx:if="{{project.pro_company_name != ''}}">公司名称：
-                    <label class="materialContent byPass">{{project.pro_company_name}}</label>
-                  </view> -->
                 <view class="grayName" wx:if="{{project.pro_status != ''}}">运营状态：
                   <label class="materialContent">{{project.pro_status.status_name}}</label>
                 </view>
@@ -100,28 +91,9 @@
                 <view class="grayName" wx:if="{{project.pro_website != ''}}">产品链接：
                   <label class="materialWeb materialContent byPass">{{project.pro_website}}</label>
                 </view>
-                <!-- <view class="grayName proposalFinal" wx:if="{{project.contact.user_name !=''||project.contact.user_mobile !=''}}">项目联系人：   -->
               </view>
             </view>
           </view>
-          <!--品牌-->
-          <!--<view class="companyBrand">
-              <view class="corePersonBox flex">
-                <image src="/img/myOn.png" class="titlePic"></image>
-                <view class="title"> 品牌</view>
-              </view>
-              <view class="contentAll">
-                <view class="grayName">品牌名称：
-                  <label class="materialContent">已上线</label>
-                </view>
-                <view class="grayName">产品链接：
-                  <label class="materialWeb materialContent">www.weitianshi.cn</label>
-                </view>
-                <view class="grayName">品牌名称
-                  <label class="materialContent">5-20人</label>
-                </view>
-              </view>
-            </view>-->
           <!--核心团队-->
           <view class="corePerson" wx:if="{{teamOfPro.length !=0}}">
             <view class="corePersonBox flex">
@@ -213,41 +185,6 @@
             <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfo !=4 &&project.pro_develop.length >2}}" data-id="{{4}}">展开</view>
             <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
           </view>
-          <!--FA签约-->
-          <!-- <view class="signFA" wx:if="{{project.pro_FA != ''}}">
-              <view class="signFABox flex">
-                <image src="/img/img-money.png" class="titlePic"></image>
-                <view class="title">FA签约</view>
-              </view>
-              <view class="signFAcontentAll" wx:if="{{project.pro_FA.commission != ''||project.pro_FA.stock_right !=''||project.pro_FA.stock_other!=''||project.pro_FA.stock_follow !=''}}">
-                <view class="flex">
-                  <view class="whiteContent">
-                    <view class="conBox flex">
-                      <view class="textFAContent">
-                        <view class="textTab">签约佣金</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.commission}}">{{project.pro_FA.commission}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.commission}}">-</view>
-                      </view>
-                      <view class="textFAContent">
-                        <view class="textTab">股权赠与</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.stock_right}}">{{project.pro_FA.stock_right}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.stock_right}}">-</view>
-                      </view>
-                      <view class="textFAContent">
-                        <view class="textTab">其他权益</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.stock_other}}">{{project.pro_FA.stock_other}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.stock_other}}">-</view>
-                      </view>
-                      <view class="textFAContent">
-                        <view class="textTab">跟投权</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.stock_follow}}">{{project.pro_FA.stock_follow}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.stock_follow}}">-</view>
-                      </view>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view> -->
         </view>
         <view style="height:24rpx;"></view>
       </view>
@@ -268,14 +205,11 @@
             <view class="weui-cell__bd ">
               <view class="flex " style="align-items: baseline; ">
                 <view class="others_name ">{{item.investor_name}}</view>
-                <!--<view class="others_email ">786485758@qq.com</view>-->
               </view>
-              <!--<view class="others_company" wx:if="{{item.investor_type==2}}">{{item.investor_company}}</view>-->
               <view class="ohters_position" wx:if="{{item.investor_type==2}}">{{item.investor_career}}</view>
             </view>
           </view>
           <view class="offer_search " style="border-radius:0 0 4px 4px ">
-
             <!--标签1-->
             <view class="sort offer ">
               <view class="sort_item ">投资领域:</view>
@@ -285,7 +219,6 @@
                 </view>
               </block>
             </view>
-
             <!--标签2-->
             <view class=" flex offer ">
               <view class="sort_item ">投资轮次:</view>
@@ -312,7 +245,6 @@
       </view>
     </view>
   </view>
-  <!--<view class="load" wx:if="{{load==1}}">正在加载</view>-->
 </scroll-view>
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">
@@ -320,7 +252,6 @@
     <view class="bpModalBox">
       <view class="bpModalText">BP会发送到您的邮箱</view>
       <input class="writeBpEmail" value="{{userEmail}}" bindinput="writeBpEmail" placeholder="请输入邮箱" />
-
       <view class="choiceBox">
         <view class="flex">
           <view class="bpModalCancel" bindtap="bpModalCancel" data-index="0">取消</view>
@@ -347,5 +278,3 @@
   <view class="push" bindtap="applyProject" wx:if="{{button_type == 2}}" data-id="{{id}}">重新申请</view>
   <view class="pushing" wx:if="{{button_type == 0}}">申请中</view>
 </view>
-
-<!--友情提示  -->

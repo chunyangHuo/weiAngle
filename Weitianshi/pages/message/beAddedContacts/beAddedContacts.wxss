@@ -326,3 +326,19 @@ page {
   text-align: right;
   color: #999999;
 }
+
+.empty {
+  padding-top: 0;
+  margin-top:344rpx;
+  width: 252rpx;
+  height: 190rpx;
+}
+.hasNothing{
+  color:#666666;
+}
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
