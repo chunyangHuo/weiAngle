@@ -216,153 +216,262 @@ Page({
           })
           if (pro_goodness.length > 50) {
             that.setData({
-                moreInfoList: 3
+              textBeyond1: true
             })
-        } else if (id == 4) {
-            that.setData({
-                moreInfo: 4
-            })
+          }
         }
-    },
-    noMoreInfo: function (e) {
-        let id = e.target.dataset.id;
-        let that = this;
-        if (id == 3) {
+        var firstName = user.user_name.substr(0, 1);
+        // 如果项目亮点字数超出字,刚显示全部按钮
+        that.setData({
+          project: project,
+          user: user,
+          firstName: firstName,
+          pro_company_name: pro_company_name
+        });
+        // if (button_type == 1 || button_type == 2 || button_type == 3)
+        if (button_type == 1) {
+          // 项目介绍的标签
+          var pro_industry = project.pro_industry;
+          for (var i = 0; i < pro_industry.length; i++) {
+            industy_sort.push(pro_industry[i].industry_name)
+          }
+          that.setData({
+            industy_sort: industy_sort,
+            pro_industry: pro_industry
+          })
+          if (pro_goodness.length > 50) {
             that.setData({
-                moreInfoList: 0
+              textBeyond1: true
             })
-        } else if (id == 4) {
+          }
+          // 核心团队
+          if (project.core_users) {
+            let core_memberArray = project.core_users;
+            console.log(project)
+            core_memberArray.forEach((x, index) => {
+              core_memberArray[index] = x;
+            })
             that.setData({
-                moreInfo: 0
+              core_memberArray: core_memberArray
             })
-        }
-    },
-    // 项目详情中的显示全部
-    allBrightPoint: function () {
-        this.setData({
-            isChecked: false
-        })
-    },
-    noBrightPoint: function () {
-        this.setData({
-            isChecked: true
-        })
-    },
-    // 查看bp
-    sendBp: function () {
-        app.console(this.data.checkEmail)
-        let that = this;
-        let user_id = wx.getStorageSync("user_id");
-        wx.request({
-            url: url_common + '/api/user/checkUserInfo',
-            data: {
-                user_id: user_id
-            },
-            method: 'POST',
-            success: function (res) {
-                let userEmail = res.data.user_email;
-                if (userEmail) {
-                    that.setData({
-                        userEmail: userEmail,
-                        sendPc: 1,
-                        checkEmail: true,
-                    })
-                } else {
-                    that.setData({
-                        sendPc: 1,
-                        checkEmail: false
-                    })
-                }
+          }
+          // 标签 type:0; 项目标签 type:1 团队标签
+          let infoTagArray = project.tag;
+          let tagOfPro = [];//项目资料的标签
+          let teamOfPro = [];//核心团队的标签//核心团队的标签
+          for (var i = 0; i < infoTagArray.length; i++) {
+            if (infoTagArray[i].type == 0) {
+              tagOfPro.push(infoTagArray[i])
+            } else if (infoTagArray[i].type == 1) {
+              teamOfPro.push(infoTagArray[i])
             }
-        })
-    },
-    // 更改邮箱
-    writeBpEmail: function (e) {
-        let userEmail = e.detail.value;
-        app.console(userEmail)
-        if (userEmail) {
-            this.setData({
-                checkEmail: true,
-                userEmail: userEmail
-            })
-        } else {
-            this.setData({
-                checkEmail: false,
-                userEmail: userEmail
-            })
-        }
-    },
-    // 发送
-    bpModalSure: function (e) {
-        let that = this;
-        let index = e.currentTarget.dataset.index;
-        let sendPc = that.data.sendPc;
-        let project_id = that.data.id;
-        let userEmail = that.data.userEmail;
-        let companyName = that.data.company_name;
-        console.log(companyName)
-        let user_id = wx.getStorageSync('user_id');
-        // index 0:发送BP;  1:完善公司信息
-        if (index == 0) {
-            if (app.checkEmail(userEmail)) {
-                // 保存新邮箱
-                wx.request({
-                    url: url_common + '/api/user/updateUser',
-                    data: {
-                        user_id: user_id,
-                        user_email: userEmail
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        app.console(res)
-                        that.setData({
-                            userEmail: userEmail
-                        })
-                        app.console(userEmail)
-                        if (res.data.status_code == 2000000) {
-                            wx.request({
-                                url: url_common + '/api/mail/sendBp',
-                                data: {
-                                    user_id: user_id,
-                                    project_id: project_id
-                                },
-                                method: 'POST',
-                                success: function (res) {
-                                    app.console(res)
-                                }
-                            })
-                            that.setData({
-                                sendPc: 0
-                            })
-                        } else {
-                            app.console("fail")
-                        }
-                    }
-                })
-                that.setData({
-                    sendPc: 0,
-                    userEmail: userEmail
-                })
-            } else {
-                rqj.errorHide(that, '请正确填写邮箱', 1000)
-            }
-        }
+          }
+          tagOfPro.forEach((x, index) => {
+            tagOfPro[index].tag_name = x.tag_name;
+            app.console(tagOfPro[index].tag_name)
+          })
+          that.setData({
+            tagOfPro: tagOfPro
+          })
+          teamOfPro.forEach((x, index) => {
+            teamOfPro[index].tag_name = x.tag_name;
+          })
+          that.setData({
+            teamOfPro: teamOfPro
+          })
+          // 融资信息
+          let pro_history_financeList = project.pro_history_finance;
+          app.console(pro_history_financeList)
+          pro_history_financeList.forEach((x, index) => {
+            pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
+            pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
+            pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
+            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
 
-    },
-    // 取消
-    bpModalCancel: function (options) {
-        app.console(options)
-        let index = options.currentTarget.dataset.index;
-        let that = this;
-        let sendPc = that.data.sendPc;
-        if (index == 0) {
-            that.setData({
-                sendPc: 0
-            })
-        } else if (index == 1) {
-            that.setData({
-                sendCompany: 0
-            })
+          })
+          that.setData({
+            pro_history_financeList: pro_history_financeList
+          })
+          // 里程碑
+          let mileStoneArray = project.pro_develop;
+          app.console(project.pro_develop)
+          mileStoneArray.forEach((x, index) => {
+            mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
+            mileStoneArray[index].dh_event = x.dh_event;
+          })
+
+          that.setData({
+            mileStoneArray: mileStoneArray,
+            industy_sort: industy_sort,
+            pro_goodness: pro_goodness
+          });
         }
-    },
+        var followed_user_id = res.data.user.user_id;
+        that.setData({
+          project: project,
+          user: user,
+          firstName: firstName,
+          pro_industry: pro_industry,
+          followed_user_id: followed_user_id,
+          button_type: button_type
+        });
+      }
+    })
+  },
+  // 项目详情-里程碑 查看全部
+  moreInfo: function (e) {
+    app.console(e)
+    let id = e.target.dataset.id;
+    let that = this;
+    if (id == 3) {
+      that.setData({
+        moreInfoList: 3
+      })
+    } else if (id == 4) {
+      that.setData({
+        moreInfo: 4
+      })
+    }
+  },
+  noMoreInfo: function (e) {
+    let id = e.target.dataset.id;
+    let that = this;
+    if (id == 3) {
+      that.setData({
+        moreInfoList: 0
+      })
+    } else if (id == 4) {
+      that.setData({
+        moreInfo: 0
+      })
+    }
+  },
+  // 项目详情中的显示全部
+  allBrightPoint: function () {
+    this.setData({
+      isChecked: false
+    })
+  },
+  noBrightPoint: function () {
+    this.setData({
+      isChecked: true
+    })
+  },
+  // 查看bp
+  sendBp: function () {
+    app.console(this.data.checkEmail)
+    let that = this;
+    let user_id = wx.getStorageSync("user_id");
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let userEmail = res.data.user_email;
+        if (userEmail) {
+          that.setData({
+            userEmail: userEmail,
+            sendPc: 1,
+            checkEmail: true,
+          })
+        } else {
+          that.setData({
+            sendPc: 1,
+            checkEmail: false
+          })
+        }
+      }
+    })
+  },
+  // 更改邮箱
+  writeBpEmail: function (e) {
+    let userEmail = e.detail.value;
+    app.console(userEmail)
+    if (userEmail) {
+      this.setData({
+        checkEmail: true,
+        userEmail: userEmail
+      })
+    } else {
+      this.setData({
+        checkEmail: false,
+        userEmail: userEmail
+      })
+    }
+  },
+  // 发送
+  bpModalSure: function (e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let sendPc = that.data.sendPc;
+    let project_id = that.data.id;
+    let userEmail = that.data.userEmail;
+    let companyName = that.data.company_name;
+    console.log(companyName)
+    let user_id = wx.getStorageSync('user_id');
+    // index 0:发送BP;  1:完善公司信息
+    if (index == 0) {
+      if (app.checkEmail(userEmail)) {
+        // 保存新邮箱
+        wx.request({
+          url: url_common + '/api/user/updateUser',
+          data: {
+            user_id: user_id,
+            user_email: userEmail
+          },
+          method: 'POST',
+          success: function (res) {
+            app.console(res)
+            that.setData({
+              userEmail: userEmail
+            })
+            app.console(userEmail)
+            if (res.data.status_code == 2000000) {
+              wx.request({
+                url: url_common + '/api/mail/sendBp',
+                data: {
+                  user_id: user_id,
+                  project_id: project_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  app.console(res)
+                }
+              })
+              that.setData({
+                sendPc: 0
+              })
+            } else {
+              app.console("fail")
+            }
+          }
+        })
+        that.setData({
+          sendPc: 0,
+          userEmail: userEmail
+        })
+      } else {
+        rqj.errorHide(that, '请正确填写邮箱', 1000)
+      }
+    }
+
+  },
+  // 取消
+  bpModalCancel: function (options) {
+    app.console(options)
+    let index = options.currentTarget.dataset.index;
+    let that = this;
+    let sendPc = that.data.sendPc;
+    if (index == 0) {
+      that.setData({
+        sendPc: 0
+      })
+    } else if (index == 1) {
+      that.setData({
+        sendCompany: 0
+      })
+    }
+  },
 })
