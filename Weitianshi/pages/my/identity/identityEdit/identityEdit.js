@@ -94,7 +94,8 @@ Page({
                 success: function (res) {
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
-                    console.log('user_id', user_info)
+                    console.log('user_id')
+                    console.log(user_info)
                     that.dealTags(that, invest_info);
                     that.setData({
                         user_info: user_info,
@@ -378,13 +379,15 @@ Page({
         let paymoneyenchangeId = [];
         scale.forEach((x, index) => {
             paymoneyenchangeCheck[index] = false;
-            invest_info.invest_scale.forEach(y => {
-                if (x.scale_money === y.scale_money) {
-                    paymoneyenchangeCheck[index] = true;
-                    paymoneyenchangeValue.push(x.scale_money);
-                    paymoneyenchangeId.push(x.scale_id)
-                }
-            })
+            if(invest_info.invest_scale){
+                invest_info.invest_scale.forEach(y => {
+                    if (x.scale_money === y.scale_money) {
+                        paymoneyenchangeCheck[index] = true;
+                        paymoneyenchangeValue.push(x.scale_money);
+                        paymoneyenchangeId.push(x.scale_id)
+                    }
+                })
+            }
         })
         //stage
         let payenchangeCheck = [];
@@ -392,13 +395,15 @@ Page({
         let payenchangeId = [];
         stage.forEach((x, index) => {
             payenchangeCheck[index] = false;
-            invest_info.invest_stage.forEach(y => {
-                if (x.stage_name === y.stage_name) {
-                    payenchangeCheck[index] = true;
-                    payenchangeValue.push(x.stage_name);
-                    payenchangeId.push(x.stage_id)
-                }
-            })
+            if(invest_info.invest_stage){
+                invest_info.invest_stage.forEach(y => {
+                    if (x.stage_name === y.stage_name) {
+                        payenchangeCheck[index] = true;
+                        payenchangeValue.push(x.stage_name);
+                        payenchangeId.push(x.stage_id)
+                    }
+                })
+            }
         })
         //hotCity
         let payareaenchangeCheck = [];
@@ -406,17 +411,19 @@ Page({
         let payareaenchangeId = [];
         hotCity.forEach((x, index) => {
             payareaenchangeCheck[index] = false;
-            invest_info.invest_area.forEach(y => {
-                if (x.area_title === y.area_title) {
-                    payareaenchangeCheck[index] = true;
-                    payareaenchangeValue.push(x.area_title);
-                    payareaenchangeId.push(x.area_id)
-                }
-            })
+            if(invest_info.invest_area){
+                invest_info.invest_area.forEach(y => {
+                    if (x.area_title === y.area_title) {
+                        payareaenchangeCheck[index] = true;
+                        payareaenchangeValue.push(x.area_title);
+                        payareaenchangeId.push(x.area_id)
+                    }
+                })
+            }
         })
         //industry
         let industryId = [];
-        if(invest_info.invest_industry.length>0){
+        if(invest_info.invest_industry){
             invest_info.invest_industry.forEach(x => {
                 industryId.push(x.industry_id)
             })
