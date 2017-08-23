@@ -216,7 +216,7 @@ page{
 /*=============================  */
 
 .applyMyProject {
-  padding: 32rpx;
+  padding: 32rpx ;
   background: white;
   border-radius: 4rpx;
 }
@@ -292,19 +292,26 @@ page{
   margin-bottom: 84rpx;
 }
 
-.investmentGroup, .roundGroup {
+.investmentGroup {
   font-size: 26rpx;
   color: #999;
   line-height: 26rpx;
   text-align: left;
-  margin-bottom: 24rpx;
+  /* margin-bottom: 24rpx; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .roundGroup {
-  margin-bottom: none;
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .agreeBtn, .refuseBtn {

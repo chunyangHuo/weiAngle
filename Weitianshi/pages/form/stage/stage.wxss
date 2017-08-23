@@ -30,7 +30,7 @@ page {
   margin-right: 24rpx;
 }*/
 
-.tips{
+.tips {
   display: flex;
   font-size: 28rpx;
   margin-bottom: 32rpx;
@@ -39,7 +39,8 @@ page {
   align-content: baseline;
   width: 50%;
   color: #999;
-  }
+}
+
 /* pages/resourceEnchange/resourceEnchange.wxss */
 
 page {
@@ -77,17 +78,20 @@ page {
 }
 
 .tips view {
-  border: 1px solid #999;
-  border-radius: 8rpx;
+  /* border: 1px solid #999; *//* border-radius: 8rpx; */
+  border: 1px solid #f0f0f0;
+  border-radius: 4rpx;
+  width: 144rpx;
+  height: 56rpx;
 }
 
 .offer view:first-child {
   justify-content: space-between;
 }
-.search view:first-child{
+
+.search view:first-child {
   justify-content: space-between;
 }
-
 
 .context wx-view:first-child {
   padding-left: 0;
@@ -103,19 +107,20 @@ page {
 .offer .flex:first-child {
   padding-left: 0;
 }
-.search .flex:first-child{
-  padding-left: 0
+
+.search .flex:first-child {
+  padding-left: 0;
 }
 
 .offerAdd, .searchAdd {
   color: #40587a;
 }
 
-.search{
-  margin-top: 0
+.search {
+  margin-top: 0;
 }
 
-.describe{
+.describe {
   font-size: 24rpx;
   color: #333;
   padding-bottom: 32rpx;
@@ -125,7 +130,7 @@ page {
 textarea {
   background: #f2f2f2;
   border-radius: 4px;
-  padding:32rpx;
+  padding: 32rpx;
   font-size: 28rpx;
   margin-bottom: 64rpx;
   height: 240rpx;

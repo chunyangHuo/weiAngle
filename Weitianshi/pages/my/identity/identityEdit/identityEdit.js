@@ -240,11 +240,6 @@ Page({
                     })
                 } else {
                     rqj.errorHide(that, "上传图片不能超过1M", 1500)
-                    wx.showToast({
-                        title: '不能超过1M',
-                        duration: 2000,
-                        image: "/img/icon-chacha@2x.png"
-                    })
                 }
             }
         })

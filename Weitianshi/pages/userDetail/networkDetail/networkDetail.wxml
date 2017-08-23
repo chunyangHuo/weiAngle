@@ -10,14 +10,16 @@
   <!--他的项目库-->
   <template is="financingProject" data="{{project_info:project_info,text:'他的项目库',canEdit:1}}"></template>
 
+  <!--投资案例-->
+  <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
+  
   <!--寻找案源-->
   <template is="InvestInfo" data="{{invest:invest}}"></template>
 
   <!--资源对接-->
   <template is="resourceInfo" data="{{resource:resource}}"></template>
 
-  <!--投资案例-->
-  <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
+
   <view style="height:88rpx;"></view>
   <!--加人脉按钮-->
   <!-- button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉 -->

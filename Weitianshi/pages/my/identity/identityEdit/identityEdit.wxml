@@ -229,6 +229,8 @@
       </view>
     </view>
   </view>
+    <!--错误提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>
 
 <view class="btn" bindtap="submit">提交</view>
