@@ -93,6 +93,7 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
+                    console.log(2,res)
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
                     console.log('user_id')
@@ -138,8 +139,11 @@ Page({
             newArea.push({ area_title: x })
         })
         //如果是由更改表单某一项内容后返回该页面的话
-        if (user_info){
+        if (invest_info){
             console.log('this is onShow')
+            if(invest_info===[]){
+                invest_info={}
+            }
             invest_info.invest_industry = industryCurrent1;
             invest_info.invest_scale = newScale;
             invest_info.invest_stage = newStage;
@@ -151,7 +155,7 @@ Page({
                 stageId: stageId,
                 areaId: areaId
             })
-            console.log(-1, this.data.invest_info.invest_industry)
+            console.log(-1, this.data.invest_info)
         }
 
         console.log(0, industryId)
