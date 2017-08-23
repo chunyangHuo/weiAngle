@@ -1168,7 +1168,7 @@ scroll-view {
 
 .swiper-tab-list {
   display: inline-block;
-  width:50%;
+  width:33.33%;
   font-size: 26rpx;
   color: #40587a;
   line-height: 62rpx;

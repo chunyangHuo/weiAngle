@@ -182,7 +182,8 @@ Page({
     //测试一键尽调
     testOneKey() {
         wx.navigateTo({
-            url: '/pages/oneKeyResearch/oneKeyResearch?id=oWdemnpQ',
+            // url: '/pages/oneKeyResearch/oneKeyResearch?id=oWdemnpQ',
+          url: '/pages/oneKeyResearch/oneKeyResearch?id=RrZDkXWQ',      
         })
     }
 })

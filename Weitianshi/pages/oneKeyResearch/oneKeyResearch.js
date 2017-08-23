@@ -7,7 +7,7 @@ Page({
     data: {
         winWidth: 0,//选项卡
         winHeight: 0,//选项卡
-        currentTab: 1,//选项卡
+        currentTab: 0,//选项卡
         firstName: "代",
         id: "",
         page: 1,
@@ -64,6 +64,28 @@ Page({
         var pro_goodness = "";
         app.loginPage(function (user_id) {
             wx.setStorageSync('user_id', user_id)
+            // 载入买家图谱数据
+            wx.request({
+              url: url_common + '/api/project/getProjectMatchInvestors',
+              data: {
+                user_id: user_id,
+                project_id: id,
+                page: currentPage
+              },
+              method: 'POST',
+              success: function (res) {
+                var investor2 = res.data.data;
+                console.log('买家图谱', res)
+                that.setData({
+                  investor2: investor2,
+                  page_end: res.data.page_end
+                });
+                wx.hideToast({
+                  title: 'loading...',
+                  icon: 'loading'
+                })
+              }
+            })
             // 载入项目详情数据
             wx.request({
                 url: url_common + '/api/project/getProjectDetail',
@@ -409,6 +431,7 @@ Page({
     },
     //进入投资人用户详情
     detail(e) {
+      console.log(e)
         var id = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
@@ -928,5 +951,23 @@ Page({
         wx.navigateTo({
             url: '/pages/message/applyPerson/applyPerson?id=' + proid,
         })
-    }
+    },
+    // 买家图谱上拉加载
+    loadMore: function () {
+      var that = this;
+      var user_id = this.data.user_id;
+      var id = this.data.id;
+      var currentPage = this.data.currentPage;
+      console.log(this.data)
+      var request = {
+        url: url_common + '/api/project/getProjectMatchInvestors',
+        data: {
+          user_id: user_id,
+          project_id: id,
+          page: currentPage
+        },
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "investor2", that.data.investor2)
+    },
 });
