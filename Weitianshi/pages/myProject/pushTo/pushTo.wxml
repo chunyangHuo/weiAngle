@@ -40,8 +40,9 @@
   </scroll-view>
 </view>
 
-<view class="floatBtn flex pushPro" bindtap="pushTo">
+<!-- <view class="floatBtn flex pushPro" bindtap="pushTo">
   <view class="pushProjectAfter">推送</view>
-</view>
+</view> -->
+<button disabled="{{times==1}}" class="floatBtn flex pushPro" bindtap="pushTo"><label class="pushProjectAfter">推送</label></button>
 <!-- 错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

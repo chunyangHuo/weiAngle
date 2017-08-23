@@ -11,7 +11,7 @@ Page({
         iconPath: "/img/icon-xiaoxi_renzheng@2x.png",
         message_name: "身份认证",
         count: 0,
-        type_id :0
+        type_id: 0
       },
       {
         event: "projectApply",
@@ -59,10 +59,11 @@ Page({
           messageList[index].message_name = x.message_name;
           messageList[index].count = x.count;
           messageList[index].type_id = x.type_id;
-              if (x.count) {
-                  messageList[index].count = x.count
-              } else {
-                  messageList[index].count = 0}
+          if (x.count) {
+            messageList[index].count = x.count
+          } else {
+            messageList[index].count = 0
+          }
         })
         that.setData({
           messageList: messageList,
@@ -79,9 +80,15 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         // 0:未认证1:待审核 2 审核通过 3审核未通过
         let status = res.data.status;
-        console.log(status);
+        if (status!=0) {
+          let group_id = res.data.group.group_id;
+          that.setData({
+            group_id: group_id
+          })
+        }
         that.setData({
           status: status
         })
@@ -146,17 +153,30 @@ Page({
   // 项目申请跳转
   projectApply: function (e) {
     let type = e.currentTarget.dataset.type;
-    console.log(type)
-    wx.navigateTo({
-      url: '/pages/message/applyProject/applyProject?type=' + type,
-    })
+    let group_id = this.data.group_id;
+    console.log(group_id)
+    if (group_id) {
+      wx.navigateTo({
+        url: '/pages/message/applyProject/applyProject?type=' + type + '&&group_id=' + group_id,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/message/applyProject/applyProject?type=' + type,
+      })
+    }
   },
   // 项目推送
   projectPush: function (e) {
     let type = e.currentTarget.dataset.type;
-    console.log(type)
-    wx.navigateTo({
-      url: '/pages/message/pushProject/pushProject?type=' + type,
-    })
+    let group_id = this.data.group_id;
+    if (group_id) {
+      wx.navigateTo({
+        url: '/pages/message/pushProject/pushProject?type=' + type + '&&group_id=' + group_id,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/message/pushProject/pushProject?type=' + type,
+      })
+    }
   }
 })
