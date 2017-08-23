@@ -80,7 +80,6 @@ Page({
         console.log(path)
         return app.shareProjectPage(id, title, share_id)
     },
-
     // 项目详情中的显示全部
     allBrightPoint: function () {
         this.setData({
@@ -138,11 +137,13 @@ Page({
                             })
                         }
                     } else if (complete == 0) {
+                        wx.clearStorageSync("followed_user_id")
                         wx.navigateTo({
                             url: '/pages/register/companyInfo/companyInfo?type=1'
                         })
                     }
                 } else {
+                    wx.clearStorageSync("followed_user_id")
                     wx.navigateTo({
                         url: '/pages/register/personInfo/personInfo?type=2'
                     })
