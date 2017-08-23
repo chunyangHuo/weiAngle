@@ -162,13 +162,6 @@
               <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
             </view>
           </picker> 
-           <!-- <picker id="bindFAService" bindchange="bindFAService" value="{{user_info.is_alliance}}" range="{{array}}">
-            <view class="flex" wx:if="{{group_id == 18 ||group_id == 19}}">
-              <view class="chooseContent" wx:if="{{!array[user_info.is_alliance]}}">请选择</view>
-              <view class="chooseAfter" wx:if="{{array[user_info.is_alliance] !=''}}">{{array[user_info.is_alliance]}}</view>
-              <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-            </view>
-          </picker> -->
         </view>
       </view>
     </view>

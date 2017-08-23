@@ -158,5 +158,11 @@ Page({
     wx.navigateTo({
       url: '/pages/message/pushProject/pushProject?type=' + type,
     })
+  },
+  //测试一键尽调
+  testOneKey(){
+      wx.navigateTo({
+          url: '/pages/oneKeyResearch/oneKeyResearch?id=oWdemnpQ',
+      })
   }
 })

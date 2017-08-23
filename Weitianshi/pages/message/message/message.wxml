@@ -1,19 +1,5 @@
  <import src="/pages/Template/Template.wxml" />
- <!--身份认证  -->
- <!-- <view class="messageBox">
-  <view class="flex messageInside">
-    <view class="flex title">
-      <image class="identityIcon" src="/img/icon-xiaoxi_renzheng@2x.png"></image>
-      <view class="title">
-        身份认证
-      </view>
-      <view class="identity" bindtap="toIdentity" wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
-      <view class="identifyContent" bindtap="toIdentity" wx:if="{{status == 3}}">审核未通过</view>
-      <view class="identifyContent on"  bindtap="toIdentity" wx:if="{{status == 1}}">审核中</view>
-      <view class="identifyContent" bindtap="toIdentity" wx:if="{{status == 2}}">认证成功</view>
-    </view>
-  </view>
-</view> -->
+ 
 <block wx:for="{{messageList}}" wx:key="index">
   <template is="messageList" data="{{item:item,status:status}}"></template>
 </block> 
@@ -21,5 +7,5 @@
 <!--底部信息提示  -->
 <view class="bottomBox">
   <view class="contactPerson">联系客服</view>
-  <view class="wechatNumber">微信添加：weitianshicn</view>
+  <view class="wechatNumber" bindtap="testOneKey">微信添加：weitianshicn</view>
 </view>
