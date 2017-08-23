@@ -438,6 +438,7 @@ page{
   position: absolute;
   right: 32rpx;
   top: 32rpx;
+  color:#40587a;
 } 
 
  .user_apply {
