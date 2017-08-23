@@ -340,8 +340,6 @@ Page({
             url: '/pages/register/personInfo/personInfo?type=2'
           })
         }
-
-
       }
     })
   }

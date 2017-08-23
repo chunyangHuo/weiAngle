@@ -9,10 +9,9 @@ Page({
     dataList: {
       tagsData: ''
       // bindEvent: "checkboxChange"
-    }
+    },
+    times : 0
   },
-
-
   onLoad: function (options) {
     // pushed_user_id == 推送给谁
     console.log(options)
@@ -126,7 +125,11 @@ Page({
     let checkObject = this.data.checkObject;
     console.log(checkObject)
     let projectList = []
-    if (checkObject){
+    if (checkObject.length!= 0){
+      that.setData({
+        times: 1
+      })
+      console.log("times",9999)
      checkObject.forEach((x) => {
        projectList.push(x.project_id)
      })

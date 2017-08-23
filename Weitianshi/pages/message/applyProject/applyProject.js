@@ -13,10 +13,19 @@ Page({
 
   onLoad: function (options) {
     let type = options.type;
+    let group_id = options.group_id;
+    console.log(group_id)
     let that = this;
     that.setData({
-      type: type
+      type: type,
     })
+    //身份为买方或者投资人的情况=>我申请查看的tab
+    if(group_id == 18 || group_id == 6 ){
+      console.log(group_id)
+      that.setData({
+        currentTab : 1
+      })
+    }
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     // 申请查看我的项目
     wx.request({
