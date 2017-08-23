@@ -326,7 +326,7 @@
           </view>
           <!--商标信息-->
           <view class="projectTrade" wx:if="{{brandInfoList != 0}}">
-            <view class="boxName">商标信息</view>
+            <view class="boxName">知识产权-商标信息</view>
             <view wx:for="{{brandInfoList}}" wx:key="{{index}}">
               <view class="projectTradeInfo" wx:if="{{brandInfoList[index].company_brand_name}}">{{brandInfoList[index].company_brand_name}}</view>
               <view class="projectTradeInfo" wx:if="{{!brandInfoList[index].company_brand_name}}"></view>
@@ -504,7 +504,7 @@
           </view>
           <!--竞品-->
           <view class="competitor" wx:if="{{competeList.length != 0}}">
-            <view class="boxName">竟品</view>
+            <view class="boxName">相似公司</view>
             <view>
               <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 ||competitorMore == 3}}" wx:key="{{index}}">
                 <view class="competitorBoxTop flex">
