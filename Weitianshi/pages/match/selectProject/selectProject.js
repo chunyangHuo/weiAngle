@@ -42,7 +42,6 @@ Page({
                 page: this.data.currentPage,
             }
         }
-        console.log(request)
         //调用通用加载函数
         app.loadMore(that, request, "slectProject", that.data.slectProject)
     },

@@ -48,7 +48,7 @@ Page({
     },
     onShow: function () {
         let that = this;
-        let user_id=this.data.user_id;
+        let user_id=wx.getStorageSync('user_id');
         if (user_id) {
             that.getInfo(that, user_id, that.data.id)
         }
@@ -92,10 +92,10 @@ Page({
             isChecked: true
         })
     },
-    // 去认证
+    // 立即认证
     toAccreditation: function () {
         let status = this.data.status;
-        var user_id = wx.getStorageSync('user_id');
+        let user_id = wx.getStorageSync('user_id');
         wx.request({
             url: url_common + '/api/user/checkUserInfo',
             data: {
@@ -104,6 +104,7 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log(res)
+                console.log('status',status)
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
                     if (complete == 1) {
@@ -112,8 +113,7 @@ Page({
                             wx.navigateTo({
                                 url: '/pages/my/identity/indentity/indentity'
                             })
-                        } else if (status == 3) {
-                            console.log(status)
+                        } else if (status == 3) { 
                             wx.showModal({
                                 title: '友情提示',
                                 content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',

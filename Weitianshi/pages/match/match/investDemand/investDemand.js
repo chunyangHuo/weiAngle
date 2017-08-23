@@ -176,11 +176,10 @@ Page({
                         }
                     }
 
-
-                    var initPayMoney = thisData.scale_tag[0].scale_money
+                    /* var initPayMoney = thisData.scale_tag[0].scale_money
                     that.setData({
                         initPayMoney: initPayMoney
-                    })
+                    }) */
 
                     //初始化
                     wx.setStorageSync('y_describe', y_describe)

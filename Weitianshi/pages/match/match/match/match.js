@@ -52,7 +52,7 @@ Page({
 
         //登录状态维护
         app.loginPage(function (user_id) {
-            console.log("这里是cb函数")
+            //console.log("这里是cb函数")
             if (user_id != 0) {
                 //获取我的项目信息
                 wx.request({
@@ -63,10 +63,10 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-                        console.log("获取我的项目信息")
-                        console.log(res)
+                         //console.log("获取我的项目信息")
+                         //console.log(res)
                         var myProject = res.data.data;
-                        console.log(myProject)
+                         //console.log(myProject)
                         //刷新数据
                         that.setData({
                             myProject: myProject,
@@ -83,9 +83,8 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-
-                        console.log("获取用户投资需求")
-                        console.log(res)
+                        //console.log("获取用户投资需求")
+                        //console.log(res)
                         //循环出用户信息
                         var user_industry = [];
                         var user_industryId = [];
@@ -122,7 +121,7 @@ Page({
                             user_industry: user_industry
                         })
 
-                        // console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
+                        // //console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
                     }
                 });
                 //获取投资需求的匹配项目获取投资需求的匹配项目
@@ -133,8 +132,8 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-                        console.log("获取投资需求的匹配项目")
-                        console.log(res)
+                        //console.log("获取投资需求的匹配项目")
+                        //console.log(res)
                         // let count2 = res.data.data.match_count;
                         if (res.data.status_code == '2000000') {
                           let count2 = res.data.data.match_count;
@@ -164,14 +163,14 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-                        console.log("资源需求匹配结果")
-                        console.log(res)
+                        //console.log("资源需求匹配结果")
+                        //console.log(res)
                           if (res.data.status_code == '2000000') {
                             wx.setStorageSync("resource_find", res.data.data.res_find);
                             wx.setStorageSync("resource_give", res.data.data.res_give);
                             wx.setStorageSync("resource_desc", res.data.data.res_desc);
                             var res_match = res.data.data.match_list;
-                            console.log(res_match)
+                            //console.log(res_match)
                             var res_find = res.data.data.res_find;
                             var res_find_arry = [];
                             var res_id = res.data.data.res_id;
@@ -199,7 +198,7 @@ Page({
                         }
                     },
                     fail: function (res) {
-                        console.log(res)
+                        //console.log(res)
                     }
                 });
             }
@@ -307,10 +306,10 @@ Page({
                             var myPublic_page_end = res.data.page_end;
                             var newPage = res.data.data;//新请求到的数据
                             var myProject = that.data.myProject;//现在显示的数据
-                            console.log("触发刷新")
-                            console.log(myPublicProject_page, myPublic_page_end)
-                            console.log("分页加载项目融资")
-                            console.log(res.data);
+                            //console.log("触发刷新")
+                            //console.log(myPublicProject_page, myPublic_page_end)
+                            //console.log("分页加载项目融资")
+                            //console.log(res.data);
                             newPage.forEach((x) => {
                                 myProject.push(x)
                             })
@@ -360,17 +359,17 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            console.log("分页加载的投资需求的匹配项目")
-                            console.log(res);
+                            //console.log("分页加载的投资需求的匹配项目")
+                            //console.log(res);
                             var newPage = res.data.data.projects;
                             var investor_page_end = res.data.page_end;
                             var yourProject = that.data.yourProject;
-                            console.log(newPage)
+                            //console.log(newPage)
                             for (var i = 0; i < newPage.length; i++) {
                                 yourProject.push(newPage[i])
                             }
-                            console.log(yourProject)
-                            console.log(investor_page);
+                            //console.log(yourProject)
+                            //console.log(investor_page);
                             that.setData({
                                 yourProject: yourProject,
                                 investor_page_end: res.data.page_end,
@@ -404,7 +403,7 @@ Page({
                         icon: 'loading'
                     })
                     resource_page++;
-                    console.log(resource_page)
+                    //console.log(resource_page)
                     that.setData({
                         resource_page: resource_page
                     });
@@ -416,14 +415,14 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            console.log("分页加载的资源需求的匹配项目")
-                            console.log(res);
+                            //console.log("分页加载的资源需求的匹配项目")
+                            //console.log(res);
                             var newPage = res.data.data.match_list;
-                            console.log(newPage)
+                            //console.log(newPage)
                             var resource_page_end = res.data.page_end;
-                            console.log(resource_page_end)
+                            //console.log(resource_page_end)
                             var res_match = that.data.res_match;
-                            console.log(res_match)
+                            //console.log(res_match)
                             for (var i = 0; i < newPage.length; i++) {
                                 res_match.push(newPage[i])
                             }
@@ -452,12 +451,12 @@ Page({
     },
     // 点击跳转
     projectDetail: function (e) {
-      console.log(e)
+      //console.log(e)
       // 获取我自己的项目id
       var that = this;
       // 获取当前点击的项目id
       var id = e.currentTarget.dataset.project;
-      console.log(id);
+      //console.log(id);
       // 判斷項目是不是自己的
       wx.request({
         url: url + '/api/project/projectIsMine',
@@ -487,9 +486,9 @@ Page({
     },
      //点击跳转到用户详情
   personDetail: function (e) {
-      console.log(e);
+      //console.log(e);
       var id = e.currentTarget.dataset.id;
-      app.console(id)
+      app.//console(id)
       wx.navigateTo({
         url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
       })
