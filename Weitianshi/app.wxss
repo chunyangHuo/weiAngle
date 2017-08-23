@@ -82,7 +82,7 @@ page {
 
 /*错误提示*/
 
-.error {
+/* .error {
   background: #fef1d3;
   border: 1px solid #cbc3a5;
   border-radius: 4px;
@@ -94,6 +94,21 @@ page {
   left: 50%;
   transform: translateX(-50%);
   padding: 16rpx 32rpx;
+} */
+
+.error {
+  background: rgba(0, 0, 0, 0.80);
+  border-radius: 4px;
+  text-align: center;
+  position: fixed;
+  height: 45rpx;
+  line-height: 45rpx;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16rpx 32rpx;
+  font-size: 28rpx;
+  color: #fff;
 }
 
 /*loading状态*/
@@ -144,7 +159,7 @@ page {
   text-align: center;
   padding-top: 228rpx;
   justify-content: center;
-  padding-left:264rpx;
+  padding-left: 264rpx;
 }
 
 /*名片*/
@@ -304,11 +319,14 @@ textarea {
 }
 
 /*多选标签选中时样式*/
-
 .tips .checkedOne {
-  border: 1px solid #333;
-  color: #fff;
-  background: #40587a;
+
+  /* border: 1px solid #333; */
+  /* color: #fff; */
+  /* background: #40587a; */
+  border-radius: 8rpx;
+  border: 1px solid #40587a;
+  color:#40587a;
 }
 
 /*.tips .checkedOne {

@@ -303,7 +303,7 @@ page {
   margin-bottom: 84rpx;
 }
 
-.investmentGroup, .roundGroup {
+.investmentGroup {
   font-size: 26rpx;
   color: #999;
   line-height: 26rpx;
@@ -316,6 +316,13 @@ page {
 
 .roundGroup {
   margin-bottom: none;
+    font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .agreeBtn, .refuseBtn {

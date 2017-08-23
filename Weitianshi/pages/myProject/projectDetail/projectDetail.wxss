@@ -455,6 +455,15 @@ scroll-view {
   top: -16rpx;
   text-align: center;
 }
+.applyProjectNew {
+  font-size: 18rpx;
+  color: #f44c4c;
+  line-height: 18rpx;
+  position: absolute;
+  left: 170rpx;
+  top: -16rpx;
+  text-align: center;
+}
 
 .viewTimeAll {
   text-align: center;
