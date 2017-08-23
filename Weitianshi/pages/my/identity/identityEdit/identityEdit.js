@@ -40,7 +40,7 @@ Page({
             group_id: group_id,
             recertification: recertification
         })
-        //请求数据  recertification 1: 重新认证  2: 第一次认证
+        //请求数据  recertification 1: 重新认证  0: 第一次认证
         if (recertification == 1) {
             wx.request({
                 url: url_common + '/api/user/getUserGroupByStatus',
@@ -67,6 +67,7 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
+                            console.log(-1,res)
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
                             console.log('user_id', user_info)
@@ -92,6 +93,7 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
+                    console.log(-2,res)
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
                     console.log('user_id')
@@ -109,6 +111,7 @@ Page({
     onShow: function () {
         //更改某一项表单值后返回表单页面数据更新
         let invest_info = this.data.invest_info;
+        let user_info=this.data.user_info;
         let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
         let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
         let stageValue = wx.getStorageSync('payenchangeValue') || [];
@@ -117,7 +120,7 @@ Page({
         let stageId = wx.getStorageSync('y_payStageId') || [];
         let areaId = wx.getStorageSync('payareaenchangeId') || [];
         let industryId = [];
-
+        
         industryCurrent1.forEach(x => {
             industryId.push(x.industry_id)
         })
@@ -136,7 +139,7 @@ Page({
             newArea.push({ area_title: x })
         })
         //如果是由更改表单某一项内容后返回该页面的话
-        if (invest_info) {
+        if (user_info){
             invest_info.invest_industry = industryCurrent1;
             invest_info.invest_scale = newScale;
             invest_info.invest_stage = newStage;
