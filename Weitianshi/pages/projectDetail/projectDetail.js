@@ -131,11 +131,13 @@ Page({
               })
             }
           } else if (complete == 0) {
+            wx.clearStorageSync('followed_user_id')
             wx.navigateTo({
               url: '/pages/register/companyInfo/companyInfo?type=1'
             })
           }
         } else {
+          wx.clearStorageSync('followed_user_id')
           wx.navigateTo({
             url: '/pages/register/personInfo/personInfo?type=2'
           })
