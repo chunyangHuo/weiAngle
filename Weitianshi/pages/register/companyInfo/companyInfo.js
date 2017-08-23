@@ -36,7 +36,7 @@ Page({
                         position: res.data.user_company_career,
                         email: res.data.user_email,
                     })
-
+console.log(company)
                 }
             },
         });
@@ -126,6 +126,7 @@ Page({
     backHome: function () {
         var that = this;
         var company = this.data.company;
+        console.log(company)
         var position = this.data.position;
         var result = this.data.result;
         var error = this.data.error;
@@ -140,6 +141,7 @@ Page({
 
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
+            console.log(company)
             wx.request({
               url: url_common + '/api/user/updateUser',
                 data: {

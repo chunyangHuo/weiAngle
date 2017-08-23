@@ -4,7 +4,6 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
-
   data: {
     dataList: {
       tagsData: ''
@@ -14,9 +13,7 @@ Page({
   },
   onLoad: function (options) {
     // pushed_user_id == 推送给谁
-    console.log(options)
     let pushed_user_id = options.pushId;
-    console.log(pushed_user_id)
     let that = this;
     that.setData({
       pushed_user_id: pushed_user_id
@@ -45,7 +42,6 @@ Page({
       success: function (res) {
         console.log(res)
         let dataList = res.data.data;
-        console.log(dataList.length)
         let pushTimes = res.data.push_times;
         var page_end = res.data.page_end;
        if(dataList.length!=0){
@@ -73,7 +69,6 @@ Page({
   checkboxChange(e) {
     console.log(e)
     let overTime = this.data.pushTimes.remain_times;
-    console.log(overTime)
     let dataList = this.data.dataList;
     let that = this;
     let tagsData = e.currentTarget.dataset;
@@ -88,13 +83,11 @@ Page({
      })
      console.log(checkedNum)
     if(overTime != 0){
-      console.log("我是推送次数")
       if (checkedNum > 5) {
         dataList[index].check = !dataList[index].check;
         rqj.errorHide(that, "最多可选择五项", 1000)
       } else {
         if (checkedNum > overTime) {
-          console.log("我是错误提示哦")
           dataList[index].check = !dataList[index].check;
           rqj.errorHide(that, "超过了推送限制", 1000)
         } else {
@@ -125,11 +118,7 @@ Page({
     let checkObject = this.data.checkObject;
     console.log(checkObject)
     let projectList = []
-    if (checkObject.length!= 0){
-      that.setData({
-        times: 1
-      })
-      console.log("times",9999)
+    if (checkObject){
      checkObject.forEach((x) => {
        projectList.push(x.project_id)
      })
@@ -173,7 +162,7 @@ Page({
     var currentPage = this.data.currentPage;
     let pushed_user_id = this.data.pushed_user_id;
     var request = {
-      url: url_common + '/api/project/getMyProjectList',
+      url: url_common + '/api/project/getMyProjectListOrderByMatch',
       data: {
         user_id: user_id,
         page: this.data.currentPage,

@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml"></import>
 <view id="myProject">
-  <!--<view class="card">
+  <view class="card">
     <view class="text">投资领域*</view>
     <navigator url="/pages/form/industry/industry?current=1" id="domain">
       <view class="slect flex">
@@ -8,9 +8,9 @@
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
-  </view>-->
+  </view>
 
- <template is="input_jump" data="{{...industryCard}}" ></template>
+ <!-- <template is="input_jump" data="{{...industryCard}}" ></template> -->
 
   <view class="card">
     <view class="text">投资阶段*</view>

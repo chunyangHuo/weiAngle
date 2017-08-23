@@ -92,8 +92,8 @@
       <view class="investContent flex">
         <view class="investListTile">投资领域</view>
         <view class="flex overMore">
-          <view class="personListContent" wx:if="{{!invest_info.invest_industry}}">请选择</view>
-          <view class="overMore flex" wx:if="{{invest_info.invest_industry}}">
+          <view class="personListContent" wx:if="{{invest_info.invest_industry.length == 0}}">请选择</view>
+          <view class="overMore flex" wx:if="{{invest_info.invest_industry.length != 0}}">
             <block wx:for="{{invest_info.invest_industry}}" wx:key="{{index}}" wx:for-item='industry'>
               <label class="investStyle" wx:if="{{index < invest_info.invest_industry.length-1}}">{{industry.industry_name}}、</label>
               <label class="investStyle" wx:if="{{index == invest_info.invest_industry.length-1}}">{{industry.industry_name}}</label>
@@ -107,8 +107,8 @@
       <view class="investContent flex">
         <view class="investListTile">投资轮次</view>
         <view class="flex overMore">
-          <view class="personListContent" wx:if="{{!invest_info.invest_stage}}">请选择</view>
-          <view class="flex overMore"  wx:if="{{invest_info.invest_stage}}"> 
+          <view class="personListContent" wx:if="{{invest_info.invest_stage.length == 0}}">请选择</view>
+          <view class="flex overMore"  wx:if="{{invest_info.invest_stage.length != 0}}"> 
             <block wx:for="{{invest_info.invest_stage}}" wx:key="{{index}}" wx:for-item='stage'>
               <label class="investStyle" wx:if="{{index < invest_info.invest_stage.length-1}}">{{stage.stage_name}}、</label>
               <label class="investStyle" wx:if="{{index == invest_info.invest_stage.length-1}}">{{stage.stage_name}}</label>
@@ -122,8 +122,8 @@
       <view class="investContent flex">
         <view class="investListTile">投资金额</view>
         <view class="flex">
-          <view class="personListContent" wx:if="{{!invest_info.invest_scale && !invest_info.scale}}">请选择</view>
-          <view class="overMore flex"  wx:if="{{invest_info.invest_scale}}">
+          <view class="personListContent" wx:if="{{invest_info.invest_scale.length == 0}}">请选择</view>
+          <view class="overMore flex"  wx:if="{{invest_info.invest_scale.length != 0}}">
             <block wx:for="{{invest_info.invest_scale}}" wx:key="{{index}}" wx:for-item='scale'>
               <label class="investStyle" wx:if="{{index < invest_info.invest_scale.length-1}}">{{scale.scale_money}}、</label>
               <label class="investStyle" wx:if="{{index == invest_info.invest_scale.length-1}}">{{scale.scale_money}}</label>
@@ -137,8 +137,8 @@
       <view class="userDescribeContent flex">
         <view class="investListTile">投资地区</view>
         <view class="flex overMore">
-          <view class="personListContent" wx:if="{{!invest_info.invest_area && !invest_info.area}}">请选择</view>
-          <view class="flex overMore" wx:if="{{invest_info.invest_area}}">
+          <view class="personListContent" wx:if="{{invest_info.invest_area.length == 0}}">请选择</view>
+          <view class="flex overMore" wx:if="{{invest_info.invest_area.length != 0}}">
             <block wx:for="{{invest_info.invest_area}}" wx:key="{{index}}" wx:for-item='area' wx:if="{{invest_info.invest_area}}">
               <label class="investStyle" wx:if="{{index < invest_info.invest_area.length-1}}">{{area.area_title}}、</label>
               <label class="investStyle" wx:if="{{index == invest_info.invest_area.length-1}}">{{area.area_title}}</label>
@@ -221,6 +221,7 @@
         </view>
       </view>
     </view>
+    <view style="height:152rpx;"></view>
   </view>
     <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
