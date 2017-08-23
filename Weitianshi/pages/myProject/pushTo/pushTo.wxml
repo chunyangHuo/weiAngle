@@ -43,6 +43,6 @@
 <!-- <view class="floatBtn flex pushPro" bindtap="pushTo">
   <view class="pushProjectAfter">推送</view>
 </view> -->
-<button disabled="{{times==1}}" class="floatBtn flex pushPro" bindtap="pushTo"><label class="pushProjectAfter">推送</label></button>
+<button disabled="{{clicked}}" class="floatBtn flex pushPro" bindtap="pushTo"><label class="pushProjectAfter">推送</label></button>
 <!-- 错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

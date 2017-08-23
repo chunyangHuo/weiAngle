@@ -42,7 +42,6 @@ Page({
                 page: this.data.currentPage,
             }
         }
-        console.log(request)
         //调用通用加载函数
         app.loadMore(that, request, "slectProject", that.data.slectProject)
     },
@@ -91,7 +90,6 @@ Page({
     },
     // 申请查看
     matchApply: function (e) {
-      console.log(e)
       var user_id = wx.getStorageSync('user_id');//获取我的user_id
       let that = this;
       // content: 0(申请查看) 1: (重新申请)

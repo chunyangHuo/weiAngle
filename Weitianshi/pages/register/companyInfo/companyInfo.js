@@ -36,7 +36,6 @@ Page({
                         position: res.data.user_company_career,
                         email: res.data.user_email,
                     })
-console.log(company)
                 }
             },
         });

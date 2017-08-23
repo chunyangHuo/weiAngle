@@ -45,7 +45,7 @@ App({
 
         //获取各分类的信息并存入缓存
         wx.request({
-          url: url_common + '/api/category/getProjectCategory',
+            url: url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 var thisData = res.data.data;
@@ -242,12 +242,12 @@ App({
     },
 
     //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-    shareProjectPage: function (id,title,share_id) {
+    shareProjectPage: function (id, title, share_id) {
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
         let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
         let json = {
-            title:title,
+            title: title,
             path: path,
             //分享成功后的回调
             success: function (res) {
@@ -299,7 +299,7 @@ App({
                             }
                         }
                     }
-                }) 
+                })
             },
         }
         return json
@@ -307,66 +307,66 @@ App({
 
     //分享项目(user_id为数据所有人ID,share_Id为分享人的ID)
     sharePage: function (user_id, share_id) {
-      let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
-      let url = this.globalData.url;
-      let url_common = this.globalData.url_common;
-      let json = {
-        title: '投资名片—智能精准匹配投融资双方的神器',
-        path: path,
-        //分享成功后的回调
-        success: function (res) {
-          console.log("分享成功")
-          let shareTicket = res.shareTickets[0];
-          //获取code
-          wx.login({
-            success(res) {
-              let code = res.code;
-              if (code) {
-                //如果是分享到群里
-                if (shareTicket) {
-                  wx.getShareInfo({
-                    shareTicket: shareTicket,
-                    success: function (res) {
-                      let encryptedData = res.encryptedData;
-                      let iv = res.iv;
-                      console.log(code, path)
-                      //发送请求到后台
-                      wx.request({
-                        url: url_common + '/api/log/shareLogRecord',
-                        method: "POST",
-                        data: {
-                          code: code,
-                          path: path,
-                          encryptedData: encryptedData,
-                          iv: iv
-                        },
-                        success(res) {
-                          console.log(res)
-                        }
-                      })
-                    },
-                  })
-                } else {//如果不是分享到群里
-                  console.log(code, path)
-                  //发送请求到后台
-                  wx.request({
-                    url: url_common + '/api/log/shareLogRecord',
-                    method: "POST",
-                    data: {
-                      code: code,
-                      path: path,
-                    },
+        let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+        let url = this.globalData.url;
+        let url_common = this.globalData.url_common;
+        let json = {
+            title: '投资名片—智能精准匹配投融资双方的神器',
+            path: path,
+            //分享成功后的回调
+            success: function (res) {
+                console.log("分享成功")
+                let shareTicket = res.shareTickets[0];
+                //获取code
+                wx.login({
                     success(res) {
-                      console.log(res)
+                        let code = res.code;
+                        if (code) {
+                            //如果是分享到群里
+                            if (shareTicket) {
+                                wx.getShareInfo({
+                                    shareTicket: shareTicket,
+                                    success: function (res) {
+                                        let encryptedData = res.encryptedData;
+                                        let iv = res.iv;
+                                        console.log(code, path)
+                                        //发送请求到后台
+                                        wx.request({
+                                            url: url_common + '/api/log/shareLogRecord',
+                                            method: "POST",
+                                            data: {
+                                                code: code,
+                                                path: path,
+                                                encryptedData: encryptedData,
+                                                iv: iv
+                                            },
+                                            success(res) {
+                                                console.log(res)
+                                            }
+                                        })
+                                    },
+                                })
+                            } else {//如果不是分享到群里
+                                console.log(code, path)
+                                //发送请求到后台
+                                wx.request({
+                                    url: url_common + '/api/log/shareLogRecord',
+                                    method: "POST",
+                                    data: {
+                                        code: code,
+                                        path: path,
+                                    },
+                                    success(res) {
+                                        console.log(res)
+                                    }
+                                })
+                            }
+                        }
                     }
-                  })
-                }
-              }
-            }
-          })
-        },
-      }
-      return json
+                })
+            },
+        }
+        return json
     },
 
     //根据用户信息完整度跳转不同的页面
@@ -385,11 +385,11 @@ App({
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
                     if (complete == 1) {
-                      if (targetUrl){
-                        wx.navigateTo({
-                          url: targetUrl
-                        })
-                      }
+                        if (targetUrl) {
+                            wx.navigateTo({
+                                url: targetUrl
+                            })
+                        }
                     } else if (complete == 0) {
                         wx.navigateTo({
                             url: '/pages/register/companyInfo/companyInfo'
@@ -405,8 +405,8 @@ App({
     },
 
     //industry多选标签数据预处理
-    industryDeal(data){
-        if(data.length>0){
+    industryDeal(data) {
+        if (data.length > 0) {
             let industry = wx.getStorageSync('industry');
             let newIndustry = industry;
             newIndustry.forEach(x => {
@@ -417,7 +417,7 @@ App({
                 })
             })
             return newIndustry
-        }else{
+        } else {
             return data
         }
     },
@@ -596,228 +596,222 @@ App({
             return false
         }
     },
-  
-     //项目申请
-    applyProjectTo:function(that,project_id,content,list){
-        console.log(list)
+
+    //项目申请
+    applyProjectTo: function (that, project_id, content, list) {
         var user_id = wx.getStorageSync('user_id');
         let url_common = this.globalData.url_common;
         wx.request({
             url: this.globalData.url_common + '/api/user/checkUserInfo',
             data: {
-            user_id: user_id
+                user_id: user_id
             },
             method: 'POST',
             success: function (res) {
-            if (res.data.status_code == 2000000) {
-                var complete = res.data.is_complete;
-            
-                if (complete == 1) {
-                //如果信息完整就可以显示去认证
-                wx.request({
-                    url: url_common + '/api/user/getUserGroupByStatus',
-                    data: {
-                    user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                    // 0:未认证1:待审核 2 审核通过 3审核未通过
-                    let status = res.data.status;
-                    console.log(status)
-                    if (status!=0){
-                        console.log("group_id")
-                        var group_id = res.data.group.group_id;
-                        console.log(group_id)
-                    }
-                    if (status == 0) {
-                        console.log(status)
-                        wx.showModal({
-                        title: '友情提示',
-                        content: '认证的投资人,买方FA才可申请查看项目',
-                        confirmText: "去认证",
-                        confirmColor: "#333333",
-                        success: function (res) {
-                            if (res.confirm) {
-                            console.log('用户点击确定')
-                            wx.navigateTo({
-                                url: '/pages/my/identity/indentity/indentity'
-                            })
-                            } else if (res.cancel) {
-                            console.log('用户点击取消')
-                            }
-                        }
-                        })
-                    } else if (status == 1) {
-                        console.log(status)
-                        wx.showModal({
-                        title: '友情提示',
-                        content: '您的身份正在审核中,只有投资人和买方FA才可申请查看项目',
-                        confirmColor: "#333333;",
-                        showCancel: false,
-                        success: function (res) {
-                            console.log('用户点击确定')
-                        }
-                        })
-                    } else if (status == 2) {
-                        let getMatchList = list;
-                        console.log(list)
-                        if (group_id) {
-                        if (group_id == 18 || group_id == 6) {
-                            // 发送申请
-                            wx.request({
-                            url: url_common + '/api/project/applyProject',
+                if (res.data.status_code == 2000000) {
+                    var complete = res.data.is_complete;
+
+                    if (complete == 1) {
+                        //如果信息完整就可以显示去认证
+                        wx.request({
+                            url: url_common + '/api/user/getUserGroupByStatus',
                             data: {
-                                user_id: user_id,
-                                project_id: project_id
+                                user_id: user_id
                             },
                             method: 'POST',
                             success: function (res) {
-                                console.log("申请查看");
-                                console.log(res)
-                                let statusCode = res.data.status_code;
-                                if (statusCode == 2000000){
-                                wx.showToast({
-                                    title: '已提交申请',
-                                    icon: 'success',
-                                    duration: 2000
-                                })
-                                if (content == 0) {
-                                    console.log("申请查看")
-                                    getMatchList.forEach((x) => {
-                                    if (x.project_id == project_id) { 
-                                        x.relationship_button = 0
-                                        x.handle_status = 0
+                                // 0:未认证1:待审核 2 审核通过 3审核未通过
+                                let status = res.data.status;
+                                if (status != 0) {
+                                    var group_id = res.data.group.group_id;
+                                }
+                                if (status == 0) {
+                                    console.log(status)
+                                    wx.showModal({
+                                        title: '友情提示',
+                                        content: '认证的投资人,买方FA才可申请查看项目',
+                                        confirmText: "去认证",
+                                        confirmColor: "#333333",
+                                        success: function (res) {
+                                            if (res.confirm) {
+                                                console.log('用户点击确定')
+                                                wx.navigateTo({
+                                                    url: '/pages/my/identity/indentity/indentity'
+                                                })
+                                            } else if (res.cancel) {
+                                                console.log('用户点击取消')
+                                            }
+                                        }
+                                    })
+                                } else if (status == 1) {
+                                    console.log(status)
+                                    wx.showModal({
+                                        title: '友情提示',
+                                        content: '您的身份正在审核中,只有投资人和买方FA才可申请查看项目',
+                                        confirmColor: "#333333;",
+                                        showCancel: false,
+                                        success: function (res) {
+                                            console.log('用户点击确定')
+                                        }
+                                    })
+                                } else if (status == 2) {
+                                    let getMatchList = list;
+                                    if (group_id) {
+                                        if (group_id == 18 || group_id == 6) {
+                                            // 发送申请
+                                            wx.request({
+                                                url: url_common + '/api/project/applyProject',
+                                                data: {
+                                                    user_id: user_id,
+                                                    project_id: project_id
+                                                },
+                                                method: 'POST',
+                                                success: function (res) {
+                                                    console.log("申请查看");
+                                                    console.log(res)
+                                                    let statusCode = res.data.status_code;
+                                                    if (statusCode == 2000000) {
+                                                        wx.showToast({
+                                                            title: '已提交申请',
+                                                            icon: 'success',
+                                                            duration: 2000
+                                                        })
+                                                        if (content == 0) {
+                                                            console.log("申请查看")
+                                                            getMatchList.forEach((x) => {
+                                                                if (x.project_id == project_id) {
+                                                                    x.relationship_button = 0
+                                                                    x.handle_status = 0
+                                                                }
+                                                            })
+                                                            that.setData({
+                                                                getMatchList: getMatchList
+                                                            })
+                                                            console.log(getMatchList)
+                                                        } else if (content == 1) {
+                                                            console.log("重新查看")
+                                                            getMatchList.forEach((x) => {
+                                                                if (x.project_id == project_id) {
+                                                                    x.relationship_button = 0
+                                                                    x.handle_status = 0
+                                                                }
+                                                            })
+                                                            that.setData({
+                                                                getMatchList: getMatchList
+                                                            })
+                                                        } else {
+                                                            that.setData({
+                                                                button_type: 0
+                                                            })
+                                                        }
+                                                    } else if (statusCode == 5005005) {
+                                                        wx.showToast({
+                                                            title: '请勿重复申请',
+                                                            icon: 'success',
+                                                            duration: 2000
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                        } else if (group_id == 19) {
+                                            wx.showModal({
+                                                title: '友情提示',
+                                                content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
+                                                confirmColor: "#333333;",
+                                                showCancel: false,
+                                                success: function (res) {
+                                                    console.log('用户点击确定')
+                                                }
+                                            })
+                                        } else if (group_id == 3) {
+                                            wx.showModal({
+                                                title: '友情提示',
+                                                content: '您的身份是创业者,只有投资人和买方FA才可申请查看项目',
+                                                confirmColor: "#333333;",
+                                                showCancel: false,
+                                                success: function (res) {
+                                                    console.log('用户点击确定')
+                                                }
+                                            })
+
+                                        } else if (group_id == 4) {
+                                            wx.showModal({
+                                                title: '友情提示',
+                                                content: '您的身份是投资机构,只有投资人和买方FA才可申请查看项目',
+                                                confirmColor: "#333333;",
+                                                showCancel: false,
+                                                success: function (res) {
+                                                    console.log('用户点击确定')
+                                                }
+                                            })
+                                        } else if (group_id == 5) {
+                                            wx.showModal({
+                                                title: '友情提示',
+                                                content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
+                                                confirmColor: "#333333;",
+                                                showCancel: false,
+                                                success: function (res) {
+                                                    console.log('用户点击确定')
+                                                }
+                                            })
+                                        } else if (group_id == 7) {
+                                            wx.showModal({
+                                                title: '友情提示',
+                                                content: '您的身份是政府、事业单位、公益组织,只有投资人和买方FA才可申请查看项目',
+                                                confirmColor: "#333333;",
+                                                showCancel: false,
+                                                success: function (res) {
+                                                    console.log('用户点击确定')
+                                                }
+                                            })
+                                        } else if (group_id == 8) {
+                                            wx.showModal({
+                                                title: '友情提示',
+                                                content: '您的身份是其他,只有投资人和买方FA才可申请查看项目',
+                                                confirmColor: "#333333;",
+                                                showCancel: false,
+                                                success: function (res) {
+                                                    console.log('用户点击确定')
+                                                }
+                                            })
+                                        }
                                     }
-                                    })
-                                    that.setData({
-                                    getMatchList: getMatchList
-                                    })
-                                    console.log(getMatchList)
-                                } else if (content == 1) {
-                                    console.log("重新查看")
-                                    getMatchList.forEach((x) => {
-                                    if (x.project_id == project_id) {
-                                        x.relationship_button = 0
-                                        x.handle_status = 0
-                                    }
-                                    })
-                                    that.setData({
-                                    getMatchList: getMatchList
-                                    })
-                                }else{
-                                    that.setData({
-                                    button_type: 0
+                                } else if (status == 3) {
+                                    console.log(status)
+                                    wx.showModal({
+                                        title: '友情提示',
+                                        content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+                                        confirmColor: "#333333;",
+                                        confirmText: "重新认证",
+                                        showCancel: false,
+                                        success: function (res) {
+                                            console.log('用户点击确定')
+                                            wx.navigateTo({
+                                                url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
+                                            })
+                                        }
                                     })
                                 }
-                                } else if(statusCode == 5005005){
-                                wx.showToast({
-                                    title: '请勿重复申请',
-                                    icon: 'success',
-                                    duration: 2000
-                                })
-                                }
                             }
-                            })
-                        } else if (group_id == 19) {
-                            wx.showModal({
-                            title: '友情提示',
-                            content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
-                            confirmColor: "#333333;",
-                            showCancel: false,
-                            success: function (res) {
-                                console.log('用户点击确定')
-                            }
-                            })
-                        } else if (group_id == 3) {
-                            wx.showModal({
-                            title: '友情提示',
-                            content: '您的身份是创业者,只有投资人和买方FA才可申请查看项目',
-                            confirmColor: "#333333;",
-                            showCancel: false,
-                            success: function (res) {
-                                console.log('用户点击确定')
-                            }
-                            })
-
-                        } else if (group_id == 4) {
-                            wx.showModal({
-                            title: '友情提示',
-                            content: '您的身份是投资机构,只有投资人和买方FA才可申请查看项目',
-                            confirmColor: "#333333;",
-                            showCancel: false,
-                            success: function (res) {
-                                console.log('用户点击确定')
-                            }
-                            })
-                        } else if (group_id == 5) {
-                            wx.showModal({
-                            title: '友情提示',
-                            content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
-                            confirmColor: "#333333;",
-                            showCancel: false,
-                            success: function (res) {
-                                console.log('用户点击确定')
-                            }
-                            })
-                        } else if (group_id == 7) {
-                            wx.showModal({
-                            title: '友情提示',
-                            content: '您的身份是政府、事业单位、公益组织,只有投资人和买方FA才可申请查看项目',
-                            confirmColor: "#333333;",
-                            showCancel: false,
-                            success: function (res) {
-                                console.log('用户点击确定')
-                            }
-                            })
-                        } else if (group_id == 8) {
-                            wx.showModal({
-                            title: '友情提示',
-                            content: '您的身份是其他,只有投资人和买方FA才可申请查看项目',
-                            confirmColor: "#333333;",
-                            showCancel: false,
-                            success: function (res) {
-                                console.log('用户点击确定')
-                            }
-                            })
-                        }
-
-                        }
-                    } else if (status == 3) {
-                        console.log(status)
-                        wx.showModal({
-                        title: '友情提示',
-                        content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-                        confirmColor: "#333333;",
-                        confirmText: "重新认证",
-                        showCancel: false,
-                        success: function (res) {
-                            console.log('用户点击确定')
-                            wx.navigateTo({
-                            url: '/pages/my/identity/indentity/indentity?group_id=' + group_id 
-                            })
-                        }
+                        })
+                    } else if (complete == 0) {
+                        //如果有user_id但信息不全则跳companyInfo页面
+                        //  wx.setStorageSync('followed_user_id', followed_user_id)
+                        wx.navigateTo({
+                            url: '/pages/register/companyInfo/companyInfo?type=1'
                         })
                     }
-                    }
-                })
-                } else if (complete == 0) {
-                //如果有user_id但信息不全则跳companyInfo页面
-                //  wx.setStorageSync('followed_user_id', followed_user_id)
-                wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo?type=1'
-                })
+                } else {
+                    //如果没有user_id则跳personInfo
+                    //  wx.setStorageSync('followed_user_id', followed_user_id)
+                    wx.navigateTo({
+                        url: '/pages/register/personInfo/personInfo?type=2'
+                    })
                 }
-            } else {
-                //如果没有user_id则跳personInfo
-            //  wx.setStorageSync('followed_user_id', followed_user_id)
-                wx.navigateTo({
-                url: '/pages/register/personInfo/personInfo?type=2'
-                })
-            }
             },
         });
     },
-    
+
     //初始本地缓存
     globalData: {
         error: 0,
