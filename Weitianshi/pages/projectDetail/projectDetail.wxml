@@ -5,7 +5,7 @@
       <!--名片-->
       <view class="classname">
         <view class="projectDetailTop">
-          <view class="projectDetailBox" bindtap="toMy">
+          <view class="projectDetailBox">
             <view class="flex">
               <view class="describle">{{project.pro_intro}}</view>
               <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
