@@ -27,6 +27,7 @@ Page({
     that.setData({
       user: user
     });
+   
     //融资需求获取数据
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
@@ -176,6 +177,7 @@ Page({
     var financingPage = this.data.financingPage;
     var financingNeedcheck = this.data.financingNeedcheck;
     var financingNeed_end = this.data.financingNeed_end;
+    var user = wx.getStorageSync('user_id');
     financingPage++;
     this.setData({
       financingPage: financingPage
@@ -185,7 +187,8 @@ Page({
       wx.request({
         url: url_common + '/api/project/getMarketProjectList',
         data: {
-          page: financingPage
+          page: financingPage,
+          user_id: user
         },
         method: 'POST',
         success: function (res) {

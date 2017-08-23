@@ -824,6 +824,6 @@ App({
         // url: "https://wx.weitianshi.cn",
         // url_common: "https://www.weitianshi.cn"
         url: "https://wx.dev.weitianshi.cn",
-        url_common: "https://dev.weitianshi.cn"
+        url_common: "https://wx.dev.weitianshi.cn"
     },
 });

@@ -76,9 +76,9 @@
   margin-top: 28rpx;
 }
 
-.choice:last-child {
+/* .choice:last-child {
   margin-bottom: 152rpx;
-}
+} */
 
 /*提示  */
 

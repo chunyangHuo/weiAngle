@@ -1,5 +1,6 @@
 <scroll-view scroll-y="true">
   <!--头部名片-->
+  <view style="color:#fafafa;font-size:1rpx;">1</view>
   <view id="myDetail">
     <view class="weui-panel__bd">
       <!--名片-->
