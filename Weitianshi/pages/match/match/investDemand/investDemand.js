@@ -240,10 +240,10 @@ Page({
                 console.log("检查是否发布过信息")
                 console.log(res)
                 if (res.data.data != '') {
+                    console.log('渣渣')
                     //所选领域部分的数据处理
                     var industry = res.data.data.industry_tag;
                     wx.setStorageSync('industryCurrent1', industry)
-                    console.log(wx.getStorageSync('industryCurrent1'))
                     industryCard.value=[];
                     industry.forEach((x) => {
                         industryCard.value.push(x.industry_name);

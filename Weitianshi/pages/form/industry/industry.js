@@ -18,22 +18,21 @@ Page({
         var current = options.current;
         var industryTags = this.data.industryTags;
 
-        // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
+        // 0:发布融资项目  1:发布投资需求或者身份认证编辑 2:维护我的项目 3:发布投资案例
         //设置模版数据
         if (current == 0) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent0") || wx.getStorageSync("industry");
         } else if (current == 1) {
-          let industryCurrent1 = wx.getStorageSync('industryCurrent1') || wx.getStorageSync("industry");
-          console.log(wx.getStorageSync("industry"))
+          let industryCurrent1 = wx.getStorageSync('industryCurrent1');
             let newIndustry=app.industryDeal(industryCurrent1)
-            console.log(newIndustry)
-            industryTags.tagsData = newIndustry || wx.getStorageSync("industry");
-          if (newIndustry.length == 0){
-            industryTags.tagsData = wx.getStorageSync("industry") 
-          }else{
-            industryTags.tagsData = newIndustry 
-          }
-          console.log(industryTags.tagsData)
+            console.log(111,typeof newIndustry,newIndustry)
+            // industryTags.tagsData = newIndustry || wx.getStorageSync("industry");
+            if (typeof newIndustry=='array'){
+                industryTags.tagsData = newIndustry
+            }else{
+                industryTags.tagsData = wx.getStorageSync("industry");
+            }
+            console.log(industryTags.tagsData)
         } else if (current == 2) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent2") || wx.getStorageSync("industry");
         } else if (current == 3) {

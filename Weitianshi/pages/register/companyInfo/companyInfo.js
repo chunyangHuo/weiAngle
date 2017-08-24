@@ -20,7 +20,6 @@ Page({
         var position = options.user_career;
         var email = options.user_email;
         var user_id = wx.getStorageSync('user_id');
-        console.log(wx.getStorageSync('user_id'));
         wx.request({
             url: url_common + '/api/user/checkUserInfo',
             data: {
@@ -133,11 +132,6 @@ Page({
         var email = this.data.email;
         var user_id = wx.getStorageSync('user_id');
         let type = this.data.type;
-        console.log(type)
-        // console.log(typeof user_id, user_id);
-        // console.log(company);
-        // console.log(position);
-        // console.log(result);
 
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息

@@ -15,7 +15,7 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log("领域,金额,阶段的列表数据调用")
-                console.log(55,res)//所有标签
+                console.log(res)//所有标签
                 var thisData = res.data.data;
                 //添加false
                 that.for(thisData.area);
