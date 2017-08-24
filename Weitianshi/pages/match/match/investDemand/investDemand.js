@@ -211,6 +211,7 @@ Page({
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
                     // 具体描述
                     wx.setStorageSync('y_describe', y_describe)
+                    console.log(y_domainValue)
                     that.setData({
                         domainValue: y_domainValue,
                         domainId: y_domainId,
@@ -225,8 +226,6 @@ Page({
                 }
             },
         })
-
-
         // -------------------------项目领域处理部份---------------------------------
         let industryCard=this.data.industryCard;
         
@@ -244,6 +243,7 @@ Page({
                     //所选领域部分的数据处理
                     var industry = res.data.data.industry_tag;
                     wx.setStorageSync('industryCurrent1', industry)
+                    console.log(wx.getStorageSync('industryCurrent1'))
                     industryCard.value=[];
                     industry.forEach((x) => {
                         industryCard.value.push(x.industry_name);
@@ -260,7 +260,17 @@ Page({
     onShow: function () {
         var that = this;
         //填入所属领域,项目介绍,所在地区
-        var domainValue = wx.getStorageSync('y_domainValue') || "选择领域";
+        var domainValueName = wx.getStorageSync('industryCurrent1');
+        var domainValue = [];
+        if (domainValueName.length == 0){
+          domainValue = "选择领域"
+        }else{
+          domainValueName.forEach((x) => {
+            domainValue.push(x.industry_name)
+          })
+        }
+       
+        console.log(domainValue)
         var domainId = wx.getStorageSync('y_domainId');
         var y_describe = wx.getStorageSync('y_describe');
         var payArea = wx.getStorageSync('y_payArea') || "选择城市";
@@ -269,7 +279,6 @@ Page({
         var payStageId = wx.getStorageSync('y_payStageId');
         var payMoney = wx.getStorageSync('y_payMoney') || "选择金额";
         var payMoneyId = wx.getStorageSync('y_payMoneyId');
- 
         that.setData({
             domainValue: domainValue,
             domainId: domainId,

@@ -43,13 +43,9 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
-     
         wx.removeStorageSync("investor");
-
         //消除人脉缓存
         app.contactsCacheClear();
-
-
         //登录状态维护
         app.loginPage(function (user_id) {
             //console.log("这里是cb函数")
@@ -83,8 +79,8 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-                        //console.log("获取用户投资需求")
-                        //console.log(res)
+                        console.log("获取用户投资需求")
+                        console.log(res)
                         //循环出用户信息
                         var user_industry = [];
                         var user_industryId = [];
@@ -96,6 +92,7 @@ Page({
                         var user_stageId = [];
                         var investor = res.data.data;
                         var industry = investor.industry_tag;
+                        console.log(industry)
                         if (investor != '') {
                             for (var i = 0; i < industry.length; i++) {
                                 user_industry.push(industry[i].industry_name);

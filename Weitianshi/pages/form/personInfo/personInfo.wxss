@@ -2,7 +2,7 @@
 
 .myName {
   background: #fff;
-  width: 100%;
+  width: 95%;
   height: 112rpx;
   min-height: 112rpx;
   max-height: 667px;
@@ -15,7 +15,7 @@
 
 .btn {
   background: #40587a;
-  width: 376px;
+  width: 100%;
   height: 88rpx;
   font-size: 28rpx;
   color: #fff;

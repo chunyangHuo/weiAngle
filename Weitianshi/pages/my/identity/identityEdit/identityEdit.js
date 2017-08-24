@@ -15,7 +15,7 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log("领域,金额,阶段的列表数据调用")
-                console.log(res)//所有标签
+                console.log(55,res)//所有标签
                 var thisData = res.data.data;
                 //添加false
                 that.for(thisData.area);
@@ -113,6 +113,7 @@ Page({
         let invest_info = this.data.invest_info;
         let user_info=this.data.user_info;
         let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
+        console.log("industryCurrent1", industryCurrent1)
         let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
         let stageValue = wx.getStorageSync('payenchangeValue') || [];
         let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
@@ -331,6 +332,7 @@ Page({
         let stage = this.data.stage;
         let scale = this.data.scale;
         let recertification = this.data.recertification;
+        console.log("area",area)
         if (iden_name != '' && iden_company_name != '' && iden_company_career != '') {
             wx.request({
                 url: url_common + '/api/user/saveUserAuthentication',
