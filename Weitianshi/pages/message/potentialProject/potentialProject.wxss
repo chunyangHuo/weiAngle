@@ -413,7 +413,9 @@
   right: 0;
   white-space: nowrap;
 }
-
+.refuseToRead{
+  color: #40587A;
+}
 .agreeToRead {
   color: #40587a;
 }
