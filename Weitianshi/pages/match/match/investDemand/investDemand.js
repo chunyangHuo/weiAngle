@@ -39,8 +39,6 @@ Page({
           url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
-                console.log("领域,金额,阶段的列表数据调用")
-                console.log(res)//所有标签
                 var thisData = res.data.data;
                 //添加false
                 that.for(thisData.area);
@@ -82,8 +80,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log("检查是否发布过信息")
-                console.log(res)
                 if (res.data.data != '') {
                     //获取已存有的投资领域,投资阶段,投资金额,投資地区
                     var thisData = res.data.data;
@@ -93,8 +89,6 @@ Page({
                     var y_area = wx.getStorageSync('hotCity')//地区总数
                     var y_describe = thisData.investor_desc;
                     // var describle = wx.getStorageSync('investor_desc')//具体描述
-                    console.log(y_stage);
-                    console.log(y_describe)
                     
                     // =========================投资领域==========================//
                     var y_domainValue = [];
@@ -211,7 +205,6 @@ Page({
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
                     // 具体描述
                     wx.setStorageSync('y_describe', y_describe)
-                    console.log(y_domainValue)
                     that.setData({
                         domainValue: y_domainValue,
                         domainId: y_domainId,
@@ -237,10 +230,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log("检查是否发布过信息")
-                console.log(res)
                 if (res.data.data != '') {
-                    console.log('渣渣')
                     //所选领域部分的数据处理
                     var industry = res.data.data.industry_tag;
                     wx.setStorageSync('industryCurrent1', industry)
@@ -270,7 +260,6 @@ Page({
           })
         }
        
-        console.log(domainValue)
         var domainId = wx.getStorageSync('y_domainId');
         var y_describe = wx.getStorageSync('y_describe');
         var payArea = wx.getStorageSync('y_payArea') || "选择城市";
@@ -357,7 +346,6 @@ Page({
         var payMoney = this.data.payMoney;
         var payMoneyId = this.data.payMoneyId;
         var user_id = wx.getStorageSync('user_id');
-        // console.log(industryId, payStageId, payMoneyId, payAreaId, y_describe)
         if (industryValue !== "选择领域" && payMoney != "选择金额" && payArea !== "选择城市" && payStage !== "选择阶段") {
             wx.request({
                 url: url + '/api/investors/insertInvestor',

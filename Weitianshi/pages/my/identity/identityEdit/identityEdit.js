@@ -137,7 +137,6 @@ Page({
         })
         //如果是由更改表单某一项内容后返回该页面的话
         if (invest_info){
-            console.log('this is onShow')
             invest_info.invest_industry = industryCurrent1;
             invest_info.invest_scale = newScale;
             invest_info.invest_stage = newStage;
@@ -325,7 +324,6 @@ Page({
         let stage = this.data.stage;
         let scale = this.data.scale;
         let recertification = this.data.recertification;
-        console.log("area",area)
         if (iden_name != '' && iden_company_name != '' && iden_company_career != '') {
             wx.request({
                 url: url_common + '/api/user/saveUserAuthentication',

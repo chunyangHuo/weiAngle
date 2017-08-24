@@ -92,7 +92,6 @@ Page({
                         var user_stageId = [];
                         var investor = res.data.data;
                         var industry = investor.industry_tag;
-                        console.log(industry)
                         if (investor != '') {
                             for (var i = 0; i < industry.length; i++) {
                                 user_industry.push(industry[i].industry_name);
