@@ -786,10 +786,8 @@
             <view class="roundGroupTitle">投资轮次：</view>
             <view class="roundGroupContent">
               <block  wx:for="{{item.user.stage}}" wx:key="{{item.index}}" wx:for-item ='userStage'>
-                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.stage.length-1}}">
-                {{userStage.stage_name}}、</label>  
-                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.stage.length-1}}">
-                {{userStage.stage_name}}</label> 
+                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.stage.length-1}}">{{userStage.stage_name}}、</label>  
+                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.stage.length-1}}">{{userStage.stage_name}}</label> 
               </block>
             </view>
           </view>
