@@ -65,7 +65,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
                 var ownerId = res.data.user_id;
                 //获取user_id
                 app.loginPage(function (user_id) {
@@ -73,7 +72,6 @@ Page({
                         user_id: user_id,
                         avatarUrl: avatarUrl,
                     })
-                    console.log(ownerId, user_id)
                     if (ownerId === user_id) {
                         // 载入买家图谱数据
                         wx.request({
@@ -86,7 +84,6 @@ Page({
                             method: 'POST',
                             success: function (res) {
                                 var investor2 = res.data.data;
-                                console.log('买家图谱', res)
                                 that.setData({
                                     investor2: investor2,
                                     page_end: res.data.page_end
@@ -113,9 +110,6 @@ Page({
                                 var pro_goodness = res.data.data.pro_goodness;
                                 var industy_sort = [];
                                 var firstName = user.user_name.substr(0, 1);
-                                console.log("项目详情")
-                                console.log(res);
-                                console.log(pro_company_name);
                                 // 如果项目亮点字数超出字,刚显示全部按钮
                                 if (pro_goodness.length > 50) {
                                     that.setData({
@@ -161,7 +155,6 @@ Page({
                                 }
                                 tagOfPro.forEach((x, index) => {
                                     tagOfPro[index].tag_name = x.tag_name;
-                                    console.log(tagOfPro[index].tag_name)
                                 })
                                 teamOfPro.forEach((x, index) => {
                                     teamOfPro[index].tag_name = x.tag_name;
@@ -172,7 +165,6 @@ Page({
                                 })
                                 // 融资信息
                                 let pro_history_financeList = project.pro_history_finance;
-                                console.log(pro_history_financeList)
                                 pro_history_financeList.forEach((x, index) => {
                                     pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
                                     pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
@@ -185,7 +177,6 @@ Page({
                                 })
                                 // 里程碑
                                 let mileStoneArray = project.pro_develop;
-                                console.log(project.pro_develop)
                                 mileStoneArray.forEach((x, index) => {
                                     mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
                                     mileStoneArray[index].dh_event = x.dh_event;
@@ -199,18 +190,11 @@ Page({
                                 //一键尽调
                                 //公司信息
                                 let company_name = that.data.pro_company_name;
-                                console.log(company_name)
                                 if (company_name == '') {
                                     that.setData({
                                         nothing: 0
                                     })
                                 }
-                                console.log(company_name)
-                                // let company_name = "阿里巴巴（中国）有限公司";
-                                // let company_name = "上海艺娱信息科技有限公司";
-                                // let company_name = "杭州投着乐网络科技有限公司"
-                                // let company_name = "北京大杰致远信息技术有限公司"
-                                // let company_name = "北京微吼时代科技有限公司"
                                 wx.request({
                                     url: url_common + '/api/dataTeam/getCrawlerCompany',
                                     data: {
@@ -219,17 +203,13 @@ Page({
                                     },
                                     method: 'POST',
                                     success: function (res) {
-                                        console.log("产品信息")
-                                        console.log(res)
                                         let nothing = res.data.data
-                                        console.log(nothing.project_product)
                                         if (nothing == 0) {
                                             that.setData({
                                                 nothing: nothing
                                             })
                                         } else {
                                             let projectInfoList = res.data.data.project_product;
-                                            console.log(projectInfoList)
                                             let company = res.data.data.company;
                                             let com_id = company.com_id;
                                             let com_time = company.company_register_date;
@@ -239,7 +219,6 @@ Page({
                                                     projectInfoList[index] = x;
                                                 })
                                             }
-                                            console.log(projectInfoList)
                                             that.setData({
                                                 company: company,
                                                 time: time,
@@ -254,10 +233,7 @@ Page({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    console.log("项目信息")
-                                                    console.log(res)
                                                     let projectDetailsList = res.data.data;
-                                                    console.log(projectDetailsList)
                                                     if (projectDetailsList.length != 0) {
                                                         let projectDetailsOne = projectDetailsList[0];
                                                         let project_labelList = projectDetailsList[0].project_label;
@@ -265,10 +241,6 @@ Page({
                                                         project_labelArray.forEach((x, index) => {
                                                             project_labelArray[index] = x;
                                                         })
-                                                        console.log("array")
-                                                        console.log(project_labelArray)
-                                                        // let project_labelArrayOne = project_labelArray[0]
-                                                        // let project_views = JSON.parse(projectDetailsList[0].project_views);
                                                         that.setData({
                                                             projectDetailsOne: projectDetailsOne,
                                                             project_labelArray: project_labelArray
@@ -287,8 +259,6 @@ Page({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    console.log("工商变更")
-                                                    console.log(res)
                                                     // 变更信息
                                                     let brandInfoList = res.data.data.brand;
                                                     let companyChangeList = res.data.data.company_change;
@@ -320,7 +290,6 @@ Page({
                                                 method: 'POST',
                                                 success: function (res) {
                                                     let teamList = res.data.data;
-                                                    console.log(teamList)
                                                     teamList.forEach((x, index) => {
                                                         teamList[index].team_member_name = x.team_member_name;
                                                     })
@@ -337,8 +306,6 @@ Page({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    console.log("历史融资")
-                                                    console.log(res)
                                                     let historyFinance = res.data.data;
                                                     historyFinance.forEach((x, index) => {
                                                         historyFinance[index].history_financing_money = x.history_financing_money;
@@ -360,7 +327,6 @@ Page({
                                                 method: 'POST',
                                                 success: function (res) {
                                                     let mileStone = res.data.data;
-                                                    console.log(mileStone)
                                                     mileStone.forEach((x, index) => {
                                                         mileStone[index].milestone_event = x.milestone_event;
                                                         mileStone[index].milestone_time = app.changeTimeStyle(x.milestone_time);
@@ -378,10 +344,7 @@ Page({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    console.log("新聞")
-                                                    console.log(res)
                                                     let newsList = res.data.data;
-                                                    console.log(newsList)
                                                     newsList.forEach((x, index) => {
                                                         newsList[index].project_news_label = x.project_news_label;
                                                         newsList[index].source = x.source;
@@ -401,8 +364,6 @@ Page({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    console.log("竞品")
-                                                    console.log(res)
                                                     let competeList = res.data.data;
                                                     competeList.forEach((x, index) => {
                                                         competeList[index].source = x.source;
@@ -467,7 +428,6 @@ Page({
         var user_id = this.data.user_id;
         var id = this.data.id;
         var currentPage = this.data.currentPage;
-        console.log(this.data)
         var request = {
             url: url_common + '/api/project/getProjectMatchInvestors',
             data: {
@@ -497,7 +457,6 @@ Page({
             title: title,
             path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
             success: function (res) {
-                console.log(res)
             },
             fail: function (res) {
                 console.log(res)
@@ -528,7 +487,6 @@ Page({
     //查看全部
     checkMore: function (e) {
         let id = e.target.dataset.id;
-        console.log(id)
         if (id == 1) {
             this.setData({
                 companyMileStoneMore: 1
@@ -556,7 +514,6 @@ Page({
     // 折叠
     noCheckMore: function (e) {
         let id = e.target.dataset.id;
-        console.log(id)
         if (id == 1) {
             this.setData({
                 companyMileStoneMore: 0
@@ -592,7 +549,6 @@ Page({
         let that = this;
         let user_id = wx.getStorageSync('user_id');
         let companyName = that.data.pro_company_name;
-        console.log(that.data)
         wx.navigateTo({
             url: '/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id,
         })
@@ -602,7 +558,6 @@ Page({
     },
     // 查看bp
     sendBp: function () {
-        console.log(this.data.checkEmail)
         let that = this;
         let user_id = wx.getStorageSync("user_id");
         wx.request({
@@ -631,7 +586,6 @@ Page({
     // 更改邮箱
     writeBpEmail: function (e) {
         let userEmail = e.detail.value;
-        console.log(userEmail)
         if (userEmail) {
             this.setData({
                 checkEmail: true,
@@ -652,7 +606,6 @@ Page({
         let project_id = that.data.id;
         let userEmail = that.data.userEmail;
         let companyName = that.data.company_name;
-        console.log(companyName)
         let user_id = wx.getStorageSync('user_id');
         // index 0:发送BP; 
         if (index == 0) {
@@ -666,11 +619,9 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-                        console.log(res)
                         that.setData({
                             userEmail: userEmail
                         })
-                        console.log(userEmail)
                         if (res.data.status_code == 2000000) {
                             wx.request({
                                 url: url_common + '/api/mail/sendBp',
@@ -680,14 +631,13 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log(res)
                                 }
                             })
                             that.setData({
                                 sendPc: 0
                             })
                         } else {
-                            console.log("fail")
+                            console.log(res)
                         }
                     }
                 })
@@ -702,7 +652,6 @@ Page({
     },
     // 取消
     bpModalCancel: function (options) {
-        console.log(options)
         let index = options.currentTarget.dataset.index;
         let that = this;
         let sendPc = that.data.sendPc;
@@ -718,7 +667,6 @@ Page({
     },
     // 项目详情-里程碑 查看全部
     moreInfo: function (e) {
-        console.log(e)
         let id = e.target.dataset.id;
         let that = this;
         if (id == 3) {
@@ -757,10 +705,7 @@ Page({
     },
     //项目详情页面,申请查看跳转列表
     applyPerson: function (e) {
-        console.log(e)
         let proid = e.target.dataset.proid;
-        console.log(proid)
-        console.log("跳转到页面")
         wx.navigateTo({
             url: '/pages/message/applyPerson/applyPerson?id=' + proid,
         })

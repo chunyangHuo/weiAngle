@@ -45,10 +45,7 @@ Page({
           url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
-                console.log("各种条目分类")
-                console.log(res)
                 var thisData = res.data.data;
-                console.log(thisData)
                 wx.setStorageSync('area', thisData.area);
                 wx.setStorageSync('industry', thisData.industry);
                 wx.setStorageSync('scale', thisData.scale);
@@ -58,7 +55,6 @@ Page({
                 var stage = wx.getStorageSync('stage');
                 var expect_arry = [];
                 var stage_arry = [];
-                // console.log(scale, stage);
                 scale.unshift({
                     scale_id: 0,
                     scale_money: "选择融资"
@@ -101,7 +97,6 @@ Page({
         var cityNum = wx.getStorageSync('cityNum');
         // 项目亮点
         var pro_goodness = wx.getStorageSync('pro_goodness');
-        // console.log(industryValue, industryId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
 
         // ------------------项目领域数据处理--------------------------------
         var industryCard = this.data.industryCard;
@@ -176,7 +171,6 @@ Page({
             showCancel: true,
             confirmText:"扫一扫",
             success: function (res) {
-                // console.log('用户点击确定')
                 if (res.confirm) {
                     wx.scanCode({
                         success: function (res) {
@@ -229,7 +223,6 @@ Page({
         var console_expect = this.data.expect[this.data.expect_index].scale_id;
         var tips = this.data.tips_index;
         var user_id = app.globalData.user_id;
-        // console.log(user_id, describe, industryId, console_stage, console_expect, provinceNum, cityNum, tips)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
             wx.request({
                 url: url_common + '/api/project/createProject',
@@ -246,7 +239,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
                     if (res.data.status_code == 2000000) {
                         //数据清空
                         wx.setStorageSync('project_id', res.data.project_id);
@@ -268,44 +260,7 @@ Page({
                 },
             })
         } else {
-            console.log(6);
             rqj.errorHide(that, "请完整填写信息", 1500)
-            // var errorTime = setTimeout(function () {
-            //     that.setData({
-            //         error: "0"
-            //     });
-            //     console.log('提示已消失')
-            // }, 1500);
-
-            // if (describe == "") {
-            //     that.setData({
-            //         error_text: "介绍不能为空"
-            //     })
-            // } else if (industryId == 0) {
-            //     that.setData({
-            //         error_text: "领域不能为空"
-            //     })
-            // } else if (console_stage == 0) {
-            //     that.setData({
-            //         error_text: "轮次不能为空"
-            //     })
-            // } else if (console_expect == 0) {
-            //     that.setData({
-            //         error_text: "金额不能为空"
-            //     })
-            // } else if (provinceNum == 0 || cityNum == 0) {
-            //     that.setData({
-            //         error_text: "地区不能为空"
-            //     })
-            // } else if (tips == 4) {
-            //     that.setData({
-            //         error_text: "请选择是否独家"
-            //     })
-            // } else if (pro_goodness == "") {
-            //     that.setData({
-            //         error_text: "请填写项目亮点"
-            //     })
-            // }
         }
     },
 });

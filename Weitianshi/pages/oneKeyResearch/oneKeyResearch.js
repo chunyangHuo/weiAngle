@@ -75,7 +75,6 @@ Page({
               method: 'POST',
               success: function (res) {
                 var investor2 = res.data.data;
-                console.log('买家图谱', res)
                 that.setData({
                   investor2: investor2,
                   page_end: res.data.page_end
@@ -97,8 +96,6 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     var project = res.data.data;
-                    console.log("项目详情")
-                    console.log(res);
                     var user = res.data.user;
                     let count = project.count;
                     var pro_company_name = project.pro_company_name;
@@ -191,7 +188,6 @@ Page({
                         }
                         //公司信息
                         let company_name = that.data.pro_company_name;
-                        console.log(company_name)
                         if (company_name) {
                             wx.request({
                                 url: url_common + '/api/dataTeam/getCrawlerCompany',
@@ -201,8 +197,6 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log("产品信息")
-                                    console.log(res)
                                     // 有company_name却找不到一键尽调和有company_name能找到一键尽调
                                     if(res.data.data.length===0){
                                         that.setData({
@@ -267,8 +261,6 @@ Page({
                                             },
                                             method: 'POST',
                                             success: function (res) {
-                                                console.log("工商变更")
-                                                console.log(res)
                                                 // 变更信息
                                                 let brandInfoList = res.data.data.brand;
                                                 let companyChangeList = res.data.data.company_change;
@@ -431,7 +423,6 @@ Page({
     },
     //进入投资人用户详情
     detail(e) {
-      console.log(e)
         var id = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
@@ -534,7 +525,6 @@ Page({
         let that = this;
         let user_id = wx.getStorageSync('user_id');
         let companyName = that.data.pro_company_name;
-        console.log(that.data)
         wx.navigateTo({
             url: '/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id,
         })
@@ -655,7 +645,6 @@ Page({
                 rqj.errorHide(that, '请正确填写邮箱', 1000)
             }
         } else if (index == 1) {
-            console.log(companyName)
             let companyName = that.data.companyName;
             let project = that.data.project;
             project.pro_company_name = companyName;
@@ -944,10 +933,7 @@ Page({
     },
     //项目详情页面,申请查看跳转列表
     applyPerson: function (e) {
-        console.log(e)
         let proid = e.target.dataset.proid;
-        console.log(proid)
-        console.log("跳转到页面")
         wx.navigateTo({
             url: '/pages/message/applyPerson/applyPerson?id=' + proid,
         })
@@ -958,7 +944,6 @@ Page({
       var user_id = this.data.user_id;
       var id = this.data.id;
       var currentPage = this.data.currentPage;
-      console.log(this.data)
       var request = {
         url: url_common + '/api/project/getProjectMatchInvestors',
         data: {

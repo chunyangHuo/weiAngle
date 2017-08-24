@@ -28,7 +28,6 @@ Page({
     },
     //下拉刷新
     onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
     onShow: function () {
@@ -58,11 +57,9 @@ Page({
     //手机号码验证
     checkPhone: function (e) {
         var temp = e.detail.value;
-        console.log(temp)
         var myreg = /^(1+\d{10})|(159+\d{8})|(153+\d{8})$/;
         var that = this;
         if (!myreg.test(temp)) {
-            // console.log('请输入有效的手机号码！');
             that.setData({
                 result: "0"
             })
@@ -104,8 +101,6 @@ Page({
                             })
                         }
                     }, 1000)
-                    console.log(_time)
-                    console.log(typeof _time)
                     that.setData({
                         _time: _time
                     })
@@ -135,7 +130,6 @@ Page({
         that.setData({
             checkCode: e.detail.value
         });
-        // console.log(e.detail.value)
     },
     //点击跳转
     nextPage: function () {
@@ -151,7 +145,6 @@ Page({
                 var checkCode = that.data.checkCode;
                 var code = res.code;
                 var open_session = app.globalData.open_session;
-                // console.log(name, telephone, checkCode, code);
 
                 if (!name) {
                     rqj.errorHide(that, '姓名不能为空', 3000)

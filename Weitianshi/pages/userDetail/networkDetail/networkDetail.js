@@ -52,7 +52,6 @@ Page({
                         blue: 1
                     })
                 }
-                // console.log(that.data.blue)
                 that.setData({
                     user: user,
                     invest: invest,
@@ -100,7 +99,6 @@ Page({
         var followed_user_id = this.data.user_id;//当前用户的
         let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
         let button_type = this.data.button_type;
-        console.log(button_type)
         // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
         //判断用户信息是否完整
         wx.request({
@@ -123,7 +121,6 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log(res)
                                     console.log("正常申请添加人脉")
                                     that.setData({
                                         button_type: 2
@@ -146,7 +143,6 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log(res)
                                     console.log("同意申請")
                                     that.setData({
                                         button_type: 1
@@ -163,8 +159,6 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log("这里是单方人脉添加")
-                                    console.log(res)
                                     that.setData({
                                         button_type: 1
                                     })
@@ -234,10 +228,7 @@ Page({
     },
     // 推送项目
     pushProjectTo:function(options){
-      console.log(options)
       var personId = this.data.user_id;
-      console.log("我进入跳转页面啦")
-      // var share_id = this.data.share_id;
       let view_id = this.data.view_id;
       var push_id = this.data.followed_user_id;
       wx.request({

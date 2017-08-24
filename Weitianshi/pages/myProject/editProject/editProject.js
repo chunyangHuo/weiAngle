@@ -29,9 +29,6 @@ Page({
         }
     },
     onLoad: function (options) {
-        console.log("onload industryCurrent2")
-        console.log(wx.getStorageSync("industryCurrent2"))
-        console.log(options)
         var that = this;
         var user_id = options.user_id;
         var pro_id = options.pro_id;
@@ -41,7 +38,6 @@ Page({
         var scaleValue = [];
         var scaleId = [];
         var industryCard = this.data.industryCard;
-        console.log(this.data.belongArea)
         // 为项目阶段picker和期望融资pikcer做准备
         var scale = wx.getStorageSync("scale");
         var stage = wx.getStorageSync("stage");
@@ -82,7 +78,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
                 var theData = res.data.data;
                 var describe = theData.pro_intro;
                 var industry = theData.pro_industry;
@@ -100,7 +95,6 @@ Page({
                 wx.setStorageSync('m_cityNum', cityNum)
                 wx.setStorageSync('m_belongArea', belongArea)
                 wx.getStorageSync('belongArea')
-                console.log(provinceNum, cityNum, belongArea, pro_goodness)
                 //----------------------------项目领域进行处理----------------------
                 if (industry) {
                     industry.forEach((x) => {
@@ -110,13 +104,11 @@ Page({
                 }
                 industryCurrent2.forEach((x) => {
                     if (industryValue.indexOf(x.industry_name) != -1) {
-                        console.log(x.industry_name)
                         x.check = true;
                     }
                 })
                 industryCard.value = industryValue;
                 industryCard.id = industryId;
-                console.log(industryValue)
                 wx.setStorageSync("industryCurrent2", industryCurrent2)
 
                 that.setData({
@@ -130,7 +122,6 @@ Page({
                     cityNum: cityNum,
                     pro_goodness: pro_goodness
                 })
-                console.log(belongArea)
             },
             fail: function (res) {
                 wx.showToast({
@@ -140,12 +131,9 @@ Page({
         })
     },
     onShow: function () {
-        console.log("onshow industryCurrent2")
-        console.log(wx.getStorageSync("industryCurrent2"))
         var that = this;
         if (wx.getStorageSync("m_belongArea") != '') {
             var belongArea = wx.getStorageSync('m_belongArea');
-            console.log(belongArea);
         }
         var provinceNum = wx.getStorageSync("m_provinceNum");
         var cityNum = wx.getStorageSync('m_cityNum');
@@ -154,7 +142,6 @@ Page({
         var industryCurrent2 = wx.getStorageSync("industryCurrent2");
         var industryCard = this.data.industryCard;
         if (industryCurrent2) {
-            console.log(2)
             var industryValue = [];
             var industryId = [];
             industryCurrent2.forEach((x) => {
@@ -171,7 +158,6 @@ Page({
             })
         }
         if (cityNum) {//如果取到了cityNum
-            // console.log(cityNum)
             this.setData({
                 provinceNum: provinceNum,
                 cityNum: cityNum,
@@ -207,13 +193,11 @@ Page({
         wx.navigateTo({
             url: '/pages/form/industry/industry?current=' + 2
         })
-        console.log(wx.getStorageSync("industryCurrent2"));
     },
 
     //是否独家的效果实现
     tipsOn: function (e) {
         var that = this;
-        console.log(e.target.dataset)
         that.setData({
             tipsIndex: e.target.dataset.tipsIndex
         })
@@ -237,7 +221,6 @@ Page({
         var cityNum = this.data.cityNum;//二级地区
         var provinceNum = wx.getStorageSync("m_provinceNum");
         var cityNum = wx.getStorageSync('m_cityNum')
-        console.log(provinceNum, cityNum)
         wx.navigateTo({
             url: '/pages/form/area1/area1?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum
         })
@@ -267,11 +250,9 @@ Page({
                 if (res.confirm) {
                     wx.scanCode({
                         success: function (res) {
-                            // console.log(res);
                             var user_id = wx.getStorageSync("user_id");//用戶id
                             var credential = res.result;//二维码扫描信息
                             var project_id = that.data.pro_id;
-                            console.log(project_id);
                             wx.request({
                                 url: app.globalData.url_common + '/api/auth/writeUserInfo',
                                 data: {
@@ -331,7 +312,6 @@ Page({
         this.setData({
             upLoad: 1
         })
-        console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4 && pro_goodness !== "") {
             //保存项目更改
             that.updata(that)
@@ -356,7 +336,6 @@ Page({
 
     //更新项目
     updata(that) {
-        console.log(1)
         var user_id = wx.getStorageSync('user_id');
         var pro_id = that.data.pro_id;
         var describe = that.data.describe;
@@ -372,7 +351,6 @@ Page({
         var tipsIndex = that.data.tipsIndex;
         var pro_goodness = that.data.pro_goodness;
         var upLoad = that.data.upLoad;
-        // console.log(2222)
         wx.request({
           url: url_common + '/api/project/updateProject',
             data: {
@@ -392,12 +370,10 @@ Page({
                 wx.removeStorageSync("industryCurrent2");
                 if (res.status_code = 2000000) {
                     if (upLoad == 1) {
-                        console.log("yes");
                         wx.navigateBack({//页面返回
                             delta: 2 // 回退前 delta(默认为1) 页面
                         })
                     }
-                    console.log(2);
                 } else {
                     wx.showToast({
                         title: res.status_code

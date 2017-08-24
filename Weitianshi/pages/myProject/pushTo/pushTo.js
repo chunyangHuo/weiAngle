@@ -7,12 +7,10 @@ Page({
     data: {
         dataList: {
             tagsData: ''
-            // bindEvent: "checkboxChange"
         },
         clicked: false,
     },
     onLoad: function (options) {
-        // pushed_user_id == 推送给谁
         let pushed_user_id = options.pushId;
         let that = this;
         that.setData({
@@ -40,7 +38,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
                 let dataList = res.data.data;
                 let pushTimes = res.data.push_times;
                 var page_end = res.data.page_end;
@@ -67,7 +64,6 @@ Page({
     },
     //点击选中标签
     checkboxChange(e) {
-        console.log(e)
         let overTime = this.data.pushTimes.remain_times;
         let dataList = this.data.dataList;
         let that = this;
@@ -81,7 +77,6 @@ Page({
                 checkedNum++
             }
         })
-        console.log(checkedNum)
         if (overTime != 0) {
             if (checkedNum > 5) {
                 dataList[index].check = !dataList[index].check;
@@ -116,7 +111,6 @@ Page({
         let remainTimes = time.remain_times;
         let that = this;
         let checkObject = this.data.checkObject;
-        console.log(checkObject)
         let projectList = []
         if (checkObject) {
             checkObject.forEach((x) => {

@@ -27,7 +27,6 @@ Page({
     // 用户详情
     userDetail: function (e) {
         var id = e.currentTarget.dataset.id
-        console.log(id);
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
@@ -122,7 +121,6 @@ Page({
     },
     //下拉刷新
     onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新");
         wx.stopPullDownRefresh()
     }
 })

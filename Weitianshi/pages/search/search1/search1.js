@@ -14,7 +14,6 @@ Page({
     let that = this;
     let company = options.company;
     let user_id = options.user_id;
-    console.log(options)
     let type = options.type;
     that.setData({
       company_name: company,
@@ -28,7 +27,6 @@ Page({
   },
   //获取输入内容
   inputValue: function (e) {
-    console.log(e)
     let companyName = e.detail.value;
     let that = this;
     that.setData({
@@ -40,7 +38,6 @@ Page({
     let that = this;
     let company_name = this.data.company_name;
     var user_id = wx.getStorageSync('user_id');
-    console.log(company_name);
     let com_id = this.data.com_id;
     wx.request({
       url: url_common + '/api/dataTeam/selectCompany',
@@ -50,7 +47,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let company = res.data.data;
         that.setData({
           company: company,
@@ -61,10 +57,8 @@ Page({
   },
   // 选择其中的一个
   checkOne: function (e) {
-    console.log(e)
     let tags = e.currentTarget.dataset.id;
     let company_name = e.currentTarget.dataset.name;
-    console.log(company_name)
     let that = this;
     that.setData({
       com_id: tags,
@@ -74,7 +68,6 @@ Page({
   },
   // 保存公司名称
   save: function () {
-    console.log("保存")
     let that = this;
     let type = this.data.type;
     let user_id = this.data.user_id;
@@ -99,14 +92,12 @@ Page({
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
       let project = prevPage.data.project;
-      console.log(project)
       let companyName = this.data.company_name;
       project.pro_company_name = companyName;
       let id = project.project_id;
       let options = {
         id: id
       };
-      console.log(companyName)
       if (companyName != '') {
         wx.request({
           url: url_common + '/api/project/updateProjectByField',
@@ -117,7 +108,6 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
             prevPage.setData({
               project: project,
               options: {
@@ -125,7 +115,6 @@ Page({
                 companyName: companyName
               }
             })
-            console.log(project)
             wx.navigateBack({
               delta: 1
             })

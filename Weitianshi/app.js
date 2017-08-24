@@ -21,7 +21,6 @@ App({
                             success(res) {
                                 let encryptedData = res.encryptedData;
                                 let iv = res.iv;
-                                console.log(code, path, encryptedData, iv, url)
                                 //向后台发送信息
                                 wx.request({
                                     url: url_common + '/api/log/clickLogRecord',
@@ -33,7 +32,6 @@ App({
                                     },
                                     method: "POST",
                                     success(res) {
-                                        console.log(res)
                                     }
                                 })
                             }
@@ -73,7 +71,6 @@ App({
             }
         });
     },
-
     onError: function (msg) {
         console.log(msg)
     },
@@ -86,20 +83,16 @@ App({
              withShareTicket: true
          })*/
         if (this.globalData.open_session) {
-            console.log("open_session已经存在")
             var timeNow = Date.now();
             var session_time = this.globalData.session_time;
             var differenceTime = timeNow - session_time;
-            // console.log(differenceTime/3600000+"小时")
             if (differenceTime > 432000000) {//432000000代表2个小时
                 console.log("已超时")
                 this.getSession(cb)
             } else {
-                console.log("未超时")
                 typeof cb == "function" && cb(this.globalData.user_id)
             }
         } else {
-            console.log("open_session不存在")
             this.getSession(cb)//赋值 在这里
         }
     },
@@ -116,8 +109,6 @@ App({
                 wx.getUserInfo({
                     //用户授权
                     success: function (res) {
-                        console.log("调用wx.getUserInfo成功")
-                        // console.log(res)
                         that.globalData.userInfo = res.userInfo;//这里,赋完值函数就结束了
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
@@ -135,8 +126,6 @@ App({
                                 that.globalData.open_session = res.data.open_session;
                                 that.globalData.session_time = Date.now();
                                 that.globalData.user_id = res.data.user_id;
-                                console.log(Date(that.globalData.session_time))
-                                // console.log(that.globalData.user_id)
                                 wx.setStorageSync("user_id", res.data.user_id)
                                 typeof cb == "function" && cb(wx.getStorageSync("user_id"))
                             },
@@ -159,7 +148,6 @@ App({
                                 that.globalData.open_session = res.data.open_session;
                                 that.globalData.session_time = Date.now();
                                 that.globalData.user_id = res.data.user_id;
-                                console.log(Date(that.globalData.session_time))
                                 wx.setStorageSync("user_id", res.data.user_id)
                                 typeof cb == "function" && cb(wx.getStorageSync("user_id"))
                             },
@@ -204,7 +192,6 @@ App({
                             //如果已经存在session_time就进行比较,如果不没有就建一个session_time;
                             if (that.globalData.session_time) {
                                 var timeNow = new (Date.now())
-                                console.log(that.globalData.session_time, timeNow)
                             } else {
                                 that.checkLogin(that);
                             }
@@ -227,7 +214,6 @@ App({
             title: "提示",
             content: "请先绑定个人信息",
             success: function (res) {
-                console.log(res)
                 if (res.confirm == true) {
                     wx.navigateTo({
                         url: '/pages/register/personInfo/personInfo',
@@ -251,7 +237,7 @@ App({
             path: path,
             //分享成功后的回调
             success: function (res) {
-                console.log("分享成功")
+                console.log("shareProjectPage分享成功")
                 let shareTicket = res.shareTickets[0];
                 //获取code
                 wx.login({
@@ -277,7 +263,7 @@ App({
                                                 iv: iv
                                             },
                                             success(res) {
-                                                console.log(res)
+                                                console.log('分享页面后台记录成功',res)
                                             }
                                         })
                                     },
@@ -293,7 +279,7 @@ App({
                                         path: path,
                                     },
                                     success(res) {
-                                        console.log(res)
+                                        console.log('分享页面后台记录成功',res)
                                     }
                                 })
                             }
@@ -315,7 +301,7 @@ App({
             path: path,
             //分享成功后的回调
             success: function (res) {
-                console.log("分享成功")
+                console.log("sharePage分享成功")
                 let shareTicket = res.shareTickets[0];
                 //获取code
                 wx.login({
@@ -341,7 +327,7 @@ App({
                                                 iv: iv
                                             },
                                             success(res) {
-                                                console.log(res)
+                                                console.log('分享页面后台记录成功',res)
                                             }
                                         })
                                     },
@@ -357,7 +343,7 @@ App({
                                         path: path,
                                     },
                                     success(res) {
-                                        console.log(res)
+                                        console.log('分享页面后台记录成功',res)
                                     }
                                 })
                             }
@@ -380,8 +366,6 @@ App({
             },
             method: 'POST',
             success: function (res) {
-                // console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                // console.log(res);
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
                     if (complete == 1) {
@@ -406,11 +390,9 @@ App({
 
     //industry多选标签数据预处理
     industryDeal(data) {
-        console.log('industryDeal',data)
         if (data.length > 0) {
             let industry = wx.getStorageSync('industry');
             let newIndustry = industry;
-            console.log(typeof newIndustry)
             newIndustry.forEach(x => {
                 data.forEach(y => {
                     if (x.industry_name == y.industry_name) {
@@ -418,7 +400,6 @@ App({
                     }
                 })
             })
-            console.log(typeof newIndustry)
             return newIndustry
         } else {
             return data
@@ -476,9 +457,7 @@ App({
                         data: request.data,
                         method: 'POST',
                         success: function (res) {
-                            console.log(res)
                             var newPage = res.data.data;
-                            console.log(newPage);
                             var page_end = res.data.page_end;
                             for (var i = 0; i < newPage.length; i++) {
                                 dataSum.push(newPage[i])
@@ -629,7 +608,6 @@ App({
                                     var group_id = res.data.group.group_id;
                                 }
                                 if (status == 0) {
-                                    console.log(status)
                                     wx.showModal({
                                         title: '友情提示',
                                         content: '认证的投资人,买方FA才可申请查看项目',
@@ -647,7 +625,6 @@ App({
                                         }
                                     })
                                 } else if (status == 1) {
-                                    console.log(status)
                                     wx.showModal({
                                         title: '友情提示',
                                         content: '您的身份正在审核中,只有投资人和买方FA才可申请查看项目',
@@ -670,8 +647,6 @@ App({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    console.log("申请查看");
-                                                    console.log(res)
                                                     let statusCode = res.data.status_code;
                                                     if (statusCode == 2000000) {
                                                         wx.showToast({

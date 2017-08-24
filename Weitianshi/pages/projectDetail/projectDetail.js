@@ -17,7 +17,6 @@ Page({
         textBeyond1: false,//项目亮点的全部和收起是否显示标志
     },
     onLoad: function (options) {
-        console.log(options)
         var that = this;
         var id = options.id;//当前被查看用户的项目id
         var page = this.data.page;
@@ -30,15 +29,12 @@ Page({
         //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
         if (!options.share_id) {
             user_id = wx.getStorageSync('user_id');//获取我的user_id==view_id
-            console.log(2, user_id)
             that.setData({
                 user_id: user_id,
             })
             that.getInfo(that, user_id, that.data.id)
         } else {
             app.loginPage(function (user_id) {
-                console.log("这里是cb函数")
-                console.log(3, user_id)
                 that.setData({
                     user_id: user_id,
                 })
@@ -56,28 +52,23 @@ Page({
 
     // 用户详情
     userDetail: function (e) {
-        console.log(e);
         var id = e.currentTarget.dataset.id
-        console.log(id)
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
     },
     //下拉刷新
     onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
     //分享当前页面
     onShareAppMessage: function () {
-        console.log("分享页面内容")
         var pro_intro = this.data.project.pro_intro;
         //id :当前页面的项目id
         let id = this.data.id;
         let share_id = this.data.currentUser;
         let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
         let title = pro_intro;
-        console.log(path)
         return app.shareProjectPage(id, title, share_id)
     },
     // 项目详情中的显示全部
@@ -95,7 +86,6 @@ Page({
     toAccreditation: function () {
         let status = this.data.status;
         let user_id = wx.getStorageSync('user_id');
-        console.log(wx.getStorageSync('user_id'))
         wx.request({
             url: url_common + '/api/user/checkUserInfo',
             data: {
@@ -103,8 +93,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
-                console.log('status',status)
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
                     if (complete == 1) {
@@ -154,7 +142,6 @@ Page({
     },
     // 申请查看
     applyProject: function (options) {
-        console.log("申请查看")
         let id = options.currentTarget.dataset.id;
         let that = this;
         let user_id = this.data.user_id;
@@ -174,11 +161,9 @@ Page({
                 success: function (res) {
                     // 0:未认证1:待审核 2 审核通过 3审核未通过
                     let status = res.data.status;
-                    console.log(res)
                     that.setData({
                         status: status
                     })
-                    console.log('buttonType', status)
                 }
             })
         } else {
@@ -195,7 +180,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(1, res)
                 // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
                 var project = res.data.data;
                 var user = res.data.user;
@@ -256,7 +240,6 @@ Page({
                     // 核心团队
                     if (project.core_users) {
                         let core_memberArray = project.core_users;
-                        console.log(project)
                         core_memberArray.forEach((x, index) => {
                             core_memberArray[index] = x;
                         })
@@ -277,7 +260,6 @@ Page({
                     }
                     tagOfPro.forEach((x, index) => {
                         tagOfPro[index].tag_name = x.tag_name;
-                        console.log(tagOfPro[index].tag_name)
                     })
                     that.setData({
                         tagOfPro: tagOfPro
@@ -290,7 +272,6 @@ Page({
                     })
                     // 融资信息
                     let pro_history_financeList = project.pro_history_finance;
-                    console.log(pro_history_financeList)
                     pro_history_financeList.forEach((x, index) => {
                         pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
                         pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
@@ -414,7 +395,6 @@ Page({
         let project_id = that.data.id;
         let userEmail = that.data.userEmail;
         let companyName = that.data.company_name;
-        console.log(companyName)
         let user_id = wx.getStorageSync('user_id');
         // index 0:发送BP;  1:完善公司信息
         if (index == 0) {

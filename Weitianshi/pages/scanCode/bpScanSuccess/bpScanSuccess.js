@@ -20,18 +20,6 @@ Page({
     // 页面关闭
   },
   route: function () {
-    // wx.switchTab({
-    //   url: '/pages/match/match/match/match',
-    //   success: function (res) {
-    //     // success
-    //   },
-    //   fail: function () {
-    //     // fail
-    //   },
-    //   complete: function () {
-    //     // complete
-    //   }
-    // })
     wx.navigateBack({
       delta: 2  // 回退前 delta(默认为1) 页面
     })

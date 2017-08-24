@@ -45,7 +45,6 @@ Page({
         this.setData({
             contactsFilter1:checkObject
         })
-        console.log(checkObject)
     },
 
     //轮次选择
@@ -82,7 +81,6 @@ Page({
     certain(){
       var that = this;
       var user_id = this.data.user_id;
-        console.log(this.data.industryTags, this.data.stageTags)
         //将有标记的领域和轮次对象存入缓存
         wx.setStorageSync("contactsIndustry", this.data.industryTags.tagsData);
         wx.setStorageSync("contactsStage", this.data.stageTags.tagsData);

@@ -14,7 +14,6 @@ Page({
     //onLoad
     onLoad: function (options) {
         var that = this;
-        console.log(options)
         var type = options.type;
         var company = options.user_company;
         var position = options.user_career;
@@ -27,7 +26,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                // console.log(res);
                 var complete = res.data.is_complete;
                 if (res.data.status_code == 2000000 || res.data.status_code == 0) {
                     that.setData({
@@ -56,7 +54,6 @@ Page({
     },
     //下拉刷新
     onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
     //公司项的特殊符号过滤和值的双向绑定
@@ -65,7 +62,6 @@ Page({
         var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
         var rs = "";
         var company = e.detail.value;
-        // console.log(company)
         for (var i = 0; i < company.length; i++) {
             rs = rs + company.substr(i, 1).replace(pattern, '');
         }
@@ -88,7 +84,6 @@ Page({
         var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
         var rs = "";
         var position = e.detail.value;
-        // console.log(position)
         for (var i = 0; i < position.length; i++) {
             rs = rs + position.substr(i, 1).replace(pattern, '');
         }
@@ -102,7 +97,6 @@ Page({
         var that = this;
         var temp = e.detail.value;
         var email = this.data.email;
-        console.log(temp)
         var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
         if (!myreg.test(temp) && temp !== '') {
             console.log('请输入有效的E_mail！');
@@ -114,7 +108,6 @@ Page({
                 result: "1"
             })
         }
-        // console.log(temp);
         that.setData({
             email: temp
         })
@@ -124,7 +117,6 @@ Page({
     backHome: function () {
         var that = this;
         var company = this.data.company;
-        console.log(company)
         var position = this.data.position;
         var result = this.data.result;
         var error = this.data.error;
@@ -135,7 +127,6 @@ Page({
 
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
-            console.log(company)
             wx.request({
               url: url_common + '/api/user/updateUser',
                 data: {
@@ -146,20 +137,14 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
                     let pages = getCurrentPages()
-                    console.log(pages)
                     let num = pages.length - 1;
-                    console.log(num)
                     if (res.data.status_code == 2000000) {
                         var followed_user_id = wx.getStorageSync('followed_user_id');
-                        console.log(followed_user_id);
                         if (followed_user_id) {
                             var driectAdd = wx.getStorageSync("driectAdd");
-                            console.log(driectAdd)
                             if (driectAdd) {
                                 //直接添加为好友
-                                console.log(user_id,followed_user_id)
                                 wx.request({
                                     url: url + '/api/user/followUser',
                                     data: {
@@ -168,7 +153,6 @@ Page({
                                     },
                                     method: 'POST',
                                     success: function (res) {
-                                        console.log(res)
                                         if (res.data.status_code == 2000000) {
                                             wx.showModal({
                                                 title: "提示",
@@ -176,7 +160,6 @@ Page({
                                                 showCancel: false,
                                                 confirmText: "到人脉库",
                                                 success: function () {
-                                                    console.log(res);
                                                     wx.switchTab({
                                                         url: '/pages/contacts/contacts/contacts',
                                                     })
@@ -188,7 +171,6 @@ Page({
                                 })
                             } else {
                                 //正常申请添加为好友
-                                console.log(2)
                                 wx.request({
                                     url: url + '/api/user/UserApplyFollowUser',
                                     data: {
@@ -204,7 +186,6 @@ Page({
                                                 showCancel: false,
                                                 confirmText: "到人脉库",
                                                 success: function () {
-                                                    console.log(res);
                                                     wx.switchTab({
                                                         url: '/pages/contacts/contacts/contacts',
                                                     })
@@ -218,16 +199,13 @@ Page({
                             if(type == 1 ){
                               let pages = getCurrentPages();
                               let num = pages.length - 1;
-                              console.log(num)
                               wx.navigateBack({
                                 delta: 1
                               })
                             }else{
-                         console.log(type)
                               if(type == 2){
                                 let pages = getCurrentPages()
                                 let num = pages.length - 1;
-                                console.log(num)
                                 wx.navigateBack({
                                   delta: 2
                                 })
@@ -240,7 +218,6 @@ Page({
                         }
                     } else {
                         var error_msg = res.data.error_msg;
-                        console.log(res.data.error_msg)
                         wx.showModal({
                             title: "错误提示",
                             content: error_msg
