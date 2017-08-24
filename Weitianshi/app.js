@@ -406,9 +406,11 @@ App({
 
     //industry多选标签数据预处理
     industryDeal(data) {
+        console.log('industryDeal',data)
         if (data.length > 0) {
             let industry = wx.getStorageSync('industry');
             let newIndustry = industry;
+            console.log(typeof newIndustry)
             newIndustry.forEach(x => {
                 data.forEach(y => {
                     if (x.industry_name == y.industry_name) {
@@ -416,6 +418,7 @@ App({
                     }
                 })
             })
+            console.log(typeof newIndustry)
             return newIndustry
         } else {
             return data

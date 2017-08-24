@@ -25,14 +25,15 @@ Page({
         } else if (current == 1) {
           let industryCurrent1 = wx.getStorageSync('industryCurrent1');
             let newIndustry=app.industryDeal(industryCurrent1)
-            console.log(111,typeof newIndustry,newIndustry)
             // industryTags.tagsData = newIndustry || wx.getStorageSync("industry");
-            if (typeof newIndustry=='array'){
-                industryTags.tagsData = newIndustry
-            }else{
+            if(newIndustry==''){
+                console.log('industryCurrent1无值')
                 industryTags.tagsData = wx.getStorageSync("industry");
+            }else{
+                console.log('industryCurrent1有值')
+                industryTags.tagsData = newIndustry
             }
-            console.log(industryTags.tagsData)
+            console.log('industryTags.tagsData',industryTags.tagsData)
         } else if (current == 2) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent2") || wx.getStorageSync("industry");
         } else if (current == 3) {

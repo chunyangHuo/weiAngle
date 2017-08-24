@@ -183,7 +183,7 @@ Page({
     testOneKey() {
         wx.navigateTo({
             // url: '/pages/oneKeyResearch/oneKeyResearch?id=oWdemnpQ',
-          url: '/pages/oneKeyResearch/oneKeyResearch?id=RrZDkXWQ',      
+            url: '/pages/oneKeyResearch/oneKeyResearch?id=yrQVDx0v',      
         })
     }
 })

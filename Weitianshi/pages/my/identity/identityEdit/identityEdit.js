@@ -9,13 +9,12 @@ Page({
     },
     onLoad: function (option) {
         let that = this;
+
         //请求各种标签列表项
         wx.request({
             url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
-                console.log("领域,金额,阶段的列表数据调用")
-                console.log(res)//所有标签
                 var thisData = res.data.data;
                 //添加false
                 that.for(thisData.area);
@@ -67,7 +66,7 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            console.log(-1,res)
+                            console.log('本页信息',res)
                             let user_info = res.data.user_info;
                             let invest_info = res.data.invest_info;
                             console.log('user_id', user_info)
@@ -93,11 +92,9 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(2,res)
+                    console.log('本页信息',res)
                     let user_info = res.data.user_info;
                     let invest_info = res.data.invest_info;
-                    console.log('user_id')
-                    console.log(user_info)
                     that.dealTags(that, invest_info);
                     that.setData({
                         user_info: user_info,
@@ -113,7 +110,6 @@ Page({
         let invest_info = this.data.invest_info;
         let user_info=this.data.user_info;
         let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
-        console.log("industryCurrent1", industryCurrent1)
         let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
         let stageValue = wx.getStorageSync('payenchangeValue') || [];
         let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
@@ -142,9 +138,6 @@ Page({
         //如果是由更改表单某一项内容后返回该页面的话
         if (invest_info){
             console.log('this is onShow')
-            if(invest_info===[]){
-                invest_info={}
-            }
             invest_info.invest_industry = industryCurrent1;
             invest_info.invest_scale = newScale;
             invest_info.invest_stage = newStage;
@@ -156,7 +149,7 @@ Page({
                 stageId: stageId,
                 areaId: areaId
             })
-            console.log(-1, this.data.invest_info)
+            console.log('返回后的invest_info', this.data.invest_info)
         }
 
         console.log(0, industryId)
@@ -379,7 +372,6 @@ Page({
     },
     //多选标签预处理
     dealTags(that, invest_info) {
-        console.log('inves_info', invest_info)
         let scale = wx.getStorageSync('scale') || []
         let stage = wx.getStorageSync('stage') || []
         let hotCity = wx.getStorageSync('hotCity') || []
