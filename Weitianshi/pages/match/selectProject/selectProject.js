@@ -218,7 +218,7 @@ Page({
                           }
                         }
                       })
-                    } else if (group_id == 19) {
+                    } else if (group_id == 21) {
                       wx.showModal({
                         title: '友情提示',
                         content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
@@ -246,16 +246,18 @@ Page({
                         success: function (res) {
                         }
                       })
-                    } else if (group_id == 5) {
-                      wx.showModal({
-                        title: '友情提示',
-                        content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
-                        confirmColor: "#333333;",
-                        showCancel: false,
-                        success: function (res) {
-                        }
-                      })
-                    } else if (group_id == 7) {
+                    }
+                    //  else if (group_id == 5) {
+                    //   wx.showModal({
+                    //     title: '友情提示',
+                    //     content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
+                    //     confirmColor: "#333333;",
+                    //     showCancel: false,
+                    //     success: function (res) {
+                    //     }
+                    //   })
+                    // }
+                     else if (group_id == 7) {
                       wx.showModal({
                         title: '友情提示',
                         content: '您的身份是政府、事业单位、公益组织,只有投资人和买方FA才可申请查看项目',
