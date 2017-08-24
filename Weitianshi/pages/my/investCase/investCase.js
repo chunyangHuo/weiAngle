@@ -29,8 +29,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          // console.log(res);
-          //  console.log(res.case_province);
           var invest_case = res.data.invest_case;
           wx.setStorageSync('invest_case', invest_case)
           that.setData({

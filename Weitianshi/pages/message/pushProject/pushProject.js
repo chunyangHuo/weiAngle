@@ -9,12 +9,10 @@ Page({
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目
-    hasRedPoint:true,
+    hasRedPoint: true,
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
   },
-
   onLoad: function (options) {
-    console.log(options)
     let type = options.type;
     let that = this;
     that.setData({
@@ -33,8 +31,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("推送给我的")
-        console.log(res)
         let pushToList = res.data.data;
         let count1 = res.data.count;
         that.setData({
@@ -52,8 +48,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("我推送的")
-        console.log(res)
         let pushProjectList = res.data.data;
         let count = res.data.count;
         that.setData({
@@ -92,25 +86,25 @@ Page({
     let pushProjectList = this.data.pushProjectList;
     let pushToList = this.data.pushToList;
     if (current == 1) {
-        //向后台发送信息取消红点 我推送的项目
-        wx.request({
-            url: url_common + '/api/message/setFeedbackToRead',
-            data: {
-                user_id: user_id,
-                type: "push"
-            },
-            method: "POST",
-            success: function (res) {
-                if (res.data.status_code == 2000000) {
-                    pushProjectList.forEach((x) => {
-                        x.message_status = 1;
-                    })
-                    that.setData({
-                        hasRedPoint: false
-                    })
-                }
-            }
-        })
+      //向后台发送信息取消红点 我推送的项目
+      wx.request({
+        url: url_common + '/api/message/setFeedbackToRead',
+        data: {
+          user_id: user_id,
+          type: "push"
+        },
+        method: "POST",
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            pushProjectList.forEach((x) => {
+              x.message_status = 1;
+            })
+            that.setData({
+              hasRedPoint: false
+            })
+          }
+        }
+      })
     } else if (current == 0) {
       wx.request({
         url: url_common + '/api/message/setMessageToRead',
@@ -120,7 +114,6 @@ Page({
         },
         method: "POST",
         success: function (res) {
-          console.log(1,res)
           if (res.data.status_code == 2000000) {
             pushToList.forEach((x) => {
               x.message_status = 1;
@@ -132,13 +125,13 @@ Page({
 
         }
       })
-      if(this.data.hasRedPoint===false){
-          pushProjectList.forEach((x) => {
-              x.message_status = 1;
-          })
-          that.setData({
-              pushProjectList: pushProjectList
-          })
+      if (this.data.hasRedPoint === false) {
+        pushProjectList.forEach((x) => {
+          x.message_status = 1;
+        })
+        that.setData({
+          pushProjectList: pushProjectList
+        })
       }
     }
     that.setData({ currentTab: e.detail.current });
@@ -159,7 +152,6 @@ Page({
           },
           method: "POST",
           success: function (res) {
-            console.log(res)
             if (res.data.status_code == 2000000) {
               pushProjectList.forEach((x) => {
                 x.message_status = 1;
@@ -167,7 +159,6 @@ Page({
               that.setData({
                 pushProjectList: pushProjectList
               })
-              console.log("yes,成功了")
             }
           }
         })
@@ -180,7 +171,6 @@ Page({
           },
           method: "POST",
           success: function (res) {
-            console.log(res)
             if (res.data.status_code == 2000000) {
               pushToList.forEach((x) => {
                 x.message_status = 1;
@@ -188,7 +178,6 @@ Page({
               that.setData({
                 pushToList: pushToList
               })
-              console.log("yes,成功了")
             }
           }
         })
@@ -206,7 +195,6 @@ Page({
     var that = this;
     // 获取当前点击的项目id
     var id = e.currentTarget.dataset.project;
-    console.log(id);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
@@ -232,7 +220,6 @@ Page({
   },
   //点击跳转到用户详情
   personDetail: function (e) {
-    console.log(e);
     var id = e.currentTarget.dataset.project;
     app.console(id)
     wx.navigateTo({
@@ -282,11 +269,8 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               var newPage = res.data.data;
-              console.log(newPage);
               var page_end = res.data.page_end;
-              console.log(page_end)
               for (var i = 0; i < newPage.length; i++) {
                 pushProjectList.push(newPage[i])
               }
@@ -308,7 +292,6 @@ Page({
   },
   // 感兴趣
   interesting: function (e) {
-    console.log(e)
     let that = this;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let push_id = e.currentTarget.dataset.push;
@@ -350,14 +333,13 @@ Page({
             wx.showToast({
               title: '没兴趣',
               duration: 2000,
-              image:"/img/icon-chacha@2x.png"
+              image: "/img/icon-chacha@2x.png"
             })
             that.setData({
               pushToList: pushToList
             })
           }
         } else {
-          console.log(statusCode)
         }
 
       }
@@ -370,21 +352,16 @@ Page({
     let record_id = e.currentTarget.dataset.record;
     // status 1:同意  2:拒绝
     let status = e.currentTarget.dataset.status;
-    console.log(status)
     wx.request({
       url: url_common + '/api/message/handleApplyProjectMessage',
       data: {
         user_id : user_id,
-        record_id: record_id,
-        // status: status
+        record_id: record_id
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         if (status == 1) {
-          console.log("同意查看")
         } else if (status == 2) {
-          console.log("我拒绝")
           that.setData({
             record_id: record_id
           })

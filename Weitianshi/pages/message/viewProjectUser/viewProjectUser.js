@@ -8,7 +8,7 @@ Page({
         count: 0
     },
     onLoad: function (options) {
-        console.log(options);
+
     },
     onShow: function () {
         var that = this;
@@ -16,7 +16,6 @@ Page({
         app.initPage(that);
         var user_id = this.data.user_id;
         let project_id = wx.getStorageSync("projectId");
-        console.log(project_id)
         // 获取浏览我的用户信息
         if (user_id) {
             wx.request({
@@ -28,11 +27,8 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log("浏览了我的項目")
-                    console.log(res)
                     var contacts = res.data.list.users;
                     var count = res.data.list.count;
-                    console.log(count)
                     that.setData({
                         contacts: contacts,
                         count: count,
@@ -62,8 +58,6 @@ Page({
         var follow_status = e.currentTarget.dataset.follow_status;
         var index = e.target.dataset.index;
         var contacts = this.data.contacts
-        console.log(contacts)
-        console.log(user_id, followed_user_id);
         if (follow_status == 0) {
             //添加人脉接口
             wx.request({
@@ -74,7 +68,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
                     if (res.data.status_code == 2000000) {
                         //将状态设为"未验证"
                         contacts.forEach((x) => {
@@ -105,8 +98,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
-                    console.log("同意申請")
                     if (res.data.status_code == 2000000) {
                         //将状态设为"未验证"
                         contacts.forEach((x) => {
@@ -125,7 +116,6 @@ Page({
     // 用户详情
     userDetail: function (e) {
         var id = e.currentTarget.dataset.id
-        console.log(id);
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
@@ -136,7 +126,6 @@ Page({
         var user_id = this.data.user_id
         var currentPage = this.data.currentPage;
         var project_id = this.data.project_id;
-        console.log(user_id, project_id, currentPage)
         var request = {
             url: url_common + '/api/message/viewProjectUserList',
             data: {
@@ -170,7 +159,6 @@ Page({
                         data: request.data,
                         method: 'POST',
                         success: function (res) {
-                            console.log(res)
                             var newPage = res.data.list.users;
                             var page_end = res.data.page_end;
                             for (var i = 0; i < newPage.length; i++) {

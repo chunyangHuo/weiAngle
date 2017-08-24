@@ -12,11 +12,11 @@ Page({
     investPage: 1,
     resourcePage: 1,
     user: 0,
-    userId : 0,
+    userId: 0,
     investNeedcheck: true,
     financingNeedcheck: true,
     resourceNeedcheck: true,
-    financingNeed_end:false
+    financingNeed_end: false
   },
   //载入页面
   onShow: function () {
@@ -27,12 +27,12 @@ Page({
     that.setData({
       user: user
     });
-   
+
     //融资需求获取数据
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
-      user_id : user
+        user_id: user
       },
       method: 'POST',
       success: function (res) {
@@ -50,11 +50,10 @@ Page({
     wx.request({
       url: url_common + '/api/investor/getMarketInvestorList',
       data: {
-          user_id:user
+        user_id: user
       },
       method: 'POST',
       success: function (res) {
-        // console.log(res)
         var investNeed = res.data.data;
         that.setData({
           investNeed: investNeed
@@ -68,11 +67,10 @@ Page({
     wx.request({
       url: url + '/api/resource/resourceMarket',
       data: {
-          user_id:user
+        user_id: user
       },
       method: 'POST',
       success: function (res) {
-          console.log(res)
         var resourceNeed = res.data.data;
         that.setData({
           resourceNeed: resourceNeed
@@ -112,7 +110,6 @@ Page({
     var that = this;
     // 获取当前点击的项目id
     var id = e.currentTarget.dataset.id
-    console.log(id);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
@@ -124,7 +121,7 @@ Page({
         var that = this;
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
-        if (userId==user ) {
+        if (userId == user) {
           wx.navigateTo({
             url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
           })
@@ -133,30 +130,17 @@ Page({
             url: '/pages/projectDetail/projectDetail?id=' + id,
           })
         }
-        
+
       },
     })
-    
-
-    // if (index != -1) {
-    //   wx.navigateTo({
-    //     url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + index
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: '/pages/projectDetail/projectDetail?id=' + id
-    //   })
-    // }
 
   },
   // 跳转人物详情
   userDetail: function (e) {
     //获取当前id
     var id = e.currentTarget.dataset.id;
-    // console.log(id);
     // 获取当前用户的id
     var user_id = this.data.user;
-    // console.log(user_id);
     // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
     if (id == user_id) {
       wx.switchTab({
@@ -182,7 +166,6 @@ Page({
     this.setData({
       financingPage: financingPage
     });
-    console.log(financingPage);
     if (financingNeedcheck) {
       wx.request({
         url: url_common + '/api/project/getMarketProjectList',
@@ -192,7 +175,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           var new_data = res.data.data;
           var financingNeed_end = res.data.page_end
           if (new_data != '') {
@@ -204,7 +186,7 @@ Page({
             for (var i = 0; i < new_data.length; i++) {
               financingNeed.push(new_data[i])
             }
-            
+
             that.setData({
               financingNeed: financingNeed,
               financingNeed_end: financingNeed_end,
@@ -230,7 +212,6 @@ Page({
     let user = this.data.user;
     var investNeedcheck = this.data.investNeedcheck;
     investPage++;
-    console.log(investPage,investNeedcheck)
     this.setData({
       investPage: investPage
     });
@@ -243,7 +224,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           var new_data = res.data.data;
           if (new_data != '') {
             wx.showToast({
@@ -276,7 +256,6 @@ Page({
     var that = this;
     var resourcePage = this.data.resourcePage;
     var resourceNeedcheck = this.data.resourceNeedcheck;
-    console.log(resourceNeedcheck);
     resourcePage++;
     this.setData({
       resourcePage: resourcePage
@@ -289,7 +268,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           var new_data = res.data.data;
           if (new_data != '') {
             wx.showToast({

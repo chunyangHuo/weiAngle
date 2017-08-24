@@ -24,10 +24,8 @@ Page({
   onShow: function () {
     //消除人脉缓存
     app.contactsCacheClear();
-
     var that = this
     app.loginPage(function (user_id) {
-      console.log("这里是cb函数")
       that.setData({
         user_id: user_id,
       })
@@ -46,8 +44,6 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log("我的getUserAllInfo信息")
-            console.log(res);
             var user = res.data.user_info;
             var count = res.data.count;
             var invest = res.data.invest_info;
@@ -157,13 +153,11 @@ Page({
     var user_id = this.data.user_id;
     var modal = this.data.modal;
     var status_code = this.data.status_code;
-    console.log(modal, status_code)
     if (status_code == 2000000) {
       that.setData({
         modal: 1
       })
       setTimeout(function () {
-        console.log(3000)
         that.setData({
           modal: 0
         })
@@ -189,10 +183,8 @@ Page({
   },
   // 二维码分享按钮
   shareSth: function (e) {
-    console.log(e)
     var QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
-    console.log(QR_id)
     wx.navigateTo({
       url: '/pages/my/qrCode/qrCode',
     })
@@ -229,14 +221,11 @@ Page({
       success: function (res) {
         let data = res.data;
         if (data.status_code == 460004) {
-          console.log(data)
           that.setData({
             modalStyle: 1,
             modalBox: 1
           })
         } else if (data.status_code == 2000000) {
-          console.log(res);
-          console.log("税号")
           that.setData({
             modalStyle: 0,
             modalBox: 1
@@ -265,7 +254,6 @@ Page({
   },
   //确定或稍后再试
   laterOn: function () {
-    console.log("laterOn")
     wx.switchTab({
       url: '/pages/my/my/my',
     })
@@ -285,7 +273,6 @@ Page({
         })
         wx.getClipboardData({
           success: function (res) {
-            console.log(res.data) // data
           }
         })
       }
@@ -295,7 +282,6 @@ Page({
   authentication: function (e) {
     let status = e.currentTarget.dataset.identitystatus;
     let user_id = this.data.user_id
-    console.log(status)
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
       data: {
@@ -320,7 +306,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                  console.log(res)
                   let user_id = wx.getStorageSync('user_id');
                   let authenticate_id = res.data.authenticate_id;
                   let group_id = res.data.group_id;
@@ -343,4 +328,4 @@ Page({
       }
     })
   }
-  });
+});

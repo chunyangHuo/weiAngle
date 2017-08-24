@@ -9,7 +9,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options)
     let group_id = options.group_id;
     let user_id = wx.getStorageSync('user_id');
     let type = options.type;
@@ -24,7 +23,6 @@ Page({
       method: 'POST',
       success: function (res) {
         // 0:未认证1:待审核 2 审核通过 3审核未通过
-        console.log(res)
         let status = res.data.status;
         let group_title = res.data.group.group_title;
         let group_id = res.data.group.group_id;
@@ -48,14 +46,12 @@ Page({
   leaveMessage: function (e) {
     let leaveMessage = e.detail.value;
     let leaveMessage_length = e.detail.value.length;
-    console.log(leaveMessage_length)
     let that = this;
     if (leaveMessage_length <= 500) {
       this.setData({
         leaveMessage: leaveMessage
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过500个数字", 1000)
     }
   },
@@ -63,12 +59,9 @@ Page({
   btnYes: function (options) {
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;
-    console.log(type)
     let user_id = wx.getStorageSync('user_id');
     let authenticate_id = this.data.authenticate_id;
     let recertification = this.data.recertification;
-
-    
     wx.request({
       url: url_common + '/api/user/saveOtherAuthenticateFeed',
       data: {
@@ -80,30 +73,12 @@ Page({
       success: function (res) {
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
-          // if (type) {
-          //   wx.navigateBack({
-          //     delta: 1
-          //   })
-          // } else {
-          //   if (recertification){
-          //     console.log(recertification)
-          //     wx.navigateBack({
-          //       delta: 4
-          //     })
-          //   }else{
-          //     wx.navigateBack({
-          //       delta: 3
-          //     })
-          //   }
-          // }
           var pages = getCurrentPages()
-          var num = pages.length-1;
-          console.log(num)
+          var num = pages.length - 1;
           wx.navigateBack({
             delta: num
           })
         } else {
-          console.log(statusCode)
         }
       }
     })
@@ -113,10 +88,9 @@ Page({
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;
     let user_id = wx.getStorageSync('user_id');
-    console.log(type)
     let authenticate_id = this.data.authenticate_id;
     var pages = getCurrentPages();
-    var num = pages.length-1;
+    var num = pages.length - 1;
     wx.request({
       url: url_common + '/api/user/saveOtherAuthenticateFeed',
       data: {
@@ -131,7 +105,6 @@ Page({
           wx.navigateBack({
             delta: num
           })
-          console.log("我跳了啊")
         }
       }
     })

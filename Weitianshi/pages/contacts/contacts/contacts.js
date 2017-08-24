@@ -25,7 +25,6 @@ Page({
         })
         // 检查个人信息全不全
         if (user_id == 0) {
-            console.log(user_id)
             wx.request({
                 url: url_common + '/api/user/checkUserInfo',
                 data: {
@@ -37,7 +36,6 @@ Page({
                         notIntegrity: res.data.is_complete,
                         empty: 1
                     })
-                    console.log(notIntegrity)
                 },
                 fail: function (res) {
                     wx.showToast({
@@ -61,8 +59,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log("我的人脉列表")
-                    console.log(res)
                     var contacts = res.data.data;//所有的用户
                     var page_end = res.data.page_end;
                     if (contacts.length != 0) {
@@ -93,7 +89,6 @@ Page({
     // 用户详情
     userDetail: function (e) {
         var id = e.currentTarget.dataset.id
-        console.log(id);
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
@@ -112,7 +107,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
                 if (res.data.status_code == 2000000) {
                     wx.showModal({
                         titel: "友情提示",

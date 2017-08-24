@@ -45,7 +45,6 @@ Page({
   mobileEdit: function (e) {
     var that = this;
     var mobile = e.detail.value;
-    console.log(mobile)
     that.setData({
       mobile: mobile
     })
@@ -53,15 +52,13 @@ Page({
   companyEdit: function (e) {
     var that = this;
     var company = e.detail.value;
-    console.log(company)
     wx.request({
       url: url_common + '/api/dataTeam/checkCompany',
-      data:{
-        com_name:company
+      data: {
+        com_name: company
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
       }
     })
     that.setData({
@@ -71,7 +68,6 @@ Page({
   careerEdit: function (e) {
     var that = this;
     var career = e.detail.value;
-    console.log(career)
     that.setData({
       career: career
     })
@@ -79,7 +75,6 @@ Page({
   eMailEdit: function (e) {
     var that = this;
     var eMail = e.detail.value;
-    console.log(eMail)
     that.setData({
       eMail: eMail
     })
@@ -92,7 +87,7 @@ Page({
     })
   },
   save: function () {
-    var that=this;
+    var that = this;
     var name = this.data.name.trim();
     var company = this.data.company.trim();
     var career = this.data.career.trim();

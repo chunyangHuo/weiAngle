@@ -5,34 +5,34 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-  
+
   },
 
   onLoad: function (options) {
-   let project_id = options.id;
-   let that = this;
-   that.setData({
-     project_id : project_id
-   })
+    let project_id = options.id;
+    let that = this;
+    that.setData({
+      project_id: project_id
+    })
   },
   onShow: function () {
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let  project_id = this.data.project_id;
+    let project_id = this.data.project_id;
     let that = this;
     wx.request({
       url: url_common + '/api/message/applyProjectToMe',
       data: {
         user_id : user_id,
-        project_id:project_id
+        project_id: project_id
       },
       method: 'POST',
       success: function (res) {
-       let contentList = res.data.data;
-       let count = res.data.count;
-       that.setData({
-         count: count,
-         contentList: contentList
-       })
+        let contentList = res.data.data;
+        let count = res.data.count;
+        that.setData({
+          count: count,
+          contentList: contentList
+        })
       }
     })
     //向后台发送信息取消红点
@@ -45,8 +45,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log(res)
-        console.log("发送成功")
       }
     })
 
@@ -73,12 +71,10 @@ Page({
   },
   // 点击跳转
   projectDetail: function (e) {
-    console.log(e)
     // 获取我自己的项目id
     var that = this;
     // 获取当前点击的项目id
     var id = e.currentTarget.dataset.project;
-    console.log(id);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
@@ -104,7 +100,6 @@ Page({
   },
   // 点击同意或者拒绝
   btn: function (e) {
-    console.log(e)
     let contentList = this.data.contentList;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
@@ -120,26 +115,23 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let statusCode = res.data.status_code;
-        if (statusCode==2000000){
-         if (status == 1) {
-           contentList.forEach((x) => {
-             if (x.record_id == record_id) {
-               x.handle_status = 1
-             }
-           })
-           console.log(contentList)
-           that.setData({
-             contentList: contentList
-           })
-         } else if (status == 2) {
-           console.log("拒绝")
-           that.setData({
-             record_id: record_id
-           })
-         }
-       }
+        if (statusCode == 2000000) {
+          if (status == 1) {
+            contentList.forEach((x) => {
+              if (x.record_id == record_id) {
+                x.handle_status = 1
+              }
+            })
+            that.setData({
+              contentList: contentList
+            })
+          } else if (status == 2) {
+            that.setData({
+              record_id: record_id
+            })
+          }
+        }
       }
     })
   },
