@@ -150,13 +150,13 @@
     </view>
   </view>
   <view class="choiceList">
-    <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
+    <view class="choice" wx:if="{{group_id == 18 ||group_id == 21}}">
       <view class="userBox">
         <view class="investContent flex">
           <!-- group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他  -->
           <view class="personListTile">申请加入FA行业联盟</view>
            <picker id="bindFAService" bindchange="bindFAService" value="{{is_alliance}}" range="{{array}}">
-            <view class="flex" wx:if="{{group_id == 18 ||group_id == 19}}">
+            <view class="flex" wx:if="{{group_id == 18 ||group_id == 21}}">
               <view class="chooseContent" wx:if="{{!array[is_alliance]}}">请选择</view>
               <view class="chooseAfter" wx:if="{{array[is_alliance] !=''}}">{{array[is_alliance]}}</view>
               <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
@@ -193,7 +193,7 @@
         </view>
       </view>
     </view>
-    <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
+    <view class="choice" wx:if="{{group_id == 18 ||group_id == 21}}">
       <view class="userBox">
         <view class="investContent flex">
           <view class="personListTile">申请使用创业项目库的管理sass系统</view>
@@ -207,7 +207,7 @@
         </view>
       </view>
     </view>
-    <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
+    <view class="choice" wx:if="{{group_id == 18 ||group_id == 21}}">
       <view class="userBox">
         <view class="userDescribeContent flex">
           <view class="personListTile">加入FA社群认证会员</view>
