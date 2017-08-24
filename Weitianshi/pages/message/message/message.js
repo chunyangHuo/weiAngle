@@ -175,7 +175,7 @@ Page({
   //测试一键尽调
   testOneKey() {
     wx.navigateTo({
-      url: '/pages/oneKeyResearch/oneKeyResearch?id=RrZDg7WQ',
+        url: '/pages/oneKeyResearch/oneKeyResearch?id=RpAQ5jpx',
     })
   }
 })

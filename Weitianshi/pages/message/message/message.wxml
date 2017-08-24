@@ -7,5 +7,5 @@
 <!--底部信息提示  -->
 <view class="bottomBox">
   <view class="contactPerson">联系客服</view>
-  <view class="wechatNumber" bindtap="testOneKey">微信添加：weitianshicn</view>
+  <view class="wechatNumber">微信添加：weitianshicn</view>
 </view>

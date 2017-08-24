@@ -70,7 +70,8 @@ Page({
               data: {
                 user_id: user_id,
                 project_id: id,
-                page: currentPage
+                page: currentPage,
+                type:"scan_qrcode"
               },
               method: 'POST',
               success: function (res) {
@@ -941,7 +942,7 @@ Page({
     // 买家图谱上拉加载
     loadMore: function () {
       var that = this;
-      var user_id = this.data.user_id;
+      var user_id = this.data.user_id; 
       var id = this.data.id;
       var currentPage = this.data.currentPage;
       var request = {
@@ -949,9 +950,11 @@ Page({
         data: {
           user_id: user_id,
           project_id: id,
-          page: currentPage
+          page: currentPage,
+          type: "scan_qrcode"
         },
       }
+      console.log(request)
       //调用通用加载函数
       app.loadMore(that, request, "investor2", that.data.investor2)
     },

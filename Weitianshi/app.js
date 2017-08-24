@@ -440,41 +440,39 @@ App({
         var user_id = wx.getStorageSync("user_id");
         var rqj = require('./pages/Template/Template.js');
         if (that.data.requestCheck) {
-            if (user_id != '') {
-                if (that.data.page_end == false) {
-                    wx.showToast({
-                        title: 'loading...',
-                        icon: 'loading'
-                    })
-                    request.data.page++;
-                    that.setData({
-                        currentPage: request.data.page,
-                        requestCheck: false
-                    });
-                    //请求加载数据
-                    wx.request({
-                        url: request.url,
-                        data: request.data,
-                        method: 'POST',
-                        success: function (res) {
-                            var newPage = res.data.data;
-                            var page_end = res.data.page_end;
-                            for (var i = 0; i < newPage.length; i++) {
-                                dataSum.push(newPage[i])
-                            }
-                            that.setData({
-                                [str]: dataSum,
-                                page_end: page_end,
-                                requestCheck: true
-                            })
+            if (that.data.page_end == false) {
+                wx.showToast({
+                    title: 'loading...',
+                    icon: 'loading'
+                })
+                request.data.page++;
+                that.setData({
+                    currentPage: request.data.page,
+                    requestCheck: false
+                });
+                //请求加载数据
+                wx.request({
+                    url: request.url,
+                    data: request.data,
+                    method: 'POST',
+                    success: function (res) {
+                        var newPage = res.data.data;
+                        var page_end = res.data.page_end;
+                        for (var i = 0; i < newPage.length; i++) {
+                            dataSum.push(newPage[i])
                         }
-                    })
-                } else {
-                    rqj.errorHide(that, "没有更多了", 3000)
-                    that.setData({
-                        requestCheck: true
-                    });
-                }
+                        that.setData({
+                            [str]: dataSum,
+                            page_end: page_end,
+                            requestCheck: true
+                        })
+                    }
+                })
+            } else {
+                rqj.errorHide(that, "没有更多了", 3000)
+                that.setData({
+                    requestCheck: true
+                });
             }
         }
     },
@@ -795,9 +793,9 @@ App({
     //初始本地缓存
     globalData: {
         error: 0,
-        // url: "https://wx.weitianshi.cn",
-        // url_common: "https://www.weitianshi.cn"
-        url: "https://wx.debug.weitianshi.cn",
-        url_common: "https://wx.debug.weitianshi.cn"
+        url: "https://wx.weitianshi.cn",
+        url_common: "https://wx.weitianshi.cn"
+        // url: "https://wx.debug.weitianshi.cn",
+        // url_common: "https://wx.debug.weitianshi.cn"
     },
 });
