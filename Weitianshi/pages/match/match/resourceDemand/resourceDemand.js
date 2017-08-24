@@ -202,6 +202,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+            wx.setStorageSync("resource_desc", describe);
         },
         fail: function (res) {
           console.log(res)
