@@ -128,6 +128,9 @@
   color: #666;
   line-height: 112rpx;
   text-align: right;
+   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   margin-right: 12rpx;
 }
 
@@ -136,6 +139,11 @@
   white-space: nowrap;
   overflow: hidden;
   width: 470rpx;
+  /* display: inline-block; */
+    /* flex-direction: row;
+  justify-content:flex-end;  */
+   float:right; 
+  /* flex-wrap:nowrap;  */
 }
 
 .error {

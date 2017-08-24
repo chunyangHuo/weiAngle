@@ -95,6 +95,7 @@ Page({
     toAccreditation: function () {
         let status = this.data.status;
         let user_id = wx.getStorageSync('user_id');
+        console.log(wx.getStorageSync('user_id'))
         wx.request({
             url: url_common + '/api/user/checkUserInfo',
             data: {
@@ -137,13 +138,13 @@ Page({
                             })
                         }
                     } else if (complete == 0) {
-                        wx.clearStorageSync("followed_user_id")
+                      wx.removeStorageSync('followed_user_id')
                         wx.navigateTo({
                             url: '/pages/register/companyInfo/companyInfo?type=1'
                         })
                     }
                 } else {
-                    wx.clearStorageSync("followed_user_id")
+                  wx.removeStorageSync('followed_user_id')
                     wx.navigateTo({
                         url: '/pages/register/personInfo/personInfo?type=2'
                     })

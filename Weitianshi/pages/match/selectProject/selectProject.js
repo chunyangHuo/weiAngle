@@ -14,6 +14,7 @@ Page({
         //消除人脉筛选缓存(非contacts都需要)
         app.contactsCacheClear();
         //请求精选项目数据
+        app.loginPage(function (user_id) {
         wx.request({
           url: url_common + '/api/project/getSelectedProjectList',
             data: {
@@ -27,6 +28,7 @@ Page({
                     slectProject: slectProject,
                 })
             }
+        })
         })
     },
     //上拉加载
@@ -84,9 +86,32 @@ Page({
     },
     // 跳转创建项目页面
     toCreateProject:function(){
-      wx.navigateTo({
-        url: '/pages/myProject/publishProject/publishProject'
-      })
+      var user_id = wx.getStorageSync('user_id');//获取我的user_id
+      wx.request({
+        url: url_common + '/api/user/checkUserInfo',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            var complete = res.data.is_complete;
+            if (complete == 1) {
+              wx.navigateTo({
+                url: '/pages/myProject/publishProject/publishProject'
+              })
+            } else if (complete == 0) {
+              wx.navigateTo({
+                url: '/pages/register/companyInfo/companyInfo?type=1'
+              })
+            }
+          } else {
+            wx.navigateTo({
+              url: '/pages/register/personInfo/personInfo?type=2'
+            })
+          }
+        },
+      });
     },
     // 申请查看
     matchApply: function (e) {

@@ -23,9 +23,17 @@ Page({
         if (current == 0) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent0") || wx.getStorageSync("industry");
         } else if (current == 1) {
-            let industryCurrent1=wx.getStorageSync('industryCurrent1');
+          let industryCurrent1 = wx.getStorageSync('industryCurrent1') || wx.getStorageSync("industry");
+          console.log(wx.getStorageSync("industry"))
             let newIndustry=app.industryDeal(industryCurrent1)
+            console.log(newIndustry)
             industryTags.tagsData = newIndustry || wx.getStorageSync("industry");
+          if (newIndustry.length == 0){
+            industryTags.tagsData = wx.getStorageSync("industry") 
+          }else{
+            industryTags.tagsData = newIndustry 
+          }
+          console.log(industryTags.tagsData)
         } else if (current == 2) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent2") || wx.getStorageSync("industry");
         } else if (current == 3) {
@@ -42,6 +50,7 @@ Page({
         let tags = this.data.industryTags;
         let that = this;
         let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
+        console.log(checkObject)
         this.setData({
             industryTags: tags,
             contactsFilter1: checkObject
@@ -70,7 +79,8 @@ Page({
             if (current == 0) {
                 wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
             } else if (current == 1) {
-                wx.setStorageSync("industryCurrent1",returnIndustry);
+              wx.setStorageSync("industryCurrent1", returnIndustry);
+                console.log(wx.getStorageSync("industryCurrent1"))
             } else if (current == 2) {
                 wx.setStorageSync("industryCurrent2", this.data.industryTags.tagsData);
             } else if (current == 3) {
