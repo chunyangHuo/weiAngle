@@ -485,7 +485,7 @@ Page({
   personDetail: function (e) {
       //console.log(e);
       var id = e.currentTarget.dataset.id;
-      app.//console(id)
+      // app.//console(id)
       wx.navigateTo({
         url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
       })

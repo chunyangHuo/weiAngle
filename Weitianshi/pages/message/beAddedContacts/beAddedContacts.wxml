@@ -88,6 +88,7 @@
 </view>
 
 <!--没有数据-->
-<view class="nullState" wx:if="{{contacts=='' || !contacts}}">
- <template is="hasNothing" data="{{emptyNumber:contacts}}"></template>
-</view>
+  <view class="empty "  wx:if="{{contacts == ''}}" >
+    <image src="/img/img-kong1@2x.png" class="noData"></image>
+    <view class="hasNothing">暂无数据</view>
+  </view> 
