@@ -6,9 +6,7 @@ Page({
   data: {
 
   },
-
   onLoad: function (options) {
-    console.log(options)
     let user_name = options.name;
     let user_brand = options.brand;
     let user_company = options.company;
@@ -56,12 +54,10 @@ Page({
     let user_name_length = e.detail.value.length;
     let that = this;
     if (user_name_length <= 20) {
-      console.log(user_name_length)
       this.setData({
         user_name: user_name
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过20个字", 100)
     }
   },
@@ -76,7 +72,6 @@ Page({
         user_brand: user_brand
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过40个数字", 1000)
     }
   },
@@ -95,14 +90,12 @@ Page({
         user_company_name: rs
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过40个数字", 1000)
     }
   },
   // 职位
   careerEdit: function (e) {
     let user_career = e.detail.value;
-    console.log(user_career)
     let user_career_length = e.detail.value.length;
     let that = this;
     if (user_career_length <= 40) {
@@ -110,7 +103,6 @@ Page({
         user_career: user_career
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过40个数字", 1000)
     }
   },
@@ -127,13 +119,11 @@ Page({
     let user_weChat = e.detail.value;
     let user_weChat_length = e.detail.value.length;
     let that = this;
-    console.log(user_weChat_length)
     if (user_weChat_length <= 40) {
       this.setData({
         user_weChat: user_weChat
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过40个数字", 1000)
     }
   },
@@ -141,14 +131,12 @@ Page({
   personDescrible: function (e) {
     let user_describle = e.detail.value;
     let user_describle_length = e.detail.value.length;
-    console.log(user_describle_length)
     let that = this;
     if (user_describle_length <= 500) {
       this.setData({
         user_describle: user_describle
       })
     } else {
-      console.log("超了啊")
       rqj.errorHide(that, "不能超过500个数字", 1000)
     }
   },
@@ -158,7 +146,6 @@ Page({
     let user_name = this.data.user_name;
     let user_brand = this.data.user_brand;
     let user_company_name = this.data.user_company_name;
-    console.log(user_career)
     let user_career = this.data.user_career;
     let user_email = this.data.user_email;
     let user_describle = this.data.user_describle;
@@ -168,8 +155,6 @@ Page({
     let currPage = pages[pages.length - 1];
     let prevPage = pages[pages.length - 2];
     let user_info = prevPage.data.user_info;
-    console.log(pages);
-    console.log(currPage);
 
     // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5 微信type:6 个人描述type:7
     if (type == 0) {
@@ -185,7 +170,7 @@ Page({
         rqj.errorHide(that, "姓名不能为空", 1500)
       }
 
-    }  else if (type == 2) {
+    } else if (type == 2) {
       user_info.user_brand = user_brand;
       prevPage.setData({
         user_info: user_info
@@ -195,7 +180,6 @@ Page({
       })
     } else if (type == 3) {
       user_info.user_company_name = user_company_name;
-      console.log(user_company_name)
       if (user_company_name != '') {
         prevPage.setData({
           user_info: user_info
@@ -221,14 +205,14 @@ Page({
     } else if (type == 5) {
       user_info.user_email = user_email;
       let that = this;
-      if (app.checkEmail(user_email)|| user_email==''){
-      prevPage.setData({
-        user_info: user_info
-      })
-      wx.navigateBack({
-        delta: 1
-      })
-      }else{
+      if (app.checkEmail(user_email) || user_email == '') {
+        prevPage.setData({
+          user_info: user_info
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
         rqj.errorHide(that, "请填写正确格式的邮箱", 1500)
       }
     }
@@ -237,7 +221,6 @@ Page({
       prevPage.setData({
         user_info: user_info
       })
-      console.log(user_info)
       wx.navigateBack({
         delta: 1
       })

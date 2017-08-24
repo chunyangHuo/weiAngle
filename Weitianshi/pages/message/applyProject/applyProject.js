@@ -8,13 +8,11 @@ Page({
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目,
-    hasRedPoint:true
+    hasRedPoint: true
   },
-
   onLoad: function (options) {
     let type = options.type;
     let group_id = options.group_id;
-    console.log(group_id)
     let that = this;
     that.setData({
       type: type,
@@ -29,8 +27,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("申請查看我的")
-        console.log(res)
         let contentList = res.data.data;
         let count1 = res.data.count;
         that.setData({
@@ -48,8 +44,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("我申请查看的项目")
-        console.log(res)
         let count = res.data.count;
         let applyList = res.data.data;
         that.setData({
@@ -82,8 +76,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log(res)
-        console.log("发送成功")
       }
     })
   },
@@ -113,8 +105,8 @@ Page({
           })
         }
       })
-    } else if(current == 0){
-      if (this.data.hasRedPoint === false){
+    } else if (current == 0) {
+      if (this.data.hasRedPoint === false) {
         that.setData({
           applyList: applyList
         })
@@ -193,11 +185,8 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               var newPage = res.data.data;
-              // console.log(newPage);
               var page_end = res.data.page_end;
-              console.log(page_end)
               for (var i = 0; i < newPage.length; i++) {
                 contentList.push(newPage[i])
               }
@@ -223,7 +212,6 @@ Page({
     var that = this;
     // 获取当前点击的项目id
     var id = e.currentTarget.dataset.project;
-    console.log(id);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
@@ -282,7 +270,6 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          console.log(contentList)
           that.setData({
             contentList: contentList
           })
@@ -304,36 +291,4 @@ Page({
       }
     })
   },
-  // //重新申请
-  // matchReApply: function (e) {
-  //   console.log("重新申请")
-  //   var user_id = wx.getStorageSync('user_id');//获取我的user_id
-  //   let that = this;
-  //   let project_id = e.currentTarget.dataset.project;
-  //   let applyList = this.data.applyList;
-  //   // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
-  //   app.applyProjectTo(that, project_id, 1, applyList)
-    // wx.request({
-    //   url: url_common + '/api/project/applyProject',
-    //   data: {
-    //     user_id : user_id,
-    //     project_id: project_id
-    //   },
-    //   method: 'POST',
-    //   success: function (res) {
-    //     console.log("重新申请")
-
-    //     applyList.forEach((x) => {
-    //       if (x.project_id == project_id) {
-    //         console.log("进来了")
-    //         x.handle_status = 0
-    //       }
-    //     })
-    //     that.setData({
-    //       applyList: applyList
-    //     })
-    //   }
-    // })
-  // },
-
 })

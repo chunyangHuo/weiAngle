@@ -9,7 +9,6 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
-        console.log(options);
         var followed_user_id = options.user_id;
         var share_id = options.share_id;
         that.setData({
@@ -18,7 +17,6 @@ Page({
         })
         //登录态维护
         app.loginPage(function (user_id) {
-          console.log("我进入登陆维护了")
             var view_id = user_id;
             wx.setStorageSync('user_id', user_id);
             //载入被分享者的个人信息
@@ -31,7 +29,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
                     var user = res.data.user_info;
                     var count = res.data.count;
                     var invest = res.data.invest_info;
@@ -39,7 +36,6 @@ Page({
                     var project_info = res.data.project_info;
                     var invest_case = res.data.invest_case;
                     var button_type = res.data.button_type;
-                    console.log(button_type)
                     that.setData({
                         user: user,
                         invest: invest,
@@ -50,17 +46,6 @@ Page({
                         count: count,
                         view_id: view_id
                     })
-                    if (button_type == 0) {
-                        console.log("申請添加人脈")
-                    } else if (button_type == 1) {
-                        console.log("不显示任何按钮")
-                    } else if (button_type == 2) {
-                        console.log("待验证")
-                    } else if (button_type == 3) {
-                        console.log("同意加人脉")
-                    } else if (button_type == 4) {
-                        console.log("单方加人脉")
-                    }
                     wx.setNavigationBarTitle({
                         title: res.data.user_info.user_real_name + "的投资名片",
                     })
@@ -71,7 +56,6 @@ Page({
             })
             console.log("分享者", "数据显示的人", "查看的人")
             console.log(share_id, followed_user_id, view_id)
-
             //如果进入的是自己的名片里
             if (user_id == followed_user_id) {
                 wx.switchTab({
@@ -92,7 +76,6 @@ Page({
         let button_type = this.data.button_type;
         var view_id = this.data.view_id;
         // button_type==0  0.申请加人脉按钮 1.不显示任何按钮  2.待验证   3.同意加为人脉  4.加为单方人脉
-        console.log(button_type)
         //直接可添加好友的情况
         if (button_type == 0) {
             //走正常申请流程
@@ -115,22 +98,18 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log("这里是正常申请添加人脉")
-                                    console.log(res)
                                     that.setData({
                                         button_type: 2
                                     })
                                 }
                             })
                         } else if (complete == 0) {
-                            //如果有user_id但信息不全则跳companyInfo页面
                             wx.setStorageSync('followed_user_id', followed_user_id)
                             wx.navigateTo({
                                 url: '/pages/register/companyInfo/companyInfo'
                             })
                         }
                     } else {
-                        //如果没有user_id则跳personInfo
                         wx.setStorageSync('followed_user_id', followed_user_id)
                         wx.navigateTo({
                             url: '/pages/register/personInfo/personInfo'
@@ -153,8 +132,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
-                    console.log("同意加為人脈")
                     that.setData({
                         button_type: 1
                     })
@@ -168,7 +145,6 @@ Page({
                                     url: '/pages/contacts/contacts/contacts',
                                 })
                             } else if (res.cancel) {
-                                console.log('用户点击取消')
                             }
                         }
                     })
@@ -198,8 +174,6 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    // console.log("这里是直接添加人脉")
-                                    // console.log(res)
                                     that.setData({
                                         button_type: 1
                                     })
@@ -242,10 +216,8 @@ Page({
     },
     // 二维码分享按钮
     shareSth: function (e) {
-        console.log(e)
         var QR_id = e.currentTarget.dataset.clickid;
         wx.setStorageSync('QR_id', QR_id)
-        console.log(QR_id)
         wx.navigateTo({
             url: '/pages/my/qrCode/qrCode',
         })
@@ -280,7 +252,7 @@ Page({
     pushProject:function(){
       // 推送给数据显示的人 push_id = followed_user_id
       //查看的人 view_id = user_id
-      console.log("我进入跳转页面啦")
+
       var share_id = this.data.share_id;
       let view_id = this.data.view_id;
       var push_id = this.data.followed_user_id;
@@ -299,15 +271,11 @@ Page({
                   url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id,
                 })
               } else if (complete == 0) {
-                //如果有user_id但信息不全则跳companyInfo页面
-                // wx.setStorageSync('followed_user_id', followed_user_id)
                 wx.navigateTo({
                   url: '/pages/register/companyInfo/companyInfo'
                 })
               }
             } else {
-              //如果没有user_id则跳personInfo
-              // wx.setStorageSync('followed_user_id', followed_user_id)
               wx.navigateTo({
                 url: '/pages/register/personInfo/personInfo'
               })

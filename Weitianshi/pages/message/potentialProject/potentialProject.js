@@ -12,7 +12,6 @@ Page({
   onLoad: function (e) {
   },
   onShow: function (e) {
-    console.log(e)
     // 我申请查看的项目
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
@@ -56,22 +55,20 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
-        if (res.data.status_code == 2000000){
-        let count2 = res.data.data.match_count;
-        let getMatchList = res.data.data.projects;
-        console.log(getMatchList)
-        // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
-        that.setData({
-          count2: count2,
-          getMatchList: getMatchList
-        })
-      }else{
+        if (res.data.status_code == 2000000) {
+          let count2 = res.data.data.match_count;
+          let getMatchList = res.data.data.projects;
+          // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
+          that.setData({
+            count2: count2,
+            getMatchList: getMatchList
+          })
+        } else {
           that.setData({
             count2: 0,
             getMatchList: 0
           })
-      }
+        }
       }
     })
     // 取消红点 --推送给我的
@@ -83,7 +80,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log(res)
       }
     })
     that.setData({
@@ -144,7 +140,6 @@ Page({
         },
         method: "POST",
         success: function (res) {
-          console.log(res)
           if (res.data.status_code == 2000000) {
             pushToList.forEach((x) => {
               x.message_status = 1;
@@ -161,7 +156,7 @@ Page({
   swichNav: function (e) {
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
-      
+
       return false;
     } else {
       that.setData({
@@ -213,11 +208,8 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               let newPage = res.data.data.projects;
-              console.log(newPage);
               let page_end = res.data.page_end;
-              console.log(newPage.length)
               for (var i = 0; i < newPage.length; i++) {
                 getMatchList.push(newPage[i])
               }
@@ -226,11 +218,9 @@ Page({
                 page_endThird: page_end,
                 requestCheckThird: true
               })
-              console.log(getMatchList)
             }
           })
         } else {
-          console.log("没有更多")
           rqj.errorHide(that, "没有更多了", that, 3000)
           that.setData({
             requestCheckThird: true
@@ -245,7 +235,6 @@ Page({
     var user_id = wx.getStorageSync("user_id");
     let that = this;
     let pushToList = this.data.pushToList;
-    console.log(pushToList)
     if (that.data.requestCheckBoolean) {
       if (user_id != '') {
         if (that.data.page_endBoolean == false) {
@@ -267,11 +256,8 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               var newPage = res.data.data;
-              console.log(newPage);
               var page_end = res.data.page_end;
-              console.log(page_end)
               for (var i = 0; i < newPage.length; i++) {
                 pushToList.push(newPage[i])
               }
@@ -297,7 +283,6 @@ Page({
     var that = this;
     // 获取当前点击的项目id
     var id = e.currentTarget.dataset.project;
-    console.log(id);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
@@ -323,22 +308,18 @@ Page({
   },
   // 申请查看
   matchApply: function (e) {
-    console.log(e)
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
     // content: 0(申请查看) 1: (重新申请)
     let content = e.currentTarget.dataset.content;
     let project_id = e.currentTarget.dataset.project;
     let getMatchList = this.data.getMatchList;
-    console.log(getMatchList)
     // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
     app.applyProjectTo(that, project_id, content, getMatchList)
 
   },
   //重新申请
   matchReApply: function (e) {
-    console.log("重新申请")
-    console.log(e)
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
     let project_id = e.currentTarget.dataset.project;
@@ -352,11 +333,8 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("重新申请")
-
         applyList.forEach((x) => {
           if (x.project_id == project_id) {
-            console.log("进来了")
             x.handle_status = 0
           }
         })
@@ -369,14 +347,12 @@ Page({
 
   // 感兴趣
   interesting: function (e) {
-    console.log(e)
     let that = this;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let push_id = e.currentTarget.dataset.push;
     let status = e.currentTarget.dataset.status;
     let pushToList = this.data.pushToList;
     // status: 1 =>感兴趣 2=>不感兴趣
-
     wx.request({
       url: url_common + '/api/message/handlePushProjectMessage',
       data: {
@@ -386,11 +362,9 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
           if (status == 1) {
-            console.log("感兴趣")
             pushToList.forEach((x) => {
               if (x.push_id == push_id) {
                 x.handle_status = 1
@@ -401,7 +375,6 @@ Page({
               icon: 'success',
               duration: 2000
             })
-            console.log(pushToList)
             that.setData({
               pushToList: pushToList
             })
@@ -419,12 +392,9 @@ Page({
             that.setData({
               pushToList: pushToList
             })
-            console.log(pushToList)
           }
         } else {
-          console.log(statusCode)
         }
-
       }
     })
   },

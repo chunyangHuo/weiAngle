@@ -39,7 +39,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options)
     let old_group_id = options.group_id;
     let old_authenticate_id = options.authenticate_id;
     let that = this;
@@ -58,11 +57,10 @@ Page({
         that.setData({
           messageList: messageList
         })
-        console.log(that.data.messageList)
       }
     })
     that.setData({
-      old_group_id : old_group_id,
+      old_group_id: old_group_id,
       old_authenticate_id: old_authenticate_id
     })
   },
@@ -77,33 +75,31 @@ Page({
     // 重新认证的时候，才会有old_group_id
     let old_group_id = this.data.old_group_id;
     let old_authenticate_id = this.data.old_authenticate_id;
-    if (old_group_id){
-        wx.request({
-          url: url_common + '/api/user/setUserGroup',
-          data: {
-            user_id: user_id,
-            group_id: group_id,
-            authenticate_id: old_authenticate_id
-          },
-          method: 'POST',
-          success: function (res) {
-            console.log(res)
-            // isUpdate :0 未认证过 1:重新认证
-            let isUpdate = res.data.is_update;
-            var authenticate_id = res.data.authenticate_id;
-            console.log(isUpdate)
-          if(old_group_id != group_id){
+    if (old_group_id) {
+      wx.request({
+        url: url_common + '/api/user/setUserGroup',
+        data: {
+          user_id: user_id,
+          group_id: group_id,
+          authenticate_id: old_authenticate_id
+        },
+        method: 'POST',
+        success: function (res) {
+          // isUpdate :0 未认证过 1:重新认证
+          let isUpdate = res.data.is_update;
+          var authenticate_id = res.data.authenticate_id;
+          if (old_group_id != group_id) {
             wx.navigateTo({
-              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id+'&&isUpdate='+isUpdate,
+              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
             })
-          }else if(old_group_id == group_id){
+          } else if (old_group_id == group_id) {
             wx.navigateTo({
               url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
             })
           }
-          }
-        })
-   }else{
+        }
+      })
+    } else {
       wx.request({
         url: url_common + '/api/user/setUserGroup',
         data: {
@@ -112,7 +108,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           let authenticate_id = res.data.authenticate_id;
           let isUpdate = res.data.is_update;
           wx.navigateTo({
@@ -120,6 +115,6 @@ Page({
           })
         }
       })
-   }
+    }
   }
 })
