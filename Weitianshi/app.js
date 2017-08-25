@@ -1,7 +1,7 @@
 //app.js
 App({
     // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
-    onLaunch: function (options) {
+    onLaunch(options) {
         var options = options;
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
@@ -71,12 +71,12 @@ App({
             }
         });
     },
-    onError: function (msg) {
+    onError(msg) {
         console.log(msg)
     },
 
     //进入页面判断是否有open_session
-    loginPage: function (cb) {
+    loginPage(cb) {
         var that = this;
         //群分享打点准备
         /* wx.showShareMenu({
@@ -162,7 +162,7 @@ App({
     },
 
     //进行授权验证
-    getUserInfo: function (cb) {
+    getUserInfo(cb) {
         var that = this;
         //如果全局变量里有userInfo就去执行cb函数,如果全局变量里没有userInfo就去调用授权接口
         if (this.globalData.userInfo) {
@@ -203,13 +203,13 @@ App({
     },
 
     //查看缓存
-    cacheCheck: function () {
+    cacheCheck() {
         var res = wx.getStorageInfoSync();
         console.log(res)
     },
 
     // user_id为空时,返回首页或者完善信息
-    noUserId: function () {
+    noUserId() {
         wx.showModal({
             title: "提示",
             content: "请先绑定个人信息",
@@ -228,7 +228,7 @@ App({
     },
 
     //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-    shareProjectPage: function (id, title, share_id) {
+    shareProjectPage(id, title, share_id) {
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
         let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
@@ -263,7 +263,7 @@ App({
                                                 iv: iv
                                             },
                                             success(res) {
-                                                console.log('分享页面后台记录成功',res)
+                                                console.log('分享页面后台记录成功', res)
                                             }
                                         })
                                     },
@@ -279,7 +279,7 @@ App({
                                         path: path,
                                     },
                                     success(res) {
-                                        console.log('分享页面后台记录成功',res)
+                                        console.log('分享页面后台记录成功', res)
                                     }
                                 })
                             }
@@ -292,7 +292,7 @@ App({
     },
 
     //分享项目(user_id为数据所有人ID,share_Id为分享人的ID)
-    sharePage: function (user_id, share_id) {
+    sharePage(user_id, share_id) {
         let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
@@ -327,7 +327,7 @@ App({
                                                 iv: iv
                                             },
                                             success(res) {
-                                                console.log('分享页面后台记录成功',res)
+                                                console.log('分享页面后台记录成功', res)
                                             }
                                         })
                                     },
@@ -343,7 +343,7 @@ App({
                                         path: path,
                                     },
                                     success(res) {
-                                        console.log('分享页面后台记录成功',res)
+                                        console.log('分享页面后台记录成功', res)
                                     }
                                 })
                             }
@@ -356,7 +356,7 @@ App({
     },
 
     //根据用户信息完整度跳转不同的页面
-    infoJump: function (targetUrl) {
+    infoJump(targetUrl) {
         var user_id = this.globalData.user_id;
         // 核对用户信息是否完整
         wx.request({
@@ -478,7 +478,7 @@ App({
     },
 
     //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
-    initPage: function (that, others) {
+    initPage(that, others) {
         var user_id = wx.getStorageSync('user_id');
         that.setData({
             user_id: user_id,
@@ -540,7 +540,7 @@ App({
     },
 
     // 时间戳转换
-    changeTime: function (x) {
+    changeTime(x) {
         var n;
         if (x.length === 13) {
             n = x * 1
@@ -553,7 +553,7 @@ App({
         var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
         return (Y + M + D)
     },
-    changeTimeStyle: function (x) {
+    changeTimeStyle(x) {
         var n;
         if (x.length === 13) {
             n = x * 1
@@ -578,7 +578,7 @@ App({
     },
 
     //项目申请
-    applyProjectTo: function (that, project_id, content, list) {
+    applyProjectTo(that, project_id, content, list) {
         var user_id = wx.getStorageSync('user_id');
         let url_common = this.globalData.url_common;
         wx.request({
@@ -689,7 +689,7 @@ App({
                                                     }
                                                 }
                                             })
-                                        } else if (group_id == 21 ) {
+                                        } else if (group_id == 21) {
                                             wx.showModal({
                                                 title: '友情提示',
                                                 content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
@@ -720,7 +720,7 @@ App({
                                                     console.log('用户点击确定')
                                                 }
                                             })
-                                        } 
+                                        }
                                         // else if (group_id == 5) {
                                         //     wx.showModal({
                                         //         title: '友情提示',
@@ -732,7 +732,7 @@ App({
                                         //         }
                                         //     })
                                         // }
-                                         else if (group_id == 7) {
+                                        else if (group_id == 7) {
                                             wx.showModal({
                                                 title: '友情提示',
                                                 content: '您的身份是政府、事业单位、公益组织,只有投资人和买方FA才可申请查看项目',
@@ -788,6 +788,19 @@ App({
                 }
             },
         });
+    },
+
+    errorHide(target, errorText, time) {
+        var that = target;
+        that.setData({
+            error: "1",
+            error_text: errorText
+        })
+        var errorTime = setTimeout(function () {
+            that.setData({
+                error: "0"
+            });
+        }, time)
     },
 
     //初始本地缓存
