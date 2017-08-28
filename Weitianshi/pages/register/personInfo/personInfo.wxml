@@ -11,17 +11,12 @@
       <input placeholder="验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" />
       <button class="clear {{time=='1'?'clearOn':''}}" bindtap="checkCode"  disabled="{{time==1}}" loading="{{checking==1}}">{{getCode}}</button>
     </view>
-    <button form-type="submit" class="nextBtn" bindtap="nextPage" loading="{{loading=='1'}}">
-      下一步
-    </button>
+    <view>
+        <button open-type='getPhoneNumber'  class="nextBtn" bindgetphonenumber="getPhoneNumber" loading="{{loading=='1'}}">微信授权绑定</button>
+        <button form-type="submit" class="nextBtn" bindtap="nextPage" loading="{{loading=='1'}}">下一步</button>
+    </view>
   </form>
 
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-
-  <!--加载更多-->
-  <!--<view class="weui-loadmore" wx:if="{{loading=='1'}}">
-    <view class="weui-loading"></view>
-    <view class="weui-loadmore__tips">正在加载</view>
-  </view>-->
 </view>

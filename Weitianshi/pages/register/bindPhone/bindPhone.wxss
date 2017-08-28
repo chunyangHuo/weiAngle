@@ -2,7 +2,7 @@ page {
   background: white;
 }
 
-#personInfo {
+#bindPhone {
   font-size: 28rpx;
   color: #333;
   padding: 0 48rpx;

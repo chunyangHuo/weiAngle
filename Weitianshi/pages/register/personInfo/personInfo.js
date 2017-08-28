@@ -26,10 +26,6 @@ Page({
       }
      
     },
-    //下拉刷新
-    onPullDownRefresh: function () {
-        wx.stopPullDownRefresh()
-    },
     onShow: function () {
         var that = this;
         if (this.data._time) {
@@ -43,7 +39,6 @@ Page({
             })
         }
     },
-
     onHide: function () {
     },
     //姓名
@@ -123,7 +118,6 @@ Page({
             }
         })
     },
-
     //获取验证码的值 
     checkCode2: function (e) {
         var that = this;
@@ -131,9 +125,13 @@ Page({
             checkCode: e.detail.value
         });
     },
+    //下拉刷新
+    onPullDownRefresh: function () {
+        wx.stopPullDownRefresh()
+    },
     //点击跳转
     nextPage: function () {
-        var that = this;
+        let that = this;
         let type = this.data.type;
         wx.login({
             success: function (res) {
@@ -145,7 +143,6 @@ Page({
                 var checkCode = that.data.checkCode;
                 var code = res.code;
                 var open_session = app.globalData.open_session;
-
                 if (!name) {
                     rqj.errorHide(that, '姓名不能为空', 3000)
                 } else if (!telephone) {
@@ -186,6 +183,15 @@ Page({
                     })
                 }
             }
+        })
+    },
+    //微信授权绑定
+    getPhoneNumber(e){
+        console.log(e)
+        let that=this;
+        let  name=that.data.name;
+        wx.navigateTo({
+            url: '/pages/register/bindPhone/bindPhone?name='+name,
         })
     }
 });
