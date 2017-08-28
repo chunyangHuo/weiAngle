@@ -78,7 +78,7 @@ page {
   float:left;
 }
 
-.search {
+.searchInput {
   margin: 0;
   font-size: 20rpx;
   height: 56rpx;

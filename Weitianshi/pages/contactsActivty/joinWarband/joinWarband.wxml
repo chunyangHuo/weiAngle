@@ -1,2 +1,53 @@
-<!--pages/contactsActivty/joinWarband/joinWarband.wxml-->
-<text>pages/contactsActivty/joinWarband/joinWarband.wxml</text>
+<view id='joinWarband'>
+    <!--搜索框  -->
+    <view class="search_frame">
+        <label class="searchBox flex">
+            <icon type="search" size="12" class="search_icon"></icon>
+            <input class="searchInput" placeholder="搜索战队名、创始人" bindfocus="searchSth"  /> 
+        </label>
+    </view>
+    <!--已加入战队  -->
+    <view class="joinedWarband">
+        <view class="text">已加入战队</view>
+        <block wx:for='{{joinedwarband}}' wx:key='{{item.team_id}}'>
+            <view class="warband flex">
+                <view class="logo">
+                    <image src="/img/warband-logo.png"></image>
+                </view>
+                <view class="info">
+                    <view class="companyName">{{item.team_name}}</view>
+                    <view class="representative">代表人:{{item.team_founder}}</view>
+                </view>
+                 <view class="checkbox fr">
+                    <image src="/img/checked.png" bindtap="checked"></image>
+                </view> 
+                <!-- <view class="checkbox fr">
+                    <image src="/img/noChecked.png" bindtap="noChecked"></image>
+                </view> -->
+            </view>
+        </block>
+    </view>
+    <!--所有战队  -->
+    <view class="allWarband">
+        <view class="text">所有战队</view>
+    </view>
+    <block wx:for='{{warband}}' wx:key='{{item.team_id}}'>
+        <view class="warband flex">
+            <view class="logo">
+                <image src="/img/warband-logo.png"></image>
+            </view>
+            <view class="info">
+                <view class="companyName">{{item.team_name}}</view>
+                <view class="representative">代表人:{{item.team_founder}}</view>
+            </view>
+            <!-- <view class="checkbox fr">
+                <image src="/img/checked.png" bindtap="checked"></image>
+            </view> -->
+            <view class="checkbox fr">
+                <image src="/img/noChecked.png" data-team='{{item}}' bindtap="noChecked"></image>
+            </view>
+        </view>
+    </block>
+    <!--错误提示-->
+    <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</view>

@@ -1,66 +1,55 @@
-// pages/contactsActivty/joinWarband/joinWarband.js
+var rqj = require('../../Template/Template.js')
+var app = getApp()
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    data: {
+        joinedWarband: [],
+        warband: [],
+        page_end: false,
+    },
+    onLoad(options) {
+        let that = this;
+        app.initPage(that)
+        that.getInfo('', 1)
+    },
+    onShow() { },
+    //选中noChecked
+    noChecked(e) {
+        let team=e.currentTarget.dataset.team;
+        let joinedWarband=this.data.joinedWarband;
+        joinedWarband.push(team)
+        console.log(joinedWarband)
+        this.setData({
+            joinedWarband:joinedWarband
+        })
+    },
+    //选中checked
+    checked(e) {
+        console.log(e)
+    },
+    //获取战队信息
+    getInfo(search, page) {
+        let that = this;
+        wx.request({
+            url: url + '/api/team/search',
+            data: {
+                search: search,
+                page: page
+            },
+            method: 'POST',
+            success(res) {
+                if (res.data.status_code === 2000000) {
+                    let thisData = res.data.data;
+                    console.log(thisData.teams)
+                    that.setData({
+                        warband: thisData.teams,
+                        page_end: thisData.page_end
+                    })
+                } else {
+                    app.errorHide(that, res, 3000)
+                }
+            }
+        })
+    }
 })
