@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="title">
-  今日还可以推送<label>{{pushTimes.remain_times}}</label>次(1个项目推送给1个投资人计为1次)
+  今日剩余推送<label>{{pushTimes.remain_times}}</label>次(1个项目推给1个投资人计为1次)
 </view>
 <view class="s_frame">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
