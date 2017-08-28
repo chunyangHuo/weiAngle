@@ -64,7 +64,14 @@
         "pages/my/identity/indentity/indentity",
         "pages/my/identity/identityEdit/identityEdit",
         "pages/my/identity/identityResult/identityResult",
-        "pages/oneKeyResearch/oneKeyResearch"
+        "pages/oneKeyResearch/oneKeyResearch",
+        "pages/contactsActivty/activtyDetail/activtyDetail",
+        "pages/contactsActivty/joinWarband/joinWarband",
+        "pages/contactsActivty/searchWarband/searchWarband",
+        "pages/contactsActivty/createWarband/createWarband",
+        "pages/contactsActivty/activtyRegister/activtyRegister",
+        "pages/contactsActivty/topPlayer/topPlayer",
+        "pages/contactsActivty/warbandMember/warbandMember"
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",
