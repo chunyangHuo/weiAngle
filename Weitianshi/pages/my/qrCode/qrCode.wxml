@@ -13,6 +13,27 @@
     <view class="user_email flex" wx:if="{{user.user_email}}">
       <view>邮箱：{{user.user_email}}</view>
     </view>
+    <view class="line"></view>
+    <view class="flex iconBox">
+      <view class="littleBox">
+        <image src="/img/icon-weixin@2x.png" class="messageIconStyle"></image>
+      </view>
+      <view class="littleBox">
+        <image src="/img/icon-maimai@2x.png" class="messageIconStyle"></image>
+      </view>
+      <view class="littleBox">
+        <image src="/img/icon-zhihu@2x.png" class="messageIconStyle"></image>
+      </view>
+      <view class="littleBox">
+        <image src="/img/icon-weibo@2x.png" class="messageIconStyle"></image>
+      </view>
+      <view class="littleBox">
+        <image src="/img/icon-qq@2x.png" class="messageIconStyle"></image>
+      </view>
+      <view class="littleBox">
+        <image src="/img/icon-linkedin@2x.png" class="messageIconStyle"></image>
+      </view>
+    </view>
   </view>
   <view class="user_right">
     <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
@@ -30,8 +51,8 @@
     </view>
   </view>
 </view>
- <view class="addFriend flex">
-    <button open-type="share" id="share">分享给朋友</button>
-    <label class="long"></label>
-    <button type="button" id="QR_save" bindtap="savePic">保存二维码图片</button>
-  </view>
+<view class="addFriend flex">
+  <button open-type="share" id="share">分享给朋友</button>
+  <label class="long"></label>
+  <button type="button" id="QR_save" bindtap="savePic">保存二维码图片</button>
+</view>
