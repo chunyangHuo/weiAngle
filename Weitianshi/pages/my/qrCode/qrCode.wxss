@@ -40,6 +40,7 @@ page {
   justify-content: space-between;
   padding: 32rpx;
   flex-wrap: wrap;
+  padding-bottom: 20rpx;
 }
 
 .user_left {
@@ -157,7 +158,7 @@ page {
   height: 98rpx;
   position: fixed;
   left: 0;
-  bottom:0
+  bottom: 0;
 }
 
 #share {
@@ -169,7 +170,7 @@ page {
   padding: 24rpx 98rpx 30rpx 122rpx;
   border: none !important;
   outline: none;
-  position:static;
+  position: static;
 }
 
 .addFriend .long {
@@ -181,13 +182,36 @@ page {
 
 #QR_save {
   font-size: 24rpx;
-  color:#ffffff;
+  color: #fff;
   letter-spacing: 0;
   text-align: center;
-  width:50%;
-  background:#40587a;
+  width: 50%;
+  background: #40587a;
   padding: 22rpx 68rpx 30rpx 46rpx;
 }
-#QR_save::after{
-  border:0;
+
+#QR_save::after {
+  border: 0;
+}
+
+.line {
+  background: #e6e6e6;
+  width: 622rpx;
+  height: 1rpx;
+  margin-top:32rpx;
+  display: inline-block;
+}
+
+.messageIconStyle {
+  width: 32rpx;
+  height: 28rpx;
+  /* margin-right:42rpx; */
+  /* margin-left:42rpx; */
+}
+.iconBox{
+  margin-top:20rpx;
+  width:662rpx;
+}
+.littleBox{
+  margin-right:84rpx;
 }
