@@ -93,9 +93,14 @@
     <button bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}}">请先绑定用户信息</button>
     </view>
 </view>
+
 <!--搜索人脈為空-->
 <view class="nullPerson" wx:if="{{empty == 2}}">
   <view class="nullperson_text">
     <view>暂无人脉</view>
   </view>
 </view>
+
+<!--人脉大赛  -->
+<view class="competitor">如何拓展人脉</view>
+

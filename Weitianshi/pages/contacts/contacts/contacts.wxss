@@ -284,3 +284,24 @@ page {
   position:absolute;
   right:32rpx;
 }
+
+
+.competitor {
+  position: fixed;
+  bottom: 230rpx;
+  right: 0;
+  background: #fff;
+  border: 0 solid #e0e6ed;
+  box-shadow: 0 0 2px 0 rgba(64, 88, 122, 0.10);
+  width: 180rpx;
+  height: 33px;
+  font-family: MicrosoftYaHei;
+  font-size: 28rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 66rpx;
+  text-align: right;
+  border-radius: 35rpx 0 0 35rpx;
+  padding-right: 28rpx;
+  padding-left:20rpx;
+}
