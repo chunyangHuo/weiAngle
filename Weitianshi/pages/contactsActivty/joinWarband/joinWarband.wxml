@@ -7,9 +7,9 @@
         </label>
     </view>
     <!--已加入战队  -->
-    <view class="joinedWarband">
-        <view class="text">已加入战队</view>
-        <block wx:for='{{joinedwarband}}' wx:key='{{item.team_id}}'>
+    <view class="joinedWarband paddingTop" wx:if="{{joinedWarband.length!=0}}">
+        <view class="text"><span class='blueLine'></span>已加入战队</view>
+        <block wx:for='{{joinedWarband}}' wx:key='{{item.team_id}}'>
             <view class="warband flex">
                 <view class="logo">
                     <image src="/img/warband-logo.png"></image>
@@ -18,9 +18,9 @@
                     <view class="companyName">{{item.team_name}}</view>
                     <view class="representative">代表人:{{item.team_founder}}</view>
                 </view>
-                 <view class="checkbox fr">
+                <view class="checkbox fr">
                     <image src="/img/checked.png" bindtap="checked"></image>
-                </view> 
+                </view>
                 <!-- <view class="checkbox fr">
                     <image src="/img/noChecked.png" bindtap="noChecked"></image>
                 </view> -->
@@ -28,26 +28,26 @@
         </block>
     </view>
     <!--所有战队  -->
-    <view class="allWarband">
-        <view class="text">所有战队</view>
+    <view class="allWarband {{joinedWarband.length!=0 ? '' : 'paddingTop'}}">
+        <view class="text"><span class='blueLine'></span>所有战队</view>
+        <block wx:for='{{warband}}' wx:key='{{item.team_id}}'>
+            <view class="warband flex">
+                <view class="logo">
+                    <image src="/img/warband-logo.png"></image>
+                </view>
+                <view class="info">
+                    <view class="companyName">{{item.team_name}}</view>
+                    <view class="representative">代表人:{{item.team_founder}}</view>
+                </view>
+                <view class="checkbox fr" wx:if='{{item.check==true}}'>
+                    <image src="/img/checked.png" data-team='{{item}}' data-index='{{index}}' bindtap="noChecked"></image>
+                </view>
+                <view class="checkbox fr" wx:if='{{item.check==false}}'>
+                    <image src="/img/noChecked.png" data-team='{{item}}' data-index='{{index}}' bindtap="noChecked"></image>
+                </view>
+            </view>
+        </block>
     </view>
-    <block wx:for='{{warband}}' wx:key='{{item.team_id}}'>
-        <view class="warband flex">
-            <view class="logo">
-                <image src="/img/warband-logo.png"></image>
-            </view>
-            <view class="info">
-                <view class="companyName">{{item.team_name}}</view>
-                <view class="representative">代表人:{{item.team_founder}}</view>
-            </view>
-            <!-- <view class="checkbox fr">
-                <image src="/img/checked.png" bindtap="checked"></image>
-            </view> -->
-            <view class="checkbox fr">
-                <image src="/img/noChecked.png" data-team='{{item}}' bindtap="noChecked"></image>
-            </view>
-        </view>
-    </block>
     <!--错误提示-->
     <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>
