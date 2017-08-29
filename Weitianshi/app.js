@@ -476,6 +476,35 @@ App({
             }
         }
     },
+    loadMore2(that, request,callback) {
+        var user_id = wx.getStorageSync("user_id");
+        var rqj = require('./pages/Template/Template.js');
+        if (that.data.requestCheck) {
+            if (that.data.page_end == false) {
+                wx.showToast({
+                    title: 'loading...',
+                    icon: 'loading'
+                })
+                request.data.page++;
+                that.setData({
+                    currentPage: request.data.page,
+                    requestCheck: false
+                });
+                //请求加载数据
+                wx.request({
+                    url: request.url,
+                    data: request.data,
+                    method: 'POST',
+                    success: callback
+                })
+            } else {
+                rqj.errorHide(that, "没有更多了", 3000)
+                that.setData({
+                    requestCheck: true
+                });
+            }
+        }
+    },
 
     //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
     initPage(that, others) {

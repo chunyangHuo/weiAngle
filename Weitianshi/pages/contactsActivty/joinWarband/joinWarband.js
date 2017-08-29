@@ -8,6 +8,8 @@ Page({
         warband: [],
         page_end: false,
         timer:'',
+        str:'',
+        something:[],
     },
     onLoad(options) {
         let that = this;
@@ -17,6 +19,7 @@ Page({
     onShow() { },
     //搜索战队
     searchSth(e){
+        let str=e.detail.value;
         let that=this;
         let timer=this.data.timer;
         // console.log(str)
@@ -26,10 +29,12 @@ Page({
         }
         timer=setTimeout(x=>{
             this.getInfo(str,1)
-        },1000)
+        },1500)
         this.setData({
-            timer:timer
+            timer:timer,
+            str:str
         })
+        app.initPage(that)
     },
     //所有战队勾选框
     checkbox1(e) {
@@ -57,15 +62,65 @@ Page({
     checkbox2(e){
         let teams=e.currentTarget.dataset.team;
         let joinedWarband=this.data.joinedWarband;
+        let warband=this.data.warband;
+        //去除joinedWarband内数据
         joinedWarband.forEach((x,index)=>{
-            console.log(x.team_id,teams.team_id)
             if(x.team_id===teams.team_id){
                 joinedWarband.splice(index,1)
             }
         })
-        this.setData({
-            joinedWarband:joinedWarband
+        //去除warband里勾号
+        warband.forEach(x=>{
+            if(x.team_id===teams.team_id){
+                x.check=false;
+            }
         })
+        this.setData({
+            joinedWarband: joinedWarband,
+            warband:warband
+        })
+    },
+    //上拉加载
+    loadMore(){
+        let that=this;
+        let currentPage = this.data.currentPage;
+        let str=this.data.str;
+        let joinedWarband=this.data.joinedWarband;
+        let warband=this.data.warband;
+        //加载下一页内容
+        if(str==''){
+            let request = {
+                url: url + '/api/team/search',
+                data: {
+                    search:'',
+                    page: currentPage
+                }
+            }
+            //调用通用加载函数
+            app.loadMore2(that, request,res=>{
+                console.log(res)
+                let teams=res.data.data.teams;
+                let page_end = res.data.data.page_end
+                //给新内容打上正确的勾选标签
+                teams.forEach(x=>{
+                    x.check=false;
+                })
+                teams.forEach(x=>{
+                    joinedWarband.forEach(y=>{
+                        if(x.team_id=joinedWarband.team_id){
+                            x.check=true;
+                        }
+                    })
+                })
+                let newWarband=warband.concat(teams)
+                that.setData({
+                    warband:newWarband,
+                    page_end: page_end,
+                    requestCheck: true
+                })
+                console.log(warband)
+            });
+        }
     },
     //获取战队信息
     getInfo(search, page) {
@@ -105,5 +160,18 @@ Page({
                 }
             }
         })
+    },
+    //确定
+    certain(){
+        let that=this;
+        let joinedWarband=this.data.joinedWarband;
+        if(joinedWarband.length===0){
+            app.errorHide(that,'请选择战队',3000)
+        }else{
+            
+        }
+    },
+    createWarband(){
+
     }
 })
