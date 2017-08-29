@@ -3,7 +3,7 @@
     <view class="search_frame">
         <label class="searchBox flex">
             <icon type="search" size="12" class="search_icon"></icon>
-            <input class="searchInput" placeholder="搜索战队名、创始人" bindfocus="searchSth"  /> 
+            <input class="searchInput" placeholder="搜索战队名、创始人" bindinput="searchSth"  /> 
         </label>
     </view>
     <!--已加入战队  -->
@@ -19,11 +19,8 @@
                     <view class="representative">代表人:{{item.team_founder}}</view>
                 </view>
                 <view class="checkbox fr">
-                    <image src="/img/checked.png" bindtap="checked"></image>
+                    <image src="/img/checked.png" data-team='{{item}}'  bindtap="checkbox2"></image>
                 </view>
-                <!-- <view class="checkbox fr">
-                    <image src="/img/noChecked.png" bindtap="noChecked"></image>
-                </view> -->
             </view>
         </block>
     </view>
@@ -40,10 +37,10 @@
                     <view class="representative">代表人:{{item.team_founder}}</view>
                 </view>
                 <view class="checkbox fr" wx:if='{{item.check==true}}'>
-                    <image src="/img/checked.png" data-team='{{item}}' data-index='{{index}}' bindtap="noChecked"></image>
+                    <image src="/img/checked.png" data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1"></image>
                 </view>
                 <view class="checkbox fr" wx:if='{{item.check==false}}'>
-                    <image src="/img/noChecked.png" data-team='{{item}}' data-index='{{index}}' bindtap="noChecked"></image>
+                    <image src="/img/noChecked.png" data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1"></image>
                 </view>
             </view>
         </block>
