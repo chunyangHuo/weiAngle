@@ -1,2 +1,64 @@
-<!--pages/contactsActivty/topPlayer/topPlayer.wxml-->
-<text>pages/contactsActivty/topPlayer/topPlayer.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="swiper-tab">
+
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">个人</view>
+
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">战队</view>
+
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
+  <!--申请查看我的项目  -->
+  <swiper-item>
+    <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply">
+      <view class="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
+      <view class="flex">
+        <view class="littleBox">
+          <view class="number">222</view>
+          <view class="ranking">一级人脉</view>
+        </view>
+        <view class="littleBox">
+          <view class="number">555</view>
+          <view class="ranking">二级人脉</view>
+        </view>
+        <view class="littleBox">
+          <view class="number">900</view>
+          <view class="ranking">当前排名</view>
+        </view>
+      </view>
+      <view>
+        <view class="flex totalNum">
+          <view class="classname">top1</view>
+          <view class="rightBox flex">
+            <view class="firstFriend">一级人脉：<label class="personNum">566</label> ，</view>
+            <view class="secondFriend">二级人脉：<label class="personNum">566</label></view>
+          </view>
+        </view>
+        <view class="flex infoBox">
+          <view class="infoLeft">
+            <!-- <image src=""></image> -->
+          </view>
+          <view class="infoCenter">
+            <view class="userName">姓名</view>
+            <view class="userCompany">公司</view>
+            <view class="userPosition">职位</view>
+          </view>
+          <view class="infoRight">
+            <view class="flex addNetwork">
+              <view class="refuse">已为人脉</view>
+              <!-- <view class="refuse">待验证</view>     -->
+              <!-- <view class="addPersonBtn">加人脉</view> -->
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!--我申请查看的项目  -->
+  <swiper-item>
+    <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
+
+    </scroll-view>
+  </swiper-item>
+</swiper>
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
