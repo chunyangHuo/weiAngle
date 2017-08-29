@@ -27,27 +27,6 @@ Page({
       type: type
     })
   },
-  onReady: function () {
-
-  },
-  onShow: function () {
-
-  },
-  onHide: function () {
-
-  },
-  onUnload: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  },
   // 姓名
   nameEdit: function (e) {
     let user_name = e.detail.value;
