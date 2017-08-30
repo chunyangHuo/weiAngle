@@ -1,11 +1,9 @@
-<view wx:if="{{type == 1}}">
-  <input class="myName" id="name" value="{{user_name}}" maxlength="20" bindinput="nameEdit" placeholder="请输入姓名" />
-</view>
+
 <view wx:if="{{type == 2}}">
-  <input class="myName" id="brand" value="{{user_brand}}"  maxlength="40" bindinput="warNameEdit" placeholder="请输入战队名" />
+  <input class="myName" id="brand" value="{{team_name}}"  maxlength="40" bindinput="warNameEdit" placeholder="请输入战队名" />
 </view>
 <view wx:if="{{type == 3}}">
-  <input class="myName" id="company" value="{{user_company}}" maxlength="40" bindinput="createPersonEdit" placeholder="请输入机构创始人" />
+  <input class="myName" id="company" value="{{team_founder}}" maxlength="40" bindinput="createPersonEdit" placeholder="请输入机构创始人" />
 </view>
 <view class="btn" bindtap="save">保存</view>
 <!--错误提示-->

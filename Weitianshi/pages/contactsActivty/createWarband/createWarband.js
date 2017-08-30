@@ -5,45 +5,75 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-  
+    filePath:''
   },
 
   onLoad: function (options) {
-  
+
   },
 
   onShow: function () {
-  
+
   },
-  writeNewThing:function(e){
+  writeNewThing: function (e) {
+    let that = this;
     let type = e.currentTarget.dataset.type;
-    if (type == 1) {
+    let team_name = this.data.team_name;
+    let team_founder = this.data.team_founder;
+    if (type == 2) {
       wx.navigateTo({
-        url: '/pages/contactsActivty/createInfo/createInfo?type=' + type,
-      })
-    } else if (type == 2) {
-      wx.navigateTo({
-        url: '/pages/contactsActivty/createInfo/createInfo?type=' + type,
+        url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&team_name=' + team_name,
       })
     }
     else if (type == 3) {
       wx.navigateTo({
-        url: '/pages/contactsActivty/createInfo/createInfo?type=' + type,
+        url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&team_founder=' + team_founder,
       })
     }
   },
-  createWar:function(){
-    let  user_id = this.data.user_id;
+  // 战队logo上传
+  warLogo: function () {
+    let  that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths;
+        let avatar = tempFilePaths[0];
+        wx.uploadFile({
+          url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'avatar',
+          formData: {
+            user_id: "vrny6QAp",
+          },
+          success: function (res) {
+            let data = JSON.parse(res.data);
+            let image_id = data.data.image_id;
+            that.setData({
+              image_id: image_id
+            })
+          }
+        })
+        that.setData({
+          filePath: tempFilePaths
+        })
+      }
+    })
+  },
+  createWar: function () {
+    let user_id = this.data.user_id;
     let team_name = this.data.team_name;
     let team_founder = this.data.team_founder;
-    let team_logo = this.data.team_logo;
+    let team_logo = this.data.image_id;
     wx.request({
       url: url + '/api/team/create',
       data: {
         user_id: "vrny6QAp",
         team_name: team_name,
         team_founder: team_founder,
-        team_logo: ''
+        team_logo: team_logo
       },
       method: 'POST',
       success: function (res) {
@@ -69,9 +99,9 @@ Page({
             cancelText: "重新编辑",
             confirmColor: "#333333",
             success: function (res) {
-            if (res.cancel) {
-              console.log('用户点击取消')
-            }
+              if (res.cancel) {
+                console.log('用户点击取消')
+              }
             }
           })
         } else if (res.data.status_code == 411000) {
