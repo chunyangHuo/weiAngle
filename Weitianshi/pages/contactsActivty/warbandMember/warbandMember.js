@@ -1,66 +1,66 @@
-// pages/contactsActivty/warbandMember/warbandMember.js
+var rqj = require('../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
+    let team_id = this.data.team_id;
+    let user_id = this.data.user_id;
+    let that = this;
+    wx.request({
+      url: url_common + '/api/team/membersList',
+      data: {
+        // team_id : team_id,
+        //user_id :  user_id,
+        team_id: 7,
+        user_id: 'v0eoXLmp',
+        page : 1
+      },
+      method: 'POST',
+      success: function (res) {
+        let  warMemberList = res.data.data.members;
+        that.setData({
+          warMemberList: warMemberList
+        })
+      }
+    })
+    that.setData({
+      requestCheck: true,
+      currentPage: 1,
+      page_end: false,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+//加载更多
+  loadMore: function () {
+    //请求上拉加载接口所需要的参数
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    var currentPage = this.data.currentPage;
+    var request = {
+      url: url_common + '/api/team/membersList',
+      data: {
+        team_id : team_id,
+        user_id :  user_id,
+        page: this.data.currentPage
+      },
+    }
+    //调用通用加载函数
+    app.loadMore(that, request, "warMemberList", that.data.warMemberList)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  //跳转用户详情
+  goTo:function(e){
+  let id = e.currentTarget.dataset.id;
+  wx.navigateTo({
+    url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+  })
   }
 })

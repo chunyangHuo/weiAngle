@@ -10,7 +10,7 @@
   <!--申请查看我的项目  -->
   <swiper-item>
     <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply">
-      <view class="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
+      <view id="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
       <view class="flex">
         <view class="littleBox">
           <view class="number">222</view>
@@ -56,7 +56,45 @@
   <!--我申请查看的项目  -->
   <swiper-item>
     <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
-
+      <view id="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
+      <view class="flex">
+        <view class="littleBox">
+          <view class="number">222</view>
+          <view class="ranking">一级人脉</view>
+        </view>
+        <view class="littleBox">
+          <view class="number">555</view>
+          <view class="ranking">二级人脉</view>
+        </view>
+        <view class="littleBox">
+          <view class="number">900</view>
+          <view class="ranking">当前排名</view>
+        </view>
+      </view>
+      <view>
+        <view class="flex totalNum">
+          <view class="classname">top1</view>
+          <view class="rightBox flex">
+            <view class="firstFriend">一级人脉：<label class="personNum">566</label> ，</view>
+            <view class="secondFriend">二级人脉：<label class="personNum">566</label></view>
+          </view>
+        </view>
+        <view class="flex infoBox">
+          <view class="brandPic">
+            <!-- <image src=""></image> -->
+          </view>
+          <view class="infoCenter">
+            <view class="brandName">滴滴出行</view>
+            <view class="representativeName">代表人：<label>张三</label></view>
+          </view>
+          <view class="infoRight">
+            <view class="flex addNetwork">
+              <view class="refuse">已加入</view>
+              <!-- <view class="addPersonBtn">加战队</view> -->
+            </view>
+          </view>
+        </view>
+      </view>
     </scroll-view>
   </swiper-item>
 </swiper>

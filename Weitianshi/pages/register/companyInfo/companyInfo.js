@@ -26,12 +26,14 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
                 var complete = res.data.is_complete;
                 if (res.data.status_code == 2000000 || res.data.status_code == 0) {
                     that.setData({
                         company: res.data.user_company_name,
                         position: res.data.user_company_career,
                         email: res.data.user_email,
+                        brand: res.data.user_brand
                     })
                 }
             },
@@ -112,12 +114,26 @@ Page({
             email: temp
         })
     },
+    //品牌验证
+    checkBrand:function(){
+      let that = this;
+      let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+      let rs = "";
+      let brand = e.detail.value;
+      for (let i = 0; i < brand.length; i++) {
+        rs = rs + brand.substr(i, 1).replace(pattern, '');
+      }
+      that.setData({
+        brand: rs
+      })
 
+    },
     //点击跳转
     backHome: function () {
         var that = this;
         var company = this.data.company;
         var position = this.data.position;
+        var brand = this.data.brand;
         var result = this.data.result;
         var error = this.data.error;
         var error_text = this.data.error_text;
@@ -133,7 +149,8 @@ Page({
                     user_id: user_id,
                     user_company_name: company,
                     user_company_career: position,
-                    user_email: email
+                    user_email: email,
+                    user_brand:brand
                 },
                 method: 'POST',
                 success: function (res) {
@@ -240,8 +257,6 @@ Page({
             } else {
                 rqj.errorHide(that, "请正确填写邮箱", 1500)
             }
-
         }
-
     }
 });

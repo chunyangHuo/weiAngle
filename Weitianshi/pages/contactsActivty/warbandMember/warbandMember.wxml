@@ -1,2 +1,27 @@
-<!--pages/contactsActivty/warbandMember/warbandMember.wxml-->
-<text>pages/contactsActivty/warbandMember/warbandMember.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="s_frame">
+  <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="loadMore">
+    <block wx:for="{{warMemberList}}" wx:key="{{index}}">
+      <view class="flex infoBox" data-id="{{item.user_id}}"  bindtap="goTo">
+        <view class="infoLeft">
+          <image src="{{item.user.investor_logo_url}}" class="others_pic" wx:if="{{item.user.investor_logo_url}}" />
+          <view class="flex user_image" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+        </view>
+        <view class="infoCenter">
+          <view class="userName">{{item.user_real_name}}</view>
+          <view class="userCompany">{{item.user_company_name}}</view>
+          <view class="userPosition">{{item.user_company_career}}</view>
+        </view>
+        <view class="infoRight">
+          <view class="flex addNetwork">
+            <view class="refuse" wx:if="{{item.status == 1}}">已为人脉</view>
+            <view class="refuse" wx:if="{{item.status == 2}}">待验证</view>
+            <view class="addPersonBtn" wx:if="{{item.status == 0 || item.status == 3}}">加人脉</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

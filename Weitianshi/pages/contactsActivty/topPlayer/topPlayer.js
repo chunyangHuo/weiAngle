@@ -1,7 +1,10 @@
-// pages/contactsActivty/topPlayer/topPlayer.js
+var rqj = require('../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
   data: {
-    currentTab: 0,//选项卡
+    currentTab: 1,//选项卡
   },
 
   
@@ -10,7 +13,7 @@ Page({
   },
 
   onShow: function () {
-  
+
   },
   /*滑动切换tab*/
   bindChange: function (e) {

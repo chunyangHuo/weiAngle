@@ -79,3 +79,9 @@
   text-align: center;
   color: #fff;
 }
+.uploadAfter{
+  width:64rpx;
+  height:64rpx;
+  border:4rpx;
+  margin-top:10rpx;
+}
