@@ -1,66 +1,69 @@
-// pages/contactsActivty/activtyRegister/activtyRegister.js
+var rqj = require('../../Template/Template.js')
+var app = getApp()
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
+    data: {
+        user_info:{
+            user_avatar_url:'',
+            user_mobile:'',
+            user_real_name:'',
+            user_company_name:'',
+            user_brand:'',
+            user_company_career:'',
+        },
+    },
+    onLoad: function (options) {
+        var that = this;
+        var user_id = wx.getStorageSync('user_id');
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
+        //获取用户信息
+        wx.request({
+            url: url_common + '/api/user/getUserAllInfo',
+            data: {
+                share_id: 0,
+                user_id: user_id,
+                view_id: user_id
+            },
+            method: 'POST',
+            success: function (res) {
+                console.log(res.data.user_info)
+                that.setData({
+                    user_id:user_id,
+                    user_info: res.data.user_info,
+                })
+            },
+        })
+    },
+    onShow: function () {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    },
+    //头像
+    headPic() {
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+    },
+    //手机号码
+    telephone() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    },
+    //姓名
+    name() {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+    },
+    //公司
+    company() {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+    },
+    //品牌
+    brand() {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+    },
+    //职位
+    career() {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+    },
+    //提交
+    save() {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    },
 })

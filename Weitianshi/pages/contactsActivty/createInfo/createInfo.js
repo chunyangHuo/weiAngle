@@ -1,9 +1,6 @@
 // pages/contactsActivty/createInfo/createInfo.js
 Page({
-  data: {
-  
-  },
-
+  data: {},
   onLoad: function (options) {
     let type = options.type;
     let that = this;
@@ -11,10 +8,7 @@ Page({
       type :type
     })
   },
-
-  onShow: function () {
-  
-  },
+  onShow: function () {},
   warNameEdit:function(e){
     let warName = e.detail.value;
     let warNameLength = e.detail.value.length;
@@ -63,7 +57,7 @@ Page({
           prevPage.setData({
             team_founder: createPerson
           })
-          wx.navigateBack({
+          wx.navigateBack({ 
             delta: 1
           })
         } 

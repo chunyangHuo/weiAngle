@@ -98,7 +98,6 @@ Page({
             }
             //调用通用加载函数
             app.loadMore2(that, request,res=>{
-                console.log(res)
                 let teams=res.data.data.teams;
                 let page_end = res.data.data.page_end
                 //给新内容打上正确的勾选标签
@@ -118,7 +117,6 @@ Page({
                     page_end: page_end,
                     requestCheck: true
                 })
-                console.log(warband)
             });
         }
     },
@@ -165,13 +163,39 @@ Page({
     certain(){
         let that=this;
         let joinedWarband=this.data.joinedWarband;
+        let user_id=wx.getStorageSync('user_id');
+        let parameter =[];
         if(joinedWarband.length===0){
             app.errorHide(that,'请选择战队',3000)
         }else{
-            
+            joinedWarband.forEach(x=>{
+                let arr=[];
+                arr.push(user_id);
+                arr.push(x.team_id);
+                parameter.push(arr)
+            })
+            wx.request({
+                url: url+'/api/team/join',
+                method:'POST',
+                data:{
+                    teams:parameter
+                },
+                success(res){
+                    console.log(res)
+                    if(res.data.status_code===2000000){
+                        wx.navigateTo({
+                            url: '/pages/contactsActivty/activtyRegister/activtyRegister',
+                        })
+                    }else{
+                        app.errorHide(that,res.data.error_msg,3000)
+                    }
+                }
+            })
         }
     },
     createWarband(){
-
+        wx.navigateTo({
+            url: '/pages/contactsActivty/createWarband/createWarband',
+        })
     }
 })
