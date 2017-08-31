@@ -73,8 +73,10 @@
 }
 
 .others_pic {
-  width: 40rpx;
-  height: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
   display: block;
   margin-right: 16rpx;
+  border-radius: 50%;
+  text-align: center;
 }

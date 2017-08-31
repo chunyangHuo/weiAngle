@@ -27,10 +27,10 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res.data.user_info)
+                let user_info = res.data.user_info
                 that.setData({
                     user_id:user_id,
-                    user_info: res.data.user_info,
+                    user_info: user_info,
                 })
             },
         })
@@ -42,28 +42,38 @@ Page({
     headPic() {
 
     },
-    //手机号码
-    telephone() {
-
-    },
-    //姓名
-    name() {
-
-    },
-    //公司
-    company() {
-
-    },
-    //品牌
-    brand() {
-
-    },
-    //职位
-    career() {
-
+    //信息填写或更改
+    writeNewThing: function (e) {
+      let that = this;
+      let type = e.currentTarget.dataset.type;
+      let user_real_name = this.data.user_info.user_real_name;
+      let user_company_name = this.data.user_info.user_company_name;
+      let user_brand = this.data.user_info.user_brand;
+      let user_company_career = this.data.user_info.user_company_career;
+      if (type == 4) {
+        wx.navigateTo({
+          url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_real_name=' + user_real_name,
+        })
+      }
+      else if (type == 5) {
+        wx.navigateTo({
+          url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_company_name=' + user_company_name,
+        })
+      }
+      else if (type == 6) {
+        wx.navigateTo({
+          url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_brand=' + user_brand,
+        })
+      }
+      else if (type == 7) {
+        wx.navigateTo({
+          url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_company_career=' + user_company_career,
+        })
+      }
     },
     //提交
     save() {
 
     },
+   
 })

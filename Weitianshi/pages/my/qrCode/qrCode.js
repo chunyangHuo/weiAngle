@@ -6,12 +6,29 @@ Page({
   data: {
     dataUrl: ""
   },
+  onLoad:function(options){
+ let QR_id = this.options.user_id;
+ let type = this.options.type;
+ if(type){
+  this.setData({
+    QR_id: QR_id,
+    type: type
+  })
+ }
+  },
   onShow: function () {
     var that = this;
-    var QR_id = wx.getStorageSync('QR_id');//点击二维码页面的用户id
+    let type = this.data.type;
+    if (type == 1) {
+      var QR_id = this.data.QR_id;
+      console.log(QR_id)
+    } else {
+      var QR_id = wx.getStorageSync('QR_id');//点击二维码页面的用户id
+     }
+
     //登录态维护
     app.loginPage(function (user_id) {
-      var view_id = QR_id;
+        var view_id = QR_id;
       wx.setStorageSync('user_id', user_id);
       that.setData({
         user_id: user_id
@@ -26,6 +43,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           var user = res.data.user_info;
           that.setData({
             user: user,

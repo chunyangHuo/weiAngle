@@ -32,4 +32,18 @@ Page({
       })
     }
   },
+  //返回小程序
+  backTo:function(){
+    console.log(5555)
+    wx.switchTab({
+      url: '/pages/match/selectProject/selectProject',
+    })
+  },
+  //扩展我的人脉
+  expandMyContacts:function(){
+    let user_id = wx.getStorageSync('user_id');
+    wx.redirectTo({
+      url: '/pages/my/qrCode/qrCode?user_id='+ user_id+'&type='+1,
+    })
+  }
 })

@@ -41,7 +41,7 @@ onLoad:function (options) {
   //报名
   enroll: function () {
     wx.navigateTo({
-      url: '/pages/contactsActivty/createWarband/createWarband'
+      url: '/pages/contactsActivty/joinWarband/joinWarband'
     })
   },
 })
