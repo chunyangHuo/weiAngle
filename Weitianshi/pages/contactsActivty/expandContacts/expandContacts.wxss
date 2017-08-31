@@ -1,1 +1,4 @@
-/* pages/contactsActivty/expandContacts/expandContacts.wxss */
+.pic{
+  height:1184rpx;
+  width:750rpx;
+}

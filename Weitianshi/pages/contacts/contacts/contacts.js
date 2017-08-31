@@ -187,4 +187,9 @@ Page({
         //调用通用加载函数
         app.loadMore(that, request, "contacts",that.data.contacts)
     },
+    howTo:function(){
+      wx.navigateTo({
+        url: '/pages/contactsActivty/expandContacts/expandContacts'
+      })
+    }
 })

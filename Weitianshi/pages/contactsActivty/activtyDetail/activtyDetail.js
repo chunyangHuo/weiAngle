@@ -1,28 +1,32 @@
-
+var rqj = require('../../Template/Template.js')
+var app = getApp()
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
   data: {
+   status : false
+  },
+onLoad:function (options) {
   
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
+    var user_id = wx.getStorageSync('user_id');
+    let  that = this;
+  wx.request({
+    url: url_common + '/api/team/isJoin',
+    data:{
+      user_id: user_id,
+    },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        let status = res.data.is_join;
+        that.setData({
+          status :status
+        })
+      }
+  })
   },
 
   onShareAppMessage: function () {
@@ -35,9 +39,9 @@ Page({
     })
   },
   //报名
-  // enroll: function () {
-    // wx.navigateTo({
-    //   url: ''
-    // })
-  // },
+  enroll: function () {
+    wx.navigateTo({
+      url: '/pages/contactsActivty/createWarband/createWarband'
+    })
+  },
 })

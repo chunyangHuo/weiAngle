@@ -102,5 +102,5 @@
 </view>
 
 <!--人脉大赛  -->
-<view class="competitor">如何拓展人脉</view>
+<view class="competitor" bindtap="howTo">如何拓展人脉</view>
 

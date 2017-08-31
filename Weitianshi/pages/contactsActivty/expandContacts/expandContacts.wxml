@@ -1,2 +1,1 @@
-<!--pages/contactsActivty/expandContacts/expandContacts.wxml-->
-<text>pages/contactsActivty/expandContacts/expandContacts.wxml</text>
+<image  src="/img/activtyContent.jpg" class="pic"></image>
