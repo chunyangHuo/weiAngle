@@ -8,9 +8,9 @@ page {
   position:static;
 }
 /*空状态*/
-.contacts{
+/* .contacts{
   margin-top:120rpx;
-}
+} */
 .nullState_text {
   text-align: center;
 }
@@ -304,4 +304,9 @@ page {
   border-radius: 35rpx 0 0 35rpx;
   padding-right: 28rpx;
   padding-left:20rpx;
+}
+.contactsPic{
+  width: 750rpx;
+  height:280rpx;
+  margin-top: 88rpx;
 }

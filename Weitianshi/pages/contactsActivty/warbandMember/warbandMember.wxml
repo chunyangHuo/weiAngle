@@ -4,7 +4,7 @@
     <block wx:for="{{warMemberList}}" wx:key="{{index}}">
       <view class="flex infoBox" data-id="{{item.user_id}}"  bindtap="goTo">
         <view class="infoLeft">
-          <image src="{{item.user.investor_logo_url}}" class="others_pic" wx:if="{{item.user.investor_logo_url}}" />
+          <image src="{{item.user_avatar_url}}" class="others_pic"   wx:if="{{item.user_avatar_url}}"/>
           <view class="flex user_image" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
         </view>
         <view class="infoCenter">

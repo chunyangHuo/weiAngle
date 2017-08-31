@@ -1,66 +1,47 @@
-// pages/contactsActivty/activtyDetail/activtyDetail.js
+var rqj = require('../../Template/Template.js')
+var app = getApp()
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+   status : false
+  },
+onLoad:function (options) {
   
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
+    var user_id = wx.getStorageSync('user_id');
+    let  that = this;
+  wx.request({
+    url: url_common + '/api/team/isJoin',
+    data:{
+      user_id: user_id,
+    },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        let status = res.data.is_join;
+        that.setData({
+          status :status
+        })
+      }
+  })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
   
-  }
+  },
+  //人脈排行
+  Connections:function(){
+    wx.navigateTo({
+      url: '/pages/contactsActivty/topPlayer/topPlayer'
+    })
+  },
+  //报名
+  enroll: function () {
+    wx.navigateTo({
+      url: '/pages/contactsActivty/joinWarband/joinWarband'
+    })
+  },
 })

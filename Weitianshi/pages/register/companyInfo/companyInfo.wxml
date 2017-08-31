@@ -14,7 +14,7 @@
       <input placeholder="邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
     </view>
      <view id="brand" class="flex">
-      <input placeholder="品牌" bindblur="checkBrand" value="{{brand}}" />
+      <input placeholder="品牌" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
     </view>
     <button form-type="submit" class="nextBtn" bindtap="backHome" loading="{{loading=='1'}}">
       完成

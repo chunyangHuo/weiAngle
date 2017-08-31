@@ -27,6 +27,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         let  warMemberList = res.data.data.members;
         that.setData({
           warMemberList: warMemberList

@@ -330,5 +330,11 @@ Page({
                 }
             }
         })
+    },
+    //人脉大赛
+    competitor: function () {
+      wx.navigateTo({
+        url: '/pages/contactsActivty/activtyDetail/activtyDetail'
+      })
     }
 });

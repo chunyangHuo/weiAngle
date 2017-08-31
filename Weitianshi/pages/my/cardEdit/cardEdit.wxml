@@ -19,7 +19,7 @@
   </view>
     <view class="card">
     <view class="text">品牌</view>
-    <input class="" id="companybrand" value="{{user_info.user_brand}}" bindblur="brandEdit"  placeholder="品牌(选填)"/>
+    <input class="" id="companybrand" value="{{user_info.user_brand}}" bindblur="brandEdit"  placeholder="品牌(选填)" maxlength="40"/>
   </view>
   <view class="card">
     <view class="text">职位*</view>

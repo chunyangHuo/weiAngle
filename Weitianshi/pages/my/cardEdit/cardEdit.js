@@ -87,13 +87,13 @@ Page({
       describe: describe
     })
   },
+  //品牌
   brandEdit:function(e){
-    console.log(e)
     var that = this;
     var companybrand = e.detail.value;
-    that.setData({
-      companybrand: companybrand
-    })
+      that.setData({
+        companybrand: companybrand
+      })
   },
   save: function () {
     var that = this;

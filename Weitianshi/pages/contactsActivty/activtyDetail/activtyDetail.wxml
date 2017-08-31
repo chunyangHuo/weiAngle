@@ -1,2 +1,12 @@
-<!--pages/contactsActivty/activtyDetail/activtyDetail.wxml-->
-<text>pages/contactsActivty/activtyDetail/activtyDetail.wxml</text>
+<view class="outBox">
+  <image src="/img/compete.jpg" class="allPic"></image>
+  <view class="personTitleLeft">5555</view>
+  <view class="personTitleRight">5555</view>
+  <view class="teamTotalLeft">666</view>
+  <view class="teamTotalRight">6666666666666</view>
+</view>
+<view class="flex bottomBtn">
+  <view class="Connections " bindtap="Connections"  >人脉排行</view>
+   <view class="ConnectionsAll " bindtap="enroll" wx:if="{{status == fasle}}" >报名</view> 
+ <button   open-type="share" id="share" class="ConnectionsAll"   wx:if="{{status == true}}">分享活动</button>
+</view>

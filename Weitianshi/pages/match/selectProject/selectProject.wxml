@@ -13,4 +13,4 @@
   </view>
   </view>
 </scroll-view>
-<view class="competitor">人脉王大赛</view>
+<view class="competitor" bindtap="competitor">人脉王大赛</view>

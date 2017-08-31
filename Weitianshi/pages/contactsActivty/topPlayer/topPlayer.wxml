@@ -100,3 +100,7 @@
 </swiper>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<view class="flex bottomBtn">
+<view class="backTo" bindtap="backTo">返回小程序</view>
+<view class="expandMyContacts" bindtap="expandMyContacts">扩展我的人脉</view>
+</view>

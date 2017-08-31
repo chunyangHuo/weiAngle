@@ -173,3 +173,25 @@ page {
   width:120rpx;
   margin-right:24rpx;
 }
+.backTo{
+width:376rpx;
+height:88rpx;
+text-align: center;
+line-height:88rpx;
+background:#ffffff;
+font-size:28rpx;
+color:#40587a;
+}
+.expandMyContacts{
+background:#40587a;
+width:376rpx;
+height:88rpx;
+text-align: center;
+line-height:88rpx;
+font-size:28rpx;
+color:#ffffff;
+}
+.bottomBtn{
+  position: fixed;
+  bottom: 0;
+}

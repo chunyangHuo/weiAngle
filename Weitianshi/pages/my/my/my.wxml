@@ -65,4 +65,4 @@
   </view>
 </view>
 <!--人脉大赛  -->
-<view class="competitor">人脉王大赛</view>
+<view class="competitor" bindtap="competitor">人脉王大赛</view>
