@@ -3,7 +3,7 @@
       <input placeholder="您的姓名" maxlength="40" value="{{name}}" bindblur="stripscript" />
     </view>
     <view id="telephone" class="flex">
-      <input placeholder="手机号" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telphone}}" />
+      <input placeholder="手机号" disabled="true"  value="{{telephone}}" />
     </view>
     <view>
         <button class="nextBtn" bindtap="goBack" loading="{{loading=='1'}}">其他手机绑定</button>

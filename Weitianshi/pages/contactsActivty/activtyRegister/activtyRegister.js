@@ -148,8 +148,25 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     if (res.data.status_code == 2000000) {
-                        wx.switchTab({
-                            url: '/pages/my/my/my',
+                        wx.showModal({
+                            title: '报名成功',
+                            content: '分享您的投资名片可快速拓展人脉',
+                            showCancel: true,
+                            cancelText: '完成',
+                            cancelColor: '#333',
+                            confirmText: '分享名片',
+                            confirmColor: '#333',
+                            success: function(res) {
+                                if(res.confirm===true){
+                                    wx.redirectTo({
+                                        url: '/pages/my/qrCode/qrCode',
+                                    })
+                                }else if(res.cancel===true){
+                                    wx.redirectTo({
+                                        url: '/pages/contactsActivty/activtyDetail/activtyDetail',
+                                    })
+                                }
+                            },
                         })
                     } else {
                         wx.showModal({

@@ -19,9 +19,15 @@ Page({
     onLoad(options) {
         let that=this;
         let name=options.name;
+        let telephone=options.telephone;
         if(name){
             this.setData({
                 name:name
+            })
+        }
+        if(telephone){
+            this.setData({
+                telephone:telephone
             })
         }
     },
@@ -73,22 +79,20 @@ Page({
                 var result = that.data.result;
                 var error = that.data.error;
                 var error_text = that.data.error_text;
-                var open_session = app.globalData.open_session;
+                var open_session = wx.getStorageSync('open_session')
+                console.log(open_session)
                 if (!name) {
                     rqj.errorHide(that, '姓名不能为空', 3000)
                 } else if (!telephone) {
                     rqj.errorHide(that, '手机号码不能为空', 3000)
-                } else if (!checkCode) {
-                    rqj.errorHide(that, '验证码不能为空', 3000)
-                } else {
+                }else {
                     wx.request({
                         url: url_common + '/api/user/bindUser',
                         data: {
                             user_real_name: name,
                             user_mobile: telephone,
-                            captcha: checkCode,
-                            code: code,
-                            open_session: open_session
+                            open_session: open_session,
+                            oauth: "wx_oauth"
                         },
                         method: 'POST',
                         success: function (res) {

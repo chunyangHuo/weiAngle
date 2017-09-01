@@ -10,9 +10,6 @@
     <view id="email" class="flex">
       <input placeholder="邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
     </view>
-    <view id="email" class="flex">
-      <input placeholder="邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
-    </view>
      <view id="brand" class="flex">
       <input placeholder="品牌" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
     </view>

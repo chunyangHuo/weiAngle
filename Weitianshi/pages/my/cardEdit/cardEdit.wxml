@@ -2,8 +2,8 @@
 <!--pages/my/cardEdit/cardEdit.wxml-->
 <view id="cardEdit">
   <view class="userPic">
-    <image class="noPic" src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}"></image>
-    <view class="user_text noPic" wx:if="{{user_info.user_avatar_text}}">{{user_info.user_avatar_text}}</view>
+    <image class="noPic" src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}" bindtap="headPic"></image>
+    <view class="user_text noPic" wx:if="{{user_info.user_avatar_text}}" bindtap='headPic'>{{user_info.user_avatar_text}}</view>
   </view>
   <view class="card">
     <view class="text">姓名*</view>

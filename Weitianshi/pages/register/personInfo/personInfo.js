@@ -188,10 +188,32 @@ Page({
     //微信授权绑定
     getPhoneNumber(e){
         console.log(e)
+        let encryptedData = e.detail.encryptedData;
+        let iv=e.detail.iv;
         let that=this;
         let  name=that.data.name;
-        wx.navigateTo({
-            url: '/pages/register/bindPhone/bindPhone?name='+name,
+        wx.login({
+            success(res){
+                let code=res.code;
+                if(code){
+                    wx.request({
+                        url: 'https://www.weitianshi.cn/api/wx/returnWxOauthMobile',
+                        data:{
+                            code:code,
+                            encryptedData: encryptedData,
+                            iv:iv
+                        },
+                        method:"POST",
+                        success(res){
+                            console.log(res)
+                            let telephone=res.data.user_mobile;
+                            wx.navigateTo({
+                                url: '/pages/register/bindPhone/bindPhone?name=' + name + '&&telephone=' + telephone,
+                            }) 
+                        }
+                    })
+                }
+            }
         })
     }
 });

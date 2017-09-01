@@ -124,6 +124,7 @@ App({
                                 console.log("这里是用户授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
                                 //在globalData里存入open_session,session_time,user_id;
                                 that.globalData.open_session = res.data.open_session;
+                                wx.setStorageSync('open_session', res.data.open_session)
                                 that.globalData.session_time = Date.now();
                                 that.globalData.user_id = res.data.user_id;
                                 wx.setStorageSync("user_id", res.data.user_id)
@@ -146,6 +147,7 @@ App({
                                 console.log("这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
                                 //在globalData里存入open_session,session_time,user_id;
                                 that.globalData.open_session = res.data.open_session;
+                                wx.setStorageSync('open_session', res.data.open_session)
                                 that.globalData.session_time = Date.now();
                                 that.globalData.user_id = res.data.user_id;
                                 wx.setStorageSync("user_id", res.data.user_id)
