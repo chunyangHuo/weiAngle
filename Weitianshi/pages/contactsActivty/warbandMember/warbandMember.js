@@ -9,24 +9,28 @@ Page({
   },
 
   onLoad: function (options) {
-
+    let team_id = options.team_id;
+    let that = this;
+    that.setData({
+      team_id: team_id
+    })
   },
 
   onShow: function () {
-    let team_id = this.data.team_id;
-    let user_id = this.data.user_id;
     let that = this;
+    let team_id = this.data.team_id;
+    let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/team/membersList',
       data: {
-        team_id : team_id,
-        user_id :  user_id,
-        page : 1
+        team_id: team_id,
+        user_id: user_id,
+        page: 1
       },
       method: 'POST',
       success: function (res) {
         console.log(res)
-        let  warMemberList = res.data.data.members;
+        let warMemberList = res.data.data.members;
         that.setData({
           warMemberList: warMemberList
         })
@@ -38,7 +42,7 @@ Page({
       page_end: false,
     })
   },
-//加载更多
+  //加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数
     var that = this;
@@ -47,8 +51,8 @@ Page({
     var request = {
       url: url_common + '/api/team/membersList',
       data: {
-        team_id : team_id,
-        user_id :  user_id,
+        team_id: team_id,
+        user_id: user_id,
         page: this.data.currentPage
       },
     }
@@ -56,10 +60,50 @@ Page({
     app.loadMore(that, request, "warMemberList", that.data.warMemberList)
   },
   //跳转用户详情
-  goTo:function(e){
-  let id = e.currentTarget.dataset.id;
-  wx.navigateTo({
-    url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-  })
+  goTo: function (e) {
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+    })
+  },
+  //添加人脉
+  addPerson: function (e) {
+    let user_id = wx.getStorageSync('user_id');
+    let applied_user_id = e.currentTarget.dataset.applyid;
+    let status = e.currentTarget.dataset.status;
+    let warMemberList = this.data.warMemberList;
+    let that = this;
+    wx.request({
+      url: url + '/api/user/UserApplyFollowUser',
+      data: {
+        user_id: user_id,
+        applied_user_id: applied_user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        if (status == 0 && res.data.status_code == 2000000) {
+          warMemberList.forEach((x) => {
+            if (x.user_id == applied_user_id) {
+              x.status = 2
+            }
+          })
+          that.setData({
+            warMemberList: warMemberList
+          })
+        } else if (status == 3 && res.data.status_code == 2000000) {
+          warMemberList.forEach((x) => {
+            if (x.user_id == applied_user_id) {
+              x.status = 1
+            }
+          })
+          that.setData({
+            warMemberList: warMemberList
+          })
+        } else (
+          app.errorHide(that, res.data.error_msg, 3000)
+        )
+      }
+    })
   }
 })

@@ -65,7 +65,6 @@ Page({
         })
       }
     })
-
   },
   // 用户详情
   userDetail: function (e) {
