@@ -34,6 +34,7 @@ Page({
   // 战队logo上传
   warLogo: function () {
     let  that = this;
+    var user_id = wx.getStorageSync('user_id');
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -48,7 +49,7 @@ Page({
             filePath: tempFilePaths[0],
             name: 'avatar',
             formData: {
-              user_id: "vrny6QAp",
+              user_id: user_id,
             },
             success: function (res) {
               let data = JSON.parse(res.data);
@@ -76,7 +77,7 @@ Page({
     wx.request({
       url: url + '/api/team/create',
       data: {
-        user_id: "vrny6QAp",
+        user_id: user_id,
         team_name: team_name,
         team_founder: team_founder,
         team_logo: team_logo
@@ -133,7 +134,7 @@ Page({
           })
         } else if (res.data.status_code == 411000) {
           wx.showModal({
-            title: '创建成功',
+            title: '创建提示',
             content: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0该战队已存在,\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0正在审核中',
             confirmText: "下一步",
             cancelText: "取消",

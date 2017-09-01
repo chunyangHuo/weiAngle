@@ -34,7 +34,6 @@ Page({
   },
   //返回小程序
   backTo:function(){
-    console.log(5555)
     wx.switchTab({
       url: '/pages/match/selectProject/selectProject',
     })

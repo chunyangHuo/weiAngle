@@ -19,10 +19,8 @@ Page({
     wx.request({
       url: url_common + '/api/team/membersList',
       data: {
-        // team_id : team_id,
-        //user_id :  user_id,
-        team_id: 7,
-        user_id: 'v0eoXLmp',
+        team_id : team_id,
+        user_id :  user_id,
         page : 1
       },
       method: 'POST',
