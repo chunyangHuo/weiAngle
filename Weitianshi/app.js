@@ -457,6 +457,7 @@ App({
                     method: 'POST',
                     success: function (res) {
                         var newPage = res.data.data;
+                        console.log(newPage)
                         var page_end = res.data.page_end;
                         for (var i = 0; i < newPage.length; i++) {
                             dataSum.push(newPage[i])
@@ -466,6 +467,7 @@ App({
                             page_end: page_end,
                             requestCheck: true
                         })
+
                     }
                 })
             } else {

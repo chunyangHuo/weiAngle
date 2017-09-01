@@ -127,7 +127,6 @@ Page({
                                     })
                                 }
                             })
-
                         } else if (button_type == 1) {
                             console.log("我的人脉--不显示内容")
                         } else if (button_type == 2) {
