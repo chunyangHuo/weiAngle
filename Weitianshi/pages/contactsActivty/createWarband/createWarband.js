@@ -9,7 +9,7 @@ Page({
   },
 
   onLoad: function (options) {
-
+    
   },
 
   onShow: function () {
@@ -34,6 +34,7 @@ Page({
   // 战队logo上传
   warLogo: function () {
     let  that = this;
+    let user_id=this.data.user_id;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -48,7 +49,7 @@ Page({
             filePath: tempFilePaths[0],
             name: 'avatar',
             formData: {
-              user_id: "vrny6QAp",
+              user_id: user_id,
             },
             success: function (res) {
               let data = JSON.parse(res.data);
