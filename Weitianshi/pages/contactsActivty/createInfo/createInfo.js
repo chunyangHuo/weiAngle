@@ -2,7 +2,6 @@
 Page({
   data: {},
   onLoad: function (options) {
-    console.log(options)
     let type = options.type;
     let that = this;
     let user_real_name = options.user_real_name;
@@ -80,7 +79,6 @@ Page({
     }
   },
   brandEdit: function (e) {
-    console.log(e)
     let user_brand = e.detail.value;
     let user_brandLength = e.detail.value.length;
     let that = this;

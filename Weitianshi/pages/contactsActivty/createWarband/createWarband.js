@@ -9,7 +9,7 @@ Page({
   },
 
   onLoad: function (options) {
-
+    
   },
 
   onShow: function () {
@@ -33,8 +33,8 @@ Page({
   },
   // 战队logo上传
   warLogo: function () {
-    let  that = this;
-    var user_id = wx.getStorageSync('user_id');
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有

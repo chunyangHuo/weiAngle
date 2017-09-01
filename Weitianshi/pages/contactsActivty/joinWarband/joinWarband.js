@@ -135,7 +135,6 @@ Page({
                 if (res.data.status_code === 2000000) {
                     let thisData = res.data.data;
                     let teams=thisData.teams;
-                    console.log('teams',thisData.teams)
                     teams.forEach(x=>{
                         x.check=false;
                     })
@@ -174,6 +173,9 @@ Page({
                 arr.push(x.team_id);
                 parameter.push(arr)
             })
+            wx.showLoading({
+                title: 'loading',
+            })
             wx.request({
                 url: url+'/api/team/join',
                 method:'POST',
@@ -182,8 +184,9 @@ Page({
                 },
                 success(res){
                     console.log(res)
+                    wx.hideLoading()
                     if(res.data.status_code===2000000){
-                        wx.navigateTo({
+                        wx.redirectTo({
                             url: '/pages/contactsActivty/activtyRegister/activtyRegister',
                         })
                     }else{
