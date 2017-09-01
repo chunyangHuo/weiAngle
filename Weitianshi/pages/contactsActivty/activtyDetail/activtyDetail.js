@@ -4,7 +4,9 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    status: false
+    status: false,
+    signUp:'/pages/contactsActivty/joinWarband/joinWarband',
+    topPlay: '/pages/contactsActivty/topPlayer/topPlayer'
   },
   onLoad: function (options) {
 
@@ -32,8 +34,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //人脈排行
-  Connections: function () {
+  //报名
+  enroll: function (xxx) {
+    console.log(xxx)
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
@@ -46,7 +49,7 @@ Page({
           var complete = res.data.is_complete;
           if (complete == 1) {
             wx.navigateTo({
-              url: '/pages/contactsActivty/topPlayer/topPlayer'
+              url:xxx
             })
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
@@ -61,12 +64,6 @@ Page({
           })
         }
       }
-    })
-  },
-  //报名
-  enroll: function () {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/joinWarband/joinWarband'
     })
   },
 })
