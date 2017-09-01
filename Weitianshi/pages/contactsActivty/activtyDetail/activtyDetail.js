@@ -5,8 +5,6 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     status: false,
-    signUp:'/pages/contactsActivty/joinWarband/joinWarband',
-    topPlay: '/pages/contactsActivty/topPlayer/topPlayer'
   },
   onLoad: function (options) {
 
@@ -35,7 +33,9 @@ Page({
 
   },
   //报名
-  enroll: function (xxx) {
+  enroll: function (e) {
+    console.log(e)
+    let xxx = e.currentTarget.dataset.url;
     console.log(xxx)
     let user_id = wx.getStorageSync('user_id');
     wx.request({
