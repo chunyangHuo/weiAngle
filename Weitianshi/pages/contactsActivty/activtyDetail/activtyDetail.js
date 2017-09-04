@@ -6,9 +6,7 @@ Page({
     data: {
         status: false,
     },
-    onLoad: function (options) {
-
-    },
+    onLoad: function (options) {},
 
     onShow: function () {
         var user_id = wx.getStorageSync('user_id');
@@ -21,7 +19,7 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log(res)
-                let status = res.data.data.is_join;
+                let status = res.data.data.button_type;
                 let activtyData=res.data.data
                 that.setData({
                     status: status,
