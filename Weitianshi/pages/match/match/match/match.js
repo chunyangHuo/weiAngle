@@ -334,17 +334,21 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            var newPage = res.data.data.projects;
-                            var investor_page_end = res.data.page_end;
-                            var yourProject = that.data.yourProject;
-                            for (var i = 0; i < newPage.length; i++) {
-                                yourProject.push(newPage[i])
+                            if(res.data.status_code===2000000){
+                                var newPage = res.data.data.projects;
+                                var investor_page_end = res.data.page_end;
+                                var yourProject = that.data.yourProject;
+                                for (var i = 0; i < newPage.length; i++) {
+                                    yourProject.push(newPage[i])
+                                }
+                                that.setData({
+                                    yourProject: yourProject,
+                                    investor_page_end: res.data.page_end,
+                                    investorProjectcheck: true
+                                })
+                            }else{
+                                app.errorHide(that,res.data.error_msg,3000)
                             }
-                            that.setData({
-                                yourProject: yourProject,
-                                investor_page_end: res.data.page_end,
-                                investorProjectcheck: true
-                            })
                         }
                     })
                 } else{
@@ -384,16 +388,20 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            var newPage = res.data.data.match_list;
-                            var resource_page_end = res.data.page_end;
-                            var res_match = that.data.res_match;
-                            for (var i = 0; i < newPage.length; i++) {
-                                res_match.push(newPage[i])
+                            if(res.data.status_code===2000000){
+                                var newPage = res.data.data.match_list;
+                                var resource_page_end = res.data.page_end;
+                                var res_match = that.data.res_match;
+                                for (var i = 0; i < newPage.length; i++) {
+                                    res_match.push(newPage[i])
+                                }
+                                that.setData({
+                                    res_match: res_match, //资源需求匹配出来的项目
+                                    resource_page_end: resource_page_end,
+                                })
+                            }else{
+                                app.errorHide(that,res.data.error_msg,3000)
                             }
-                            that.setData({
-                                res_match: res_match, //资源需求匹配出来的项目
-                                resource_page_end: resource_page_end,
-                            })
                         }
                     })
                 }

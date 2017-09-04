@@ -46,7 +46,7 @@ Page({
   checkboxChange(e) {
     let tags = this.data.industryTags;
     let that = this;
-    let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
+    let checkObject = app.tagsCheck(that, e, tags, 'industryTags')
     this.setData({
       industryTags: tags,
       contactsFilter1: checkObject
