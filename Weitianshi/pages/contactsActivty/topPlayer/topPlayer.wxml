@@ -28,7 +28,7 @@
       <block wx:for="{{rank_list}}" wx:key="{{index}}">
        <view bindtap="goTo" data-applyid = "{{item.user_id}}">
         <view class="flex totalNum">
-          <view class="classname">top{{item.rank}}</view>
+          <view   class="{{item.rank  >10 ? 'noColor' : 'topRank'}}">top{{item.rank}}</view>
           <view class="rightBox flex">
             <view class="firstFriend">一级人脉：<label class="personNum">{{item.one_level}}</label> ，</view>
             <view class="secondFriend">二级人脉：<label class="personNum">{{item.two_level}}</label></view>
@@ -64,7 +64,7 @@
       <block wx:for="{{team_rank_list}}" wx:key="{{index}}" bindtap="allPerson">
         <view bindtap="allPerson" data-id="{{item.team_id}}">
           <view class="flex totalNum">
-            <view class="classname">top{{item.rank}}</view>
+            <view class="{{item.rank  >10 ? 'noColor' : 'topRank'}}" >top{{item.rank}}</view>
             <view class="rightBox flex">
               <view class="firstFriend">一级人脉：<label class="personNum">{{item.one_level}}</label> ，</view>
               <view class="secondFriend">二级人脉：<label class="personNum">{{item.two_level}}</label></view>
