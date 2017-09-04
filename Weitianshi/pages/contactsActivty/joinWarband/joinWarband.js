@@ -13,7 +13,10 @@ Page({
     },
     onLoad(options) {
         let that = this;
-        app.initPage(that)
+        app.initPage(that);
+        wx.showLoading({
+            title: 'loading',
+        })
         that.getInfo('', 1)
     },
     onShow() { },
@@ -28,6 +31,9 @@ Page({
             clearTimeout(timer)
         }
         timer=setTimeout(x=>{
+            wx.showLoading({
+                title: 'loading',
+            })
             this.getInfo(str,1)
         },1500)
         this.setData({
@@ -133,6 +139,7 @@ Page({
             method: 'POST',
             success(res) {
                 if (res.data.status_code === 2000000) {
+                    wx.hideLoading();
                     let thisData = res.data.data;
                     let teams=thisData.teams;
                     teams.forEach(x=>{

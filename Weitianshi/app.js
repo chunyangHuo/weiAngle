@@ -409,7 +409,7 @@ App({
     },
 
     //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
-    tagsCheck(that, rqj, e, tags, str) {
+    tagsCheck(that, e, tags, str) {
         let target = e.currentTarget.dataset;
         let tagsData = tags.tagsData;
         let checkObject = [];
@@ -422,7 +422,7 @@ App({
         })
         if (checkedNum >= 6) {
             tagsData[target.index].check = !tagsData[target.index].check;
-            rqj.errorHide(that, "最多可选择五项", 1000)
+            this.errorHide(that, "最多可选择五项", 1000)
         } else {
             that.setData({
                 [str]: tags
@@ -440,7 +440,6 @@ App({
     //初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页)
     loadMore(that, request, str, dataSum) {
         var user_id = wx.getStorageSync("user_id");
-        var rqj = require('./pages/Template/Template.js');
         if (that.data.requestCheck) {
             if (that.data.page_end == false) {
                 wx.showToast({
@@ -473,7 +472,7 @@ App({
                     }
                 })
             } else {
-                rqj.errorHide(that, "没有更多了", 3000)
+                this.errorHide(that, "没有更多了", 3000)
                 that.setData({
                     requestCheck: true
                 });
@@ -482,7 +481,6 @@ App({
     },
     loadMore2(that, request,callback) {
         var user_id = wx.getStorageSync("user_id");
-        var rqj = require('./pages/Template/Template.js');
         if (that.data.requestCheck) {
             if (that.data.page_end == false) {
                 wx.showToast({
@@ -502,7 +500,7 @@ App({
                     success: callback
                 })
             } else {
-                rqj.errorHide(that, "没有更多了", 3000)
+                this.errorHide(that, "没有更多了", 3000)
                 that.setData({
                     requestCheck: true
                 });
@@ -822,7 +820,8 @@ App({
             },
         });
     },
-
+    
+    //错误提示
     errorHide(target, errorText, time) {
         var that = target;
         that.setData({
@@ -834,6 +833,44 @@ App({
                 error: "0"
             });
         }, time)
+    },
+
+    //请求封装
+    requestWithGet: function (paramsData) {
+        data.method = 'GET'
+        this.requestInternal(paramsData)
+    },
+    requestWithPost: function (paramsData) {
+        data.method = 'POST'
+        this.requestInternal(paramsData)
+    },
+    requestInternal: function (paramsData) {
+        var that = this;
+        console.log('requestInternal: 开始请求接口[' + paramsData.url + ']');
+        //开始网络请求
+        wx.request({
+            url: paramsData.url,
+            data: paramsData.data,
+            method: paramsData.method,
+            success: function (res) {
+                console.log('requestInternal: 接口请求成功[' + paramsData.url + ']');
+                paramsData.success(res);
+            },
+            fail: function (res) {
+                console.log('requestInternal: 接口请求失败[' + paramsData.url + ']');
+                console.log(res);
+                ////在这里做请求失败的统一处理
+                wx.showToast({
+                    title: '网络访问失败',
+                    duration: 1500
+                })
+                typeof paramsData.fail == "function" && paramsData.fail(res);
+            },
+            complete: function (res) {
+                //在这里做完成的统一处理
+                typeof paramsData.complete == "function" && paramsData.complete(res);
+            }
+        })
     },
 
     //初始本地缓存

@@ -7,14 +7,8 @@ Page({
   data: {
     filePath:''
   },
-
-  onLoad: function (options) {
-    
-  },
-
-  onShow: function () {
-
-  },
+  onLoad: function (options) {},
+  onShow: function () {},
   writeNewThing: function (e) {
     let that = this;
     let type = e.currentTarget.dataset.type;
@@ -69,7 +63,7 @@ Page({
     })
   },
   createWar: function () {
-    let user_id = this.data.user_id;
+    let user_id = wx.getStorageSync('user_id')
     let team_name = this.data.team_name;
     let team_founder = this.data.team_founder;
     let team_logo = this.data.image_id;
@@ -151,6 +145,8 @@ Page({
           })
         } else if (res.data.status_code == 490001){
           app.errorHide(that, "战队名称要填写", 1500)
+        }else{
+            app.errorHide(that,res.data.error_msg,3000)
         }
       }
     })
