@@ -229,3 +229,25 @@ page {
   width: 120rpx;
   margin-right: 24rpx;
 }
+
+.topRank {
+  background: #fc703e;
+  border-radius: 4rpx;
+  width: 56rpx;
+  height: 32rpx;
+  font-size: 18rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 32rpx;
+}
+
+.noColor {
+  font-size: 18rpx;
+  color: #fc703e;
+  text-align: center;
+  border-radius: 4rpx;
+  width: 56rpx;
+  line-height: 32rpx;
+  height: 32rpx;
+  border:1px solid #fc703e;
+}
