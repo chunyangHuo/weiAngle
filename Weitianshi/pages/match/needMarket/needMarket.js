@@ -193,7 +193,7 @@ Page({
               financingNeedcheck: true
             })
           } else {
-            rqj.errorHide(that, '没有更多了', 3000)
+            app.errorHide(that, '没有更多了', 3000)
           }
         },
         fail: function (res) {
@@ -239,7 +239,7 @@ Page({
               investNeedcheck: true
             })
           } else {
-            rqj.errorHide(that, '没有更多了', 3000)
+            app.errorHide(that, '没有更多了', 3000)
           }
         },
         fail: function (res) {
@@ -288,7 +288,7 @@ Page({
         },
       })
     } else {
-      rqj.errorHide(that, '没有更多了', 3000)
+      app.errorHide(that, '没有更多了', 3000)
     }
     this.setData({
       resourceNeedcheck: false

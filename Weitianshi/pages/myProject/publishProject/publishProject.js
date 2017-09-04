@@ -260,7 +260,7 @@ Page({
                 },
             })
         } else {
-            rqj.errorHide(that, "请完整填写信息", 1500)
+          app.errorHide(that, "请完整填写信息", 1500)
         }
     },
 });

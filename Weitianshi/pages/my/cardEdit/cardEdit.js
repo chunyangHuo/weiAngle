@@ -140,7 +140,7 @@ Page({
                         user_info: user_info
                     })
                 } else {
-                    rqj.errorHide(that, "上传图片不能超过1M", 1500)
+                    app.errorHide(that, "上传图片不能超过1M", 1500)
                 }
             }
         })
@@ -159,11 +159,11 @@ Page({
         console.log(image_id)
         // 修复bug临时使用(公司,职位,姓名改为非必填)
         if (name == '') {
-            rqj.errorHide(that, "姓名不能为空", 1500)
+            app.errorHide(that, "姓名不能为空", 1500)
         } else if (company == '') {
-            rqj.errorHide(that, "公司不能为空", 1500)
+            app.errorHide(that, "公司不能为空", 1500)
         } else if (career == '') {
-            rqj.errorHide(that, "职位不能为空", 1500)
+            app.errorHide(that, "职位不能为空", 1500)
         } else {
             wx.request({
                 url: url_common + '/api/user/updateUser',

@@ -436,7 +436,7 @@ Page({
                     userEmail: userEmail
                 })
             } else {
-                rqj.errorHide(that, '请正确填写邮箱', 1000)
+              app.errorHide(that, '请正确填写邮箱', 1000)
             }
         }
 

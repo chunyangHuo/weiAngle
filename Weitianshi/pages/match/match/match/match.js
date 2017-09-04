@@ -297,7 +297,7 @@ Page({
                         },
                     })
                 } else {
-                    rqj.errorHide(that, "没有更多了", that, 3000)
+                    app.errorHide(that, "没有更多了", that, 3000)
                     that.setData({
                         myPublicCheck: true
                     })
@@ -348,7 +348,7 @@ Page({
                         }
                     })
                 } else{
-                    rqj.errorHide(that, "没有更多了", 3000)
+                    app.errorHide(that, "没有更多了", 3000)
                     this.setData({
                         investorProjectcheck: true
                     });
@@ -399,7 +399,7 @@ Page({
                 }
             }
         } else {
-            rqj.errorHide(that, "没有更多了", 3000)
+            app.errorHide(that, "没有更多了", 3000)
             this.setData({
                 resourceProjectcheck: false
             });

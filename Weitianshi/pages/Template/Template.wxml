@@ -595,7 +595,7 @@
         <view class="introduceBox flex">
           <view class="userName">{{item.user_name}}</view>
           <view class="userPosition">{{item.user_career}}</view>
-          <view class="userPart flex">
+          <view class="userPart flex" wx:if="{{user.authentication[0].group_title}}">
             <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
             <view class="userPart1">{{user.authentication[0].group_title}}</view>
             <!-- <view class="userPart1">买方FA</view> -->

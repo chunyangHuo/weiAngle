@@ -38,7 +38,7 @@ Page({
         team_name: team_name
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
   //创始人信息填写
@@ -51,7 +51,7 @@ Page({
         team_founder: team_founder
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
   userNameEdit: function (e) {
@@ -63,7 +63,7 @@ Page({
         user_real_name: user_real_name
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
   companyEdit: function (e) {
@@ -75,7 +75,7 @@ Page({
         user_company_name: user_company_name
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
   brandEdit: function (e) {
@@ -87,7 +87,7 @@ Page({
         user_brand: user_brand
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
   positionEdit: function (e) {
@@ -99,7 +99,7 @@ Page({
         user_company_career: user_company_career
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
   //保存
@@ -124,7 +124,7 @@ Page({
           delta: 1
         })
       } else {
-        rqj.errorHide(that, "战队名不能为空", 1500)
+        app.errorHide(that, "战队名不能为空", 1500)
       }
     } else if (type == 3) {
       if (team_founder != '') {

@@ -69,7 +69,7 @@
                   </block>
                 </view>
               </view>
-              <view class="investor_stage_frame flex" wx:if="{{item.area_tag!=''}}">
+              <!-- <view class="investor_stage_frame flex" wx:if="{{item.area_tag!=''}}">
                 <view class="investor_text">投资地区:</view>
                 <view class="investor_right">
                   <block wx:for="{{item.area_tag}}" wx:key="{{index}}" wx:for-item="area">
@@ -84,7 +84,7 @@
                     <view class="investor_stage">{{scale.scale_money}}</view>
                   </block>
                 </view>
-              </view>
+              </view> -->
             </view>
           </view>
         </block>

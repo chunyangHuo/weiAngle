@@ -84,7 +84,7 @@ Page({
         delta: 1,
       })
     } else {
-      rqj.errorHide(that, "至少选择一项领域标签", 1500)
+    app.errorHide(that, "至少选择一项领域标签", 1500)
     }
   },
 });

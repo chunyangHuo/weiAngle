@@ -214,18 +214,18 @@ Page({
       }
     } else {
       if (case_name == undefined) {
-        rqj.errorHide(that, "项目名称不能为空", 1500)
+        app.errorHide(that, "项目名称不能为空", 1500)
       } else if (case_industry == '') {
-        rqj.errorHide(that, "领域不能为空", 1500)
+        app.errorHide(that, "领域不能为空", 1500)
       } else if (case_stage == 0) {
-        rqj.errorHide(that, "轮次不能为空", 1500)
+        app.errorHide(that, "轮次不能为空", 1500)
       } else if (case_money == undefined) {
-        rqj.errorHide(that, "投资金额不能为空", 1500)
+        app.errorHide(that, "投资金额不能为空", 1500)
       } else if (case_time == '请选择') {
-        rqj.errorHide(that, "交易时间不能为空", 1500)
+        app.errorHide(that, "交易时间不能为空", 1500)
       } else if (belongArea == '') {
         // case_city == [] || case_province == undefined
-        rqj.errorHide(that, "地区不能为空", 1500)
+        app.errorHide(that, "地区不能为空", 1500)
       }
     }
   },

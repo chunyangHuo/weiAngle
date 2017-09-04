@@ -82,7 +82,7 @@ Page({
                         user_info: user_info
                     })
                 } else {
-                    rqj.errorHide(that, "上传图片不能超过1M", 1500)
+                  app.errorHide(that, "上传图片不能超过1M", 1500)
                 }
             }
         })

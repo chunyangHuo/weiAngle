@@ -63,7 +63,7 @@ Page({
             filePath: tempFilePaths
           })
         }else{
-          rqj.errorHide(that, "上传图片不能超过1M", 1500)
+          app.errorHide(that, "上传图片不能超过1M", 1500)
         }
       }
     })
@@ -150,7 +150,7 @@ Page({
             }
           })
         } else if (res.data.status_code == 490001){
-          rqj.errorHide(that, "战队名称要填写", 1500)
+          app.errorHide(that, "战队名称要填写", 1500)
         }
       }
     })
