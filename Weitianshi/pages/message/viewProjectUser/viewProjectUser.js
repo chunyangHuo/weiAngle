@@ -172,7 +172,7 @@ Page({
                         }
                     })
                 } else {
-                    rqj.errorHide(that, "没有更多了", 3000)
+                    app.errorHide(that, "没有更多了", 3000)
                     that.setData({
                         requestCheck: true
                     });

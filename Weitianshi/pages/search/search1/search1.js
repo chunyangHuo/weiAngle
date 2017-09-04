@@ -86,7 +86,7 @@ Page({
           delta: 1
         })
       } else {
-        rqj.errorHide(that, "公司不能为空", 1500)
+        app.errorHide(that, "公司不能为空", 1500)
       }
     } else if (type == 8) {
       let pages = getCurrentPages();
@@ -122,7 +122,7 @@ Page({
           }
         })
       } else {
-        rqj.errorHide(that, "公司不能为空", 1500)
+      app.errorHide(that, "公司不能为空", 1500)
       }
      
     }

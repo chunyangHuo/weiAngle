@@ -114,7 +114,7 @@ Page({
         enchangeValue.push(enchange[e_index].resource_name)
         enchangeId.push(enchange[e_index].resource_id)//点击时把数据的ID添加起来
       } else {
-        rqj.errorHide(that, "最多可选择五项", 1000)
+        app.errorHide(that, "最多可选择五项", 1000)
       }
     } else {//当取消按钮时
       enchangeCheck[e_index] = false;
@@ -148,7 +148,7 @@ Page({
         targetValue.push(target[e_index].resource_name)
         targetId.push(target[e_index].resource_id)
       } else {
-        rqj.errorHide(that, "最多可选择五项", 1000)
+        app.errorHide(that, "最多可选择五项", 1000)
       }
     } else {
       targetCheck[e_index] = false;
@@ -218,7 +218,7 @@ Page({
         })
       }
     } else if (targetValue == '' || enchangeValue != '') {
-      rqj.errorHide(that, "不能都为空", 1500)
+      app.errorHide(that, "不能都为空", 1500)
     }
   }
 });

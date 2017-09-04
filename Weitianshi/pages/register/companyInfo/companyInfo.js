@@ -249,11 +249,11 @@ Page({
                 error: '1'
             });
             if (company == '') {
-                rqj.errorHide(that, "公司不能为空", 1500)
+              app.errorHide(that, "公司不能为空", 1500)
             } else if (position == '') {
-                rqj.errorHide(that, "职位不能为空", 1500)
+              app.errorHide(that, "职位不能为空", 1500)
             } else {
-                rqj.errorHide(that, "请正确填写邮箱", 1500)
+              app.errorHide(that, "请正确填写邮箱", 1500)
             }
         }
     }

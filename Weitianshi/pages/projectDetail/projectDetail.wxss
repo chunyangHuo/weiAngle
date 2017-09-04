@@ -432,7 +432,7 @@ scroll-view {
   text-align: left;
   margin-right: 16rpx;
   margin-top: 34rpx;
-    text-overflow: ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -617,8 +617,9 @@ button::after {
   height: 52rpx;
   margin-top: 18rpx;
   position: absolute;
-  right:32rpx;
+  right: 32rpx;
 }
+
 .push {
   height: 88rpx;
   font-size: 28rpx;
@@ -627,15 +628,18 @@ button::after {
   text-align: center;
   color: #fff;
 }
-.pushing{
-  background:#cccccc;
+
+.pushing {
+  background: #ccc;
   height: 88rpx;
   font-size: 28rpx;
   line-height: 88rpx;
   text-align: center;
   color: #fff;
 }
+
 /*项目详情内容页 */
+
 .followPerson, .brightPoint, .material, .corePerson, .information, .milestone,
 .signFA, .companyBrand {
   background: #fafafa;
@@ -683,6 +687,8 @@ button::after {
 
 .contentAll view {
   text-align: left;
+  word-break: break-all;
+  flex-wrap: wrap;
 }
 
 .companyBrand view {
@@ -727,7 +733,7 @@ button::after {
   line-height: 39rpx;
   text-align: left;
   overflow: hidden;
-  text-overflow: -o-ellipsis-lastline; 
+  text-overflow: -o-ellipsis-lastline;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -742,6 +748,7 @@ button::after {
   text-align: left;
 }
 
+/* 
 #projectBox  .pro_sort {
   font-size: 20rpx;
   color: #40587a;
@@ -754,6 +761,22 @@ button::after {
   padding: 0 16rpx;
   margin-right: 24rpx;
   flex-wrap: norap;
+} */
+
+#projectBox  .pro_sort {
+  font-size: 20rpx;
+  color: #40587a;
+  border-radius: 98rpx;
+  border: 1rpx solid #40587a;
+  text-align: center;
+  height: 44rpx;
+  width: auto;
+  line-height: 44rpx;
+  padding: 0 16rpx;
+  margin-right: 24rpx;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  margin-bottom: 18rpx;
 }
 
 .pro_sort_right {
@@ -770,12 +793,13 @@ button::after {
   margin-right: 8rpx;
   margin-bottom: 32rpx;
 }
-.grayName:last-child{
-  margin-bottom:0;
+
+.grayName:last-child {
+  margin-bottom: 0;
 }
 
 .personPosition {
-  margin-top:2rpx;
+  margin-top: 2rpx;
   font-size: 22rpx;
   color: #666;
   letter-spacing: 0;
@@ -877,7 +901,7 @@ button::after {
   line-height: 24rpx;
   text-align: left;
   margin-top: 48rpx;
-  margin-bottom:24rpx;
+  margin-bottom: 24rpx;
 }
 
 .purpose .purposeContent {
@@ -1128,36 +1152,40 @@ button::after {
   text-align: center;
 }
 
-.competitorPosition{
+.competitorPosition {
   font-size: 24rpx;
   color: #999;
   letter-spacing: 0;
   line-height: 24rpx;
   text-align: left;
-  margin-left:32rpx;
+  margin-left: 32rpx;
 }
 
-.more{
-    color:#009eff;
-    font-size: 12px;
+.more {
+  color: #009eff;
+  font-size: 12px;
 }
 
-.checkEmail{
-    color: #ccc;
+.checkEmail {
+  color: #ccc;
 }
-.coreMemberLeftBox{
-  width:82rpx;
-  height:82rpx;
-  margin-right:14rpx;
+
+.coreMemberLeftBox {
+  width: 82rpx;
+  height: 82rpx;
+  margin-right: 14rpx;
   border-radius: 50%;
 }
-.projectDetailLine{
+
+.projectDetailLine {
   padding: 0 16rpx;
-border-right:1rpx solid #999999;
+  border-right: 1rpx solid #999;
 }
-.projectDetailLine:first-child{
-  padding-left:0;
+
+.projectDetailLine:first-child {
+  padding-left: 0;
 }
-.projectDetailLine:last-child{
-  border-right:none;
+
+.projectDetailLine:last-child {
+  border-right: none;
 }

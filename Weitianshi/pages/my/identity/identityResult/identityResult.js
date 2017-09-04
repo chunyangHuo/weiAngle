@@ -52,7 +52,7 @@ Page({
         leaveMessage: leaveMessage
       })
     } else {
-      rqj.errorHide(that, "不能超过500个数字", 1000)
+      app.errorHide(that, "不能超过500个数字", 1000)
     }
   },
   // 点击确定返回原页面

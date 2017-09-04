@@ -496,7 +496,7 @@
                     <view class="pro_sort competitorTips" wx:if="{{newsList[index].project_news_label}}">{{newsList[index].project_news_label}}</view>
                   </view>
                 </view>
-                <view class="companyNewsNet">{{newsList[index].source}}</view>
+                <!-- <view class="companyNewsNet">{{newsList[index].source}}</view> -->
               </view>
             </view>
             <view class="moreInfo" catchtap="checkMore" wx:if="{{companyNews != 2 && newsList.length>2}}" data-id="{{2}}">展开</view>

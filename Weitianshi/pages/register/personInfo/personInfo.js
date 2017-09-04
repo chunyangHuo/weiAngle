@@ -107,11 +107,11 @@ Page({
                         clearInterval(_time)
                     }, 60000);
                 } else {
-                    rqj.errorHide(that, res.data.error_msg, 3000)
+                    app.errorHide(that, res.data.error_msg, 3000)
                 }
             },
             fail: function () {
-                rqj.errorHide(that, res.data.error_msg, 3000)
+                app.errorHide(that, res.data.error_msg, 3000)
             },
             complete: function () {
                 // complete
@@ -144,11 +144,11 @@ Page({
                 var code = res.code;
                 var open_session = app.globalData.open_session;
                 if (!name) {
-                    rqj.errorHide(that, '姓名不能为空', 3000)
+                    app.errorHide(that, '姓名不能为空', 3000)
                 } else if (!telephone) {
-                    rqj.errorHide(that, '手机号码不能为空', 3000)
+                    app.errorHide(that, '手机号码不能为空', 3000)
                 } else if (!checkCode) {
-                    rqj.errorHide(that, '验证码不能为空', 3000)
+                    app.errorHide(that, '验证码不能为空', 3000)
                 } else {
                     wx.request({
                         url: url_common + '/api/user/bindUser',
@@ -177,7 +177,7 @@ Page({
                                  });
                                }
                             } else {
-                                rqj.errorHide(that, res.data.error_msg, 3000)
+                                app.errorHide(that, res.data.error_msg, 3000)
                             }
                         }
                     })
