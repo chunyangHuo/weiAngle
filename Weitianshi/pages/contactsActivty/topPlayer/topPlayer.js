@@ -100,12 +100,14 @@ Page({
     app.loadMore2(that, request, res => {
       let rank = res.data.data.rank_list;
       let page_end = res.data.page_end;
-      let newRank_list = rank_list.concat(rank)
-      that.setData({
-        rank_list: newRank_list,
-        page_end: page_end,
-        requestCheck: true
-      })
+      if(rank){
+          let newRank_list = rank_list.concat(rank)
+          that.setData({
+              rank_list: newRank_list,
+              page_end: page_end,
+              requestCheck: true
+          })
+      }
     })
   },
   //点击跳转战队人的列表

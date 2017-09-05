@@ -34,6 +34,7 @@ Page({
         that.setData({
           warMemberList: warMemberList
         })
+        if(warMemberList.length==0) app.errorHide(that,'该战队暂时没有成员',3000) 
       }
     })
     that.setData({

@@ -30,7 +30,7 @@
         <view class="allWarband {{joinedWarband.length!=0 ? '' : 'paddingTop'}}">
             <view class="text"><span class='blueLine'></span>所有战队</view>
             <block wx:for='{{warband}}' wx:key='{{item.team_id}}'>
-                <view class="warband flex">
+                <view class="warband flex" data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1">
                     <view class="logo">
                         <image wx:if="{{item.team_logo_txt}}" src="/img/warband-logo.png"></image>
                         <image wx:if="{{item.team_logo}}" src="{{item.team_logo}}"></image>
@@ -39,11 +39,11 @@
                         <view class="companyName">{{item.team_name}}</view>
                         <view class="representative">代表人:{{item.team_founder}}</view>
                     </view>
-                    <view class="checkbox fr" wx:if='{{item.check==true}}'>
-                        <image src="/img/checked.png" data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1"></image>
-                    </view>
+                     <view class="checkbox fr" wx:if='{{item.check==true}}'>
+                        <image src="/img/checked.png"></image>
+                    </view> 
                     <view class="checkbox fr" wx:if='{{item.check==false}}'>
-                        <image src="/img/noChecked.png" data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1"></image>
+                        <image src="/img/noChecked.png"></image>
                     </view>
                 </view>
             </block>

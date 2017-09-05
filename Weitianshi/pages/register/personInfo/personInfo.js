@@ -192,28 +192,30 @@ Page({
         let iv=e.detail.iv;
         let that=this;
         let  name=that.data.name;
-        wx.login({
-            success(res){
-                let code=res.code;
-                if(code){
-                    wx.request({
-                        url: 'https://www.weitianshi.cn/api/wx/returnWxOauthMobile',
-                        data:{
-                            code:code,
-                            encryptedData: encryptedData,
-                            iv:iv
-                        },
-                        method:"POST",
-                        success(res){
-                            console.log(res)
-                            let telephone=res.data.user_mobile;
-                            wx.navigateTo({
-                                url: '/pages/register/bindPhone/bindPhone?name=' + name + '&&telephone=' + telephone,
-                            }) 
-                        }
-                    })
+        if(iv){
+            wx.login({
+                success(res) {
+                    let code = res.code;
+                    if (code) {
+                        wx.request({
+                            url: 'https://www.weitianshi.cn/api/wx/returnWxOauthMobile',
+                            data: {
+                                code: code,
+                                encryptedData: encryptedData,
+                                iv: iv
+                            },
+                            method: "POST",
+                            success(res) {
+                                console.log(res)
+                                let telephone = res.data.user_mobile;
+                                wx.navigateTo({
+                                    url: '/pages/register/bindPhone/bindPhone?name=' + name + '&&telephone=' + telephone,
+                                })
+                            }
+                        })
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 });
