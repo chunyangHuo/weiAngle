@@ -6,7 +6,7 @@ Page({
     data: {
         status: false,
     },
-    onLoad: function (options) {},
+    onLoad: function (options) { },
 
     onShow: function () {
         var user_id = wx.getStorageSync('user_id');
@@ -20,10 +20,10 @@ Page({
             success: function (res) {
                 console.log(res)
                 let status = res.data.data.button_type;
-                let activtyData=res.data.data
+                let activtyData = res.data.data
                 that.setData({
                     status: status,
-                    activtyData:activtyData
+                    activtyData: activtyData
                 })
             }
         })
@@ -43,6 +43,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+                console.log(res)
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
                     if (complete == 1) {
@@ -52,7 +53,7 @@ Page({
                     } else if (complete == 0) {
                         wx.removeStorageSync('followed_user_id')
                         wx.navigateTo({
-                            url: '/pages/register/companyInfo/companyInfo?type=1'
+                            url: '/pages/register/personInfo/personInfo?type=2'
                         })
                     }
                 } else {
@@ -65,5 +66,5 @@ Page({
         })
     },
 
-   
+
 })

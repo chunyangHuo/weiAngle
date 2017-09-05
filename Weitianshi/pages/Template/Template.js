@@ -63,7 +63,7 @@ function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_e
                 })
                 return
             } else {
-                rqj.errorHide(that, "没有更多了", 3000)
+                app.errorHide(that, "没有更多了", 3000)
             }
         }
     }

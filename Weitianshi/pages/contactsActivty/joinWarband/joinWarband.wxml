@@ -4,7 +4,7 @@
         <view class="search_frame">
             <label class="searchBox flex">
             <icon type="search" size="12" class="search_icon"></icon>
-            <input class="searchInput" placeholder="搜索战队名、创始人" bindinput="searchSth"  /> 
+            <input class="searchInput" placeholder="搜索战队名、创始人" value='{{str}}'  bindinput="searchSth"  /> 
         </label>
         </view>
         <!--已加入战队  -->
@@ -55,8 +55,11 @@
     <!--错误提示-->
     <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
     <!--按钮  -->
-    <view class="flex btnGroup">
+    <view class="flex btnGroup" wx:if="{{btnType==1}}">
         <view class="certain btn" bindtap='certain'>确定</view>
         <view class="createWarband btn" bindtap='createWarband'>创建战队</view>
+    </view>
+    <view class="btnGroup" wx:if="{{btnType==2}}">
+        <view class="createWarband" bindtap='save'>保存</view>
     </view>
 </view>

@@ -56,11 +56,11 @@ input {
   color: white;
   font-size: 32rpx;
   border-radius: 200rpx;
-  width: 152px !important;
+  width: 300rpx !important;
   display: inline-block
 }
 .nextBtn:first-child{
-    margin-right: 23px;
+    margin-right: 46rpx;
 }
 
 

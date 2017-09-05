@@ -114,7 +114,7 @@ Page({
     var industryCard = this.data.industryCard;
     var that = this;
     var industryCurrent3 = wx.getStorageSync("industryCurrent3");
-    rqj.dealTagsData(that, industryCurrent3, industryCard, "industry_name", "industry_id")
+    app.dealTagsData(that, industryCurrent3, industryCard, "industry_name", "industry_id")
     this.setData({
       industryCard: industryCard
     })

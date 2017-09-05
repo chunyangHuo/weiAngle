@@ -7,6 +7,6 @@
 </view>
 <view class="flex bottomBtn">
   <view class="Connections " data-url='/pages/contactsActivty/topPlayer/topPlayer' bindtap="enroll"  >人脉排行</view>
-   <view class="ConnectionsAll" data-url='/pages/contactsActivty/joinWarband/joinWarband' bindtap="enroll" wx:if="{{status == false}}" >报名</view> 
- <button   open-type="share" id="share" class="ConnectionsAll"   wx:if="{{status == true}}">分享活动</button>
+   <view class="ConnectionsAll" data-url='/pages/contactsActivty/joinWarband/joinWarband' bindtap="enroll" wx:if="{{status == 0}}" >报名</view> 
+ <button   open-type="share" id="share" class="ConnectionsAll"   wx:if="{{status == 1}}">分享活动</button>
 </view>

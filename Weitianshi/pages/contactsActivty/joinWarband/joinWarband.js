@@ -10,6 +10,7 @@ Page({
         timer:'',
         str:'',
         something:[],
+        btnType:1,
     },
     onLoad(options) {
         let that = this;
@@ -139,6 +140,7 @@ Page({
             method: 'POST',
             success(res) {
                 if (res.data.status_code === 2000000) {
+                    console.log(res)
                     wx.hideLoading();
                     let thisData = res.data.data;
                     let teams=thisData.teams;
@@ -153,6 +155,16 @@ Page({
                                     x.check = true;
                                 }
                             })
+                        })
+                    }
+                    //控制底部按钮组
+                    if(that.data.str==''){
+                        that.setData({
+                            btnType:1
+                        })
+                    }else{
+                        that.setData({
+                            btnType:2
                         })
                     }
                     that.setData({
@@ -203,9 +215,18 @@ Page({
             })
         }
     },
+    //创建战队
     createWarband(){
         wx.navigateTo({
             url: '/pages/contactsActivty/createWarband/createWarband',
         })
-    }
+    },
+    //保存
+    save(){
+        this.setData({
+            str:'',
+            btnType:1
+        })
+        this.getInfo('',1)
+    },
 })

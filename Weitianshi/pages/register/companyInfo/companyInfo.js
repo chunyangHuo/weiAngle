@@ -155,6 +155,7 @@ Page({
                     let pages = getCurrentPages()
                     let num = pages.length - 1;
                     if (res.data.status_code == 2000000) {
+                        console.log(res)
                         var followed_user_id = wx.getStorageSync('followed_user_id');
                         if (followed_user_id) {
                             var driectAdd = wx.getStorageSync("driectAdd");
