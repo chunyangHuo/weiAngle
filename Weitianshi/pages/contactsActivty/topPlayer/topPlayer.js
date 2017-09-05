@@ -101,11 +101,19 @@ Page({
       let rank = res.data.data.rank_list;
       let page_end = res.data.page_end;
       let newRank_list = rank_list.concat(rank)
-      that.setData({
-        rank_list: newRank_list,
-        page_end: page_end,
-        requestCheck: true
-      })
+      let page = this.data.currentPage;
+      if(page == 20){
+        that.setData({
+          requestCheck: true
+        })
+      }else{
+        that.setData({
+          rank_list: newRank_list,
+          page_end: page_end,
+          requestCheck: true
+        })
+      }
+    
     })
   },
   //点击跳转战队人的列表
@@ -135,7 +143,6 @@ Page({
   addPerson: function (e) {
     let user_id = wx.getStorageSync('user_id');
     let applied_user_id = e.currentTarget.dataset.applyid;
-    console.log(applied_user_id)
     let follow_status = e.currentTarget.dataset.follow_status;
     let rank_list = this.data.rank_list;
     let that = this;
@@ -149,7 +156,6 @@ Page({
         method: 'POST',
         success: function (res) {
           rank_list.forEach((x) => {
-            console.log(0, follow_status)
             if (x.user_id == applied_user_id) {
               x.follow_status = 2
             }
@@ -200,7 +206,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         if (res.data.status_code == 2000000) {
           team_rank_list.forEach((x) => {
             if (x.team_id == team_id) {
@@ -243,13 +248,11 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               var newPage = res.data.data.rank_list;
               var page_end = res.data.page_end;
               for (var i = 0; i < newPage.length; i++) {
                 team_rank_list.push(newPage[i])
               }
-              console.log(team_rank_list)
               that.setData({
                 team_rank_list: team_rank_list,
                 teamPage_end: page_end,
