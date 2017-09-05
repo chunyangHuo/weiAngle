@@ -733,8 +733,8 @@ page {
 }
 
 .messageIconStyle {
-  width: 32rpx;
-  height: 28rpx;
+   width:36rpx;
+  height:36rpx;
   /* margin-right:42rpx; */
   /* margin-left:42rpx; */
 }
@@ -743,5 +743,7 @@ page {
   width:662rpx;
 }
 .littleBox{
-  margin-right:84rpx;
+  margin-right:78rpx;
+  width:36rpx;
+  height:36rpx;
 }
