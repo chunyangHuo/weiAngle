@@ -34,6 +34,8 @@
       <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司：暂无编辑</view>
+      <view  class="user_mobile"  wx:if="{{user.user_brand}}">品牌：{{user.user_brand}}</view>
+      <view  class="user_mobile"  wx:if="{{!user.user_brand}}">品牌：暂无编辑</view>
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：<label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
       </view>
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机：暂无编辑</view>
@@ -54,8 +56,29 @@
         <image src="/img/img-share.png" style="width: 40rpx;height: 42rpx; border-radius:0;"></image>
       </view>
     </view>
-
+    <view class="line"></view>
+    <view class="flex iconBox">
+        <view class="littleBox">
+            <image src="/img/icon-weixin@2x.png" class="messageIconStyle"></image>
+        </view>
+        <view class="littleBox">
+            <image src="/img/icon-maimai@2x.png" class="messageIconStyle"></image>
+        </view>
+        <view class="littleBox">
+            <image src="/img/icon-zhihu@2x.png" class="messageIconStyle"></image>
+        </view>
+        <view class="littleBox">
+            <image src="/img/icon-weibo@2x.png" class="messageIconStyle"></image>
+        </view>
+        <view class="littleBox">
+            <image src="/img/icon-qq@2x.png" class="messageIconStyle"></image>
+        </view>
+        <view class="littleBox">
+            <image src="/img/icon-linkedin@2x.png" class="messageIconStyle"></image>
+        </view>
+    </view> 
   </view>
+
   <!--人气-->
   <view class="user_down flex">
     <view class="user_popularity user_tips" bindtap="popularity">

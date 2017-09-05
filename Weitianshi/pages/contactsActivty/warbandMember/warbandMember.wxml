@@ -14,9 +14,9 @@
         </view>
         <view class="infoRight">
           <view class="flex addNetwork">
-            <view class="refuse" wx:if="{{item.status == 1}}">已为人脉</view>
-            <view class="refuse" wx:if="{{item.status == 2}}">待验证</view>
-            <view class="addPersonBtn" wx:if="{{item.status == 0 || item.status == 3}}" catchtap="addPerson"  data-applyid = "{{item.user_id}}"  data-status="{{item.status}}">加人脉</view>
+            <view class="refuse" wx:if="{{item.follow_status == 1}}">已为人脉</view>
+            <view class="refuse" wx:if="{{item.follow_status == 2}}">待验证</view>
+            <view class="addPersonBtn" wx:if="{{item.follow_status == 0 || item.follow_status == 3}}" catchtap="addPerson"  data-applyid = "{{item.user_id}}"  data-status="{{item.follow_status}}">加人脉</view>
           </view>
         </view>
       </view>

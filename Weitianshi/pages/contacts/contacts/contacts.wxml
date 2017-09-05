@@ -6,13 +6,12 @@
   </label>
     <view class="screen" bindtap="screenSth">筛选</view>
 </view>
-
-<!--资本对接-->
-<view class="s_frame" hidden="{{contacts=='' || !contacts}}">
-    <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
-        <view bindtap="goTo">
+ <view bindtap="goTo">
             <image src="/img/img-banner@2x.png" class="contactsPic"></image>
         </view>
+<!--资本对接-->
+<view class="s_frame" hidden="{{contacts=='' || !contacts}}">
+    <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}"> 
         <view class="contacts">
             <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
                 <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">

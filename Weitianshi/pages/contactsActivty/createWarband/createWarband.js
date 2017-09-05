@@ -37,6 +37,7 @@ Page({
         var tempFilePaths = res.tempFilePaths;
         let avatar = tempFilePaths[0];
         let size = res.tempFiles[0].size;
+        console.log(size)
         if(size <= 1048576){
           wx.uploadFile({
             url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
@@ -143,9 +144,7 @@ Page({
               }
             }
           })
-        } else if (res.data.status_code == 490001){
-          app.errorHide(that, "战队名称要填写", 1500)
-        }else{
+        } else{
             app.errorHide(that,res.data.error_msg,3000)
         }
       }

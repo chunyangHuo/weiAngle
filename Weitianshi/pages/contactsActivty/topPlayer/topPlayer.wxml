@@ -11,6 +11,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreThing">
       <view id="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
+      <view style="height:80rpx;"></view>
       <view class="flex">
         <view class="littleBox">
           <view class="number">{{my_rank.one_level}}</view>
@@ -61,6 +62,7 @@
   <swiper-item>
     <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
       <view id="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
+         <view style="height:80rpx;"></view>
       <block wx:for="{{team_rank_list}}" wx:key="{{index}}" bindtap="allPerson">
         <view bindtap="allPerson" data-id="{{item.team_id}}">
           <view class="flex totalNum">

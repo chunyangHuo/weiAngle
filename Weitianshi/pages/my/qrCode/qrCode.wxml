@@ -8,7 +8,7 @@
             <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
         </view>
         <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
-        <view class="user_company" wx:if="{{user.user_brand}}">品牌：{{user.user_brand}}</view>
+        <view  class="user_company"  wx:if="{{user.user_brand}}">品牌：{{user.user_brand}}</view>
         <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：<label data-telephone="{{user.user_mobile}}" catchtap="telephone">{{user.user_mobile}}</label>
         </view>
         <view class="user_email flex" wx:if="{{user.user_email}}">
