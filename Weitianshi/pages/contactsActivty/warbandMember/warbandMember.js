@@ -61,49 +61,65 @@ Page({
   },
   //跳转用户详情
   goTo: function (e) {
-    let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    let id = e.currentTarget.dataset.applyid;
+    let user_id = wx.getStorageSync('user_id');
+    if (user_id == id) {
+      wx.switchTab({
+        url: '/pages/my/my/my',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+      })
+    }
+
   },
   //添加人脉
   addPerson: function (e) {
     let user_id = wx.getStorageSync('user_id');
     let applied_user_id = e.currentTarget.dataset.applyid;
-    let status = e.currentTarget.dataset.status;
+    let follow_status = e.currentTarget.dataset.status;
     let warMemberList = this.data.warMemberList;
     let that = this;
-    wx.request({
-      url: url + '/api/user/UserApplyFollowUser',
-      data: {
-        user_id: user_id,
-        applied_user_id: applied_user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        if (status == 0 && res.data.status_code == 2000000) {
+    if (follow_status == 0) {
+      wx.request({
+        url: url + '/api/user/UserApplyFollowUser',
+        data: {
+          user_id: user_id,
+          applied_user_id: applied_user_id
+        },
+        method: 'POST',
+        success: function (res) {
           warMemberList.forEach((x) => {
             if (x.user_id == applied_user_id) {
-              x.status = 2
+              x.follow_status = 2
             }
           })
           that.setData({
             warMemberList: warMemberList
           })
-        } else if (status == 3 && res.data.status_code == 2000000) {
-          warMemberList.forEach((x) => {
-            if (x.user_id == applied_user_id) {
-              x.status = 1
-            }
-          })
-          that.setData({
-            warMemberList: warMemberList
-          })
-        } else (
-          app.errorHide(that, res.data.error_msg, 3000)
-        )
+        }
+      })
+    } else if (follow_status == 3) {
+      wx.request({
+        url: url + '/api/user/handleApplyFollowUser',
+        data: {
+          user_id: user_id,
+          apply_user_id: applied_user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          //将状态改为"已互为人脉
+        warMemberList.forEach((x) => {
+          if (x.user_id == applied_user_id) {
+            x.follow_status = 1
+          }
+        })
+        that.setData({
+          warMemberList: warMemberList
+        })
       }
-    })
+      })
+    } 
   }
 })

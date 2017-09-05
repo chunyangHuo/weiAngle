@@ -22,7 +22,7 @@
     </view>
     <view class="userBox">
         <view class="createName flex" bindtap="writeNewThing" data-type="{{3}}">
-            <view class="personListTile">机构创始人</view>
+            <view class="personListTile">机构创始人*</view>
             <view class="flex">
                 <view class="personListContent" wx:if="{{!team_founder}}">建议填写核心创始人</view>
                 <view class="personListContentAfter" wx:if="{{team_founder}}">{{team_founder}}</view>

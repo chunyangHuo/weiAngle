@@ -42,6 +42,7 @@ page {
   justify-content: space-between;
   padding: 32rpx;
   flex-wrap: wrap;
+  padding-bottom:20rpx;
 }
 
 .user_left {
@@ -706,7 +707,7 @@ page {
 }
 .competitor {
   position: fixed;
-  bottom: 230rpx;
+  bottom: 132rpx;
   right: 0;
   background: #fff;
   border: 0 solid #e0e6ed;
@@ -721,4 +722,26 @@ page {
   text-align: right;
   border-radius: 35rpx 0 0 35rpx;
   padding-right: 28rpx;
+}
+
+.line {
+  background: #e6e6e6;
+  width: 622rpx;
+  height: 1rpx;
+  margin-top:32rpx;
+  display: inline-block;
+}
+
+.messageIconStyle {
+  width: 32rpx;
+  height: 28rpx;
+  /* margin-right:42rpx; */
+  /* margin-left:42rpx; */
+}
+.iconBox{
+  margin-top:20rpx;
+  width:662rpx;
+}
+.littleBox{
+  margin-right:84rpx;
 }

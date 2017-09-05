@@ -18,7 +18,8 @@ page {
 .nullState_text image {
   width: 176rpx;
   height: 176rpx;
-  margin-top: 248rpx;
+  /* margin-top: 248rpx; */
+  margin-top:20rpx;
 }
 
 .nullState_text view:nth-child(2) {
@@ -288,7 +289,7 @@ page {
 
 .competitor {
   position: fixed;
-  bottom: 230rpx;
+  bottom: 132rpx;
   right: 0;
   background: #fff;
   border: 0 solid #e0e6ed;

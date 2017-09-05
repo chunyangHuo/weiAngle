@@ -472,7 +472,7 @@ page {
 
 .competitor {
   position: fixed;
-  bottom: 230rpx;
+  bottom: 132rpx;
   right: 0;
   background: #fff;
   border: 0 solid #e0e6ed;

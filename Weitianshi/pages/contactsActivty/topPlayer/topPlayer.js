@@ -4,7 +4,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
   },
 
 
@@ -99,7 +99,7 @@ Page({
     }
     app.loadMore2(that, request, res => {
       let rank = res.data.data.rank_list;
-      let page_end = res.data.data.page_end
+      let page_end = res.data.page_end;
       let newRank_list = rank_list.concat(rank)
       that.setData({
         rank_list: newRank_list,
@@ -118,29 +118,38 @@ Page({
   //跳转用户详情
   goTo: function (e) {
     let id = e.currentTarget.dataset.applyid;
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    let user_id = wx.getStorageSync('user_id');
+    if (user_id == id) {
+      wx.switchTab({
+        url: '/pages/my/my/my',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+      })
+    }
+
   },
 
   //添加人脉
   addPerson: function (e) {
     let user_id = wx.getStorageSync('user_id');
     let applied_user_id = e.currentTarget.dataset.applyid;
+    console.log(applied_user_id)
     let follow_status = e.currentTarget.dataset.follow_status;
     let rank_list = this.data.rank_list;
     let that = this;
-    wx.request({
-      url: url + '/api/user/UserApplyFollowUser',
-      data: {
-        user_id: user_id,
-        applied_user_id: applied_user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        if (follow_status == 0 && res.data.status_code == 2000000) {
+    if (follow_status == 0) {
+      wx.request({
+        url: url + '/api/user/UserApplyFollowUser',
+        data: {
+          user_id: user_id,
+          applied_user_id: applied_user_id
+        },
+        method: 'POST',
+        success: function (res) {
           rank_list.forEach((x) => {
+            console.log(0, follow_status)
             if (x.user_id == applied_user_id) {
               x.follow_status = 2
             }
@@ -148,7 +157,18 @@ Page({
           that.setData({
             rank_list: rank_list
           })
-        } else if (follow_status == 3 && res.data.status_code == 2000000) {
+        }
+      })
+    } else if (follow_status == 3) {
+      wx.request({
+        url: url + '/api/user/handleApplyFollowUser',
+        data: {
+          user_id: user_id,
+          apply_user_id: applied_user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          //将状态改为"已互为人脉
           rank_list.forEach((x) => {
             if (x.user_id == applied_user_id) {
               x.follow_status = 1
@@ -157,11 +177,9 @@ Page({
           that.setData({
             rank_list: rank_list
           })
-        } else (
-          app.errorHide(that, res.data.error_msg, 3000)
-        )
-      }
-    })
+        }
+      })
+    }
   },
   //添加战队
   addTeam: function (e) {
@@ -225,11 +243,11 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
               var newPage = res.data.data.rank_list;
               var page_end = res.data.page_end;
               for (var i = 0; i < newPage.length; i++) {
                 team_rank_list.push(newPage[i])
-                console.log(team_rank_list)
               }
               console.log(team_rank_list)
               that.setData({
@@ -240,7 +258,7 @@ Page({
             }
           })
         } else {
-        app.errorHide(that, "没有更多了", that, 30000)
+          app.errorHide(that, "没有更多了", that, 30000)
           that.setData({
             teamRequestCheck: true
           });
