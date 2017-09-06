@@ -85,6 +85,8 @@ Page({
                   app.errorHide(that, '姓名不能为空', 3000)
                 } else if (!telephone) {
                   app.errorHide(that, '手机号码不能为空', 3000)
+                }else if(telephone=='undefined'){
+                    app.errorHide(that, '获取手机号码失败,请重试', 3000)
                 }else {
                     wx.request({
                         url: url_common + '/api/user/bindUser',

@@ -11,6 +11,7 @@ Page({
         str:'',
         something:[],
         btnType:1,
+        scrollTop:0,
     },
     onLoad(options) {
         let that = this;
@@ -49,6 +50,12 @@ Page({
         let index=e.currentTarget.dataset.index;
         let joinedWarband=this.data.joinedWarband;
         let warband=this.data.warband;
+        let offsetTop = e.currentTarget.offsetTop;
+        console.log(team)
+        // console.log(this.data.warband)
+        this.setData({
+            scrollTop: offsetTop-92
+        })
         if(team.check==false){
             warband[index].check=true;
             joinedWarband.push(team)
@@ -113,7 +120,7 @@ Page({
                 })
                 teams.forEach(x=>{
                     joinedWarband.forEach(y=>{
-                        if(x.team_id=joinedWarband.team_id){
+                        if(x.team_id==y.team_id){
                             x.check=true;
                         }
                     })
@@ -124,6 +131,7 @@ Page({
                     page_end: page_end,
                     requestCheck: true
                 })
+                console.log(that.data.warband)
             });
         }
     },
@@ -147,7 +155,7 @@ Page({
                     teams.forEach(x=>{
                         x.check=false;
                     })
-                    //给已经加入的战队重新挂上check=true属性
+                    // 给已经加入的战队重新挂上check=true属性
                     if(joinedWarband && teams && joinedWarband.length!=0){
                         teams.forEach(x=>{
                             joinedWarband.forEach(y => {
@@ -192,27 +200,29 @@ Page({
                 arr.push(x.team_id);
                 parameter.push(arr)
             })
+            console.log(joinedWarband)
+            console.log(parameter)
             wx.showLoading({
                 title: 'loading',
             })
-            wx.request({
-                url: url+'/api/team/join',
-                method:'POST',
-                data:{
-                    teams:parameter
-                },
-                success(res){
-                    console.log(res)
-                    wx.hideLoading()
-                    if(res.data.status_code===2000000){
-                        wx.redirectTo({
-                            url: '/pages/contactsActivty/activtyRegister/activtyRegister',
-                        })
-                    }else{
-                        app.errorHide(that,res.data.error_msg,3000)
-                    }
-                }
-            })
+            // wx.request({
+            //     url: url+'/api/team/join',
+            //     method:'POST',
+            //     data:{
+            //         teams:parameter
+            //     },
+            //     success(res){
+            //         console.log(res)
+            //         wx.hideLoading()
+            //         if(res.data.status_code===2000000){
+            //             wx.redirectTo({
+            //                 url: '/pages/contactsActivty/activtyRegister/activtyRegister',
+            //             })
+            //         }else{
+            //             app.errorHide(that,res.data.error_msg,3000)
+            //         }
+            //     }
+            // })
         }
     },
     //创建战队

@@ -1,5 +1,5 @@
 <view id='joinWarband'>
-    <scroll-view scroll-y="true" style="height: 1334rpx;" bindscrolltolower="loadMore">
+    <scroll-view scroll-y="true" style="height: 1334rpx;" bindscrolltolower="loadMore" scroll-top="{{scrollTop}}">
         <!--搜索框  -->
         <view class="search_frame">
             <label class="searchBox flex">
@@ -29,8 +29,8 @@
         <!--所有战队  -->
         <view class="allWarband {{joinedWarband.length!=0 ? '' : 'paddingTop'}}">
             <view class="text"><span class='blueLine'></span>所有战队</view>
-            <block wx:for='{{warband}}' wx:key='{{item.team_id}}'>
-                <view class="warband flex" data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1">
+            <block wx:for='{{warband}}' wx:key='{{index}}'>
+                <view class="warband flex"  data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1">
                     <view class="logo">
                         <image wx:if="{{item.team_logo_txt}}" src="/img/warband-logo.png"></image>
                         <image wx:if="{{item.team_logo}}" src="{{item.team_logo}}"></image>
