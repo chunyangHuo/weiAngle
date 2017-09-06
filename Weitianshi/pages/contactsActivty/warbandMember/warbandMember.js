@@ -61,7 +61,8 @@ Page({
   },
   //跳转用户详情
   goTo: function (e) {
-    let id = e.currentTarget.dataset.applyid;
+    console.log(e)
+    let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
       wx.switchTab({
