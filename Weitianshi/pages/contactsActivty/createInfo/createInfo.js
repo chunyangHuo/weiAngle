@@ -1,7 +1,12 @@
 // pages/contactsActivty/createInfo/createInfo.js
+var rqj = require('../../Template/Template.js');
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
   data: {},
   onLoad: function (options) {
+    console.log(options)
     let type = options.type;
     let that = this;
     let user_real_name = options.user_real_name;
@@ -20,8 +25,10 @@ Page({
       that.setData({
         team_name: team_name
       })
-    } else if (options.team_founder != "undefined") {
+    } 
+    if (options.team_founder != "undefined") {
       let team_founder = options.team_founder;
+      console.log(team_founder)
       that.setData({
         team_founder: team_founder
       })
@@ -43,15 +50,17 @@ Page({
   },
   //创始人信息填写
   createPersonEdit: function (e) {
+    console.log(e)
     let team_founder = e.detail.value;
+    console.log(team_founder)
     let team_founderLength = e.detail.value.length;
     let that = this;
-    if (team_founderLength <= 20) {
+    if (team_founderLength <= 40) {
       this.setData({
         team_founder: team_founder
       })
     } else {
-      app.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过40个字", 100)
     }
   },
   userNameEdit: function (e) {
@@ -70,36 +79,36 @@ Page({
     let user_company_name = e.detail.value;
     let user_company_nameLength = e.detail.value.length;
     let that = this;
-    if (user_company_nameLength <= 20) {
+    if (user_company_nameLength <= 40) {
       this.setData({
         user_company_name: user_company_name
       })
     } else {
-      app.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过40个字", 100)
     }
   },
   brandEdit: function (e) {
     let user_brand = e.detail.value;
     let user_brandLength = e.detail.value.length;
     let that = this;
-    if (user_brandLength <= 20) {
+    if (user_brandLength <= 40) {
       this.setData({
         user_brand: user_brand
       })
     } else {
-      app.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过40个字", 100)
     }
   },
   positionEdit: function (e) {
     let user_company_career = e.detail.value;
     let user_company_careerLength = e.detail.value.length;
     let that = this;
-    if (user_company_careerLength <= 20) {
+    if (user_company_careerLength <= 40) {
       this.setData({
         user_company_career: user_company_career
       })
     } else {
-      app.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过40个字", 100)
     }
   },
   //保存
@@ -127,6 +136,7 @@ Page({
         app.errorHide(that, "战队名不能为空", 1500)
       }
     } else if (type == 3) {
+      console.log(type)
       if (team_founder != '') {
         prevPage.setData({
           team_founder: team_founder
@@ -166,7 +176,6 @@ Page({
         })
       }
     } else if (type == 6) {
-      if (user_brand != '') {
         user_info.user_brand = user_brand;
         prevPage.setData({
           user_info: user_info
@@ -174,7 +183,6 @@ Page({
         wx.navigateBack({
           delta: 1
         })
-      }
     }
     else if (type == 7) {
       if (user_company_career != '') {

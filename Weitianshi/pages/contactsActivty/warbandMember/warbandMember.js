@@ -29,7 +29,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let warMemberList = res.data.data.members;
         that.setData({
           warMemberList: warMemberList
@@ -47,21 +46,32 @@ Page({
     //请求上拉加载接口所需要的参数
     var that = this;
     var user_id = wx.getStorageSync('user_id');
+    let team_id = this.data.team_id;
     var currentPage = this.data.currentPage;
+    let warMemberList = this.data.warMemberList;
+
     var request = {
       url: url_common + '/api/team/membersList',
       data: {
         team_id: team_id,
         user_id: user_id,
         page: this.data.currentPage
-      },
+      }
     }
-    //调用通用加载函数
-    app.loadMore(that, request, "warMemberList", that.data.warMemberList)
+    app.loadMore2(that, request, res => {
+      let members = res.data.data.members;
+      let page_end = res.data.data.page_end;
+      let NewWarMemberList = warMemberList.concat(members)
+      let page = this.data.currentPage;
+      that.setData({
+        warMemberList: NewWarMemberList,
+        page_end: page_end,
+        requestCheck: true
+      })
+    })
   },
   //跳转用户详情
   goTo: function (e) {
-    console.log(e)
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
@@ -111,16 +121,16 @@ Page({
         method: 'POST',
         success: function (res) {
           //将状态改为"已互为人脉
-        warMemberList.forEach((x) => {
-          if (x.user_id == applied_user_id) {
-            x.follow_status = 1
-          }
-        })
-        that.setData({
-          warMemberList: warMemberList
-        })
-      }
+          warMemberList.forEach((x) => {
+            if (x.user_id == applied_user_id) {
+              x.follow_status = 1
+            }
+          })
+          that.setData({
+            warMemberList: warMemberList
+          })
+        }
       })
-    } 
+    }
   }
 })
