@@ -100,7 +100,6 @@ Page({
     app.loadMore2(that, request, res => {
       let rank = res.data.data.rank_list;
       let page_end = res.data.page_end;
-<<<<<<< HEAD
       if(rank){
           let newRank_list = rank_list.concat(rank)
           that.setData({
@@ -109,22 +108,6 @@ Page({
               requestCheck: true
           })
       }
-=======
-      let newRank_list = rank_list.concat(rank)
-      let page = this.data.currentPage;
-      if(page == 20){
-        that.setData({
-          requestCheck: true
-        })
-      }else{
-        that.setData({
-          rank_list: newRank_list,
-          page_end: page_end,
-          requestCheck: true
-        })
-      }
-    
->>>>>>> dcd3afddc2f91ecd6a2e1b1cb0a3f45b6684c9b6
     })
   },
   //点击跳转战队人的列表
