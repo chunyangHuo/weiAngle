@@ -101,6 +101,10 @@ page {
   line-height: 32rpx;
   text-align: left;
   margin-bottom: 24rpx;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 408rpx;
 }
 
 .userCompany, .userPosition {
@@ -109,6 +113,10 @@ page {
   line-height: 24rpx;
   text-align: left;
   margin-bottom: 16rpx;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 408rpx;
 }
 
 .infoBox {
