@@ -2,9 +2,9 @@
 <view class="s_frame">
   <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="loadMore">
     <block wx:for="{{warMemberList}}" wx:key="{{index}}">
-      <view class="flex infoBox" data-id="{{item.user_id}}"  bindtap="goTo">
+      <view class="flex infoBox" data-id="{{item.user_id}}" bindtap="goTo">
         <view class="infoLeft">
-          <image src="{{item.user_avatar_url}}" class="others_pic"   wx:if="{{item.user_avatar_url}}"/>
+          <image src="{{item.user_avatar_url}}" class="others_pic" wx:if="{{item.user_avatar_url}}" />
           <view class="flex user_image" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
         </view>
         <view class="infoCenter">
@@ -16,11 +16,15 @@
           <view class="flex addNetwork">
             <view class="refuse" wx:if="{{item.follow_status == 1}}">已为人脉</view>
             <view class="refuse" wx:if="{{item.follow_status == 2}}">待验证</view>
-            <view class="addPersonBtn" wx:if="{{item.follow_status == 0 || item.follow_status == 3}}" catchtap="addPerson"  data-applyid = "{{item.user_id}}"  data-status="{{item.follow_status}}">加人脉</view>
+            <view class="addPersonBtn" wx:if="{{item.follow_status == 0 || item.follow_status == 3}}" catchtap="addPerson" data-applyid="{{item.user_id}}" data-status="{{item.follow_status}}">加人脉</view>
           </view>
         </view>
       </view>
     </block>
+    <view class="empty flex">
+      <image src="/img/img-kong1@2x.png" class="noData"></image>
+      <view class="hasNothing">暂无成员</view>
+    </view>
   </scroll-view>
 </view>
 <!--没有更多-->
