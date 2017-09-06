@@ -159,7 +159,7 @@ Page({
                             success: function(res) {
                                 if(res.confirm===true){
                                     wx.redirectTo({
-                                        url: '/pages/my/qrCode/qrCode',
+                                        url: '/pages/my/qrCode/qrCode?type=1&&user_id='+user_id,
                                     })
                                 }else if(res.cancel===true){
                                     wx.redirectTo({

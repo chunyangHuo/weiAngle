@@ -5,6 +5,11 @@
   margin-right: 22rpx;
 }
 
+.s_frame {
+  height: 1334rpx;
+  position: static;
+}
+
 .userName {
   font-size: 32rpx;
   color: #333;

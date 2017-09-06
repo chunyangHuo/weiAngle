@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
-<view class="s_frame">
-  <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="loadMore">
+<view class="s_frame" wx:if="{{warMemberList.length!=0}}">
+  <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="{{true}}">
     <block wx:for="{{warMemberList}}" wx:key="{{index}}">
       <view class="flex infoBox" data-id="{{item.user_id}}" bindtap="goTo">
         <view class="infoLeft">
@@ -21,11 +21,11 @@
         </view>
       </view>
     </block>
-    <view class="empty flex">
-      <image src="/img/img-kong1@2x.png" class="noData"></image>
-      <view class="hasNothing">暂无成员</view>
-    </view>
   </scroll-view>
 </view>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+    <view class="empty flex" wx:if="{{warMemberList.length == 0}}">
+      <image src="/img/img-kong1@2x.png" class="noData"></image>
+      <view class="hasNothing">暂无成员</view>
+    </view>
