@@ -1,5 +1,4 @@
 <import src="/pages/Template/Template.wxml" />
-<!--pages/my/projectFinance/projectFinance.wxml-->
 <scroll-view style="height:2378rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
 
   <!--已发布的项目-->

@@ -130,7 +130,7 @@ Page({
     projectFinance: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '/pages/my/projectFinance/projectFinance',
+                url: '/pages/my/projectShop/projectShop/projectShop',
             })
         }
     },
