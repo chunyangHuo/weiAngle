@@ -73,6 +73,7 @@ Page({
           });
           wx.showLoading({
             title: 'loading',
+            mask:true,
           })
           wx.request({
             url: url_common + '/api/project/getMyProjectList',
@@ -111,6 +112,7 @@ Page({
           });
           wx.showLoading({
             title: 'loading',
+            mask:true
           })
           wx.request({
             url: url_common + '/api/project/getMyProjectList',

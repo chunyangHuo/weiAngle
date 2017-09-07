@@ -18,6 +18,7 @@ Page({
         app.initPage(that);
         wx.showLoading({
             title: 'loading',
+            mask:true,
         })
         that.getInfo('', 1)
     },
@@ -35,6 +36,7 @@ Page({
         timer=setTimeout(x=>{
             wx.showLoading({
                 title: 'loading',
+                mask:true
             })
             this.getInfo(str,1)
         },1500)
@@ -204,6 +206,7 @@ Page({
             console.log(parameter)
             wx.showLoading({
                 title: 'loading',
+                mask:true
             })
             wx.request({
                 url: url+'/api/team/join',

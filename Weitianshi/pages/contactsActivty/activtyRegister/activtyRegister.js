@@ -18,6 +18,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         wx.showLoading({
             title: 'loading',
+            mask:true
         })
 
         //获取用户信息
