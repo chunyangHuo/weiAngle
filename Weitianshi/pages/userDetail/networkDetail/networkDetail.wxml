@@ -26,18 +26,18 @@
   <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3||button_type == 4}}">
     <view class="flex pushProjectBox">
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-      <view class="pushProjectTo" bindtap="pushProjectTo">推送项目</view>
+      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
     </view>
     <view class="flex addPersonBox">
       <image src="/img/icon-jiarenmai-w@2x.png" class="iconStyle"></image>
-      <view class="addPersonBtn" bindtap="addPerson">加人脉</view>
+      <view class="addPersonBtn add-contactsm" bindtap="addPerson">加人脉</view>
     </view>
   </view>
   <!--button-type == 2 待验证状态  -->
   <view class="floatBtn flex addPerson" wx:if="{{button_type==2}}">
     <view class="flex pushProjectBox"  data-id="{{user.user_id}}">
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-      <view class="pushProjectTo" bindtap="pushProjectTo">推送项目</view>
+      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
     </view>
     <view class="flex addPersonBox">
       <image src="/img/icon-daiyanzheng@3x.png" class="iconStyle"></image>
@@ -46,6 +46,6 @@
   </view>
   <view class="floatBtn flex pushPro" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
     <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-    <view class="pushProjectAfter" bindtap="pushProjectTo">推送项目</view>
+    <view class="pushProjectAfter pushprojectm" bindtap="pushProjectTo">推送项目</view>
   </view>
 </view>

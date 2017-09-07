@@ -64,9 +64,9 @@
   <!--上传BP-->
   <view class="bp flex">
     <view>项目计划书</view>
-    <view class="bpBtn" bindtap="upLoad">去PC上传</view>
+    <view class="bpBtn bp-uploadm" bindtap="upLoad">去PC上传</view>
   </view>
-  <button class="nextBtn" bindtap="public">
+  <button class="nextBtn publish-project-confirm" bindtap="public">
     发布
   </button>
 

@@ -459,7 +459,7 @@
                       <view class="pro_sort competitorTips" wx:if="{{historyFinance[index].history_financing_rounds!=''}}">{{historyFinance[index].history_financing_rounds}}</view>
                     </view>
                   </view>
-                  <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view>
+                  <!-- <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view> -->
                 </view>
               </view>
             </view>

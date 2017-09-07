@@ -13,7 +13,7 @@
         <input placeholder="您的邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
         <!--<icon class="clear" type="clear" size="12"></icon>-->
     </view>
-     <button form-type="submit" class="nextBtn" bindtap="backHome" loading="{{loading=='1'}}">
+     <button form-type="submit" class="nextBtn complete-infom" bindtap="backHome" loading="{{loading=='1'}}">
       完成
       <!--<image class="rightArrow" src="/img/rightArrow.png"></image>-->
     </button>

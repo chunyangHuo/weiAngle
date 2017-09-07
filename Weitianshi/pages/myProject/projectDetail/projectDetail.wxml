@@ -32,7 +32,7 @@
         <view class="ProjectDetailInfo flex">
           <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}">
             <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor">浏览：
+            <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
               <label>{{count.view_times_all}}</label>
             </view>
           </view>
@@ -49,11 +49,11 @@
   </view>
   <view class="swiper-tab">
 
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">详情</view>
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}} project-detail-tabm" data-current="0" bindtap="swichNav">详情</view>
 
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">买家图谱</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} buyers-mapm" data-current="1" bindtap="swichNav">买家图谱</view>
 
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">一键尽调</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav">一键尽调</view>
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:336px" bindchange="bindChange">
     <!--项目详情  -->
@@ -80,7 +80,7 @@
               </view>
               <view class="contentAll">
                 <view>
-                  <view class="titleRightBP" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">发送BP
+                  <view class="titleRightBP send-bpm" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">发送BP
                     <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                   </view>
                   <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
@@ -267,7 +267,7 @@
         <view class=" resource ">
           <view class="others ">
             <block wx:for="{{investor2}}" wx:key="{{investor_id}}" wx:key="{{index}}">
-              <view class="investor" data-id="{{item.user_id}}" bindtap="detail">
+              <view class="investor contacts-detailm" data-id="{{item.user_id}}" bindtap="detail">
                 <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 ">
                   <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
                     <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
@@ -594,7 +594,7 @@
                     <view class="pro_sort competitorTips" wx:if="{{newsList[index].project_news_label}}">{{newsList[index].project_news_label}}</view>
                   </view>
                 </view>
-                <view class="companyNewsNet">{{newsList[index].source}}</view>
+                <!-- <view class="companyNewsNet">{{newsList[index].source}}</view> -->
               </view>
             </view>
             <view class="moreInfo" catchtap="checkMore" wx:if="{{companyNews != 2 && newsList.length>2}}" data-id="{{2}}">展开</view>
@@ -639,7 +639,7 @@
         <view class="noMessage" wx:if="{{nothing == 0}}">
           <image src="/img/img-kong@2x.png" class="nothing"></image>
           <view class="hasNoFind">暂未调查到相关信息</view>
-          <view class="writeCompanyName" bindtap="writeCompanyName">完善公司名称</view>
+          <view class="writeCompanyName write-companynamem" bindtap="writeCompanyName">完善公司名称</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -651,7 +651,7 @@
   <button class="push" disabled="true">一键推送(近期开放)</button>
 </view>
 <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}" bindtap="maintainProject">
-  <button class="push maintainProject">维护项目</button>
+  <button class="push maintainProject redact-projectm">维护项目</button>
 </view>
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">

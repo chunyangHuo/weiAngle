@@ -1,11 +1,11 @@
 
 <!--<view class="soon">近期开放...</view>-->
-<view class="search_frame">
+<view class="search_frame searchm">
   <label class="searchBox flex">
     <icon type="search" size="12" class="search_icon"></icon>
     <input class="search" placeholder="搜索姓名、公司、电话" disabled="" bindfocus="searchSth"  /> 
   </label> 
-  <view class="screen" bindtap="screenSth">筛选</view>
+  <view class="screen screenm" bindtap="screenSth">筛选</view>
 </view>
 
 <!--资本对接-->
@@ -13,7 +13,7 @@
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
-        <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
+        <view class="card contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
           <view class="user_info flex">
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
@@ -23,7 +23,7 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-                <label class="telephoneLab" data-telephone="{{item.user_mobile}}" catchtap="telephone">
+                <label class="telephoneLab telephonem" data-telephone="{{item.user_mobile}}" catchtap="telephone">
                   <image class="telephone" src="/img/icon-phone@3x.png"></image>
                 </label>
               </view>
@@ -89,8 +89,8 @@
         <view>暂无人脉</view>
         <view>分享我的名片，拓展我的人脉</view>
     </view>
-    <button bindtap="myCard" wx:if="{{notIntegrity==1}}">我的名片</button>
-    <button bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}}">请先绑定用户信息</button>
+    <button bindtap="myCard" wx:if="{{notIntegrity==1}} guide-mycadm">我的名片</button>
+    <button bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}} bindm">请先绑定用户信息</button>
     </view>
 </view>
 <!--搜索人脈為空-->

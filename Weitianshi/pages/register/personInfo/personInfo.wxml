@@ -9,9 +9,9 @@
     </view>
     <view id="checkCode" class="flex">
       <input placeholder="验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" />
-      <button class="clear {{time=='1'?'clearOn':''}}" bindtap="checkCode"  disabled="{{time==1}}" loading="{{checking==1}}">{{getCode}}</button>
+      <button class="clear {{time=='1'?'clearOn':''}} get-codem" bindtap="checkCode"  disabled="{{time==1}}" loading="{{checking==1}}">{{getCode}}</button>
     </view>
-    <button form-type="submit" class="nextBtn" bindtap="nextPage" loading="{{loading=='1'}}">
+    <button form-type="submit" class="nextBtn complete-phone-binding" bindtap="nextPage" loading="{{loading=='1'}}">
       下一步
     </button>
   </form>

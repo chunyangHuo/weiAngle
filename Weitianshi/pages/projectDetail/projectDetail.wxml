@@ -26,7 +26,7 @@
                 <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
                 <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
               </view>
-              <view class="weui-cell__bd">
+              <view class="weui-cell__bd contacts-detailm">
                 <view class="flex userInfo" style="align-items: baseline;">
                   <view class="userName">{{user.user_name}}</view>
                   <view class="userCareer">{{user.user_career}}</view>
@@ -202,7 +202,7 @@
               <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
               <view class=" others_nopic" wx:if="{{!item.investor_logo_url}}">{{item.investor_logo_text}}</view>
             </view>
-            <view class="weui-cell__bd ">
+            <view class="weui-cell__bd contacts-detailm">
               <view class="flex " style="align-items: baseline; ">
                 <view class="others_name ">{{item.investor_name}}</view>
               </view>
@@ -268,9 +268,9 @@
   </view>
     <view class="accreditation flex" wx:if="{{status == 5 &&button_type == 3}}">
     <view>认证投资人、买家FA才可申请查看</view>
-    <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
+    <view class="toAccreditation identitym" bindtap="toAccreditation">立即认证</view>
   </view>
-  <view class="push" bindtap="applyProject" wx:if="{{button_type == 3}}" data-id="{{id}}">申请查看</view>
-  <view class="push" bindtap="applyProject" wx:if="{{button_type == 2}}" data-id="{{id}}">重新申请</view>
+  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-id="{{id}}">申请查看</view>
+  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-id="{{id}}">重新申请</view>
   <view class="pushing" wx:if="{{button_type == 0}}">申请中</view>
 </view>
