@@ -4,9 +4,9 @@
   <view class="nav_btn nav_on">需求市场</view>
 </view>
 <view class="swiper-tab">
-  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">融资需求</view>
-  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">投资需求</view>
-  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">资源需求</view>
+  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project find-projectm" data-current="0" bindtap="swichNav">融资需求</view>
+  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project find-investorsm" data-current="1" bindtap="swichNav">投资需求</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} find-resourcesm" data-current="2" bindtap="swichNav">资源需求</view>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:83%" bindchange="bindChange">
 
@@ -35,7 +35,7 @@
     <scroll-view scroll-y="true" bindscrolltolower='investNeed'>
       <view class="investNeed">
         <block wx:for="{{investNeed}}" wx:key="{{item.investor_id}}">
-          <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
+          <view class="card contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
             <view class="user_info flex">
               <view class="user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
               <image class="user_pic" src="{{item.investor_logo_url}}" wx:if="{{item.investor_logo_url}}"></image>

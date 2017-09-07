@@ -51,7 +51,7 @@
     <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc;' bindinput="bindTextAreaBlur" maxlength="60" value="{{describe}}"/>
   </view>
 
-  <button class="nextBtn" bindtap="public">发布</button>
+  <button class="nextBtn publish-investment-confirm" bindtap="public">发布</button>
 
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

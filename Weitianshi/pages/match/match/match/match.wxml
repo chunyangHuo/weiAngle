@@ -1,12 +1,12 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="r_nav flex">
   <view class="nav_btn nav_on">精准对接</view>
-  <navigator url="/pages/match/needMarket/needMarket" class="nav_btn">需求市场</navigator>
+  <navigator url="/pages/match/needMarket/needMarket" class="nav_btn nav-btnm">需求市场</navigator>
 </view>
 <view class="swiper-tab">
-  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">项目融资</view>
-  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">寻找项目</view>
-  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">资源对接</view>
+  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project my-projectm" data-current="0" bindtap="swichNav">项目融资</view>
+  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project matching-projectm" data-current="1" bindtap="swichNav">寻找项目</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} matching-resourcesm" data-current="2" bindtap="swichNav">资源对接</view>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:82%" bindchange="bindChange">
 
@@ -14,7 +14,7 @@
   <swiper-item>
     <scroll-view style="height:100%;" scroll-y="true" scroll-top="0" bindscrolltolower='myPublicProject'>
       <view>
-        <view class="publish publish_my_project" bindtap="myProject">
+        <view class="publish publish_my_project publish-projectm" bindtap="myProject">
           <view>发布融资项目</view>
           <view class="weui-media-box__desc">快速发布,精准对接优质资本</view>
         </view>
@@ -22,7 +22,7 @@
 
       <!--已发布的项目-->
       <block wx:for="{{myProject}}" wx:key="{{project_id}}" wx:for-item="myProject" wx:for-index="proindex">
-        <view class="weui-panel__bd" style="background:white;margin:16px">
+        <view class="weui-panel__bd myproject-detailm" style="background:white;margin:16px">
           <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{proindex}}" bindtap="detail">
             <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
             <view class="sort">

@@ -530,6 +530,8 @@ button::after {
 
 .contentAll view {
   text-align: left;
+  word-break: break-all;
+  flex-wrap: wrap;
 }
 
 .projectDetailType {

@@ -13,7 +13,7 @@
         </view>
         <view>
             <button open-type='getPhoneNumber' class="nextBtn" bindgetphonenumber="getPhoneNumber" loading="{{loading=='1'}}">微信授权绑定</button>
-            <button form-type="submit" class="nextBtn" bindtap="nextPage" loading="{{loading=='1'}}">下一步</button>
+            <button form-type="submit" class="nextBtn complete-phone-binding" bindtap="nextPage" loading="{{loading=='1'}}">下一步</button>
         </view>
     </form>
 

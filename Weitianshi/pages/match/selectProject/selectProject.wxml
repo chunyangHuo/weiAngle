@@ -9,7 +9,7 @@
   <view class="floatBtn">
   <view class="accreditation flex">
     <view>创建项目，参与融资对接</view>
-    <view class="btnToAccreditation" bindtap="toCreateProject">创建项目</view>
+    <view class="btnToAccreditation publish-projectm" bindtap="toCreateProject">创建项目</view>
   </view>
   </view>
 </scroll-view>

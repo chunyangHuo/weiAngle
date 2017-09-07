@@ -34,10 +34,10 @@
     <button class="waitPersonBtn" style="background: #f2f2f2;color:#cccccc;">待验证</button>
   </view>-->
   <view class="flex sharePageButton floatBtn">
-    <view class="myContacts addPerson" bindtap="pushProject">推送项目</view>
+    <view class="myContacts addPerson pushprojectm" bindtap="pushProject">推送项目</view>
     <view class="giveProject" wx:if="{{button_type == 1}}">已为人脉</view>
-    <view class="addNetwork" bindtap="addNetwork" wx:if="{{button_type == 0||button_type==3 ||button_type == 4}}">加人脉</view>
+    <view class="addNetwork add-contactsm" bindtap="addNetwork" wx:if="{{button_type == 0||button_type==3 ||button_type == 4}}">加人脉</view>
     <view class="giveProject" bindtap="addNetwork"  wx:if="{{button_type==2}}">待验证</view>
-    <view class="myContacts addPerson" bindtap="toContacts">我的人脉</view>
+    <view class="myContacts addPerson my-contactsm" bindtap="toContacts">我的人脉</view>
   </view>
 </scroll-view>

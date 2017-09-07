@@ -17,7 +17,7 @@
   <scroll-view scroll-y="true"  scroll-top="{{scroll}}">
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
-        <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
+        <view class="card contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
           <view class="user_info flex">
             <view class="redPoint" wx:if="{{item.message_status==0}}"></view>
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
@@ -35,7 +35,7 @@
             <view class="flex addNetwork">
               <view class="refuse" wx:if="{{item.follow_status ==1}}">已为人脉</view>
               <view class="addPerson" wx:if="{{item.follow_status  == 3}}">
-                <view class="addPersonBtn" data-follow_status="{{item.follow_status}}" data-followedId="{{item.user_id}}" catchtap="addPerson">加人脉</view>
+                <view class="addPersonBtn add-contactsm" data-follow_status="{{item.follow_status}}" data-followedId="{{item.user_id}}" catchtap="addPerson">加人脉</view>
               </view>
             </view>
           </view>
