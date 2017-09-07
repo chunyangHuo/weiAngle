@@ -135,7 +135,7 @@ page {
 .refuse {
     opacity: 0.8;
     font-size: 20rpx;
-    color: #ccc;
+    color: #999;
     letter-spacing: 0;
     line-height: 48rpx;
     text-align: left;
