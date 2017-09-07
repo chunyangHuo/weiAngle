@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -97,7 +96,7 @@ Page({
             },
           })
         } else {
-          rqj.errorHide(that, "没有更多了", that, 3000)
+          app.errorHide(that, "没有更多了", that, 3000)
           that.setData({
             myPublicCheck: true
           })
@@ -135,7 +134,7 @@ Page({
             },
           })
         } else {
-          rqj.errorHide(that, "没有更多了", that, 3000)
+          app.errorHide(that, "没有更多了", that, 3000)
           that.setData({
             myPublicCheck: true
           })

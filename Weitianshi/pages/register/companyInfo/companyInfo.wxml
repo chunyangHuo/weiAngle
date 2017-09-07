@@ -2,21 +2,20 @@
   <form>
     <view class="flex title">为了获得更精准的匹配,请完善信息</view>
     <view id="company" class="flex">
-        <input placeholder="您的公司" maxlength="30" value="{{company}}" bindblur="company"/>
-        <!--<icon class="clear" type="clear" size="12"></icon>-->
+      <input placeholder="公司" maxlength="30" value="{{company}}" bindblur="company" />
     </view>
-       <view id="position" class="flex">
-        <input placeholder="您的职位" maxlength="10" value="{{position}}" bindblur="position" />
-        <!--<icon class="clear" type="clear" size="12"></icon>-->
+    <view id="position" class="flex">
+      <input placeholder="职位" maxlength="10" value="{{position}}" bindblur="position" />
     </view>
-       <view id="email" class="flex">
-        <input placeholder="您的邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
-        <!--<icon class="clear" type="clear" size="12"></icon>-->
+    <view id="email" class="flex">
+      <input placeholder="邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
     </view>
-     <button form-type="submit" class="nextBtn complete-infom" bindtap="backHome" loading="{{loading=='1'}}">
+     <view id="brand" class="flex">
+      <input placeholder="品牌" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
+    </view>
+    <button form-type="submit" class="nextBtn complete-infom" bindtap="backHome" loading="{{loading=='1'}}">
       完成
-      <!--<image class="rightArrow" src="/img/rightArrow.png"></image>-->
     </button>
   </form>
-  <view class="error"wx:if="{{error=='1'}}" >{{error_text}}</view>
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>

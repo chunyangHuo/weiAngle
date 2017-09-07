@@ -2,8 +2,8 @@
 <!--pages/my/cardEdit/cardEdit.wxml-->
 <view id="cardEdit">
   <view class="userPic">
-    <image class="noPic" src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}"></image>
-    <view class="user_text noPic" wx:if="{{user_info.user_avatar_text}}">{{user_info.user_avatar_text}}</view>
+    <image class="noPic" src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}" bindtap="headPic"></image>
+    <view class="user_text noPic" wx:if="{{user_info.user_avatar_text}}" bindtap='headPic'>{{user_info.user_avatar_text}}</view>
   </view>
   <view class="card">
     <view class="text">姓名*</view>
@@ -17,13 +17,17 @@
     <view class="text">公司*</view>
     <input class="" id="company" value="{{user_info.user_company_name}}" bindblur="companyEdit" />
   </view>
+    <view class="card">
+    <view class="text">品牌</view>
+    <input class="" id="companybrand" value="{{user_info.user_brand}}" bindblur="brandEdit"  placeholder="品牌(选填)" maxlength="40"/>
+  </view>
   <view class="card">
     <view class="text">职位*</view>
     <input class="" id="career" value="{{user_info.user_company_career}}" bindblur="careerEdit" />
   </view>
   <view class="card">
     <view class="text">邮箱</view>
-    <input class="" id="eMail" value="{{user_info.user_email}}" bindblur="eMailEdit" />
+    <input class="" id="eMail" value="{{user_info.user_email}}" bindblur="eMailEdit"  placeholder="邮箱(选填)"/>
   </view>
   <view class="card">
     <view class="text">个人描述</view>

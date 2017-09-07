@@ -317,19 +317,19 @@ Page({
             that.updata(that)
         } else {
             if (describe == "") {
-                rqj.errorHide(that, "介绍不能为空", 1500)
+                app.errorHide(that, "介绍不能为空", 1500)
             } else if (industryId == 0) {
-                rqj.errorHide(that, "所属领域不能为空", 1500)
+                app.errorHide(that, "所属领域不能为空", 1500)
             } else if (console_stage == 0) {
-                rqj.errorHide(that, "项目阶段不能为空", 1500)
+                app.errorHide(that, "项目阶段不能为空", 1500)
             } else if (console_scale == 0) {
-                rqj.errorHide(that, "期望融资不能为空", 1500)
+                app.errorHide(that, "期望融资不能为空", 1500)
             } else if (provinceNum == 0 || cityNum == 0) {
-                rqj.errorHide(that, "所在地区不能为空", 1500)
+                app.errorHide(that, "所在地区不能为空", 1500)
             } else if (tipsIndex == 4) {
-                rqj.errorHide(that, "请选择是否独家", 1500)
+                app.errorHide(that, "请选择是否独家", 1500)
             } else if (pro_goodness == "") {
-                rqj.errorHide(that, "项目亮点不能为空", 1500)
+                app.errorHide(that, "项目亮点不能为空", 1500)
             }
         }
     },

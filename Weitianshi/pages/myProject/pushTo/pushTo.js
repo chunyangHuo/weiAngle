@@ -80,11 +80,11 @@ Page({
         if (overTime != 0) {
             if (checkedNum > 5) {
                 dataList[index].check = !dataList[index].check;
-                rqj.errorHide(that, "最多可选择五项", 1000)
+                app.errorHide(that, "最多可选择五项", 1000)
             } else {
                 if (checkedNum > overTime) {
                     dataList[index].check = !dataList[index].check;
-                    rqj.errorHide(that, "超过了推送限制", 1000)
+                    app.errorHide(that, "超过了推送限制", 1000)
                 } else {
                     that.setData({
                         dataList: dataList
@@ -92,7 +92,7 @@ Page({
                 }
             }
         } else if (overTime == 0) {
-            rqj.errorHide(that, "今日推送次数已用完", 1000)
+            app.errorHide(that, "今日推送次数已用完", 1000)
         }
         dataList.forEach((x) => {
             if (x.check == true) {
@@ -119,9 +119,9 @@ Page({
         }
 
         if(remainTimes===0){
-            rqj.errorHide(that, "今日推送次数已用完", 1000)
+            app.errorHide(that, "今日推送次数已用完", 1000)
         } else if (!checkObject){
-            rqj.errorHide(that, "没有选择任何项目", 1000)
+            app.errorHide(that, "没有选择任何项目", 1000)
         }else{
             that.setData({
                 clicked:true
@@ -148,7 +148,7 @@ Page({
                             })
                         }, 2000)
                     } else if (statusCode == 490001) {
-                        rqj.errorHide(that, "没有选择任何项目", 1000)
+                        app.errorHide(that, "没有选择任何项目", 1000)
                     }
                 }
             })

@@ -1,0 +1,69 @@
+page {
+  background: white;
+}
+
+#bindPhone {
+  font-size: 28rpx;
+  color: #333;
+  padding: 0 48rpx;
+}
+
+.title {
+  justify-content: center;
+  padding: 64rpx 0;
+  font-size: 24rpx;
+  color: #666;
+}
+
+input {
+  border-radius: 4px;
+  padding: 30rpx 32rpx;
+  background: #f2f2f2;
+  width: 100%;
+  margin-bottom: 48rpx;
+}
+
+#name, #telephone, #checkCode {
+  justify-content: space-between;
+  position: relative;
+}
+
+/*验证码按钮*/
+
+.clear {
+  position: absolute;
+  top: 21rpx;
+  right: 32rpx;
+  z-index: 999;
+  background: #f2f2f2;
+  border: none;
+}
+
+#checkCode .clear {
+  color: #40587a;
+  font-size: 28rpx;
+}
+
+#checkCode .clearOn {
+  background: #f2f2f2;
+  color: grey;
+}
+
+.nextBtn {
+  background: #40587a;
+  position: relative;
+  padding: 0 36rpx;
+  color: white;
+  font-size: 32rpx;
+  border-radius: 200rpx;
+  width: 304rpx !important;
+  display: inline-block
+}
+.nextBtn:first-child{
+    margin-right: 46rpx;
+}
+
+
+.error{
+  bottom:346rpx;
+}

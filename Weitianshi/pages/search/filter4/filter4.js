@@ -41,7 +41,7 @@ Page({
     industryChoose(e) {
         let tags = this.data.industryTags;
         let that = this;
-        let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
+        let checkObject = app.tagsCheck(that, e, tags, 'industryTags')
         this.setData({
             contactsFilter1:checkObject
         })
@@ -51,7 +51,7 @@ Page({
     stageChoose(e) {
         let tags = this.data.stageTags;
         let that = this;
-        let checkObject = app.tagsCheck(that, rqj, e, tags, 'stageTags')
+        let checkObject = app.tagsCheck(that, e, tags, 'stageTags')
         this.setData({
             contactsFilter2: checkObject
         })

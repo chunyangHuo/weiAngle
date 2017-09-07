@@ -62,7 +62,7 @@ Page({
         enchangeValue.push(enchange[e_index].stage_name)
         enchangeId.push(enchange[e_index].stage_id)//点击时把数据的ID添加起来
       } else {
-        rqj.errorHide(that, "最多可选择五项", 1000)
+        app.errorHide(that, "最多可选择五项", 1000)
       }
     } else {//当取消按钮时
       enchangeCheck[e_index] = false;

@@ -689,6 +689,8 @@ button::after {
 
 .contentAll view {
   text-align: left;
+  word-break: break-all;
+  flex-wrap: wrap;
 }
 
 .companyBrand view {
@@ -748,6 +750,7 @@ button::after {
   text-align: left;
 }
 
+/* 
 #projectBox  .pro_sort {
   font-size: 20rpx;
   color: #40587a;
@@ -760,6 +763,20 @@ button::after {
   padding: 0 16rpx;
   margin-right: 24rpx;
   flex-wrap: norap;
+} */
+
+#projectBox  .pro_sort {
+  font-size: 20rpx;
+  color: #40587a;
+  border-radius: 98rpx;
+  border: 1rpx solid #40587a;
+  text-align: center;
+  height: 44rpx;
+  width: auto;
+  line-height: 44rpx;
+  padding: 0 16rpx;
+  margin-right: 24rpx;
+  flex-wrap: nowrap;
   white-space: nowrap;
   margin-bottom: 18rpx;
 }

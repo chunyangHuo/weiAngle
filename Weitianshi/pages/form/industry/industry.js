@@ -46,7 +46,7 @@ Page({
   checkboxChange(e) {
     let tags = this.data.industryTags;
     let that = this;
-    let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
+    let checkObject = app.tagsCheck(that, e, tags, 'industryTags')
     this.setData({
       industryTags: tags,
       contactsFilter1: checkObject
@@ -84,7 +84,7 @@ Page({
         delta: 1,
       })
     } else {
-      rqj.errorHide(that, "至少选择一项领域标签", 1500)
+    app.errorHide(that, "至少选择一项领域标签", 1500)
     }
   },
 });

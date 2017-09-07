@@ -102,6 +102,7 @@ swiper-item {
   width: 622rpx;
   padding: 32rpx;
   padding-bottom: 20rpx;
+  height:auto;
 }
 
 /*用户信息*/
@@ -222,7 +223,7 @@ swiper-item {
   font-size: 24rpx;
   flex-wrap: nowrap;
   width: 108rpx;
-  margin: 12rpx 0;
+   margin: 12rpx 0; 
   text-align: left;
   padding-left: 0;
   white-space: nowrap;
@@ -251,6 +252,7 @@ swiper-item {
 .investor_stage{
   padding:0 8rpx;
   font-size: 24rpx;
+  line-height:30rpx;
   color: #666;
   margin-bottom: 10rpx;
 }
@@ -277,7 +279,7 @@ swiper-item {
 }
 
 .investNeed .investor_info{
-  max-height: 154rpx;
+  /* max-height: 154rpx; */
   overflow: hidden;
 }
 

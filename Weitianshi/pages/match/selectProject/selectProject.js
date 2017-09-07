@@ -29,6 +29,9 @@ Page({
         }
       })
     })
+    wx.setNavigationBarTitle({
+        title: '精选项目',
+    })
   },
   //上拉加载
   loadMore: function () {
@@ -307,4 +310,10 @@ Page({
       },
     });
   },
+  //人脉大赛
+  competitor:function(){
+    wx.navigateTo({
+      url: '/pages/contactsActivty/activtyDetail/activtyDetail'
+    })
+  }
 })

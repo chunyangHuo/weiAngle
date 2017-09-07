@@ -127,7 +127,6 @@ Page({
                                     })
                                 }
                             })
-
                         } else if (button_type == 1) {
                             console.log("我的人脉--不显示内容")
                         } else if (button_type == 2) {
@@ -216,7 +215,7 @@ Page({
     projectFinance: function () {
         var followed_user_id = this.data.user_id;
         wx.navigateTo({
-            url: '/pages/my/projectFinance/projectFinance?currentTab=1' + '&&followed_user_id=' + followed_user_id,
+            url: '/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id,
         })
     },
     //融资项目详情

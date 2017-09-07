@@ -27,27 +27,6 @@ Page({
       type: type
     })
   },
-  onReady: function () {
-
-  },
-  onShow: function () {
-
-  },
-  onHide: function () {
-
-  },
-  onUnload: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  },
   // 姓名
   nameEdit: function (e) {
     let user_name = e.detail.value;
@@ -58,7 +37,7 @@ Page({
         user_name: user_name
       })
     } else {
-      rqj.errorHide(that, "不能超过20个字", 100)
+      app.errorHide(that, "不能超过20个字", 100)
     }
   },
 
@@ -72,7 +51,7 @@ Page({
         user_brand: user_brand
       })
     } else {
-      rqj.errorHide(that, "不能超过40个数字", 1000)
+      app.errorHide(that, "不能超过40个数字", 1000)
     }
   },
   // 公司
@@ -90,7 +69,7 @@ Page({
         user_company_name: rs
       })
     } else {
-      rqj.errorHide(that, "不能超过40个数字", 1000)
+      app.errorHide(that, "不能超过40个数字", 1000)
     }
   },
   // 职位
@@ -103,7 +82,7 @@ Page({
         user_career: user_career
       })
     } else {
-      rqj.errorHide(that, "不能超过40个数字", 1000)
+      app.errorHide(that, "不能超过40个数字", 1000)
     }
   },
   // 邮箱
@@ -124,7 +103,7 @@ Page({
         user_weChat: user_weChat
       })
     } else {
-      rqj.errorHide(that, "不能超过40个数字", 1000)
+      app.errorHide(that, "不能超过40个数字", 1000)
     }
   },
   // 个人描述
@@ -137,7 +116,7 @@ Page({
         user_describle: user_describle
       })
     } else {
-      rqj.errorHide(that, "不能超过500个数字", 1000)
+      app.errorHide(that, "不能超过500个数字", 1000)
     }
   },
   save: function () {
@@ -167,7 +146,7 @@ Page({
           delta: 1
         })
       } else {
-        rqj.errorHide(that, "姓名不能为空", 1500)
+        app.errorHide(that, "姓名不能为空", 1500)
       }
 
     } else if (type == 2) {
@@ -188,7 +167,7 @@ Page({
           delta: 1
         })
       } else {
-        rqj.errorHide(that, "公司不能为空", 1500)
+        app.errorHide(that, "公司不能为空", 1500)
       }
     } else if (type == 4) {
       user_info.user_company_career = user_career;
@@ -200,7 +179,7 @@ Page({
           delta: 1
         })
       } else {
-        rqj.errorHide(that, "职位不能为空", 1500)
+        app.errorHide(that, "职位不能为空", 1500)
       }
     } else if (type == 5) {
       user_info.user_email = user_email;
@@ -213,7 +192,7 @@ Page({
           delta: 1
         })
       } else {
-        rqj.errorHide(that, "请填写正确格式的邮箱", 1500)
+        app.errorHide(that, "请填写正确格式的邮箱", 1500)
       }
     }
     else if (type == 6) {

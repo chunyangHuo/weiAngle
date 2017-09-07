@@ -225,7 +225,7 @@ Page({
             }
           })
         } else {
-          rqj.errorHide(that, "上传图片不能超过1M", 1500)
+          app.errorHide(that, "上传图片不能超过1M", 1500)
         }
       }
     })
@@ -341,11 +341,11 @@ Page({
       })
     } else {
       if (iden_name == '') {
-        rqj.errorHide(that, "姓名不能为空", 1500)
+        app.errorHide(that, "姓名不能为空", 1500)
       } else if (iden_company_name == '') {
-        rqj.errorHide(that, "公司不能为空", 1500)
+        app.errorHide(that, "公司不能为空", 1500)
       } else if (iden_company_career == '') {
-        rqj.errorHide(that, "职位不能为空", 1500)
+        app.errorHide(that, "职位不能为空", 1500)
       }
     }
   },

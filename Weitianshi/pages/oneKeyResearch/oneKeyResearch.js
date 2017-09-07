@@ -599,7 +599,7 @@ Page({
                                     sendPc: 0
                                 })
                             }else{
-                                rqj.errorHide(that,res.data.error_msg,3000)
+                              app.errorHide(that,res.data.error_msg,3000)
                             }
                         }
                     })
@@ -643,7 +643,7 @@ Page({
                     userEmail: userEmail
                 })
             } else {
-                rqj.errorHide(that, '请正确填写邮箱', 1000)
+              app.errorHide(that, '请正确填写邮箱', 1000)
             }
         } else if (index == 1) {
             let companyName = that.data.companyName;

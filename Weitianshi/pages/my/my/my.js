@@ -130,7 +130,7 @@ Page({
     projectFinance: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '/pages/my/projectFinance/projectFinance',
+                url: '/pages/my/projectShop/projectShop/projectShop',
             })
         }
     },
@@ -330,5 +330,11 @@ Page({
                 }
             }
         })
+    },
+    //人脉大赛
+    competitor: function () {
+      wx.navigateTo({
+        url: '/pages/contactsActivty/activtyDetail/activtyDetail'
+      })
     }
 });

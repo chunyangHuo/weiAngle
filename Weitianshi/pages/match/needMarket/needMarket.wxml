@@ -73,7 +73,7 @@
                 <view class="investor_text">投资地区:</view>
                 <view class="investor_right">
                   <block wx:for="{{item.area_tag}}" wx:key="{{index}}" wx:for-item="area">
-                    <view class="investor_stage">{{area[index].area_title}}</view>
+                    <view class="investor_stage">{{area.area_title}}</view>
                   </block>
                 </view>
               </view>
@@ -81,7 +81,7 @@
                 <view class="investor_text">投资金额:</view>
                 <view class="investor_right">
                   <block wx:for="{{item.scale_tag}}" wx:key="{{index}}" wx:for-item="scale">
-                    <view class="investor_stage">{{scale[index].scale_money}}</view>
+                    <view class="investor_stage">{{scale.scale_money}}</view>
                   </block>
                 </view>
               </view> -->

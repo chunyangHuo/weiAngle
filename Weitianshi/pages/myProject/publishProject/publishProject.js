@@ -101,7 +101,7 @@ Page({
         // ------------------项目领域数据处理--------------------------------
         var industryCard = this.data.industryCard;
         var industryCurrent0 = wx.getStorageSync("industryCurrent0");
-        rqj.dealTagsData(that, industryCurrent0, industryCard, "industry_name", "industry_id")
+        app.dealTagsData(that, industryCurrent0, industryCard, "industry_name", "industry_id")
 
         that.setData({
             industryCard: industryCard,
@@ -260,7 +260,7 @@ Page({
                 },
             })
         } else {
-            rqj.errorHide(that, "请完整填写信息", 1500)
+          app.errorHide(that, "请完整填写信息", 1500)
         }
     },
 });

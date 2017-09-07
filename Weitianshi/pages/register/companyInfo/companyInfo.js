@@ -26,12 +26,14 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+                console.log(res)
                 var complete = res.data.is_complete;
                 if (res.data.status_code == 2000000 || res.data.status_code == 0) {
                     that.setData({
                         company: res.data.user_company_name,
                         position: res.data.user_company_career,
                         email: res.data.user_email,
+                        brand: res.data.user_brand
                     })
                 }
             },
@@ -49,7 +51,7 @@ Page({
             company: company,
             position: position,
             email: email,
-            type:type
+            type: type
         })
     },
     //下拉刷新
@@ -66,18 +68,17 @@ Page({
             rs = rs + company.substr(i, 1).replace(pattern, '');
         }
         wx.request({
-          url: url_common + '/api/dataTeam/checkCompany',
-          data: {
-            com_name: company
-          },
-          method: 'POST',
-          success: function (res) { }
+            url: url_common + '/api/dataTeam/checkCompany',
+            data: {
+                com_name: company
+            },
+            method: 'POST',
+            success: function (res) { }
         })
         that.setData({
             company: rs
         })
     },
-
     //职位项的特殊符号过滤和值的双向绑定
     position: function (e) {
         var that = this;
@@ -91,7 +92,6 @@ Page({
             position: rs
         })
     },
-
     //邮箱验证
     checkEmail: function (e) {
         var that = this;
@@ -112,34 +112,50 @@ Page({
             email: temp
         })
     },
-
+    //品牌验证
+    checkBrand: function (e) {
+        let that = this;
+        let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+        let rs = "";
+        let brand = e.detail.value;
+        for (let i = 0; i < brand.length; i++) {
+            rs = rs + brand.substr(i, 1).replace(pattern, '');
+        }
+        that.setData({
+            brand: rs
+        })
+        console.log(rs)
+    },
     //点击跳转
     backHome: function () {
-        var that = this;
-        var company = this.data.company;
-        var position = this.data.position;
-        var result = this.data.result;
-        var error = this.data.error;
-        var error_text = this.data.error_text;
-        var email = this.data.email;
-        var user_id = wx.getStorageSync('user_id');
+        let that = this;
+        let company = this.data.company;
+        let position = this.data.position;
+        let brand = this.data.brand;
+        let result = this.data.result;
+        let error = this.data.error;
+        let error_text = this.data.error_text;
+        let email = this.data.email;
+        let user_id = wx.getStorageSync('user_id');
         let type = this.data.type;
 
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({
-              url: url_common + '/api/user/updateUser',
+                url: url_common + '/api/user/updateUser',
                 data: {
                     user_id: user_id,
                     user_company_name: company,
                     user_company_career: position,
-                    user_email: email
+                    user_email: email,
+                    user_brand: brand
                 },
                 method: 'POST',
                 success: function (res) {
                     let pages = getCurrentPages()
                     let num = pages.length - 1;
                     if (res.data.status_code == 2000000) {
+                        console.log(res)
                         var followed_user_id = wx.getStorageSync('followed_user_id');
                         if (followed_user_id) {
                             var driectAdd = wx.getStorageSync("driectAdd");
@@ -196,24 +212,24 @@ Page({
                                 })
                             }
                         } else {
-                            if(type == 1 ){
-                              let pages = getCurrentPages();
-                              let num = pages.length - 1;
-                              wx.navigateBack({
-                                delta: 1
-                              })
-                            }else{
-                              if(type == 2){
-                                let pages = getCurrentPages()
+                            if (type == 1) {
+                                let pages = getCurrentPages();
                                 let num = pages.length - 1;
                                 wx.navigateBack({
-                                  delta: 2
+                                    delta: 1
                                 })
-                              }else{
-                                wx.switchTab({
-                                  url: "/pages/match/match/match/match"
-                                });
-                              }
+                            } else {
+                                if (type == 2) {
+                                    let pages = getCurrentPages()
+                                    let num = pages.length - 1;
+                                    wx.navigateBack({
+                                        delta: 2
+                                    })
+                                } else {
+                                    wx.switchTab({
+                                        url: "/pages/match/match/match/match"
+                                    });
+                                }
                             }
                         }
                     } else {
@@ -234,14 +250,12 @@ Page({
                 error: '1'
             });
             if (company == '') {
-                rqj.errorHide(that, "公司不能为空", 1500)
+              app.errorHide(that, "公司不能为空", 1500)
             } else if (position == '') {
-                rqj.errorHide(that, "职位不能为空", 1500)
+              app.errorHide(that, "职位不能为空", 1500)
             } else {
-                rqj.errorHide(that, "请正确填写邮箱", 1500)
+              app.errorHide(that, "请正确填写邮箱", 1500)
             }
-
         }
-
     }
 });

@@ -42,6 +42,7 @@ page {
   justify-content: space-between;
   padding: 32rpx;
   flex-wrap: wrap;
+  padding-bottom:20rpx;
 }
 
 .user_left {
@@ -703,4 +704,46 @@ page {
   text-align: left;
   margin-left:24rpx;
   margin-bottom:12rpx;
+}
+.competitor {
+  position: fixed;
+  bottom: 132rpx;
+  right: 0;
+  background: #fff;
+  border: 0 solid #e0e6ed;
+  box-shadow: 0 0 2px 0 rgba(64, 88, 122, 0.10);
+  width: 166rpx;
+  height: 33px;
+  font-family: MicrosoftYaHei;
+  font-size: 28rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 66rpx;
+  text-align: right;
+  border-radius: 35rpx 0 0 35rpx;
+  padding-right: 28rpx;
+}
+
+.line {
+  background: #e6e6e6;
+  width: 622rpx;
+  height: 1rpx;
+  margin-top:32rpx;
+  display: inline-block;
+}
+
+.messageIconStyle {
+   width:36rpx;
+  height:36rpx;
+  /* margin-right:42rpx; */
+  /* margin-left:42rpx; */
+}
+.iconBox{
+  margin-top:20rpx;
+  width:662rpx;
+}
+.littleBox{
+  margin-right:78rpx;
+  width:36rpx;
+  height:36rpx;
 }

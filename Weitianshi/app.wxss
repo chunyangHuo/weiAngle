@@ -415,3 +415,37 @@ textarea {
   width: 36rpx;
   display: flex;
 }
+
+
+/*搜索框*/
+.search_frame {
+  position:fixed;
+  height:56rpx;
+  width:94%;
+  background: white;
+  padding: 16rpx 128rpx 16rpx 32rpx;
+  z-index:5;
+}
+
+.search_icon {
+  padding: 16rpx 16rpx;
+  padding-top: 40rpx;
+}
+
+.searchBox {
+  align-items: center;
+  height: 56rpx;
+  width:97%;
+  line-height: 56rpx;
+  background: #f2f2f2;
+  border-radius: 8rpx;
+  float:left;
+}
+
+.searchInput {
+  margin: 0;
+  font-size: 20rpx;
+  height: 56rpx;
+  width:100%;
+  line-height: 56rpx;
+}
