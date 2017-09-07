@@ -205,24 +205,24 @@ Page({
             wx.showLoading({
                 title: 'loading',
             })
-            // wx.request({
-            //     url: url+'/api/team/join',
-            //     method:'POST',
-            //     data:{
-            //         teams:parameter
-            //     },
-            //     success(res){
-            //         console.log(res)
-            //         wx.hideLoading()
-            //         if(res.data.status_code===2000000){
-            //             wx.redirectTo({
-            //                 url: '/pages/contactsActivty/activtyRegister/activtyRegister',
-            //             })
-            //         }else{
-            //             app.errorHide(that,res.data.error_msg,3000)
-            //         }
-            //     }
-            // })
+            wx.request({
+                url: url+'/api/team/join',
+                method:'POST',
+                data:{
+                    teams:parameter
+                },
+                success(res){
+                    console.log(res)
+                    wx.hideLoading()
+                    if(res.data.status_code===2000000){
+                        wx.redirectTo({
+                            url: '/pages/contactsActivty/activtyRegister/activtyRegister',
+                        })
+                    }else{
+                        app.errorHide(that,res.data.error_msg,3000)
+                    }
+                }
+            })
         }
     },
     //创建战队
