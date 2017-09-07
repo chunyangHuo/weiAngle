@@ -856,6 +856,58 @@ App({
     }, time)
   },
 
+  //头像上传
+  headPic(that) {
+      let user_id = that.data.user_id;
+      let user_info = that.data.user_info;
+      let url_common = this.globalData.url_common;
+      wx.chooseImage({
+          count: 1, // 默认9
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+          success: function (res) {
+              var tempFilePaths = res.tempFilePaths;
+              let avatar = tempFilePaths[0];
+              let size = res.tempFiles[0].size;
+              if (size <= 1048576) {
+                  wx.showLoading({
+                      title: '头像上传中',
+                      mask:true,
+                  })
+                  wx.uploadFile({
+                      url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
+                      filePath: tempFilePaths[0],
+                      name: 'avatar',
+                      formData: {
+                          user_id: user_id,
+                      },
+                      success: function (res) {
+                          let data = JSON.parse(res.data);
+                          if (data.status_code === 2000000) {
+                              wx.hideLoading();
+                              let image_id = data.data.image_id;
+                              that.setData({
+                                  image_id: image_id
+                              })
+                          }
+                      }
+                  })
+                  if (user_info.user_avatar_url) {
+                      user_info.user_avatar_url = tempFilePaths;
+                  } else if (user_info.user_avatar_text) {
+                      delete user_info.user_avatar_text;
+                      user_info.user_avatar_url = tempFilePaths;
+                  }
+                  that.setData({
+                      user_info: user_info
+                  })
+              } else {
+                  app.errorHide(that, "上传图片不能超过1M", 1500)
+              }
+          }
+      })
+  },
+
   //请求封装
   requestWithGet: function (paramsData) {
     data.method = 'GET'
@@ -897,8 +949,8 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
+    // url: "https://lbs.weitianshi.cn",
+    // url_common: "https://lbs.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
     url: "https://wx.dev.weitianshi.cn",

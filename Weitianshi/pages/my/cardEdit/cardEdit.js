@@ -104,46 +104,7 @@ Page({
     //头像
     headPic() {
         let that = this;
-        let user_id = this.data.user_id;
-        let user_info = this.data.user_info;
-        wx.chooseImage({
-            count: 1, // 默认9
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function (res) {
-                var tempFilePaths = res.tempFilePaths;
-                let avatar = tempFilePaths[0];
-                let size = res.tempFiles[0].size;
-                if (size <= 1048576) {
-                    wx.uploadFile({
-                        url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
-                        filePath: tempFilePaths[0],
-                        name: 'avatar',
-                        formData: {
-                            user_id: user_id,
-                        },
-                        success: function (res) {
-                            let data = JSON.parse(res.data);
-                            let image_id = data.data.image_id;
-                            that.setData({
-                                image_id: image_id
-                            })
-                        }
-                    })
-                    if (user_info.user_avatar_url) {
-                        user_info.user_avatar_url = tempFilePaths;
-                    } else if (user_info.user_avatar_text) {
-                        delete user_info.user_avatar_text;
-                        user_info.user_avatar_url = tempFilePaths;
-                    }
-                    that.setData({
-                        user_info: user_info
-                    })
-                } else {
-                    app.errorHide(that, "上传图片不能超过1M", 1500)
-                }
-            }
-        })
+        app.headPic(that);
     },
     //确定
     save: function () {
@@ -156,7 +117,6 @@ Page({
         var companybrand = this.data.companybrand;
         var user_id = wx.getStorageSync('user_id');
         var image_id = this.data.image_id;
-        console.log(image_id)
         // 修复bug临时使用(公司,职位,姓名改为非必填)
         if (name == '') {
             app.errorHide(that, "姓名不能为空", 1500)
