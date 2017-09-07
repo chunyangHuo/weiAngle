@@ -46,3 +46,13 @@
     font-size: 30rpx;
     text-align: center;
 }
+ .avatar {
+    width: 28rpx;
+    height: 28rpx;
+       margin-top: 20rpx;  
+    /* margin-bottom:20rpx;  */
+}
+.avatars{
+      width:28rpx;
+    height: 28rpx;
+}

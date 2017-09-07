@@ -56,7 +56,8 @@ input {
   color: white;
   font-size: 32rpx;
   border-radius: 200rpx;
-  width: 300rpx !important;
+  /* width: 300rpx !important; */
+  width: 46% !important;
   display: inline-block
 }
 .nextBtn:first-child{

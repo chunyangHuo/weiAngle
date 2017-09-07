@@ -1,1 +1,139 @@
-/* pages/my/projectShop/projectSearch/projectSearch.wxss */
+.search_frame {
+  position: fixed;
+  height: 56rpx;
+  width: 94%;
+  background: white;
+  padding: 16rpx 128rpx 16rpx 32rpx;
+  z-index: 5;
+}
+.searchBox {
+  align-items: center;
+  height: 56rpx;
+  width: 590rpx;
+  line-height: 56rpx;
+  background: #f2f2f2;
+  border-radius: 8rpx;
+  float: left;
+}
+
+.search {
+  margin: 0;
+  font-size: 28rpx;
+  height: 56rpx;
+  width: 85%;
+  line-height: 56rpx;
+  padding-left:24rpx;
+}
+/*取消*/
+
+.esc {
+  /*clear:both;*/
+  float: right;
+  font-size: 32rpx;
+  color: #40587a;
+  margin-top: 14rpx;
+  margin-right: 32rpx;
+}
+.outBox {
+  margin: 0 16px 0 16px;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+.insideBox {
+  padding: 32rpx 32rpx 24rpx 32rpx;
+  background: #fff;
+  border-radius: 8rpx;
+}
+.outBox .describle {
+  font-size: 34rpx;
+  color: #666;
+  line-height: 38rpx;
+  text-align: left;
+  margin-bottom: 32rpx;
+  /* width:1418rpx; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
+}
+.allIndustry {
+  font-size: 26rpx;
+  color: #40587a;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectDetailLine {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+}
+
+.projectDetailLight {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+  color: #40587a;
+}
+
+.allProjectDetail {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 34rpx;
+}
+.otherInfo {
+  position: relative;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.others_pic {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+}
+.user_image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  font-size: 22rpx;
+  background: #f2f2f2;
+  line-height: 40rpx;
+  color: #40587a;
+}
+.userInfo {
+  width: 566rpx;
+  margin-top: 9rpx;
+}
+.userCompany, .userCareer, .userName {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  width: 320rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.userCareer, .userName {
+  margin-right: 16rpx;
+  white-space: nowrap;
+  width: auto;
+  text-overflow: clip;
+  overflow: none;
+}

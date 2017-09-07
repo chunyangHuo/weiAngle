@@ -2,10 +2,12 @@
     <!--表单内容  -->
     <view class="headPic userBox flex">
         <view class="personListTile">头像</view>
-        <view class="flex">
-            <image src="/img/icon-chuantouxiang@2x.png" class="avatar" wx:if="{{user_info.user_avatar_text}}" bindtap="headPic"></image>
-            <view class="personListContent">
-                <image class='avatar' src="{{user_info.user_avatar_url}}" bindtap="headPic"></image>
+        <view class="flex ">
+            <view class="avatar">
+            <image src="/img/icon-chuantouxiang@2x.png"  class="avatars" wx:if="{{!user_info.user_avatar_url}}" bindtap="headPic"></image> 
+            </view>
+            <view class="personListContent" wx:if="{{user_info.user_avatar_url}}">
+                 <image class='avatar' src="{{user_info.user_avatar_url}}" bindtap="headPic"></image> 
             </view>
         </view>
     </view>
