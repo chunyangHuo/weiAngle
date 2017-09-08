@@ -8,16 +8,15 @@
   justify-content: flex-end;
 }
 
-.img_frame{
+.img_frame {
   align-items: baseline;
   justify-content: space-between;
 }
 
-.editIcon{
+.editIcon {
   width: 32rpx;
   height: 32rpx;
 }
-
 
 .editIcon image {
   width: 28rpx;
@@ -36,6 +35,295 @@
   line-height: 26rpx;
   margin-top: 20rpx;
 }
-.block{
-   height:80rpx;
+
+.block {
+  height: 80rpx;
+}
+
+/*  */
+
+.screen {
+  background: #fff;
+  width: 750rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.box {
+  margin: 28rpx 0 26rpx 56rpx;
+}
+
+.bgPic {
+  /* opacity: 0.5; */
+  background: #40587a;
+  width: 100%;
+  height: 280rpx;
+  position: relative;
+}
+
+.userInfo {
+  position: absolute;
+  top: 184rpx;
+  left: 32rpx;
+}
+
+.userInfo .userName {
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 36rpx;
+  text-align: left;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.userInfo .userPosition {
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 28rpx;
+  text-align: left;
+  margin-bottom: 16rpx;
+}
+
+.userInfo .userCompany {
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 24rpx;
+  text-align: left;
+}
+
+.shopDesBox {
+  padding: 32rpx;
+  height: 234rpx;
+  background: #fff;
+  margin-top: 32rpx;
+}
+
+.shopDesBox .shopDes {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 30rpx;
+  text-align: left;
+  margin-bottom: 32rpx;
+}
+
+.shopDesBox .shopContent {
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: left;
+}
+
+/*按鈕  */
+
+.aboutNetwork {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #40587a;
+  font-size: 30rpx;
+}
+
+.shop {
+  margin-top: 28rpx;
+  border-right: 1rpx solid #fff;
+  padding-right: 122rpx;
+  padding-left: 122rpx;
+}
+
+.myShop {
+  margin-top: 28rpx;
+  border-right: 1rpx solid #fff;
+  padding-right: 66rpx;
+  padding-left: 60rpx;
+}
+
+.empty {
+  padding-top: 0;
+  margin-top: 344rpx;
+  width: 252rpx;
+  height: 190rpx;
+}
+
+page {
+  height: 100%;
+}
+
+.s_frame {
+  height: 1200rpx;
+  position: static;
+}
+
+.browseMeTitle {
+  /*height: 90rpx;*/
+  margin: 32rpx 32rpx 32rpx 32rpx;
+}
+
+.browseMeTitle .num {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 24rpx;
+  text-align: right;
+}
+
+.title {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.title .block {
+  background: #40587a;
+  width: 4rpx;
+  height: 24rpx;
+  margin-right: 12rpx;
+}
+
+/*名片*/
+
+.outBox {
+  margin: 0 32rpx 30rpx 32rpx;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.insideBox {
+  padding: 32rpx 32rpx 24rpx 32rpx;
+  background: #fff;
+  border-radius: 8rpx;
+}
+
+.outBox .describle {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 32rpx;
+  text-align: left;
+  margin-bottom: 36rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.allIndustry {
+  font-size: 26rpx;
+  color: #40587a;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.otherInfo {
+  position: relative;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.others_pic {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+}
+
+.projectDetailLine {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+  color: #666;
+}
+
+.projectDetailLine:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLine:last-child {
+  border-right: none;
+}
+
+.allProjectDetail {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 26rpx;
+  text-align: left;
+  /* margin-bottom: 34rpx; */
+}
+
+.userInfo {
+  width: 460rpx;
+  margin-top: 9rpx;
+}
+
+.userCompany, .userCareer, .userName {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 22rpx;
+  text-align: left;
+  width: 320rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.userCareer, .userName {
+  margin-right: 16rpx;
+  white-space: nowrap;
+  width: auto;
+  text-overflow: clip;
+  overflow: none;
+}
+
+.projectInfo {
+  height: 72rpx;
+  position: relative;
+}
+
+#time {
+  font-size: 20rpx;
+  color: #999;
+  line-height: 20rpx;
+  text-align: right;
+  margin: 10rpx 0 20rpx 0;
+}
+
+.noLight {
+  color: #666;
+}
+
+.projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
+}
+
+.highBox {
+  height: 98rpx;
+}
+
+.star {
+  height: 24rpx;
+  width: 26rpx;
+  position: absolute;
+  right: 26rpx;
+  bottom: 30rpx;
+}
+
+.starPic {
+  height: 24rpx;
+  width: 26rpx;
+}
+
+.picFather {
+  position: relative;
 }

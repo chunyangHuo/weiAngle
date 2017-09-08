@@ -37,6 +37,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var myProject = res.data.data;
+        console.log(myProject)
         //将匹配出来的四个人放入缓存
         var investors = [];
         var cards = res.data.data;
@@ -146,6 +147,7 @@ Page({
   },
   //项目详情
   detail: function (e) {
+    console.log(e)
     var thisData = e.currentTarget.dataset;
     var id = thisData.id;
     var index = thisData.index;
@@ -174,5 +176,11 @@ Page({
   // 按钮一号
   buttonOne: function () {
     app.infoJump("/pages/myProject/publishProject/publishProject");
+  },
+  //店铺装修
+  decorate:function(){
+    wx.navigateTo({
+      url: '/pages/my/projectShop/shopEdit/shopEdit'
+    })
   }
 })

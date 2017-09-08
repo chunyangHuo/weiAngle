@@ -949,11 +949,11 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    url: "https://lbs.weitianshi.cn",
-    url_common: "https://lbs.weitianshi.cn"
+    // url: "https://lbs.weitianshi.cn",
+    // url_common: "https://lbs.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 });
