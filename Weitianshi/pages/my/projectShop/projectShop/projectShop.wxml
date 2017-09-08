@@ -1,19 +1,85 @@
-<import src="/pages/Template/Template.wxml" />
+<!-- <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:2378rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
 
   <!--已发布的项目-->
-  <block wx:for="{{myProject}}" wx:key="{{project_id}}" wx:for-item="myProject">
+<!-- <block wx:for="{{myProject}}" wx:key="{{project_id}}" wx:for-item="myProject">
     <template is="projectList" data="{{myProject:myProject,index:index}}"></template>
   </block>
-  <view class="block"></view>
-  <!--没有更多-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+  <view class="block"></view> -->
+<!--没有更多-->
+<!-- <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> -->
 
-  <!--空状态-->
-  <view wx:if="{{myProject==''}}">
+<!--空状态-->
+<!-- <view wx:if="{{myProject==''}}">
     <image class="empty" src="/img/empty.png"></image>
   </view>
-</scroll-view>
+</scroll-view> -->
 
 <!--按钮-->
-<template is="buttonOne" wx:if="{{currentTab!=1}}" data="{{...buttonOne}}"></template>
+<!-- <template is="buttonOne" wx:if="{{currentTab!=1}}" data="{{...buttonOne}}"></template> -->
+<view class="	screen flex">
+  <label class="box">领域</label>
+  <label class="box">轮次</label>
+  <label class="box">金额</label>
+  <label class="box">地区</label>
+</view>
+<view class="classname">
+  <image src="/img/img-bg.jpg" class="bgPic"></image>
+</view>
+<view class="userInfo">
+  <view class="flex">
+    <view class="userName">张三</view>
+    <view class="userPosition">投资经理</view>
+  </view>
+  <view class="userCompany">杭州投着乐网络科技有限公司</view>
+  <view class="userPic"></view>
+  <view class="classname">
+    <!-- <image src="src"></image> -->
+  </view>
+</view>
+<view class="shopDesBox">
+  <view class="shopDes">店铺描述</view>
+  <view class="shopContent">这里是这个人的个人描述，字数可能会有点长，长到一行显示不但是就默认显示两行。多了就要...</view>
+</view>
+<view style="height:30rpx;"></view>
+<scroll-view style="height:500rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
+  <block wx:for="{{myProject}}" wx:key="{{index}}">
+    <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
+      <view class="insideBox">
+        <view data-id="{{item.project_id}}" catchtap="detail">
+          <view class="flex">
+            <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+            <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+            <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+          </view>
+          <view class="allIndustry" style="text-align:left">
+            <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
+              <label class="noLight" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label>
+              <label class="'noLight" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+            </block>
+          </view>
+          <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+            <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
+            <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
+            <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
+            <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
+          </view>
+          <view class="star">
+            <image src="/img/icon-zhiding-n@2x.png" class="starPic"></image>
+            <!-- <image src="/img/icon-zhiding-s@2x.png" class="starPic"></image> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class="highBox"></view>
+<view class="aboutNetwork flex">
+  <view bindtap="decorate"><label class="shop">店铺装修</label></view>
+  <view bindtap="editDetail" class="newProject">新增项目</view>
+</view>
+<!-- <view class="aboutNetwork flex">
+  <view bindtap="shop"><label class="myShop">我的店铺</label></view>
+  <view bindtap="newProject"><label class="myShop">推送项目</label></view>
+  <view bindtap="newProject" class="newProject">更多精选项目</view>
+</view> -->
