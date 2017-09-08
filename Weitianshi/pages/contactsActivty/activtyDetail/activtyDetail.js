@@ -32,8 +32,9 @@ Page({
 
     onShareAppMessage: function () {
         return {
-            title: '《100万大礼包助攻2017首届中国创投人脉争霸赛，等你来战!》',
+            title: '100万大礼包助攻2017首届中国创投人脉争霸赛，等你来战!',
             path: '/pages/contactsActivty/activtyDetail/activtyDetail',
+            imageUrl:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
             success: function (res) {
                console.log('分享成功',res)
             },

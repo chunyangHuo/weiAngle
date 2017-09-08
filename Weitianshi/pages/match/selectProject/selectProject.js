@@ -29,9 +29,6 @@ Page({
         }
       })
     })
-    wx.setNavigationBarTitle({
-        title: '精选项目',
-    })
   },
   //上拉加载
   loadMore: function () {

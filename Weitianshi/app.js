@@ -118,7 +118,8 @@ App({
               data: {
                 code: code,
                 encryptedData: res.encryptedData,
-                iv: res.iv
+                iv: res.iv,
+                app_key: 'wxos_fa'
               },
               method: 'POST',
               success: function (res) {
@@ -142,6 +143,7 @@ App({
               url: that.globalData.url + '/api/wx/returnOauth',
               data: {
                 code: code,
+                app_key: 'wxos_fa'
               },
               method: 'POST',
               success: function (res) {
@@ -949,10 +951,10 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    url: "https://lbs.weitianshi.cn",
-    url_common: "https://lbs.weitianshi.cn"
-    // url: "https://wx.debug.weitianshi.cn",
-    // url_common: "https://wx.debug.weitianshi.cn"
+    // url: "https://lbs.weitianshi.cn",
+    // url_common: "https://lbs.weitianshi.cn"
+    url: "https://wx.debug.weitianshi.cn",
+    url_common: "https://wx.debug.weitianshi.cn"
     // url: "https://wx.dev.weitianshi.cn",
     // url_common: "https://wx.dev.weitianshi.cn"
   },
