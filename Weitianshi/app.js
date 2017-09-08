@@ -119,7 +119,7 @@ App({
                 code: code,
                 encryptedData: res.encryptedData,
                 iv: res.iv,
-                app_key: 'wxos_fa'
+                app_key: that.globalData.app_key
               },
               method: 'POST',
               success: function (res) {
@@ -143,7 +143,7 @@ App({
               url: that.globalData.url + '/api/wx/returnOauth',
               data: {
                 code: code,
-                app_key: 'wxos_fa'
+                app_key: that.globalData.app_key
               },
               method: 'POST',
               success: function (res) {
@@ -951,6 +951,7 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
+    app_key:'wxos_lt',
     url: "https://lbs.weitianshi.cn",
     url_common: "https://lbs.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
