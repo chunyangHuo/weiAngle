@@ -50,7 +50,7 @@
   <block wx:for="{{myProject}}" wx:key="{{index}}">
     <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
       <view class="insideBox">
-        <view data-id="{{item.project_id}}"  bindtap="detail">
+        <view data-id="{{item.project_id}}" bindtap="detail">
           <view class="flex">
             <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
             <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
@@ -68,9 +68,9 @@
             <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
             <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
           </view>
-          <view class="star"   catchtap="clickProject"  data-id="{{item.project_id}}" data-index="{{index}}">
-            <image src="/img/icon-zhiding-n@2x.png" class="starPic" wx:if='{{item.check==true}}></image>
-             <image src="/img/icon-zhiding-s@2x.png" class="starPic" wx:if='{{item.check==false}}></image> 
+          <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" data-index="{{index}}">
+            <image src="/img/icon-zhiding-n@2x.png" class="starPic" wx:if='{{item.check==true}}'></image>
+            <image src="/img/icon-zhiding-s@2x.png" class="starPic" wx:if=' {{item.check==false}}'></image>
           </view>
         </view>
       </view>
