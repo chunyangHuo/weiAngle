@@ -10,9 +10,11 @@ Page({
 
   onLoad: function (options) {
     let team_id = options.team_id;
+    let team_name = options.team_name;
     let that = this;
     that.setData({
-      team_id: team_id
+      team_id: team_id,
+      team_name: team_name
     })
   },
 
@@ -20,6 +22,7 @@ Page({
     let that = this;
     let team_id = this.data.team_id;
     let user_id = wx.getStorageSync('user_id');
+    //follow_status: 0 未加入战队  1:已加入战队
     wx.request({
       url: url_common + '/api/team/membersList',
       data: {
@@ -29,9 +32,11 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        let follow_status = res.data.data.follow_status;
         let warMemberList = res.data.data.members;
         that.setData({
-          warMemberList: warMemberList
+          warMemberList: warMemberList,
+          follow_status: follow_status
         })
         if(warMemberList.length==0) app.errorHide(that,'该战队暂时没有成员',3000) 
       }
@@ -39,7 +44,7 @@ Page({
     that.setData({
       requestCheck: true,
       currentPage: 1,
-      page_end: false,
+      page_end: false
     })
   },
   //加载更多
@@ -133,5 +138,72 @@ Page({
         }
       })
     }
+  },
+  //分享页面
+  onShareAppMessage: function () {
+    let team_name = this.data.team_name;
+    return {
+      title:team_name+ '正在参与2017首届创投人脉争霸赛，请您支持!',
+      path: '/pages/contactsActivty/activtyDetail/activtyDetail',
+      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+      success: function (res) {
+        console.log('分享成功', res)
+      },
+    }
+  },
+  //加入人脉
+  addWar:function(e){
+    // let xxx = e.currentTarget.dataset.url;
+    let user_id = wx.getStorageSync('user_id');
+    let team_id = this.data.team_id;
+    let follow_status = this.data.follow_status;
+    let that = this;
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //添加战队
+              let user_id = wx.getStorageSync('user_id');
+              let arr = [];
+              let parameter = [];
+              arr.push(user_id);
+              arr.push(team_id);
+              parameter.push(arr)
+              wx.request({
+                url: url_common + '/api/team/join',
+                data: {
+                  teams: parameter
+                },
+                method: 'POST',
+                success: function (res) {
+                  if (res.data.status_code == 2000000) {
+                   that.setData({
+                     follow_status : 1
+                   })
+                  } else {
+                    app.errorHide(that, res.data.error_msg, 3000)
+                  }
+                }
+              })
+          } else if (complete == 0) {
+            wx.removeStorageSync('followed_user_id')
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.removeStorageSync('followed_user_id')
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      }
+    })
   }
 })
