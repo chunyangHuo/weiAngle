@@ -64,7 +64,7 @@
       <view id="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
       <view style="height:80rpx;"></view>
       <block wx:for="{{team_rank_list}}" wx:key="{{index}}" bindtap="allPerson">
-        <view bindtap="allPerson" data-id="{{item.team_id}}">
+        <view bindtap="allPerson" data-id="{{item.team_id}}" data-name="{{item.team_name}}">
           <view class="flex totalNum">
             <view class="{{item.rank  >10 ? 'noColor' : 'topRank'}}">top{{item.rank}}</view>
             <view class="rightBox flex">

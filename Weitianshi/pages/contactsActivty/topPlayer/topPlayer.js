@@ -113,8 +113,9 @@ Page({
   //点击跳转战队人的列表
   allPerson: function (e) {
     let team_id = e.currentTarget.dataset.id;
+    let team_name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id,
+      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&team_name=' + team_name,
     })
   },
   //跳转用户详情

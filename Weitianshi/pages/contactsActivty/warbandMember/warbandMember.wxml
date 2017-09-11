@@ -25,7 +25,12 @@
 </view>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-    <view class="empty flex" wx:if="{{warMemberList.length == 0}}">
-      <image src="/img/img-kong1@2x.png" class="noData"></image>
-      <view class="hasNothing">暂无成员</view>
-    </view>
+<view class="empty flex" wx:if="{{warMemberList.length == 0}}">
+  <image src="/img/img-kong1@2x.png" class="noData"></image>
+  <view class="hasNothing">暂无成员</view>
+</view>
+<view class="flex btn">
+  <view class="addWar" bindtap="addWar" wx:if="{{follow_status == 0}}">加战队</view>
+   <view class="addWar" wx:if="{{follow_status == 1}}">已加入</view> 
+  <button open-type="share" id="share" class="invitePersons">邀请成员</button>
+</view>

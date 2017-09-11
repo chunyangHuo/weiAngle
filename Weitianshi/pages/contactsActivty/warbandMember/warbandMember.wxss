@@ -94,18 +94,59 @@
   border-radius: 50%;
   text-align: center;
 }
+
 .empty {
   padding-top: 0;
-  margin-top:344rpx;
+  margin-top: 344rpx;
   width: 252rpx;
   height: 190rpx;
 }
-.hasNothing{
-  color:#666666;
+
+.hasNothing {
+  color: #666;
 }
+
 .noData {
   width: 144rpx;
   height: 88rpx;
   margin-bottom: 38rpx;
   /* margin-top:344rpx; */
+}
+
+.addWar {
+  font-size: 28rpx;
+  width:378rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  text-align: center;
+   line-height:88rpx;
+}
+
+.btn  button {
+    width:378rpx;
+  background: #40587a;
+  border: none;
+  border-radius: 0;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  line-height:88rpx;
+}
+
+.btn button::after {
+  border: none;
+  border-radius: 0;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+   line-height:88rpx;
+}
+
+.btn {
+  position: fixed;
+  bottom: 0;
+  height: 88rpx;
+  background: #fff;
+  font-size: 14px;
+  text-align: center;
 }
