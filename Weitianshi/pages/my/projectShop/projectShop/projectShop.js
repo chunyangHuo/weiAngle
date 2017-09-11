@@ -6,6 +6,13 @@ Page({
     buttonOne: {
       text: "新增项目",
     },
+    tab: [
+      { name: '领域', check: false },
+      { name: '轮次', check: false },
+      { name: '金额', check: false },
+      { name: '地区', check: false }
+    ],
+    currentIndex: 5,
     myPublicProject_page: 1,
     myPublicCheck: true,
     myPublic_page_end: false
@@ -19,6 +26,17 @@ Page({
         followed_user_id: followed_user_id
       })
     }
+    let industry = wx.getStorageSync('industry');
+    let stage = wx.getStorageSync('stage');
+    let scale = wx.getStorageSync('scale');
+    let hotCity = wx.getStorageSync('hotCity')
+    console.log(stage, scale, hotCity)
+    this.setData({
+      industry: industry,
+      stage: stage,
+      scale: scale,
+      hotCity: hotCity
+    })
   },
   onShow: function () {
     wx.removeStorageSync("investors")
@@ -181,6 +199,13 @@ Page({
   decorate:function(){
     wx.navigateTo({
       url: '/pages/my/projectShop/shopEdit/shopEdit'
+    })
+  },
+  //下拉框
+  move(e) {
+    let index = e.currentTarget.dataset.index
+    this.setData({
+      currentIndex: index
     })
   }
 })
