@@ -76,8 +76,7 @@
     "pages/contactsActivty/activtyRegister/activtyRegister",
     "pages/contactsActivty/topPlayer/topPlayer",
     "pages/contactsActivty/warbandMember/warbandMember",
-    "pages/contactsActivty/expandContacts/expandContacts",
-    "pages/test/index"
+    "pages/contactsActivty/expandContacts/expandContacts"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

@@ -32,13 +32,14 @@ Page({
     let stage = wx.getStorageSync('stage');
     let scale = wx.getStorageSync('scale');
     let hotCity = wx.getStorageSync('hotCity')
-    console.log(stage, scale, hotCity)
     this.setData({
       industry: industry,
       stage: stage,
       scale: scale,
       hotCity: hotCity
     })
+    // 打上check属性
+    this.initData();
   },
   onShow: function () {
     wx.removeStorageSync("investors")
@@ -74,6 +75,113 @@ Page({
         })
       }
     });
+  },
+  //下拉框
+  move(e) {
+    let index = e.currentTarget.dataset.index;
+    let currentIndex = this.data.currentIndex;
+    if (currentIndex != index) {
+      this.getOffset();
+      this.setData({
+        currentIndex: index
+      })
+    } else {
+      this.setData({
+        currentIndex: 5
+      })
+    }
+  }, 
+  // 获取dropDown
+  getOffset(){ 
+    let query=wx.createSelectorQuery();
+    query.select('.dropDown').boundingClientRect(res=>{
+      console.log(res)
+      res.top
+      res.bottom
+      res.left
+      res.right
+    }).exec();
+  },
+  // 清空check值(辅助函数)
+  initData() {
+    let industry = this.data.industry;
+    let stage = this.data.stage;
+    let scale = this.data.scale;
+    let hotCity = this.data.hotCity;
+    let that = this;
+    industry.forEach(x => {
+      x.check = false;
+    })
+    stage.forEach(x => {
+      x.check = false;
+    })
+    scale.forEach(x => {
+      x.check = false;
+    })
+    hotCity.forEach(x => {
+      x.check = false;
+    })
+    that.setData({
+      industry: industry,
+      stage: stage,
+      scale: scale,
+      hotCity: hotCity
+    })
+  },
+  // 筛选项重置(辅助函数)
+  itemReset(item){
+    let industry=this.data.industry;
+    let stage=this.data.stage;
+    let scale=this.data.scale;
+    let hotCity=this.data.hotCity;
+    switch(item){
+      case 'industry':
+        {industry.forEach(x=>{x.check=false;})}
+        break;
+      case 'stage':
+        { stage.forEach(x => { x.check = false; }) }
+        break;
+      case 'scale':
+        { scale.forEach(x => { x.check = false; }) }
+        break;
+      case 'hotCity':
+        { hotCity.forEach(x => { x.check = false; }) }
+        break;    
+    }
+    this.setData({
+      industry:industry,
+      stage:stage,
+      scale:scale,
+      hotCtiy:hotCity
+    })
+  },
+  // 标签选择
+  tagsCheck(){
+    app.tagsCheck(that, e, tags, str)
+  },
+  // 搜索重置
+  reset(){
+    let currentIndex=this.data.currentIndex;
+    switch(currentIndex){
+      case 0:
+        this.itemReset('industry')
+        break;
+      case 1:
+        this.itemReset('stage')
+        break;
+      case 2:
+        this.itemReset('scale')
+        break;
+      case 3:
+        this.itemReset('hotCity')
+        break;
+      default:
+        {this.itemReset('industry');this.itemReset('stage');this.itemReset('scale');this.itemReset('hotCity')}    
+    }
+  },
+  // 搜索确定
+  searchCertain(){
+    let currentIndex = this.data.currentIndex;
   },
   // 上拉加载
   myPublicProject: function () {
@@ -165,7 +273,7 @@ Page({
       }
     }
   },
-  //项目详情
+  // 项目详情
   detail: function (e) {
     console.log(e)
     var thisData = e.currentTarget.dataset;
@@ -182,7 +290,7 @@ Page({
       })
     }
   },
-  //编辑项目
+  // 编辑项目
   editDetail: function (e) {
     var id = e.currentTarget.dataset.id;
     var user_id = wx.getStorageSync('user_id');
@@ -197,20 +305,13 @@ Page({
   buttonOne: function () {
     app.infoJump("/pages/myProject/publishProject/publishProject");
   },
-  //店铺装修
+  // 店铺装修
   decorate: function () {
     wx.navigateTo({
       url: '/pages/my/projectShop/shopEdit/shopEdit'
     })
-  },
-  //下拉框
-  move(e) {
-    let index = e.currentTarget.dataset.index
-    this.setData({
-      currentIndex: index
-    })
-  },  
-  //选中项目
+  }, 
+  // 选中项目
   clickProject: function (e) {
    console.log(e)
     let  that = this;
