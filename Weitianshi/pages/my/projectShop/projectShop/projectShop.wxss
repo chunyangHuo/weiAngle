@@ -327,3 +327,21 @@ page {
 .picFather {
   position: relative;
 }
+
+/*为空  */
+
+.emptyStyle {
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: center;
+  margin-top:144rpx;
+}
+.renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+  margin-left: 8rpx;
+  margin: 17rpx 4rpx 0 8rpx;
+}
