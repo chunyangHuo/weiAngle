@@ -328,6 +328,7 @@ page {
   position: relative;
 }
 
+
 .withAnimate {
   transition: all 300ms ease;
   -webkit-transform: translate3d(0, 0, 0);
@@ -367,5 +368,21 @@ page {
   margin-left:32rpx;
   margin-bottom: 32rpx;
   text-align: center;
-  
+}  
+
+/*为空  */
+.emptyStyle {
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: center;
+  margin-top:144rpx;
+}
+.renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+  margin-left: 8rpx;
+  margin: 17rpx 4rpx 0 8rpx;
 }
