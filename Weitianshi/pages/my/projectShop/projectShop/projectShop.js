@@ -4,13 +4,15 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     buttonOne: {
-      text: "新增项目",
+      text: "新增项目"
     },
     myPublicProject_page: 1,
     myPublicCheck: true,
-    myPublic_page_end: false
+    myPublic_page_end: false,
+    check: false
   },
   onLoad: function (options) {
+    var that = this;
     var currentTab = options.currentTab;//从sharePage页面跳转过来的
     var followed_user_id = options.followed_user_id;
     if (currentTab == 1) {
@@ -74,7 +76,7 @@ Page({
           });
           wx.showLoading({
             title: 'loading',
-            mask:true,
+            mask: true,
           })
           wx.request({
             url: url_common + '/api/project/getMyProjectList',
@@ -113,7 +115,7 @@ Page({
           });
           wx.showLoading({
             title: 'loading',
-            mask:true
+            mask: true
           })
           wx.request({
             url: url_common + '/api/project/getMyProjectList',
@@ -178,9 +180,31 @@ Page({
     app.infoJump("/pages/myProject/publishProject/publishProject");
   },
   //店铺装修
-  decorate:function(){
+  decorate: function () {
     wx.navigateTo({
       url: '/pages/my/projectShop/shopEdit/shopEdit'
+    })
+  },
+  //选中项目
+  clickProject: function (e) {
+   console.log(e)
+    let  that = this;
+    let myProject = this.data.myProject;
+    // let proId = e.currentTarget.dataset.id;
+    if (team.check == false) {
+      warband[index].check = true;
+      joinedWarband.push(team)
+    } else {
+      warband[index].check = false;
+      joinedWarband.forEach((x, index) => {
+        if (x.team_id === team.team_id) {
+          joinedWarband.splice(index, 1)
+        }
+      })
+    }
+    this.setData({
+      warband: warband,
+      joinedWarband: joinedWarband
     })
   }
 })
