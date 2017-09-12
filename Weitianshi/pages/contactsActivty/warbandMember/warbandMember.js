@@ -16,6 +16,10 @@ Page({
       team_id: team_id,
       team_name: team_name
     })
+    console.log(options)
+    wx.setNavigationBarTitle({
+      title: team_name+'的战队成员'
+    })
   },
 
   onShow: function () {
@@ -142,9 +146,10 @@ Page({
   //分享页面
   onShareAppMessage: function () {
     let team_name = this.data.team_name;
+    let team_id = this.data.team_id;
     return {
       title:team_name+ '正在参与2017首届创投人脉争霸赛，请您支持!',
-      path: '/pages/contactsActivty/activtyDetail/activtyDetail',
+      path: '/pages/contactsActivty/warbandMember/warbandMember?team_id='+team_id+'&team_name='+team_name,
       imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
       success: function (res) {
         console.log('分享成功', res)
