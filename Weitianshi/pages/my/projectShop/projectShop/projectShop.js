@@ -13,15 +13,25 @@ Page({
       { name: '地区', check: false }
     ],
     currentIndex: 5,
+    industryArr: [],
+    stageArr: [],
+    scaleArr: [],
+    hotCityArr: [],
+    searchData: {
+      industry: [],
+      stage: [],
+      scale: [],
+      hotCity: [],
+    },
     myPublicProject_page: 1,
     myPublicCheck: true,
     myPublic_page_end: false,
-    check: false
+    check: false,
   },
   onLoad: function (options) {
-    var that = this;
-    var currentTab = options.currentTab;//从sharePage页面跳转过来的
-    var followed_user_id = options.followed_user_id;
+    let that = this;
+    let currentTab = options.currentTab;//从sharePage页面跳转过来的
+    let followed_user_id = options.followed_user_id;
     if (currentTab == 1) {
       this.setData({
         currentTab: currentTab,
@@ -42,14 +52,13 @@ Page({
     this.initData();
   },
   onShow: function () {
-    wx.removeStorageSync("investors")
     var that = this;
     if (this.data.currentTab == 1) {
       var user_id = this.data.followed_user_id
     } else {
       var user_id = wx.getStorageSync('user_id')
     }
-    //获取我的项目匹配到的投资人
+    //获取我的项目
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -59,17 +68,9 @@ Page({
       success: function (res) {
         var myProject = res.data.data;
         console.log(myProject)
-        //将匹配出来的四个人放入缓存
-        var investors = [];
-        var cards = res.data.data;
-        cards.forEach((x) => {
-          investors.push(x.match_investors)
-        })
-        wx.setStorageSync('investors', investors);
         //刷新数据
         that.setData({
           myProject: myProject,
-          investors: investors,
           myPublic_page_end: false,
           myPublicProject_page: 1
         })
@@ -90,11 +91,11 @@ Page({
         currentIndex: 5
       })
     }
-  }, 
+  },
   // 获取dropDown
-  getOffset(){ 
-    let query=wx.createSelectorQuery();
-    query.select('.dropDown').boundingClientRect(res=>{
+  getOffset() {
+    let query = wx.createSelectorQuery();
+    query.select('.dropDown').boundingClientRect(res => {
       console.log(res)
       res.top
       res.bottom
@@ -102,24 +103,37 @@ Page({
       res.right
     }).exec();
   },
-  // 清空check值(辅助函数)
+  // 初始化check值(辅助函数)
   initData() {
+    let that = this;
     let industry = this.data.industry;
     let stage = this.data.stage;
     let scale = this.data.scale;
     let hotCity = this.data.hotCity;
-    let that = this;
+    let searchData = this.data.searchData;
     industry.forEach(x => {
       x.check = false;
+      if(searchData.industry.indexOf(x.industry_id)!=-1){
+        x.check=true;
+      }
     })
     stage.forEach(x => {
       x.check = false;
+      if(searchData.stage.indexOf(x.stage_id)!=-1){
+        x.check=true;
+      }
     })
     scale.forEach(x => {
       x.check = false;
+      if(searchData.scale.indexOf(x.scale_id)!=-1){
+        x.check=true;
+      }
     })
     hotCity.forEach(x => {
       x.check = false;
+      if(searchData.hotCity.indexOf(x.area_id)!=-1){
+        x.check=true;
+      }
     })
     that.setData({
       industry: industry,
@@ -127,42 +141,87 @@ Page({
       scale: scale,
       hotCity: hotCity
     })
+
   },
-  // 筛选项重置(辅助函数)
-  itemReset(item){
-    let industry=this.data.industry;
-    let stage=this.data.stage;
-    let scale=this.data.scale;
-    let hotCity=this.data.hotCity;
-    switch(item){
+  initItem(str){
+    let itemStr=str;
+    let itemArrStr=str+'Arr';
+    let item=this.data[itemStr];
+    let itemArr=this.data[itemArrStr]
+    let searchData=this.data.searchData;
+    let itemIdStr='';
+    switch(itemStr){
       case 'industry':
-        {industry.forEach(x=>{x.check=false;})}
+        itemIdStr='industry_id'
         break;
       case 'stage':
-        { stage.forEach(x => { x.check = false; }) }
+        itemIdStr='stage_id'
         break;
       case 'scale':
-        { scale.forEach(x => { x.check = false; }) }
+        itemIdStr='scale_id'
         break;
       case 'hotCity':
-        { hotCity.forEach(x => { x.check = false; }) }
-        break;    
+        itemIdStr='area_id'
+        break;
+      default:
+        console.log('initItem()出了问题')  
     }
-    this.setData({
-      industry:industry,
-      stage:stage,
-      scale:scale,
-      hotCtiy:hotCity
+    item.forEach(x=>{
+        x.check=false;
+        itemArr=[];
+        if(searchData[item].indexOf(x[itemIdStr])!=-1){
+          x.check=true;
+          itemArr.push(x)
+        }
     })
   },
+  // 筛选项重置(辅助函数)
+  itemReset(str){
+      let itemStr=str;
+      let itemArrStr=str+'Arr';
+      let item=this.data[itemStr];
+      let itemArr=this.data[itemArrStr];
+      item.forEach(x=>{
+        x.check=false;
+      })
+      itemArr=[];
+      this.setData({
+        [itemStr]:item,
+        [itemArrStr]:itemArr
+      })
+  },
   // 标签选择
-  tagsCheck(){
-    app.tagsCheck(that, e, tags, str)
+  tagsCheck(e) {
+    let that = this;
+    let industry = this.data.industry;
+    let industryArr = this.data.industryArr;
+    let item = e.currentTarget.dataset.item;
+    let index = e.currentTarget.dataset.index;
+    if (item.check == false) {
+      if (industryArr.length < 5) {
+        industry[index].check = true;
+        industryArr.push(item)
+      } else {
+        app.errorHide(that, '不能选择超过5个标签', 3000)
+      }
+    } else {
+      industry[index].check = false;
+      industryArr.forEach((y, index) => {
+        if (item.id == y.id) {
+          industryArr.splice(index, 1)
+        }
+      })
+    }
+    this.setData({
+      industry: industry,
+      industryArr: industryArr
+    })
+    console.log('industryArr',industryArr)
   },
   // 搜索重置
-  reset(){
-    let currentIndex=this.data.currentIndex;
-    switch(currentIndex){
+  reset() {
+    let currentIndex = this.data.currentIndex;
+    switch (currentIndex) {
       case 0:
         this.itemReset('industry')
         break;
@@ -176,13 +235,74 @@ Page({
         this.itemReset('hotCity')
         break;
       default:
-        {this.itemReset('industry');this.itemReset('stage');this.itemReset('scale');this.itemReset('hotCity')}    
+        { 
+          this.itemReset('industry'); 
+          this.itemReset('stage'); 
+          this.itemReset('scale'); 
+          this.itemReset('hotCity') 
+        }
     }
+    console.log('search', this.data.searchData.industry)
   },
   // 搜索确定
-  searchCertain(){
+  searchCertain() {
     let currentIndex = this.data.currentIndex;
+    let searchData = this.data.searchData;
+    let that=this;
+    let newArr=[];
+    switch (currentIndex) {
+      case 0:
+        this.data.industryArr.forEach(x => {
+          newArr.push(x.industry_id)
+        })
+        searchData.industry = newArr;
+        break;
+      case 1:
+        this.data.stageArr.forEach(x => {
+          newArr.push(x.stage_id)
+        })
+        searchData.stage = newArr;
+        break;
+      case 2:
+        this.data.scaleArr.forEach(x => {
+          newArr.push(x.scale_id)
+        })
+        searchData.scale = newArr;
+        break;
+      case 4:
+        this.data.scaleArr.forEach(x => {
+          newArr.push(x.area_id)
+        })
+        searchData.hotCity = newArr;
+        break;
+      default:
+        console.log('出错了,不知道点了哪个确定')
+    }
+    this.setData({
+      searchData: searchData
+    })
+    //发送筛选请求
+    console.log('search', this.data.searchData.industry)
+    this.initData();
+    /* wx.request({
+      url: url_common + '/api/project/getMyProjectList',
+      data: {
+        user_id: wx.getStorageSync('user_id'),
+        filter:searchData
+      },
+      method: 'POST',
+      success: function (res) {
+        that.initData();
+        console.log(res)
+      }
+    }); */
   },
+
+
+
+
+
+
   // 上拉加载
   myPublicProject: function () {
     var that = this;
@@ -310,11 +430,11 @@ Page({
     wx.navigateTo({
       url: '/pages/my/projectShop/shopEdit/shopEdit'
     })
-  }, 
+  },
   // 选中项目
   clickProject: function (e) {
-   console.log(e)
-    let  that = this;
+    console.log(e)
+    let that = this;
     let myProject = this.data.myProject;
     // let proId = e.currentTarget.dataset.id;
     if (team.check == false) {

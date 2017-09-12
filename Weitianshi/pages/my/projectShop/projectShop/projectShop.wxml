@@ -1,3 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
 <view class="	screen flex">
   <!--筛选  -->
   <block wx:for='{{tab}}' wx:key='index'>
@@ -6,6 +7,7 @@
       <image class='withAnimate {{currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
     </view>
   </block>
+  <icon type="search" size="15" class="search_icon"></icon>
   <!--下拉框  -->
   <view class='dropDown withAnimate'>
     <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
@@ -16,7 +18,7 @@
     <view class='flex dropFlex'>
       <!--领域  -->
       <block wx:for='{{industry}}' wx:if='{{currentIndex==0}}' wx:key='item.industry_id' wx:for-item='item1' wx:for-index='index1'>
-        <view class='checkbox {{item1.check==true?"checkOne":""}}' bindtap='tagsCheck'>
+        <view class='checkbox {{item1.check==true?"checkOne":""}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
           {{item1.industry_name}}
         </view>
       </block>
@@ -113,6 +115,9 @@
   </view>
   <view bindtap="editDetail" class="newProject">新增项目</view>
 </view>
+
+<!--错误提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <!-- <view class="aboutNetwork flex">
   <view bindtap="shop"><label class="myShop">我的店铺</label></view>
   <view bindtap="newProject"><label class="myShop">推送项目</label></view>
