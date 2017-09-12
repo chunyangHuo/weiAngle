@@ -9,7 +9,7 @@
 .prompt {
   font-size: 24rpx;
   color: #999;
-  line-height: 24rpx;
+  line-height: 34rpx;
   margin: 20rpx 32rpx 0 32rpx;
 }
 
@@ -66,4 +66,9 @@
   line-height: 28rpx;
   text-align: center;
   margin-top: 40rpx;
+}
+.picAfter{
+  border-radius: 8rpx;
+  width: 682rpx;
+  height: 276rpx;
 }
