@@ -96,7 +96,6 @@
 
 .shopDesBox {
   padding: 32rpx;
-  height: 234rpx;
   background: #fff;
   margin-top: 32rpx;
 }
@@ -112,11 +111,30 @@
 .shopDesBox .shopContent {
   font-size: 24rpx;
   color: #999;
-  letter-spacing: 0;
-  line-height: 24rpx;
+  line-height: 26rpx;
   text-align: left;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
+.shopDesBox .shopContentAfer {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  height: auto;
+}
+.more {
+  color: #009eff;
+  font-size: 24rpx;
+  text-align: center;
+  width:686rpx;
+  display: inline-block;
+}
 /*按鈕  */
 
 .aboutNetwork {
@@ -261,6 +279,17 @@ page {
 .userInfo {
   width: 460rpx;
   margin-top: 9rpx;
+}
+
+.online {
+  align-items: flex-end;
+  margin-bottom: 16rpx;
+  position: relative;
+}
+
+.line {
+  align-items: flex-end;
+    margin-bottom: 16rpx;
 }
 
 .userCompany, .userCareer, .userName {
@@ -427,4 +456,25 @@ page {
   margin-right: 4rpx;
   margin-left: 8rpx;
   margin: 17rpx 4rpx 0 8rpx;
+}
+
+.userPart1 {
+  font-size: 20rpx;
+  color: #d3b987;
+  line-height: 20rpx;
+  text-align: left;
+}
+.user_pic {
+  height: 104rpx;
+  width: 104rpx;
+  border-radius: 50%;
+  position: absolute;
+  right: -220rpx;
+  top: -4rpx;
+}
+
+.user_text {
+  height: 104rpx;
+  width: 104rpx;
+  border-radius: 50%;
 }
