@@ -27,6 +27,9 @@ Page({
     myPublicCheck: true,
     myPublic_page_end: false,
     check: false,
+    isChecked: true,
+    contentMore: false,
+    otherPerson: false
   },
   onLoad: function (options) {
     let that = this;
@@ -54,9 +57,15 @@ Page({
   onShow: function () {
     var that = this;
     if (this.data.currentTab == 1) {
-      var user_id = this.data.followed_user_id
+      var user_id = this.data.followed_user_id;
+      that.setData({
+        otherPerson: true
+      })
     } else {
-      var user_id = wx.getStorageSync('user_id')
+      var user_id = wx.getStorageSync('user_id');
+      that.setData({
+        otherPerson: false
+      })
     }
     //获取我的项目
     wx.request({
@@ -76,6 +85,32 @@ Page({
         })
       }
     });
+    //加载内容
+    wx.request({
+      url: url_common + '/api/user/getUserBasicInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let userInfo = res.data.user_info;
+        let user_name = userInfo.user_real_name;
+        if (userInfo.user_intro) {
+          let user_intro = userInfo.user_intro;
+          if (user_intro.length >= 55) {
+            that.setData({
+              contentMore: true
+            })
+          }
+        }
+        that.setData({
+          userInfo: userInfo
+        })
+        wx.setNavigationBarTitle({
+          title: user_name + '的店铺'
+        })
+      }
+    })
   },
   //下拉框
   move(e) {
@@ -113,26 +148,26 @@ Page({
     let searchData = this.data.searchData;
     industry.forEach(x => {
       x.check = false;
-      if(searchData.industry.indexOf(x.industry_id)!=-1){
-        x.check=true;
+      if (searchData.industry.indexOf(x.industry_id) != -1) {
+        x.check = true;
       }
     })
     stage.forEach(x => {
       x.check = false;
-      if(searchData.stage.indexOf(x.stage_id)!=-1){
-        x.check=true;
+      if (searchData.stage.indexOf(x.stage_id) != -1) {
+        x.check = true;
       }
     })
     scale.forEach(x => {
       x.check = false;
-      if(searchData.scale.indexOf(x.scale_id)!=-1){
-        x.check=true;
+      if (searchData.scale.indexOf(x.scale_id) != -1) {
+        x.check = true;
       }
     })
     hotCity.forEach(x => {
       x.check = false;
-      if(searchData.hotCity.indexOf(x.area_id)!=-1){
-        x.check=true;
+      if (searchData.hotCity.indexOf(x.area_id) != -1) {
+        x.check = true;
       }
     })
     that.setData({
@@ -143,52 +178,52 @@ Page({
     })
 
   },
-  initItem(str){
-    let itemStr=str;
-    let itemArrStr=str+'Arr';
-    let item=this.data[itemStr];
-    let itemArr=this.data[itemArrStr]
-    let searchData=this.data.searchData;
-    let itemIdStr='';
-    switch(itemStr){
+  initItem(str) {
+    let itemStr = str;
+    let itemArrStr = str + 'Arr';
+    let item = this.data[itemStr];
+    let itemArr = this.data[itemArrStr]
+    let searchData = this.data.searchData;
+    let itemIdStr = '';
+    switch (itemStr) {
       case 'industry':
-        itemIdStr='industry_id'
+        itemIdStr = 'industry_id'
         break;
       case 'stage':
-        itemIdStr='stage_id'
+        itemIdStr = 'stage_id'
         break;
       case 'scale':
-        itemIdStr='scale_id'
+        itemIdStr = 'scale_id'
         break;
       case 'hotCity':
-        itemIdStr='area_id'
+        itemIdStr = 'area_id'
         break;
       default:
-        console.log('initItem()出了问题')  
+        console.log('initItem()出了问题')
     }
-    item.forEach(x=>{
-        x.check=false;
-        itemArr=[];
-        if(searchData[item].indexOf(x[itemIdStr])!=-1){
-          x.check=true;
-          itemArr.push(x)
-        }
+    item.forEach(x => {
+      x.check = false;
+      itemArr = [];
+      if (searchData[item].indexOf(x[itemIdStr]) != -1) {
+        x.check = true;
+        itemArr.push(x)
+      }
     })
   },
   // 筛选项重置(辅助函数)
-  itemReset(str){
-      let itemStr=str;
-      let itemArrStr=str+'Arr';
-      let item=this.data[itemStr];
-      let itemArr=this.data[itemArrStr];
-      item.forEach(x=>{
-        x.check=false;
-      })
-      itemArr=[];
-      this.setData({
-        [itemStr]:item,
-        [itemArrStr]:itemArr
-      })
+  itemReset(str) {
+    let itemStr = str;
+    let itemArrStr = str + 'Arr';
+    let item = this.data[itemStr];
+    let itemArr = this.data[itemArrStr];
+    item.forEach(x => {
+      x.check = false;
+    })
+    itemArr = [];
+    this.setData({
+      [itemStr]: item,
+      [itemArrStr]: itemArr
+    })
   },
   // 标签选择
   tagsCheck(e) {
@@ -216,7 +251,7 @@ Page({
       industry: industry,
       industryArr: industryArr
     })
-    console.log('industryArr',industryArr)
+    console.log('industryArr', industryArr)
   },
   // 搜索重置
   reset() {
@@ -235,11 +270,11 @@ Page({
         this.itemReset('hotCity')
         break;
       default:
-        { 
-          this.itemReset('industry'); 
-          this.itemReset('stage'); 
-          this.itemReset('scale'); 
-          this.itemReset('hotCity') 
+        {
+          this.itemReset('industry');
+          this.itemReset('stage');
+          this.itemReset('scale');
+          this.itemReset('hotCity')
         }
     }
     console.log('search', this.data.searchData.industry)
@@ -248,8 +283,8 @@ Page({
   searchCertain() {
     let currentIndex = this.data.currentIndex;
     let searchData = this.data.searchData;
-    let that=this;
-    let newArr=[];
+    let that = this;
+    let newArr = [];
     switch (currentIndex) {
       case 0:
         this.data.industryArr.forEach(x => {
@@ -297,11 +332,6 @@ Page({
       }
     }); */
   },
-
-
-
-
-
 
   // 上拉加载
   myPublicProject: function () {
@@ -427,8 +457,9 @@ Page({
   },
   // 店铺装修
   decorate: function () {
+    let user_id = this.data.userInfo.user_id;
     wx.navigateTo({
-      url: '/pages/my/projectShop/shopEdit/shopEdit'
+      url: '/pages/my/projectShop/shopEdit/shopEdit?user_id=' + user_id
     })
   },
   // 选中项目
@@ -451,6 +482,39 @@ Page({
     this.setData({
       warband: warband,
       joinedWarband: joinedWarband
+    })
+  },
+  //展开
+  allPoint: function () {
+    this.setData({
+      isChecked: false
+    })
+  },
+  //收起
+  noPoint: function () {
+    this.setData({
+      isChecked: true
+    })
+  },
+  //推送项目
+  pushProject: function () {
+    let pushId = this.data.followed_user_id;
+    console.log(pushId)
+    wx.redirectTo({
+      url: '/pages/myProject/pushTo/pushTo?pushId=' + pushId,
+    })
+  },
+  //更多精选项目
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/match/selectProject/selectProject',
+    })
+  },
+  //跳转到我的店铺
+  toMyShop: function () {
+    let user_id = this.data.user_id;
+    wx.redirectTo({
+      url:'/pages/my/projectShop/projectShop/projectShop'
     })
   }
 })

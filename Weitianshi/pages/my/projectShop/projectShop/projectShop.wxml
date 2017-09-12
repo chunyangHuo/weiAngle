@@ -50,27 +50,29 @@
 </view>
 <!--图片  -->
 <view class="classname">
-  <image src="/img/img-bg.jpg" class="bgPic"></image>
+  <image src="/img/img-bg.jpg" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
+  <image src="{{userInfo.shop_banner}}" class="bgPic" wx:if="{{userInfo.shop_banner}}"></image>
 </view>
 <view class="userInfo">
-  <view class="flex">
-    <view class="userName">张三</view>
-    <view class="userPosition">投资经理</view>
-    <view class="flex">
+  <view class="flex online">
+    <view class="userName">{{userInfo.user_real_name}}</view>
+    <view class="userPosition">{{userInfo.user_company_career}}</view>
+    <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
       <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-      <view class="userPart1">{{user.authentication[0].group_title}}</view>
+      <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
+    </view>
+    <view>
+      <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}"></image>
+      <view wx:if="{{userInfo.user_avatar_text}}" class="user_text noPic">{{userInfo.user_avatar_text}}</view>
     </view>
   </view>
-  <view class="userCompany">杭州投着乐网络科技有限公司</view>
-  <view class="userPic"></view>
-  <view class="classname">
-    <!-- <image src="src"></image> -->
-  </view>
+  <view class="userCompany">{{userInfo.user_company_name}}</view>
 </view>
-<view class="shopDesBox">
+<view class="shopDesBox" wx:if="{{userInfo.user_intro}}">
   <view class="shopDes">店铺描述</view>
-  <view class="shopContent">这里是这个人的个人描述，字数可能会有点长，长到一行显示不但是就默认显示两行。多了就要...</view>
-</view>
+  <view class="shopContent"  class="{{isChecked?'shopContent':'shopContentAfer'}}">{{userInfo.user_intro}}</view>
+  <label class="more" bindtap="allPoint" wx:if="{{isChecked == true && contentMore== true}}">全部</label>
+  <label class="more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">收起</label></view>
 <view style="height:30rpx;"></view>
 <scroll-view style="height:500rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
   <block wx:for="{{myProject}}" wx:key="{{index}}">
@@ -103,13 +105,13 @@
     </view>
   </block>
 </scroll-view>
-<!-- <view class="emptyStyle">
+ <view class="emptyStyle" wx:if="{{!myProject}}">
   <view>您的店铺是空的</view>
   <view>点击“新增项目”打造店铺</view>
-</view> -->
+</view> 
 
 <view class="highBox"></view>
-<view class="aboutNetwork flex">
+<view class="aboutNetwork flex"  wx:if="{{otherPerson == false}}">
   <view bindtap="decorate">
     <label class="shop">店铺装修</label>
   </view>
@@ -118,8 +120,8 @@
 
 <!--错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-<!-- <view class="aboutNetwork flex">
-  <view bindtap="shop"><label class="myShop">我的店铺</label></view>
-  <view bindtap="newProject"><label class="myShop">推送项目</label></view>
-  <view bindtap="newProject" class="newProject">更多精选项目</view>
-</view> -->
+ <view class="aboutNetwork flex" wx:if="{{otherPerson == true}}">
+  <view bindtap="toMyShop"><label class="myShop">我的店铺</label></view>
+  <view bindtap="pushProject"><label class="myShop">推送项目</label></view>
+  <view bindtap="moreProject" class="newProject">更多精选项目</view>
+</view> 
