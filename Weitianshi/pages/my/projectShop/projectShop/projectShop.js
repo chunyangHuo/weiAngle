@@ -116,8 +116,10 @@ Page({
   move(e) {
     let index = e.currentTarget.dataset.index;
     let currentIndex = this.data.currentIndex;
+    console.log(this.data.searchData)
+    this.initData();
     if (currentIndex != index) {
-      this.getOffset();
+      // this.getOffset();
       this.setData({
         currentIndex: index
       })
@@ -140,43 +142,10 @@ Page({
   },
   // 初始化check值(辅助函数)
   initData() {
-    let that = this;
-    let industry = this.data.industry;
-    let stage = this.data.stage;
-    let scale = this.data.scale;
-    let hotCity = this.data.hotCity;
-    let searchData = this.data.searchData;
-    industry.forEach(x => {
-      x.check = false;
-      if (searchData.industry.indexOf(x.industry_id) != -1) {
-        x.check = true;
-      }
-    })
-    stage.forEach(x => {
-      x.check = false;
-      if (searchData.stage.indexOf(x.stage_id) != -1) {
-        x.check = true;
-      }
-    })
-    scale.forEach(x => {
-      x.check = false;
-      if (searchData.scale.indexOf(x.scale_id) != -1) {
-        x.check = true;
-      }
-    })
-    hotCity.forEach(x => {
-      x.check = false;
-      if (searchData.hotCity.indexOf(x.area_id) != -1) {
-        x.check = true;
-      }
-    })
-    that.setData({
-      industry: industry,
-      stage: stage,
-      scale: scale,
-      hotCity: hotCity
-    })
-
+    this.initItem('industry');
+    this.initItem('stage');
+    this.initItem('scale');
+    this.initItem('hotCity');
   },
   initItem(str) {
     let itemStr = str;
@@ -204,56 +173,70 @@ Page({
     item.forEach(x => {
       x.check = false;
       itemArr = [];
-      if (searchData[item].indexOf(x[itemIdStr]) != -1) {
+      if(itemStr=='industry'){
+        console.log(searchData[itemStr],x[itemIdStr],itemIdStr)
+      }
+      if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
         x.check = true;
         itemArr.push(x)
       }
     })
-  },
-  // 筛选项重置(辅助函数)
-  itemReset(str) {
-    let itemStr = str;
-    let itemArrStr = str + 'Arr';
-    let item = this.data[itemStr];
-    let itemArr = this.data[itemArrStr];
-    item.forEach(x => {
-      x.check = false;
+    this.setData({
+      [itemStr]:item,
+      [itemArrStr]:itemArr
     })
-    itemArr = [];
+  },
+  // 标签选择
+  tagsCheck(e) {
+    let currentIndex=this.data.currentIndex;
+    switch(currentIndex){
+      case 0:
+        this.itemCheck(e,'industry','industry_id');
+        break;
+      case 1:
+        this.itemCheck(e,'stage','stage_id');
+        break;
+      case 2:
+        this.itemCheck(e,'scale','scale_id');
+        break;
+      case 3:
+        this.itemCheck(e,'hotCity','area_id');
+        console.log(this.data.hotCityArr)
+        break;
+      default:
+        console.log('tagCheck()出错了')
+    }
+  },
+  itemCheck(e,str,itemIdStr){
+    let that=this;
+    let itemStr=str;
+    let itemArrStr=str+'Arr';
+    let item=this.data[itemStr];
+    let itemArr=this.data[itemArrStr];
+    let target=e.currentTarget.dataset.item;
+    let index=e.currentTarget.dataset.index;
+    if (target.check == false) {
+      if (itemArr.length < 5) {
+        item[index].check = true;
+        itemArr.push(target)
+      } else {
+        app.errorHide(that, '不能选择超过5个标签', 3000)
+      }
+    } else {
+      item[index].check = false;
+      itemArr.forEach((y, index) => {
+        if (target[itemIdStr] == y[itemIdStr]) {
+          itemArr.splice(index, 1)
+        }
+      })
+    }
     this.setData({
       [itemStr]: item,
       [itemArrStr]: itemArr
     })
   },
-  // 标签选择
-  tagsCheck(e) {
-    let that = this;
-    let industry = this.data.industry;
-    let industryArr = this.data.industryArr;
-    let item = e.currentTarget.dataset.item;
-    let index = e.currentTarget.dataset.index;
-    if (item.check == false) {
-      if (industryArr.length < 5) {
-        industry[index].check = true;
-        industryArr.push(item)
-      } else {
-        app.errorHide(that, '不能选择超过5个标签', 3000)
-      }
-    } else {
-      industry[index].check = false;
-      industryArr.forEach((y, index) => {
-        if (item.id == y.id) {
-          industryArr.splice(index, 1)
-        }
-      })
-    }
-    this.setData({
-      industry: industry,
-      industryArr: industryArr
-    })
-    console.log('industryArr', industryArr)
-  },
-  // 搜索重置
+
+  // 筛选重置
   reset() {
     let currentIndex = this.data.currentIndex;
     switch (currentIndex) {
@@ -279,7 +262,24 @@ Page({
     }
     console.log('search', this.data.searchData.industry)
   },
-  // 搜索确定
+  itemReset(str) {
+    let itemStr = str;
+    let itemArrStr = str + 'Arr';
+    let item = this.data[itemStr];
+    let itemArr = this.data[itemArrStr];
+    let searchData=this.data.searchData;
+    item.forEach(x => {
+      x.check = false;
+    })
+    itemArr = [];
+    searchData[itemStr]=[];
+    this.setData({
+      [itemStr]: item,
+      [itemArrStr]: itemArr,
+      searchData:searchData
+    })
+  },
+  // 筛选确定
   searchCertain() {
     let currentIndex = this.data.currentIndex;
     let searchData = this.data.searchData;
@@ -304,21 +304,22 @@ Page({
         })
         searchData.scale = newArr;
         break;
-      case 4:
-        this.data.scaleArr.forEach(x => {
+      case 3:
+        this.data.hotCityArr.forEach(x => {
           newArr.push(x.area_id)
         })
         searchData.hotCity = newArr;
         break;
       default:
-        console.log('出错了,不知道点了哪个确定')
+        console.log('searchCertain()出错了')
     }
     this.setData({
       searchData: searchData
     })
     //发送筛选请求
-    console.log('search', this.data.searchData.industry)
+    console.log('search', this.data.searchData,this.data.industryArr)
     this.initData();
+    console.log('initData后',this.data.searchData,this.data.industryArr)
     /* wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
