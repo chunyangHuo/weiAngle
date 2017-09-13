@@ -132,7 +132,6 @@ Page({
     }
 
   },
-
   //添加人脉
   addPerson: function (e) {
     let user_id = wx.getStorageSync('user_id');
@@ -261,6 +260,19 @@ Page({
           });
         }
       }
+    }
+  },
+  // 分享名片
+  onShareAppMessage(e) {
+    let id = e.target.dataset.applyid;
+    let name=e.target.dataset.name;
+    return {
+      title: name+'正在参与2017首届中国创投人脉争霸赛，等你来战!',
+      path: '/pages/userDetail/networkDetail/networkDetail?id='+id,
+      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+      success: function (res) {
+        console.log('分享成功', res)
+      },
     }
   },
 })
