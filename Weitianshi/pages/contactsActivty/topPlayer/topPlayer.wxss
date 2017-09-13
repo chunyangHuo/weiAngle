@@ -160,7 +160,20 @@ page {
 .addNetwork {
     position: absolute;
     right: 32rpx;
-    top: 68rpx;
+    top: 38rpx;
+}
+
+.sharePage{
+    background: #40587a;
+    font-size: 20rpx;
+    border-radius: 200rpx;
+    color: #fff;
+    padding: 14rpx 0;
+    line-height: 20rpx;
+    width: 120rpx;
+    text-align: center;
+    top: 115rpx;
+    border:0 solid #333;
 }
 
 .personNum {

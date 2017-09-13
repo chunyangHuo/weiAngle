@@ -27,7 +27,7 @@
         </view>
       </view>
       <block wx:for="{{rank_list}}" wx:key="{{index}}">
-        <view bindtap="goTo" data-applyid="{{item.user_id}}">
+        <view>
           <view class="flex totalNum">
             <view class="{{item.rank  >10 ? 'noColor' : 'topRank'}}">top{{item.rank}}</view>
             <view class="rightBox flex">
@@ -36,11 +36,11 @@
             </view>
           </view>
           <view class="flex infoBox">
-            <view class="infoLeft">
+            <view class="infoLeft" bindtap="goTo" data-applyid="{{item.user_id}}">
               <image src="{{item.user_avatar_url}}" class="headPic" wx:if="{{item.user_avatar_url}}"></image>
               <view class="others_nopic" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             </view>
-            <view class="infoCenter">
+            <view class="infoCenter" bindtap="goTo" data-applyid="{{item.user_id}}">
               <view class="userName">{{item.user_real_name}}</view>
               <view class="userCompany">{{item.user_company_name}}</view>
               <view class="userPosition">{{item.user_company_career}}</view>
@@ -51,6 +51,7 @@
                 <view class="refuse" wx:if="{{item.follow_status == 2}}">待验证</view>
                 <view class="addPersonBtn" wx:if="{{item.follow_status == 0 || item.follow_status == 3}}" data-applyid="{{item.user_id}}" data-follow_status="{{item.follow_status}}" catchtap="addPerson">加人脉</view>
               </view>
+              <button plain='true' class='addNetwork sharePage' open-type='share' data-applyid="{{item.user_id}}" data-name='{{item.user_real_name}}'>分享名片</button>
             </view>
           </view>
         </view>
@@ -64,7 +65,7 @@
       <view id="explain">排行规则：总人脉数（一级人脉+二级人脉）最多者</view>
       <view style="height:80rpx;"></view>
       <block wx:for="{{team_rank_list}}" wx:key="{{index}}" bindtap="allPerson">
-        <view bindtap="allPerson" data-id="{{item.team_id}}" data-name="{{item.team_name}}">
+        <view bindtap="allPerson" data-id="{{item.team_id}}">
           <view class="flex totalNum">
             <view class="{{item.rank  >10 ? 'noColor' : 'topRank'}}">top{{item.rank}}</view>
             <view class="rightBox flex">

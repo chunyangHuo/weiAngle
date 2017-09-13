@@ -4,7 +4,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
   },
 
 
@@ -113,9 +113,8 @@ Page({
   //点击跳转战队人的列表
   allPerson: function (e) {
     let team_id = e.currentTarget.dataset.id;
-    let team_name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&team_name=' + team_name,
+      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id,
     })
   },
   //跳转用户详情
@@ -133,7 +132,6 @@ Page({
     }
 
   },
-
   //添加人脉
   addPerson: function (e) {
     let user_id = wx.getStorageSync('user_id');
@@ -262,6 +260,19 @@ Page({
           });
         }
       }
+    }
+  },
+  // 分享名片
+  onShareAppMessage(e) {
+    let id = e.target.dataset.applyid;
+    let name=e.target.dataset.name;
+    return {
+      title: name+'正在参与2017首届中国创投人脉争霸赛，等你来战!',
+      path: '/pages/userDetail/networkDetail/networkDetail?id='+id,
+      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+      success: function (res) {
+        console.log('分享成功', res)
+      },
     }
   },
 })
