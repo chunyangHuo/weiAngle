@@ -466,22 +466,19 @@ Page({
   clickProject: function (e) {
     console.log(e)
     let that = this;
+    let user_id = wx.getStorageSync('user_id');
     let myProject = this.data.myProject;
-    // let proId = e.currentTarget.dataset.id;
-    if (team.check == false) {
-      warband[index].check = true;
-      joinedWarband.push(team)
-    } else {
-      warband[index].check = false;
-      joinedWarband.forEach((x, index) => {
-        if (x.team_id === team.team_id) {
-          joinedWarband.splice(index, 1)
-        }
-      })
-    }
-    this.setData({
-      warband: warband,
-      joinedWarband: joinedWarband
+    let project_id = e.currentTarget.dataset.id;
+    wx.request({
+      url: url_common + '/api/project/stickProject ',
+      data: {
+        project_id: project_id,
+        user_id: user_id
+      },
+      method: "POST",
+      success: function (res) {
+        console.log(res)
+      }
     })
   },
   //展开
@@ -514,7 +511,7 @@ Page({
   toMyShop: function () {
     let user_id = this.data.user_id;
     wx.redirectTo({
-      url:'/pages/my/projectShop/projectShop/projectShop'
+      url: '/pages/my/projectShop/projectShop/projectShop'
     })
   }
 })
