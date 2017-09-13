@@ -36,6 +36,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         let follow_status = res.data.data.follow_status;
         let warMemberList = res.data.data.members;
         that.setData({
@@ -98,57 +99,85 @@ Page({
   //添加人脉
   addPerson: function (e) {
     let user_id = wx.getStorageSync('user_id');
-    let applied_user_id = e.currentTarget.dataset.applyid;
-    let follow_status = e.currentTarget.dataset.status;
+    let team_id = this.data.team_id;
+    let follow_status = this.data.follow_status;
     let warMemberList = this.data.warMemberList;
     let that = this;
-    if (follow_status == 0) {
-      wx.request({
-        url: url + '/api/user/UserApplyFollowUser',
-        data: {
-          user_id: user_id,
-          applied_user_id: applied_user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          warMemberList.forEach((x) => {
-            if (x.user_id == applied_user_id) {
-              x.follow_status = 2
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            let user_id = wx.getStorageSync('user_id');
+            let applied_user_id = e.currentTarget.dataset.applyid;
+            let follow_status = e.currentTarget.dataset.status;
+            if (follow_status == 0) {
+              wx.request({
+                url: url + '/api/user/UserApplyFollowUser',
+                data: {
+                  user_id: user_id,
+                  applied_user_id: applied_user_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  warMemberList.forEach((x) => {
+                    if (x.user_id == applied_user_id) {
+                      x.follow_status = 2
+                    }
+                  })
+                  that.setData({
+                    warMemberList: warMemberList
+                  })
+                }
+              })
+            } else if (follow_status == 3) {
+              wx.request({
+                url: url + '/api/user/handleApplyFollowUser',
+                data: {
+                  user_id: user_id,
+                  apply_user_id: applied_user_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  //将状态改为"已互为人脉
+                  warMemberList.forEach((x) => {
+                    if (x.user_id == applied_user_id) {
+                      x.follow_status = 1
+                    }
+                  })
+                  that.setData({
+                    warMemberList: warMemberList
+                  })
+                }
+              })
             }
-          })
-          that.setData({
-            warMemberList: warMemberList
+          } else if (complete == 0) {
+            wx.removeStorageSync('followed_user_id')
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.removeStorageSync('followed_user_id')
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
           })
         }
-      })
-    } else if (follow_status == 3) {
-      wx.request({
-        url: url + '/api/user/handleApplyFollowUser',
-        data: {
-          user_id: user_id,
-          apply_user_id: applied_user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          //将状态改为"已互为人脉
-          warMemberList.forEach((x) => {
-            if (x.user_id == applied_user_id) {
-              x.follow_status = 1
-            }
-          })
-          that.setData({
-            warMemberList: warMemberList
-          })
-        }
-      })
-    }
+      }
+    })
+
   },
   //分享页面
   onShareAppMessage: function () {
     let team_name = this.data.team_name;
     let team_id = this.data.team_id;
     return {
-      title:team_name+ '正在参与2017首届创投人脉争霸赛，请您支持!',
+      title:team_name+ '正在参与2017首届创投人脉争霸赛，邀您加战队，助我夺冠!',
       path: '/pages/contactsActivty/warbandMember/warbandMember?team_id='+team_id+'&team_name='+team_name,
       imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
       success: function (res) {
@@ -156,7 +185,7 @@ Page({
       },
     }
   },
-  //加入人脉
+  //加入战队
   addWar:function(e){
     // let xxx = e.currentTarget.dataset.url;
     let user_id = wx.getStorageSync('user_id');
