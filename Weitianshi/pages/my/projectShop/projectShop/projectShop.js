@@ -112,17 +112,22 @@ Page({
       }
     })
   },
-  //下拉框
+  // 搜索图标
+  search(){
+    wx.navigateTo({
+      url: '/pages/my/projectShop/projectSearch/projectSearch',
+    })
+  },
+  // 下拉框
   move(e) {
     let index = e.currentTarget.dataset.index;
     let currentIndex = this.data.currentIndex;
-    console.log(this.data.searchData)
     this.initData();
     if (currentIndex != index) {
-      // this.getOffset();
       this.setData({
         currentIndex: index
       })
+      this.getOffset();
     } else {
       this.setData({
         currentIndex: 5
@@ -132,13 +137,14 @@ Page({
   // 获取dropDown
   getOffset() {
     let query = wx.createSelectorQuery();
-    query.select('.dropDown').boundingClientRect(res => {
-      console.log(res)
-      res.top
-      res.bottom
-      res.left
-      res.right
-    }).exec();
+    query.select('.dropDown').fields({
+      dataset: true,
+      size: true,
+    }, function (res) {
+      res.dataset    // 节点的dataset
+      res.width      // 节点的宽度
+      res.height     // 节点的高度
+    }).exec()
   },
   // 初始化check值(辅助函数)
   initData() {
@@ -346,7 +352,6 @@ Page({
   },
   // 点击modal层
   modal(){
-    console.log(1)
     let currentIndex=this.data.currentIndex;
     this.setData({
       currentIndex:5

@@ -9,7 +9,7 @@
     </view>
   </block>
   <!--搜索  -->
-  <icon type="search" size="15" class="search_icon"></icon>
+  <icon type="search" size="15" class="search_icon" bindtap='search'></icon>
   <!--下拉框  -->
   <view class='dropDown withAnimate'>
     <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
