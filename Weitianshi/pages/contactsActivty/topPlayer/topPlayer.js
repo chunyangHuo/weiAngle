@@ -4,7 +4,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    currentTab: 0,//选项卡
+    currentTab: 1,//选项卡
   },
 
 

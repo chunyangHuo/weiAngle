@@ -3,7 +3,7 @@
 <view class="	screen flex">
   <!--筛选  -->
   <block wx:for='{{tab}}' wx:key='index'>
-    <view class='tabIndex {{currentIndex==index?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
+    <view class='tabIndex {{currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
       {{item.name}}
       <image class='withAnimate {{currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
     </view>
@@ -129,3 +129,5 @@
   <view bindtap="pushProject"><label class="myShop">推送项目</label></view>
   <view bindtap="moreProject" class="newProject">更多精选项目</view>
 </view> 
+<!--模态层  -->
+<view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>

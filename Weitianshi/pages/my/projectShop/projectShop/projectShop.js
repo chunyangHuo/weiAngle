@@ -7,10 +7,10 @@ Page({
       text: "新增项目"
     },
     tab: [
-      { name: '领域', check: false },
-      { name: '轮次', check: false },
-      { name: '金额', check: false },
-      { name: '地区', check: false }
+      { name: '领域', check: false , arr: false, id: 'industry'},
+      { name: '轮次', check: false , arr: false, id: "stage"},
+      { name: '金额', check: false , arr: false, id: "scale"},
+      { name: '地区', check: false , arr: false, id: "hotCity"}
     ],
     currentIndex: 5,
     industryArr: [],
@@ -154,6 +154,7 @@ Page({
     let itemArr = this.data[itemArrStr]
     let searchData = this.data.searchData;
     let itemIdStr = '';
+    let tab=this.data.tab;
     switch (itemStr) {
       case 'industry':
         itemIdStr = 'industry_id'
@@ -170,20 +171,28 @@ Page({
       default:
         console.log('initItem()出了问题')
     }
+    itemArr = [];
     item.forEach(x => {
       x.check = false;
-      itemArr = [];
-      if(itemStr=='industry'){
-        console.log(searchData[itemStr],x[itemIdStr],itemIdStr)
-      }
       if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
+        console.log(x[itemIdStr])
         x.check = true;
         itemArr.push(x)
       }
     })
+    tab.forEach(x=>{
+      if(x.id==itemStr){
+        if(itemArr.length>0){
+          x.arr = true;
+        }else{
+          x.arr=false;
+        }
+      }
+    })
     this.setData({
       [itemStr]:item,
-      [itemArrStr]:itemArr
+      [itemArrStr]:itemArr,
+      tab:tab
     })
   },
   // 标签选择
@@ -235,7 +244,6 @@ Page({
       [itemArrStr]: itemArr
     })
   },
-
   // 筛选重置
   reset() {
     let currentIndex = this.data.currentIndex;
@@ -320,6 +328,9 @@ Page({
     console.log('search', this.data.searchData,this.data.industryArr)
     this.initData();
     console.log('initData后',this.data.searchData,this.data.industryArr)
+    this.setData({
+      currentIndex: 5
+    })
     /* wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -332,6 +343,14 @@ Page({
         console.log(res)
       }
     }); */
+  },
+  // 点击modal层
+  modal(){
+    console.log(1)
+    let currentIndex=this.data.currentIndex;
+    this.setData({
+      currentIndex:5
+    })
   },
 
   // 上拉加载
