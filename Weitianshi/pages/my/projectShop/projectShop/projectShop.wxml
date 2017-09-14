@@ -51,11 +51,12 @@
   </view>
 </view>
 <!--图片  -->
-<view class="classname" bindtap="toPersonDetail">
+<view class="shopBanner" bindtap="toPersonDetail">
   <image src="/img/img-bg.jpg" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
   <image src="{{userInfo.shop_banner}}" class="bgPic" wx:if="{{userInfo.shop_banner}}"></image>
+  <view class='modal picModal'></view>
 </view>
-<view class="userInfo">
+<view class="userInfo zIndex99">
   <view class="flex online">
     <view class="userName">{{userInfo.user_real_name}}</view>
     <view class="userPosition">{{userInfo.user_company_career}}</view>

@@ -256,6 +256,8 @@ Page({
                         wx.switchTab({
                             url: '/pages/match/match/match/match'
                         });
+                    }else{
+                      app.errorHide(that,res.data.error_msg,3000)
                     }
                 },
             })
