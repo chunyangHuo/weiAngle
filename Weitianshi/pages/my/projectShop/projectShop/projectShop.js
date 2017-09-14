@@ -7,10 +7,10 @@ Page({
       text: "新增项目"
     },
     tab: [
-      { name: '领域', check: false , arr: false, id: 'industry'},
-      { name: '轮次', check: false , arr: false, id: "stage"},
-      { name: '金额', check: false , arr: false, id: "scale"},
-      { name: '地区', check: false , arr: false, id: "hotCity"}
+      { name: '领域', check: false, arr: false, id: 'industry' },
+      { name: '轮次', check: false, arr: false, id: "stage" },
+      { name: '金额', check: false, arr: false, id: "scale" },
+      { name: '地区', check: false, arr: false, id: "hotCity" }
     ],
     currentIndex: 5,
     industryArr: [],
@@ -59,19 +59,21 @@ Page({
     if (this.data.currentTab == 1) {
       var user_id = this.data.followed_user_id;
       that.setData({
-        otherPerson: true
+        otherPerson: true,
+        user_id: user_id
       })
     } else {
       var user_id = wx.getStorageSync('user_id');
       that.setData({
-        otherPerson: false
+        otherPerson: false,
+        user_id: user_id
       })
     }
     //获取我的项目
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
-        user_id: user_id
+        user_id: user_id,
       },
       method: 'POST',
       success: function (res) {
@@ -94,7 +96,9 @@ Page({
       method: 'POST',
       success: function (res) {
         let userInfo = res.data.user_info;
+        console.log(userInfo)
         let user_name = userInfo.user_real_name;
+        let shop_name = userInfo.shop_name;
         if (userInfo.user_intro) {
           let user_intro = userInfo.user_intro;
           if (user_intro.length >= 55) {
@@ -106,11 +110,41 @@ Page({
         that.setData({
           userInfo: userInfo
         })
-        wx.setNavigationBarTitle({
-          title: user_name + '的店铺'
-        })
+        if (!shop_name) {
+          wx.setNavigationBarTitle({
+            title: user_name + '的店铺'
+          })
+        } else {
+          wx.setNavigationBarTitle({
+            title: shop_name
+          })
+        }
       }
     })
+  },
+  //分享页面
+  onShareAppMessage: function () {
+    let myProject = this.data.myProject;
+    let user_id = this.data.user_id;
+    let share_id = wx.getStorageSync('user_id');
+    if (user_id == share_id) {
+      return {
+        title: '项目店铺',
+        path: '/pages/my/projectShop/projectShop/projectShop?user_id=' + share_id,
+        success: function (res) {
+          console.log('分享成功', res)
+        },
+      }
+    } else if (user_id != share_id) {
+      return {
+        title: '项目店铺',
+        path: '/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + user_id,
+        success: function (res) {
+          console.log('分享成功', res)
+        },
+      }
+    }
+
   },
   //下拉框
   move(e) {
@@ -154,7 +188,7 @@ Page({
     let itemArr = this.data[itemArrStr]
     let searchData = this.data.searchData;
     let itemIdStr = '';
-    let tab=this.data.tab;
+    let tab = this.data.tab;
     switch (itemStr) {
       case 'industry':
         itemIdStr = 'industry_id'
@@ -180,50 +214,50 @@ Page({
         itemArr.push(x)
       }
     })
-    tab.forEach(x=>{
-      if(x.id==itemStr){
-        if(itemArr.length>0){
+    tab.forEach(x => {
+      if (x.id == itemStr) {
+        if (itemArr.length > 0) {
           x.arr = true;
-        }else{
-          x.arr=false;
+        } else {
+          x.arr = false;
         }
       }
     })
     this.setData({
-      [itemStr]:item,
-      [itemArrStr]:itemArr,
-      tab:tab
+      [itemStr]: item,
+      [itemArrStr]: itemArr,
+      tab: tab
     })
   },
   // 标签选择
   tagsCheck(e) {
-    let currentIndex=this.data.currentIndex;
-    switch(currentIndex){
+    let currentIndex = this.data.currentIndex;
+    switch (currentIndex) {
       case 0:
-        this.itemCheck(e,'industry','industry_id');
+        this.itemCheck(e, 'industry', 'industry_id');
         break;
       case 1:
-        this.itemCheck(e,'stage','stage_id');
+        this.itemCheck(e, 'stage', 'stage_id');
         break;
       case 2:
-        this.itemCheck(e,'scale','scale_id');
+        this.itemCheck(e, 'scale', 'scale_id');
         break;
       case 3:
-        this.itemCheck(e,'hotCity','area_id');
+        this.itemCheck(e, 'hotCity', 'area_id');
         console.log(this.data.hotCityArr)
         break;
       default:
         console.log('tagCheck()出错了')
     }
   },
-  itemCheck(e,str,itemIdStr){
-    let that=this;
-    let itemStr=str;
-    let itemArrStr=str+'Arr';
-    let item=this.data[itemStr];
-    let itemArr=this.data[itemArrStr];
-    let target=e.currentTarget.dataset.item;
-    let index=e.currentTarget.dataset.index;
+  itemCheck(e, str, itemIdStr) {
+    let that = this;
+    let itemStr = str;
+    let itemArrStr = str + 'Arr';
+    let item = this.data[itemStr];
+    let itemArr = this.data[itemArrStr];
+    let target = e.currentTarget.dataset.item;
+    let index = e.currentTarget.dataset.index;
     if (target.check == false) {
       if (itemArr.length < 5) {
         item[index].check = true;
@@ -275,16 +309,16 @@ Page({
     let itemArrStr = str + 'Arr';
     let item = this.data[itemStr];
     let itemArr = this.data[itemArrStr];
-    let searchData=this.data.searchData;
+    let searchData = this.data.searchData;
     item.forEach(x => {
       x.check = false;
     })
     itemArr = [];
-    searchData[itemStr]=[];
+    searchData[itemStr] = [];
     this.setData({
       [itemStr]: item,
       [itemArrStr]: itemArr,
-      searchData:searchData
+      searchData: searchData
     })
   },
   // 筛选确定
@@ -325,9 +359,9 @@ Page({
       searchData: searchData
     })
     //发送筛选请求
-    console.log('search', this.data.searchData,this.data.industryArr)
+    console.log('search', this.data.searchData, this.data.industryArr)
     this.initData();
-    console.log('initData后',this.data.searchData,this.data.industryArr)
+    console.log('initData后', this.data.searchData, this.data.industryArr)
     this.setData({
       currentIndex: 5
     })
@@ -345,14 +379,20 @@ Page({
     }); */
   },
   // 点击modal层
-  modal(){
+  modal() {
     console.log(1)
-    let currentIndex=this.data.currentIndex;
+    let currentIndex = this.data.currentIndex;
     this.setData({
-      currentIndex:5
+      currentIndex: 5
     })
   },
-
+  //搜索
+  searchSth: function () {
+    let user_id = this.data.user_id;
+    wx.navigateTo({
+      url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
+    })
+  },
   // 上拉加载
   myPublicProject: function () {
     var that = this;
@@ -460,16 +500,11 @@ Page({
       })
     }
   },
-  // 编辑项目
+  // 新增项目
   editDetail: function (e) {
-    var id = e.currentTarget.dataset.id;
-    var user_id = wx.getStorageSync('user_id');
-    var currentTab = this.data.currentTab;
-    if (currentTab != 1) {
-      wx.navigateTo({
-        url: '/pages/myProject/editProject/editProject?project_id=' + id + "&&user_id=" + user_id,
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/myProject/publishProject/publishProject',
+    })
   },
   // 按钮一号
   buttonOne: function () {
@@ -488,7 +523,9 @@ Page({
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let myProject = this.data.myProject;
+    console.log(myProject)
     let project_id = e.currentTarget.dataset.id;
+    let is_top = e.currentTarget.dataset.top;
     wx.request({
       url: url_common + '/api/project/stickProject ',
       data: {
@@ -498,6 +535,18 @@ Page({
       method: "POST",
       success: function (res) {
         console.log(res)
+        if (res.data.status_code = 200000) {
+          myProject.forEach((x) => {
+            if (x.project_id == project_id && is_top == 0) {
+              x.is_top = 1
+            } else if (x.project_id == project_id && is_top == 1) {
+              x.is_top = 0
+            }
+          })
+          that.setData({
+            myProject: myProject
+          })
+        }
       }
     })
   },
@@ -533,5 +582,15 @@ Page({
     wx.redirectTo({
       url: '/pages/my/projectShop/projectShop/projectShop'
     })
+  },
+  //跳转用户详情
+  toPersonDetail: function () {
+    let user_id = this.data.user_id;
+    let currentUser = wx.getStorageSync('user_id');
+    if (user_id != currentUser) {
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + user_id,
+      })
+    }
   }
 })

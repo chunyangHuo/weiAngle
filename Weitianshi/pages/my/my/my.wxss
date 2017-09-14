@@ -191,6 +191,7 @@ page {
   height: 94rpx;
   margin: 0 32rpx;
   border-radius: 8rpx;
+ overflow: hidden;
 }
 
 .user_invest_info, .user_resource_info, .user_project_info, .user_invest_case {
