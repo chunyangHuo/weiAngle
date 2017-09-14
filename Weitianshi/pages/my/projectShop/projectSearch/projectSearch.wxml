@@ -40,6 +40,11 @@
     </view>
   </block>
 </scroll-view>
-<view class="emptyBox"></view>
+<!--搜索结果无-->
+<view class="nullState" wx:if="{{empty == '1'}}">
+  <view class="nullState_text">
+    <view>暂无数据</view>
+  </view>
+</view>
 <!--没有更多-->
 <view class="error" wx:if="{{error==1}}">{{error_text}}</view>
