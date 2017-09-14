@@ -492,9 +492,7 @@ Page({
   },
   // 新增项目
   editDetail: function (e) {
-    wx.navigateTo({
-      url: '/pages/myProject/publishProject/publishProject',
-    })
+    this.identity('/pages/myProject/publishProject/publishProject',1)
   },
   // 按钮一号
   buttonOne: function () {
@@ -552,9 +550,7 @@ Page({
   //推送项目
   pushProject: function () {
     let pushId = this.data.followed_user_id;
-    wx.redirectTo({
-      url: '/pages/myProject/pushTo/pushTo?pushId=' + pushId,
-    })
+    this.identity('/pages/myProject/pushTo/pushTo?pushId=' + pushId, 2)
   },
   //更多精选项目
   moreProject: function () {
@@ -564,10 +560,7 @@ Page({
   },
   //跳转到我的店铺
   toMyShop: function () {
-    let user_id = this.data.user_id;
-    wx.redirectTo({
-      url: '/pages/my/projectShop/projectShop/projectShop'
-    })
+    this.identity('/pages/my/projectShop/projectShop/projectShop', 2)
   },
   //跳转用户详情
   toPersonDetail: function () {
@@ -578,5 +571,42 @@ Page({
         url: '/pages/userDetail/networkDetail/networkDetail?id=' + user_id,
       })
     }
+  },
+  //身份验证
+  identity: function (targetUrl,num) {
+    let user_id = wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            if (targetUrl && num == 1) {
+              wx.navigateTo({
+                url: targetUrl
+              })
+            } else if (targetUrl && num == 2){
+              wx.redirectTo({
+                url: targetUrl
+              })
+            }
+          } else if (complete == 0) {
+            wx.removeStorageSync('followed_user_id')
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.removeStorageSync('followed_user_id')
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      }
+    })
   }
 })

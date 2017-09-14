@@ -185,3 +185,10 @@
   right: 26rpx;
   bottom: 30rpx;
 } 
+.nullState {
+  position: absolute;
+  top: 642rpx;
+  left: 302rpx;
+  font-size: 36rpx;
+  color: #999;
+}
