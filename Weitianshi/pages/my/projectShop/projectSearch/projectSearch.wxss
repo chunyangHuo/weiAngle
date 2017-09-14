@@ -35,7 +35,7 @@
   margin-right: 32rpx;
 }
 .outBox {
-  margin: 0 16px 0 16px;
+  margin: 0 32rpx 30rpx 32rpx;
   width: auto;
   height: auto;
   position: relative;
@@ -66,7 +66,7 @@
 }
 .allIndustry {
   font-size: 26rpx;
-  color: #40587a;
+  color: #666666;
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 24rpx;
@@ -78,12 +78,15 @@
 .projectDetailLine {
   padding: 0 16rpx;
   border-right: 1rpx solid #999;
+  color: #666;
 }
 
-.projectDetailLight {
-  padding: 0 16rpx;
-  border-right: 1rpx solid #999;
-  color: #40587a;
+.projectDetailLine:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLine:last-child {
+  border-right: none;
 }
 
 .allProjectDetail {
@@ -91,7 +94,7 @@
   color: #999;
   line-height: 26rpx;
   text-align: left;
-  margin-bottom: 34rpx;
+  /* margin-bottom: 34rpx; */
 }
 .otherInfo {
   position: relative;
@@ -137,3 +140,48 @@
   text-overflow: clip;
   overflow: none;
 }
+.star {
+  height: 24rpx;
+  width: 26rpx;
+  position: absolute;
+  right: 26rpx;
+  bottom: 30rpx;
+}
+
+.starPic {
+  height: 24rpx;
+  width: 26rpx;
+}
+
+.picFather {
+  position: relative;
+}
+.user_pic {
+  height: 104rpx;
+  width: 104rpx;
+  border-radius: 50%;
+  position: absolute;
+  right: -220rpx;
+  top: -4rpx;
+}
+
+.user_text {
+  height: 104rpx;
+  width: 104rpx;
+  border-radius: 50%;
+  line-height:104rpx;
+   position: absolute;
+  right: -220rpx;
+  top: -4rpx;
+}
+.topPic{
+  height:46rpx;
+  width:64rpx;
+}
+.top{
+  height:46rpx;
+  width:64rpx;
+  position: absolute;
+  right: 26rpx;
+  bottom: 30rpx;
+} 

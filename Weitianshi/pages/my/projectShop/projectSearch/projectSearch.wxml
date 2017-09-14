@@ -5,11 +5,12 @@
   </label>
   <view class="esc" bindtap="searchEsc">取消</view>
 </view>
-<scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
-  <block wx:for="{{list}}" wx:key="{{index}}">
-    <view class="outBox">
+<view style="height:112rpx;"></view>
+<scroll-view style="height:1200rpx;" scroll-y="true" bindscrolltolower='myPublicProject'  wx:if="{{myProject.length !=0}}">
+  <block wx:for="{{myProject}}" wx:key="{{index}}">
+    <view class="outBox picFather" >
       <view class="insideBox">
-        <view data-project="{{item.project_id}}" catchtap="projectDetail">
+        <view data-id="{{item.project_id}}" bindtap="detail">
           <view class="flex">
             <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
             <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
@@ -17,36 +18,28 @@
           </view>
           <view class="allIndustry" style="text-align:left">
             <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-              <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label>
-              <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+              <label class="noLight" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label>
+              <label class="'noLight" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
             </block>
           </view>
-          <view class="allProjectDetail flex" wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-            <view class="{{item.pro_scale.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
-            <view class="{{item.pro_finance_stock_after.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}" wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
-            <view class="{{item.pro_stage.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
-            <view class="{{item.pro_area.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
+          <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+            <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
+            <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
+            <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
+            <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
           </view>
-          <view class="flex otherInfo">
-            <view>
-              <image src="{{item.user.investor_logo_url}}" class="others_pic" wx:if="{{item.user.investor_logo_url}}" />
-              <view class="flex user_image" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
-            </view>
-            <view>
-              <view class="flex userInfo">
-                <view class="userName">{{item.user.user_name}}</view>
-                <view class="userCareer">{{item.user.user_career}}</view>
-                <view class="userCompany" style="text-align:left">{{item.user.user_company}}</view>
-              </view>
-            </view>
+          <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}">
+            <image src="/img/icon-zhiding-n@2x.png" class="starPic"  wx:if='{{item.is_top == 0}}'></image>
+            <image src="/img/icon-zhiding-s@2x.png" class="starPic" wx:if='{{item.is_top == 1}}' ></image>  
+          </view>
+          <view class="top" data-id="{{item.project_id}}" wx:if="{{otherPerson == true}}"> 
+           <image src="/img/img-tuijian@2x.png"  class="topPic" wx:if="{{item.is_top == 1 }}"></image>
           </view>
         </view>
       </view>
     </view>
   </block>
-  <view class="highBox"></view>
 </scroll-view>
 <view class="emptyBox"></view>
-<view class="saveCompanyName" bindtap="save">保存</view>
 <!--没有更多-->
 <view class="error" wx:if="{{error==1}}">{{error_text}}</view>

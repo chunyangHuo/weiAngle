@@ -9,7 +9,7 @@
     </view>
   </block>
   <!--搜索  -->
-  <icon type="search" size="15" class="search_icon" bindtap='search'></icon>
+  <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
   <!--下拉框  -->
   <view class='dropDown withAnimate'>
     <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
@@ -51,7 +51,7 @@
   </view>
 </view>
 <!--图片  -->
-<view class="classname">
+<view class="classname" bindtap="toPersonDetail">
   <image src="/img/img-bg.jpg" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
   <image src="{{userInfo.shop_banner}}" class="bgPic" wx:if="{{userInfo.shop_banner}}"></image>
 </view>
@@ -78,7 +78,7 @@
   <label class="more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">收起</label></view>
 <view style="height:30rpx;"></view>
 <!--符合条件的我的项目  -->
-<scroll-view style="height:500rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
+<scroll-view style="height:680rpx;" scroll-y="true" bindscrolltolower='myPublicProject'  wx:if="{{myProject.length !=0}}">
   <block wx:for="{{myProject}}" wx:key="{{index}}">
     <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
       <view class="insideBox">
@@ -100,16 +100,19 @@
             <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
             <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
           </view>
-          <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" data-index="{{index}}">
-            <image src="/img/icon-zhiding-n@2x.png" class="starPic" wx:if='{{item.check==true}}'></image>
-            <image src="/img/icon-zhiding-s@2x.png" class="starPic" wx:if=' {{item.check==false}}'></image>
+          <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}">
+            <image src="/img/icon-zhiding-n@2x.png" class="starPic"  wx:if='{{item.is_top == 0}}'></image>
+            <image src="/img/icon-zhiding-s@2x.png" class="starPic" wx:if='{{item.is_top == 1}}' ></image>  
+          </view>
+          <view class="top" data-id="{{item.project_id}}" wx:if="{{otherPerson == true}}"> 
+           <image src="/img/img-tuijian@2x.png"  class="topPic" wx:if="{{item.is_top == 1 }}"></image>
           </view>
         </view>
       </view>
     </view>
   </block>
 </scroll-view>
- <view class="emptyStyle" wx:if="{{!myProject}}">
+ <view class="emptyStyle" wx:if="{{myProject.length==0}}">
   <view>您的店铺是空的</view>
   <view>点击“新增项目”打造店铺</view>
 </view> 

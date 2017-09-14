@@ -232,7 +232,7 @@ page {
 
 .allIndustry {
   font-size: 26rpx;
-  color: #40587a;
+ color: #666;
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 24rpx;
@@ -486,4 +486,19 @@ page {
   height: 104rpx;
   width: 104rpx;
   border-radius: 50%;
+  line-height:104rpx;
+   position: absolute;
+  right: -220rpx;
+  top: -4rpx;
 }
+.topPic{
+  height:46rpx;
+  width:64rpx;
+}
+.top{
+  height:46rpx;
+  width:64rpx;
+  position: absolute;
+  right: 26rpx;
+  bottom: 30rpx;
+} 

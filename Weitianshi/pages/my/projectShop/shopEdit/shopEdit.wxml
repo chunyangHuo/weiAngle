@@ -8,7 +8,7 @@
     <image src="{{filePath||userInfo.shop_banner}}" class="picAfter"></image>
   </view>
   <view class="shopTitle">店铺名称</view>
-  <input class="writeShopName" placeholder="请输入店铺名称" maxlength="10" bindinput="shopNameEdit" value="{{userInfo.user_real_name}}" />
+  <input class="writeShopName" placeholder="请输入店铺名称" maxlength="10" bindinput="shopNameEdit" value="{{userInfo.shop_name}}" />
   <view class="prompt">如：华蓥资本合伙人-张灿的FA项目库</view>
   <view class="shopTitle">店铺描述</view>
   <textarea value="{{userInfo.user_intro}}" class="describe" bindinput="shopDescrible" maxlength="500" placeholder="请用简短的语言描述个人的投资背景，可以包括从业经历，成功案例等信息，便于投资人判断您的专业度。" />
