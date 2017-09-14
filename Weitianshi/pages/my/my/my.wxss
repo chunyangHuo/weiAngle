@@ -710,14 +710,14 @@ page {
   position: fixed;
   bottom: 132rpx;
   right: 0;
-  background: #fff;
-  border: 0 solid #e0e6ed;
+  border: 0 solid #009eff;
   box-shadow: 0 0 2px 0 rgba(64, 88, 122, 0.10);
+  background: #009eff;
   width: 166rpx;
   height: 33px;
   font-family: MicrosoftYaHei;
   font-size: 28rpx;
-  color: #40587a;
+  color: #ffffff;
   letter-spacing: 0;
   line-height: 66rpx;
   text-align: right;
