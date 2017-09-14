@@ -52,6 +52,29 @@ Page({
       page_end: false
     })
   },
+  //搜索战队
+  searchSth(e) {
+    let str = e.detail.value;
+    let that = this;
+    let timer = this.data.timer;
+    // console.log(str)
+    //防止多次请求进行延时处理
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(x => {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
+      })
+      this.getInfo(str, 1)
+    }, 1500)
+    this.setData({
+      timer: timer,
+      str: str
+    })
+    app.initPage(that)
+  },
   //加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数
@@ -177,7 +200,7 @@ Page({
     let team_name = this.data.team_name;
     let team_id = this.data.team_id;
     return {
-      title:team_name+ '正在参与2017首届创投人脉争霸赛，邀您加战队，助我夺冠!',
+      title: team_name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
       path: '/pages/contactsActivty/warbandMember/warbandMember?team_id='+team_id+'&team_name='+team_name,
       imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
       success: function (res) {

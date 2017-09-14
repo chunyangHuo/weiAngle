@@ -5,9 +5,9 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     currentTab: 1,//选项卡
+    timer: '',
+    str:'',//搜索字段
   },
-
-
   onLoad: function (options) {
 
   },
@@ -32,19 +32,8 @@ Page({
       }
     })
     //战队信息
-    wx.request({
-      url: url_common + '/api/team/teamRelationshipRank',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        let team_rank_list = res.data.data.rank_list;
-        that.setData({
-          team_rank_list: team_rank_list
-        })
-      }
-    })
+    this.initGetInfo();
+
     that.setData({
       requestCheck: true,
       currentPage: 1,
@@ -77,6 +66,77 @@ Page({
       url: '/pages/match/selectProject/selectProject',
     })
   },
+  //搜索战队
+  searchSth(e) {
+    let str = e.detail.value;
+    let that = this;
+    let timer = this.data.timer;
+    // console.log(str)
+    //防止多次请求进行延时处理
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(x => {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
+      })
+      this.getInfo(str, 1)
+    }, 1500)
+    this.setData({
+      timer: timer,
+      str: str
+    })
+    app.initPage(that)
+  },
+  //搜索获取战队信息
+  getInfo(search, page) {
+    let that = this;
+    if(search!=''){
+      wx.request({
+        url: url + '/api/team/search',
+        data: {
+          search: search,
+          page: page,
+          user_id: wx.getStorageSync('user_id') || 0
+        },
+        method: 'POST',
+        success(res) {
+          if (res.data.status_code === 2000000) {
+            console.log(res)
+            wx.hideLoading();
+            let team_rank_list = res.data.data.teams;
+            that.setData({
+              team_rank_list: team_rank_list
+            })
+          } else {
+            app.errorHide(that, res, 3000)
+          }
+        }
+      })
+    }else{
+      this.initGetInfo()
+    }
+  },
+  //正常获取战信息
+  initGetInfo(){
+    let that=this;
+    wx.request({
+      url: url_common + '/api/team/teamRelationshipRank',
+      data: {
+        user_id: wx.getStorageSync('user_id')
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log('战队排行', res)
+        wx.hideLoading();
+        let team_rank_list = res.data.data.rank_list;
+        that.setData({
+          team_rank_list: team_rank_list
+        })
+      }
+    })
+  },
   //扩展我的人脉
   expandMyContacts: function () {
     let user_id = wx.getStorageSync('user_id');
@@ -100,21 +160,22 @@ Page({
     app.loadMore2(that, request, res => {
       let rank = res.data.data.rank_list;
       let page_end = res.data.page_end;
-      if(rank){
-          let newRank_list = rank_list.concat(rank)
-          that.setData({
-              rank_list: newRank_list,
-              page_end: page_end,
-              requestCheck: true
-          })
+      if (rank) {
+        let newRank_list = rank_list.concat(rank)
+        that.setData({
+          rank_list: newRank_list,
+          page_end: page_end,
+          requestCheck: true
+        })
       }
     })
   },
   //点击跳转战队人的列表
   allPerson: function (e) {
     let team_id = e.currentTarget.dataset.id;
+    let team_name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id,
+      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&&team_name=' + team_name,
     })
   },
   //跳转用户详情
@@ -265,14 +326,31 @@ Page({
   // 分享名片
   onShareAppMessage(e) {
     let id = e.target.dataset.applyid;
-    let name=e.target.dataset.name;
-    return {
-      title: name+'正在参与2017首届中国创投人脉争霸赛，等你来战!',
-      path: '/pages/userDetail/networkDetail/networkDetail?id='+id,
-      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
-      success: function (res) {
-        console.log('分享成功', res)
-      },
+    let name = e.target.dataset.name;
+    let type=e.target.dataset.type;
+    console.log(type)
+    //type 1:个人名片分享; 2:战队成员页面分享
+    if(type==1){
+      return {
+        title: name + '正在参与2017首届双创机构人气品牌百强评选，加我人脉,助我夺冠!',
+        path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+        success: function (res) {
+          console.log('分享成功', res)
+        },
+      }
+    }else if(type==2){
+      return {
+        title: name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
+        path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+        success: function (res) {
+          console.log('分享成功', res)
+        },
+      }
+    }else{
+      console.log('分享函数的type出问题了')
     }
+  
   },
 })
