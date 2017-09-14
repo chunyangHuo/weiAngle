@@ -52,6 +52,29 @@ Page({
       page_end: false
     })
   },
+  //搜索战队
+  searchSth(e) {
+    let str = e.detail.value;
+    let that = this;
+    let timer = this.data.timer;
+    // console.log(str)
+    //防止多次请求进行延时处理
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(x => {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
+      })
+      this.getInfo(str, 1)
+    }, 1500)
+    this.setData({
+      timer: timer,
+      str: str
+    })
+    app.initPage(that)
+  },
   //加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数

@@ -4,10 +4,10 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    currentTab: 1,//选项卡
-    timer: '',
-    str:'',//搜索字段
+    currentTab: 0,//选项卡
   },
+
+
   onLoad: function (options) {
 
   },
@@ -32,8 +32,19 @@ Page({
       }
     })
     //战队信息
-    this.initGetInfo();
-
+    wx.request({
+      url: url_common + '/api/team/teamRelationshipRank',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let team_rank_list = res.data.data.rank_list;
+        that.setData({
+          team_rank_list: team_rank_list
+        })
+      }
+    })
     that.setData({
       requestCheck: true,
       currentPage: 1,
@@ -64,77 +75,6 @@ Page({
   backTo: function () {
     wx.switchTab({
       url: '/pages/match/selectProject/selectProject',
-    })
-  },
-  //搜索战队
-  searchSth(e) {
-    let str = e.detail.value;
-    let that = this;
-    let timer = this.data.timer;
-    // console.log(str)
-    //防止多次请求进行延时处理
-    if (timer) {
-      clearTimeout(timer)
-    }
-    timer = setTimeout(x => {
-      wx.showLoading({
-        title: 'loading',
-        mask: true
-      })
-      this.getInfo(str, 1)
-    }, 1500)
-    this.setData({
-      timer: timer,
-      str: str
-    })
-    app.initPage(that)
-  },
-  //搜索获取战队信息
-  getInfo(search, page) {
-    let that = this;
-    if(search!=''){
-      wx.request({
-        url: url + '/api/team/search',
-        data: {
-          search: search,
-          page: page,
-          user_id: wx.getStorageSync('user_id') || 0
-        },
-        method: 'POST',
-        success(res) {
-          if (res.data.status_code === 2000000) {
-            console.log(res)
-            wx.hideLoading();
-            let team_rank_list = res.data.data.teams;
-            that.setData({
-              team_rank_list: team_rank_list
-            })
-          } else {
-            app.errorHide(that, res, 3000)
-          }
-        }
-      })
-    }else{
-      this.initGetInfo()
-    }
-  },
-  //正常获取战信息
-  initGetInfo(){
-    let that=this;
-    wx.request({
-      url: url_common + '/api/team/teamRelationshipRank',
-      data: {
-        user_id: wx.getStorageSync('user_id')
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log('战队排行', res)
-        wx.hideLoading();
-        let team_rank_list = res.data.data.rank_list;
-        that.setData({
-          team_rank_list: team_rank_list
-        })
-      }
     })
   },
   //扩展我的人脉
@@ -173,9 +113,8 @@ Page({
   //点击跳转战队人的列表
   allPerson: function (e) {
     let team_id = e.currentTarget.dataset.id;
-    let team_name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&&team_name=' + team_name,
+      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id,
     })
   },
   //跳转用户详情
