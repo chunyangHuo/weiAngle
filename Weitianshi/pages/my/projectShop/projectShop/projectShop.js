@@ -78,7 +78,6 @@ Page({
       method: 'POST',
       success: function (res) {
         var myProject = res.data.data;
-        console.log(myProject)
         //刷新数据
         that.setData({
           myProject: myProject,
@@ -96,7 +95,6 @@ Page({
       method: 'POST',
       success: function (res) {
         let userInfo = res.data.user_info;
-        console.log(userInfo)
         let user_name = userInfo.user_real_name;
         let shop_name = userInfo.shop_name;
         if (userInfo.user_intro) {
@@ -208,7 +206,6 @@ Page({
     item.forEach(x => {
       x.check = false;
       if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
-        console.log(x[itemIdStr])
         x.check = true;
         itemArr.push(x)
       }
@@ -243,7 +240,6 @@ Page({
         break;
       case 3:
         this.itemCheck(e, 'hotCity', 'area_id');
-        console.log(this.data.hotCityArr)
         break;
       default:
         console.log('tagCheck()出错了')
@@ -301,7 +297,6 @@ Page({
           this.itemReset('hotCity')
         }
     }
-    console.log('search', this.data.searchData.industry)
   },
   itemReset(str) {
     let itemStr = str;
@@ -358,13 +353,7 @@ Page({
       searchData: searchData
     })
     //发送筛选请求
-    console.log('search', this.data.searchData, this.data.industryArr)
-    this.initData();
-    console.log('initData后', this.data.searchData, this.data.industryArr)
-    this.setData({
-      currentIndex: 5
-    })
-    /* wx.request({
+     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
         user_id: wx.getStorageSync('user_id'),
@@ -372,14 +361,17 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        that.initData();
         console.log(res)
+        that.initData();
+        that.setData({
+          currentIndex: 5,
+          myProject:res.data.data
+        })
       }
-    }); */
+    }); 
   },
   // 点击modal层
   modal() {
-    console.log(1)
     let currentIndex = this.data.currentIndex;
     this.setData({
       currentIndex: 5
@@ -484,7 +476,6 @@ Page({
   },
   // 项目详情
   detail: function (e) {
-    console.log(e)
     var thisData = e.currentTarget.dataset;
     var id = thisData.id;
     var index = thisData.index;
@@ -516,11 +507,9 @@ Page({
   },
   // 选中项目
   clickProject: function (e) {
-    console.log(e)
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let myProject = this.data.myProject;
-    console.log(myProject)
     let project_id = e.currentTarget.dataset.id;
     let is_top = e.currentTarget.dataset.top;
     wx.request({
@@ -531,7 +520,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log(res)
         if (res.data.status_code = 200000) {
           myProject.forEach((x) => {
             if (x.project_id == project_id && is_top == 0) {
@@ -562,9 +550,6 @@ Page({
   //推送项目
   pushProject: function () {
     let pushId = this.data.followed_user_id;
-    // wx.redirectTo({
-    //   url: '/pages/myProject/pushTo/pushTo?pushId=' + pushId,
-    // })
     this.identity('/pages/myProject/pushTo/pushTo?pushId=' + pushId, 2)
   },
   //更多精选项目

@@ -61,8 +61,14 @@
   background: #40587a;
   width: 100%;
   height: 280rpx;
+}
+.shopBanner{
+  background: #40587a;
+  width: 100%;
+  height: 280rpx;
   position: relative;
 }
+
 
 .userInfo {
   position: absolute;
@@ -501,4 +507,15 @@ page {
   position: absolute;
   right: 26rpx;
   bottom: 30rpx;
+}
+.picModal{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+}
+.zIndex99{
+  z-index: 99;
 } 
