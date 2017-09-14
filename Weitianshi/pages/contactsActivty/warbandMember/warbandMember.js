@@ -200,7 +200,7 @@ Page({
     let team_name = this.data.team_name;
     let team_id = this.data.team_id;
     return {
-      title:team_name+ '正在参与2017首届创投人脉争霸赛，邀您加战队，助我夺冠!',
+      title: team_name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
       path: '/pages/contactsActivty/warbandMember/warbandMember?team_id='+team_id+'&team_name='+team_name,
       imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
       success: function (res) {

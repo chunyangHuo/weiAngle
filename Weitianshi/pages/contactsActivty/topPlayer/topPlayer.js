@@ -328,7 +328,7 @@ Page({
     let id = e.target.dataset.applyid;
     let name = e.target.dataset.name;
     return {
-      title: name + '正在参与2017首届中国创投人脉争霸赛，等你来战!',
+      title: name + '正在参与2017首届双创机构人气品牌百强评选，加我人脉,助我夺冠!',
       path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
       imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
       success: function (res) {

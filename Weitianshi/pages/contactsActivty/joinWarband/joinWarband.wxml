@@ -32,8 +32,8 @@
             <block wx:for='{{warband}}' wx:key='{{index}}'>
                 <view class="warband flex"  data-team='{{item}}' data-index='{{index}}' bindtap="checkbox1">
                     <view class="logo">
-                        <image wx:if="{{item.team_logo_text}}" src="/img/warband-logo.png"></image>
-                        <image wx:if="{{item.team_logo}}" src="{{item.team_logo}}"></image>
+                          <image wx:if="{{item.team_logo_text}}" src="/img/warband-logo.png"></image>
+                        <image wx:if="{{item.team_logo_url}}" src="{{item.team_logo_url}}"></image>
                     </view>
                     <view class="info">
                         <view class="companyName">{{item.team_name}}</view>

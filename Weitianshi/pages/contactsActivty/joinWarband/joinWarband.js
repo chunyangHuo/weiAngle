@@ -109,7 +109,8 @@ Page({
         url: url + '/api/team/search',
         data: {
           search: '',
-          page: currentPage
+          page: currentPage,
+          user_id: wx.getStorageSync('user_id') || 0
         }
       }
       //调用通用加载函数
