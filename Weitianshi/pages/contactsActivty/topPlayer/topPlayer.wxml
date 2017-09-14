@@ -54,7 +54,7 @@
                 <view class="refuse" wx:if="{{item.follow_status == 2}}">待验证</view>
                 <view class="addPersonBtn" wx:if="{{item.follow_status == 0 || item.follow_status == 3}}" data-applyid="{{item.user_id}}" data-follow_status="{{item.follow_status}}" catchtap="addPerson">加人脉</view>
               </view>
-              <button plain='true' class='addNetwork sharePage' open-type='share' data-applyid="{{item.user_id}}" data-name='{{item.user_real_name}}'>为他拉票</button>
+              <button plain='true' class='addNetwork sharePage' open-type='share' data-applyid="{{item.user_id}}" data-name='{{item.user_real_name}}' data-type='1'>为他拉票</button>
             </view>
           </view>
         </view>
@@ -75,7 +75,7 @@
       </view>
       <view style="height:168rpx;"></view>
       <block wx:for="{{team_rank_list}}" wx:key="{{index}}">
-        <view bindtap="allPerson" data-id="{{item.team_id}}" data-name='{{item.team_name}}'>
+        <view>
           <view class="flex totalNum" wx:if='{{item.rank}}'>
             <view class="{{item.rank  >10 ? 'noColor' : 'topRank'}}">top{{item.rank}}</view>
             <view class="rightBox flex">
@@ -88,11 +88,11 @@
           </view>
           <view class='totalNum' wx:else style='heigth:64rpx;'></view>
           <view class="flex infoBox">
-            <view class="brandPic">
+            <view class="brandPic" bindtap="allPerson" data-id="{{item.team_id}}" data-name='{{item.team_name}}'>
               <image src="/img/warband-logo.png" wx:if="{{item.team_logo_text}}" class="team_logo"></image>
               <image src="{{item.team_logo_url}}" wx:if="{{item.team_logo_url}}" class="team_logo"></image>
             </view>
-            <view class="infoCenter">
+            <view class="infoCenter" bindtap="allPerson" data-id="{{item.team_id}}" data-name='{{item.team_name}}'>
               <view class="brandName">{{item.team_name}}</view>
               <view class="representativeName">代表人：
                 <label>{{item.team_founder}}</label>
@@ -101,8 +101,9 @@
             <view class="infoRight">
               <view class="flex addNetwork">
                 <view class="refuse" wx:if="{{item.follow_status == 1}}">已加入</view>
-                <view class="addPersonBtn" wx:if="{{item.follow_status == 0}}" catchtap="addTeam" data-team_id="{{item.team_id}}" data-status="{{item.follow_status}}">加战队</view>
+                <view class="addPersonBtn " wx:if="{{item.follow_status == 0}}" catchtap="addTeam" data-team_id="{{item.team_id}}" data-status="{{item.follow_status}}">加战队</view>
               </view>
+              <button plain='true' class='addNetwork sharePage' open-type='share' data-applyid="{{item.team_id}}" data-name='{{item.team_name}}' data-type='2'>为他拉票</button>
             </view>
           </view>
         </view>
