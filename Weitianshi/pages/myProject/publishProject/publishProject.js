@@ -27,9 +27,12 @@ Page({
             id: []
         }
     },
-    onLoad: function () {
+    onLoad: function (options) {
         var that = this;
-
+        let  type = options.type;
+        that.setData({
+          type : type
+        })
         //初始化
         wx.removeStorageSync("industryCurrent0")
         wx.setStorageSync('describe', "");
@@ -212,6 +215,7 @@ Page({
     //点击发布
     public: function () {
         var that = this;
+        let type = this.data.type;
         var theData = that.data;
         var describe = this.data.describe;
         var pro_goodness = this.data.pro_goodness;
@@ -253,9 +257,15 @@ Page({
                         wx.setStorageSync('enchangeValue', []);
                         wx.setStorageSync('enchangeId', []);
                         wx.setStorageSync('pro_goodness', "");
-                        wx.switchTab({
+                        if(type==8){
+                          wx.navigateBack({
+                            delta:1
+                          })
+                        }else{
+                          wx.switchTab({
                             url: '/pages/match/match/match/match'
-                        });
+                          });
+                        }
                     }else{
                       app.errorHide(that,res.data.error_msg,3000)
                     }

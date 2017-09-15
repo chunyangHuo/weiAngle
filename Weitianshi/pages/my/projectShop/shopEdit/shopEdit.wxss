@@ -45,7 +45,7 @@
   height: 264rpx;
   padding: 26rpx 36rpx 26rpx 32rpx;
   font-size: 28rpx;
-  color: #999;
+  color: #333;
   line-height: 36rpx;
 }
 
@@ -67,7 +67,8 @@
   text-align: center;
   margin-top: 40rpx;
 }
-.picAfter{
+
+.picAfter {
   border-radius: 8rpx;
   width: 682rpx;
   height: 276rpx;
