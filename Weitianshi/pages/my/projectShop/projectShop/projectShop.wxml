@@ -79,7 +79,7 @@
   <label class="more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">收起</label></view>
 <view style="height:30rpx;"></view>
 <!--符合条件的我的项目  -->
-<scroll-view style="height:454rpx;" scroll-y="true" bindscrolltolower='myPublicProject'  wx:if="{{myProject.length !=0}}">
+<scroll-view style="height:454rpx;" scroll-y="true" bindscrolltolower='loadMore'  wx:if="{{myProject.length !=0}}">
   <block wx:for="{{myProject}}" wx:key="{{index}}">
     <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
       <view class="insideBox">

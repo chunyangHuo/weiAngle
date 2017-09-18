@@ -6,7 +6,7 @@ Page({
   data: {
     currentTab: 1,//选项卡
     timer: '',
-    str:'',//搜索字段
+    str: '',//搜索字段
   },
   onLoad: function (options) {
 
@@ -92,7 +92,7 @@ Page({
   //搜索获取战队信息
   getInfo(search, page) {
     let that = this;
-    if(search!=''){
+    if (search != '') {
       wx.request({
         url: url + '/api/team/search',
         data: {
@@ -114,13 +114,13 @@ Page({
           }
         }
       })
-    }else{
+    } else {
       this.initGetInfo()
     }
   },
   //正常获取战信息
-  initGetInfo(){
-    let that=this;
+  initGetInfo() {
+    let that = this;
     wx.request({
       url: url_common + '/api/team/teamRelationshipRank',
       data: {
@@ -150,25 +150,28 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     var currentPage = this.data.currentPage;
     let rank_list = this.data.rank_list;
-    var request = {
-      url: url_common + '/api/team/userRelationshipRank',
-      data: {
-        user_id: user_id,
-        page: this.data.currentPage,
+    let str = this.data.str;
+    if(str!=''){
+      var request = {
+        url: url_common + '/api/team/userRelationshipRank',
+        data: {
+          user_id: user_id,
+          page: this.data.currentPage,
+        }
       }
+      app.loadMore2(that, request, res => {
+        let rank = res.data.data.rank_list;
+        let page_end = res.data.page_end;
+        if (rank) {
+          let newRank_list = rank_list.concat(rank)
+          that.setData({
+            rank_list: newRank_list,
+            page_end: page_end,
+            requestCheck: true
+          })
+        }
+      })
     }
-    app.loadMore2(that, request, res => {
-      let rank = res.data.data.rank_list;
-      let page_end = res.data.page_end;
-      if (rank) {
-        let newRank_list = rank_list.concat(rank)
-        that.setData({
-          rank_list: newRank_list,
-          page_end: page_end,
-          requestCheck: true
-        })
-      }
-    })
   },
   //点击跳转战队人的列表
   allPerson: function (e) {
@@ -327,10 +330,10 @@ Page({
   onShareAppMessage(e) {
     let id = e.target.dataset.applyid;
     let name = e.target.dataset.name;
-    let type=e.target.dataset.type;
+    let type = e.target.dataset.type;
     console.log(type)
     //type 1:个人名片分享; 2:战队成员页面分享
-    if(type==1){
+    if (type == 1) {
       return {
         title: name + '正在参与2017首届双创机构人气品牌百强评选，加我人脉,助我夺冠!',
         path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
@@ -339,7 +342,7 @@ Page({
           console.log('分享成功', res)
         },
       }
-    }else if(type==2){
+    } else if (type == 2) {
       return {
         title: name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
         path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
@@ -348,9 +351,9 @@ Page({
           console.log('分享成功', res)
         },
       }
-    }else{
+    } else {
       console.log('分享函数的type出问题了')
     }
-  
+
   },
 })

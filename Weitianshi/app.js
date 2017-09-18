@@ -531,7 +531,7 @@ App({
     }
   },
 
-  //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
+  //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value},常用于上拉加载功能)
   initPage(that, others) {
     var user_id = wx.getStorageSync('user_id');
     that.setData({
