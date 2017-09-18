@@ -33,8 +33,18 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
+    console.log(options)
     let currentTab = options.currentTab;//从sharePage页面跳转过来的
     let followed_user_id = options.followed_user_id;
+    let user_id = wx.getStorageSync('user_id');
+    if (followed_user_id) {
+      if (followed_user_id != user_id) {
+        this.setData({
+          currentTab: 1,
+          followed_user_id: options.user_id
+        })
+      }
+    }
     if (currentTab == 1) {
       this.setData({
         currentTab: currentTab,
@@ -124,18 +134,24 @@ Page({
   onShareAppMessage: function () {
     let myProject = this.data.myProject;
     let user_id = this.data.user_id;
+    let shop_name = this.data.userInfo.shop_name;
+    console.log(shop_name)
     let share_id = wx.getStorageSync('user_id');
     if (user_id == share_id) {
+      console.log(111, share_id)
+      console.log(111, user_id)
       return {
-        title: '项目店铺',
-        path: '/pages/my/projectShop/projectShop/projectShop?user_id=' + share_id,
+        title: shop_name + '项目店铺',
+        path: '/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + share_id,
         success: function (res) {
           console.log('分享成功', res)
         },
       }
     } else if (user_id != share_id) {
+      console.log(222, share_id)
+      console.log(222, user_id)
       return {
-        title: '项目店铺',
+        title: shop_name + '项目店铺',
         path: '/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + user_id,
         success: function (res) {
           console.log('分享成功', res)
@@ -353,11 +369,11 @@ Page({
       searchData: searchData
     })
     //发送筛选请求
-     wx.request({
+    wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
         user_id: wx.getStorageSync('user_id'),
-        filter:searchData
+        filter: searchData
       },
       method: 'POST',
       success: function (res) {
@@ -365,10 +381,10 @@ Page({
         that.initData();
         that.setData({
           currentIndex: 5,
-          myProject:res.data.data
+          myProject: res.data.data
         })
       }
-    }); 
+    });
   },
   // 点击modal层
   modal() {
@@ -492,7 +508,7 @@ Page({
   },
   // 新增项目
   editDetail: function (e) {
-    this.identity('/pages/myProject/publishProject/publishProject',1)
+    this.identity('/pages/myProject/publishProject/publishProject?type=8', 1)
   },
   // 按钮一号
   buttonOne: function () {
@@ -513,7 +529,7 @@ Page({
     let project_id = e.currentTarget.dataset.id;
     let is_top = e.currentTarget.dataset.top;
     wx.request({
-      url: url_common + '/api/project/stickProject ',
+      url: url_common + '/api/project/stickProject',
       data: {
         project_id: project_id,
         user_id: user_id
@@ -523,8 +539,10 @@ Page({
         if (res.data.status_code = 200000) {
           myProject.forEach((x) => {
             if (x.project_id == project_id && is_top == 0) {
+              app.errorHide(that, "设为推荐项目", 1000)
               x.is_top = 1
             } else if (x.project_id == project_id && is_top == 1) {
+              app.errorHide(that, "取消推荐项目", 1000)
               x.is_top = 0
             }
           })
@@ -573,7 +591,7 @@ Page({
     }
   },
   //身份验证
-  identity: function (targetUrl,num) {
+  identity: function (targetUrl, num) {
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
@@ -589,7 +607,7 @@ Page({
               wx.navigateTo({
                 url: targetUrl
               })
-            } else if (targetUrl && num == 2){
+            } else if (targetUrl && num == 2) {
               wx.redirectTo({
                 url: targetUrl
               })

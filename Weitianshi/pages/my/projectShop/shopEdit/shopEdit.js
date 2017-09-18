@@ -5,18 +5,17 @@ var url_common = app.globalData.url_common;
 
 Page({
   data: {
-  
+
   },
   onLoad: function (options) {
-  let user_id = options.user_id;
-  this.setData({
-    user_id : user_id
-  })
+    let user_id = options.user_id;
+    this.setData({
+      user_id: user_id
+    })
   },
   onShow: function () {
-    let  user_id = this.data.user_id;
-    console.log(user_id)
-  let that = this;
+    let user_id = this.data.user_id;
+    let that = this;
     wx.request({
       url: url_common + '/api/user/getUserBasicInfo',
       data: {
@@ -33,7 +32,7 @@ Page({
     })
   },
   //上传图片
-  upLoadPic:function(){
+  upLoadPic: function () {
     let that = this;
     let user_id = this.data.user_id;
     wx.chooseImage({
@@ -45,6 +44,10 @@ Page({
         let avatar = tempFilePaths[0];
         let size = res.tempFiles[0].size;
         if (size <= 2097152) {
+          wx.showLoading({
+            title: '上传中',
+            mask: true,
+          })
           wx.uploadFile({
             url: url_common + '/api/user/uploadImage', //仅为示例，非真实的接口地址
             filePath: tempFilePaths[0],
@@ -53,15 +56,20 @@ Page({
               user_id: user_id,
             },
             success: function (res) {
-              let data = JSON.parse(res.data);
-              let image_id = data.image_id;
+              console.log(res)
+              if (res.statusCode == 200) {
+                console.log(200000)
+                wx.hideLoading();
+                let data = JSON.parse(res.data);
+                let image_id = data.image_id;
+                that.setData({
+                  image_id: image_id
+                })
+              }
               that.setData({
-                image_id: image_id
+                filePath: tempFilePaths
               })
             }
-          })
-          that.setData({
-            filePath: tempFilePaths
           })
         } else {
           app.errorHide(that, "上传图片不能超过2M", 1500)
@@ -70,7 +78,7 @@ Page({
     })
   },
   //店铺名称
-  shopNameEdit:function(e){
+  shopNameEdit: function (e) {
     let shop_name = e.detail.value;
     let that = this;
     that.setData({
@@ -78,7 +86,7 @@ Page({
     })
   },
   //店铺描述
-  shopDescrible:function(e){
+  shopDescrible: function (e) {
     let user_intro = e.detail.value;
     let that = this;
     that.setData({
@@ -86,7 +94,7 @@ Page({
     })
   },
   //保存
-  save:function(){
+  save: function () {
     let user_id = wx.getStorageSync('user_id');
     let shop_name = this.data.shop_name;
     let shop_banner = this.data.image_id;
@@ -95,21 +103,22 @@ Page({
       url: url_common + '/api/user/updateUser',
       data: {
         user_id: user_id,
-        shop_name: shop_name ,
+        shop_name: shop_name,
         shop_banner: shop_banner,
         user_intro: user_intro
       },
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if (res.data.status_code==2000000){
-       wx.navigateBack({
-         delta: 1
-       })
-        }else{
-          app.errorHide(that, res.data.status_code , 1500)
-       }
+        console.log(5555, res)
+        if (res.data.status_code == 2000000) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          app.errorHide(that, res.data.status_code, 1500)
+        }
       }
-      })
+    })
   }
 })

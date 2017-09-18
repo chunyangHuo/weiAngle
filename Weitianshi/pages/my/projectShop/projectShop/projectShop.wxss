@@ -175,15 +175,6 @@
   height: 190rpx;
 }
 
-page {
-  height: 100%;
-}
-
-.s_frame {
-  height: 1200rpx;
-  position: static;
-}
-
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -347,8 +338,8 @@ page {
 }
 
 .star {
-  height: 24rpx;
-  width: 26rpx;
+  height: 44rpx;
+  width: 44rpx;
   position: absolute;
   right: 26rpx;
   bottom: 30rpx;
