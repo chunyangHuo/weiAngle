@@ -135,3 +135,7 @@
 </view> 
 <!--模态层  -->
 <view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+
+<!--筛选无结果  -->
+
+<view class="hasNoThing">暂时没有符合该条件的项目</view>
