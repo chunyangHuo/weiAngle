@@ -910,44 +910,6 @@ App({
       })
   },
 
-  //请求封装
-  requestWithGet: function (paramsData) {
-    data.method = 'GET'
-    this.requestInternal(paramsData)
-  },
-  requestWithPost: function (paramsData) {
-    data.method = 'POST'
-    this.requestInternal(paramsData)
-  },
-  requestInternal: function (paramsData) {
-    var that = this;
-    console.log('requestInternal: 开始请求接口[' + paramsData.url + ']');
-    //开始网络请求
-    wx.request({
-      url: paramsData.url,
-      data: paramsData.data,
-      method: paramsData.method,
-      success: function (res) {
-        console.log('requestInternal: 接口请求成功[' + paramsData.url + ']');
-        paramsData.success(res);
-      },
-      fail: function (res) {
-        console.log('requestInternal: 接口请求失败[' + paramsData.url + ']');
-        console.log(res);
-        ////在这里做请求失败的统一处理
-        wx.showToast({
-          title: '网络访问失败',
-          duration: 1500
-        })
-        typeof paramsData.fail == "function" && paramsData.fail(res);
-      },
-      complete: function (res) {
-        //在这里做完成的统一处理
-        typeof paramsData.complete == "function" && paramsData.complete(res);
-      }
-    })
-  },
-
   //初始本地缓存
   globalData: {
     error: 0,

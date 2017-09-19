@@ -15,6 +15,10 @@ Page({
   onShow: function () {
     let user_id = this.data.user_id;
     let  that = this;
+    //返回上一页时启动onShow;
+    let pages = getCurrentPages();
+    let pre = pages[pages.length - 2];
+    pre.data.firstTime=false;
     that.setData({
       user_id: user_id,
       requestCheck: true,
@@ -107,11 +111,9 @@ Page({
   },
   // 选中项目
   clickProject: function (e) {
-    console.log(e)
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let myProject = this.data.myProject;
-    console.log(myProject)
     let project_id = e.currentTarget.dataset.id;
     let is_top = e.currentTarget.dataset.top;
     wx.request({
@@ -122,7 +124,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log(res)
         if (res.data.status_code = 200000) {
           myProject.forEach((x) => {
             if (x.project_id == project_id && is_top == 0) {
@@ -135,6 +136,8 @@ Page({
             myProject: myProject
           })
         }
+        //刷新上一个页栈的排序
+
       }
     })
   },

@@ -30,7 +30,8 @@ Page({
     isChecked: true,
     contentMore: false,
     otherPerson: false,
-    notHave:1
+    notHave:1,
+    firstTime:true
   },
   onLoad: function (options) {
     let that = this;
@@ -60,65 +61,84 @@ Page({
           user_id: user_id
         })
       } 
-      console.log(this.data.user_id)
-      //获取我的项目
-      wx.request({
-        url: url_common + '/api/project/getMyProjectList',
-        data: {
-          user_id: this.data.user_id,
-          filter: searchData
-        },
-        method: 'POST',
-        success: function (res) {
-          var myProject = res.data.data;
-          //刷新数据
-          that.setData({
-            myProject: myProject,
-            myPublic_page_end: false,
-            myPublicProject_page: 1
-          })
-        }
-      });
-      //加载内容
-      wx.request({
-        url: url_common + '/api/user/getUserBasicInfo',
-        data: {
-          user_id: this.data.user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          let userInfo = res.data.user_info;
-          let user_name = userInfo.user_real_name;
-          let shop_name = userInfo.shop_name;
-          if (userInfo.user_intro) {
-            let user_intro = userInfo.user_intro;
-            if (user_intro.length >= 55) {
-              that.setData({
-                contentMore: true
-              })
-            }
-          }
-          that.setData({
-            userInfo: userInfo
-          })
-          if (!shop_name) {
-            wx.setNavigationBarTitle({
-              title: user_name + '的店铺'
-            })
-          } else {
-            wx.setNavigationBarTitle({
-              title: shop_name
-            })
-          }
-        }
-      })
+      this.getProjectInfo();
+      this.getUserInfo();
   
-      console.log(this.data.user_id)
       // 打上check属性
       this.initData();
+    });
+
+
+  },
+  onShow: function (){
+    if(!this.data.firstTime){
+      console.log('onShow',this.data.user_id)
+      this.setData({
+        requestCheck: true,
+        currentPage: 1,
+        page_end: false
+      })
+      this.getProjectInfo();
+      this.getUserInfo();
+    }
+  },
+  //获取项目详情
+  getProjectInfo(){
+    let that=this;
+    wx.request({
+      url: url_common + '/api/project/getMyProjectList',
+      data: {
+        user_id: this.data.user_id,
+        filter: this.data.searchData
+      },
+      method: 'POST',
+      success: function (res) {
+        var myProject = res.data.data;
+        //刷新数据
+        that.setData({
+          myProject: myProject,
+          myPublic_page_end: false,
+          myPublicProject_page: 1
+        })
+      }
+    });
+  },
+  //获取用户详情
+  getUserInfo(){
+    let that=this;
+    wx.request({
+      url: url_common + '/api/user/getUserBasicInfo',
+      data: {
+        user_id: this.data.user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let userInfo = res.data.user_info;
+        let user_name = userInfo.user_real_name;
+        let shop_name = userInfo.shop_name;
+        if (userInfo.user_intro) {
+          let user_intro = userInfo.user_intro;
+          if (user_intro.length >= 55) {
+            that.setData({
+              contentMore: true
+            })
+          }
+        }
+        that.setData({
+          userInfo: userInfo
+        })
+        if (!shop_name) {
+          wx.setNavigationBarTitle({
+            title: user_name + '的店铺'
+          })
+        } else {
+          wx.setNavigationBarTitle({
+            title: shop_name
+          })
+        }
+      }
     })
   },
-  onShow: function () { },
   //分享页面
   onShareAppMessage: function () {
     let myProject = this.data.myProject;
@@ -340,7 +360,10 @@ Page({
         console.log('searchCertain()出错了')
     }
     this.setData({
-      searchData: searchData
+      searchData: searchData,
+      requestCheck: true,
+      currentPage: 1,
+      page_end: false
     })
     //发送筛选请求
     wx.request({
@@ -401,7 +424,7 @@ Page({
       let newPage = res.data.data;
       let page_end=res.data.page_end;
       if (myProject) {
-        myProject.concat(newPage)
+        myProject=myProject.concat(newPage)
         currentPage++;
         that.setData({
           myProject: myProject,

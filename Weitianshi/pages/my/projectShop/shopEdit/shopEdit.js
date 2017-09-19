@@ -16,6 +16,11 @@ Page({
   onShow: function () {
     let user_id = this.data.user_id;
     let that = this;
+    //返回上一页时启动onShow;
+    let pages = getCurrentPages();
+    let pre = pages[pages.length - 2];
+    pre.data.firstTime = false;
+
     wx.request({
       url: url_common + '/api/user/getUserBasicInfo',
       data: {
@@ -99,6 +104,8 @@ Page({
     let shop_name = this.data.shop_name;
     let shop_banner = this.data.image_id;
     let user_intro = this.data.user_intro;
+    let pages = getCurrentPages();
+    let pre = pages[pages.length - 2];
     wx.request({
       url: url_common + '/api/user/updateUser',
       data: {
@@ -109,8 +116,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
-        console.log(5555, res)
         if (res.data.status_code == 2000000) {
           wx.navigateBack({
             delta: 1

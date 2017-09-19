@@ -81,7 +81,7 @@
   </view>
   <view style="height:30rpx;"></view>
   <!--符合条件的我的项目  -->
-  <scroll-view style="height:454rpx;" scroll-y="true" bindscrolltolower='loadMore' wx:if="{{myProject.length !=0}}">
+  <scroll-view class='projectList  {{!userInfo.user_intro?"newProjectList":""}}' scroll-y="true" bindscrolltolower='loadMore' wx:if="{{myProject.length !=0}}">
     <block wx:for="{{myProject}}" wx:key="{{index}}">
       <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
         <view class="insideBox">
@@ -143,5 +143,5 @@
   <view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
 
   <!--筛选无结果  -->
-  <view class="hasNoThing"  wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>
+  <view class="hasNoThing" wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>
 </view>
