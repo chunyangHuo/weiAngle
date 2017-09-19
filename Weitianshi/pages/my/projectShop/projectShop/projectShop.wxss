@@ -545,3 +545,6 @@ page{
   text-align: center;
    margin-top: 144rpx;
 }
+.btnGroup {
+  margin-bottom:20rpx;
+}
