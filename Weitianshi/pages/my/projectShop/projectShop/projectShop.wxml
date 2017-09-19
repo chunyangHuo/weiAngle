@@ -115,7 +115,7 @@
       </view>
     </block>
   </scroll-view>
-  <view class="emptyStyle" wx:if="{{myProject.length==0}}">
+  <view class="emptyStyle" wx:if="{{myProject.length==0 && notHave != 0}}">
     <view>您的店铺是空的</view>
     <view>点击“新增项目”打造店铺</view>
   </view>
@@ -143,5 +143,5 @@
   <view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
 
   <!--筛选无结果  -->
-  <view class="hasNoThing">暂时没有符合该条件的项目</view>
+  <view class="hasNoThing"  wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>
 </view>
