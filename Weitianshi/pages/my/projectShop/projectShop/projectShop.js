@@ -107,7 +107,7 @@ Page({
       }
     });
   },
-  //获取用户详情
+  //获取用户详情 
   getUserInfo(){
     let that=this;
     wx.request({
