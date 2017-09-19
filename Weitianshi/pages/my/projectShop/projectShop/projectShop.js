@@ -97,6 +97,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var myProject = res.data.data;
+        wx.hideLoading();
         //刷新数据
         that.setData({
           myProject: myProject,
