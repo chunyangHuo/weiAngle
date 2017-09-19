@@ -62,13 +62,13 @@
   width: 100%;
   height: 280rpx;
 }
-.shopBanner{
+
+.shopBanner {
   background: #40587a;
   width: 100%;
   height: 280rpx;
   position: relative;
 }
-
 
 .userInfo {
   position: absolute;
@@ -134,13 +134,15 @@
   text-align: left;
   height: auto;
 }
+
 .more {
   color: #009eff;
   font-size: 24rpx;
   text-align: center;
-  width:686rpx;
+  width: 686rpx;
   display: inline-block;
 }
+
 /*按鈕  */
 
 .aboutNetwork {
@@ -229,7 +231,7 @@
 
 .allIndustry {
   font-size: 26rpx;
- color: #666;
+  color: #666;
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 24rpx;
@@ -286,7 +288,7 @@
 
 .line {
   align-items: flex-end;
-    margin-bottom: 16rpx;
+  margin-bottom: 16rpx;
 }
 
 .userCompany, .userCareer, .userName {
@@ -354,7 +356,6 @@
   position: relative;
 }
 
-
 .withAnimate {
   transition: all 600ms ease;
   -webkit-transform: translate3d(0, 0, 0);
@@ -370,74 +371,88 @@
   -ms-perspective: 1000;
   perspective: 1000;
 }
-.tabIndex{
+
+.tabIndex {
   width: 25%;
   vertical-align: center;
 }
-.tabIndex image{
+
+.tabIndex image {
   width: 12rpx;
   height: 6rpx;
   padding-bottom: 6rpx;
 }
-.dropDown{
+
+.dropDown {
   position: absolute;
   top: 80rpx;
   left: 0;
   background: white;
-  z-index:999;
+  z-index: 999;
   padding-bottom: 12rpx;
 }
-.dropTitle{
+
+.dropTitle {
   color: #333;
   font-size: 28rpx;
-  font-family:PingFangSC-Regular;
+  font-family: PingFangSC-Regular;
   text-align: left;
   margin-left: 34rpx;
 }
-.dropFlex{
- flex-wrap: wrap;
+
+.dropFlex {
+  flex-wrap: wrap;
 }
-.checkbox{
+
+.checkbox {
   width: 144rpx;
   height: 56rpx;
   line-height: 56rpx;
   border: 1px solid #f0f0f0;
   border-radius: 4rpx;
-  margin-left:32rpx;
+  margin-left: 32rpx;
   margin-bottom: 32rpx;
   text-align: center;
 }
-.btnGroup button{
+
+.btnGroup button {
   width: 322rpx;
   height: 88rpx;
   color: white;
-  background:#40587a;
-  border-radius:4px;
+  background: #40587a;
+  border-radius: 4px;
   border: 1px solid #40587a;
   margin-left: 32rpx;
 }
-.btnGroup button:first-child{
+
+.btnGroup button:first-child {
   background: white;
   color: #40587a;
   border: 1px solid #40587a;
 }
-.scale{
+
+.scale {
   width: 208rpx;
 }
-.deepBlue{
-   color: #40587a;
+
+.deepBlue {
+  color: #40587a;
 }
-.rotate{
+
+.rotate {
   transform: rotate(180deg);
-  transform-origin:6rpx 3rpx;
+  transform-origin: 6rpx 3rpx;
 }
-.checkOne{
+
+.checkOne {
   border: 1px solid #40587a;
 }
-.search_icon{
+
+.search_icon {
   padding: 10rpx 30rpx;
-}  
-.modal{
+}
+
+.modal {
   position: absolute;
   left: 0;
   top: 80rpx;
@@ -445,17 +460,20 @@
   height: 1174rpx;
   background: black;
   opacity: 0.5;
-  z-index:99;
+  z-index: 99;
 }
+
 /*为空  */
+
 .emptyStyle {
   font-size: 28rpx;
   color: #999;
   letter-spacing: 0;
   line-height: 28rpx;
   text-align: center;
-  margin-top:144rpx;
+  margin-top: 144rpx;
 }
+
 .renzheng {
   width: 24rpx;
   height: 24rpx;
@@ -470,6 +488,7 @@
   line-height: 20rpx;
   text-align: left;
 }
+
 .user_pic {
   height: 104rpx;
   width: 104rpx;
@@ -483,23 +502,26 @@
   height: 104rpx;
   width: 104rpx;
   border-radius: 50%;
-  line-height:104rpx;
-   position: absolute;
+  line-height: 104rpx;
+  position: absolute;
   right: -220rpx;
   top: -4rpx;
 }
-.topPic{
-  height:46rpx;
-  width:64rpx;
+
+.topPic {
+  height: 46rpx;
+  width: 64rpx;
 }
-.top{
-  height:46rpx;
-  width:64rpx;
+
+.top {
+  height: 46rpx;
+  width: 64rpx;
   position: absolute;
   right: 26rpx;
   bottom: 30rpx;
 }
-.picModal{
+
+.picModal {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -507,6 +529,16 @@
   top: 0;
   z-index: 9;
 }
-.zIndex99{
+
+.zIndex99 {
   z-index: 99;
-} 
+}
+
+.hasNoThing {
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: center;
+   margin-top: 144rpx;
+}

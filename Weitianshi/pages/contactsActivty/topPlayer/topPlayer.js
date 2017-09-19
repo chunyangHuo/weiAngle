@@ -342,7 +342,7 @@ Page({
     }else if(type==2){
       return {
         title: name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
-        path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+        path: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + id + '&&team_name=' + name,
         imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
         success: function (res) {
           console.log('分享成功', res)
