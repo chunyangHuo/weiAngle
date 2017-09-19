@@ -12,6 +12,10 @@ Page({
   onLoad: function (e) {
   },
   onShow: function (e) {
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     // 我申请查看的项目
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
@@ -22,6 +26,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        wx.hideLoading()
         let count = res.data.count;
         let applyList = res.data.data;
         that.setData({

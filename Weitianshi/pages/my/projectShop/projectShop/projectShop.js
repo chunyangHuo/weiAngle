@@ -33,6 +33,10 @@ Page({
     notHave:1
   },
   onLoad: function (options) {
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     let that = this;
     let followed_user_id = options.followed_user_id;
     let industry = wx.getStorageSync('industry');
@@ -70,6 +74,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          wx.hideLoading()
           var myProject = res.data.data;
           //刷新数据
           that.setData({

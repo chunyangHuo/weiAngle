@@ -12,6 +12,10 @@ Page({
     app.initPage(that);
     var user_id = this.data.user_id;
     //获取加我为人脉的用户信息
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     if (user_id) {
       wx.request({
         url: url_common + '/api/message/cardMessage',
@@ -21,6 +25,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          wx.hideLoading();
           that.setData({
             contacts: res.data.data,
             count: res.data.count

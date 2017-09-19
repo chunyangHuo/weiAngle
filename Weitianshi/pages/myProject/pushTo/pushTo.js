@@ -18,6 +18,10 @@ Page({
         })
     },
     onShow: function () {
+      wx.showLoading({
+        title: 'loading',
+        mask: true,
+      })
         var that = this;
         app.initPage(that);
         let user_id = wx.getStorageSync('user_id');
@@ -38,6 +42,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              wx.hideLoading()
                 let dataList = res.data.data;
                 let pushTimes = res.data.push_times;
                 var page_end = res.data.page_end;

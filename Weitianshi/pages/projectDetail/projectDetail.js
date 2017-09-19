@@ -172,6 +172,10 @@ Page({
             })
         }
         //项目详情
+        wx.showLoading({
+          title: 'loading',
+          mask: true,
+        })
         wx.request({
             url: url_common + '/api/project/getProjectDetail',
             data: {
@@ -180,6 +184,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              wx.hideLoading()
                 // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
                 var project = res.data.data;
                 var user = res.data.user;

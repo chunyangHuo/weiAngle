@@ -15,6 +15,10 @@ Page({
         playTime:1
     },
     onLoad: function (options) {
+      wx.showLoading({
+        title: 'loading',
+        mask: true,
+      })
         var that = this
         var user_id = options.id;
         var view_id = wx.getStorageSync('user_id');
@@ -37,6 +41,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              wx.hideLoading()
                 app.console(res)
                 var user = res.data.user_info;
                 var count = res.data.count;
