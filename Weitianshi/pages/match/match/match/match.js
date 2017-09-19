@@ -43,6 +43,10 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
+        wx.showLoading({
+          title: 'loading',
+          mask: true,
+        })
         wx.removeStorageSync("investor");
         //消除人脉缓存
         app.contactsCacheClear();
@@ -58,6 +62,7 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
+                      wx.hideLoading()
                         var myProject = res.data.data;
                         //刷新数据
                         that.setData({

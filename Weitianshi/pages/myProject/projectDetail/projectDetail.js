@@ -74,6 +74,10 @@ Page({
                     })
                     if (ownerId === user_id) {
                         // 载入买家图谱数据
+                      wx.showLoading({
+                        title: 'loading',
+                        mask: true,
+                      })
                         wx.request({
                             url: url_common + '/api/project/getProjectMatchInvestors',
                             data: {
@@ -83,6 +87,7 @@ Page({
                             },
                             method: 'POST',
                             success: function (res) {
+                              wx.hideLoading()
                                 var investor2 = res.data.data;
                                 that.setData({
                                     investor2: investor2,

@@ -21,6 +21,10 @@ Page({
   //载入页面
   onShow: function () {
     var that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     var currentTab = this.data.currentTab;
     // 获取当前用户的id
     var user = wx.getStorageSync('user_id');
@@ -36,6 +40,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        wx.hideLoading()
         var financingNeed = res.data.data;
         that.setData({
           financingNeed: financingNeed,

@@ -7,6 +7,10 @@ Page({
     slectProject: '',
   },
   onShow: function () {
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     var that = this;
     //初始化数据
     app.initPage(that)
@@ -22,6 +26,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          wx.hideLoading()
           var slectProject = res.data.data;
           that.setData({
             slectProject: slectProject,
