@@ -214,7 +214,6 @@ Page({
     //项目融资
     projectFinance: function () {
         var followed_user_id = this.data.user_id;
-        console.log(this.data.user_id)
         wx.navigateTo({
             url: '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + followed_user_id,
         })
