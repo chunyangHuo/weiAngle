@@ -7,6 +7,10 @@ Page({
     count: 0
   },
   onShow: function () {
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     var that = this;
     app.initPage(that);
     var user_id = this.data.user_id;
@@ -21,6 +25,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          wx.hideLoading()
           var contacts = res.data.data;
           var count = res.data.count;
           var page_end = res.data.page_end;

@@ -24,6 +24,10 @@ Page({
     let that = this;
     let type = this.data.type;
     // 推送给我的项目
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     wx.request({
       url: url_common + '/api/message/getProjectWithPushToMe',
       data: {
@@ -31,6 +35,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        wx.hideLoading();
         let pushToList = res.data.data;
         let count1 = res.data.count;
         that.setData({
