@@ -30,7 +30,7 @@ Page({
     isChecked: true,
     contentMore: false,
     otherPerson: false,
-    notHave:1
+    notHave: 1
   },
   onLoad: function (options) {
     wx.showLoading({
@@ -45,7 +45,7 @@ Page({
     let hotCity = wx.getStorageSync('hotCity');
     let searchData = this.data.searchData;
     this.setData({
-      followed_user_id:followed_user_id,
+      followed_user_id: followed_user_id,
       industry: industry,
       stage: stage,
       scale: scale,
@@ -54,7 +54,7 @@ Page({
     app.loginPage(user_id => {
       app.initPage(that)
       //判断是不是分享页面,并判断分享者和查看者是不是本人 
-       if (followed_user_id && followed_user_id != user_id) {
+      if (followed_user_id && followed_user_id != user_id) {
         this.setData({
           user_id: followed_user_id,
           otherPerson: true
@@ -63,7 +63,7 @@ Page({
         this.setData({
           user_id: user_id
         })
-      } 
+      }
       console.log(this.data.user_id)
       //获取我的项目
       wx.request({
@@ -117,7 +117,7 @@ Page({
           }
         }
       })
-  
+
       console.log(this.data.user_id)
       // 打上check属性
       this.initData();
@@ -358,13 +358,13 @@ Page({
       success: function (res) {
         console.log(res)
         that.initData();
-        if(res.data.data.length ==0){
+        if (res.data.data.length == 0) {
           that.setData({
             currentIndex: 5,
             myProject: res.data.data,
-            notHave : 0
+            notHave: 0
           })
-        }else{
+        } else {
           that.setData({
             currentIndex: 5,
             myProject: res.data.data
@@ -392,27 +392,27 @@ Page({
     let that = this;
     let searchData = this.data.searchData;
     let myProject = this.data.myProject;
-    let currentPage=this.data.currentPage;
+    let currentPage = this.data.currentPage;
     let request = {
       url: url_common + '/api/project/getMyProjectList',
       data: {
         user_id: this.data.user_id,
         filter: searchData,
-        page:currentPage
+        page: currentPage
       },
     }
     app.loadMore2(that, request, res => {
       console.log(res)
       let newPage = res.data.data;
-      let page_end=res.data.page_end;
+      let page_end = res.data.page_end;
       if (myProject) {
-        myProject.concat(newPage)
+        myProject = myProject.concat(newPage)
         currentPage++;
         that.setData({
           myProject: myProject,
           page_end: page_end,
           requestCheck: true,
-          currentPage:currentPage
+          currentPage: currentPage
         })
       }
     })
