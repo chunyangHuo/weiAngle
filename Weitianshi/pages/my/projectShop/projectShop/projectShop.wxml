@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<view>
+<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
   <!--筛选和搜索  -->
   <view class="	screen flex">
     <!--筛选  -->
@@ -66,8 +66,8 @@
         <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
       </view>
       <view>
-        <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}"></image>
-        <view wx:if="{{userInfo.user_avatar_text}}" class="user_text noPic">{{userInfo.user_avatar_text}}</view>
+        <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}" bindtap='toPersonDetail'></image>
+        <view wx:if="{{userInfo.user_avatar_text}}" class="user_text noPic" bindtap='toPersonDetail'>{{userInfo.user_avatar_text}}</view>
       </view>
     </view>
     <view class="userCompany">{{userInfo.user_company_name}}</view>
@@ -81,7 +81,7 @@
   </view>
   <view style="height:30rpx;"></view>
   <!--符合条件的我的项目  -->
-  <scroll-view class='projectList  {{!userInfo.user_intro?"newProjectList":""}}' scroll-y="true" bindscrolltolower='loadMore' wx:if="{{myProject.length !=0}}">
+  <view wx:if="{{myProject.length !=0}}">
     <block wx:for="{{myProject}}" wx:key="{{index}}">
       <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
         <view class="insideBox">
@@ -114,7 +114,7 @@
         </view>
       </view>
     </block>
-  </scroll-view>
+  </view>
   <view class="emptyStyle" wx:if="{{myProject.length==0 && notHave != 0}}">
     <view>您的店铺是空的</view>
     <view>点击“新增项目”打造店铺</view>
@@ -135,7 +135,7 @@
       <label class="myShop">我的店铺</label>
     </view>
     <view bindtap="pushProject">
-      <label class="myShop">推送项目</label>
+      <label class="myShop">推荐项目给他</label>
     </view>
     <view bindtap="moreProject" class="newProject">更多精选项目</view>
   </view>
@@ -144,4 +144,4 @@
 
   <!--筛选无结果  -->
   <view class="hasNoThing" wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>
-</view>
+</scroll-view>

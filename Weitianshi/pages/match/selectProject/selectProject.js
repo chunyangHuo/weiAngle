@@ -19,24 +19,23 @@ Page({
     app.contactsCacheClear();
     //请求精选项目数据
     app.loginPage(function (user_id) {
-      wx.request({
+      app.httpPost({
         url: url_common + '/api/project/getSelectedProjectList',
         data: {
           user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          wx.hideLoading()
-          var slectProject = res.data.data;
-          that.setData({
-            slectProject: slectProject,
-          })
         }
+      }).then(res=>{
+        wx.hideLoading()
+        var slectProject = res.data.data;
+        that.setData({
+          slectProject: slectProject,
+        })
       })
     })
   },
   //上拉加载
   loadMore: function () {
+    console.log(1)
     //请求上拉加载接口所需要的参数
     var that = this;
     var user_id = this.data.user_id;

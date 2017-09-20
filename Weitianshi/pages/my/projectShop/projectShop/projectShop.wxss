@@ -1,7 +1,7 @@
 /* pages/my/projectFinance/projectFinance.wxss */
 page{
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .weui-media-box__desc:last-child {
   border-right: none;

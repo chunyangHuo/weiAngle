@@ -42,13 +42,7 @@ Page({
             })
         }
     },
-    onShow: function () {
-        let that = this;
-        let user_id=wx.getStorageSync('user_id');
-        if (user_id) {
-            that.getInfo(that, user_id, that.data.id)
-        }
-    },
+    onShow: function () {},
 
     // 用户详情
     userDetail: function (e) {

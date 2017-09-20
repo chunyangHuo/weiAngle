@@ -1,3 +1,4 @@
+import * as request from './utils/http'
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -6,6 +7,7 @@ App({
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
     var that = this;
+
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
       //获取code
@@ -908,6 +910,11 @@ App({
               }
           }
       })
+  },
+
+  //请求封装
+  httpPost(data){
+    return request.httpPost(data)
   },
 
   //初始本地缓存
