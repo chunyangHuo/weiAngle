@@ -7,15 +7,16 @@ Page({
     count: 0
   },
   onShow: function () {
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
+
     var that = this;
     app.initPage(that);
     var user_id = this.data.user_id;
     // 获取浏览我的用户信息
     if (user_id) {
+      wx.showLoading({
+        title: 'loading',
+        mask: true,
+      })
       wx.request({
         url: url_common + '/api/message/viewCardMessage',
         data: {

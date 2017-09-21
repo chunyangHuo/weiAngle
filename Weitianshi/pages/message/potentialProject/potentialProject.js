@@ -12,13 +12,13 @@ Page({
   onLoad: function (e) {
   },
   onShow: function (e) {
+    // 我申请查看的项目
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let that = this;
     wx.showLoading({
       title: 'loading',
       mask: true,
     })
-    // 我申请查看的项目
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let that = this;
     wx.request({
       url: url_common + '/api/message/applyProjectList',
       data: {

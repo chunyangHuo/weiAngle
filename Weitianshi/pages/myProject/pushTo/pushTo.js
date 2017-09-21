@@ -18,10 +18,6 @@ Page({
         })
     },
     onShow: function () {
-      wx.showLoading({
-        title: 'loading',
-        mask: true,
-      })
         var that = this;
         app.initPage(that);
         let user_id = wx.getStorageSync('user_id');
@@ -32,6 +28,10 @@ Page({
             requestCheck: true,
             currentPage: 1,
             page_end: false,
+        })
+        wx.showLoading({
+          title: 'loading',
+          mask: true,
         })
         wx.request({
             url: url_common + '/api/project/getMyProjectListOrderByMatch',
