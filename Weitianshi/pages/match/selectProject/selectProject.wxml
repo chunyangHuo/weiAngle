@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
-<form report-submit='true' bindsubmit='formSubmit'>
+<!-- <form report-submit='true' bindsubmit='formSubmit'>
   <button form-type='submit'>Submit</button>
-</form>
+</form> -->
 <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
   <template is="selectProject" data="{{list:slectProject,type:2}}"></template>
   <!--没有更多-->

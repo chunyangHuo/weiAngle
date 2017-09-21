@@ -6,7 +6,7 @@
 <view id="myProject">
   <view class="card">
     <view class="text">项目介绍*</view>
-    <textarea placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
+    <textarea placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
   </view>
   <!--<view class="card">
     <view class="text">所属领域*</view>

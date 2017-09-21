@@ -61,6 +61,7 @@
       <scroll-view scroll-y="true">
         <view id="projectBox">
           <view class="bigBox">
+            <!--项目亮点-->
             <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
               <view class="brightPointBox flex">
                 <image src="/img/img-star.png" class="titlePic"></image>
