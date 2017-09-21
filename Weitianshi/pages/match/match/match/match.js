@@ -187,284 +187,359 @@ Page({
                     fail: function (res) {                    }
                 });
             }
-        })
-    },
-    //下拉刷新
-    onPullDownRefresh: function () {
-        // wx.stopPullDownRefresh()
-    },
-    /*滑动切换tab*/
-    bindChange: function (e) {
-        var that = this;
-        var current = e.detail.current;
-        that.setData({ currentTab: e.detail.current });
-        var user_id = wx.getStorageSync('user_id');
-        var loadData = wx.getStorageSync("loadData");
-    },
-    /*点击tab切换*/
-    swichNav: function (e) {
-        var user_id = wx.getStorageSync("user_id")
-        var that = this;
-        if (this.data.currentTab === e.target.dataset.current) {
-            return false;
-        } else {
             that.setData({
-                currentTab: e.target.dataset.current
-            })
-        }
-    },
-    //点击发布融资项目
-    myProject: function () {
-        app.infoJump("/pages/myProject/publishProject/publishProject")
-        wx.setStorageSync('enchangeValue', []);
-        wx.setStorageSync('enchangeId', []);
-        wx.setStorageSync('enchangeCheck', []);
-    },
-    //点击发布投资需求
-    yourProject: function () {
-        app.infoJump("/pages/match/match/investDemand/investDemand")
-    },
-    //点击发布资源需求
-    resourceNeed: function () {
-        app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
-    },
-    // 跳转人物详情
-    userDetail(e) {
-        var id = e.currentTarget.dataset.id
-        wx.navigateTo({
-            url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
-        })
-    },
-    //点击我的项目详情
-    detail: function (e) {
-        var thisData = e.currentTarget.dataset;
-        var index = thisData.index;
-        wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
-        })
-    },
-    //点击融资项目匹配出来的投资人
-    investorDetial(e) {
-        var thisData = e.currentTarget.dataset;
-        var index = thisData.index;
-        wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
-        })
-    },
-    //点击项目投资详情
-    yourDetail: function (e) {
-        var thisData = e.currentTarget.dataset;
-        var index = thisData.index;
-        wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
-        })
-    },
-    // 项目融资触底刷新
-    myPublicProject: function () {
-        var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        var myPublicProject_page = this.data.myPublicProject_page;
-        var myPublicCheck = this.data.myPublicCheck;
-        var myPublic_page_end = this.data.myPublic_page_end;
-        if (myPublicCheck) {
-            if (user_id != '') {
-                //判断数据是不是已经全部显示了
-                if (myPublic_page_end == false) {
-                    myPublicProject_page++;
-                    this.setData({
-                        myPublicProject_page: myPublicProject_page,
-                        myPublicCheck: false
-                    });
-                    wx.showLoading({
-                        title: 'loading',
-                        mask:true,
-                    })
-                    wx.request({
-                        url: url_common + '/api/project/getMyProjectList',
-                        data: {
-                            user_id: user_id,
-                            page: myPublicProject_page,
-                            type:'match'
-                        },
-                        method: 'POST',
-                        success: function (res) {
-                            var myPublic_page_end = res.data.page_end;
-                            var newPage = res.data.data;//新请求到的数据
-                            var myProject = that.data.myProject;//现在显示的数据
-                            newPage.forEach((x) => {
-                                myProject.push(x)
-                            })
-                            that.setData({
-                                myProject: myProject,
-                                myPublicCheck: true,
-                                myPublic_page_end: myPublic_page_end
-                            })
-                            wx.hideLoading()
-                        },
-                    })
-                } else {
-                    app.errorHide(that, "没有更多了", that, 3000)
-                    that.setData({
-                        myPublicCheck: true
-                    })
-                }
-            }
-        }
-    },
-    //寻找项目触底刷新
-    yourPayProject: function () {
-        var that = this;
-        var investor_id = this.data.investor_id;
-        var investor_page = this.data.investor_page;
-        var user_id = wx.getStorageSync('user_id');
-        var yourProject = this.data.yourProject;
-        var investor_page_end = this.data.investor_page_end;
-        var investorProjectcheck = this.data.investorProjectcheck;
-        if (investorProjectcheck) {
-            if (user_id != '') {
-                if (investor_page_end == false) {
-                    wx.showToast({
-                        title: 'loading...',
-                        icon: 'loading'
-                    })
-                    investor_page++;
-                    that.setData({
-                        investor_page: investor_page,
-                        investorProjectcheck: false
-                    });
-                    wx.request({
-                        url: url_common + '/api/investor/getMatchProjectList',
-                        data: {
-                            user_id : user_id,
-                            page: investor_page,
-                        },
-                        method: 'POST',
-                        success: function (res) {
-                            if(res.data.status_code===2000000){
-                                var newPage = res.data.data.projects;
-                                var investor_page_end = res.data.page_end;
-                                var yourProject = that.data.yourProject;
-                                for (var i = 0; i < newPage.length; i++) {
-                                    yourProject.push(newPage[i])
-                                }
-                                that.setData({
-                                    yourProject: yourProject,
-                                    investor_page_end: res.data.page_end,
-                                    investorProjectcheck: true
-                                })
-                            }else{
-                                app.errorHide(that,res.data.error_msg,3000)
-                            }
-                        }
-                    })
-                } else{
-                    app.errorHide(that, "没有更多了", 3000)
-                    this.setData({
-                        investorProjectcheck: true
-                    });
-                }
-            }
-        } 
-    },
-    // 资源对接触底刷新
-    resourceProject: function () {
-        var that = this;
-        var res_id = this.data.res_id;
-        var user_id = wx.getStorageSync('user_id');
-        var resourceProjectcheck = this.data.resourceProjectcheck;
-        var resource_page_end = this.data.resource_page_end;
-        var resource_page = this.data.resource_page;
-        var res_match = this.data.res_match;
-        if (resourceProjectcheck) {
-            if (user_id != '') {
-                if (resource_page_end == false) {
-                    wx.showToast({
-                        title: 'loading...',
-                        icon: 'loading'
-                    })
-                    resource_page++;
-                    that.setData({
-                        resource_page: resource_page
-                    });
-                    wx.request({
-                        url: url_common + '/api/resource/getMatchResourceList',
-                        data: {
-                            user_id: user_id,
-                            page: resource_page,
-                        },
-                        method: 'POST',
-                        success: function (res) {
-                            if(res.data.status_code===2000000){
-                                var newPage = res.data.data.match_list;
-                                var resource_page_end = res.data.page_end;
-                                var res_match = that.data.res_match;
-                                for (var i = 0; i < newPage.length; i++) {
-                                    res_match.push(newPage[i])
-                                }
-                                that.setData({
-                                    res_match: res_match, //资源需求匹配出来的项目
-                                    resource_page_end: resource_page_end,
-                                })
-                            }else{
-                                app.errorHide(that,res.data.error_msg,3000)
-                            }
-                        }
-                    })
-                }
-            }
-        } else {
-            app.errorHide(that, "没有更多了", 3000)
-            this.setData({
-                resourceProjectcheck: false
-            });
-        }
-    },
-    //分享当前页面
-    onShareAppMessage: function () {
-        var user_id = wx.getStorageSync('user_id');
-        return {
-            title: '微天使帮您精准对接投融资需求',
-            path: '/pages/match/match/match/match'
-        }
-    },
-    // 点击跳转
-    projectDetail: function (e) {
-      // 获取我自己的项目id
-      var that = this;
-      // 获取当前点击的项目id
-      var id = e.currentTarget.dataset.project;
-      // 判斷項目是不是自己的
-      wx.request({
-        url: url + '/api/project/projectIsMine',
-        data: {
-          project_id: id
-        },
-        method: 'POST',
-        success: function (res) {
-          var that = this;
-          var userId = res.data.user_id;
-          var user = wx.getStorageSync('user_id');
-          if (userId == user) {
-            wx.navigateTo({
-              url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
-            })
-          } else {
-            wx.navigateTo({
-              url: '/pages/projectDetail/projectDetail?id=' + id,
+              user_industry: user_industry
             })
           }
+        });
+        //获取投资需求的匹配项目获取投资需求的匹配项目
+        wx.request({
+          url: url_common + '/api/investor/getMatchProjectList',
+          data: {
+            user_id: user_id
+          },
+          method: 'POST',
+          success: function (res) {
+            if (res.data.status_code == '2000000') {
+              let count2 = res.data.data.match_count;
+              var yourProject = res.data.data.projects;
+              that.setData({
+                yourProject: yourProject,
+                hasPublic: 1,
+                investor_id: res.data.data.investor_id,
+                investor_page: 1,
+                investor_page_end: false,
+                count2: count2
+              })
+            } else {
+              that.setData({
+                hasPublic: 0,
+                count2: 0
+              })
+            }
+          }
+        })
+        //获取用户资源需求和匹配结果
+        wx.request({
+          // url: url + '/api/resource/getMatchResource',
+          url: url_common + '/api/resource/getMatchResourceList',
+          data: {
+            user_id: user_id
+          },
+          method: 'POST',
+          success: function (res) {
+            if (res.data.status_code == '2000000') {
+              wx.setStorageSync("resource_find", res.data.data.res_find);
+              wx.setStorageSync("resource_give", res.data.data.res_give);
+              wx.setStorageSync("resource_desc", res.data.data.res_desc);
+              var res_match = res.data.data.match_list;
+              var res_find = res.data.data.res_find;
+              var res_find_arry = [];
+              var res_id = res.data.data.res_id;
+              let count3 = res.data.data.match_count;
+              if (res_find != '') {
+                for (var i = 0; i < res_find.length; i++) {
+                  res_find_arry.push(res_find[i].resource_name)
+                }
+              }
+              res_find = res_find_arry;
+              that.setData({
+                res_match: res_match, //资源需求匹配出来的项目
+                res_find: res_find,//我正在寻求的资源
+                hasPublic2: 1,//是否发布过资源需求
+                res_id: res_id,//用过请求资源需求匹配项目的分页接口
+                resource_page: 1,//初始化分页数
+                resource_page_end: false,//初始化是否还有数据
+                count3: count3
+              })
+            } else {
+              that.setData({
+                hasPublic2: 0,
+                count3: 0
+              })
+            }
+          },
+          fail: function (res) { }
+        });
+      }
+    })
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    // wx.stopPullDownRefresh()
+  },
+  /*滑动切换tab*/
+  bindChange: function (e) {
+    var that = this;
+    var current = e.detail.current;
+    that.setData({ currentTab: e.detail.current });
+    var user_id = wx.getStorageSync('user_id');
+    var loadData = wx.getStorageSync("loadData");
+  },
+  /*点击tab切换*/
+  swichNav: function (e) {
+    var user_id = wx.getStorageSync("user_id")
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+  },
+  //点击发布融资项目
+  myProject: function () {
+    app.infoJump("/pages/myProject/publishProject/publishProject")
+    wx.setStorageSync('enchangeValue', []);
+    wx.setStorageSync('enchangeId', []);
+    wx.setStorageSync('enchangeCheck', []);
+  },
+  //点击发布投资需求
+  yourProject: function () {
+    app.infoJump("/pages/match/match/investDemand/investDemand")
+  },
+  //点击发布资源需求
+  resourceNeed: function () {
+    app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
+  },
+  // 跳转人物详情
+  userDetail(e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
+    })
+  },
+  //点击我的项目详情
+  detail: function (e) {
+    var thisData = e.currentTarget.dataset;
+    var index = thisData.index;
+    wx.navigateTo({
+      url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
+    })
+  },
+  //点击融资项目匹配出来的投资人
+  investorDetial(e) {
+    var thisData = e.currentTarget.dataset;
+    var index = thisData.index;
+    wx.navigateTo({
+      url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
+    })
+  },
+  //点击项目投资详情
+  yourDetail: function (e) {
+    var thisData = e.currentTarget.dataset;
+    var index = thisData.index;
+    wx.navigateTo({
+      url: '/pages/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
+    })
+  },
+  // 项目融资触底刷新
+  myPublicProject: function () {
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    var myPublicProject_page = this.data.myPublicProject_page;
+    var myPublicCheck = this.data.myPublicCheck;
+    var myPublic_page_end = this.data.myPublic_page_end;
+    if (myPublicCheck) {
+      if (user_id != '') {
+        //判断数据是不是已经全部显示了
+        if (myPublic_page_end == false) {
+          myPublicProject_page++;
+          this.setData({
+            myPublicProject_page: myPublicProject_page,
+            myPublicCheck: false
+          });
+          wx.showLoading({
+            title: 'loading',
+            mask: true,
+          })
+          wx.request({
+            url: url_common + '/api/project/getMyProjectList',
+            data: {
+              user_id: user_id,
+              page: myPublicProject_page,
+              type: 'match'
+            },
+            method: 'POST',
+            success: function (res) {
+              var myPublic_page_end = res.data.page_end;
+              var newPage = res.data.data;//新请求到的数据
+              var myProject = that.data.myProject;//现在显示的数据
+              newPage.forEach((x) => {
+                myProject.push(x)
+              })
+              that.setData({
+                myProject: myProject,
+                myPublicCheck: true,
+                myPublic_page_end: myPublic_page_end
+              })
+              wx.hideLoading()
+            },
+          })
+        } else {
+          app.errorHide(that, "没有更多了", that, 3000)
+          that.setData({
+            myPublicCheck: true
+          })
         }
-      })
-    },
-    //推送项目或加人脉
-    btn:function(){
+      }
+    }
+  },
+  //寻找项目触底刷新
+  yourPayProject: function () {
+    var that = this;
+    var investor_id = this.data.investor_id;
+    var investor_page = this.data.investor_page;
+    var user_id = wx.getStorageSync('user_id');
+    var yourProject = this.data.yourProject;
+    var investor_page_end = this.data.investor_page_end;
+    var investorProjectcheck = this.data.investorProjectcheck;
+    if (investorProjectcheck) {
+      if (user_id != '') {
+        if (investor_page_end == false) {
+          wx.showToast({
+            title: 'loading...',
+            icon: 'loading'
+          })
+          investor_page++;
+          that.setData({
+            investor_page: investor_page,
+            investorProjectcheck: false
+          });
+          wx.request({
+            url: url_common + '/api/investor/getMatchProjectList',
+            data: {
+              user_id: user_id,
+              page: investor_page,
+            },
+            method: 'POST',
+            success: function (res) {
+              if (res.data.status_code === 2000000) {
+                var newPage = res.data.data.projects;
+                var investor_page_end = res.data.page_end;
+                var yourProject = that.data.yourProject;
+                for (var i = 0; i < newPage.length; i++) {
+                  yourProject.push(newPage[i])
+                }
+                that.setData({
+                  yourProject: yourProject,
+                  investor_page_end: res.data.page_end,
+                  investorProjectcheck: true
+                })
+              } else {
+                app.errorHide(that, res.data.error_msg, 3000)
+              }
+            }
+          })
+        } else {
+          app.errorHide(that, "没有更多了", 3000)
+          this.setData({
+            investorProjectcheck: true
+          });
+        }
+      }
+    }
+  },
+  // 资源对接触底刷新
+  resourceProject: function () {
+    var that = this;
+    var res_id = this.data.res_id;
+    var user_id = wx.getStorageSync('user_id');
+    var resourceProjectcheck = this.data.resourceProjectcheck;
+    var resource_page_end = this.data.resource_page_end;
+    var resource_page = this.data.resource_page;
+    var res_match = this.data.res_match;
+    if (resourceProjectcheck) {
+      if (user_id != '') {
+        if (resource_page_end == false) {
+          wx.showToast({
+            title: 'loading...',
+            icon: 'loading'
+          })
+          resource_page++;
+          that.setData({
+            resource_page: resource_page
+          });
+          wx.request({
+            url: url_common + '/api/resource/getMatchResourceList',
+            data: {
+              user_id: user_id,
+              page: resource_page,
+            },
+            method: 'POST',
+            success: function (res) {
+              if (res.data.status_code === 2000000) {
+                var newPage = res.data.data.match_list;
+                var resource_page_end = res.data.page_end;
+                var res_match = that.data.res_match;
+                for (var i = 0; i < newPage.length; i++) {
+                  res_match.push(newPage[i])
+                }
+                that.setData({
+                  res_match: res_match, //资源需求匹配出来的项目
+                  resource_page_end: resource_page_end,
+                })
+              } else {
+                app.errorHide(that, res.data.error_msg, 3000)
+              }
+            }
+          })
+        }
+      }
+    } else {
+      app.errorHide(that, "没有更多了", 3000)
+      this.setData({
+        resourceProjectcheck: false
+      });
+    }
+  },
+  //分享当前页面
+  onShareAppMessage: function () {
+    var user_id = wx.getStorageSync('user_id');
+    return {
+      title: '微天使帮您精准对接投融资需求',
+      path: '/pages/match/match/match/match'
+    }
+  },
+  // 点击跳转
+  projectDetail: function (e) {
+    // 获取我自己的项目id
+    var that = this;
+    // 获取当前点击的项目id
+    var id = e.currentTarget.dataset.project;
+    // 判斷項目是不是自己的
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        if (userId == user) {
+          wx.navigateTo({
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/projectDetail/projectDetail?id=' + id,
+          })
+        }
+      }
+    })
+  },
+  //推送项目或加人脉
+  btn: function () {
 
-    },
-     //点击跳转到用户详情
+  },
+  //点击跳转到用户详情
   personDetail: function (e) {
-      var id = e.currentTarget.dataset.id;
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
-    },
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+    })
+  },
 });

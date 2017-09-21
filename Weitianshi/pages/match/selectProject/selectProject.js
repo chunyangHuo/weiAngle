@@ -24,7 +24,7 @@ Page({
         data: {
           user_id: user_id
         }
-      }).then(res=>{
+      }).then(res => {
         wx.hideLoading()
         var slectProject = res.data.data;
         that.setData({
@@ -32,6 +32,10 @@ Page({
         })
       })
     })
+  },
+  //提交form
+  formSubmit(e) {
+    console.log(e)
   },
   //上拉加载
   loadMore: function () {
@@ -261,7 +265,7 @@ Page({
                     //     }
                     //   })
                     // }
-                     else if (group_id == 7) {
+                    else if (group_id == 7) {
                       wx.showModal({
                         title: '友情提示',
                         content: '您的身份是政府、事业单位、公益组织,只有投资人和买方FA才可申请查看项目',
@@ -312,7 +316,7 @@ Page({
     });
   },
   //人脉大赛
-  competitor:function(){
+  competitor: function () {
     wx.navigateTo({
       url: '/pages/contactsActivty/activtyDetail/activtyDetail'
     })
