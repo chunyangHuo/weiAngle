@@ -16,13 +16,13 @@ Page({
     })
   },
   onShow: function () {
-        wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let project_id = this.data.project_id;
     let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     wx.request({
       url: url_common + '/api/message/applyProjectToMe',
       data: {

@@ -17,12 +17,13 @@ Page({
     that.setData({
       type: type,
     })
+
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    // 申请查看我的项目
     wx.showLoading({
       title: 'loading',
       mask: true,
     })
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    // 申请查看我的项目
     wx.request({
       url: url_common + '/api/message/applyProjectToMe',
       data: {

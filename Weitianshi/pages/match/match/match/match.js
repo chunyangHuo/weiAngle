@@ -43,10 +43,6 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
-        wx.showLoading({
-          title: 'loading',
-          mask: true,
-        })
         wx.removeStorageSync("investor");
         //消除人脉缓存
         app.contactsCacheClear();
@@ -54,6 +50,10 @@ Page({
         app.loginPage(function (user_id) {
             if (user_id != 0) {
                 //获取我的项目信息
+              wx.showLoading({
+                title: 'loading',
+                mask: true,
+              })
                 wx.request({
                     url: url_common + '/api/project/getMyProjectList',
                     data: {
