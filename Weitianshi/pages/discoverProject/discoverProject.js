@@ -1,10 +1,14 @@
-var rqj = require('../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    //选项卡
+    winWidth: 0,
+    winHeight: 0,
+    currentTab: 0,
     slectProject: '',
+    //筛选搜索
     firstTime: true,
     tab: [
       { name: '领域', check: false, arr: false, id: 'industry' },
@@ -23,6 +27,13 @@ Page({
       scale: [],
       hotCity: [],
     },
+    //banner
+    bannerIndex: 0,
+    imgUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
   },
   onShow: function () {
     let that = this;
@@ -62,6 +73,35 @@ Page({
         })
       })
     })
+  },
+  /*点击tab切换*/
+  swichNav: function (e) {
+    let that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      console.log(1)
+      if (e.target.dataset.current === 0) {
+        //请求精选项目列表
+      } else if (e.target.dataset.current === 1) {
+        //请求最新项目列表
+      }
+    }
+    that.setData({
+      currentTab: e.target.dataset.current
+    })
+  },
+  /*滑动切换tab*/
+  bindChange: function (e) {
+    var that = this;
+    let type = this.data.type;
+    var current = e.detail.current;
+    let pushProjectList = this.data.pushProjectList;
+    let pushToList = this.data.pushToList;
+    if (current === 0) {
+      //请求精选项目列表
+    } else if (current === 1) {
+      //请求最新项目列表
+    }
+    that.setData({ currentTab: e.detail.current });
   },
   //提交form
   formSubmit(e) {

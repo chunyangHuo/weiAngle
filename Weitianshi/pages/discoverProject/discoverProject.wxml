@@ -1,7 +1,8 @@
 <import src="/pages/Template/Template.wxml" />
-<!-- <form report-submit='true' bindsubmit='formSubmit'>
-  <button form-type='submit'>Submit</button>
-</form> -->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab===0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">精选</view>
+  <view class="swiper-tab-list {{currentTab===1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">最新</view>
+</view>
 <!--筛选和搜索  -->
 <view class="screen flex">
   <!--筛选  -->
@@ -53,22 +54,36 @@
     </view>
   </view>
 </view>
-<!--精选项目展示  -->
-<scroll-view style="height:600rpx;" scroll-y="true" bindscrolltolower='loadMore'>
-  <template is="selectProject" data="{{list:slectProject,type:2}}"></template>
-  <!--没有更多-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--项目展示列表  -->
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1040rpx" bindchange="bindChange">
+  <!--精选  -->
+  <swiper-item>
+    <!--banner轮播  -->
+    <swiper class='banner' autoplay='true' current='{{bannerIndex}}' interval='4000' duration='500' circular='true'>
+      <block wx:for="{{imgUrls}}" wx:key='item'>
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--项目展示  -->
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+      <template is="selectProject" data="{{list:slectProject,type:2}}"></template>
 
-  <!--空状态-->
-  <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
-  <view class="floatBtn">
-    <view class="accreditation flex">
-      <view>创建项目，参与融资对接</view>
-      <view class="btnToAccreditation publish-projectm" bindtap="toCreateProject">创建项目</view>
-    </view>
-  </view>
-</scroll-view>
-<!--人脉王浮票  -->
-<view class="competitor" bindtap="competitor">人脉王大赛</view>
-<!--模态层  -->
-<view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+      <!--空状态-->
+      <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
+      <view class="floatBtn">
+        <view class="accreditation flex">
+          <view>创建项目，参与融资对接</view>
+          <view class="btnToAccreditation publish-projectm" bindtap="toCreateProject">创建项目</view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!--最新 -->
+  <swiper-item>
+    2
+  </swiper-item>
+</swiper>
+<!--错误提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
