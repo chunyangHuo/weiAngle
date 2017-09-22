@@ -178,7 +178,7 @@ Page({
     let team_id = e.currentTarget.dataset.id;
     let team_name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&&team_name=' + team_name,
+      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id,
     })
   },
   //跳转用户详情

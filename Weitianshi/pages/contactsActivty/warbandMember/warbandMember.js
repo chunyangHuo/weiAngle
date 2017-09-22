@@ -7,18 +7,11 @@ Page({
   data: {
 
   },
-
   onLoad: function (options) {
     let team_id = options.team_id;
-    let team_name = options.team_name;
     let that = this;
     that.setData({
       team_id: team_id,
-      team_name: team_name
-    })
-    console.log(options)
-    wx.setNavigationBarTitle({
-      title: team_name+'的战队成员'
     })
   },
 
@@ -39,9 +32,14 @@ Page({
         console.log(res)
         let follow_status = res.data.data.follow_status;
         let warMemberList = res.data.data.members;
+        let tema_name=res.data.data.team_name;
+        wx.setNavigationBarTitle({
+          title: team_name + '的战队成员'
+        })
         that.setData({
           warMemberList: warMemberList,
-          follow_status: follow_status
+          follow_status: follow_status,
+          team_name:team_name
         })
         if(warMemberList.length==0) app.errorHide(that,'该战队暂时没有成员',3000) 
       }
