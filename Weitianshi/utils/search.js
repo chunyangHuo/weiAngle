@@ -2,12 +2,12 @@
 function move(e,that) {
   let index = e.currentTarget.dataset.index;
   let currentIndex = that.data.currentIndex;
-  this.initData();
+  this.initData(that);
   if (currentIndex != index) {
     that.setData({
       currentIndex: index
     })
-    this.getOffset();
+    this.getOffset(that);
   } else {
     that.setData({
       currentIndex: 5
@@ -15,7 +15,7 @@ function move(e,that) {
   }
 }
 // 获取dropDown
-function getOffset() {
+function getOffset(that) {
   let query = wx.createSelectorQuery();
   query.select('.dropDown').fields({
     dataset: true,
@@ -27,13 +27,13 @@ function getOffset() {
   }).exec()
 }
 // 初始化check值(辅助函数)
-function initData() {
-  this.initItem('industry');
-  this.initItem('stage');
-  this.initItem('scale');
-  this.initItem('hotCity');
+function initData(that) {
+  this.initItem('industry',that);
+  this.initItem('stage',that);
+  this.initItem('scale',that);
+  this.initItem('hotCity',that);
 }
-function initItem(str) {
+function initItem(str,that) {
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = that.data[itemStr];
@@ -81,27 +81,27 @@ function initItem(str) {
   })
 }
 // 标签选择
-function tagsCheck(e) {
+function tagsCheck(e,that) {
   let currentIndex = that.data.currentIndex;
   switch (currentIndex) {
     case 0:
-      this.itemCheck(e, 'industry', 'industry_id');
+      this.itemCheck(e, 'industry', 'industry_id',that);
       break;
     case 1:
-      this.itemCheck(e, 'stage', 'stage_id');
+      this.itemCheck(e, 'stage', 'stage_id',that);
       break;
     case 2:
-      this.itemCheck(e, 'scale', 'scale_id');
+      this.itemCheck(e, 'scale', 'scale_id',that);
       break;
     case 3:
-      this.itemCheck(e, 'hotCity', 'area_id');
+      this.itemCheck(e, 'hotCity', 'area_id',that);
       break;
     default:
       console.log('tagCheck()出错了')
   }
 }
-function itemCheck(e, str, itemIdStr) {
-  let that = that;
+function itemCheck(e, str, itemIdStr,that) {
+
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = that.data[itemStr];
@@ -129,31 +129,31 @@ function itemCheck(e, str, itemIdStr) {
   })
 }
 // 筛选重置
-function reset() {
+function reset(that) {
   let currentIndex = that.data.currentIndex;
   switch (currentIndex) {
     case 0:
-      this.itemReset('industry')
+      this.itemReset('industry',that)
       break;
     case 1:
-      this.itemReset('stage')
+      this.itemReset('stage',that)
       break;
     case 2:
-      this.itemReset('scale')
+      this.itemReset('scale',that)
       break;
     case 3:
-      this.itemReset('hotCity')
+      this.itemReset('hotCity',that)
       break;
     default:
       {
-        this.itemReset('industry');
-        this.itemReset('stage');
-        this.itemReset('scale');
-        this.itemReset('hotCity')
+        this.itemReset('industry',that);
+        this.itemReset('stage',that);
+        this.itemReset('scale',that);
+        this.itemReset('hotCity',that)
       }
   }
 }
-function itemReset(str) {
+function itemReset(str,that) {
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = that.data[itemStr];
@@ -171,10 +171,9 @@ function itemReset(str) {
   })
 }
 // 筛选确定
-function searchCertain() {
+function searchCertain(that) {
   let currentIndex = that.data.currentIndex;
   let searchData = that.data.searchData;
-  let that = that;
   let newArr = [];
   switch (currentIndex) {
     case 0:
@@ -222,7 +221,7 @@ function searchCertain() {
     method: 'POST',
     success: function (res) {
       console.log(res)
-      this.initData();
+      this.initData(that);
       if (res.data.data.length == 0) {
         that.setData({
           currentIndex: 5,
@@ -239,14 +238,14 @@ function searchCertain() {
   });
 }
 // 点击modal层
-function modal() {
+function modal(that) {
   let currentIndex = that.data.currentIndex;
   that.setData({
     currentIndex: 5
   })
 }
 //搜索
-function searchSth() {
+function searchSth(that) {
   let user_id = that.data.user_id;
   wx.navigateTo({
     url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
