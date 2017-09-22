@@ -1,6 +1,7 @@
 var app = getApp()
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+import * as search from '../../utils/search'
 Page({
   data: {
     //选项卡
@@ -391,9 +392,17 @@ Page({
       url: '/pages/contactsActivty/activtyDetail/activtyDetail'
     })
   },
+  //下拉框
+  // move(e){
+  //   search.move(e)
+  // },
+  //or
+  move(e){
+    let that=this;
+    search.move(e,that)
+  }
 
-
-  // 下拉框
+ /*  // 下拉框
   move(e) {
     let index = e.currentTarget.dataset.index;
     let currentIndex = this.data.currentIndex;
@@ -646,5 +655,5 @@ Page({
     wx.navigateTo({
       url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
     })
-  },
+  }, */
 })
