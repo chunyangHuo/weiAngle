@@ -55,13 +55,13 @@ page {
 .outBox .describle {
   font-size: 34rpx;
   color: #666;
-  line-height: 38rpx;
+  line-height: 40rpx;
   text-align: left;
   margin-bottom: 34rpx;
-  /* width:1418rpx; */
+   /* width:1418rpx; 
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .allIndustry {
@@ -434,7 +434,7 @@ page {
   right: 0;
 }
 
-.btnToAccreditation {
+ .btnToAccreditation {
   font-size: 24rpx;
   color: #fff;
   line-height: 52rpx;
@@ -445,8 +445,8 @@ page {
   height: 52rpx;
   margin-top: 18rpx;
   position: absolute;
-  right: 32rpx;
-}
+  right: 89rpx;
+} 
 
 .highBox {
   height: 88rpx;

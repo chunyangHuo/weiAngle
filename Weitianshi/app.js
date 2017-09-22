@@ -466,6 +466,7 @@ App({
   loadMore(that, request, str, dataSum) {
     var user_id = wx.getStorageSync("user_id");
     if (that.data.requestCheck) {
+
       if (that.data.page_end == false) {
         wx.showToast({
           title: 'loading...',
@@ -488,6 +489,7 @@ App({
             for (var i = 0; i < newPage.length; i++) {
               dataSum.push(newPage[i])
             }
+            console.log(dataSum)
             that.setData({
               [str]: dataSum,
               page_end: page_end,

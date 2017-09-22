@@ -601,7 +601,7 @@
             <view class="moreInfo" catchtap="checkMore" wx:if="{{companyNews != 2 && newsList.length>2}}" data-id="{{2}}">展开</view>
             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{companyNews == 2}}" data-id="{{2}}">收起</view>
           </view>
-          <!--竞品-->
+          <!--相似公司-->
           <view class="competitor" wx:if="{{competeList.length != 0}}">
             <view class="boxName">相似公司</view>
             <view>
