@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/discoverProject/discoverProject",
     "pages/match/selectProject/selectProject",
     "pages/match/match/match/match",
     "pages/my/my/my",
@@ -77,7 +78,8 @@
     "pages/contactsActivty/topPlayer/topPlayer",
     "pages/contactsActivty/warbandMember/warbandMember",
     "pages/contactsActivty/expandContacts/expandContacts",
-    "pages/contactsActivty/myWarband/myWarband"
+    "pages/contactsActivty/myWarband/myWarband",
+    "pages/discoverInvest/discoverInvest"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
@@ -91,7 +93,7 @@
       {
         "iconPath": "img/resource.png",
         "selectedIconPath": "img/resourceOn.png",
-        "pagePath": "pages/match/match/match/match",
+        "pagePath": "pages/discoverProject/discoverProject",
         "text": "对接"
       },
       {

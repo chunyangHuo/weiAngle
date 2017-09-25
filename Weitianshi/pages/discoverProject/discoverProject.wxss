@@ -1,11 +1,40 @@
-/* pages/project/project.wxss */
 
-page {
+
+/*tab切换页  */
+.swiper-tab {
+  width: 100%;
+  line-height: 80rpx;
+  background: #40587a;
+}
+
+.swiper-tab-list {
+  display: inline-block;
+  width: 20%;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 62rpx;
+  text-align: center;
+  border: none;
+}
+
+.on {
+  color: white;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 80rpx;
+}
+
+.dropDown{
+  top:160rpx;
+}
+
+/*banner轮播图  */
+.slide-image{
+  width:100%;
   height: 100%;
 }
 
-/*新样式  */
-
+/*精选项目copy  */
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -55,13 +84,13 @@ page {
 .outBox .describle {
   font-size: 34rpx;
   color: #666;
-  line-height: 40rpx;
+  line-height: 38rpx;
   text-align: left;
   margin-bottom: 34rpx;
-   /* width:1418rpx; 
+  /* width:1418rpx; */
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; */
+  text-overflow: ellipsis;
 }
 
 .allIndustry {
@@ -434,7 +463,7 @@ page {
   right: 0;
 }
 
- .btnToAccreditation {
+.btnToAccreditation {
   font-size: 24rpx;
   color: #fff;
   line-height: 52rpx;
@@ -445,8 +474,8 @@ page {
   height: 52rpx;
   margin-top: 18rpx;
   position: absolute;
-  right: 89rpx;
-} 
+  right: 32rpx;
+}
 
 .highBox {
   height: 88rpx;
@@ -487,113 +516,4 @@ page {
   text-align: right;
   border-radius: 35rpx 0 0 35rpx;
   padding-right: 28rpx;
-}
-
-
-
-/*筛选和搜索框 */
-.screen {
-  background: #fff;
-  width: 750rpx;
-  height: 80rpx;
-  font-size: 26rpx;
-  color: #666;
-  line-height: 80rpx;
-  text-align: center;
-}
-
-.withAnimate {
-  transition: all 600ms ease;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -moz-perspective: 1000;
-  -ms-perspective: 1000;
-  perspective: 1000;
-}
-
-.tabIndex {
-  width: 25%;
-  vertical-align: center;
-}
-
-.tabIndex image {
-  width: 12rpx;
-  height: 6rpx;
-  padding-bottom: 6rpx;
-}
-
-.dropDown {
-  position: absolute;
-  top: 80rpx;
-  left: 0;
-  background: white;
-  z-index: 999;
-  padding-bottom: 12rpx;
-}
-
-.dropTitle {
-  color: #333;
-  font-size: 28rpx;
-  font-family: PingFangSC-Regular;
-  text-align: left;
-  margin-left: 34rpx;
-}
-
-.dropFlex {
-  flex-wrap: wrap;
-}
-
-.checkbox {
-  width: 144rpx;
-  height: 56rpx;
-  line-height: 56rpx;
-  border: 1px solid #f0f0f0;
-  border-radius: 4rpx;
-  margin-left: 32rpx;
-  margin-bottom: 32rpx;
-  text-align: center;
-}
-
-.btnGroup button {
-  width: 322rpx;
-  height: 88rpx;
-  color: white;
-  background: #40587a;
-  border-radius: 4px;
-  border: 1px solid #40587a;
-  margin-left: 32rpx;
-}
-
-.btnGroup button:first-child {
-  background: white;
-  color: #40587a;
-  border: 1px solid #40587a;
-}
-
-.scale {
-  width: 208rpx;
-}
-
-.deepBlue {
-  color: #40587a;
-}
-
-.rotate {
-  transform: rotate(180deg);
-  transform-origin: 6rpx 3rpx;
-}
-
-.checkOne {
-  border: 1px solid #40587a;
-}
-
-.search_icon {
-  padding: 10rpx 30rpx;
 }

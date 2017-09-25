@@ -7,18 +7,11 @@ Page({
   data: {
 
   },
-
   onLoad: function (options) {
     let team_id = options.team_id;
-    let team_name = options.team_name;
     let that = this;
     that.setData({
       team_id: team_id,
-      team_name: team_name
-    })
-    console.log(options)
-    wx.setNavigationBarTitle({
-      title: team_name+'的战队成员'
     })
   },
 
@@ -39,11 +32,16 @@ Page({
         console.log(res)
         let follow_status = res.data.data.follow_status;
         let warMemberList = res.data.data.members;
+        let team_name = res.data.data.team_name;
+        wx.setNavigationBarTitle({
+          title: team_name + '的战队成员'
+        })
         that.setData({
           warMemberList: warMemberList,
-          follow_status: follow_status
+          follow_status: follow_status,
+          team_name: team_name
         })
-        if(warMemberList.length==0) app.errorHide(that,'该战队暂时没有成员',3000) 
+        if (warMemberList.length == 0) app.errorHide(that, '该战队暂时没有成员', 3000)
       }
     })
     that.setData({
@@ -201,7 +199,7 @@ Page({
     let team_id = this.data.team_id;
     return {
       title: team_name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
-      path: '/pages/contactsActivty/warbandMember/warbandMember?team_id='+team_id+'&team_name='+team_name,
+      path: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&team_name=' + team_name,
       imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
       success: function (res) {
         console.log('分享成功', res)
@@ -209,7 +207,7 @@ Page({
     }
   },
   //加入战队
-  addWar:function(e){
+  addWar: function (e) {
     // let xxx = e.currentTarget.dataset.url;
     let user_id = wx.getStorageSync('user_id');
     let team_id = this.data.team_id;
@@ -226,28 +224,28 @@ Page({
           var complete = res.data.is_complete;
           if (complete == 1) {
             //添加战队
-              let user_id = wx.getStorageSync('user_id');
-              let arr = [];
-              let parameter = [];
-              arr.push(user_id);
-              arr.push(team_id);
-              parameter.push(arr)
-              wx.request({
-                url: url_common + '/api/team/join',
-                data: {
-                  teams: parameter
-                },
-                method: 'POST',
-                success: function (res) {
-                  if (res.data.status_code == 2000000) {
-                   that.setData({
-                     follow_status : 1
-                   })
-                  } else {
-                    app.errorHide(that, res.data.error_msg, 3000)
-                  }
+            let user_id = wx.getStorageSync('user_id');
+            let arr = [];
+            let parameter = [];
+            arr.push(user_id);
+            arr.push(team_id);
+            parameter.push(arr)
+            wx.request({
+              url: url_common + '/api/team/join',
+              data: {
+                teams: parameter
+              },
+              method: 'POST',
+              success: function (res) {
+                if (res.data.status_code == 2000000) {
+                  that.setData({
+                    follow_status: 1
+                  })
+                } else {
+                  app.errorHide(that, res.data.error_msg, 3000)
                 }
-              })
+              }
+            })
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
             wx.navigateTo({
