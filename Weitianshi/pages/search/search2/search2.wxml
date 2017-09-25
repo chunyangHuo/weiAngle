@@ -80,7 +80,7 @@
 <!--没有更多-->
 <view class="error" wx:if="{{error==1}}">{{error_text}}</view>
 
-<!--搜索结果无-->
+<!--空状态-->
 <view class="nullState" wx:if="{{empty == '1'}}">
   <view class="nullState_text">
     <view>暂无人脉</view>
