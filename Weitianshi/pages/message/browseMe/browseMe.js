@@ -27,8 +27,6 @@ Page({
     }else if(user_id){
       this.browseMe(user_id)
     }
-
-
   },
   // 添加人脉
   addNetWork: function (e) {

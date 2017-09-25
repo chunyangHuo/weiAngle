@@ -1,2 +1,48 @@
-<!--pages/myProject/initPrivacy/initPrivacy.wxml-->
-<text>pages/myProject/initPrivacy/initPrivacy.wxml</text>
+
+<import src="/pages/Template/Template.wxml" />
+<view class="outBox">
+  <view class="choiceBox flex">
+    <view class="content">公开项目后可参与融资对接</view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+  <view class="choiceBox flex">
+    <view class="content">分享后好友直接查看项目信息、BP资料</view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+  <view class="choiceBox flex">
+    <view class="content">平台认证投资人无需申请，直接查看项目信息</view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+  <view class="choiceBox flex">
+    <view class="content">隐藏公司信息</view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+</view>
+<view class="tips flex">
+  <image src="/img/icon-zhuyi@2x.png" class="tipsPic"></image>
+  <view class="tipsContent">以下功能即将上线，功能上线后自动应用于该项目</view>
+</view>
+<view class="whiteNameList">
+  <view class="whiteName">白名单设置</view>
+  <view class="choiceBox flex">
+    <view class="box">
+      <view class="whiteContent">一线投资机构（清科2016年度中国股权投资排行榜前30）投资人，无需申请，直接查看项目信息、BP</view>
+    </view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+  <view class="choiceBox flex">
+    <view class="box">
+      <view class="whiteContent">平台认证投资机构总监级别以上用户，无需申请，直接查看项目信息、BP</view>
+    </view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+</view>
+<view class="blackNameList">
+  <view class="blackName">黑名单设置</view>
+    <view class="blackTips blackTips1">针对一下投资机构,屏蔽项目展示</view>
+    <input class="inputBox" />
+    <view class="blackTips">针对一下用户,屏蔽项目显示</view>
+    <input class="inputBox" />
+</view>
+<view class="highBox"></view>
+<template is="buttonOne" data="{{text:'保存'}}"></template>
