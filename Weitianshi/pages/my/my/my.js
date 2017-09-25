@@ -34,6 +34,10 @@ Page({
                withShareTicket: true,
              })*/
             if (user_id != 0) {
+              wx.showLoading({
+                title: 'loading',
+                mask: true,
+              })
                 //载入我的个人信息
                 wx.request({
                     url: url_common + '/api/user/getUserAllInfo',
@@ -44,6 +48,7 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
+                      wx.hideLoading()
                         console.log(res)
                         var user = res.data.user_info;
                         var count = res.data.count;

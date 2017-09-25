@@ -15,8 +15,13 @@ Page({
             followed_user_id: followed_user_id,
             share_id: share_id
         })
+        wx.showLoading({
+          title: 'loading',
+          mask: true,
+        })
         //登录态维护
         app.loginPage(function (user_id) {
+          wx.hideLoading()
             var view_id = user_id;
             wx.setStorageSync('user_id', user_id);
             //载入被分享者的个人信息
