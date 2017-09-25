@@ -1,66 +1,59 @@
 // pages/my/myNew/myNew.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  },
   onLoad: function (options) {
-  
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  //进入我的名片
+  toMyCard: function () {
+    wx.navigateTo({
+      url: '/pages/my/my/my',
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  //人气
+  popularity: function () {
+    wx.navigateTo({
+      url: '/pages/message/browseMe/browseMe'
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  //加我为人脉
+  attention: function () {
+    wx.navigateTo({
+      url: '/pages/message/beAddedContacts/beAddedContacts'
+    })
   },
+  //潜在项目
+  pushTo: function () {
+    wx.navigateTo({
+      url: '/pages/message/potentialProject/potentialProject'
+    })
+  },
+  //身份验证
+  identity: function () {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  },
+  //项目店铺
+  projectShop: function () {
+    wx.navigateTo({
+      url: '/pages/my/projectShop/projectShop/projectShop',
+    })
+  },
+  //约谈的项目
+  contactProject: function () {
+    wx.navigateTo({
+      url: '/pages/message/contactProject/userList/userList',
+    })
+  },
+  //收藏的项目
+  collectProject: function () {
+    wx.navigateTo({
+      url: '/pages/message/collectProject/collectProject',
+    })
   }
 })
