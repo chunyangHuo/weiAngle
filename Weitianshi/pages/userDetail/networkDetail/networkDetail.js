@@ -42,7 +42,7 @@ Page({
             method: 'POST',
             success: function (res) {
               wx.hideLoading()
-                app.console(res)
+                console.log(res)
                 var user = res.data.user_info;
                 var count = res.data.count;
                 var invest = res.data.invest_info;
@@ -51,7 +51,7 @@ Page({
                 var invest_case = res.data.invest_case;
                 var tel = user.user_mobile;
                 var button_type = res.data.button_type;
-                app.console(user.active_status)
+                console.log(user.active_status)
                 if (tel.indexOf("*") != -1) {
                     that.setData({
                         blue: 1
@@ -82,7 +82,6 @@ Page({
     telephone: function (e) {
         var telephone = e.currentTarget.dataset.telephone;
         var tel = telephone.indexOf("****") * 1;
-
         if (tel == -1) {
             wx.makePhoneCall({
                 phoneNumber: telephone,
@@ -94,9 +93,7 @@ Page({
                 phoneNumber: telephone,
             })
         } else {
-
         }
-
     },
     //添加人脉
     addPerson: function (options) {
@@ -261,5 +258,18 @@ Page({
           }
         },
       });
-    }
+    },
+    //人气进入
+    popularity:function(){
+      let id = this.data.user_id;//当前用户的
+      wx.navigateTo({
+        url: '/pages/message/browseMe/browseMe?id=' + id
+      })
+    }   ,
+     // 加我为人脉
+    attention: function () {
+      wx.navigateTo({
+        url: '/pages/message/beAddedContacts/beAddedContacts'
+      })
+    },
 });

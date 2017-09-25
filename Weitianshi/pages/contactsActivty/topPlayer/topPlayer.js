@@ -146,12 +146,12 @@ Page({
   },
   //个人加载更多
   moreThing: function () {
+    console.log(44444)
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var currentPage = this.data.currentPage;
     let rank_list = this.data.rank_list;
     let str = this.data.str;
-    if(str!=''){
       var request = {
         url: url_common + '/api/team/userRelationshipRank',
         data: {
@@ -171,7 +171,6 @@ Page({
           })
         }
       })
-    }
   },
   //点击跳转战队人的列表
   allPerson: function (e) {
