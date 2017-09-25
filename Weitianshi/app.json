@@ -36,6 +36,9 @@
     "pages/message/beAddedContacts/beAddedContacts",
     "pages/message/browseMe/browseMe",
     "pages/message/applyPerson/applyPerson",
+    "pages/message/contactProject/projectList/projectList",
+    "pages/message/contactProject/userList/userList",
+    "pages/message/collectProject/collectProject",
     "pages/search/search1/search1",
     "pages/search/search2/search2",
     "pages/search/filter1/filter1",
@@ -52,11 +55,8 @@
     "pages/myProject/editProject/editProject",
     "pages/myProject/projectDetail/projectDetail",
     "pages/myProject/publishProject/publishProject",
-    "pages/myProject/browse/browse",
-    "pages/myProject/apply/apply",
     "pages/myProject/pushTo/pushTo",
-    "pages/myProject/progress/progress",
-    "pages/myProject/follow/follow",
+    "pages/myProject/initPrivacy/initPrivacy",
     "pages/my/investCase/investCase",
     "pages/my/sharePage/sharePage",
     "pages/my/investCaseEdit/investCaseEdit",
@@ -68,6 +68,7 @@
     "pages/my/identity/indentity/indentity",
     "pages/my/identity/identityEdit/identityEdit",
     "pages/my/identity/identityResult/identityResult",
+    "pages/my/myNew/myNew",
     "pages/oneKeyResearch/oneKeyResearch",
     "pages/contactsActivty/activtyDetail/activtyDetail",
     "pages/contactsActivty/joinWarband/joinWarband",
@@ -79,7 +80,9 @@
     "pages/contactsActivty/warbandMember/warbandMember",
     "pages/contactsActivty/expandContacts/expandContacts",
     "pages/contactsActivty/myWarband/myWarband",
-    "pages/discoverInvest/discoverInvest"
+    "pages/discoverInvest/discoverInvest",
+    "pages/remark/remarkList/remarkList",
+    "pages/remark/remarkEdit/remarkEdit"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
@@ -117,7 +120,7 @@
       {
         "iconPath": "img/my.png",
         "selectedIconPath": "img/myOn.png",
-        "pagePath": "pages/my/my/my",
+        "pagePath": "pages/my/myNew/myNew",
         "text": "我的"
       }
     ],

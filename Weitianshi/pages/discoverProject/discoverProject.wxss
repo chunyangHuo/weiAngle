@@ -5,6 +5,7 @@
   width: 100%;
   line-height: 80rpx;
   background: #40587a;
+  z-index:999;
 }
 
 .swiper-tab-list {

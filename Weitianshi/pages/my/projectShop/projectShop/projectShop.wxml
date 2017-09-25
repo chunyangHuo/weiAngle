@@ -140,7 +140,7 @@
     <view bindtap="moreProject" class="newProject">更多精选项目</view>
   </view>
   <!--模态层  -->
-  <view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+  <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
 
   <!--筛选无结果  -->
   <view class="hasNoThing" wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>

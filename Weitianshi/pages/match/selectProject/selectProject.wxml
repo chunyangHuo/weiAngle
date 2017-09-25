@@ -71,4 +71,4 @@
 <!--人脉王浮票  -->
 <view class="competitor" bindtap="competitor">人脉王大赛</view>
 <!--模态层  -->
-<view class='modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+<view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
