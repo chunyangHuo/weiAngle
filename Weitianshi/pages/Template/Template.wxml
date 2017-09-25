@@ -418,7 +418,7 @@
 
 <!--按钮一号-->
 <template name="buttonOne">
-  <view class="floatBtn buttonOne" bindtap="buttonOne">
+  <view class="floatBtn buttonOne" bindtap="{{btnName}}">
     <button>{{text}}</button>
   </view>
 </template>
