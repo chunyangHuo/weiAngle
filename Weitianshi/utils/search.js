@@ -209,8 +209,7 @@ function searchCertain(that) {
     currentPage: 1,
     page_end: false
   })
-  console.log(searchData)
-  return
+  return searchData;
   //发送筛选请求
   wx.request({
     url: url_common + '/api/project/getMyProjectList',

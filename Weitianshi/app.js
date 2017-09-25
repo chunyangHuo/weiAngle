@@ -1,4 +1,5 @@
-import * as request from './utils/http'
+import * as request from './utils/http';
+import {applyProject as ApplyProject} from './utils/applyProject';
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -636,7 +637,7 @@ App({
   },
 
   //项目申请
-  applyProjectTo(that, project_id, content, list) {
+  /* applyProjectTo(that, project_id, content, list) {
     var user_id = wx.getStorageSync('user_id');
     let url_common = this.globalData.url_common;
     wx.request({
@@ -846,6 +847,9 @@ App({
         }
       },
     });
+  }, */
+  applyProject(that,e,str){
+    ApplyProject(that,e,str)
   },
 
   //错误提示
