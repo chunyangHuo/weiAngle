@@ -50,7 +50,6 @@ Page({
       mask: true,
     })
 
-
     this.setData({
       industry: industry,
       stage: stage,
@@ -75,40 +74,60 @@ Page({
       })
     })
   },
-  /*点击tab切换*/
+  // 点击tab切换
   swichNav: function (e) {
     let that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      console.log(1)
-      if (e.target.dataset.current === 0) {
-        //请求精选项目列表
-      } else if (e.target.dataset.current === 1) {
-        //请求最新项目列表
-      }
-    }
+    let current = e.target.dataset.current;
     that.setData({
       currentTab: e.target.dataset.current
     })
+    if (this.data.currentTab === current) {
+      this.tabChange(current) 
+    }
   },
-  /*滑动切换tab*/
+  // 滑动切换tab
   bindChange: function (e) {
     var that = this;
-    let type = this.data.type;
     var current = e.detail.current;
-    let pushProjectList = this.data.pushProjectList;
-    let pushToList = this.data.pushToList;
+    that.setData({ currentTab: e.detail.current });
+    this.tabChange(current);
+  },
+  // tab页面切换数据调用(辅助函数)
+  tabChange(current){
     if (current === 0) {
       //请求精选项目列表
     } else if (current === 1) {
       //请求最新项目列表
+      this.newestProject();
     }
-    that.setData({ currentTab: e.detail.current });
   },
-  //提交form
+  // 请求最新tab页面项目数据(辅助函数)
+  newestProject() {
+    let that=this;
+    wx.request({
+      url: url_common + '/api/project/getMarketProjectList',
+      data: {
+        user_id: this.data.user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        wx.hideLoading()
+        console.log(res)
+        var financingNeed = res.data.data;
+        that.setData({
+          financingNeed: financingNeed,
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+    })
+  },
+  // 提交form
   formSubmit(e) {
     console.log(e)
   },
-  //上拉加载
+  // 上拉加载
   loadMore: function () {
     console.log(1)
     //请求上拉加载接口所需要的参数
@@ -125,7 +144,7 @@ Page({
     //调用通用加载函数
     app.loadMore(that, request, "slectProject", that.data.slectProject)
   },
-  //项目详情
+  // 项目详情
   projectDetail: function (e) {
     var project_id = e.currentTarget.dataset.project;
     // 判斷項目是不是自己的
@@ -151,7 +170,7 @@ Page({
       }
     })
   },
-  //分享当前页面
+  // 分享当前页面
   onShareAppMessage: function () {
     return {
       title: '来微天使找优质项目',
@@ -386,40 +405,40 @@ Page({
       },
     });
   },
-  //人脉大赛
+  // 人脉大赛
   competitor: function () {
     wx.navigateTo({
       url: '/pages/contactsActivty/activtyDetail/activtyDetail'
     })
   },
-  //下拉框
-  move(e){
-    let that=this;
-    search.move(e,that)
+  // 下拉框
+  move(e) {
+    let that = this;
+    search.move(e, that)
   },
   // 标签选择
-  tagsCheck(e){
-    let that=this;
-    search.tagsCheck(e,that)
+  tagsCheck(e) {
+    let that = this;
+    search.tagsCheck(e, that)
   },
   // 筛选重置
-  reset(){
-    let that=this;
+  reset() {
+    let that = this;
     search.reset(that)
   },
   // 筛选确定
-  searchCertain(){
-    let that=this;
+  searchCertain() {
+    let that = this;
     search.searchCertain(that)
   },
   // 点击modal层
-  modal(){
-    let that=this;
+  modal() {
+    let that = this;
     search.modal(that)
   },
   //搜索
-  searchSth(){
-    let that=this;
+  searchSth() {
+    let that = this;
     search.searchSth(that)
   }
 })

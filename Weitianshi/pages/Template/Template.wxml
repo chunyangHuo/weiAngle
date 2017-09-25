@@ -289,31 +289,31 @@
 
 <!--融资需求卡片-->
 <template name="financingCard">
-  <view class="card project-detailm" data-id="{{item.project_id}}" bindtap="projectDetail">
-    <view class="user_info flex">
-      <view class="user_text" wx:if="{{item.user.user_avatar_text}}">{{item.user.user_avatar_text}}</view>
-      <image class="user_pic" src="{{item.user.user_avatar_url}}" wx:if="{{item.user.user_avatar_url}}"></image>
-      <view class="user_info_right">
-        <view class="flex nameFrame">
-          <view class="user_name">{{item.user.user_name}}</view>
-          <view class="user_career">{{item.user.user_career}}</view>
+  <view class="t-card t-project-detail" data-id="{{item.project_id}}" bindtap="projectDetail">
+    <view class="t-user_info flex">
+      <view class="t-user_text" wx:if="{{item.user.user_avatar_text}}">{{item.user.user_avatar_text}}</view>
+      <image class="t-user_pic" src="{{item.user.user_avatar_url}}" wx:if="{{item.user.user_avatar_url}}"></image>
+      <view class="t-user_info_right">
+        <view class="t-nameFrame flex">
+          <view class="t-user_name">{{item.user.user_name}}</view>
+          <view class="t-user_career">{{item.user.user_career}}</view>
 
           <!--<view class="pro_time">{{item.pro_time}}</view>-->
         </view>
-        <view class="user_company">{{item.user.user_company}}</view>
+        <view class="t-user_company">{{item.user.user_company}}</view>
       </view>
     </view>
-    <view class="pro_info">
-      <view class="pro_intro">{{item.pro_intro}}</view>
-      <view class="pro_industry flex">
+    <view class="t-pro_info">
+      <view class="t-pro_intro">{{item.pro_intro}}</view>
+      <view class="t-pro_industry flex">
         <block wx:for="{{item.pro_industry}}" wx:for-item="pro_industry" wx:key="{{pro_industry.industry_id}}" wx:for-index="pro_index">
-          <view class="industry_tip">{{pro_industry.industry_name}}</view>
+          <view class="t-industry_tip">{{pro_industry.industry_name}}</view>
         </block>
       </view>
-      <view class="pro_sorts flex">
-        <view class="pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage.stage_name}}</view>
-        <view class="pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area.area_title}}</view>
-        <view class="pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale.scale_money}}</view>
+      <view class="t-pro_sorts flex">
+        <view class="t-pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage.stage_name}}</view>
+        <view class="t-pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area.area_title}}</view>
+        <view class="t-pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale.scale_money}}</view>
       </view>
     </view>
   </view>
@@ -604,7 +604,7 @@
         </view>
         <view class="classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view id="time">{{item.created_at}}</view>
+      <view class="t-time">{{item.created_at}}</view>
     </view>
   </block>
    <view class="highBox"></view>
@@ -823,58 +823,58 @@
 <!--匹配推荐 + 精选  -->
 <template name="selectProject">
   <block wx:for="{{list}}"  wx:key="{{index}}"> 
-    <view class="outBox"  wx:if="{{item.handle_status != 2 }}">
-      <view class="redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status ==0 }}"></view>
-      <view class="insideBox project-detailm">
+    <view class="t-outBox"  wx:if="{{item.handle_status != 2 }}">
+      <view class="t-redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status ==0 }}"></view>
+      <view class="t-insideBox t-project-detailm">
       <view  data-project="{{item.project_id}}"  catchtap="projectDetail">
         <view class="flex">
-          <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-          <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-          <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+          <view class="t-describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+          <image src="/img/img-dujiaqianyue1@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+          <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
         </view>
-        <view class="allIndustry" style="text-align:left">
+        <view class="t-allIndustry" style="text-align:left">
           <block wx:for="{{item.pro_industry}}" wx:key="{{index}}"wx:for-item ='industry'>
-            <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label> 
-            <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+            <label class="{{industry.is_match == 1 ? 't-hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label> 
+            <label class="{{industry.is_match == 1 ? 't-hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
           </block>
         </view>
-        <view class="allProjectDetail flex"  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-          <view class="{{item.pro_scale.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
-          <view class="{{item.pro_finance_stock_after.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"   wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
-          <view class="{{item.pro_stage.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
-          <view class="{{item.pro_area.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
+        <view class="t-allProjectDetail flex"  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+          <view class="{{item.pro_scale.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}"  wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
+          <view class="{{item.pro_finance_stock_after.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}"   wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
+          <view class="{{item.pro_stage.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}"  wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
+          <view class="{{item.pro_area.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
         </view>
-        <view class="flex otherInfo">
+        <view class="t-otherInfo flex">
           <view >
-            <image src="{{item.user.investor_logo_url}}" class="others_pic"  wx:if="{{item.user.investor_logo_url}}"/>
-            <view class="flex user_image" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
+            <image src="{{item.user.investor_logo_url}}" class="t-others_pic"  wx:if="{{item.user.investor_logo_url}}"/>
+            <view class="t-user_image flex " wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
           </view>
           <view>
-            <view class="flex userInfo">
-              <view class="userName">{{item.user.user_name}}</view>
-              <view class="userCareer">{{item.user.user_career}}</view>
-              <view class="userCompany" style="text-align:left">{{item.user.user_company}}</view>
+            <view class="t-userInfo flex">
+              <view class="t-userName">{{item.user.user_name}}</view>
+              <view class="t-userCareer">{{item.user.user_career}}</view>
+              <view class="t-userCompany" style="text-align:left">{{item.user.user_company}}</view>
             </view>
           </view>
         </view>
         </view>
         <!--匹配推荐  -->
-        <view class="projectInfo flex" wx:if="{{type == 2}}">
-          <view class="seeNum">{{item.view_count}}人看过项目</view>
-          <view class="interest flex">
-            <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
-            <view class="toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}"  data-project="{{item.project_id}}" catchtap="matchApply" data-content="{{0}}">申请查看</view>
-            <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
-            <view class="refuseToRead readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
-            <view class="toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
+        <view class="t-projectInfo flex" wx:if="{{type == 2}}">
+          <view class="t-seeNum">{{item.view_count}}人看过项目</view>
+          <view class="t-interest flex">
+            <view class="t-appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
+            <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}"  data-project="{{item.project_id}}" catchtap="matchApply" data-content="{{0}}">申请查看</view>
+            <view class="t-refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
+            <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+            <view class="t-toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
           </view>
         </view>
-        <view class="classname" wx:if="{{type == 3}}"></view>
+        <view class="t-classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view id="time">{{item.created_at}}</view>
+      <view class="t-time">{{item.created_at}}</view>
     </view>
   </block>
-   <view class="highBox"></view>
+   <view class="t-highBox"></view>
 </template>
 
 <!--创建项目+到电脑端  -->
