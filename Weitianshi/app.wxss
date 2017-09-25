@@ -320,14 +320,12 @@ textarea {
 }
 
 /*多选标签选中时样式*/
-.tips .checkedOne {
 
-  /* border: 1px solid #333; */
-  /* color: #fff; */
-  /* background: #40587a; */
+.tips .checkedOne {
+  /* border: 1px solid #333; *//* color: #fff; *//* background: #40587a; */
   border-radius: 8rpx;
   border: 1px solid #40587a;
-  color:#40587a;
+  color: #40587a;
 }
 
 /*.tips .checkedOne {
@@ -417,15 +415,15 @@ textarea {
   display: flex;
 }
 
-
 /*搜索框*/
+
 .search_frame {
-  position:fixed;
-  height:56rpx;
-  width:94%;
+  position: fixed;
+  height: 56rpx;
+  width: 94%;
   background: white;
   padding: 16rpx 128rpx 16rpx 32rpx;
-  z-index:5;
+  z-index: 5;
 }
 
 .search_icon {
@@ -436,21 +434,92 @@ textarea {
 .searchBox {
   align-items: center;
   height: 56rpx;
-  width:97%;
+  width: 97%;
   line-height: 56rpx;
   background: #f2f2f2;
   border-radius: 8rpx;
-  float:left;
+  float: left;
 }
 
 .searchInput {
   margin: 0;
   font-size: 20rpx;
   height: 56rpx;
-  width:100%;
+  width: 100%;
   line-height: 56rpx;
 }
 
+/*提示按钮  */
+
+.t-accreditation {
+  background: #fff1e8;
+  height: 88rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 88rpx;
+  text-align: left;
+  padding-left: 32rpx;
+}
+
+.t-btnToAccreditation {
+  border: 1rpx solid #40587a;
+  border-radius: 2px;
+  width: 156rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 50rpx;
+  text-align: center;
+  margin-top: 18rpx;
+  position: absolute;
+  right: 224rpx;
+}
+
+.t-goPc {
+  border: 1rpx solid #40587a;
+  border-radius: 2px;
+  width: 156rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 50rpx;
+  text-align: center;
+  margin-top: 18rpx;
+  position: absolute;
+  right: 32rpx;
+}
+
+.t-contactsPic {
+  width: 750rpx;
+  height: 280rpx;
+}
+.t-btnBox{
+  position:absolute;
+  top:196rpx;
+}
+.t-faBtn, .t-investorBtn, .t-startupBtn {
+  background: #009eff;
+  border-radius: 4rpx;
+  width: 134rpx;
+  height: 52rpx;
+  margin-right: 80rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+}
+
+.t-faBtn {
+  margin-left: 94rpx;
+}
+
+.t-blockContent {
+  position: absolute;
+  top: 40rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+}
 /*筛选和搜索框 */
 .screen {
   background: #fff;

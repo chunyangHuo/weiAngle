@@ -7,7 +7,7 @@ Page({
     data: {
         empty: 0,
         currentPage: 1,
-        searchCheck: true,
+        requestCheck: true,
         page_end: false,
         contacts: [],
     },
@@ -15,14 +15,13 @@ Page({
     onLoad: function (options) {
         this.setData({
             currentPage: 1,
-            searchCheck: true,
+            requestCheck: true,
             page_end: false,
             contacts: []
         })
     },
 
     onShow: function () {
-
     },
     // 用户详情
     userDetail: function (e) {
