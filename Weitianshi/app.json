@@ -94,22 +94,16 @@
   "tabBar": {
     "list": [
       {
-        "iconPath": "img/resource.png",
-        "selectedIconPath": "img/resourceOn.png",
-        "pagePath": "pages/discoverProject/discoverProject",
-        "text": "对接"
-      },
-      {
         "iconPath": "img/project.png",
         "selectedIconPath": "img/projectOn.png",
-        "pagePath": "pages/match/selectProject/selectProject",
-        "text": "精选"
+        "pagePath": "pages/discoverProject/discoverProject",
+        "text": "找项目"
       },
       {
         "iconPath": "img/icon-renmai-n@2x.png",
         "selectedIconPath": "img/icon-renmai-s@2x.png",
-        "pagePath": "pages/contacts/contacts/contacts",
-        "text": "人脉"
+        "pagePath": "pages/discoverInvest/discoverInvest",
+        "text": "找人脉"
       },
       {
         "iconPath": "img/message.png",
