@@ -152,25 +152,25 @@ Page({
     var currentPage = this.data.currentPage;
     let rank_list = this.data.rank_list;
     let str = this.data.str;
-      var request = {
-        url: url_common + '/api/team/userRelationshipRank',
-        data: {
-          user_id: user_id,
-          page: this.data.currentPage,
-        }
+    var request = {
+      url: url_common + '/api/team/userRelationshipRank',
+      data: {
+        user_id: user_id,
+        page: this.data.currentPage,
       }
-      app.loadMore2(that, request, res => {
-        let rank = res.data.data.rank_list;
-        let page_end = res.data.page_end;
-        if (rank) {
-          let newRank_list = rank_list.concat(rank)
-          that.setData({
-            rank_list: newRank_list,
-            page_end: page_end,
-            requestCheck: true
-          })
-        }
-      })
+    }
+    app.loadMore2(that, request, res => {
+      let rank = res.data.data.rank_list;
+      let page_end = res.data.page_end;
+      if (rank) {
+        let newRank_list = rank_list.concat(rank)
+        that.setData({
+          rank_list: newRank_list,
+          page_end: page_end,
+          requestCheck: true
+        })
+      }
+    })
   },
   //点击跳转战队人的列表
   allPerson: function (e) {
@@ -332,11 +332,11 @@ Page({
     let type = e.target.dataset.type;
     console.log(type)
     //type 1:个人名片分享; 2:战队成员页面分享
-    if (type == 1) {
+    if (type == 1 || !type) {
       return {
         title: name + '正在参与2017首届双创机构人气品牌百强评选，加我人脉,助我夺冠!',
         path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg_1",
         success: function (res) {
           console.log('分享成功', res)
         },
@@ -345,7 +345,7 @@ Page({
       return {
         title: name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
         path: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + id + '&&team_name=' + name,
-        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg",
+        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share.jpg_1",
         success: function (res) {
           console.log('分享成功', res)
         },

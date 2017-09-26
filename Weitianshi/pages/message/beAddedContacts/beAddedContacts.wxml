@@ -13,8 +13,8 @@
 
 <!--资本对接-->
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
-<!-- bindscrolltolower="loadMore" -->
-  <scroll-view scroll-y="true"  scroll-top="{{scroll}}">
+  <!-- bindscrolltolower="loadMore" -->
+  <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower='loadMore'>
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
         <view class="card contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
@@ -81,7 +81,7 @@
               </view>
             </view>
           </view>
-           <view class="addTime" style="background:#f8f8f8;">{{item.created_at}}</view>
+          <view class="addTime" style="background:#f8f8f8;">{{item.created_at}}</view>
         </view>
       </block>
     </view>
@@ -89,7 +89,10 @@
 </view>
 
 <!--没有数据-->
-  <view class="empty "  wx:if="{{contacts == ''}}" >
-    <image src="/img/img-kong1@2x.png" class="noData"></image>
-    <view class="hasNothing">暂无数据</view>
-  </view> 
+<view class="empty " wx:if="{{contacts == ''}}">
+  <image src="/img/img-kong1@2x.png" class="noData"></image>
+  <view class="hasNothing">暂无数据</view>
+</view>
+
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
