@@ -655,7 +655,6 @@
       </view>
       </view>
     </view>
-
   </block>
 </template>
 
@@ -834,8 +833,8 @@
         </view>
         <view class="t-allIndustry" style="text-align:left">
           <block wx:for="{{item.pro_industry}}" wx:key="{{index}}"wx:for-item ='industry'>
-            <label class="{{industry.is_match == 1 ? 't-hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label> 
-            <label class="{{industry.is_match == 1 ? 't-hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+            <label class="{{industry.is_match == 1 ? 't-hightLight':t-'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label> 
+            <label class="{{industry.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
           </block>
         </view>
         <view class="t-allProjectDetail flex"  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">

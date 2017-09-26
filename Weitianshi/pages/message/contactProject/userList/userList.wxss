@@ -1,1 +1,34 @@
 /* pages/message/contactProject/userList/userList.wxss */
+.browseMeTitle {
+  /*height: 90rpx;*/
+  margin: 32rpx 32rpx 32rpx 32rpx;
+}
+
+.browseMeTitle .num {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 24rpx;
+  text-align: right;
+}
+
+.title {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.title .block {
+  background: #40587a;
+  width: 4rpx;
+  height: 24rpx;
+  margin-right: 12rpx;
+}
+.t-projectInfo {
+  display:none;
+}
+.t-otherInfo {
+  position: relative;
+   padding-bottom: 0;
+  border:none;
+}

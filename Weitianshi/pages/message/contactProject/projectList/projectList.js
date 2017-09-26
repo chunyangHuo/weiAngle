@@ -16,7 +16,7 @@ Page({
   onShow: function () {
     let user_id = wx.getStorageSync('user_id');//获取我的user_id
     let project_id = this.data.project_id;
-    let  that = this;
+    let that = this;
     wx.request({
       url: url_common + '/api/project/myMet',
       data: {
@@ -27,12 +27,14 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         let projectMessage = res.data.data.project;
         let metList = res.data.data.messages;
-        console.log(metList)
+        let count = res.data.data.count;
         that.setData({
           projectMessage: projectMessage,
-          metList : metList
+          metList: metList,
+          count: count
         })
       }
     })
