@@ -151,27 +151,25 @@ Page({
     var currentPage = this.data.currentPage;
     let rank_list = this.data.rank_list;
     let str = this.data.str;
-    if(str!=''){
-      var request = {
-        url: url_common + '/api/team/userRelationshipRank',
-        data: {
-          user_id: user_id,
-          page: this.data.currentPage,
-        }
+    var request = {
+      url: url_common + '/api/team/userRelationshipRank',
+      data: {
+        user_id: user_id,
+        page: this.data.currentPage,
       }
-      app.loadMore2(that, request, res => {
-        let rank = res.data.data.rank_list;
-        let page_end = res.data.page_end;
-        if (rank) {
-          let newRank_list = rank_list.concat(rank)
-          that.setData({
-            rank_list: newRank_list,
-            page_end: page_end,
-            requestCheck: true
-          })
-        }
-      })
     }
+    app.loadMore2(that, request, res => {
+      let rank = res.data.data.rank_list;
+      let page_end = res.data.page_end;
+      if (rank) {
+        let newRank_list = rank_list.concat(rank)
+        that.setData({
+          rank_list: newRank_list,
+          page_end: page_end,
+          requestCheck: true
+        })
+      }
+    })
   },
   //点击跳转战队人的列表
   allPerson: function (e) {

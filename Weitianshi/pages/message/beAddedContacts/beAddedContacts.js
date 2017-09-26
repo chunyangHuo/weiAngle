@@ -21,7 +21,8 @@ Page({
         url: url_common + '/api/message/cardMessage',
         data: {
           user_id: user_id,
-          type_id: 2
+          type_id: 2,
+          page:1
         },
         method: 'POST',
         success: function (res) {
@@ -136,5 +137,20 @@ Page({
     wx.makePhoneCall({
       phoneNumber: telephone,
     })
-  }
+  },
+  // 加载更多
+  loadMore(){
+    let that=this;
+    let user_id = this.data.user_id;
+    let currentPage = this.data.currentPage;
+    let request={
+      url: url_common + '/api/message/cardMessage',
+      data: {
+        user_id: "mr99l2Rr",
+        type_id: 2,
+        page:currentPage
+      },
+    }
+    app.loadMore(that, request,"contacts",that.data.contacts)
+  },
 }) 
