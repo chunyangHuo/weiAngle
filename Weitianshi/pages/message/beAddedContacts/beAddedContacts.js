@@ -146,7 +146,7 @@ Page({
     let request={
       url: url_common + '/api/message/cardMessage',
       data: {
-        user_id: "mr99l2Rr",
+        user_id: user_id,
         type_id: 2,
         page:currentPage
       },

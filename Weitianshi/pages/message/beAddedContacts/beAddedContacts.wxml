@@ -93,3 +93,6 @@
   <image src="/img/img-kong1@2x.png" class="noData"></image>
   <view class="hasNothing">暂无数据</view>
 </view>
+
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
