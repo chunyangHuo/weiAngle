@@ -270,8 +270,8 @@
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation identitym" bindtap="toAccreditation">立即认证</view>
   </view>
-  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-id="{{id}}">申请查看</view>
-  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-id="{{id}}">重新申请</view>
+  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
+  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>
   <view class="pushing" wx:if="{{button_type == 0}}">申请中</view>
 </view>
 

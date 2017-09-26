@@ -136,12 +136,10 @@ Page({
     });
   },
   // 申请查看
-  applyProject: function (options) {
-    let id = options.currentTarget.dataset.id;
+  applyProject: function (e) {
     let that = this;
     let user_id = this.data.user_id;
-    // app.applyProjectTo(id);
-    app.applyProjectTo(that, id)
+    app.applyProject(e,that,"project")
   },
   //获取是否认证过和项目详情
   getInfo(that, user_id, id) {

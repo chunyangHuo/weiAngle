@@ -313,15 +313,9 @@ Page({
   },
   // 申请查看
   matchApply: function (e) {
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
-    // content: 0(申请查看) 1: (重新申请)
-    let content = e.currentTarget.dataset.content;
-    let project_id = e.currentTarget.dataset.project;
-    let getMatchList = this.data.getMatchList;
-    // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
-    app.applyProjectTo(that, project_id, content, getMatchList)
-
+    app.applyProject(e, that,"getMatchList")
   },
   //重新申请
   matchReApply: function (e) {
@@ -349,7 +343,6 @@ Page({
       }
     })
   },
-
   // 感兴趣
   interesting: function (e) {
     let that = this;
