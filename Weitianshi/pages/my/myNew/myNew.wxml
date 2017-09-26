@@ -86,34 +86,39 @@
 
 <view class="outSideBox">
   <view class="flex blockInfo" bindtap="identity">
-    <!-- <image src="src" class="blockPic"></image> -->
-    <view class="blockTitle">身份认证</view>
+    <view class="flex">
+      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <view class="blockTitle">身份认证</view>
+    </view>
     <view class="blockContent">立即认证</view>
   </view>
   <view class="blockInfo flex" bindtap="projectShop">
-    <!-- <image src="src" class="blockPic"></image> -->
-    <view class="blockTitle">项目店铺</view>
     <view class="flex">
-      <view class="number">10</view>
-      <!-- <view class="personListContentAfter"></view> -->
+      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <view class="blockTitle">项目店铺</view>
+    </view>
+    <view class="flex">
+      <view class="number">{{count.project_count}}</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
   <view class="blockInfo flex" bindtap="contactProject">
-    <!-- <image src="src" class="blockPic"></image> -->
-    <view class="blockTitle">约谈的项目</view>
     <view class="flex">
-      <view class="number">10</view>
-      <!-- <view class="personListContentAfter"></view> -->
+      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <view class="blockTitle">约谈的项目</view>
+    </view>
+    <view class="flex">
+      <view class="number">{{count.meet_project_count}}</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
   <view class="blockInfo flex" bindtap="collectProject">
-    <!-- <image src="src" class="blockPic"></image> -->
-    <view class="blockTitle">收藏的项目</view>
+    <view class="flex">
+      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <view class="blockTitle">收藏的项目</view>
+    </view>
     <view class="flex">
       <view class="number">10</view>
-      <!-- <view class="personListContentAfter"></view> -->
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
