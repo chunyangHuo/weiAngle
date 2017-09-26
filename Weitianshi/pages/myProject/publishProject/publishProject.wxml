@@ -66,9 +66,9 @@
     <view>项目计划书</view>
     <view class="bpBtn bp-uploadm" bindtap="upLoad">去PC上传</view>
   </view>
-  <button class="nextBtn publish-project-confirm" bindtap="public">
+  <!-- <button class="nextBtn publish-project-confirm" bindtap="public">
     发布
-  </button>
+  </button> -->
 
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -79,3 +79,54 @@
     <view class="weui-loadmore__tips">正在加载</view>
   </view>
 </view>
+  <view class="topBox">
+    <view class="userBox">
+      <view class="projectBoxContent flex">
+        <view class="projectTitle">商业计划书</view>
+        <view class="flex">
+          <view class="projectContent">去电脑上传</view>
+          <!-- <view class="personListContentAfter"></view> -->
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="projectBoxContent flex">
+        <view class="projectTitle">投后股份（%）</view>
+        <view class="flex">
+          <view class="projectContent">请输入投后股权占比</view>
+          <!-- <view class="personListContentAfter"></view> -->
+        </view>
+      </view>
+    </view>
+    <view class="userBox">
+      <view class="projectBoxContent flex noBorder">
+        <view class="projectTitle">私密性设置</view>
+        <view class="flex">
+          <view class="projectContent">私密项目（仅个人/团队可见）</view>
+          <!-- <view class="personListContentAfter"></view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tipsNew flex">
+    <image src="/img/icon-zhuyi@2x.png" class="tipsPic"></image>
+    <view class="tipsContent">未经您的许可，项目数据绝对私密安全</view>
+  </view>
+  <view class="choiceBox flex">
+    <view class="content">需要Bp美化</view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+    <view class="choiceBox flex">
+    <view class="content">需要融资股份（FA）服务</view>
+    <switch checked bindchange="switch1Change" class="switchTab" />
+  </view>
+  <view class="question">
+    <view class="questionWhy">Q：什么是融资顾问服务</view>
+    <view class="answer">A：微天使平台会结合您的融资需求推荐最适合的FA，帮助您打磨 商业计划，梳理BP，引荐投资机构。（业务同学会通过您在平台 留下的联系方式与您沟通具体融资需求）
+    </view>
+  </view>
+    <!-- <button class="nextBtn" bindtap="public">
+    维护项目
+  </button> -->
+  <view class="highBox"></view>
+<template is="buttonOne" data="{{text:'保存',btnName:'public'}}"></template>

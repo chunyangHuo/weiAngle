@@ -714,5 +714,12 @@ Page({
         wx.navigateTo({
             url: '/pages/message/applyPerson/applyPerson?id=' + proid,
         })
+    },
+    //私密设置
+    initPrivacy:function(){
+      console.log(222)
+      wx.navigateTo({
+        url: '/pages/myProject/initPrivacy/initPrivacy',
+      })
     }
 });

@@ -7,7 +7,7 @@
             <view class="describle">
               {{project.pro_intro}}
             </view>
-             <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+            <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
             <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
           </view>
           <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
@@ -23,11 +23,11 @@
             <view class="projectDetailLine" wx:if="{{project.pro_stage.stage_name}}">{{project.pro_stage.stage_name}}</view>
             <view class="projectDetailLine" wx:if="{{project.pro_area.area_title}}">{{project.pro_area.area_title}}</view>
           </view>
-          <view class="ProjectClues flex">
+          <!-- <view class="ProjectClues flex">
             <view class="classname">项目线索</view>
             <view class="ProjectCluesLine"></view>
             <view class="classname">佣金收讫</view>
-          </view>
+          </view> -->
         </view>
         <view class="ProjectDetailInfo flex">
           <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}">
@@ -38,11 +38,11 @@
           </view>
           <view class="flex sceenPerson" catchtap="applyPerson">
             <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor"  data-proid="{{id}}">申请查看：
+            <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">申请查看：
               <label>{{count.apply_times_all}}</label>
             </view>
           </view>
-          <view class="investPerson">意向投资人：-</view>
+          <view class="investPerson">约谈：-</view>
         </view>
       </view>
     </view>
@@ -77,7 +77,7 @@
             <view class="material" style="position:relative;" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
               <view class="materialBox flex">
                 <image src="/img/icon-jieshao.png" class="titlePic"></image>
-                <view class="title">项目资料</view>
+                <view class="title">项目介绍</view>
               </view>
               <view class="contentAll">
                 <view>
@@ -110,6 +110,56 @@
                     <label class="materialContent">{{project.contact.user_mobile}}</label>
                   </view>
                 </view>
+              </view>
+            </view>
+            <!--市场概况-->
+            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+              <view class="brightPointBox flex">
+                <image src="/img/icon-shichanggaikuang@2x.png" class="titlePic"></image>
+                <view class="title star">市场概况</view>
+              </view>
+              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
+                {{project.pro_goodness}}
+              </view>
+              <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+            </view>
+            <!--产品概况-->
+            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+              <view class="brightPointBox flex">
+                <image src="/img/icon-chanpingaikuang@2x.png" class="titlePic"></image>
+                <view class="title star">产品概况</view>
+              </view>
+              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
+                {{project.pro_goodness}}
+              </view>
+              <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+            </view>
+            <!--商业模式-->
+            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+              <view class="brightPointBox flex">
+                <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
+                <view class="title star">商业模式</view>
+              </view>
+              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
+                {{project.pro_goodness}}
+              </view>
+              <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+            </view>
+            <!--产品  -->
+            <view class="brightPoint">
+              <view class="brightPointBox flex">
+                <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
+                <view class="title star">产品</view>
+              </view>
+              <view id="productBox">
+                <view class="flex productInside">
+                  <view class="productTitle">微天使</view>
+                  <view class="pro_sort projectTips">App</view>
+                </view>
+                <view class="productContent">这是产品的介绍,这里是产品介绍,谁知道是什么啊</view>
               </view>
             </view>
             <!--品牌-->
@@ -222,7 +272,7 @@
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
             <!--FA签约-->
-            <view class="signFA"  wx:if="{{project.pro_FA}}">
+            <view class="signFA" wx:if="{{project.pro_FA}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>
@@ -277,11 +327,7 @@
                   <view class="weui-cell__bd ">
                     <view class="flex " style="align-items: baseline; ">
                       <view class="others_name ">{{item.investor_name}}</view>
-
-                      <!--<view class="others_email ">786485758@qq.com</view>-->
                     </view>
-
-                    <!--<view class="others_company " wx:if="{{item.investor_type==2}}">{{item.investor_company}}</view>-->
                     <view class="ohters_position" wx:if="{{item.investor_type==2}}">{{item.investor_career}}</view>
                   </view>
                 </view>
@@ -651,8 +697,15 @@
 <view class="floatBtn flex" hidden="{{currentTab==0||currentTab == 2}}">
   <button class="push" disabled="true">一键推送(近期开放)</button>
 </view>
-<view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}" bindtap="maintainProject">
-  <button class="push maintainProject redact-projectm">维护项目</button>
+<view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}">
+  <view class="flex btn1" bindtap="maintainProject">
+    <image src="/img/icon-wanzhengdu@2x.png" class="btnPic"></image>
+    <view class="classname">完整度：90%</view>
+  </view>
+  <view class="flex btn2" bindtap="initPrivacy">
+    <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>
+    <view class="classname">私密性设置</view>
+  </view>
 </view>
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">
