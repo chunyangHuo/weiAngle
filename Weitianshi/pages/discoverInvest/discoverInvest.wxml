@@ -1,2 +1,95 @@
-<!--pages/discoverInvest/discoverInvest.wxml-->
-<text>pages/discoverInvest/discoverInvest.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">投资人</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">FA(融资顾问)</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">我的</view>
+</view>
+<!--筛选和搜索  -->
+<view class="screen flex">
+  <!--筛选  -->
+  <block wx:for='{{tab}}' wx:key='index'>
+    <view class='tabIndex {{currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
+      {{item.name}}
+      <image class='withAnimate {{currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
+    </view>
+  </block>
+  <!--搜索  -->
+  <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
+  <!--下拉框  -->
+  <view class='dropDown withAnimate'>
+    <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
+    <view class='dropTitle' wx:if='{{currentIndex==1}}'>融资轮次</view>
+    <view class='dropTitle' wx:if='{{currentIndex==2}}'>期望融资</view>
+    <view class='dropTitle' wx:if='{{currentIndex==3}}'>项目地区</view>
+    <!--多选框  -->
+    <view class='flex dropFlex'>
+      <!--领域  -->
+      <block wx:for='{{industry}}' wx:if='{{currentIndex==0}}' wx:key='item.industry_id' wx:for-item='item1' wx:for-index='index1'>
+        <view class='checkbox {{item1.check==true?"checkOne":""}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
+          {{item1.industry_name}}
+        </view>
+      </block>
+      <!--轮次  -->
+      <block wx:for='{{stage}}' wx:if='{{currentIndex==1}}' wx:key='item.stage_id' wx:for-item='item2' wx:for-index='index2'>
+        <view class='checkbox {{item2.check==true?"checkOne":""}}' data-item="{{item2}}" data-index="{{index2}}" bindtap='tagsCheck'>
+          {{item2.stage_name}}
+        </view>
+      </block>
+      <!--金额  -->
+      <block wx:for='{{scale}}' wx:if='{{currentIndex==2}}' wx:key='item.sacle_id' wx:for-item='item3' wx:for-index='index3'>
+        <view class='checkbox scale {{item3.check==true?"checkOne":""}}' data-item="{{item3}}" data-index="{{index3}}" bindtap='tagsCheck'>
+          {{item3.scale_money}}
+        </view>
+      </block>
+      <!--地区  -->
+      <block wx:for='{{hotCity}}' wx:if='{{currentIndex==3}}' wx:key='item.area_id' wx:for-item='item4' wx:for-index='index4'>
+        <view class='checkbox {{item4.check==true?"checkOne":""}}' data-item="{{item4}}" data-index="{{index4}}" bindtap='tagsCheck'>
+          {{item4.area_title}}
+        </view>
+      </block>
+    </view>
+    <!--重置确定  -->
+    <view class='btnGroup flex' wx:if="{{currentIndex!=5}}">
+      <button bindtap='reset'>重置</button>
+      <button bindtap='searchCertain'>确定</button>
+    </view>
+  </view>
+</view>
+<!--项目展示列表  -->
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:945rpx" bindchange="bindChange">
+  <!--精选  -->
+  <swiper-item data-current='0'>
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+      <template is="resourceProject" data="{{contentList:res_match}}"></template>
+    </scroll-view>
+    <!--空状态-->
+    <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
+    <!--模态层  -->
+    <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+  </swiper-item>
+  <!--最新 -->
+  <swiper-item data-current='1'>
+    <!--项目展示  -->
+    <scroll-view scroll-y="true" bindscrolltolower="financingNeed">
+      <template is="resourceProject" data="{{contentList:res_match}}"></template>
+    </scroll-view>
+    <!--空状态-->
+    <view wx:if="{{financingNeed==''}}">
+      <image class="empty" src="/img/img-wujieguo@3x.png"></image>
+    </view>
+    <!--模态层  -->
+    <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+  </swiper-item>
+  <!--我的  -->
+  <swiper-item data-current='2'>
+    我的
+    <!--空状态-->
+    <view wx:if="{{financingNeed==''}}">
+      <image class="empty" src="/img/img-wujieguo@3x.png"></image>
+    </view>
+    <!--模态层  -->
+    <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
+  </swiper-item>
+</swiper>
+<!--错误提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

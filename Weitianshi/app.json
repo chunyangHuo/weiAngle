@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/discoverInvest/discoverInvest",
     "pages/discoverProject/discoverProject",
     "pages/match/selectProject/selectProject",
     "pages/match/match/match/match",
@@ -80,7 +81,6 @@
     "pages/contactsActivty/warbandMember/warbandMember",
     "pages/contactsActivty/expandContacts/expandContacts",
     "pages/contactsActivty/myWarband/myWarband",
-    "pages/discoverInvest/discoverInvest",
     "pages/remark/remarkList/remarkList",
     "pages/remark/remarkEdit/remarkEdit"
   ],

@@ -72,6 +72,7 @@ Page({
     that.setData({
       currentTab: e.target.dataset.current
     })
+    app.initPage(that)
     if (this.data.currentTab === current) {
       this.tabChange(current)
     }
@@ -80,6 +81,7 @@ Page({
   bindChange: function (e) {
     var that = this;
     var current = e.detail.current;
+    app.initPage(that)
     that.setData({ currentTab: e.detail.current });
     this.tabChange(current);
   },
@@ -88,7 +90,6 @@ Page({
     if (current === 0) {
       //请求精选项目列表
       this.selectProject();
-
     } else if (current === 1) {
       //请求最新项目列表
       this.newestProject();
@@ -132,18 +133,13 @@ Page({
       })
     })
   },
-  // 提交form
-  formSubmit(e) {
-    console.log(e)
-  },
   // 上拉加载
   loadMore: function () {
-    console.log(1)
     //请求上拉加载接口所需要的参数
-    var that = this;
-    var user_id = this.data.user_id;
-    var currentPage = this.data.currentPage;
-    var request = {
+    let that = this;
+    let user_id = this.data.user_id;
+    let currentPage = this.data.currentPage;
+    let request = {
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
         user_id: user_id,
@@ -152,6 +148,19 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "slectProject", that.data.slectProject)
+  },
+  financingNeed(){
+    let that=this;
+    let user_id=this.data.user_id;
+    let currentPage=this.data.currentPage;
+    let request={
+      url: url_common + '/api/project/getMarketProjectList',
+      data: {
+        user_id: this.data.user_id,
+        page:this.data.currentPage
+      }
+    }
+    app.loadMore(that, request, "financingNeed", that.data.financingNeed)
   },
   // 项目详情
   projectDetail: function (e) {
@@ -183,7 +192,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '来微天使找优质项目',
-      path: '/pages/match/selectProject/selectProject'
+      path: '/pages/discoverProject/discoverProject'
     }
   },
   // 跳转创建项目页面
