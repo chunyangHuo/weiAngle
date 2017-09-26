@@ -42,7 +42,13 @@
               <label>{{count.apply_times_all}}</label>
             </view>
           </view>
-          <view class="investPerson">约谈：-</view>
+          <!-- <view class="investPerson">-</view> -->
+           <view class="flex sceenPerson" catchtap="hasMeeting">
+            <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
+            <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">约谈：
+              <label>{{count.apply_times_all}}</label>
+            </view>
+          </view>
         </view>
       </view>
     </view>

@@ -1,66 +1,40 @@
 // pages/message/contactProject/projectList/projectList.js
+var rqj = require('../../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  },
   onLoad: function (options) {
-  
+    let project_id = options.id;
+    this.setData({
+      project_id: project_id
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
+    let user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let project_id = this.data.project_id;
+    let  that = this;
+    wx.request({
+      url: url_common + '/api/project/myMet',
+      data: {
+        user_id : user_id,
+        type_id: 9,
+        project_id: project_id,
+        page: 1
+      },
+      method: 'POST',
+      success: function (res) {
+        let projectMessage = res.data.data.project;
+        let metList = res.data.data.messages;
+        console.log(metList)
+        that.setData({
+          projectMessage: projectMessage,
+          metList : metList
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

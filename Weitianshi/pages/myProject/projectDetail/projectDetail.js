@@ -721,5 +721,13 @@ Page({
       wx.navigateTo({
         url: '/pages/myProject/initPrivacy/initPrivacy',
       })
+    },
+    //约谈
+    hasMeeting:function(){
+      let  project_id = this.data.id;
+      console.log(project_id)
+      wx.navigateTo({
+        url: '/pages/message/contactProject/projectList/projectList?id=' + project_id,
+      })
     }
 });

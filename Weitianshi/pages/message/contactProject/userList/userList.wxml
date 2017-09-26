@@ -1,2 +1,2 @@
-<!--pages/message/contactProject/userList/userList.wxml-->
-<text>pages/message/contactProject/userList/userList.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<template is="selectProject" data="{{list:slectProject,type:0}}"></template> 

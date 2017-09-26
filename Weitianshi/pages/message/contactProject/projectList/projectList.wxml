@@ -1,2 +1,25 @@
-<!--pages/message/contactProject/projectList/projectList.wxml-->
-<text>pages/message/contactProject/projectList/projectList.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="t-outBox">
+  <view class="t-insideBox t-project-detailm">
+    <view data-project="{{projectMessage.project_id}}" catchtap="projectDetail">
+      <view class="flex">
+        <view class="t-describle" wx:if="{{projectMessage.pro_intro != ''}}">{{projectMessage.pro_intro}}</view>
+        <image src="/img/img-dujiaqianyue1@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 1}}"></image>
+        <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 2}}"></image>
+      </view>
+      <view class="t-allIndustry" style="text-align:left">
+        <block wx:for="{{projectMessage.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
+          <label class="{{industry.is_match == 1 ? 't-hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label>
+          <label class="{{industry.is_match == 1 ? 't-hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+        </block>
+      </view>
+      <view class="t-allProjectDetail flex" wx:if="{{projectMessage.pro_area != ''||projectMessage.pro_finance_stock_after!=0||projectMessage.pro_stage!=''||projectMessage.pro_scale!=''}}">
+        <view class="{{projectMessage.pro_scale.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{projectMessage.pro_scale != ''}}">{{projectMessage.pro_scale.scale_money}}</view>
+        <view class="{{projectMessage.pro_finance_stock_after.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{projectMessage.pro_finance_stock_after != ''}}">{{projectMessage.pro_finance_stock_after}}%</view>
+        <view class="{{projectMessage.pro_stage.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{projectMessage.pro_stage != ''}}">{{projectMessage.pro_stage.stage_name}}</view>
+        <view class="{{projectMessage.pro_area.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{item.pro_area != ''}}">{{projectMessage.pro_area.area_title}}</view>
+      </view>
+    </view>
+    <view class="t-time">{{item.created_at}}</view>
+  </view>
+</view>
