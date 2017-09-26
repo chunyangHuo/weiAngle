@@ -331,7 +331,7 @@ Page({
     let type = e.target.dataset.type;
     console.log(type)
     //type 1:个人名片分享; 2:战队成员页面分享
-    if (type == 1) {
+    if (type == 1 || !type) {
       return {
         title: name + '正在参与2017首届双创机构人气品牌百强评选，加我人脉,助我夺冠!',
         path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,

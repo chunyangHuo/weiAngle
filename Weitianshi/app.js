@@ -921,11 +921,11 @@ App({
   globalData: {
     error: 0,
     app_key:'wxos_lt',
-    url: "https://lbs.weitianshi.cn",
-    url_common: "https://lbs.weitianshi.cn"
+    // url: "https://lbs.weitianshi.cn",
+    // url_common: "https://lbs.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 });
