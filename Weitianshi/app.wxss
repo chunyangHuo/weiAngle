@@ -634,7 +634,7 @@ textarea {
 
 /*---------------------------------项目卡片------------------------------------*/
 .t-outBox {
-  margin: 0 16px 0 16px;
+  margin: 0 32rpx 0 32rpx;
   width: auto;
   height: auto;
   position: relative;
@@ -924,8 +924,6 @@ textarea {
 .t-noLight {
   color: #999;
 }
-
-/*---------------------------------人脉卡片----------------------------------- */
 .t-applyMyProject {
   padding: 32rpx;
   background: white;
@@ -1179,3 +1177,4 @@ textarea {
   padding-top: 5rpx;
   padding-right: 16rpx;
 }
+

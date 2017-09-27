@@ -289,8 +289,8 @@
 </view>
   <view class="contactModalBox">
     <view class="modalTitle">联系项目方</view>
-    <textarea class="modalContent"  placeholder="请简要描述您的约谈需求"/>
+    <textarea class="modalContent"  placeholder="请简要描述您的约谈需求" bindinput="contentProject"/>
     <view class="modalTips">微天使将为您联系项目方并安排约谈或添加FA哥微信:weitianshicn</view>
-    <view class="btn">确定</view>
+    <view class="btn"  bindtap="yesBtn">确定</view>
   </view>
 </view>

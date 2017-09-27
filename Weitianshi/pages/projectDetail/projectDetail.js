@@ -477,5 +477,42 @@ Page({
     this.setData({
       modalBox: 0
     })
+  },
+  //约谈
+  contentProject:function(e){
+    console.log(e)
+    let message = e.detail.value;
+    let message_length = e.detail.value.length;
+    let that = this;
+    if (message_length <= 500) {
+      this.setData({
+        message: message
+      })
+    } else {
+      app.errorHide(that, "不能超过500个数字", 1000)
+    }
+  },
+  //约谈信息发送
+  yesBtn:function(){
+    let that = this;
+    let message = this.data.message;
+    let project_id = this.data.id;//项目id
+    let user_id = wx.getStorageSync('user_id'); //当前登陆者的 id
+    wx.request({
+      url: url_common + '/api/project/met',
+      data: {
+        user_id: user_id,
+        project_id: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        if (res.data.status_code == 2000000){
+          that.setData({
+            modalBox: 0
+          })
+        }
+      }
+    })
   }
 })

@@ -1,30 +1,98 @@
 <import src="/pages/Template/Template.wxml" />
-<view class="t-outBox">
-  <view class="t-insideBox t-project-detailm">
-    <view data-project="{{projectMessage.project_id}}" catchtap="projectDetail">
-      <view class="flex">
-        <view class="t-describle" wx:if="{{projectMessage.pro_intro != ''}}">{{projectMessage.pro_intro}}</view>
-        <image src="/img/img-dujiaqianyue1@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 1}}"></image>
-        <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 2}}"></image>
-      </view>
-      <view class="t-allIndustry" style="text-align:left">
-        <block wx:for="{{projectMessage.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-          <label class="t-noLight" wx:if="{{index < projectMessage.pro_industry.length-1}}">{{industry.industry_name}}、</label>
-          <label class="t-noLight" wx:if="{{index == projectMessage.pro_industry.length-1}}">{{industry.industry_name}}</label>
-        </block>
-      </view>
-      <view class="allProjectDetail flex" wx:if="{{projectMessage.pro_area != ''||projectMessage.pro_finance_stock_after!=0||projectMessage.pro_stage!=''||projectMessage.pro_scale!=''}}">
-        <view  class="t-projectDetailLine" wx:if="{{projectMessage.pro_scale != ''}}">{{projectMessage.pro_scale.scale_money}}</view>
-        <view  class="t-projectDetailLine" wx:if="{{projectMessage.pro_finance_stock_after != ''}}">{{projectMessage.pro_finance_stock_after}}%</view>
-        <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_stage != ''}}">{{projectMessage.pro_stage.stage_name}}</view>
-        <view class= 't-projectDetailLine'>{{projectMessage.pro_area.area_title}}</view>
+
+<scroll-view style="height:1334rpx;" scroll-y="true" bindscrolltolower='loadMore'>
+  <view class="t-outBox">
+    <view class="t-insideBox t-project-detailm">
+      <view data-project="{{projectMessage.project_id}}" catchtap="projectDetail">
+        <view class="flex">
+          <view class="t-describle" wx:if="{{projectMessage.pro_intro != ''}}">{{projectMessage.pro_intro}}</view>
+          <image src="/img/img-dujiaqianyue1@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 1}}"></image>
+          <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 2}}"></image>
+        </view>
+        <view class="t-allIndustry" style="text-align:left">
+          <block wx:for="{{projectMessage.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
+            <label class="t-noLight" wx:if="{{index < projectMessage.pro_industry.length-1}}">{{industry.industry_name}}、</label>
+            <label class="t-noLight" wx:if="{{index == projectMessage.pro_industry.length-1}}">{{industry.industry_name}}</label>
+          </block>
+        </view>
+        <view class="allProjectDetail flex" wx:if="{{projectMessage.pro_area != ''||projectMessage.pro_finance_stock_after!=0||projectMessage.pro_stage!=''||projectMessage.pro_scale!=''}}">
+          <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_scale != ''}}">{{projectMessage.pro_scale.scale_money}}</view>
+          <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_finance_stock_after != ''}}">{{projectMessage.pro_finance_stock_after}}%</view>
+          <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_stage != ''}}">{{projectMessage.pro_stage.stage_name}}</view>
+          <view class='t-projectDetailLine'>{{projectMessage.pro_area.area_title}}</view>
+        </view>
       </view>
     </view>
   </view>
-</view>
-
-<view class="outSideBox">
-      <template is="allNumber" data="{{count:count,text:'约谈您的项目'}}"></template>
-</view>
-
+  <view class="outSideBox">
+    <template is="allNumber" data="{{count:count,text:'约谈您的项目'}}"></template>
+    <block wx:for="{{metList}}" wx:key="{{metList}}">
+      <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="personDetail">
+      <view class="t-redPoint" wx:if="{{item.status == 0}}"></view>
+        <view class="t-applyMyProject t-contacts-detailm">
+          <view class="t-introduceBox flex">
+            <view class="t-userName">{{item.investor_name}}</view>
+            <view class="t-userPosition">{{item.investor_career}}</view>
+            <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
+              <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
+              <view class="t-userPart1">{{item.authentication[0].group_title}}</view>
+            </view>
+            <view class="t-user_text" wx:if="{{item.investor_avatar_text}}">{{item.investor_avatar_text}}</view>
+            <image src="{{item.investor_logo_url}}" class="t-userPic" wx:if="{{item.investor_logo_url}}"></image>
+          </view>
+          <view class="t-userCompany">{{item.investor_company}}</view>
+          <view class="t-record">{{item.active_status}}</view>
+          <view class="t-roundGroupPush flex" wx:if="{{item.resource.res_give != ''}}">
+            <view class="t-roundGroupTitle">提供资源：</view>
+            <view class="t-roundGroupContent">
+              <block wx:for="{{item.resource.res_give}}" wx:key="{{item.resource.res_give.index}}" wx:for-item='userGive'>
+                <label class="{{userGive.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index < item.resource.res_give.length-1}}">
+               {{userGive.resource_name}}、
+              </label>
+                <label class="{{userGive.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index ==  item.resource.res_give.length-1}}">
+               {{userGive.resource_name}}
+              </label>
+              </block>
+            </view>
+          </view>
+          <view class="t-roundGroupPush flex" wx:if="{{item.resource.res_find != ''}}">
+            <view class="t-roundGroupTitle">寻求资源：</view>
+            <view class="t-roundGroupContent">
+              <block wx:for="{{item.resource.res_find}}" wx:key="{{item.resource.res_find.index}}" wx:for-item='userFind'>
+                <label class="{{userFind.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index < item.resource.res_find.length-1}}">{{userFind.resource_name}}、</label>
+                <label class="{{userFind.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index ==item.resource.res_find.length-1}}">{{userFind.resource_name}}</label>
+              </block>
+            </view>
+          </view>
+          <view>
+            <view class="t-describe" wx:if="{{item.resource.res_desc != null}}">{{item.resource.res_desc}}</view>
+          </view>
+        </view>
+        <view class="btnBox">
+          <view class="insideBox flex">
+            <view class="flex pushProject">
+              <image src="/img/icon-tuisongxiangmu@2x.png" class="btnPic"></image>
+              <view class="pushContent">推送项目</view>
+            </view>
+            <!-- <view class="flex addPerson" wx:if="{{item.is_connect == 0 || item.is_connect == 3}}">
+              <image src="/img/icon-jiarenmai@2x.png" class="btnPic btnPic2"></image>
+              <view class="classname">加人脉</view>
+            </view> -->
+               <view class="flex addPerson" >
+              <image src="/img/icon-daiyanzheng@2x.png" class="btnPic btnPic2 afterApply"></image>
+              <view class="classname">待验证</view>
+            </view>
+               <view class="flex addPerson" wx:if="{{item.is_connect == 1}}">
+              <image src="/img/icon-huweirenmai@2x.png" class="btnPic btnPic2"></image>
+              <view class="classname">已为人脉</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view id="time">{{item.created_at}}</view>
+    </block>
+  </view>
+</scroll-view>
 <template is="hasNothing"></template>
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
