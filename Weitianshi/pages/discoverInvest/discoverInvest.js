@@ -2,7 +2,7 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as Search from '../../utils/search'
- Page({
+Page({
   data: {
     //选项卡
     winWidth: 0,
@@ -10,10 +10,9 @@ import * as Search from '../../utils/search'
     currentTab: 0,
     slectProject: '',
     // 筛选搜索
-    SearchInit:Search.data,
+    SearchInit: Search.data,
   },
   onShow: function () {
-    console.log(this.data.SearchInit)
     let that = this;
     let user_id = this.data.user_id;
     //初始化数据
@@ -116,7 +115,62 @@ import * as Search from '../../utils/search'
   },
   //我的人脉列表信息
   myList() {
+    let user_id = this.data.user_id;
+    let that = this;
+    // 检查个人信息全不全
+    if (user_id == 0) {
+      wx.request({
+        url: url_common + '/api/user/checkUserInfo',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          that.setData({
+            notIntegrity: res.data.is_complete,
+            empty: 1
+          })
+        },
+      })
+    }
+    // 获取人脉库信息
+    if (user_id) {
+      wx.showLoading({
+        title: 'loading',
+        mask: true,
+      })
+      wx.request({
+        url: url_common + '/api/user/getMyFollowList',
+        data: {
+          user_id: user_id,
+          page: 1,
+          filter: {
+            search: "",
+            industry: [],
+            stage: [],
+          }
+        },
+        method: 'POST',
+        success: function (res) {
+          wx.hideLoading()
+          console.log('我的人脉列表', res)
+          var contacts = res.data.data;//所有的用户
+          var page_end = res.data.page_end;
+          if (contacts.length != 0) {
+            that.setData({
+              empty: 0
+            })
+          } else if (contacts.length == 0) {
 
+          }
+          that.setData({
+            contacts: contacts,
+            page_end: page_end,
+            currentPage: 1
+          })
+        }
+      })
+    }
   },
   // 上拉加载
   loadMore: function () {
@@ -147,6 +201,18 @@ import * as Search from '../../utils/search'
     }
     app.loadMore(that, request, "financingNeed", that.data.financingNeed)
   },
+  // 分享当前页面
+  onShareAppMessage: function () {
+    return {
+      title: '来微天使找优质人脉',
+      path: '/pages/discoverInvest/discoverInvest'
+    }
+  },
+  // 申请查看
+  matchApply(e) {
+    let that = this;
+    app.applyProject(e, that, 'slectProject');
+  },
   // 项目详情
   projectDetail: function (e) {
     var project_id = e.currentTarget.dataset.project;
@@ -172,18 +238,6 @@ import * as Search from '../../utils/search'
         }
       }
     })
-  },
-  // 分享当前页面
-  onShareAppMessage: function () {
-    return {
-      title: '来微天使找优质人脉',
-      path: '/pages/discoverInvest/discoverInvest'
-    }
-  },
-  // 申请查看
-  matchApply(e) {
-    let that = this;
-    app.applyProject(e, that, 'slectProject');
   },
   // 人脉大赛
   competitor: function () {
@@ -231,5 +285,37 @@ import * as Search from '../../utils/search'
   searchSth() {
     let that = this;
     Search.searchSth(that)
-  }
+  },
+
+  //---------------------------我的人脉--------------------------------------------------------------
+    // 一键拨号
+  telephone: function (e) {
+    var telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
+  },
+  //上拉加载
+  loadMore: function () {
+    //请求上拉加载接口所需要的参数
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    var currentPage = this.data.currentPage;
+    var industryFilter = wx.getStorageSync("industryFilter") || [];
+    var stageFilter = wx.getStorageSync("stageFilter") || [];
+    var request = {
+      url: url + '/api/user/getMyFollowList',
+      data: {
+        user_id: user_id,
+        page: this.data.currentPage,
+        filter: {
+          search: "",
+          'industry': industryFilter,
+          'stage': stageFilter
+        }
+      }
+    }
+    //调用通用加载函数
+    app.loadMore(that, request, "contacts", that.data.contacts)
+  },
 })

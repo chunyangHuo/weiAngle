@@ -10,8 +10,14 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:945rpx" bindchange="bindChange">
   <!--投资人  -->
   <swiper-item data-current='0'>
+    <!---投资人展示  -->
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
-      <template is="resourceProject" data="{{contentList:res_match}}"></template>
+      <block wx:for="{{res_match}}" wx:key="{{res_match}}">
+        <view class='investorCard'>
+          <template is='InvestorCard' data='{{item}}'></template>
+          <template is='cardBottom1'></template>
+        </view>
+      </block>
     </scroll-view>
     <!--空状态-->
     <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
@@ -20,9 +26,14 @@
   </swiper-item>
   <!--FA(融资顾问) -->
   <swiper-item data-current='1'>
-    <!--项目展示  -->
+    <!--FA(融资顾问)展示  -->
     <scroll-view scroll-y="true" bindscrolltolower="financingNeed">
-      <template is="resourceProject" data="{{contentList:res_match}}"></template>
+      <block wx:for="{{res_match}}" wx:key="{{res_match}}">
+        <view class='investorCard'>
+          <template is='InvestorCard' data='{{item}}'></template>
+          <template is='cardBottom1'></template>
+        </view>
+      </block>
     </scroll-view>
     <!--空状态-->
     <view wx:if="{{financingNeed==''}}">
@@ -33,11 +44,85 @@
   </swiper-item>
   <!--我的  -->
   <swiper-item data-current='2'>
-    我的
+    <!--我的人脉展示-->
+    <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
+      <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
+        <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
+          <view class="user_info flex">
+            <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+            <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+            <view class="user_info_right">
+              <view class="flex frame">
+                <view class="name_flex flex">
+                  <view class="user_name">{{item.user_real_name}}</view>
+                  <view class="user_career">{{item.user_company_career}}</view>
+                </view>
+                <label class="telephoneLab telephonem" data-telephone="{{item.user_mobile}}" catchtap="telephone">
+                  <image class="telephone" src="/img/icon-phone@3x.png"></image>
+                </label>
+              </view>
+              <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
+            </view>
+          </view>
+          <view class="investor_info">
+
+            <!--投资领域-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_invest_industry !=''}}">
+              <view class="investor_text">投资领域:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_invest_industry}}" wx:for-item="industry" wx:key="{{industry.industry_id}}">
+                  <view class="industry" hidden="{{index>3}}">{{industry.industry_name}}</view>
+                </block>
+              </view>
+            </view>
+
+            <!--投资轮次-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_invest_stage !=''}}">
+              <view class="investor_text">投资轮次:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_invest_stage}}" wx:for-item="stage" wx:key="{{stage.stage_id}}">
+                  <view class="stage">{{stage.stage_name}}</view>
+                </block>
+              </view>
+            </view>
+
+            <!--拥有资源-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
+              <view class="investor_text">寻求资源:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
+                  <view class="res_find">{{res_find.resource_name}}</view>
+                </block>
+              </view>
+            </view>
+
+            <!--寻求资源-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
+              <view class="investor_text">拥有资源:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_resource_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
+                  <view class="res_give">{{res_give.resource_name}}</view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+
     <!--空状态-->
-    <view wx:if="{{financingNeed==''}}">
-      <image class="empty" src="/img/img-wujieguo@3x.png"></image>
+    <view wx:if="{{empty == 1}}">
+      <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
+        <view class="nullState_text">
+          <image src="/img/connection.png"></image>
+          <view>暂无人脉</view>
+          <view>分享我的名片，拓展我的人脉</view>
+        </view>
+        <button class='guide-mycadm' bindtap="myCard" wx:if="{{notIntegrity==1}}">我的名片</button>
+        <button class='bindm' bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}}">请先绑定用户信息</button>
+      </view>
     </view>
+
     <!--模态层  -->
     <view class='t-modal' wx:if='{{SearchInit.currentIndex!=5}}' bindtap='modal'></view>
   </swiper-item>
