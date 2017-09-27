@@ -285,7 +285,7 @@
 .t-record {
   position: absolute;
   top: 158rpx;
-  right: 54rpx;
+  right: 44rpx;
   font-size: 20rpx;
   color: #ccc;
   line-height: 26rpx;

@@ -634,7 +634,7 @@ textarea {
 
 /*---------------------------------项目卡片------------------------------------*/
 .t-outBox {
-  margin: 0 16px 0 16px;
+  margin: 0 32rpx 0 32rpx;
   width: auto;
   height: auto;
   position: relative;
