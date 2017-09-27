@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
-<!-- <form report-submit='true' bindsubmit='formSubmit'>
+ <form report-submit='true' bindsubmit='formSubmit'>
   <button form-type='submit'>Submit</button>
-</form> -->
+</form> 
 <!--筛选和搜索  -->
 <view class="screen flex">
   <!--筛选  -->
