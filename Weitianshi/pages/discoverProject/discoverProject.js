@@ -1,7 +1,7 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as search from '../../utils/search'
+import * as Search from '../../utils/search'
 Page({
   data: {
     //选项卡
@@ -10,24 +10,7 @@ Page({
     currentTab: 0,
     slectProject: '',
     //筛选搜索
-    firstTime: true,
-    tab: [
-      { name: '领域', check: false, arr: false, id: 'industry' },
-      { name: '轮次', check: false, arr: false, id: "stage" },
-      { name: '金额', check: false, arr: false, id: "scale" },
-      { name: '地区', check: false, arr: false, id: "hotCity" }
-    ],
-    currentIndex: 5,
-    industryArr: [],
-    stageArr: [],
-    scaleArr: [],
-    hotCityArr: [],
-    searchData: {
-      industry: [],
-      stage: [],
-      scale: [],
-      hotCity: [],
-    },
+    SearchInit:Search.data,
     //banner
     bannerIndex: 0,
     imgUrls: [
@@ -39,21 +22,11 @@ Page({
   onShow: function () {
     let that = this;
     let user_id = this.data.user_id;
-    let industry = wx.getStorageSync('industry');
-    let stage = wx.getStorageSync('stage');
-    let scale = wx.getStorageSync('scale');
-    let hotCity = wx.getStorageSync('hotCity');
     //初始化数据
     app.initPage(that)
     wx.showLoading({
       title: 'loading',
       mask: true,
-    })
-    this.setData({
-      industry: industry,
-      stage: stage,
-      scale: scale,
-      hotCity: hotCity
     })
     //消除人脉筛选缓存(非contacts都需要)
     app.contactsCacheClear();
@@ -238,22 +211,22 @@ Page({
   // 下拉框
   move(e) {
     let that = this;
-    search.move(e, that)
+    Search.move(e, that)
   },
   // 标签选择
   tagsCheck(e) {
     let that = this;
-    search.tagsCheck(e, that)
+    Search.tagsCheck(e, that)
   },
   // 筛选重置
   reset() {
     let that = this;
-    search.reset(that)
+    Search.reset(that)
   },
   // 筛选确定
   searchCertain() {
     let that = this;
-    let searchData = search.searchCertain(that);
+    let searchData = Search.searchCertain(that);
     let current = this.data.currentTab;
     if(current==0){
       console.log('筛选精选',searchData)
@@ -266,11 +239,11 @@ Page({
   // 点击modal层
   modal() {
     let that = this;
-    search.modal(that)
+    Search.modal(that)
   },
   //搜索
   searchSth() {
     let that = this;
-    search.searchSth(that)
+    Search.searchSth(that)
   }
 })

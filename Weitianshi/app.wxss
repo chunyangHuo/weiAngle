@@ -926,3 +926,256 @@ textarea {
 }
 
 /*---------------------------------人脉卡片----------------------------------- */
+.t-applyMyProject {
+  padding: 32rpx;
+  background: white;
+}
+
+.t-outsideBox {
+  margin: 0 30rpx 0 30rpx;
+  position: relative;
+}
+
+#t-introduce {
+  background: #f3f4f8;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 88rpx;
+  text-align: left;
+  height: 88rpx;
+  margin-left: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 670rpx;
+  padding-left: 16rpx;
+}
+
+.t-applyMyProject .t-userPosition {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 28rpx;
+  text-align: left;
+  margin-right: 16rpx;
+}
+
+.t-introduceBox {
+  margin-bottom: 16rpx;
+  align-items: flex-end;
+}
+
+.t-introduceBox .t-userName {
+  font-size: 36rpx;
+  color: #333;
+  line-height: 38rpx;
+  text-align: left;
+  margin-right: 16rpx;
+  align-items: flex-end;
+}
+
+.t-applyMyProject .t-userPart {
+  font-size: 20rpx;
+  color: #d3b987;
+  line-height: 22rpx;
+  text-align: left;
+  align-items: flex-end;
+}
+
+.t-applyMyProject .t-userCompany {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 84rpx;
+}
+
+.t-agreeBtn, .t-refuseBtn {
+  font-size: 28rpx;
+  color: #40587a;
+  line-height: 28rpx;
+  text-align: left;
+  margin-left: 16rpx;
+}
+
+.t-agreeBox {
+  padding-left: 94rpx;
+}
+
+.t-connectionBtn {
+  font-size: 28rpx;
+  color: #ccc;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+  margin-left: 16rpx;
+}
+
+.t-refuseBox {
+  padding-left: 88rpx;
+  padding-right: 122rpx;
+  border-right: 1rpx solid #e6e6e6;
+}
+
+.t-iconStyle {
+  width: 24rpx;
+  height: 26rpx;
+  border-radius: 100%;
+}
+
+.t-iconFreeStyle {
+  width: 24rpx;
+  height: 26rpx;
+}
+
+.t-agreed {
+  font-size: 28rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+.t-renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+
+.t-userPart1 {
+  margin-top: 4rpx;
+  width: 66rpx;
+  height: 33rpx;
+  font-size: 20rpx;
+  line-height: 40rpx;
+  align-items: flex-end;
+}
+
+.t-connection {
+  width: 68rpx;
+  height: 68rpx;
+  position: absolute;
+  right: -2rpx;
+  top: -2rpx;
+}
+
+.t-userPic {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+
+.t-user_text {
+  background: #f2f2f2;
+  line-height: 104rpx;
+  text-align: center;
+  font-size: 40rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  color:#40587a;
+}
+
+.t-redPoint {
+  background: #f44c4c;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 100%;
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+}
+
+.t-noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+
+.t-projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
+}
+
+.t-applyMyProject .t-describe {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 22rpx;
+  text-align: left;
+  /* margin-bottom: 24rpx; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.t-roundGroupPush {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 28rpx;
+  text-align: left;
+  margin-bottom: 22rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.t-bottomTabAfter {
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+}
+
+.t-bottomTab {
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+}
+
+.t-investmentGroupContent, .t-roundGroupContent {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.t-record {
+  position: absolute;
+  top: 158rpx;
+  right: 54rpx;
+  font-size: 20rpx;
+  color: #ccc;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+/*---------------------------------卡片底部--推送项目和加人脉----------------------------------- */
+.t-cardBottom{
+  border-top: 2rpx solid #e6e6e6;
+  padding-top: 30rpx;
+  padding-bottom:30rpx;
+  margin: 0 30rpx 22rpx 30rpx;
+  font-size:28rpx;
+  color:#40587a;
+  background: white;
+}
+
+.t-cardBottomItem{
+  width: 50%;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.t-itemPic{
+  width: 28rpx;
+  height: 28rpx;
+  padding-top: 5rpx;
+  padding-right: 16rpx;
+}
