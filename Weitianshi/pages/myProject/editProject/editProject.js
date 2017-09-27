@@ -20,6 +20,7 @@ Page({
         error: '0',
         error_text: "",
         loading: '0',
+        modalBox: 0,
         industryCard: {
             text: "项目领域*",
             url: "/pages/form/industry/industry?current=2",
@@ -225,7 +226,54 @@ Page({
             url: '/pages/form/area1/area1?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum
         })
     },
-
+    //关闭模态框
+    closeModal: function () {
+      this.setData({
+        modalBox: 0
+      })
+    },
+    //去电脑上传
+    toPc:function(){
+      this.setData({
+        modalBox:1
+      })
+    },
+    //需要Bp美化
+    switchChange1: function (e) {
+      let service_ps_bp = e.detail.value;
+      if (e.detail.value == false) {
+        service_ps_bp: 0
+      } else {
+        service_ps_bp: 1
+      }
+      this.setData({
+        service_ps_bp: service_ps_bp
+      })
+    },
+    //需要融资股份(FA)服务
+    switchChange2: function (e) {
+      let service_fa = e.detail.value;
+      if (e.detail.value == false) {
+        service_fa: 0
+      } else {
+        service_fa: 1
+      }
+      this.setData({
+        service_fa: service_fa
+      })
+    },
+    //是否需要云投行服务
+    switchChange3: function (e) {
+      let service_yun = e.detail.value;
+      if (e.detail.value == false) {
+        service_yun: 0
+      } else {
+        service_yun: 1
+      }
+      this.setData({
+        service_yun: service_yun
+      })
+    },
     //上传BP
     upLoad: function () {
         var that = this;
@@ -287,7 +335,12 @@ Page({
             }
         })
     },
-
+    //私密性设置
+    initPrivacy: function () {
+      wx.navigateTo({
+        url: '/pages/myProject/initPrivacy/initPrivacy',
+      })
+    },
     //点击发布
     public: function () {
 
