@@ -467,7 +467,6 @@ App({
   loadMore(that, request, str, dataSum) {
     var user_id = wx.getStorageSync("user_id");
     if (that.data.requestCheck) {
-
       if (that.data.page_end == false) {
         wx.showToast({
           title: 'loading...',

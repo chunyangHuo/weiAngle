@@ -717,9 +717,9 @@ Page({
     },
     //私密设置
     initPrivacy:function(){
-      console.log(222)
+      let project = this.data.id;
       wx.navigateTo({
-        url: '/pages/myProject/initPrivacy/initPrivacy',
+        url: '/pages/myProject/initPrivacy/initPrivacy?project=' + project,
       })
     },
     //约谈
