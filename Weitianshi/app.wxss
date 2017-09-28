@@ -1,6 +1,6 @@
 /**app.wxss**/
 @import "weui.wxss";
-@import '/utils/myContacts.wxss';
+@import '/utils/myContactsCard.wxss';
 
 scroll-view {
   height: 100%;
@@ -444,6 +444,7 @@ textarea {
 }
 
 /*---------------------------------提示按钮---------------------------------------*/
+
 .t-accreditation {
   background: #fff1e8;
   height: 88rpx;
@@ -486,10 +487,12 @@ textarea {
   width: 750rpx;
   height: 280rpx;
 }
-.t-btnBox{
-  position:absolute;
-  top:196rpx;
+
+.t-btnBox {
+  position: absolute;
+  top: 196rpx;
 }
+
 .t-faBtn, .t-investorBtn, .t-startupBtn {
   background: #009eff;
   border-radius: 4rpx;
@@ -515,6 +518,7 @@ textarea {
 }
 
 /*-------------------------------------筛选和搜索框--------------------------------------*/
+
 .screen {
   background: #fff;
   width: 750rpx;
@@ -523,7 +527,7 @@ textarea {
   color: #666;
   line-height: 80rpx;
   text-align: center;
-  z-index:999;
+  z-index: 999;
 }
 
 .withAnimate {
@@ -621,7 +625,9 @@ textarea {
 .search_icon {
   padding: 10rpx 30rpx;
 }
+
 /*---------------------------------模态框-----------------------------------*/
+
 .t-modal {
   position: absolute;
   left: 0;
@@ -634,6 +640,7 @@ textarea {
 }
 
 /*---------------------------------项目卡片------------------------------------*/
+
 .t-outBox {
   margin: 0 32rpx 0 32rpx;
   width: auto;
@@ -840,17 +847,17 @@ textarea {
 }
 
 .t-btnToAccreditation {
+  border: 1rpx solid #40587a;
+  border-radius: 2px;
+  width: 156rpx;
+  height: 50rpx;
   font-size: 24rpx;
-  color: #fff;
-  line-height: 52rpx;
+  color: #40587a;
+  line-height: 50rpx;
   text-align: center;
-  background: #40587a;
-  border-radius: 4rpx;
-  width: 136rpx;
-  height: 52rpx;
   margin-top: 18rpx;
   position: absolute;
-  right: 32rpx;
+  right: 224rpx;
 }
 
 .t-highBox {
@@ -894,7 +901,6 @@ textarea {
   padding-right: 28rpx;
 }
 
-
 .t-time {
   font-size: 20rpx;
   color: #999;
@@ -925,6 +931,7 @@ textarea {
 .t-noLight {
   color: #999;
 }
+
 .t-applyMyProject {
   padding: 32rpx;
   background: white;
@@ -1078,7 +1085,7 @@ textarea {
   position: absolute;
   right: 32rpx;
   top: 32rpx;
-  color:#40587a;
+  color: #40587a;
 }
 
 .t-redPoint {
@@ -1155,27 +1162,27 @@ textarea {
 }
 
 /*---------------------------------卡片底部--推送项目和加人脉----------------------------------- */
-.t-cardBottom{
+
+.t-cardBottom {
   border-top: 2rpx solid #e6e6e6;
   padding-top: 30rpx;
-  padding-bottom:30rpx;
+  padding-bottom: 30rpx;
   margin: 0 30rpx 22rpx 30rpx;
-  font-size:28rpx;
-  color:#40587a;
+  font-size: 28rpx;
+  color: #40587a;
   background: white;
 }
 
-.t-cardBottomItem{
+.t-cardBottomItem {
   width: 50%;
   text-align: center;
   vertical-align: middle;
   justify-content: center;
 }
 
-.t-itemPic{
+.t-itemPic {
   width: 28rpx;
   height: 28rpx;
   padding-top: 5rpx;
   padding-right: 16rpx;
 }
-

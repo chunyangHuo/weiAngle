@@ -878,7 +878,7 @@
     <view class="t-accreditation flex">
       <view>{{text}}</view>
       <view class="t-btnToAccreditation" bindtap="toCreateProject">创建项目</view>
-      <view class="t-goPc">电脑上创建</view>
+      <view class="t-goPc" bindtap='createProjectPc'>电脑上创建</view>
     </view>
   </view>
 </template>

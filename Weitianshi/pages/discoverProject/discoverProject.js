@@ -2,6 +2,7 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as Search from '../../utils/search'
+import * as CreateProject from '../../utils/createProjectBottom'
 Page({
   data: {
     //选项卡
@@ -178,35 +179,6 @@ Page({
       path: '/pages/discoverProject/discoverProject'
     }
   },
-  // 跳转创建项目页面
-  toCreateProject: function () {
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            wx.navigateTo({
-              url: '/pages/myProject/publishProject/publishProject'
-            })
-          } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
-          }
-        } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
-        }
-      },
-    });
-  },
   // 申请查看
   matchApply(e) {
     let that = this;
@@ -218,6 +190,7 @@ Page({
       url: '/pages/contactsActivty/activtyDetail/activtyDetail'
     })
   },
+  // --------------------------筛选搜索--------------------------------------------------
   // 下拉框
   move(e) {
     let that = this;
@@ -234,8 +207,8 @@ Page({
     Search.reset(that)
   },
   // 筛选全部重置
-  allReset(){
-    let that=this;
+  allReset() {
+    let that = this;
     Search.allReset(that)
   },
   // 筛选确定
@@ -244,9 +217,9 @@ Page({
     let searchData = Search.searchCertain(that);
     let current = this.data.currentTab;
     let SearchInit = this.data.SearchInit;
-    SearchInit.searchData=searchData;
+    SearchInit.searchData = searchData;
     this.setData({
-      searchInit:SearchInit
+      searchInit: SearchInit
     })
     if (current == 0) {
       console.log('筛选精选', searchData)
@@ -271,5 +244,14 @@ Page({
   searchSth() {
     let that = this;
     Search.searchSth(that)
-  }
+  },
+
+  //----------------------创建项目引导------------------------------------------------ 
+  // 跳转创建项目页面
+  toCreateProject: function () {
+    CreateProject.toCreateProject();
+  },
+  createProjectPc(){
+    CreateProject.createProjectPc();
+  }, 
 })
