@@ -19,13 +19,13 @@ Page({
     console_tips: "",
     loading: '0',
     pro_goodness: "",
+    modalBox: 0,
     industryCard: {
       text: "项目领域*",
       url: "/pages/form/industry/industry?current=0",
       css: "",
       value: ["选择领域"],
-      id: [],
-      modalBox: 0
+      id: []
     }
   },
   onLoad: function (options) {
@@ -88,7 +88,14 @@ Page({
   //页面显示
   onShow: function () {
     var that = this;
-
+    var user_id = wx.getStorageSync('user_id');
+    app.identity(user_id, res => {
+      console.log(res)
+      let group_id = res.data.group.group_id;
+      that.setData({
+        group_id: group_id
+      })
+    })
     //填入所属领域,项目介绍,所在地区
     var that = this;
     // 项目介绍
@@ -106,7 +113,6 @@ Page({
     var industryCard = this.data.industryCard;
     var industryCurrent0 = wx.getStorageSync("industryCurrent0");
     app.dealTagsData(that, industryCurrent0, industryCard, "industry_name", "industry_id")
-
     that.setData({
       industryCard: industryCard,
       describe: describe,
@@ -144,6 +150,14 @@ Page({
       describe: e.detail.value
     })
   },
+  //投后股份
+  projectFinance:function(e){
+    let pro_finance_stock_after = e.detail.value;
+    let that = this;
+    that.setData({
+      pro_finance_stock_after: pro_finance_stock_after
+    })
+  },
   //项目亮点
   slectInput: function (e) {
     var that = this;
@@ -174,7 +188,7 @@ Page({
       expect_index: e.detail.value,
       console_expect: this.data.expect[this.data.expect_index].scale_id,
     });
-  },    
+  },
   //关闭模态框
   closeModal: function () {
     this.setData({
@@ -241,12 +255,12 @@ Page({
     })
   },
   //需要Bp美化
-  switchChange1:function(e){
+  switchChange1: function (e) {
     console.log(e.detail.value)
     let service_ps_bp = e.detail.value;
-    if (e.detail.value == false){
-      service_ps_bp : 0
-    }else{
+    if (e.detail.value == false) {
+      service_ps_bp: 0
+    } else {
       service_ps_bp: 1
     }
     this.setData({
@@ -254,7 +268,7 @@ Page({
     })
   },
   //需要融资股份(FA)服务
-  switchChange2:function(e){
+  switchChange2: function (e) {
     let service_fa = e.detail.value;
     if (e.detail.value == false) {
       service_fa: 0
@@ -266,7 +280,7 @@ Page({
     })
   },
   //是否需要云投行服务
-  switchChange3:function(e){
+  switchChange3: function (e) {
     let service_yun = e.detail.value;
     if (e.detail.value == false) {
       service_yun: 0
@@ -278,10 +292,10 @@ Page({
     })
   },
   //私密性设置
-  initPrivacy:function(){
-     wx.navigateTo({
-       url: '/pages/myProject/initPrivacy/initPrivacy',
-     })
+  initPrivacy: function () {
+    wx.navigateTo({
+      url: '/pages/myProject/initPrivacy/initPrivacy',
+    })
   },
   //点击发布
   public: function () {
@@ -290,6 +304,7 @@ Page({
     var theData = that.data;
     let pro_company_name = this.data.companyName;
     let pro_name = this.data.projectName;
+    let pro_finance_stock_after = this.data.pro_finance_stock_after;
     var describe = this.data.describe;
     var pro_goodness = this.data.pro_goodness;
     var industryValue = this.data.industryCard.value;
@@ -299,11 +314,10 @@ Page({
     var console_stage = this.data.stage[this.data.stage_index].stage_id;
     var console_expect = this.data.expect[this.data.expect_index].scale_id;
     var tips = this.data.tips_index;
-    var user_id = app.globalData.user_id;
+    var user_id = wx.getStorageSync('user_id');
     let service_ps_bp = this.data.service_ps_bp;
     let service_fa = this.data.service_fa;
     let service_yun = this.data.service_yun;
-    let pro_finance_stock_after = this.data.pro_finance_stock_after;
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
       wx.request({
         url: url_common + '/api/project/createProject',
@@ -319,12 +333,14 @@ Page({
           pro_goodness: pro_goodness,
           pro_company_name: pro_company_name,
           pro_name: pro_name,
+          pro_finance_stock_after: pro_finance_stock_after,
           service_ps_bp: service_ps_bp,
           service_fa: service_fa,
-          service_yun:service_yun
+          service_yun: service_yun
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           if (res.data.status_code == 2000000) {
             //数据清空
             wx.setStorageSync('project_id', res.data.project_id);

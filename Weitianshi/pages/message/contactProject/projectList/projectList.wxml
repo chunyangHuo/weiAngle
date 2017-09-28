@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 
-<scroll-view style="height:1334rpx;" scroll-y="true" bindscrolltolower='loadMore'>
+<scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
   <view class="t-outBox">
     <view class="t-insideBox t-project-detailm">
       <view data-project="{{projectMessage.project_id}}" catchtap="projectDetail">
@@ -91,8 +91,9 @@
       </view>
       <view id="time">{{item.created_at}}</view>
     </block>
+    <template is="hasNothing"  data="{{emptyNumber:metList}}">></template>
   </view>
 </scroll-view>
-<template is="hasNothing"></template>
+
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

@@ -320,3 +320,25 @@
 .afterApply{
 color:#cccccc;
 }
+
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+
+.hasNothing {
+  color: #666;
+}
+.empty {
+  width: 212rpx;
+  height: 256rpx;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  padding-top: 228rpx;
+  justify-content: center;
+  padding-left: 264rpx;
+  padding-bottom:354rpx;
+}
