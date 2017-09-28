@@ -45,7 +45,8 @@ Page({
     that.setData({
       currentTab: e.target.dataset.current
     })
-    app.initPage(that)
+    app.initPage(that);
+    this.allReset();
     if (this.data.currentTab === current) {
       this.tabChange(current)
     }
@@ -54,7 +55,8 @@ Page({
   bindChange: function (e) {
     var that = this;
     var current = e.detail.current;
-    app.initPage(that)
+    app.initPage(that);
+    this.allReset();
     that.setData({ currentTab: e.detail.current });
     this.tabChange(current);
   },
@@ -230,6 +232,11 @@ Page({
   reset() {
     let that = this;
     Search.reset(that)
+  },
+  // 筛选全部重置
+  allReset(){
+    let that=this;
+    Search.allReset(that)
   },
   // 筛选确定
   searchCertain() {

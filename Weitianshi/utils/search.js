@@ -180,6 +180,12 @@ function reset(that) {
       }
   }
 }
+function allReset(that){
+  this.itemReset('industry', that);
+  this.itemReset('stage', that);
+  this.itemReset('scale', that);
+  this.itemReset('hotCity', that);
+}
 function itemReset(str, that) {
   let SearchInit = that.data.SearchInit;
   let itemStr = str;
