@@ -122,7 +122,7 @@ page {
 }
 
 .QR_box {
-  padding-top: 80rpx;
+  padding-top: 40rpx;
   padding-bottom: 108rpx;
 }
 
@@ -139,7 +139,7 @@ page {
 .QR_pic {
   width: 288rpx;
   height: 288rpx;
-  margin: 84rpx 230rpx 20rpx 232rpx;
+  margin: 44rpx 230rpx 20rpx 232rpx;
 }
 
 .QR_point {
