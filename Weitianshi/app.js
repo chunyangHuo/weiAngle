@@ -304,8 +304,9 @@ App({
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
     let json = {
-      title: '投资名片—智能精准匹配投融资双方的神器',
+      title: '[换名片] 微天使-投资名片功能-智能精准匹配投融资双方资源',
       path: path,
+      imageUrl:"http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_2.jpg",
       //分享成功后的回调
       success: function (res) {
         console.log("sharePage分享成功")
