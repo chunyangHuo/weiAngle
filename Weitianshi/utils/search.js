@@ -284,10 +284,10 @@ function modal(that) {
   })
 }
 //搜索
-function searchSth(that) {
+function searchSth(that,str) {
   let user_id = that.data.user_id;
   wx.navigateTo({
-    url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
+    url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id + '&&entrance=' + str,
   })
 }
 
