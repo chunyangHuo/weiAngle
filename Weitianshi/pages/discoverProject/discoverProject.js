@@ -10,7 +10,7 @@ Page({
     currentTab: 0,
     slectProject: '',
     //筛选搜索
-    SearchInit:Search.data,
+    SearchInit: Search.data,
     //banner
     bannerIndex: 0,
     imgUrls: [
@@ -74,7 +74,8 @@ Page({
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
-        user_id: this.data.user_id
+        user_id: this.data.user_id,
+        filter: this.data.SearchInit.searchData
       },
       method: 'POST',
       success: function (res) {
@@ -96,7 +97,8 @@ Page({
     app.httpPost({
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
-        user_id: this.data.user_id
+        user_id: this.data.user_id,
+        filter: this.data.SearchInit.searchData
       }
     }).then(res => {
       wx.hideLoading()
@@ -119,20 +121,26 @@ Page({
         page: this.data.currentPage,
       }
     }
+    wx.showLoading({
+      title: 'loading',
+    })
     //调用通用加载函数
     app.loadMore(that, request, "slectProject", that.data.slectProject)
   },
-  financingNeed(){
-    let that=this;
-    let user_id=this.data.user_id;
-    let currentPage=this.data.currentPage;
-    let request={
+  financingNeed() {
+    let that = this;
+    let user_id = this.data.user_id;
+    let currentPage = this.data.currentPage;
+    let request = {
       url: url_common + '/api/project/getMarketProjectList',
       data: {
         user_id: this.data.user_id,
-        page:this.data.currentPage
+        page: this.data.currentPage
       }
     }
+    wx.showLoading({
+      title: 'loading',
+    })
     app.loadMore(that, request, "financingNeed", that.data.financingNeed)
   },
   // 项目详情
@@ -198,9 +206,9 @@ Page({
     });
   },
   // 申请查看
-  matchApply(e){
-    let that=this;
-    app.applyProject(e, that,'slectProject');
+  matchApply(e) {
+    let that = this;
+    app.applyProject(e, that, 'slectProject');
   },
   // 人脉大赛
   competitor: function () {
@@ -228,13 +236,24 @@ Page({
     let that = this;
     let searchData = Search.searchCertain(that);
     let current = this.data.currentTab;
-    if(current==0){
-      console.log('筛选精选',searchData)
-    }else if(current==1){
-      console.log('筛选最新',searchData)
-    }else{
+    let SearchInit = this.data.SearchInit;
+    SearchInit.searchData=searchData;
+    this.setData({
+      searchInit:SearchInit
+    })
+    if (current == 0) {
+      console.log('筛选精选', searchData)
+      this.selectProject();
+    } else if (current == 1) {
+      console.log('筛选最新', searchData)
+      this.newestProject();
+    } else {
       console.log('searchCertain()出错了')
     }
+    SearchInit.currentIndex = 5;
+    this.setData({
+      SearchInit: SearchInit
+    })
   },
   // 点击modal层
   modal() {

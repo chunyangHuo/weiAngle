@@ -951,7 +951,7 @@
 
 <!--投资人卡片  -->
 <template name="InvestorCard">
-  <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="personDetail">
+  <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
     <view class="t-applyMyProject t-contacts-detailm">
       <view class="t-introduceBox flex">
         <view class="t-userName">{{item.user_name}}</view>

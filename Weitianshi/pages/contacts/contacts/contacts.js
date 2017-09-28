@@ -11,7 +11,6 @@ Page({
 
   },
   onShow: function () {
-
     var that = this;
     app.initPage(that);
     var user_id = this.data.user_id;
@@ -193,7 +192,7 @@ Page({
     //调用通用加载函数
     app.loadMore(that, request, "contacts", that.data.contacts)
   },
-  //r如何拓展人脉
+  //如何拓展人脉
   howTo: function () {
     wx.navigateTo({
       url: '/pages/contactsActivty/expandContacts/expandContacts'

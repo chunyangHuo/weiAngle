@@ -17,10 +17,10 @@ Page({
     let user_id = this.data.user_id;
     //初始化数据
     app.initPage(that)
-    // wx.showLoading({
-    //   title: 'loading',
-    //   mask: true,
-    // })
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     //消除人脉筛选缓存(非contacts都需要)
     app.contactsCacheClear();
     //请求精选项目数据
@@ -68,7 +68,6 @@ Page({
   investorList() {
     let that = this;
     wx.request({
-      // url: url + '/api/resource/getMatchResource',
       url: url_common + '/api/resource/getMatchResourceList',
       data: {
         user_id: this.data.user_id
@@ -76,43 +75,18 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          wx.setStorageSync("resource_find", res.data.data.res_find);
-          wx.setStorageSync("resource_give", res.data.data.res_give);
-          wx.setStorageSync("resource_desc", res.data.data.res_desc);
+          console.log('资源匹配项目',res)
+          wx.hideLoading();
           var res_match = res.data.data.match_list;
-          var res_find = res.data.data.res_find;
-          var res_find_arry = [];
-          var res_id = res.data.data.res_id;
-          let count3 = res.data.data.match_count;
-          if (res_find != '') {
-            for (var i = 0; i < res_find.length; i++) {
-              res_find_arry.push(res_find[i].resource_name)
-            }
-          }
-          res_find = res_find_arry;
           that.setData({
             res_match: res_match, //资源需求匹配出来的项目
-            res_find: res_find,//我正在寻求的资源
-            hasPublic2: 1,//是否发布过资源需求
-            res_id: res_id,//用过请求资源需求匹配项目的分页接口
-            resource_page: 1,//初始化分页数
-            resource_page_end: false,//初始化是否还有数据
-            count3: count3
-          })
-        } else {
-          that.setData({
-            hasPublic2: 0,
-            count3: 0
           })
         }
-      },
-      fail: function (res) { }
+      }
     });
   },
   //FA列表信息
-  faList() {
-
-  },
+  faList() {},
   //我的人脉列表信息
   myList() {
     let user_id = this.data.user_id;
@@ -172,34 +146,61 @@ Page({
       })
     }
   },
+  // 用户详情
+  userDetail: function (e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+    })
+  },
   // 上拉加载
   loadMore: function () {
     //请求上拉加载接口所需要的参数
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
-    let request = {
-      url: url_common + '/api/project/getSelectedProjectList',
-      data: {
-        user_id: user_id,
-        page: this.data.currentPage,
-      }
+    let currentTab=this.data.currentTab;
+    switch (currentTab){
+      case 0:
+        {
+          let request = {
+            url: url_common + '/api/resource/getMatchResourceList',
+            data: {
+              user_id: user_id,
+              page: this.data.currentPage,
+            }
+          }
+          //调用通用加载函数
+          app.loadMore(that, request, "res_match", that.data.res_match)
+        }
+        break;
+      case 1:
+        {
+          let request = {
+            url: url_common + '/api/resource/getMatchResourceList',
+            data: {
+              user_id: user_id,
+              page: this.data.currentPage,
+            }
+          }
+          //调用通用加载函数
+          app.loadMore(that, request, "res_match", that.data.res_match)
+        }
+        break;
+      case 2:
+        {
+          let request = {
+            url: url_common + '/api/project/getMarketProjectList',
+            data: {
+              user_id:user_id,
+              page: this.data.currentPage
+            }
+          }
+          app.loadMore(that, request, "financingNeed", that.data.financingNeed)
+        }
+        break;    
     }
-    //调用通用加载函数
-    app.loadMore(that, request, "slectProject", that.data.slectProject)
-  },
-  financingNeed() {
-    let that = this;
-    let user_id = this.data.user_id;
-    let currentPage = this.data.currentPage;
-    let request = {
-      url: url_common + '/api/project/getMarketProjectList',
-      data: {
-        user_id: this.data.user_id,
-        page: this.data.currentPage
-      }
-    }
-    app.loadMore(that, request, "financingNeed", that.data.financingNeed)
+   
   },
   // 分享当前页面
   onShareAppMessage: function () {
@@ -213,7 +214,7 @@ Page({
     let that = this;
     app.applyProject(e, that, 'slectProject');
   },
-  // 项目详情
+  // 项目详情 
   projectDetail: function (e) {
     var project_id = e.currentTarget.dataset.project;
     // 判斷項目是不是自己的

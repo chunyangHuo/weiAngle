@@ -489,17 +489,20 @@ App({
             for (var i = 0; i < newPage.length; i++) {
               dataSum.push(newPage[i])
             }
-            console.log(dataSum)
             that.setData({
               [str]: dataSum,
               page_end: page_end,
               requestCheck: true
             })
 
+          },
+          complete(){
+            wx.hideLoading();
           }
         })
       } else {
-        this.errorHide(that, "没有更多了", 3000)
+        this.errorHide(that, "没有更多了", 3000);
+        wx.hideLoading();
         that.setData({
           requestCheck: true
         });

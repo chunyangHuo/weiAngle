@@ -27,7 +27,7 @@
   <!--FA(融资顾问) -->
   <swiper-item data-current='1'>
     <!--FA(融资顾问)展示  -->
-    <scroll-view scroll-y="true" bindscrolltolower="financingNeed">
+    <scroll-view scroll-y="true" bindscrolltolower="loadMore">
       <block wx:for="{{res_match}}" wx:key="{{res_match}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
