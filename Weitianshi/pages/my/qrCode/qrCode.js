@@ -6,15 +6,15 @@ Page({
   data: {
     dataUrl: ""
   },
-  onLoad:function(options){
- let QR_id = this.options.user_id;
- let type = this.options.type;
- if(type){
-  this.setData({
-    QR_id: QR_id,
-    type: type
-  })
- }
+  onLoad: function (options) {
+    let QR_id = this.options.user_id;
+    let type = this.options.type;
+    if (type) {
+      this.setData({
+        QR_id: QR_id,
+        type: type
+      })
+    }
   },
   onShow: function () {
     var that = this;
@@ -24,11 +24,11 @@ Page({
       console.log(QR_id)
     } else {
       var QR_id = wx.getStorageSync('QR_id');//点击二维码页面的用户id
-     }
+    }
 
     //登录态维护
     app.loginPage(function (user_id) {
-        var view_id = QR_id;
+      var view_id = QR_id;
       wx.setStorageSync('user_id', user_id);
       that.setData({
         user_id: user_id
@@ -113,9 +113,10 @@ Page({
 
   //分享页面
   onShareAppMessage: function () {
+    var name = this.data.user.user_real_name;
     var user_id = wx.getStorageSync('QR_id');
     var share_id = wx.getStorageSync('user_id') || 0;
-    return app.sharePage(user_id, share_id)
+    return app.sharePage(user_id, share_id, name)
   },
   //取消分享
   cancelShare: function () {
