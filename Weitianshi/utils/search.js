@@ -300,6 +300,7 @@ export {
   tagsCheck,
   itemCheck,
   reset,
+  allReset,
   itemReset,
   searchCertain,
   modal,
