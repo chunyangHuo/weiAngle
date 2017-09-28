@@ -287,7 +287,7 @@ function modal(that) {
 function searchSth(that,str) {
   let user_id = that.data.user_id;
   wx.navigateTo({
-    url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id + '&&entrance=' + str,
+    url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
   })
 }
 
