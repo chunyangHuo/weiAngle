@@ -32,9 +32,9 @@ Page({
 
     onShareAppMessage: function () {
         return {
-            title: '100万大礼包助攻2017首届双创机构人气品牌百强评选，等你来战!',
+            title: '100万大礼包助攻2017首届中国双创机构人气品牌百强评选，等你来战!',
             path: '/pages/contactsActivty/activtyDetail/activtyDetail',
-            imageUrl:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_1.jpg",
+            imageUrl:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
             success: function (res) {
                console.log('分享成功',res)
             },

@@ -334,18 +334,18 @@ Page({
     //type 1:个人名片分享; 2:战队成员页面分享
     if (type == 1 || !type) {
       return {
-        title: name + '正在参与2017首届双创机构人气品牌百强评选，加我人脉,助我夺冠!',
+        title: name + '正在参与2017首届中国双创机构人气品牌百强评选，加我人脉,助我夺冠!',
         path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_1.jpg",
+        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
         success: function (res) {
           console.log('分享成功', res)
         },
       }
     } else if (type == 2) {
       return {
-        title: name + '正在参与2017首届双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
+        title: name + '正在参与2017首届中国双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
         path: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + id + '&&team_name=' + name,
-        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_1.jpg",
+        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
         success: function (res) {
           console.log('分享成功', res)
         },

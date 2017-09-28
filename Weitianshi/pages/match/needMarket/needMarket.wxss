@@ -68,9 +68,9 @@ border-radius: 100rpx;*/
 .swiper-tab-list {
   font-size: 24rpx;
   display: inline-block;
-  width: 96rpx;
+  width: 33%;
   color: #ccc;
-  margin: 24rpx 77rpx;
+  margin: 24rpx 0;
   margin-bottom: 0;
 }
 
