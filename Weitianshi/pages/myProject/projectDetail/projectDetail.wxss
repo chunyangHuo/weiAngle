@@ -259,6 +259,11 @@ scroll-view {
   text-align: center;
   border-right: 1rpx solid #ccc;
   position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.sceenPerson:last-child{
+  border:none;
 }
 
 .screenPersonColor {
@@ -289,10 +294,10 @@ scroll-view {
   text-align: center;
 }
 
-.viewTimeAll {
+/* .viewTimeAll {
   text-align: center;
   margin-left: 26rpx;
-}
+} */
 
 /*选项卡*/
 
@@ -1566,38 +1571,43 @@ scroll-view {
 .btnPic {
   height: 28rpx;
   width: 28rpx;
-  margin-right: 10rpx;
-  margin-top: 4rpx;
+  margin-right: 16rpx;
+  margin-top: 30rpx;
 }
 
 .btn1 {
-  margin-left: 82rpx;
-  padding-right: 76rpx;
-  border-right: 1rpx solid #fff;
+  margin-left: 36rpx;
+  width: 33.5%;
 }
 
 .btn2 {
-  margin-left: 102rpx;
+  width: 30.5%;
+  padding-left: 45rpx;
 }
 
 #productBox {
   background-color: #fff;
   border-radius: 4rpx;
   width: 91%;
-  height: 176rpx;
   padding: 30rpx;
   position: relative;
+  margin-bottom: 16rpx;
 }
 
-.productTitle {
+#productBox .productTitle {
   font-size: 28rpx;
   color: #333;
   line-height: 30rpx;
   text-align: left;
+  width: 225px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-#productBox .productContent{
-  margin-top:44rpx;
-  text-align: left;   
+
+#productBox .productContent {
+  margin-top: 44rpx;
+  text-align: left;
 }
 
 #productBox .projectTips {
@@ -1611,4 +1621,61 @@ scroll-view {
 .productContent {
   font-size: 24rpx;
   color: #666;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/*删除项目  */
+
+.btn0 {
+  background: #fff;
+  width: 188rpx;
+  padding: 22rpx 0;
+}
+
+.deleteProject {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.flexBox {
+  background: #40587a;
+  height: 88rpx;
+}
+
+.collectBox {
+  background: #fff;
+  /* width: 188rpx; */
+  width: 25%;
+  height: 88rpx;
+  text-align: center;
+  line-height: 108rpx;
+}
+
+.collectPic {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.contactProject, .businessBook {
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: center;
+  background: #40587a;
+  margin: 30rpx 0;
+  border-right: 1rpx solid #e6e6e6;
+}
+
+.contactProject {
+  padding-right: 30rpx;
+}
+
+.businessBook {
+  border: none;
 }

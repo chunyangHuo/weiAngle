@@ -502,7 +502,8 @@ Page({
       url: url_common + '/api/project/met',
       data: {
         user_id: user_id,
-        project_id: project_id
+        project_id: project_id,
+        remark: message
       },
       method: 'POST',
       success: function (res) {

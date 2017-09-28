@@ -151,6 +151,14 @@ page {
   text-align: right;
   margin-right: 12rpx;
 }
+.projectContentInput{
+  font-size: 28rpx;
+  color: #ccc;
+  /* line-height: 28rpx; */
+  text-align: right;
+  margin-right: 12rpx;
+  margin-top:32rpx;
+}
 
 .arrowStyle {
   margin-top: 47rpx;
@@ -289,4 +297,7 @@ margin-top: 72rpx;
   height:250rpx;
   width:276rpx;
   margin: 96rpx 0 62rpx 118rpx;
+}
+.newBox{
+  color:#333
 }

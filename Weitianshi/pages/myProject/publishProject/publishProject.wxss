@@ -313,3 +313,14 @@ margin-top: 72rpx;
   width:276rpx;
   margin: 96rpx 0 62rpx 118rpx;
 }
+.projectContentInput{
+  font-size: 28rpx;
+  color: #ccc;
+  /* line-height: 28rpx; */
+  text-align: right;
+  margin-right: 12rpx;
+  margin-top:32rpx;
+}
+.newBox{
+  color:#333
+}

@@ -38,7 +38,7 @@ Page({
         this.setData({
             index: options.index,
             id: options.id,
-            currentTab: options.currentTab,
+            // currentTab: options.currentTab,
             shareType:options.type
         })
     },
@@ -108,6 +108,7 @@ Page({
                             },
                             method: 'POST',
                             success: function (res) {
+                              let brandList = res.data.data.brand;
                                 var project = res.data.data;
                                 var user = res.data.user;
                                 var count = project.count;
@@ -126,7 +127,9 @@ Page({
                                     user: user,
                                     firstName: firstName,
                                     pro_company_name: pro_company_name,
-                                    count: count
+                                    count: count,
+                                    pro_goodness: pro_goodness,
+                                    brandList: brandList
                                 });
                                 // 项目介绍的标签
                                 var pro_industry = project.pro_industry;
@@ -369,20 +372,21 @@ Page({
                                                 },
                                                 method: 'POST',
                                                 success: function (res) {
-                                                    let competeList = res.data.data;
-                                                    competeList.forEach((x, index) => {
-                                                        competeList[index].source = x.source;
-                                                        competeList[index].competing_goods_name = x.competing_goods_name;
-                                                        competeList[index].competing_goods_label = x.competing_goods_label;
-                                                        competeList[index].competing_goods_logo = x.competing_goods_logo;
-                                                        competeList[index].competing_goods_Financing_rounds = x.competing_goods_Financing_rounds;
-                                                        competeList[index].competing_goods_Financing_time = app.changeTimeStyle(x.competing_goods_Financing_time);
-                                                        competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
-                                                        competeList[index].competing_goods_industry = x.competing_goods_industry;
-                                                    })
-                                                    that.setData({
-                                                        competeList: competeList
-                                                    })
+                                                  console.log(res)
+                                                    // let competeList = res.data.data;
+                                                    // competeList.forEach((x, index) => {
+                                                    //     competeList[index].source = x.source;
+                                                    //     competeList[index].competing_goods_name = x.competing_goods_name;
+                                                    //     competeList[index].competing_goods_label = x.competing_goods_label;
+                                                    //     competeList[index].competing_goods_logo = x.competing_goods_logo;
+                                                    //     competeList[index].competing_goods_Financing_rounds = x.competing_goods_Financing_rounds;
+                                                    //     competeList[index].competing_goods_Financing_time = app.changeTimeStyle(x.competing_goods_Financing_time);
+                                                    //     competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
+                                                    //     competeList[index].competing_goods_industry = x.competing_goods_industry;
+                                                    // })
+                                                    // that.setData({
+                                                    //     competeList: competeList
+                                                    // })
                                                 }
                                             })
                                         }

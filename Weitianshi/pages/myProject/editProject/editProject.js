@@ -79,8 +79,12 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
                 var theData = res.data.data;
                 var describe = theData.pro_intro;
+                let pro_company_name = theData.pro_company_name;
+                let pro_name = theData.pro_name;
+                let pro_finance_stock_after = theData.pro_finance_stock_after;
                 var industry = theData.pro_industry;
                 var industryValue = [];
                 var industryId = [];
@@ -121,7 +125,10 @@ Page({
                     belongArea: belongArea,
                     provinceNum: provinceNum,
                     cityNum: cityNum,
-                    pro_goodness: pro_goodness
+                    pro_goodness: pro_goodness,
+                    pro_company_name: pro_company_name,
+                    pro_name: pro_name,
+                    pro_finance_stock_after: pro_finance_stock_after
                 })
             },
             fail: function (res) {
@@ -133,6 +140,15 @@ Page({
     },
     onShow: function () {
         var that = this;
+        //身份信息
+        var user_id = wx.getStorageSync('user_id');
+        app.identity(user_id, res => {
+          console.log(res)
+          let group_id = res.data.group.group_id;
+          that.setData({
+            group_id: group_id
+          })
+        })
         if (wx.getStorageSync("m_belongArea") != '') {
             var belongArea = wx.getStorageSync('m_belongArea');
         }
@@ -238,6 +254,22 @@ Page({
         modalBox:1
       })
     },
+    //项目名称
+    projectName: function (e) {
+      let pro_name = e.detail.value;
+      let that = this;
+      that.setData({
+        pro_name: pro_name
+      })
+    },
+    //公司名称
+    companyName: function (e) {
+      let pro_company_name = e.detail.value;
+      let that = this;
+      that.setData({
+        pro_company_name: pro_company_name
+      })
+    },
     //需要Bp美化
     switchChange1: function (e) {
       let service_ps_bp = e.detail.value;
@@ -248,6 +280,14 @@ Page({
       }
       this.setData({
         service_ps_bp: service_ps_bp
+      })
+    },
+    //投后股份
+    projectFinance:function(e){
+      let pro_finance_stock_after = e.detail.value;
+      let that = this;
+      that.setData({
+        pro_finance_stock_after: pro_finance_stock_after
       })
     },
     //需要融资股份(FA)服务
@@ -343,8 +383,10 @@ Page({
     },
     //点击发布
     public: function () {
-
         var that = this;
+        let pro_company_name = this.data.pro_company_name;
+        let pro_name = this.data.pro_name;
+        let pro_finance_stock_after = this.data.pro_finance_stock_after;
         var describe = this.data.describe;
         var industryValue = this.data.industryCard.value;
         var industryId = this.data.industryCard.id;
@@ -392,6 +434,9 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         var pro_id = that.data.pro_id;
         var describe = that.data.describe;
+        let pro_company_name = that.data.pro_company_name;
+        let pro_name = that.data.pro_name;
+        let pro_finance_stock_after = that.data.pro_finance_stock_after;
         var industryId = that.data.industryCard.id;
         var stageId = that.data.stageId;
         var scaleId = that.data.scaleId;
@@ -410,6 +455,8 @@ Page({
                 user_id: user_id,
                 project_id: pro_id,
                 pro_intro: describe,
+                pro_company_name: pro_company_name,
+                pro_name: pro_name,
                 industry: industryId,
                 pro_finance_stage: console_stage,
                 pro_finance_scale: console_scale,

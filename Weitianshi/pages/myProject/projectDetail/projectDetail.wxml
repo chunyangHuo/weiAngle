@@ -43,7 +43,7 @@
             </view>
           </view>
           <!-- <view class="investPerson">-</view> -->
-           <view class="flex sceenPerson" catchtap="hasMeeting">
+          <view class="flex sceenPerson" catchtap="hasMeeting">
             <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">约谈：
               <label>{{count.apply_times_all}}</label>
@@ -68,13 +68,13 @@
         <view id="projectBox">
           <view class="bigBox">
             <!--项目亮点-->
-            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+            <view class="brightPoint" wx:if="{{pro_goodness[0].goodness_desc}}">
               <view class="brightPointBox flex">
                 <image src="/img/img-star.png" class="titlePic"></image>
-                <view class="title star">项目亮点</view>
+                <view class="title star">{{pro_goodness[0].goodness_title}}</view>
               </view>
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
-                {{project.pro_goodness}}
+                {{pro_goodness[0].goodness_desc}}
               </view>
               <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label>
@@ -119,55 +119,59 @@
               </view>
             </view>
             <!--市场概况-->
-            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+            <view class="brightPoint" wx:if="{{pro_goodness[1].goodness_desc}}">
               <view class="brightPointBox flex">
                 <image src="/img/icon-shichanggaikuang@2x.png" class="titlePic"></image>
-                <view class="title star">市场概况</view>
+                <view class="title star">{{pro_goodness[1].goodness_title}}</view>
               </view>
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
-                {{project.pro_goodness}}
+                {{pro_goodness[1].goodness_desc}}
               </view>
               <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
             </view>
             <!--产品概况-->
-            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+            <view class="brightPoint" wx:if="{{pro_goodness[2].goodness_desc}}">
               <view class="brightPointBox flex">
                 <image src="/img/icon-chanpingaikuang@2x.png" class="titlePic"></image>
-                <view class="title star">产品概况</view>
+                <view class="title star">{{pro_goodness[2].goodness_title}}</view>
               </view>
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
-                {{project.pro_goodness}}
+                {{pro_goodness[2].goodness_desc}}
               </view>
               <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
             </view>
             <!--商业模式-->
-            <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+            <view class="brightPoint" wx:if="{{pro_goodness[3].goodness_desc}}">
               <view class="brightPointBox flex">
                 <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
-                <view class="title star">商业模式</view>
+                <view class="title star">{{pro_goodness[3].goodness_title}}</view>
               </view>
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
-                {{project.pro_goodness}}
+                {{pro_goodness[3].goodness_desc}}
               </view>
               <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
             </view>
             <!--产品  -->
+
             <view class="brightPoint">
               <view class="brightPointBox flex">
                 <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
                 <view class="title star">产品</view>
               </view>
-              <view id="productBox">
-                <view class="flex productInside">
-                  <view class="productTitle">微天使</view>
-                  <view class="pro_sort projectTips">App</view>
+              <block wx:for="{{brandList}}" wx:key="{{index}}">
+                <view id="productBox">
+                  <view class="flex productInside">
+                    <view class="productTitle">{{item.brand_name}}</view>
+                    <view class="pro_sort projectTips">{{item.brand_type}}</view>
+                  </view>
+                  <view class="productContent">{{item.brand_desc}}</view>
                 </view>
-                <view class="productContent">这是产品的介绍,这里是产品介绍,谁知道是什么啊</view>
-              </view>
+              </block>
             </view>
+
             <!--品牌-->
             <!--<view class="companyBrand">
               <view class="corePersonBox flex">
@@ -386,6 +390,30 @@
     <!--一键尽调页面的内容-->
     <swiper-item>
       <scroll-view scroll-y="true">
+                <view class="competitor" wx:if="{{competeList.length != 0}}">
+            <view class="boxName">相似公司</view>
+            <view>
+              <view class="competitorBox">
+                <view class="competitorBoxTop flex">
+                  <view class="competitorBoxLeft">
+                    <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
+                  </view>
+                  <view class="competitorBoxRight flex">
+                    <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
+                    <view class="competitorLocal">{{competeList[index].competing_goods_name}}</view>
+                    <view class="competitorTime">{{competeList[index].competing_goods_Financing_time}}</view>
+                    <view class="flex">
+                      <view class="competitorTime" wx:if="{{competeList[index].competing_goods_Set_up!='1970.01.01'}}">{{competeList[index].competing_goods_Set_up}}</view>
+                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
+                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
+            <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">收起</view>
+          </view>
         <view id="oneKey" wx:if="{{nothing != 0}}">
           <view class="projectDetailsBox" wx:if="{{projectDetailsList.length != 0}}">
             <view class="boxName">项目信息</view>
@@ -657,7 +685,7 @@
           <view class="competitor" wx:if="{{competeList.length != 0}}">
             <view class="boxName">相似公司</view>
             <view>
-              <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 ||competitorMore == 3}}" wx:key="{{index}}">
+              <!-- <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 ||competitorMore == 3}}" wx:key="{{index}}">
                 <view class="competitorBoxTop flex">
                   <view class="competitorBoxLeft">
                     <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
@@ -683,6 +711,23 @@
                   </view>
                   <view class="competitorBoxTimeRight">{{competeList[index].competing_goods_label}}</view>
                 </view>
+              </view> -->
+              <view class="competitorBox">
+                <view class="competitorBoxTop flex">
+                  <view class="competitorBoxLeft">
+                    <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
+                  </view>
+                  <view class="competitorBoxRight flex">
+                    <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
+                    <view class="competitorLocal">{{competeList[index].competing_goods_name}}</view>
+                    <view class="competitorTime">{{competeList[index].competing_goods_Financing_time}}</view>
+                    <view class="flex">
+                      <view class="competitorTime" wx:if="{{competeList[index].competing_goods_Set_up!='1970.01.01'}}">{{competeList[index].competing_goods_Set_up}}</view>
+                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
+                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
+                    </view>
+                  </view>
+                </view>
               </view>
             </view>
             <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
@@ -703,16 +748,21 @@
 <view class="floatBtn flex" hidden="{{currentTab==0||currentTab == 2}}">
   <button class="push" disabled="true">一键推送(近期开放)</button>
 </view>
-<view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}">
+<!-- <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}"> -->
+<view class=" flex floatBtn flexBox">
+  <view class="collectBox" bindtap="deleteProject">
+    <image src="/img/icon-shanchu@2x.png" class="collectPic"></image>
+  </view>
   <view class="flex btn1" bindtap="maintainProject">
     <image src="/img/icon-wanzhengdu@2x.png" class="btnPic"></image>
-    <view class="classname">完整度：90%</view>
+    <view class="contactProject">完整度：90%</view>
   </view>
   <view class="flex btn2" bindtap="initPrivacy">
     <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>
-    <view class="classname">私密性设置</view>
+    <view class="businessBook">私密性设置</view>
   </view>
 </view>
+
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">
   <view class="bpModal">
