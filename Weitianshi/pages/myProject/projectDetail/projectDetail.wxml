@@ -324,96 +324,70 @@
     <!--买家图谱  -->
     <swiper-item>
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
-        <!--资本对接-->
-        <view class=" resource ">
-          <view class="others ">
-            <block wx:for="{{investor2}}" wx:key="{{investor_id}}" wx:key="{{index}}">
-              <view class="investor contacts-detailm" data-id="{{item.user_id}}" bindtap="detail">
-                <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 ">
-                  <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
-                    <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
-                    <view class=" others_nopic" wx:if="{{!item.investor_logo_url}}">{{item.investor_logo_text}}</view>
-                  </view>
-                  <view class="weui-cell__bd ">
-                    <view class="flex " style="align-items: baseline; ">
-                      <view class="others_name ">{{item.investor_name}}</view>
+        <view class="buyerPage">
+          <block wx:for="{{investor2}}" wx:key="{{investor2}}">
+            <view class="resourceBox">
+              <view class="flex" id="introduce">
+                <view class="introduce">匹配度：<label class="matchWeight">{{item.match_weight}}</label></view>
+                <view class="status" wx:if="{{item.follow_status !=1}}">全网人脉</view>
+                <view class="status" wx:if="{{item.follow_status ==1}}">我的人脉</view>
+              </view>
+              <!--名片内容  -->
+              <view class="outsideBox" data-id="{{item.user_id}}"  bindtap="detail">
+                <view class="classname">
+                  <view class="applyMyProject">
+                    <view class="introduceBox flex">
+                      <view class="userName">{{item.investor_name}}</view>
+                      <view class="userPosition">{{item.investor_career}}</view>
+                      <view class="userPart flex" wx:if="{{item.authentication.length !=0}}">
+                        <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+                        <view class="userPart1">{{item.authentication[0].group_title}}</view>
+                      </view>
+                      <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
+                      <image src="{{item.investor_logo_url}}" class="userPic"></image>
+                      <view class="user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
                     </view>
-                    <view class="ohters_position" wx:if="{{item.investor_type==2}}">{{item.investor_career}}</view>
+                    <view class="userCompany">{{item.investor_company}}</view>
+                    <view class="investmentGroup flex" wx:if="{{item.industry_tag != ''}}">
+                      <view class="investmentGroupTitle">投资领域：</view>
+                      <view class="investmentGroupContent">
+                        <block wx:for="{{item.industry_tag}}" wx:key="{{item.index}}" wx:for-item='userIndustry'>
+                          <label class="{{userIndustry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.industry_tag.length-1}}">{{userIndustry.industry_name}}、</label>
+                          <label class="{{userIndustry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.industry_tag.length-1}}">{{userIndustry.industry_name}}</label>
+                        </block>
+                      </view>
+                    </view>
+                    <view class="roundGroup flex" wx:if="{{item.stage_tag != ''}}">
+                      <view class="roundGroupTitle">投资轮次：</view>
+                      <view class="roundGroupContent">
+                        <block wx:for="{{item.stage_tag}}" wx:key="{{item.index}}" wx:for-item='userStage'>
+                          <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.stage_tag.length-1}}">{{userStage.stage_name}}、</label>
+                          <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.stage_tag.length-1}}">{{userStage.stage_name}}</label>
+                        </block>
+                      </view>
+                    </view>
                   </view>
+                  <view class="aLine"></view>
                 </view>
-                <view class="offer_search " style="border-radius:0 0 4px 4px ">
-
-                  <!--标签1-->
-                  <view class="sort offer ">
-                    <view class="sort_item ">投资领域:</view>
-                    <block wx:for="{{item.industry_tag}}" wx:key="{{industry_name}}" wx:key="{{index}}">
-                      <view class="weui-media-box__desc" wx:if="{{index<3}}">
-                        {{item.industry_name}}
-                      </view>
-                    </block>
+                <view class="btnBox flex">
+                  <view class="flex">
+                    <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
+                    <view class="btnContent btnContent1">移除</view>
                   </view>
-
-                  <!--标签2-->
-                  <view class=" flex offer" wx:if="{{item.stage_tag!=''}}">
-                    <view class="sort_item ">投资轮次:</view>
-                    <block wx:for="{{item.stage_tag}}" wx:key="{{stage_name}}" wx:key="{{index}}">
-                      <view class="weui-media-box__desc ">
-                        {{item.stage_name}}
-                      </view>
-                    </block>
-                  </view>
-                  <view class=" flex offer " wx:if="{{item.stage_tag==''}}">
-                    <view class="sort_item ">投资轮次:</view>
-                    <view class="weui-media-box__desc ">
-                      暂无
-                    </view>
-                  </view>
-                  <view class="offer flex" wx:if="{{item.offer}}">
-                    <view>可提供资源</view>
-                    <block wx:for="{{item.offer}} " wx:for-item="offer " wx:key="*this ">
-                      <view class="others_tips ">{{offer}}</view>
-                    </block>
-                  </view>
-                  <view class="search flex" wx:if="{{item.search}}">
-                    <view>在寻求资源</view>
-                    <block wx:for="{{item.search}} " wx:for-item="search " wx:key="*key ">
-                      <view class="others_tips ">{{search}}</view>
-                    </block>
+                  <view class="flex">
+                    <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
+                    <view class="btnContent">推送项目</view>
                   </view>
                 </view>
               </view>
-            </block>
-          </view>
+            </view>
+          </block>
         </view>
       </scroll-view>
     </swiper-item>
     <!--一键尽调页面的内容-->
     <swiper-item>
       <scroll-view scroll-y="true">
-                <view class="competitor" wx:if="{{competeList.length != 0}}">
-            <view class="boxName">相似公司</view>
-            <view>
-              <view class="competitorBox">
-                <view class="competitorBoxTop flex">
-                  <view class="competitorBoxLeft">
-                    <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
-                  </view>
-                  <view class="competitorBoxRight flex">
-                    <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
-                    <view class="competitorLocal">{{competeList[index].competing_goods_name}}</view>
-                    <view class="competitorTime">{{competeList[index].competing_goods_Financing_time}}</view>
-                    <view class="flex">
-                      <view class="competitorTime" wx:if="{{competeList[index].competing_goods_Set_up!='1970.01.01'}}">{{competeList[index].competing_goods_Set_up}}</view>
-                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
-                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-            <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
-            <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">收起</view>
-          </view>
         <view id="oneKey" wx:if="{{nothing != 0}}">
           <view class="projectDetailsBox" wx:if="{{projectDetailsList.length != 0}}">
             <view class="boxName">项目信息</view>
@@ -681,52 +655,37 @@
             <view class="moreInfo" catchtap="checkMore" wx:if="{{companyNews != 2 && newsList.length>2}}" data-id="{{2}}">展开</view>
             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{companyNews == 2}}" data-id="{{2}}">收起</view>
           </view>
-          <!--相似公司-->
           <view class="competitor" wx:if="{{competeList.length != 0}}">
             <view class="boxName">相似公司</view>
-            <view>
-              <!-- <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 ||competitorMore == 3}}" wx:key="{{index}}">
-                <view class="competitorBoxTop flex">
-                  <view class="competitorBoxLeft">
-                    <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
-                  </view>
-                  <view class="competitorBoxRight">
-                    <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
-                    <view class="flex">
-                      <view class="competitorTime" wx:if="{{competeList[index].competing_goods_Set_up!='1970.01.01'}}">{{competeList[index].competing_goods_Set_up}}</view>
-                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
-                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
-                    </view>
-                  </view>
+            <view wx:for="{{competeList}}" class="competitorBox" wx:if="{{index<2 || competitorMore == 3}}" wx:key="{{index}}">
+              <view class="flex">
+                <view class="competitorBoxLeft">
+                  <image src="{{competeList[index].project_logo}}" class="competitorBoxLeft" wx:if="{{competeList[index].project_logo != ''}}"></image>
+                  <image src="/img/img-logo@2x.png" class="projectExample1Logo" wx:if="{{competeList[index].project_logo == ''}}"></image>
                 </view>
-                <view class="competitorDomain flex">
-                  <view class="competitorTitle">领域：</view>
-                  <view class="competitorText">{{competeList[index].competing_goods_industry}}</view>
+                <view class="competitorBoxRight">
+                  <view class="flex competitorMessage">
+                    <view class="competitorProjectName">{{competeList[index].project_name}}</view>
+                    <view class="competitorProjectLocation">{{competeList[index].project_location}}</view>
+                    <view class="competitorProjectDate" wx:if="{{competeList[index].company_register_date !='1970-01-01'}}">{{competeList[index].company_register_date}}</view>
+                  </view>
+                  <view class="competitorProjectIntro">{{competeList[index].project_introduce}}</view>
                 </view>
-                <view class="competitorBoxTime">
-                  <view class="competitorBoxTimeLeft flex">
-                    <view class="competitorTitleTime" wx:if="{{competeList[index].competing_goods_Financing_time!= '1970.01.01'}}">{{competeList[index].competing_goods_Financing_time}}</view>
-                    <view class="competitorText">{{competeList[index].competing_goods_Financing_amount}}</view>
-                    <view class="pro_sort competitorTips inLine" wx:if="{{competeList[index].competing_goods_Financing_rounds != '--' }}">{{competeList[index].competing_goods_Financing_rounds}}</view>
+              </view>
+              <view class=" similarPro_sorts">
+                <block wx:for="{{competeList[index].project_label}}" wx:key="{{index}}">
+                  <label class="pro_sort similarCompany" wx:if="{{item.length != 0}}">{{item}}</label>
+                </block>
+              </view>
+              <view class="bottomBox flex" wx:if="{{competeList[index].history_financing.length != 0}}">
+                <view class="projectFinancing">最近融资：</view>
+                <view class="historyFinancing">
+                  <view class="flex">
+                    <view class="history_financing_time" wx:if="{{competeList[index].history_financing.history_financing_time!=1970-01-01}}">{{competeList[index].history_financing.history_financing_time}}</view>
+                    <view class="history_financing_money">{{competeList[index].history_financing.history_financing_money}}</view>
+                    <view class="history_financing_rounds">{{competeList[index].history_financing.history_financing_rounds}}</view>
                   </view>
-                  <view class="competitorBoxTimeRight">{{competeList[index].competing_goods_label}}</view>
-                </view>
-              </view> -->
-              <view class="competitorBox">
-                <view class="competitorBoxTop flex">
-                  <view class="competitorBoxLeft">
-                    <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
-                  </view>
-                  <view class="competitorBoxRight flex">
-                    <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
-                    <view class="competitorLocal">{{competeList[index].competing_goods_name}}</view>
-                    <view class="competitorTime">{{competeList[index].competing_goods_Financing_time}}</view>
-                    <view class="flex">
-                      <view class="competitorTime" wx:if="{{competeList[index].competing_goods_Set_up!='1970.01.01'}}">{{competeList[index].competing_goods_Set_up}}</view>
-                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
-                      <view class="competitorPosition">{{competeList[index].competing_goods_region}}</view>
-                    </view>
-                  </view>
+                  <view class="history_financing_who">{{competeList[index].history_financing.history_financing_who}}</view>
                 </view>
               </view>
             </view>

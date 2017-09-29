@@ -262,8 +262,9 @@ scroll-view {
   justify-content: center;
   align-items: center;
 }
-.sceenPerson:last-child{
-  border:none;
+
+.sceenPerson:last-child {
+  border: none;
 }
 
 .screenPersonColor {
@@ -349,13 +350,21 @@ scroll-view {
   border-radius: 98rpx;
   border: 1rpx solid #40587a;
   text-align: center;
-  height: 44rpx;
+  height: 40rpx;
   width: auto;
-  line-height: 44rpx;
+  line-height: 40rpx;
   padding: 0 16rpx;
   margin-right: 24rpx;
   flex-wrap: norap;
   margin-bottom: 24rpx;
+}
+
+#oneKey .similarCompany {
+  display: inline-block;
+  height: 36rpx;
+  width: auto;
+  line-height: 36rpx;
+  padding: 0 16rpx;
 }
 
 #oneKey  .left {
@@ -884,6 +893,7 @@ scroll-view {
   background: #fafafa;
   padding: 24rpx;
   margin-bottom: 28rpx;
+  position: relative;
 }
 
 #oneKey .competitorBox:last-child {
@@ -918,58 +928,91 @@ scroll-view {
   margin-bottom: 12rpx;
 }
 
-#oneKey .competitorTime {
-  font-size: 24rpx;
+#oneKey .competitorMessage {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 22rpx;
+  text-align: left;
+  margin: 10rpx 0 16rpx 0;
+}
+
+#oneKey .competitorProjectName {
+  font-size: 28rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 276rpx;
+}
+
+#oneKey .competitorProjectLocation {
+  margin: 0 16rpx;
+}
+
+#oneKey .competitorProjectIntro {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 22rpx;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 520rpx;
+}
+
+#oneKey .projectFinancing {
+  font-size: 22rpx;
   color: #999;
   letter-spacing: 0;
-  line-height: 24rpx;
-  text-align: left;
-}
-
-#oneKey .competitorTitle {
-  font-size: 26rpx;
-  color: #999;
-  line-height: 26rpx;
+  line-height: 22rpx;
   text-align: left;
   width: auto;
+  white-space: nowrap;
 }
 
-#oneKey .competitorTitleTime {
-  margin-right: 48rpx;
-  font-size: 26rpx;
-  color: #999;
-  line-height: 26rpx;
-  text-align: left;
-  width: auto;
-}
-
-#oneKey .competitorText {
-  font-size: 24rpx;
-  color: #333;
-  line-height: 26rpx;
-  text-align: left;
-  padding-bottom: 20rpx;
-}
-
-#oneKey .competitorDomain {
-  margin-bottom: 20rpx;
-  border-bottom: 1rpx solid #e6e6e6;
-}
-
-#oneKey .competitorBoxTimeRight {
+#oneKey .historyFinancing {
   font-size: 22rpx;
-  color: #666;
-  line-height: 34rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 22rpx;
   text-align: left;
-  margin-left: 175rpx;
 }
 
-#oneKey .competitorTips {
+#oneKey .history_financing_time {
+  margin: 0 14rpx 0 6rpx;
+}
+
+#oneKey .history_financing_time, #oneKey .history_financing_money,
+#oneKey .history_financing_rounds {
+  margin-bottom: 16rpx;
+}
+
+#oneKey  .competitorProjectDate {
   position: absolute;
   right: 32rpx;
-  margin: 0;
-  height: 30rpx;
-  line-height: 30rpx;
+}
+
+#oneKey .history_financing_who {
+  text-align: left;
+}
+
+#oneKey .bottomBox {
+  position: relative;
+}
+
+#oneKey .history_financing_rounds {
+  position: absolute;
+  right: 32rpx;
+  /* bottom:70rpx; */
+}
+
+#oneKey .similarPro_sorts {
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+  text-align: left;
 }
 
 #oneKey .oneKeyIcon {
@@ -1678,4 +1721,222 @@ scroll-view {
 
 .businessBook {
   border: none;
+}
+
+/*买家图谱  */
+
+.buyerPage {
+  background: #fff;
+  padding: 0 32rpx;
+}
+
+#introduce {
+  background: #e5e9f2;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 66rpx;
+  text-align: left;
+  height: 66rpx;
+  position: relative;
+  padding: 0 32rpx;
+}
+
+.resourceBox {
+  border-radius: 0 0 4px 4px;
+  margin-bottom: 32rpx;
+  padding-top: 0;
+}
+
+#introduce .introduce {
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 66rpx;
+  text-align: left;
+  height: 66rpx;
+  width: 670rpx;
+}
+
+#introduce .matchWeight {
+  font-size: 24rpx;
+  color: #fc703e;
+  text-align: left;
+}
+
+#introduce .status {
+  position: absolute;
+  top: 4rpx;
+  right: 24rpx;
+  font-size: 20rpx;
+  color: #99a9bf;
+}
+
+.outsideBox {
+  /* padding: 0 30rpx; */
+  position: relative;
+  background: #fafafa;
+  border-radius: 0 0 8rpx 8rpx;
+  /* padding-top: 46rpx; */
+  padding: 46rpx 30rpx 34rpx 30rpx;
+}
+
+.applyMyProject .userPosition {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 28rpx;
+  text-align: left;
+  margin-right: 16rpx;
+}
+
+.introduceBox {
+  margin-bottom: 16rpx;
+  align-items: flex-end;
+}
+
+.introduceBox .userName {
+  font-size: 36rpx;
+  color: #333;
+  line-height: 36rpx;
+  text-align: left;
+  margin-right: 16rpx;
+  align-items: flex-end;
+}
+
+.applyMyProject .userPart {
+  font-size: 20rpx;
+  color: #d3b987;
+  line-height: 20rpx;
+  text-align: left;
+}
+
+.applyMyProject .userCompany {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  margin-bottom: 84rpx;
+}
+
+.investmentGroup {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.roundGroup {
+  margin-bottom: none;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iconStyle {
+  width: 24rpx;
+  height: 26rpx;
+  border-radius: 100%;
+}
+
+.renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+
+.userPart1 {
+  margin-top: 4rpx;
+}
+
+.connection {
+  width: 68rpx;
+  height: 68rpx;
+  position: absolute;
+  right: -2rpx;
+  top: -2rpx;
+}
+
+.userPic {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+
+.user_text {
+  background: #f2f2f2;
+  line-height: 104rpx;
+  text-align: center;
+  font-size: 40rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+
+/*同意查看或不同意查看或申请中  */
+
+.hightLight {
+  color: #40587a;
+}
+
+.noLight {
+  color: #999;
+}
+
+.investmentGroupContent, .roundGroupContent {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hide {
+  display: none;
+}
+
+.aLine {
+  border-top: 1rpx solid #e6e6e6;
+  margin: 24rpx 0 28rpx 0;
+}
+/*移除和推送项目 按钮  */
+
+.btnContent{
+font-size:28rpx;
+color:#40587a;
+line-height:28rpx;
+text-align:left;
+}
+.btnContent1{
+  padding-right:120rpx;
+  border-right:1rpx solid #e6e6e6;
+}
+.pushProject{
+  height:28rpx;
+  width:28rpx;
+  margin-right:18rpx;
+}
+.pushProject1{
+margin-left:90rpx;
+}
+.pushProject2{
+margin-left: 92rpx;
 }
