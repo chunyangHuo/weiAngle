@@ -916,6 +916,18 @@ App({
           }
       })
   },
+  //身份信息
+  identity(user_id,func){
+    let url_common = this.globalData.url_common;
+     wx.request({
+      url: url_common + '/api/user/getUserGroupByStatus',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: func
+    })
+  },
 
   //请求封装
   httpPost(data){
