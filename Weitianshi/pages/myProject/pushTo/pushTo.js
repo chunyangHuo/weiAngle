@@ -122,7 +122,6 @@ Page({
                 projectList.push(x.project_id)
             })
         }
-
         if(remainTimes===0){
             app.errorHide(that, "今日推送次数已用完", 1000)
         } else if (!checkObject){

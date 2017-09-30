@@ -155,7 +155,6 @@
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
             </view>
             <!--产品  -->
-
             <view class="brightPoint">
               <view class="brightPointBox flex">
                 <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
@@ -171,7 +170,6 @@
                 </view>
               </block>
             </view>
-
             <!--品牌-->
             <!--<view class="companyBrand">
               <view class="corePersonBox flex">
@@ -374,8 +372,8 @@
                     <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent btnContent1">移除</view>
                   </view>
-                  <view class="flex">
-                    <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
+                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}">
+                    <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1" catchtap="pushProject"></image>
                     <view class="btnContent">推送项目</view>
                   </view>
                 </view>
@@ -704,9 +702,9 @@
 </view>
 
 <!--下面的浮动按钮-->
-<view class="floatBtn flex" hidden="{{currentTab==0||currentTab == 2}}">
+<!-- <view class="floatBtn flex" hidden="{{currentTab==0||currentTab == 2}}">
   <button class="push" disabled="true">一键推送(近期开放)</button>
-</view>
+</view> -->
 <!-- <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}"> -->
 <view class=" flex floatBtn flexBox">
   <view class="collectBox" bindtap="deleteProject">

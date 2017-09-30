@@ -11,6 +11,7 @@ Page({
     type: 1, //我申請查看的項目
     hasRedPoint: true,
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
+    modalBox: 0
   },
   onLoad: function (options) {
     let type = options.type;
@@ -37,6 +38,7 @@ Page({
       success: function (res) {
         wx.hideLoading();
         let pushToList = res.data.data;
+  
         let count1 = res.data.count;
         that.setData({
           count1: count1,
@@ -302,8 +304,23 @@ Page({
     let push_id = e.currentTarget.dataset.push;
     let status = e.currentTarget.dataset.status;
     let pushToList = this.data.pushToList;
+    let currentProject_id = e.currentTarget.dataset.project;
     // status: 1 =>感兴趣 2=>不感兴趣 0或3为待处理
-
+    this.setData({
+      modalBox: 1,
+      currentProject_id: currentProject_id,
+      push_id: push_id,
+      status: status
+    })
+  },
+  //不感兴趣
+  noInteresting: function (e) {
+    let that = this;
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let push_id = e.currentTarget.dataset.push;
+    let status = e.currentTarget.dataset.status;
+    let pushToList = this.data.pushToList;
+    // status: 1 =>感兴趣 2=>不感兴趣 0或3为待处理
     wx.request({
       url: url_common + '/api/message/handlePushProjectMessage',
       data: {
@@ -315,38 +332,22 @@ Page({
       success: function (res) {
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
-          if (status == 1) {
-            pushToList.forEach((x) => {
-              if (x.push_id == push_id) {
-                x.handle_status = 1
-              }
-            })
-            wx.showToast({
-              title: '已感兴趣',
-              icon: 'success',
-              duration: 2000
-            })
-            that.setData({
-              pushToList: pushToList
-            })
-          } else if (status == 2) {
-            pushToList.forEach((x) => {
-              if (x.push_id == push_id) {
-                x.handle_status = 2
-              }
-            })
-            wx.showToast({
-              title: '没兴趣',
-              duration: 2000,
-              image: "/img/icon-chacha@2x.png"
-            })
-            that.setData({
-              pushToList: pushToList
-            })
-          }
+          pushToList.forEach((x) => {
+            if (x.push_id == push_id) {
+              x.handle_status = 2
+            }
+          })
+          wx.showToast({
+            title: '没兴趣',
+            duration: 2000,
+            image: "/img/icon-chacha@2x.png"
+          })
+          that.setData({
+            pushToList: pushToList
+          })
         } else {
+          console.log(statusCode)
         }
-
       }
     })
   },
@@ -369,6 +370,85 @@ Page({
         } else if (status == 2) {
           that.setData({
             record_id: record_id
+          })
+        }
+      }
+    })
+  },
+  //联系项目方
+  contactPerson: function () {
+
+  },
+  //关闭模态框
+  closeModal: function () {
+    this.setData({
+      modalBox: 0
+    })
+  },
+  //约谈
+  contentProject: function (e) {
+    let message = e.detail.value;
+    let message_length = e.detail.value.length;
+    let that = this;
+    if (message_length <= 500) {
+      this.setData({
+        message: message
+      })
+    } else {
+      app.errorHide(that, "不能超过500个数字", 1000)
+    }
+  },
+  //约谈信息发送
+  yesBtn: function () {
+    let that = this;
+    let  currentProject_id = this.data.currentProject_id;
+    let push_id = this.data.push_id;
+    let pushToList = this.data.pushToList;
+    let message = this.data.message;
+    let status = this.data.status;
+    // let project_id = this.data.id;//项目id
+    let user_id = wx.getStorageSync('user_id'); //当前登陆者的 id
+    wx.request({
+      url: url_common + '/api/project/met',
+      data: {
+        user_id: user_id,
+        project_id: currentProject_id,
+        remark: message
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          wx.request({
+            url: url_common + '/api/message/handlePushProjectMessage',
+            data: {
+              user_id : user_id,
+              push_id: push_id,
+              status: status
+            },
+            method: 'POST',
+            success: function (res) {
+              let statusCode = res.data.status_code;
+              if (statusCode == 2000000) {
+                  pushToList.forEach((x) => {
+                    if (x.push_id == push_id) {
+                      x.handle_status = 1
+                    }
+                  })
+                  wx.showToast({
+                    title: '已感兴趣',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                  that.setData({
+                    pushToList: pushToList
+                  })
+              } else {
+                console.log(statusCode)
+              }
+            }
+          })
+          that.setData({
+            modalBox: 0
           })
         }
       }
