@@ -145,6 +145,7 @@ Page({
   },
   //投资案例
   investCase: function () {
+    console.log(1111)
     if (!this.data.options) {
       wx.navigateTo({
         url: '/pages/my/investCase/investCase'

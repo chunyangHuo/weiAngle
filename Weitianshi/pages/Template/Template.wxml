@@ -234,7 +234,7 @@
     <view class="flex title" catchtap="investCase">
       <view>
         <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-        投资案例
+        成功案例
       </view>
       <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>

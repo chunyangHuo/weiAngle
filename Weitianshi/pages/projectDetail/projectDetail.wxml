@@ -276,7 +276,7 @@
 </view>
 
 <view class=" flex floatBtn flexBox">
-  <view class="collectBox" >
+  <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
   <view class="contactProject" bindtap="contactPerson">联系项目方</view>
@@ -284,13 +284,15 @@
 </view>
 
 <view class="modalBox" hidden="{{modalBox==0}}">
-<view class="classname" bindtap="closeModal">
-<image src="/img/icon-guanbi@2x.png" class="close"></image>
-</view>
+  <view class="classname" bindtap="closeModal">
+    <image src="/img/icon-guanbi@2x.png" class="close"></image>
+  </view>
   <view class="contactModalBox">
     <view class="modalTitle">联系项目方</view>
-    <textarea class="modalContent"  placeholder="请简要描述您的约谈需求" bindinput="contentProject"/>
+    <textarea class="modalContent" placeholder="请简要描述您的约谈需求" bindinput="contentProject" />
     <view class="modalTips">微天使将为您联系项目方并安排约谈或添加FA哥微信：weitianshicn</view>
-    <view class="btn"  bindtap="yesBtn">确定</view>
+    <view class="btn" bindtap="yesBtn">确定</view>
   </view>
 </view>
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

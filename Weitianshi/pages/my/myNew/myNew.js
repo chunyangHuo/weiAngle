@@ -110,8 +110,10 @@ Page({
   },
   //收藏的项目
   collectProject: function () {
-    wx.navigateTo({
-      url: '/pages/message/collectProject/collectProject',
-    })
+    // wx.navigateTo({
+    //   url: '/pages/message/collectProject/collectProject',
+    // })
+    let that = this;
+    app.errorHide(that, "收藏项目近期开放", 3000);
   }
 })

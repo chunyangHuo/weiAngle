@@ -154,6 +154,6 @@
     <image src="/img/img-saoyisao@2x.png" class="aPic"></image>
    <view class="modalTitle">电脑打开,点击扫一扫</view>
     <view class="modalTips">www.weitianshi.cn/qr</view>
-    <view class="btn" bindtap="yesBtn">扫一扫</view>
+    <view class="btn" bindtap="upLoadPc">扫一扫</view>
   </view>
 </view>

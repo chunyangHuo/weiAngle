@@ -208,6 +208,9 @@ Page({
     var pro_goodness = this.data.pro_goodness;//亮点
     var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
     var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
+    let pro_company_name = this.data.pro_company_name;
+    let pro_name = this.data.pro_name;
+    let pro_finance_stock_after = this.data.pro_finance_stock_after;
     var is_exclusive = this.data.tips_index * 1;
     //弹出PC端url提示文本模态框
     wx.showModal({
@@ -234,7 +237,10 @@ Page({
                     "pro_finance_stage": pro_finance_stage,
                     "pro_finance_scale": pro_finance_scale,
                     "is_exclusive": is_exclusive,
-                    "pro_goodness": pro_goodness
+                    "pro_goodness": pro_goodness,
+                    "pro_company_name": pro_company_name,
+                    "pro_name": pro_name,
+                    "pro_finance_stock_after": pro_finance_stock_after
                   }
                 },
                 method: 'POST',
@@ -242,6 +248,9 @@ Page({
                   if (res.data.status_code == 2000000) {
                     wx.navigateTo({
                       url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
+                    })
+                    that.setData({
+                      modalBox: 0
                     })
                   }
                 }

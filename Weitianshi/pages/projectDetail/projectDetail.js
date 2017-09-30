@@ -454,6 +454,10 @@ Page({
       })
     }
   },
+  collectProject:function(){
+    let that = this;
+    app.errorHide(that, "收藏项目近期开放", 3000);
+  },
   //商业计划书
   businessBook: function () {
     wx.showActionSheet({
