@@ -882,25 +882,6 @@ textarea {
   color: #40587a;
 }
 
-.t-competitor {
-  position: fixed;
-  bottom: 132rpx;
-  right: 0;
-  background: #fff;
-  border: 0 solid #e0e6ed;
-  box-shadow: 0 0 2px 0 rgba(64, 88, 122, 0.10);
-  width: 166rpx;
-  height: 33px;
-  font-family: MicrosoftYaHei;
-  font-size: 28rpx;
-  color: #40587a;
-  letter-spacing: 0;
-  line-height: 66rpx;
-  text-align: right;
-  border-radius: 35rpx 0 0 35rpx;
-  padding-right: 28rpx;
-}
-
 .t-time {
   font-size: 20rpx;
   color: #999;
@@ -1185,4 +1166,25 @@ textarea {
   height: 28rpx;
   padding-top: 5rpx;
   padding-right: 16rpx;
+}
+
+
+/*---------------------------------活动浮标----------------------------------- */
+.t-competitor {
+  position: fixed;
+  bottom: 132rpx;
+  right: 0;
+  background: #fff;
+  border: 0 solid #e0e6ed;
+  box-shadow: 0 0 2px 0 rgba(64, 88, 122, 0.10);
+  padding-left: 24rpx;
+  padding-right: 28rpx;
+  height: 33px;
+  font-family: MicrosoftYaHei;
+  font-size: 28rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 66rpx;
+  text-align: right;
+  border-radius: 35rpx 0 0 35rpx;
 }

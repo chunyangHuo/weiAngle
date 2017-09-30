@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/matchInvestor/matchInvestor",
     "pages/discoverProject/discoverProject",
     "pages/discoverInvest/discoverInvest",
     "pages/match/selectProject/selectProject",

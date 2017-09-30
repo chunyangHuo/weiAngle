@@ -1,0 +1,70 @@
+<import src="/pages/Template/Template.wxml" />
+<!--找项目投资人  -->
+<view id='matchInvestor'>
+  <!--蓝顶  -->
+  <view class='blueTop'>
+    <view class='publicButton' bindtap='publicBtn'>
+      <image src='/img/icon-fabu@2x.png'></image>
+      发布融资项目
+    </view>
+  </view>
+  <!--展示内容  -->
+  <scroll-view class='scroll' scroll-y="true" bindscrolltolower='loadMore'>
+    <block wx:for='{{myProject}}' wx:key='{{item.project_id}}'>
+      <view class='itemCard'>
+        <view class='cardTop flex'>
+          <view>匹配推荐: {{item.match_count}}人</view>
+          <button class='pushBtn'>一键推送</button>
+        </view>
+        <!--匹配到的投资人  -->
+        <view class='matchInvestor flex'>
+          <block wx:for='{{item.match_investors}}' wx:key='investor.investor_id' wx:for-item='investor' wx:for-index='investorIndex'>
+            <view class='investorItem' data-id='{{investor.investor_id}}'>
+              <image class='investorPic' src='{{investor.investor_logo_url}}' wx:if='{{investor.investor_logo_url}}'></image>
+              <view class='investorPic' wx:else>{{investor.investor_logo_text}}</view>
+              <view class='investorName'>{{investor.investor_name}}</view>
+              <view class='investorBand'>{{investor.investor_career}}</view>
+            </view>
+          </block>
+        </view>
+        <!--项目详情  -->
+        <view class='projectDetal'>
+          <view class='projectTop flex'>
+            <view class='projectIntro'>{{item.pro_intro}}</view>
+            <view class='is_exclusive' wx:if='{{item.is_exclusive===1}}'>独家</view>
+            <view class='is_exclusive' wx:if='{{item.is_exclusive===2}}'>非独</view>
+          </view>
+          <view class='industry'>{{item.industryArr}}</view>
+          <view class='otherTag'>{{item.OtherTag}}</view>
+          <view class='publish' wx:if='{{item.open_status==1}}'>公开</view>
+          <view class='publish' wx:else>私密</view>
+        </view>
+        <!--卡片底部  -->
+        <view class="ProjectDetailInfo flex">
+          <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{item.project_id}}">
+            <view class="viewTimeNew" wx:if="{{item.count.view_times_new != 0}}">+{{item.count.view_times_new}}</view>
+            <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
+              <label>{{item.count.view_times_all}}</label>
+            </view>
+          </view>
+          <view class="flex sceenPerson" catchtap="applyPerson">
+            <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.apply_times_new}}</view>
+            <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">申请查看：
+              <label>{{item.count.apply_times_all}}</label>
+            </view>
+          </view>
+          <view class="flex sceenPerson" catchtap="hasMeeting">
+            <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.apply_times_new}}</view>
+            <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">约谈：
+              <label>{{item.count.apply_times_all}}</label>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <!--创建项目引导  -->
+  <template is='createProject'></template>
+  <!--错误提示  -->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</view>

@@ -242,10 +242,10 @@ Page({
       }
     })
   },
-  // 人脉大赛
-  competitor: function () {
+  //找项目投资人
+  matchInvestor(){
     wx.navigateTo({
-      url: '/pages/contactsActivty/activtyDetail/activtyDetail'
+      url: '/pages/matchInvestor/matchInvestor'
     })
   },
 

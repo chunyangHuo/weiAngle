@@ -129,3 +129,5 @@
 </swiper>
 <!--错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--找项目投资人浮票  -->
+<view class="t-competitor" bindtap="matchInvestor">找项目投资人</view>
