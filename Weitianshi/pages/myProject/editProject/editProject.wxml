@@ -16,7 +16,6 @@
 
   <!--项目领域-->
   <template is="input_jump" data="{{...industryCard}}"></template>
-
   <view class="card">
     <view class="text">项目阶段*</view>
     <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stageValue}}">
@@ -141,6 +140,6 @@
     <image src="/img/img-saoyisao@2x.png" class="aPic"></image>
     <view class="modalTitle">电脑打开,点击扫一扫</view>
     <view class="modalTips">www.weitianshi.cn/qr</view>
-    <view class="btn" bindtap="yesBtn">扫一扫</view>
+    <view class="btn" bindtap="upLoadPc">扫一扫</view>
   </view>
 </view>

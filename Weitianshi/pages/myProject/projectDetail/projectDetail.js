@@ -735,5 +735,32 @@ Page({
     wx.navigateTo({
       url: '/pages/message/contactProject/projectList/projectList?id=' + project_id,
     })
+  },
+  //推送项目
+  pushProject: function (e) {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let pushed_user_id = e.currentTarget.dataset.id;
+    let project_id = this.data.id;
+    console.log(project_id)
+    wx.request({
+      url: url_common + '/api/project/pushProjectToUser',
+      data: {
+        user_id: user_id,
+        pushed_user_id: pushed_user_id,
+        pushed_project: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      }
+    })
   }
 });

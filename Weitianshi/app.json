@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/matchInvestor/matchInvestor",
+  
     "pages/discoverProject/discoverProject",
     "pages/discoverInvest/discoverInvest",
     "pages/match/selectProject/selectProject",
     "pages/match/match/match/match",
     "pages/my/my/my",
+      "pages/matchInvestor/matchInvestor",
     "pages/match/match/resourceDemand/resourceDemand",
     "pages/form/area1/area1",
     "pages/form/area2/area2",

@@ -31,7 +31,7 @@
   </view>
 </view>
 <view style="height:118rpx;"></view>
-<template is="buttonOne" data="{{...buttonOne}}"></template>
+<template is="buttonOne" data="{{text:'保存',btnName:'buttonOne'}}"></template>
 
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

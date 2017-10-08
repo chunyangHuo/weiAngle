@@ -118,8 +118,11 @@
       <view class="blockTitle">收藏的项目</view>
     </view>
     <view class="flex">
-      <view class="number">10</view>
+      <view class="number">近期开放</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
 </view>
+
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
