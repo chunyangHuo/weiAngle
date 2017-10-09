@@ -95,7 +95,32 @@ Page({
     });
   },
   //FA列表信息
-  faList() { },
+  faList() { 
+    let that = this;
+    let SearchInit = this.data.SearchInit;
+    wx.request({
+      url: url_common + '/api/investor/getInvestorListByGroup',
+      data: {
+        user_id: this.data.user_id,
+        type: 'fa',
+        filter: this.data.SearchInit.searchData
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == '2000000') {
+          console.log('FA列表', res.data.data)
+          wx.hideLoading();
+          var investorList = res.data.data;
+          SearchInit.currentIndex = 5;
+          that.setData({
+            investorList: investorList,
+            SearchInit: SearchInit
+
+          })
+        }
+      }
+    });
+  },
   //我的人脉列表信息
   myList() {
     let user_id = this.data.user_id;

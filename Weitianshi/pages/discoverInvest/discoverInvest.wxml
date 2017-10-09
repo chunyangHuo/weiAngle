@@ -15,7 +15,7 @@
       <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1'></template>
+          <template is='cardBottom1'  data='{{item}}'></template>
         </view>
       </block>
     </scroll-view>
@@ -31,7 +31,7 @@
       <block wx:for="{{res_match}}" wx:key="{{res_match}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1'></template>
+          <template is='cardBottom1'  data='{{item}}'></template>
         </view>
       </block>
     </scroll-view>

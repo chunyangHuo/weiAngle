@@ -1001,21 +1001,26 @@
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>推送项目</span>
     </view>
-    <view class='t-cardBottomItem flex'>
+    <!-- <view class='t-cardBottomItem flex'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
-    </view>
-    <view class='t-cardBottomItem flex'>
+    </view> -->
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
       <view>加人脉</view>
     </view>
-    <view class='t-cardBottomItem flex'>
-      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>待验证</view>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==1}}'>
+      <image class='t-itemPic' src='/img/icon-huweirenmai@2x.png'></image>
+      <view style='color:#999;'>已为人脉</view>
     </view>
-    <view class='t-cardBottomItem flex'>
-      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>互为人脉</view>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==2}}'>
+      <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
+      <view style='color:#999;'>待验证</view>
     </view>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}'>
+      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
+      <view>加人脉</view>
+    </view>
+
   </view>
 </template>
