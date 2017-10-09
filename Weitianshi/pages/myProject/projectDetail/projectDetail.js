@@ -7,7 +7,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
     firstName: "代",
     id: "",
     page: 1,
@@ -38,7 +38,7 @@ Page({
     this.setData({
       index: options.index,
       id: options.id,
-      // currentTab: options.currentTab,
+      currentTab: options.currentTab,
       shareType: options.type
     })
   },
@@ -109,6 +109,7 @@ Page({
               },
               method: 'POST',
               success: function (res) {
+                console.log(res)
                 let brandList = res.data.data.brand;
                 var project = res.data.data;
                 var user = res.data.user;
@@ -212,6 +213,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     let nothing = res.data.data
                     if (nothing == 0) {
                       that.setData({

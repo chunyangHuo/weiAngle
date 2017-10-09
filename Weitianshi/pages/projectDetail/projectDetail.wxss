@@ -1291,3 +1291,22 @@ margin-top: 72rpx;
   right:67rpx;
   z-index: 99;
 }
+/*打分  */
+.remark {
+  position: fixed;
+  bottom: 132rpx;
+  right: 0;
+  border: 0 solid #009eff;
+  box-shadow: 0 0 2px 0 rgba(64, 88, 122, 0.10);
+ background:#ffffff;
+  width: 166rpx;
+  height: 68rpx;
+  font-family: MicrosoftYaHei;
+  font-size: 28rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 68rpx;
+  text-align: right;
+  border-radius: 35rpx 0 0 35rpx;
+  padding-right: 28rpx;
+}

@@ -57,9 +57,9 @@
 
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}} project-detail-tabm" data-current="0" bindtap="swichNav">详情</view>
 
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} buyers-mapm" data-current="1" bindtap="swichNav">买家图谱</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} buyers-mapm" data-current="1" bindtap="swichNav" hidden>买家图谱</view>
 
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav">一键尽调</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav" hidden>一键尽调</view>
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:336px" bindchange="bindChange">
     <!--项目详情  -->
@@ -320,7 +320,7 @@
       </scroll-view>
     </swiper-item>
     <!--买家图谱  -->
-    <swiper-item>
+     <swiper-item hidden >
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
         <view class="buyerPage">
           <block wx:for="{{investor2}}" wx:key="{{investor2}}">
@@ -382,9 +382,9 @@
           </block>
         </view>
       </scroll-view>
-    </swiper-item>
+    </swiper-item  > 
     <!--一键尽调页面的内容-->
-    <swiper-item>
+    <swiper-item hidden >
       <scroll-view scroll-y="true">
         <view id="oneKey" wx:if="{{nothing != 0}}">
           <view class="projectDetailsBox" wx:if="{{projectDetailsList.length != 0}}">

@@ -15,7 +15,7 @@ Page({
     load: 0,
     isChecked: true,
     textBeyond1: false,//项目亮点的全部和收起是否显示标志
-    modalBox:0
+    modalBox: 0
   },
   onLoad: function (options) {
     var that = this;
@@ -139,7 +139,7 @@ Page({
   applyProject: function (e) {
     let that = this;
     let user_id = this.data.user_id;
-    app.applyProject(e,that,"project")
+    app.applyProject(e, that, "project")
   },
   //获取是否认证过和项目详情
   getInfo(that, user_id, id) {
@@ -180,6 +180,8 @@ Page({
         wx.hideLoading()
         // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
         var project = res.data.data;
+        console.log(project)
+        let BPath = project.pro_BP.file_url;
         var user = res.data.user;
         var firstName = user.user_name.substr(0, 1) || '';
         var pro_industry = project.pro_industry;
@@ -217,7 +219,8 @@ Page({
           project: project,
           user: user,
           firstName: firstName,
-          pro_company_name: pro_company_name
+          pro_company_name: pro_company_name,
+          BPath: BPath
         });
         // if (button_type == 1 || button_type == 2 || button_type == 3)
         if (button_type == 1) {
@@ -420,6 +423,7 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
+                  console.log(res)
                 }
               })
               that.setData({
@@ -454,21 +458,70 @@ Page({
       })
     }
   },
-  collectProject:function(){
+  collectProject: function () {
     let that = this;
     app.errorHide(that, "收藏项目近期开放", 3000);
   },
   //商业计划书
   businessBook: function () {
-    wx.showActionSheet({
-      itemList: ['直接预览', '发送到邮箱'],
-      success: function (res) {
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
+    let BPath = this.data.BPath;
+    let user_id = wx.getStorageSync('user_id');
+    let project_id = this.data.id;
+    let that = this;
+    if (BPath) {
+      wx.showActionSheet({
+        itemList: ['直接预览', '发送到邮箱'],
+        success: function (res) {
+          console.log(res.tapIndex)
+          if (res.tapIndex == 1) {
+            wx.request({
+              url: url_common + '/api/user/checkUserInfo',
+              data: {
+                user_id: user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log(res)
+                let userEmail = res.data.user_email;
+                if (userEmail) {
+                  that.setData({
+                    userEmail: userEmail,
+                    sendPc: 1,
+                    checkEmail: true,
+                  })
+                } else {
+                  that.setData({
+                    sendPc: 1,
+                    checkEmail: false
+                  })
+                }
+              }
+            })
+          } else if (res.tapIndex == 0) {
+            wx.downloadFile({
+              url: BPath,
+              success: function (res) {
+                var filePath = res.tempFilePath
+                wx.openDocument({
+                  filePath: filePath,
+                  success: function (res) {
+                    console.log('打开文档成功')
+                  }
+                })
+              }
+            })
+          }
+        },
+        fail: function (res) {
+          console.log(res.errMsg)
+        }
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '未上传商业计划书',
+      })
+    }
   },
   //联系项目方
   contactPerson: function () {
@@ -483,7 +536,7 @@ Page({
     })
   },
   //约谈
-  contentProject:function(e){
+  contentProject: function (e) {
     console.log(e)
     let message = e.detail.value;
     let message_length = e.detail.value.length;
@@ -497,7 +550,7 @@ Page({
     }
   },
   //约谈信息发送
-  yesBtn:function(){
+  yesBtn: function () {
     let that = this;
     let message = this.data.message;
     let project_id = this.data.id;//项目id
@@ -512,12 +565,18 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if (res.data.status_code == 2000000){
+        if (res.data.status_code == 2000000) {
           that.setData({
             modalBox: 0
           })
         }
       }
     })
-  }
+  },
+  //项目打分
+  // projectRemark:function(){
+  //   wx.navigateTo({
+  //     url: "/pages/remark/remarkList/remarkList",
+  //   })
+  // }
 })
