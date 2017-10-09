@@ -1,6 +1,7 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../../utils/shareModel';
 Page({
   data: {
     buttonOne: {
@@ -96,7 +97,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        var myProject = res.data.data;
+        let myProject = res.data.data;
         wx.hideLoading();
         //刷新数据
         that.setData({
@@ -145,17 +146,8 @@ Page({
   },
   //分享页面
   onShareAppMessage: function () {
-    let myProject = this.data.myProject;
-    let user_id = this.data.user_id;
-    let shop_name = this.data.userInfo.shop_name || this.data.userInfo.user_real_name
-    return {
-      title: shop_name + '项目店铺',
-      path: '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + user_id,
-      success: function (res) {
-        console.log('分享成功', res)
-        console.log(user_id)
-      },
-    }
+    let that=this;
+    return ShareModel.projectShopShare(that);
   },
   // 下拉框
   move(e) {
@@ -441,10 +433,10 @@ Page({
   },
   // 项目详情
   detail: function (e) {
-    var thisData = e.currentTarget.dataset;
-    var id = thisData.id;
-    var index = thisData.index;
-    var currentTab = this.data.currentTab;
+    let thisData = e.currentTarget.dataset;
+    let id = thisData.id;
+    let index = thisData.index;
+    let currentTab = this.data.currentTab;
     if (currentTab == 1) {
       wx.navigateTo({
         url: '/pages/projectDetail/projectDetail?id=' + id,
@@ -550,7 +542,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             if (targetUrl && num == 1) {
               wx.navigateTo({

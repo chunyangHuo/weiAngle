@@ -1,7 +1,8 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as Search from '../../utils/search'
+import * as Search from '../../utils/search';
+import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
     //选项卡
@@ -206,10 +207,7 @@ Page({
   },
   // 分享当前页面
   onShareAppMessage: function () {
-    return {
-      title: '来微天使找优质人脉',
-      path: '/pages/discoverInvest/discoverInvest'
-    }
+    return ShareModel.discoverInvestShare();
   },
   // 申请查看
   matchApply(e) {

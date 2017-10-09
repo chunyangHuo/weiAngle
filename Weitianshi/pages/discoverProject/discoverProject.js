@@ -1,8 +1,9 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as Search from '../../utils/search'
-import * as CreateProject from '../../utils/createProjectBottom'
+import * as Search from '../../utils/search';
+import * as CreateProject from '../../utils/createProjectBottom';
+import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
     //选项卡
@@ -174,10 +175,7 @@ Page({
   },
   // 分享当前页面
   onShareAppMessage: function () {
-    return {
-      title: '来微天使找优质项目',
-      path: '/pages/discoverProject/discoverProject'
-    }
+    return ShareModel.discoverProjectShare();
   },
   // 申请查看
   matchApply(e) {
@@ -251,6 +249,7 @@ Page({
   toCreateProject: function () {
     CreateProject.toCreateProject();
   },
+  // 在电脑上创建
   createProjectPc(){
     CreateProject.createProjectPc();
   }, 

@@ -1,7 +1,8 @@
-var rqj = require('../../Template/Template.js')
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let rqj = require('../../Template/Template.js')
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel'
 Page({
   data: {
     currentTab: 1,//选项卡
@@ -45,13 +46,13 @@ Page({
   },
   /*滑动切换tab*/
   bindChange: function (e) {
-    var that = this;
-    var current = e.detail.current;
+    let that = this;
+    let current = e.detail.current;
     that.setData({ currentTab: e.detail.current });
   },
   /*点击tab切换*/
   swichNav: function (e) {
-    var that = this;
+    let that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -147,12 +148,12 @@ Page({
   //个人加载更多
   moreThing: function () {
     console.log(44444)
-    var that = this;
-    var user_id = wx.getStorageSync('user_id');
-    var currentPage = this.data.currentPage;
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let currentPage = this.data.currentPage;
     let rank_list = this.data.rank_list;
     let str = this.data.str;
-    var request = {
+    let request = {
       url: url_common + '/api/team/userRelationshipRank',
       data: {
         user_id: user_id,
@@ -280,7 +281,7 @@ Page({
   //战队的加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数
-    var user_id = wx.getStorageSync("user_id");
+    let user_id = wx.getStorageSync("user_id");
     let that = this;
     let team_rank_list = this.data.team_rank_list;
     if (that.data.teamRequestCheck) {
@@ -304,9 +305,9 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              var newPage = res.data.data.rank_list;
-              var page_end = res.data.page_end;
-              for (var i = 0; i < newPage.length; i++) {
+              let newPage = res.data.data.rank_list;
+              let page_end = res.data.page_end;
+              for (let i = 0; i < newPage.length; i++) {
                 team_rank_list.push(newPage[i])
               }
               that.setData({
@@ -327,32 +328,6 @@ Page({
   },
   // 分享名片
   onShareAppMessage(e) {
-    let id = e.target.dataset.applyid;
-    let name = e.target.dataset.name;
-    let type = e.target.dataset.type;
-    console.log(type)
-    //type 1:个人名片分享; 2:战队成员页面分享
-    if (type == 1 || !type) {
-      return {
-        title: name + '正在参与2017首届中国双创机构人气品牌百强评选，加我人脉,助我夺冠!',
-        path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
-        success: function (res) {
-          console.log('分享成功', res)
-        },
-      }
-    } else if (type == 2) {
-      return {
-        title: name + '正在参与2017首届中国双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
-        path: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + id + '&&team_name=' + name,
-        imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
-        success: function (res) {
-          console.log('分享成功', res)
-        },
-      }
-    } else {
-      console.log('分享函数的type出问题了')
-    }
-
+    return SharePage.topPlayerShare(e)
   },
 })

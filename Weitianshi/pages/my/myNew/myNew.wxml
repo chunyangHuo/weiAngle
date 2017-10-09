@@ -1,4 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
+<!-- <template is="topBlock"></template> -->
 <view class="user_info flex user-infom" bindtap="toMyCard">
   <view class="user_left">
     <view class="flex">
@@ -83,7 +84,6 @@
   </view>
 </view>
 <!--模块内容  -->
-
 <view class="outSideBox">
   <view class="flex blockInfo" bindtap="identity">
     <view class="flex">

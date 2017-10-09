@@ -2,6 +2,7 @@ var rqj = require('../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+import * as CreateProject from '../../utils/createProjectBottom'
 Page({
   data: {
 
@@ -35,5 +36,14 @@ Page({
         })
       }
     })
-  }
+  },
+  //----------------------创建项目引导------------------------------------------------ 
+  // 跳转创建项目页面
+  toCreateProject: function () {
+    CreateProject.toCreateProject();
+  },
+  // 在电脑上创建
+  createProjectPc() {
+    CreateProject.createProjectPc();
+  },
 })

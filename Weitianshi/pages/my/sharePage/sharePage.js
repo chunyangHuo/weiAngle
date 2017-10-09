@@ -1,23 +1,25 @@
-var rqj = require('../../Template/Template.js');
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let rqj = require('../../Template/Template.js');
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     user: "",
     followed_user_id: "",
   },
   onLoad: function (options) {
-    var that = this;
-    var followed_user_id = options.user_id;
-    var share_id = options.share_id;
+    console.log('this is sharePage')
+    let that = this;
+    let followed_user_id = options.user_id;
+    let share_id = options.share_id;
     that.setData({
       followed_user_id: followed_user_id,
       share_id: share_id
     })
     //登录态维护
     app.loginPage(function (user_id) {
-      var view_id = user_id;
+      let view_id = user_id;
       wx.setStorageSync('user_id', user_id);
       //载入被分享者的个人信息
       wx.request({
@@ -29,13 +31,13 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          var user = res.data.user_info;
-          var count = res.data.count;
-          var invest = res.data.invest_info;
-          var resource = res.data.resource_info;
-          var project_info = res.data.project_info;
-          var invest_case = res.data.invest_case;
-          var button_type = res.data.button_type;
+          let user = res.data.user_info;
+          let count = res.data.count;
+          let invest = res.data.invest_info;
+          let resource = res.data.resource_info;
+          let project_info = res.data.project_info;
+          let invest_case = res.data.invest_case;
+          let button_type = res.data.button_type;
           that.setData({
             user: user,
             invest: invest,
@@ -70,11 +72,11 @@ Page({
 
   // 添加人脉
   addNetwork: function () {
-    var that = this;
-    var user_id = this.data.user_id;//我的id,查看者的id
-    var followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
+    let that = this;
+    let user_id = this.data.user_id;//我的id,查看者的id
+    let followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
     let button_type = this.data.button_type;
-    var view_id = this.data.view_id;
+    let view_id = this.data.view_id;
     // button_type==0  0.申请加人脉按钮 1.不显示任何按钮  2.待验证   3.同意加为人脉  4.加为单方人脉
     //直接可添加好友的情况
     if (button_type == 0) {
@@ -87,7 +89,7 @@ Page({
         method: 'POST',
         success: function (res) {
           if (res.data.status_code == 2000000) {
-            var complete = res.data.is_complete;
+            let complete = res.data.is_complete;
             if (complete == 1) {
               //如果信息完整就正常申请添加人脉
               wx.request({
@@ -162,7 +164,7 @@ Page({
         method: 'POST',
         success: function (res) {
           if (res.data.status_code == 2000000) {
-            var complete = res.data.is_complete;
+            let complete = res.data.is_complete;
 
             if (complete == 1) {
               //如果信息完整就直接添加人脉
@@ -216,7 +218,7 @@ Page({
   },
   // 二维码分享按钮
   shareSth: function (e) {
-    var QR_id = e.currentTarget.dataset.clickid;
+    let QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
     wx.navigateTo({
       url: '/pages/my/qrCode/qrCode',
@@ -224,21 +226,19 @@ Page({
   },
   //分享页面部分
   onShareAppMessage: function () {
-    var user_id = this.data.followed_user_id;
-    var share_id = this.data.share_id;
-    var name = this.data.user.user_real_name;
-    return app.sharePage(user_id, share_id, name)
+    let that = this;
+    return ShareModel.sharePageShare(that);
   },
   //项目融资
   projectFinance: function () {
-    var followed_user_id = this.data.followed_user_id;
+    let followed_user_id = this.data.followed_user_id;
     wx.navigateTo({
       url: '/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id,
     })
   },
   //融资项目详情
   financingDetail: function (e) {
-    var id = e.currentTarget.dataset.id;
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/projectDetail/projectDetail?id=' + id,
     })
@@ -254,9 +254,9 @@ Page({
     // 推送给数据显示的人 push_id = followed_user_id
     //查看的人 view_id = user_id
 
-    var share_id = this.data.share_id;
+    let share_id = this.data.share_id;
     let view_id = this.data.view_id;
-    var push_id = this.data.followed_user_id;
+    let push_id = this.data.followed_user_id;
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
       data: {
@@ -265,7 +265,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             //如果信息完整就正常申请添加人脉
             wx.navigateTo({

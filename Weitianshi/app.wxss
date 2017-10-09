@@ -486,6 +486,8 @@ textarea {
 .t-contactsPic {
   width: 750rpx;
   height: 280rpx;
+  background: url(https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/img-banner.png) no-repeat;
+  background-size: 100%;
 }
 
 .t-btnBox {
@@ -510,11 +512,10 @@ textarea {
 }
 
 .t-blockContent {
-  position: absolute;
-  top: 40rpx;
+  padding-top: 80rpx;
+  text-align: center;
   font-size: 32rpx;
   color: #fff;
-  text-align: center;
 }
 
 /*-------------------------------------筛选和搜索框--------------------------------------*/

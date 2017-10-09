@@ -2,6 +2,7 @@ var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
 
@@ -115,5 +116,10 @@ Page({
     // })
     let that = this;
     app.errorHide(that, "收藏项目近期开放", 3000);
-  }
+  },
+  //分享页面
+  onShareAppMessage: function () {
+    let that = this;
+    return SharePage.myCardShare(that);
+  },
 })

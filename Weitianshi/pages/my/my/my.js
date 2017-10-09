@@ -2,6 +2,7 @@ var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     integrity: 30,
@@ -196,12 +197,8 @@ Page({
   },
   //分享页面
   onShareAppMessage: function () {
-    var user_id = wx.getStorageSync('user_id');
-    var share_id = wx.getStorageSync("user_id");
-    let name = this.data.user.user_real_name;
-    let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
-    let title = '投资名片—智能精准匹配投融资双方的神器';
-    return app.sharePage(user_id, share_id, name)
+    let that=this;
+    return SharePage.myCardShare(that);
   },
 
   //取消分享

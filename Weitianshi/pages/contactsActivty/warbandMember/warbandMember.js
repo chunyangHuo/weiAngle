@@ -1,9 +1,9 @@
-var rqj = require('../../Template/Template.js')
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let rqj = require('../../Template/Template.js')
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel'
 Page({
-
   data: {
 
   },
@@ -76,13 +76,13 @@ Page({
   //加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数
-    var that = this;
-    var user_id = wx.getStorageSync('user_id');
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
     let team_id = this.data.team_id;
-    var currentPage = this.data.currentPage;
+    let currentPage = this.data.currentPage;
     let warMemberList = this.data.warMemberList;
 
-    var request = {
+    let request = {
       url: url_common + '/api/team/membersList',
       data: {
         team_id: team_id,
@@ -132,7 +132,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             let user_id = wx.getStorageSync('user_id');
             let applied_user_id = e.currentTarget.dataset.applyid;
@@ -195,16 +195,8 @@ Page({
   },
   //分享页面
   onShareAppMessage: function () {
-    let team_name = this.data.team_name;
-    let team_id = this.data.team_id;
-    return {
-      title: team_name + '正在参与2017首届中国双创机构人气品牌百强评选，邀您加战队，助我夺冠!',
-      path: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id + '&team_name=' + team_name,
-      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
-      success: function (res) {
-        console.log('分享成功', res)
-      },
-    }
+    let that = this;
+    return ShareModel.warbandMemberShare(that)
   },
   //加入战队
   addWar: function (e) {
@@ -221,7 +213,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             //添加战队
             let user_id = wx.getStorageSync('user_id');

@@ -1,7 +1,8 @@
-var rqj = require('../../Template/Template.js');
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let rqj = require('../../Template/Template.js');
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel'
 Page({
   data: {
     dataUrl: ""
@@ -17,18 +18,18 @@ Page({
     }
   },
   onShow: function () {
-    var that = this;
+    let that = this;
     let type = this.data.type;
+    let QR_id;
     if (type == 1) {
-      var QR_id = this.data.QR_id;
-      console.log(QR_id)
+      QR_id = this.data.QR_id;
     } else {
-      var QR_id = wx.getStorageSync('QR_id');//点击二维码页面的用户id
+      QR_id = wx.getStorageSync('QR_id');//点击二维码页面的用户id
     }
 
     //登录态维护
     app.loginPage(function (user_id) {
-      var view_id = QR_id;
+      let view_id = QR_id;
       wx.setStorageSync('user_id', user_id);
       that.setData({
         user_id: user_id
@@ -44,7 +45,7 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log(res)
-          var user = res.data.user_info;
+          let user = res.data.user_info;
           that.setData({
             user: user,
           })
@@ -62,12 +63,12 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          var net = res.data;
-          var access_token = net.qrcode;
+          let net = res.data;
+          let access_token = net.qrcode;
           that.setData({
             access_token: access_token
           })
-          var filPath = wx.setStorageSync('access_token', access_token);
+          let filPath = wx.setStorageSync('access_token', access_token);
         },
         fail: function (res) {
           console.log(res)
@@ -78,11 +79,11 @@ Page({
 
   //保存小程序码
   savePic: function () {
-    var filePath = wx.getStorageSync('access_token');
+    let filePath = wx.getStorageSync('access_token');
     wx.getImageInfo({
       src: filePath,
       success: function (res) {
-        var picPath = res.path;
+        let picPath = res.path;
         wx.getSetting({
           success(res) {
             if (!res['scope.writePhotosAlbum']) {
@@ -113,10 +114,8 @@ Page({
 
   //分享页面
   onShareAppMessage: function () {
-    var name = this.data.user.user_real_name;
-    var user_id = wx.getStorageSync('QR_id');
-    var share_id = wx.getStorageSync('user_id') || 0;
-    return app.sharePage(user_id, share_id, name)
+    let that = this;
+    return ShareModel.qrCodeShare(that);
   },
   //取消分享
   cancelShare: function () {
