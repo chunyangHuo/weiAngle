@@ -269,7 +269,7 @@ Page({
     return {
       title: name + '正在参与2017首届中国创投人脉争霸赛，等你来战!',
       path: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
+      imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_4.jpg",
       success: function (res) {
         console.log('分享成功', res)
       },
