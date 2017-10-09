@@ -2,6 +2,7 @@ var rqj = require('../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
     firstName: "代",
@@ -58,13 +59,8 @@ Page({
   },
   //分享当前页面
   onShareAppMessage: function () {
-    var pro_intro = this.data.project.pro_intro;
-    //id :当前页面的项目id
-    let id = this.data.id;
-    let share_id = this.data.currentUser;
-    let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
-    let title = pro_intro;
-    return app.shareProjectPage(id, title, share_id)
+    let that=this;
+    return ShareModel.projectDetailShare(that);
   },
   // 项目详情中的显示全部
   allBrightPoint: function () {

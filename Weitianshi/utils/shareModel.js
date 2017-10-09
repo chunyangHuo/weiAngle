@@ -17,8 +17,16 @@ function discoverProjectShare() {
   }
 }
 
+//找投资分享
+function discoverInvestShare() {
+  return {
+    title: '来微天使找优质人脉',
+    path: '/pages/discoverInvest/discoverInvest'
+  }
+}
+
 //个人店铺分享
-function projectShopShare(that){
+function projectShopShare(that) {
   let myProject = that.data.myProject;
   let user_id = that.data.user_id;
   let shop_name = that.data.userInfo.shop_name || that.data.userInfo.user_real_name
@@ -33,7 +41,7 @@ function projectShopShare(that){
 }
 
 //名片二维码分享
-function qrCodeShare(that){
+function qrCodeShare(that) {
   let name = that.data.user.user_real_name;
   let user_id = wx.getStorageSync('QR_id');
   let share_id = wx.getStorageSync('user_id') || 0;
@@ -41,19 +49,51 @@ function qrCodeShare(that){
 }
 
 //名片分享页分享
-function sharePageShare(that){
+function sharePageShare(that) {
   let user_id = that.data.followed_user_id;
   let share_id = that.data.share_id;
   let name = that.data.user.user_real_name;
   return app.sharePage(user_id, share_id, name)
 }
 
-//找投资分享
-function discoverInvestShare() {
+//一键尽调页面
+function oneKeyResearchShare(that) {
+  let pro_intro = that.data.project.pro_intro;
   return {
-    title: '来微天使找优质人脉',
-    path: '/pages/discoverInvest/discoverInvest'
+    title: pro_intro,
+    path: '/pages/oneKeyResearch/oneKeyResearch?id=' + that.data.id
   }
+}
+
+//我的项目详情分享
+function myProjectDetailShare(that) {
+  let pro_intro = that.data.project.pro_intro;
+  let id = that.data.id;
+  let share_id = that.data.view_id;
+  let title = pro_intro;
+  return {
+    title: title,
+    path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
+  }
+}
+
+//他人项目详情分享
+function projectDetailShare(that){
+  var pro_intro = that.data.project.pro_intro;
+  //id :当前页面的项目id
+  let id = that.data.id;
+  let share_id = that.data.currentUser;
+  let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
+  let title = pro_intro;
+  return app.shareProjectPage(id, title, share_id)
+}
+
+//他人详情分享
+function networkDetailShare(that){
+  var user_id = that.data.user_id;
+  var share_id = wx.getStorageSync("user_id");
+  var name = that.data.user.user_real_name;
+  return app.sharePage(user_id, share_id, name)
 }
 
 //活动详情分享
@@ -118,6 +158,10 @@ export {
   projectShopShare,
   qrCodeShare,
   sharePageShare,
+  oneKeyResearchShare,
+  myProjectDetailShare,
+  projectDetailShare,
+  networkDetailShare,
   activtyShare,
   topPlayerShare,
   warbandMemberShare,

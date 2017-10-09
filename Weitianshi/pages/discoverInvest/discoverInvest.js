@@ -70,26 +70,32 @@ Page({
   //投资人列表信息
   investorList() {
     let that = this;
+    let SearchInit = this.data.SearchInit;
     wx.request({
-      url: url_common + '/api/resource/getMatchResourceList',
+      url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
-        user_id: this.data.user_id
+        user_id: this.data.user_id,
+        type: 'investor',
+        filter: this.data.SearchInit.searchData
       },
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('资源匹配项目',res)
+          console.log('投资人列表', res.data.data)
           wx.hideLoading();
-          var res_match = res.data.data.match_list;
+          var investorList = res.data.data;
+          SearchInit.currentIndex = 5;
           that.setData({
-            res_match: res_match, //资源需求匹配出来的项目
+            investorList: investorList,
+            SearchInit: SearchInit
+
           })
         }
       }
     });
   },
   //FA列表信息
-  faList() {},
+  faList() { },
   //我的人脉列表信息
   myList() {
     let user_id = this.data.user_id;
@@ -162,8 +168,8 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
-    let currentTab=this.data.currentTab;
-    switch (currentTab){
+    let currentTab = this.data.currentTab;
+    switch (currentTab) {
       case 0:
         {
           let request = {
@@ -174,7 +180,7 @@ Page({
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "res_match", that.data.res_match)
+          app.loadMore(that, request, "investorList", that.data.investorList)
         }
         break;
       case 1:
@@ -187,7 +193,7 @@ Page({
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "res_match", that.data.res_match)
+          app.loadMore(that, request, "investorList", that.data.investorList)
         }
         break;
       case 2:
@@ -195,15 +201,15 @@ Page({
           let request = {
             url: url_common + '/api/project/getMarketProjectList',
             data: {
-              user_id:user_id,
+              user_id: user_id,
               page: this.data.currentPage
             }
           }
           app.loadMore(that, request, "financingNeed", that.data.financingNeed)
         }
-        break;    
+        break;
     }
-   
+
   },
   // 分享当前页面
   onShareAppMessage: function () {
@@ -241,7 +247,7 @@ Page({
     })
   },
   //找项目投资人
-  matchInvestor(){
+  matchInvestor() {
     wx.navigateTo({
       url: '/pages/matchInvestor/matchInvestor'
     })
@@ -265,8 +271,8 @@ Page({
     Search.reset(that)
   },
   // 全部筛选重置
-  allReset(){
-    let that=this;
+  allReset() {
+    let that = this;
     Search.allReset(that);
   },
   // 筛选确定
@@ -275,9 +281,12 @@ Page({
     let searchData = Search.searchCertain(that);
     let current = this.data.currentTab;
     if (current == 0) {
-      console.log('筛选精选', searchData)
+      console.log('筛选投资人', searchData);
+      this.investorList();
     } else if (current == 1) {
-      console.log('筛选最新', searchData)
+      console.log('筛选FA', searchData)
+    } else if (current == 2) {
+      console.log('筛选我的', searchData)
     } else {
       console.log('searchCertain()出错了')
     }
@@ -294,7 +303,7 @@ Page({
   },
 
   //---------------------------我的人脉--------------------------------------------------------------
-    // 一键拨号
+  // 一键拨号
   telephone: function (e) {
     var telephone = e.currentTarget.dataset.telephone;
     wx.makePhoneCall({

@@ -1,8 +1,9 @@
-var rqj = require('../../Template/Template.js');
-var wxCharts = require('../../../utils/wxcharts.js');
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let rqj = require('../../Template/Template.js');
+let wxCharts = require('../../../utils/wxcharts.js');
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     winWidth: 0,//选项卡
@@ -44,17 +45,17 @@ Page({
   },
   onShow: function () {
     //  投资人数据
-    var that = this;
-    var id = this.data.id;
-    var index = this.data.index;
-    var currentPage = this.data.currentPage;
-    var avatarUrl = wx.getStorageSync('avatarUrl');
-    var new_company_name = this.data.newCompanyName;
-    var investor = this.data.investor;
-    var industry_tag = [];
-    var scale_tag = [];
-    var stage_tag = [];
-    var pro_goodness = "";
+    let that = this;
+    let id = this.data.id;
+    let index = this.data.index;
+    let currentPage = this.data.currentPage;
+    let avatarUrl = wx.getStorageSync('avatarUrl');
+    let new_company_name = this.data.newCompanyName;
+    let investor = this.data.investor;
+    let industry_tag = [];
+    let scale_tag = [];
+    let stage_tag = [];
+    let pro_goodness = "";
     // 为上拉加载准备
     app.initPage(that);
     // 判斷項目是不是自己的
@@ -65,7 +66,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        var ownerId = res.data.user_id;
+        let ownerId = res.data.user_id;
         //获取user_id
         app.loginPage(function (user_id) {
           that.setData({
@@ -88,7 +89,7 @@ Page({
               method: 'POST',
               success: function (res) {
                 wx.hideLoading()
-                var investor2 = res.data.data;
+                let investor2 = res.data.data;
                 console.log(investor2)
                 that.setData({
                   investor2: investor2,
@@ -110,13 +111,13 @@ Page({
               method: 'POST',
               success: function (res) {
                 let brandList = res.data.data.brand;
-                var project = res.data.data;
-                var user = res.data.user;
-                var count = project.count;
-                var pro_company_name = project.pro_company_name;
-                var pro_goodness = res.data.data.pro_goodness;
-                var industy_sort = [];
-                var firstName = user.user_name.substr(0, 1);
+                let project = res.data.data;
+                let user = res.data.user;
+                let count = project.count;
+                let pro_company_name = project.pro_company_name;
+                let pro_goodness = res.data.data.pro_goodness;
+                let industy_sort = [];
+                let firstName = user.user_name.substr(0, 1);
                 // 如果项目亮点字数超出字,刚显示全部按钮
                 if (pro_goodness.length > 50) {
                   that.setData({
@@ -133,8 +134,8 @@ Page({
                   brandList: brandList
                 });
                 // 项目介绍的标签
-                var pro_industry = project.pro_industry;
-                for (var i = 0; i < pro_industry.length; i++) {
+                let pro_industry = project.pro_industry;
+                for (let i = 0; i < pro_industry.length; i++) {
                   industy_sort.push(pro_industry[i].industry_name)
                 }
                 that.setData({
@@ -155,7 +156,7 @@ Page({
                 let infoTagArray = project.tag;
                 let tagOfPro = [];//项目资料的标签
                 let teamOfPro = [];//核心团队的标签
-                for (var i = 0; i < infoTagArray.length; i++) {
+                for (let i = 0; i < infoTagArray.length; i++) {
                   if (infoTagArray[i].type == 0) {
                     tagOfPro.push(infoTagArray[i])
                   } else if (infoTagArray[i].type == 1) {
@@ -222,7 +223,7 @@ Page({
                       let company = res.data.data.company;
                       let com_id = company.com_id;
                       let com_time = company.company_register_date;
-                      var time = app.changeTime(com_time);
+                      let time = app.changeTime(com_time);
                       if (projectInfoList.length != 0) {
                         projectInfoList.forEach((x, index) => {
                           projectInfoList[index] = x;
@@ -411,13 +412,13 @@ Page({
   },
   /*滑动切换tab*/
   bindChange: function (e) {
-    var that = this;
-    var current = e.detail.current;
+    let that = this;
+    let current = e.detail.current;
     that.setData({ currentTab: e.detail.current });
   },
   /*点击tab切换*/
   swichNav: function (e) {
-    var that = this;
+    let that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -428,18 +429,18 @@ Page({
   },
   //进入投资人用户详情
   detail(e) {
-    var id = e.currentTarget.dataset.id;
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
   // 买家图谱上拉加载
   loadMore: function () {
-    var that = this;
-    var user_id = this.data.user_id;
-    var id = this.data.id;
-    var currentPage = this.data.currentPage;
-    var request = {
+    let that = this;
+    let user_id = this.data.user_id;
+    let id = this.data.id;
+    let currentPage = this.data.currentPage;
+    let request = {
       url: url_common + '/api/project/getProjectMatchInvestors',
       data: {
         user_id: user_id,
@@ -452,27 +453,16 @@ Page({
   },
   //维护项目
   maintainProject() {
-    var id = this.data.id;
-    var user_id = this.data.user_id;
+    let id = this.data.id;
+    let user_id = this.data.user_id;
     wx.navigateTo({
       url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
     })
   },
   //分享当前页面
   onShareAppMessage: function () {
-    var pro_intro = this.data.project.pro_intro;
-    let id = this.data.id;
-    let share_id = this.data.view_id;
-    let title = pro_intro;
-    return {
-      title: title,
-      path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
-      success: function (res) {
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    }
+    let that = this;
+    return ShareModel.myProjectDetailShare(that);
   },
   //跳转到我的页面
   toMy: function () {
@@ -482,8 +472,8 @@ Page({
   },
   //更新数据
   updateData: function () {
-    var simulationData = this.createSimulationData();
-    var series = [{
+    let simulationData = this.createSimulationData();
+    let series = [{
       name: '成交量1',
       data: simulationData.data,
       format: function (val, name) {

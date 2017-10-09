@@ -12,7 +12,7 @@
   <swiper-item data-current='0'>
     <!---投资人展示  -->
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
-      <block wx:for="{{res_match}}" wx:key="{{res_match}}">
+      <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
           <template is='cardBottom1'></template>

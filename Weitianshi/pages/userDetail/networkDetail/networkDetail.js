@@ -2,6 +2,7 @@ var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     integrity: 30,
@@ -209,10 +210,8 @@ shareSth: function (e) {
 },
 //分享页面
 onShareAppMessage: function () {
-  var user_id = this.data.user_id;
-  var share_id = wx.getStorageSync("user_id");
-  var name = this.data.user.user_real_name;
-  return app.sharePage(user_id, share_id, name)
+  let that=this;
+  return ShareModel.networkDetailShare(that);
 },
 //项目融资
 projectFinance: function () {

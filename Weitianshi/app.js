@@ -1,5 +1,5 @@
 import * as request from './utils/http';
-import {applyProject as ApplyProject} from './utils/applyProject';
+import { applyProject as ApplyProject } from './utils/applyProject';
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -245,8 +245,11 @@ App({
       path: path,
       //分享成功后的回调
       success: function (res) {
-        console.log("shareProjectPage分享成功")
-        let shareTicket = res.shareTickets[0];
+        console.log("shareProjectPage分享成功");
+        let shareTicket;
+        if (res.shareTickets) {
+          shareTicket = res.shareTickets[0];
+        }
         //获取code
         wx.login({
           success(res) {
@@ -300,14 +303,14 @@ App({
   },
 
   //分享项目(user_id为数据所有人ID,share_Id为分享人的ID)
-  sharePage(user_id, share_id,name) {
+  sharePage(user_id, share_id, name) {
     let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
     let json = {
-      title: '［换名片］'+ name +'的投资名片，请点击查看',
+      title: '［换名片］' + name + '的投资名片，请点击查看',
       path: path,
-      imageUrl:"http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_2.jpg",
+      imageUrl: "http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_2.jpg",
       //分享成功后的回调
       success: function (res) {
         console.log("sharePage分享成功")
@@ -497,7 +500,7 @@ App({
             })
 
           },
-          complete(){
+          complete() {
             wx.hideLoading();
           }
         })
@@ -851,8 +854,8 @@ App({
       },
     });
   }, */
-  applyProject(that,e,str){
-    ApplyProject(that,e,str)
+  applyProject(that, e, str) {
+    ApplyProject(that, e, str)
   },
 
   //错误提示
@@ -871,59 +874,59 @@ App({
 
   //头像上传
   headPic(that) {
-      let user_id = that.data.user_id;
-      let user_info = that.data.user_info;
-      let url_common = this.globalData.url_common;
-      wx.chooseImage({
-          count: 1, // 默认9
-          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-          success: function (res) {
-              var tempFilePaths = res.tempFilePaths;
-              let avatar = tempFilePaths[0];
-              let size = res.tempFiles[0].size;
-              if (size <= 1048576) {
-                  wx.showLoading({
-                      title: '头像上传中',
-                      mask:true,
-                  })
-                  wx.uploadFile({
-                      url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
-                      filePath: tempFilePaths[0],
-                      name: 'avatar',
-                      formData: {
-                          user_id: user_id,
-                      },
-                      success: function (res) {
-                          let data = JSON.parse(res.data);
-                          if (data.status_code === 2000000) {
-                              wx.hideLoading();
-                              let image_id = data.data.image_id;
-                              that.setData({
-                                  image_id: image_id
-                              })
-                          }
-                      }
-                  })
-                  if (user_info.user_avatar_url) {
-                      user_info.user_avatar_url = tempFilePaths;
-                  } else if (user_info.user_avatar_text) {
-                      delete user_info.user_avatar_text;
-                      user_info.user_avatar_url = tempFilePaths;
-                  }
-                  that.setData({
-                      user_info: user_info
-                  })
-              } else {
-                  app.errorHide(that, "上传图片不能超过1M", 1500)
+    let user_id = that.data.user_id;
+    let user_info = that.data.user_info;
+    let url_common = this.globalData.url_common;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths;
+        let avatar = tempFilePaths[0];
+        let size = res.tempFiles[0].size;
+        if (size <= 1048576) {
+          wx.showLoading({
+            title: '头像上传中',
+            mask: true,
+          })
+          wx.uploadFile({
+            url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[0],
+            name: 'avatar',
+            formData: {
+              user_id: user_id,
+            },
+            success: function (res) {
+              let data = JSON.parse(res.data);
+              if (data.status_code === 2000000) {
+                wx.hideLoading();
+                let image_id = data.data.image_id;
+                that.setData({
+                  image_id: image_id
+                })
               }
+            }
+          })
+          if (user_info.user_avatar_url) {
+            user_info.user_avatar_url = tempFilePaths;
+          } else if (user_info.user_avatar_text) {
+            delete user_info.user_avatar_text;
+            user_info.user_avatar_url = tempFilePaths;
           }
-      })
+          that.setData({
+            user_info: user_info
+          })
+        } else {
+          app.errorHide(that, "上传图片不能超过1M", 1500)
+        }
+      }
+    })
   },
   //身份信息
-  identity(user_id,func){
+  identity(user_id, func) {
     let url_common = this.globalData.url_common;
-     wx.request({
+    wx.request({
       url: url_common + '/api/user/getUserGroupByStatus',
       data: {
         user_id: user_id
@@ -934,14 +937,14 @@ App({
   },
 
   //请求封装
-  httpPost(data){
+  httpPost(data) {
     return request.httpPost(data)
   },
 
   //初始本地缓存
   globalData: {
     error: 0,
-    app_key:'wxos_lt',
+    app_key: 'wxos_lt',
     // url: "https://lbs.weitianshi.cn",
     // url_common: "https://lbs.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
