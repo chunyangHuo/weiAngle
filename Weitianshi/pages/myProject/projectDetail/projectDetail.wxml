@@ -1,3 +1,5 @@
+<!-- <import src="/pages/Template/Template.wxml" />
+<template is="topBlock" wx:if='{{share_id}}'></template> -->
 <view id="myDetail">
   <view class="classname">
     <view class="projectDetailTop">
@@ -752,4 +754,4 @@
   </view>
 </view>
 <!--没有更多-->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>a

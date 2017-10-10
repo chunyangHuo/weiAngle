@@ -10,9 +10,7 @@ Page({
   onLoad() {
     this.getMyProject();
   },
-  onShow() {
-
-  },
+  // 获取项目信息
   getMyProject() {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
@@ -28,8 +26,26 @@ Page({
       method: 'POST',
       success: function (res) {
         wx.hideLoading();
-        console.log('我的项目列表', res)
         let myProject = res.data.data;
+        // 拼接industryArry和otherTag用于展示
+        if (myProject) {
+          myProject.forEach(x => {
+            x.industryArr = '';
+            x.otherTag = '';
+            if (x.pro_industry.length != 0) {
+              x.pro_industry.forEach((y, index) => {
+                if (index != x.pro_industry.length - 1) {
+                  x.industryArr += y.industry_name + '、'
+                } else {
+                  x.industryArr += y.industry_name
+                }
+              })
+            }
+            if(x.pro_finance_stock_after==0.00) x.pro_finance_stock_after=0;
+            x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after +'%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
+          })
+        }
+        console.log('项目列表', myProject)
         //刷新数据
         that.setData({
           myProject: myProject,

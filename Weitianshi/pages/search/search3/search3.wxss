@@ -25,13 +25,11 @@
   padding-left:24rpx;
 }
 /*取消*/
-
 .esc {
   /*clear:both;*/
   float: right;
   font-size: 32rpx;
   color: #40587a;
-  margin-top: 14rpx;
   margin-right: 32rpx;
 }
 .outBox {

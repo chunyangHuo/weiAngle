@@ -1,4 +1,5 @@
 let app = getApp();
+
 //我的名片分享
 function myCardShare(that) {
   let user_id = wx.getStorageSync('user_id');
@@ -6,7 +7,36 @@ function myCardShare(that) {
   let name = that.data.user.user_real_name;
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
   let title = '投资名片—智能精准匹配投融资双方的神器';
-  return app.sharePage(user_id, share_id, name)
+  return sharePage(user_id, share_id, name)
+}
+//他人详情分享
+function networkDetailShare(that) {
+  var user_id = that.data.user_id;
+  var share_id = wx.getStorageSync("user_id");
+  var name = that.data.user.user_real_name;
+  return sharePage(user_id, share_id, name)
+}
+
+//我的项目详情分享
+function myProjectDetailShare(that) {
+  let pro_intro = that.data.project.pro_intro;
+  let id = that.data.id;
+  let share_id = that.data.view_id;
+  let title = pro_intro;
+  return {
+    title: title,
+    path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
+  }
+}
+//他人项目详情分享
+function projectDetailShare(that) {
+  var pro_intro = that.data.project.pro_intro;
+  //id :当前页面的项目id
+  let id = that.data.id;
+  let share_id = that.data.currentUser;
+  let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
+  let title = pro_intro;
+  return shareProjectPage(id, title, share_id)
 }
 
 //找项目分享
@@ -33,10 +63,6 @@ function projectShopShare(that) {
   return {
     title: shop_name + '项目店铺',
     path: '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + user_id,
-    success: function (res) {
-      console.log('分享成功', res)
-      console.log(user_id)
-    },
   }
 }
 
@@ -45,7 +71,7 @@ function qrCodeShare(that) {
   let name = that.data.user.user_real_name;
   let user_id = wx.getStorageSync('QR_id');
   let share_id = wx.getStorageSync('user_id') || 0;
-  return app.sharePage(user_id, share_id, name)
+  return sharePage(user_id, share_id, name);
 }
 
 //名片分享页分享
@@ -53,7 +79,7 @@ function sharePageShare(that) {
   let user_id = that.data.followed_user_id;
   let share_id = that.data.share_id;
   let name = that.data.user.user_real_name;
-  return app.sharePage(user_id, share_id, name)
+  return sharePage(user_id, share_id, name);
 }
 
 //一键尽调页面
@@ -65,46 +91,12 @@ function oneKeyResearchShare(that) {
   }
 }
 
-//我的项目详情分享
-function myProjectDetailShare(that) {
-  let pro_intro = that.data.project.pro_intro;
-  let id = that.data.id;
-  let share_id = that.data.view_id;
-  let title = pro_intro;
-  return {
-    title: title,
-    path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
-  }
-}
-
-//他人项目详情分享
-function projectDetailShare(that){
-  var pro_intro = that.data.project.pro_intro;
-  //id :当前页面的项目id
-  let id = that.data.id;
-  let share_id = that.data.currentUser;
-  let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
-  let title = pro_intro;
-  return app.shareProjectPage(id, title, share_id)
-}
-
-//他人详情分享
-function networkDetailShare(that){
-  var user_id = that.data.user_id;
-  var share_id = wx.getStorageSync("user_id");
-  var name = that.data.user.user_real_name;
-  return app.sharePage(user_id, share_id, name)
-}
-
 //活动详情分享
 function activtyShare() {
   return {
     title: '100万大礼包助攻2017首届中国双创机构人气品牌百强评选，等你来战!',
     path: '/pages/contactsActivty/activtyDetail/activtyDetail',
     imageUrl: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_3.jpg",
-    success: function (res) {
-      console.log('分享成功', res)
-    },
   }
 }
 
@@ -151,6 +143,87 @@ function warbandMemberShare(that) {
   }
 }
 
+/* -------------------------------------------------------------------- */
+//分享项目详情(user_id为数据所有人ID,share_Id为分享人的ID)
+function shareProjectPage(id, title, share_id) {
+  let url = app.globalData.url;
+  let url_common = app.globalData.url_common;
+  let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
+  let json = {
+    title: title,
+    path: path,
+  }
+  return json
+}
+
+//分享名片详情(user_id为数据所有人ID,share_Id为分享人的ID,name为数据所有人的姓名)
+function sharePage(user_id, share_id, name) {
+  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+  let url = app.globalData.url;
+  let url_common = app.globalData.url_common;
+  let json = {
+    title: '［换名片］' + name + '的投资名片，请点击查看',
+    path: path,
+    imageUrl: "http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_2.jpg",
+  }
+  return json
+}
+
+//分享打点
+function shareLog(path) {
+  let shareTicket;
+  if (res.shareTickets) {
+    shareTicket = res.shareTickets[0];
+  }
+  //获取code
+  wx.login({
+    success(res) {
+      let code = res.code;
+      if (code) {
+        //如果是分享到群里
+        if (shareTicket) {
+          wx.getShareInfo({
+            shareTicket: shareTicket,
+            success: function (res) {
+              let encryptedData = res.encryptedData;
+              let iv = res.iv;
+              //发送请求到后台
+              wx.request({
+                url: url_common + '/api/log/shareLogRecord',
+                method: "POST",
+                data: {
+                  code: code,
+                  path: path,
+                  encryptedData: encryptedData,
+                  iv: iv
+                },
+                success(res) {
+                  console.log('分享页面后台记录成功', res)
+                }
+              })
+            },
+          })
+        } else {//如果不是分享到群里
+          console.log(code, path)
+          //发送请求到后台
+          wx.request({
+            url: url_common + '/api/log/shareLogRecord',
+            method: "POST",
+            data: {
+              code: code,
+              path: path,
+            },
+            success(res) {
+              console.log('分享页面后台记录成功', res)
+            }
+          })
+        }
+      }
+    }
+  })
+}
+/* --------------------------------------------------------------------- */
+
 export {
   myCardShare,
   discoverInvestShare,
@@ -166,3 +239,4 @@ export {
   topPlayerShare,
   warbandMemberShare,
 }
+

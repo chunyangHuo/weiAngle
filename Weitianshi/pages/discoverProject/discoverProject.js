@@ -1,7 +1,7 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as Search from '../../utils/search';
+import * as SearchModel from '../../utils/searchModel';
 import * as CreateProject from '../../utils/createProjectBottom';
 import * as ShareModel from '../../utils/shareModel';
 Page({
@@ -12,7 +12,7 @@ Page({
     currentTab: 0,
     slectProject: '',
     //筛选搜索
-    SearchInit: Search.data,
+    SearchInit: SearchModel.data,
     //banner
     bannerIndex: 0,
     imgUrls: [
@@ -131,7 +131,7 @@ Page({
     //调用通用加载函数
     app.loadMore(that, request, "slectProject", that.data.slectProject)
   },
-  financingNeed() {
+  loadMore2() {
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
@@ -192,27 +192,27 @@ Page({
   // 下拉框
   move(e) {
     let that = this;
-    Search.move(e, that)
+    SearchModel.move(e, that)
   },
   // 标签选择
   tagsCheck(e) {
     let that = this;
-    Search.tagsCheck(e, that)
+    SearchModel.tagsCheck(e, that)
   },
   // 筛选重置
   reset() {
     let that = this;
-    Search.reset(that)
+    SearchModel.reset(that)
   },
   // 筛选全部重置
   allReset() {
     let that = this;
-    Search.allReset(that)
+    SearchModel.allReset(that)
   },
   // 筛选确定
   searchCertain() {
     let that = this;
-    let searchData = Search.searchCertain(that);
+    let searchData = SearchModel.searchCertain(that);
     let current = this.data.currentTab;
     let SearchInit = this.data.SearchInit;
     SearchInit.searchData = searchData;
@@ -236,12 +236,14 @@ Page({
   // 点击modal层
   modal() {
     let that = this;
-    Search.modal(that)
+    SearchModel.modal(that)
   },
   //搜索
   searchSth() {
     let that = this;
-    Search.searchSth(that)
+    let str;
+    str = this.data.currentTab == 0 ? "selected" : "newest"
+    SearchModel.searchSth(that, str)
   },
 
   //----------------------创建项目引导------------------------------------------------ 
@@ -250,7 +252,7 @@ Page({
     CreateProject.toCreateProject();
   },
   // 在电脑上创建
-  createProjectPc(){
+  createProjectPc() {
     CreateProject.createProjectPc();
-  }, 
+  },
 })
