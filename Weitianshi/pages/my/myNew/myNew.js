@@ -39,15 +39,12 @@ Page({
           method: 'POST',
           success: function (res) {
             wx.hideLoading()
-            console.log(res)
             var user = res.data.data.user;
-            console.log(user)
             var count = res.data.data.count;
             var invest = res.data.data.invest_info;
             var resource = res.data.data.resource_info;
             var project_info = res.data.data.project_info;
             var user_name = res.data.data.user.user_real_name;
-            console.log(user_name)
             wx.setNavigationBarTitle({
               title: user_name + "的投资名片",
             })

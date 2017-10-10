@@ -35,6 +35,27 @@ Page({
         user_id: user_id,
       })
       that.getInfo(that, user_id, that.data.id)
+      wx.request({
+        url: url_common + '/api/project/projectWithUserRelationship',
+        data: {
+          user_id: user_id,
+          project_id: id
+        },
+        method: 'POST',
+        success: function (res) {
+          let show_company = res.data.data.show_company;
+          let show_detail = res.data.data.show_detail;
+          if (show_detail == 0){
+
+          }else if(show_detail == 1){
+            if(show_company == 0){
+
+            }else{
+
+            }
+          }
+        }
+      })
     } else {
       app.loginPage(function (user_id) {
         that.setData({
@@ -177,7 +198,12 @@ Page({
         // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
         var project = res.data.data;
         console.log(project)
-        let BPath = project.pro_BP.file_url;
+        if (project.pro_BP){
+          let BPath = project.pro_BP.file_url;
+          that.setData({
+            BPath: BPath
+          })
+        }
         var user = res.data.user;
         var firstName = user.user_name.substr(0, 1) || '';
         var pro_industry = project.pro_industry;
@@ -185,6 +211,7 @@ Page({
         let industy_sort = [];
         let pro_goodness = project.pro_goodness;
         let button_type = res.data.button_type;
+        console.log(button_type)
         let currentUser = user.user_id;
         //判断是不是自己的项目
         if (currentUser === user_id) {
@@ -215,8 +242,7 @@ Page({
           project: project,
           user: user,
           firstName: firstName,
-          pro_company_name: pro_company_name,
-          BPath: BPath
+          pro_company_name: pro_company_name
         });
         // if (button_type == 1 || button_type == 2 || button_type == 3)
         if (button_type == 1) {
