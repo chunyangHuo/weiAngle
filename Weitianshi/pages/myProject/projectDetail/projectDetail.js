@@ -88,9 +88,9 @@ Page({
               },
               method: 'POST',
               success: function (res) {
+                console.log(res)
                 wx.hideLoading()
                 let investor2 = res.data.data;
-                console.log(investor2)
                 that.setData({
                   investor2: investor2,
                   page_end: res.data.page_end
@@ -110,7 +110,6 @@ Page({
               },
               method: 'POST',
               success: function (res) {
-                console.log(res)
                 let brandList = res.data.data.brand;
                 let project = res.data.data;
                 let user = res.data.user;
@@ -214,7 +213,6 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
-                    console.log(res)
                     let nothing = res.data.data
                     if (nothing == 0) {
                       that.setData({
@@ -377,7 +375,6 @@ Page({
                         method: 'POST',
                         success: function (res) {
                           let competeList = res.data.data;
-                          console.log(competeList)
                           let projectLabelList = [];
                           let projectArray = [];
                           let arr1 = [];
@@ -723,7 +720,6 @@ Page({
   //约谈
   hasMeeting: function () {
     let project_id = this.data.id;
-    console.log(project_id)
     wx.navigateTo({
       url: '/pages/message/contactProject/projectList/projectList?id=' + project_id,
     })
@@ -734,7 +730,6 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = e.currentTarget.dataset.id;
     let project_id = this.data.id;
-    console.log(project_id)
     wx.request({
       url: url_common + '/api/project/pushProjectToUser',
       data: {

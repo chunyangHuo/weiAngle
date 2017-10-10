@@ -308,9 +308,10 @@ scroll-view {
 }
 
 .empty {
-  padding-top: 92rpx;
+  padding-top: 281rpx;
   width: 252rpx;
   height: 190rpx;
+  padding-left: 215rpx;
 }
 
 /*一键尽调*/

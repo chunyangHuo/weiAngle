@@ -29,7 +29,9 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           var invest_case = res.data.invest_case;
+          console.log(invest_case)
           wx.setStorageSync('invest_case', invest_case)
           that.setData({
             invest_case: invest_case,
@@ -46,8 +48,9 @@ Page({
   //编辑案例
   detail: function (e) {
     var index = e.currentTarget.dataset.index;
+    let case_id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../investCaseEdit/investCaseEdit?index=' + index,
+      url: '../investCaseEdit/investCaseEdit?index=' + index + '&&case_id='+case_id,
     })
   },
 
