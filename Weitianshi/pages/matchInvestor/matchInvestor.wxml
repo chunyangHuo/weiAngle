@@ -34,16 +34,17 @@
             <view class='is_exclusive' wx:if='{{item.is_exclusive===1}}'>独家</view>
             <view class='is_exclusive' wx:if='{{item.is_exclusive===2}}'>非独</view>
           </view>
-          <view class='industry'>{{item.industryArr}}</view>
-          <view class='otherTag'>{{item.OtherTag}}</view>
+          <view class='industryArr'>{{item.industryArr}}</view>
+          <view class='otherTag'>{{item.otherTag}}</view>
           <view class='publish' wx:if='{{item.open_status==1}}'>公开</view>
           <view class='publish' wx:else>私密</view>
         </view>
         <!--卡片底部  -->
         <view class="ProjectDetailInfo flex">
           <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{item.project_id}}">
-            <view class="viewTimeNew" wx:if="{{item.count.view_times_new != 0}}">+{{item.count.view_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
+            <view class="viewTimeAll screenPersonColor project-sentimentm">
+              <view class="viewTimeNew" wx:if="{{item.count.view_times_new != 0}}">+{{item.count.view_times_new}}</view>
+              浏览：
               <label>{{item.count.view_times_all}}</label>
             </view>
           </view>

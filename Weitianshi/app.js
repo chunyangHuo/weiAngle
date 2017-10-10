@@ -1,5 +1,5 @@
 import * as request from './utils/http';
-import { applyProject as ApplyProject } from './utils/applyProject';
+import * as operationModel from './utils/operationModel';
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -210,13 +210,7 @@ App({
     }
   },
 
-  //查看缓存
-  cacheCheck() {
-    var res = wx.getStorageInfoSync();
-    console.log(res)
-  },
-
-  // user_id为空时,返回首页或者完善信息
+  //弹框--跳转首页或者完善信息页面(user_id为0)
   noUserId() {
     wx.showModal({
       title: "提示",
@@ -228,148 +222,17 @@ App({
           })
         } else {
           wx.switchTab({
-            url: '/pages/match/match/match/match',
+            url: '/pages/discoverProject/discoverProject',
           })
         }
       }
     })
   },
 
-  //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-  shareProjectPage(id, title, share_id) {
-    let url = this.globalData.url;
-    let url_common = this.globalData.url_common;
-    let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
-    let json = {
-      title: title,
-      path: path,
-      //分享成功后的回调
-      success: function (res) {
-        console.log("shareProjectPage分享成功");
-        let shareTicket;
-        if (res.shareTickets) {
-          shareTicket = res.shareTickets[0];
-        }
-        //获取code
-        wx.login({
-          success(res) {
-            let code = res.code;
-            if (code) {
-              //如果是分享到群里
-              if (shareTicket) {
-                wx.getShareInfo({
-                  shareTicket: shareTicket,
-                  success: function (res) {
-                    let encryptedData = res.encryptedData;
-                    let iv = res.iv;
-                    console.log(code, path)
-                    //发送请求到后台
-                    wx.request({
-                      url: url_common + '/api/log/shareLogRecord',
-                      method: "POST",
-                      data: {
-                        code: code,
-                        path: path,
-                        encryptedData: encryptedData,
-                        iv: iv
-                      },
-                      success(res) {
-                        console.log('分享页面后台记录成功', res)
-                      }
-                    })
-                  },
-                })
-              } else {//如果不是分享到群里
-                console.log(code, path)
-                //发送请求到后台
-                wx.request({
-                  url: url_common + '/api/log/shareLogRecord',
-                  method: "POST",
-                  data: {
-                    code: code,
-                    path: path,
-                  },
-                  success(res) {
-                    console.log('分享页面后台记录成功', res)
-                  }
-                })
-              }
-            }
-          }
-        })
-      },
-    }
-    return json
-  },
-
-  //分享项目(user_id为数据所有人ID,share_Id为分享人的ID)
-  sharePage(user_id, share_id, name) {
-    let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
-    let url = this.globalData.url;
-    let url_common = this.globalData.url_common;
-    let json = {
-      title: '［换名片］' + name + '的投资名片，请点击查看',
-      path: path,
-      imageUrl: "http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_2.jpg",
-      //分享成功后的回调
-      success: function (res) {
-        console.log("sharePage分享成功")
-        let shareTicket = res.shareTickets[0];
-        //获取code
-        wx.login({
-          success(res) {
-            let code = res.code;
-            if (code) {
-              //如果是分享到群里
-              if (shareTicket) {
-                wx.getShareInfo({
-                  shareTicket: shareTicket,
-                  success: function (res) {
-                    let encryptedData = res.encryptedData;
-                    let iv = res.iv;
-                    console.log(code, path)
-                    //发送请求到后台
-                    wx.request({
-                      url: url_common + '/api/log/shareLogRecord',
-                      method: "POST",
-                      data: {
-                        code: code,
-                        path: path,
-                        encryptedData: encryptedData,
-                        iv: iv
-                      },
-                      success(res) {
-                        console.log('分享页面后台记录成功', res)
-                      }
-                    })
-                  },
-                })
-              } else {//如果不是分享到群里
-                console.log(code, path)
-                //发送请求到后台
-                wx.request({
-                  url: url_common + '/api/log/shareLogRecord',
-                  method: "POST",
-                  data: {
-                    code: code,
-                    path: path,
-                  },
-                  success(res) {
-                    console.log('分享页面后台记录成功', res)
-                  }
-                })
-              }
-            }
-          }
-        })
-      },
-    }
-    return json
-  },
-
   //根据用户信息完整度跳转不同的页面
+  /*注册且信息完善:targetUrl; 注册信息不完善:companyInfo; 未注册: personInfo;*/
   infoJump(targetUrl) {
-    var user_id = this.globalData.user_id;
+    var user_id = wx.getStorageSync('user_id');
     // 核对用户信息是否完整
     wx.request({
       url: this.globalData.url_common + '/api/user/checkUserInfo',
@@ -467,7 +330,7 @@ App({
   },
 
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataSum为展示数据)
-  //初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页)
+  /* 初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页) */
   loadMore(that, request, str, dataSum) {
     var user_id = wx.getStorageSync("user_id");
     if (that.data.requestCheck) {
@@ -642,6 +505,89 @@ App({
     }
   },
 
+  //错误提示
+  errorHide(target, errorText, time) {
+    var that = target;
+    that.setData({
+      error: "1",
+      error_text: errorText
+    })
+    var errorTime = setTimeout(function () {
+      that.setData({
+        error: "0"
+      });
+    }, time)
+  },
+
+  //头像上传
+  headPic(that) {
+    let user_id = that.data.user_id;
+    let user_info = that.data.user_info;
+    let url_common = this.globalData.url_common;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths;
+        let avatar = tempFilePaths[0];
+        let size = res.tempFiles[0].size;
+        if (size <= 1048576) {
+          wx.showLoading({
+            title: '头像上传中',
+            mask: true,
+          })
+          wx.uploadFile({
+            url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[0],
+            name: 'avatar',
+            formData: {
+              user_id: user_id,
+            },
+            success: function (res) {
+              let data = JSON.parse(res.data);
+              if (data.status_code === 2000000) {
+                wx.hideLoading();
+                let image_id = data.data.image_id;
+                that.setData({
+                  image_id: image_id
+                })
+              }
+            }
+          })
+          if (user_info.user_avatar_url) {
+            user_info.user_avatar_url = tempFilePaths;
+          } else if (user_info.user_avatar_text) {
+            delete user_info.user_avatar_text;
+            user_info.user_avatar_url = tempFilePaths;
+          }
+          that.setData({
+            user_info: user_info
+          })
+        } else {
+          app.errorHide(that, "上传图片不能超过1M", 1500)
+        }
+      }
+    })
+  },
+
+  //身份信息
+  identity(user_id, func) {
+    let url_common = this.globalData.url_common;
+    wx.request({
+      url: url_common + '/api/user/getUserGroupByStatus',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: func
+    })
+  },
+
+  //请求封装
+  httpPost(data) {
+    return request.httpPost(data)
+  },
   //项目申请
   /* applyProjectTo(that, project_id, content, list) {
     var user_id = wx.getStorageSync('user_id');
@@ -855,90 +801,7 @@ App({
     });
   }, */
   applyProject(that, e, str) {
-    ApplyProject(that, e, str)
-  },
-
-  //错误提示
-  errorHide(target, errorText, time) {
-    var that = target;
-    that.setData({
-      error: "1",
-      error_text: errorText
-    })
-    var errorTime = setTimeout(function () {
-      that.setData({
-        error: "0"
-      });
-    }, time)
-  },
-
-  //头像上传
-  headPic(that) {
-    let user_id = that.data.user_id;
-    let user_info = that.data.user_info;
-    let url_common = this.globalData.url_common;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        var tempFilePaths = res.tempFilePaths;
-        let avatar = tempFilePaths[0];
-        let size = res.tempFiles[0].size;
-        if (size <= 1048576) {
-          wx.showLoading({
-            title: '头像上传中',
-            mask: true,
-          })
-          wx.uploadFile({
-            url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
-            filePath: tempFilePaths[0],
-            name: 'avatar',
-            formData: {
-              user_id: user_id,
-            },
-            success: function (res) {
-              let data = JSON.parse(res.data);
-              if (data.status_code === 2000000) {
-                wx.hideLoading();
-                let image_id = data.data.image_id;
-                that.setData({
-                  image_id: image_id
-                })
-              }
-            }
-          })
-          if (user_info.user_avatar_url) {
-            user_info.user_avatar_url = tempFilePaths;
-          } else if (user_info.user_avatar_text) {
-            delete user_info.user_avatar_text;
-            user_info.user_avatar_url = tempFilePaths;
-          }
-          that.setData({
-            user_info: user_info
-          })
-        } else {
-          app.errorHide(that, "上传图片不能超过1M", 1500)
-        }
-      }
-    })
-  },
-  //身份信息
-  identity(user_id, func) {
-    let url_common = this.globalData.url_common;
-    wx.request({
-      url: url_common + '/api/user/getUserGroupByStatus',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: func
-    })
-  },
-
-  //请求封装
-  httpPost(data) {
-    return request.httpPost(data)
+    operationModel.applyProject(that, e, str)
   },
 
   //初始本地缓存

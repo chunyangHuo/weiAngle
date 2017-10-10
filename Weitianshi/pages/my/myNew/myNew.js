@@ -117,6 +117,6 @@ Page({
   //分享页面
   onShareAppMessage: function () {
     let that = this;
-    return SharePage.myCardShare(that);
+    return ShareModel.myCardShare(that);
   },
 })

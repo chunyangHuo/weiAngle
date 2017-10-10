@@ -8,30 +8,28 @@
 <template is='search' data='{{SearchInit}}'></template>
 <!--项目展示列表  -->
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:945rpx" bindchange="bindChange">
+  <!--模态层  -->
+  <view class='t-modal' wx:if='{{SearchInit.currentIndex!=5}}' bindtap='modal'></view>
   <!--投资人  -->
   <swiper-item data-current='0'>
-    <!---投资人展示  -->
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
       <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1'  data='{{item}}'></template>
+          <template is='cardBottom1' data='{{item}}'></template>
         </view>
       </block>
     </scroll-view>
     <!--空状态-->
     <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
-    <!--模态层  -->
-    <view class='t-modal' wx:if='{{SearchInit.currentIndex!=5}}' bindtap='modal'></view>
   </swiper-item>
   <!--FA(融资顾问) -->
   <swiper-item data-current='1'>
-    <!--FA(融资顾问)展示  -->
     <scroll-view scroll-y="true" bindscrolltolower="loadMore">
       <block wx:for="{{res_match}}" wx:key="{{res_match}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1'  data='{{item}}'></template>
+          <template is='cardBottom1' data='{{item}}'></template>
         </view>
       </block>
     </scroll-view>
@@ -39,13 +37,10 @@
     <view wx:if="{{financingNeed==''}}">
       <image class="empty" src="/img/img-wujieguo@3x.png"></image>
     </view>
-    <!--模态层  -->
-    <view class='t-modal' wx:if='{{SearchInit.currentIndex!=5}}' bindtap='modal'></view>
   </swiper-item>
   <!--我的  -->
   <swiper-item data-current='2'>
-    <!--我的人脉展示-->
-    <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
+    <scroll-view scroll-y="true" bindscrolltolower="loadMore">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
         <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
           <view class="user_info flex">
@@ -109,7 +104,6 @@
         </view>
       </block>
     </scroll-view>
-
     <!--空状态-->
     <view wx:if="{{empty == 1}}">
       <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
@@ -122,9 +116,6 @@
         <button class='bindm' bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}}">请先绑定用户信息</button>
       </view>
     </view>
-
-    <!--模态层  -->
-    <view class='t-modal' wx:if='{{SearchInit.currentIndex!=5}}' bindtap='modal'></view>
   </swiper-item>
 </swiper>
 <!--错误提示-->

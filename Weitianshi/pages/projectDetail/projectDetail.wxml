@@ -1,5 +1,7 @@
+<import src="/pages/Template/Template.wxml" />
 <!--头部名片-->
 <view style="color:#fafafa;font-size:1rpx;">1</view>
+<template is="topBlock" wx:if='{{share_id}}'></template>
 <view id="myDetail">
   <view class="weui-panel__bd">
     <!--名片-->

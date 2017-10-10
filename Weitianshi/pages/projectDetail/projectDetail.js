@@ -27,6 +27,7 @@ Page({
     var view_id = '';
     that.setData({
       id: id,
+      share_id: options.share_id
     });
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
     if (!options.share_id) {
@@ -80,7 +81,7 @@ Page({
   },
   //分享当前页面
   onShareAppMessage: function () {
-    let that=this;
+    let that = this;
     return ShareModel.projectDetailShare(that);
   },
   // 项目详情中的显示全部
@@ -538,7 +539,7 @@ Page({
           console.log(res.errMsg)
         }
       })
-    }else{
+    } else {
       wx.showModal({
         title: '提示',
         content: '未上传商业计划书',
