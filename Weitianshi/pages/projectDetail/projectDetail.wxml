@@ -42,13 +42,13 @@
       </view>
     </view>
     <!--项目亮点-->
-    <view class="brightBox" style="background: white;" wx:if="{{project.pro_goodness}}" wx:if="{{button_type != 1}}">
+    <view class="brightBox" style="background: white;" wx:if="{{pro_goodness[0].goodness_title}}" wx:if="{{button_type != 1}}">
       <view class="brightPoint">
         <view class="brightPointBox flex">
           <image src="/img/img-star.png" class="titlePic"></image>
-          <view class="title star">项目亮点</view>
+          <view class="title star">{{pro_goodness[0].goodness_title}}</view>
         </view>
-        <view class="brightContent" class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}" wx:if="{{project.pro_goodness}}">{{project.pro_goodness}}</view>
+        <view class="brightContent" class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}" wx:if="{{project.pro_goodness}}">{{pro_goodness[0].goodness_title}}</view>
         <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true&& textBeyond1}}">全部</label>
         <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false&& textBeyond1}}">收起</label>
       </view>
@@ -56,12 +56,12 @@
     <!--项目详情全  -->
     <view id="projectBox" wx:if="{{button_type == 1}}">
       <view class="bigBox">
-        <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
+        <view class="brightPoint" wx:if="{{pro_goodness[0].goodness_title}}">
           <view class="brightPointBox flex">
             <image src="/img/img-star.png" class="titlePic"></image>
-            <view class="title star">项目亮点</view>
+            <view class="title star">{{pro_goodness[0].goodness_title}}</view>
           </view>
-          <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">{{project.pro_goodness}}</view>
+          <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">{{pro_goodness[0].goodness_desc}}</view>
           <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
           <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label>
         </view>
@@ -73,7 +73,7 @@
           </view>
           <view class="contentAll">
             <view>
-              <view class="titleRightBP" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">发送BP
+              <view class="titleRightBP" bindtap="businessBook" wx:if="{{project.pro_BP.length != 0}}">发送BP
                 <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
               </view>
               <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
@@ -93,6 +93,42 @@
               </view>
             </view>
           </view>
+        </view>
+        <!--市场概况-->
+        <view class="brightPoint" wx:if="{{pro_goodness[1].goodness_desc}}">
+          <view class="brightPointBox flex">
+            <image src="/img/icon-shichanggaikuang@2x.png" class="titlePic"></image>
+            <view class="title star">{{pro_goodness[1].goodness_title}}</view>
+          </view>
+          <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
+            {{pro_goodness[1].goodness_desc}}
+          </view>
+          <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+        </view>
+        <!--产品概况-->
+        <view class="brightPoint" wx:if="{{pro_goodness[2].goodness_desc}}">
+          <view class="brightPointBox flex">
+            <image src="/img/icon-chanpingaikuang@2x.png" class="titlePic"></image>
+            <view class="title star">{{pro_goodness[2].goodness_title}}</view>
+          </view>
+          <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
+            {{pro_goodness[2].goodness_desc}}
+          </view>
+          <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+        </view>
+        <!--商业模式-->
+        <view class="brightPoint" wx:if="{{pro_goodness[3].goodness_desc}}">
+          <view class="brightPointBox flex">
+            <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
+            <view class="title star">{{pro_goodness[3].goodness_title}}</view>
+          </view>
+          <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
+            {{pro_goodness[3].goodness_desc}}
+          </view>
+          <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
         </view>
         <!--核心团队-->
         <view class="corePerson" wx:if="{{teamOfPro.length !=0}}">
@@ -296,3 +332,6 @@
 </view>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+<!--项目打分  -->
+<view class="remark" bindtap="projectRemark">项目打分</view>

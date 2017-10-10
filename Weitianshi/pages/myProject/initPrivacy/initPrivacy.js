@@ -5,21 +5,33 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-  
+    open_status: 1,
+    power_share_status: 1,
+    power_investor_status: 1,
+    company_open_status: 0,
+    white_company: 0,
+    white_user: 0,
+    black_company: '',
+    black_user: ''
   },
 
   onLoad: function (options) {
-  this.setData({
-    project_id : options.project
-  })
+    if (options.project) {
+      this.setData({
+        project_id: options.project
+      })
+    } else {
+
+    }
   },
 
   onShow: function () {
-  
+
   },
   //公开项目
   switchChange1: function (e) {
     let open_status = e.detail.value;
+    console.log(open_status)
     if (e.detail.value == false) {
       open_status: 0
     } else {
@@ -66,7 +78,7 @@ Page({
     })
   },
   //白名单公司
-  whiteCompany:function(e){
+  whiteCompany: function (e) {
     let white_company = e.detail.value;
     if (e.detail.value == false) {
       white_company: 0
@@ -78,19 +90,19 @@ Page({
     })
   },
   //白名单用户
-  whiteUser:function(e){
-    let white_user	 = e.detail.value;
+  whiteUser: function (e) {
+    let white_user = e.detail.value;
     if (e.detail.value == false) {
-      white_user	: 0
+      white_user: 0
     } else {
-      white_user	: 1
+      white_user: 1
     }
     this.setData({
-      white_user: white_user	
+      white_user: white_user
     })
   },
   //黑名单机构
-  blackCompany:function(e){
+  blackCompany: function (e) {
     let black_company = e.detail.value;
     let that = this;
     that.setData({
@@ -98,14 +110,15 @@ Page({
     })
   },
   //黑名单用户
-  blackUser:function(e){
+  blackUser: function (e) {
     let black_user = e.detail.value;
     let that = this;
     that.setData({
       black_user: black_user
     })
   },
-  saveInitPrivacy:function(){
+  //保存私密性设置
+  saveInitPrivacy: function () {
     var that = this;
     let project_id = this.data.project_id;
     let open_status = this.data.open_status;
@@ -116,27 +129,55 @@ Page({
     let white_user = this.data.white_user;
     let black_company = this.data.black_company;
     let black_user = this.data.black_user;
-    wx.request({
-      url: url_common + '/api/project/set',
-      data: {
-        project_id: project_id,
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1];
+    let prevPage = pages[pages.length - 2];
+    let subscribe = prevPage.data.subscribe;
+    console.log(subscribe)
+    if (project_id) {
+      wx.request({
+        url: url_common + '/api/project/set',
+        data: {
+          project_id: project_id,
+          open_status: open_status,
+          power_share_status: power_share_status,
+          power_investor_status: power_investor_status,
+          company_open_status: company_open_status,
+          white_company: white_company,
+          white_user: white_user,
+          black_company: black_company,
+          black_user: black_user
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            wx.navigateBack({
+              delta: 1,
+            })
+          } else {
+            console.log(res.data.error_msg)
+          }
+        }
+      })
+    } else {
+      open_status = open_status;
+      power_share_status = power_share_status;
+      power_investor_status = power_investor_status;
+      company_open_status = company_open_status;
+      subscribe.white_company = white_company;
+      subscribe.white_user = white_user;
+      subscribe. black_company = black_company;
+      subscribe.black_user = black_user
+      prevPage.setData({
         open_status: open_status,
         power_share_status: power_share_status,
         power_investor_status: power_investor_status,
         company_open_status: company_open_status,
-        white_company: white_company,
-        white_user: white_user,
-        black_company: black_company,
-        black_user: black_user
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-      }
-    })
-   
-   
-
-
+        subscribe: subscribe
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   }
 })

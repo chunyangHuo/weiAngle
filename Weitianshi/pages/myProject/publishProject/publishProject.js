@@ -26,6 +26,16 @@ Page({
       css: "",
       value: ["选择领域"],
       id: []
+    },
+    open_status: 1,
+    power_share_status: 1,
+    power_investor_status: 1,
+    company_open_status: 0,
+    subscribe:{
+      white_company: 0,
+      white_user: 0,
+      black_company: '',
+      black_user: ''
     }
   },
   onLoad: function (options) {
@@ -151,7 +161,7 @@ Page({
     })
   },
   //投后股份
-  projectFinance:function(e){
+  projectFinance: function (e) {
     let pro_finance_stock_after = e.detail.value;
     let that = this;
     that.setData({
@@ -327,6 +337,41 @@ Page({
     let service_ps_bp = this.data.service_ps_bp;
     let service_fa = this.data.service_fa;
     let service_yun = this.data.service_yun;
+    // ===========================私密性设置=====================
+    let subscribe = this.data.subscribe;
+
+    if (subscribe.white_company == true){
+      subscribe.white_company = 1
+      this.setData({
+        subscribe: subscribe
+      })
+    }else{
+      subscribe.white_company = 0
+      this.setData({
+        subscribe: subscribe
+      })
+    }
+    if (subscribe.white_user == true) {
+      subscribe.white_user = 1
+      this.setData({
+        subscribe: subscribe
+      })
+    } else {
+      subscribe.white_user = 0
+      this.setData({
+        subscribe: subscribe
+      })
+    }
+    console.log(subscribe)
+    let open_status = this.data.open_status;
+    let power_share_status = this.data.power_share_status;
+    let power_investor_status = this.data.power_investor_status;
+    let company_open_status = this.data.company_open_status;
+    // let white_company = this.data.subscribe.white_company;
+    // let white_user = this.data.subscribe.white_user;
+    // let black_company = this.data.subscribe.black_company;
+    // let black_user = this.data.subscribe.black_user;
+    
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
       wx.request({
         url: url_common + '/api/project/createProject',
@@ -345,7 +390,12 @@ Page({
           pro_finance_stock_after: pro_finance_stock_after,
           service_ps_bp: service_ps_bp,
           service_fa: service_fa,
-          service_yun: service_yun
+          service_yun: service_yun,
+          open_status: open_status,
+          power_share_status: power_share_status,
+          power_investor_status: power_investor_status,
+          company_open_status: company_open_status,
+          subscribe: subscribe
         },
         method: 'POST',
         success: function (res) {
