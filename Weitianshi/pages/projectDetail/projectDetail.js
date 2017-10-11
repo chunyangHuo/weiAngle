@@ -16,7 +16,8 @@ Page({
     load: 0,
     isChecked: true,
     textBeyond1: false,//项目亮点的全部和收起是否显示标志
-    modalBox: 0
+    modalBox: 0,
+    currentTab: 0,//选项卡
   },
   onLoad: function (options) {
     var that = this;
@@ -44,17 +45,22 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          //  0的时候是什么都看不了 1的时候是什么都能看(show_company也是一样的)
           let show_company = res.data.data.show_company;
           let show_detail = res.data.data.show_detail;
-          if (show_detail == 0){
-
-          }else if(show_detail == 1){
-            if(show_company == 0){
-
-            }else{
-
+          if (show_detail == 0) {
+          } else if (show_detail == 1) {
+            if (show_company == 0) {
+              console.log("没有公司信息")
+            } else {
+              console.log("有一键尽调")
+          
             }
           }
+          that.setData({
+            show_detail: show_detail,
+            show_company: show_company
+          })
         }
       })
     } else {
@@ -78,6 +84,17 @@ Page({
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
+  },
+  /*点击tab切换*/
+  swichNav: function (e) {
+    let that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   },
   //分享当前页面
   onShareAppMessage: function () {
@@ -199,7 +216,7 @@ Page({
         // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
         var project = res.data.data;
         console.log(project)
-        if (project.pro_BP){
+        if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
             BPath: BPath
