@@ -54,7 +54,7 @@
   font-size: 24rpx;
   color: #666;
   padding-top: 24rpx;
-  text-align: center;
+  text-align: left;
 }
 
 .t-myContactsCard .pro_time {

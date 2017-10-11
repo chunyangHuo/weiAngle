@@ -190,7 +190,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "contacts", that.data.contacts)
+    app.loadMore(that, request, "contacts")
   },
   //如何拓展人脉
   howTo: function () {

@@ -184,7 +184,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "applyList", that.data.applyList)
+    app.loadMore(that, request, "applyList")
   },
   //匹配更多
   matchMore: function () {

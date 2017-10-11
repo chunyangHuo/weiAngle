@@ -4,10 +4,9 @@ import * as operationModel from './utils/operationModel';
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
-    var options = options;
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
-    var that = this;
+    let that = this;
 
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
@@ -49,7 +48,7 @@ App({
       url: url_common + '/api/category/getProjectCategory',
       method: 'POST',
       success: function (res) {
-        var thisData = res.data.data;
+        let thisData = res.data.data;
         thisData.area.forEach((x) => { x.check = false })
         thisData.industry.forEach((x) => { x.check = false })
         thisData.scale.forEach((x) => { x.check = false })
@@ -66,7 +65,7 @@ App({
       data: {},
       method: 'POST',
       success: function (res) {
-        var hotCity = res.data.data;
+        let hotCity = res.data.data;
         hotCity.forEach((x) => {
           x.checked = false;
         })
@@ -81,15 +80,15 @@ App({
 
   //进入页面判断是否有open_session
   loginPage(cb) {
-    var that = this;
+    let that = this;
     //群分享打点准备
     /* wx.showShareMenu({
          withShareTicket: true
      })*/
     if (this.globalData.open_session) {
-      var timeNow = Date.now();
-      var session_time = this.globalData.session_time;
-      var differenceTime = timeNow - session_time;
+      let timeNow = Date.now();
+      let session_time = this.globalData.session_time;
+      let differenceTime = timeNow - session_time;
       if (differenceTime > 432000000) {//432000000代表2个小时
         console.log("已超时")
         this.getSession(cb)
@@ -103,11 +102,11 @@ App({
 
   //获取open_session  
   getSession(cb) {
-    var that = this;
+    let that = this;
     //获取code
     wx.login({
       success: function (login) {
-        var code = login.code;
+        let code = login.code;
         that.globalData.code = code;
         //获取encryptedData和iv
         wx.getUserInfo({
@@ -171,7 +170,7 @@ App({
 
   //进行授权验证
   getUserInfo(cb) {
-    var that = this;
+    let that = this;
     //如果全局变量里有userInfo就去执行cb函数,如果全局变量里没有userInfo就去调用授权接口
     if (this.globalData.userInfo) {
       console.log("全局变量userInfo存在")
@@ -181,7 +180,7 @@ App({
       //调用登录接口
       wx.login({
         success: function (login) {
-          var code = login.code;
+          let code = login.code;
           that.globalData.code = code;
           //获取用户信息
           wx.getUserInfo({
@@ -199,7 +198,7 @@ App({
             complete: function () {
               //如果已经存在session_time就进行比较,如果不没有就建一个session_time;
               if (that.globalData.session_time) {
-                var timeNow = new (Date.now())
+                let timeNow = new (Date.now())
               } else {
                 that.checkLogin(that);
               }
@@ -232,7 +231,7 @@ App({
   //根据用户信息完整度跳转不同的页面
   /*注册且信息完善:targetUrl; 注册信息不完善:companyInfo; 未注册: personInfo;*/
   infoJump(targetUrl) {
-    var user_id = wx.getStorageSync('user_id');
+    let user_id = wx.getStorageSync('user_id');
     // 核对用户信息是否完整
     wx.request({
       url: this.globalData.url_common + '/api/user/checkUserInfo',
@@ -242,7 +241,7 @@ App({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             if (targetUrl) {
               wx.navigateTo({
@@ -329,10 +328,11 @@ App({
     return checkObject
   },
 
-  //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataSum为展示数据)
+  //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)
   /* 初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页) */
-  loadMore(that, request, str, dataSum) {
-    var user_id = wx.getStorageSync("user_id");
+  loadMore(that, request, str, dataStr) {
+    let user_id = wx.getStorageSync("user_id");
+    let dataSum = that.data[str];
     if (that.data.requestCheck) {
       if (that.data.page_end == false) {
         wx.showToast({
@@ -350,10 +350,13 @@ App({
           data: request.data,
           method: 'POST',
           success: function (res) {
-            var newPage = res.data.data;
-            console.log(newPage)
-            var page_end = res.data.page_end;
-            for (var i = 0; i < newPage.length; i++) {
+            let newPage = res.data.data;
+            if (dataStr && typeof dataStr == "string") {
+              newPage = res.data[dataStr];
+            }
+            console.log(request.data.page,newPage);
+            let page_end = res.data.page_end;
+            for (let i = 0; i < newPage.length; i++) {
               dataSum.push(newPage[i])
             }
             that.setData({
@@ -377,7 +380,7 @@ App({
     }
   },
   loadMore2(that, request, callback) {
-    var user_id = wx.getStorageSync("user_id");
+    let user_id = wx.getStorageSync("user_id");
     if (that.data.requestCheck) {
       if (that.data.page_end == false) {
         wx.showToast({
@@ -407,7 +410,7 @@ App({
 
   //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value},常用于上拉加载功能)
   initPage(that, others) {
-    var user_id = wx.getStorageSync('user_id');
+    let user_id = wx.getStorageSync('user_id');
     that.setData({
       user_id: user_id,
       requestCheck: true,
@@ -469,35 +472,35 @@ App({
 
   // 时间戳转换
   changeTime(x) {
-    var n;
+    let n;
     if (x.length === 13) {
       n = x * 1
     } else {
       n = x * 1000
     }
-    var date = new Date(n);
-    var Y = date.getFullYear() + '-';
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    let date = new Date(n);
+    let Y = date.getFullYear() + '-';
+    let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    let D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     return (Y + M + D)
   },
   changeTimeStyle(x) {
-    var n;
+    let n;
     if (x.length === 13) {
       n = x * 1
     } else {
       n = x * 1000
     }
-    var date = new Date(n);
-    var Y = date.getFullYear() + '.';
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '.';
-    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    let date = new Date(n);
+    let Y = date.getFullYear() + '.';
+    let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '.';
+    let D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     return (Y + M + D)
   },
 
   // 邮箱检验
   checkEmail(data) {
-    var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    let myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
     if (myreg.test(data)) {
       return true
     } else {
@@ -507,12 +510,12 @@ App({
 
   //错误提示
   errorHide(target, errorText, time) {
-    var that = target;
+    let that = target;
     that.setData({
       error: "1",
       error_text: errorText
     })
-    var errorTime = setTimeout(function () {
+    let errorTime = setTimeout(function () {
       that.setData({
         error: "0"
       });
@@ -529,7 +532,7 @@ App({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths;
+        let tempFilePaths = res.tempFilePaths;
         let avatar = tempFilePaths[0];
         let size = res.tempFiles[0].size;
         if (size <= 1048576) {
@@ -590,7 +593,7 @@ App({
   },
   //项目申请
   /* applyProjectTo(that, project_id, content, list) {
-    var user_id = wx.getStorageSync('user_id');
+    let user_id = wx.getStorageSync('user_id');
     let url_common = this.globalData.url_common;
     wx.request({
       url: this.globalData.url_common + '/api/user/checkUserInfo',
@@ -600,7 +603,7 @@ App({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
 
           if (complete == 1) {
             //如果信息完整就可以显示去认证
@@ -614,7 +617,7 @@ App({
                 // 0:未认证1:待审核 2 审核通过 3审核未通过
                 let status = res.data.status;
                 if (status != 0) {
-                  var group_id = res.data.group.group_id;
+                  let group_id = res.data.group.group_id;
                 }
                 if (status == 0) {
                   wx.showModal({

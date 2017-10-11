@@ -247,7 +247,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "pushToList", that.data.pushToList)
+    app.loadMore(that, request, "pushToList")
   },
   // 我推送的项目加载更多
   moreForApply: function () {

@@ -82,7 +82,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "slectProject", that.data.slectProject)
+    app.loadMore(that, request, "slectProject")
   },
   //项目详情
   projectDetail: function (e) {

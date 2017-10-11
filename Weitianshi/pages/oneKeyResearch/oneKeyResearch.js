@@ -953,6 +953,6 @@ Page({
     }
     console.log(request)
     //调用通用加载函数
-    app.loadMore(that, request, "investor2", that.data.investor2)
+    app.loadMore(that, request, "investor2")
   },
 });

@@ -72,7 +72,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "contentList", that.data.contentList)
+    app.loadMore(that, request, "contentList")
   },
   // 点击跳转
   projectDetail: function (e) {

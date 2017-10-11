@@ -160,7 +160,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "applyList", that.data.applyList)
+    app.loadMore(that, request, "applyList")
   },
   // 申请我的项目加载更多
   moreForApply: function () {

@@ -4,20 +4,23 @@ var url_common = app.globalData.url_common;
 import * as SearchModel from '../../../utils/searchModel';
 Page({
   data: {
-    SearchInit: SearchModel.data
+    SearchInit: SearchModel.data,
+    financingNeed: [],//最新
+    slectProject: [],
+    investorList: [],
+    faList: [],
+    contacts: [],
   },
   onLoad: function (options) {
+    let that = this;
     let user_id = options.user_id;
     let entrance = options.entrance;
     // entrance: slected,newest,investorList,faList,myList
     this.setData({
       user_id: user_id,
       entrance: entrance
-    })
-  },
-  onShow: function () {
-    let user_id = this.data.user_id;
-    let that = this;
+    });
+    app.initPage(that);
   },
   //搜索事件
   searchSth: function (e) {
@@ -27,10 +30,10 @@ Page({
     let entrance = this.data.entrance;
     let str = e.detail.value;
     let SearchInit = this.data.SearchInit;
-    let timer=this.data.timer;
+    let timer = this.data.timer;
     SearchInit.searchData.search = str;
     this.setData({
-      SearchInit:SearchInit
+      SearchInit: SearchInit
     })
     //防止多次请求进行延时处理
     if (timer) {
@@ -43,7 +46,7 @@ Page({
       })
       switch (entrance) {
         case 'selected':
-        
+
           this.selectedProject();
           break;
         case 'newest':
@@ -93,7 +96,75 @@ Page({
   },
   //上拉加载
   myPublicProject: function () {
-
+    let entrance = this.data.entrance;
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let request;
+    switch (entrance) {
+      case 'newest':
+        request = {
+          url: url_common + '/api/project/getMarketProjectList',
+          data: {
+            user_id: this.data.user_id,
+            page: this.data.currentPage
+          }
+        }
+        app.loadMore(that, request, "financingNeed")
+      case 'selected':
+        request = {
+          url: url_common + '/api/project/getSelectedProjectList',
+          data: {
+            user_id: user_id,
+            page: this.data.currentPage,
+          }
+        }
+        //调用通用加载函数
+        app.loadMore(that, request, "slectProject")
+      case 'investorList':
+        {
+          request = {
+            url: url_common + '/api/investor/getInvestorListByGroup',
+            data: {
+              user_id: user_id,
+              type: 'investor',
+              page: this.data.currentPage,
+              filter: this.data.SearchInit.searchData
+            }
+          }
+          //调用通用加载函数
+          app.loadMore(that, request, "investorList")
+        }
+        break;
+      case 'faList':
+        {
+          request = {
+            url: url_common + '/api/investor/getInvestorListByGroup',
+            data: {
+              user_id: user_id,
+              type: 'fa',
+              page: this.data.currentPage,
+              filter: this.data.SearchInit.searchData
+            }
+          }
+          //调用通用加载函数
+          app.loadMore(that, request, "faList")
+        }
+        break;
+      case 'myList':
+        {
+          request = {
+            url: url_common + '/api/project/getMarketProjectList',
+            data: {
+              user_id: user_id,
+              page: this.data.currentPage,
+              filter: this.data.SearchInit.searchData
+            }
+          }
+          //调用通用加载函数
+          app.loadMore(that, request, "financingNeed")
+        }
+        break;
+    }
   },
 
   // ----------------------------------获取搜索结果---------------------------------------------------
@@ -152,11 +223,8 @@ Page({
           console.log('投资人列表', res.data.data)
           wx.hideLoading();
           var investorList = res.data.data;
-          SearchInit.currentIndex = 5;
           that.setData({
             investorList: investorList,
-            SearchInit: SearchInit
-
           })
         }
       }
@@ -178,11 +246,9 @@ Page({
         if (res.data.status_code == '2000000') {
           console.log('FA列表', res.data.data)
           wx.hideLoading();
-          var investorList = res.data.data;
-          SearchInit.currentIndex = 5;
+          var faList = res.data.data;
           that.setData({
-            investorList: investorList,
-            SearchInit: SearchInit
+            faList: faList,
           })
         }
       }
@@ -229,11 +295,9 @@ Page({
           if (res.data.status_code == '2000000') {
             var contacts = res.data.data;//所有的用户
             var page_end = res.data.page_end;
-            SearchInit.currentIndex = 5;
             that.setData({
               contacts: contacts,
               page_end: page_end,
-              SearchInit: SearchInit
             })
           }
         }

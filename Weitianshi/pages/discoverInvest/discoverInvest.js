@@ -5,6 +5,9 @@ import * as SearchModel from '../../utils/searchModel';
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
+    investorList:[],
+    faList:[],
+    myContacts:[],
     //选项卡
     winWidth: 0,
     winHeight: 0,
@@ -110,10 +113,10 @@ Page({
         if (res.data.status_code == '2000000') {
           console.log('FA列表', res.data.data)
           wx.hideLoading();
-          let investorList = res.data.data;
+          let faList = res.data.data;
           SearchInit.currentIndex = 5;
           that.setData({
-            investorList: investorList,
+            faList: faList,
             SearchInit: SearchInit
           })
         }
@@ -190,27 +193,31 @@ Page({
       case 0:
         {
           let request = {
-            url: url_common + '/api/resource/getMatchResourceList',
+            url: url_common + '/api/investor/getInvestorListByGroup',
             data: {
               user_id: user_id,
+              type: 'investor',
               page: this.data.currentPage,
+              filter: this.data.SearchInit.searchData
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "investorList", that.data.investorList)
+          app.loadMore(that, request, "investorList")
         }
         break;
       case 1:
         {
           let request = {
-            url: url_common + '/api/resource/getMatchResourceList',
+            url: url_common + '/api/investor/getInvestorListByGroup',
             data: {
               user_id: user_id,
+              type: 'fa',
               page: this.data.currentPage,
+              filter: this.data.SearchInit.searchData
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "investorList", that.data.investorList)
+          app.loadMore(that, request, "faList")
         }
         break;
       case 2:
@@ -219,10 +226,12 @@ Page({
             url: url_common + '/api/project/getMarketProjectList',
             data: {
               user_id: user_id,
-              page: this.data.currentPage
+              page: this.data.currentPage,
+              filter: this.data.SearchInit.searchData
             }
           }
-          app.loadMore(that, request, "financingNeed", that.data.financingNeed)
+          //调用通用加载函数
+          app.loadMore(that, request, "financingNeed")
         }
         break;
     }
@@ -341,24 +350,5 @@ Page({
     wx.makePhoneCall({
       phoneNumber: telephone,
     })
-  },
-  //上拉加载
-  loadMore: function () {
-    //请求上拉加载接口所需要的参数
-    let that = this;
-    let user_id = wx.getStorageSync('user_id');
-    let currentPage = this.data.currentPage;
-    let SearchInit = this.data.SearchInit;
-    let searchData = SearchInit.searchData;
-    let request = {
-      url: url + '/api/user/getMyFollowList',
-      data: {
-        user_id: user_id,
-        page: this.data.currentPage,
-        filter: searchData
-      }
-    }
-    //调用通用加载函数
-    app.loadMore(that, request, "contacts", that.data.contacts)
   },
 })

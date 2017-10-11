@@ -160,6 +160,6 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "myProject", that.data.myProject)
+    app.loadMore(that, request, "myProject")
   },
 })

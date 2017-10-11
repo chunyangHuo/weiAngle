@@ -151,6 +151,6 @@ Page({
         page:currentPage
       },
     }
-    app.loadMore(that, request,"contacts",that.data.contacts)
+    app.loadMore(that, request,"contacts")
   },
 }) 

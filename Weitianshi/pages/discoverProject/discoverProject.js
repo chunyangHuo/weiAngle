@@ -125,11 +125,8 @@ Page({
         page: this.data.currentPage,
       }
     }
-    wx.showLoading({
-      title: 'loading',
-    })
     //调用通用加载函数
-    app.loadMore(that, request, "slectProject", that.data.slectProject)
+    app.loadMore(that, request, "slectProject")
   },
   loadMore2() {
     let that = this;
@@ -142,10 +139,7 @@ Page({
         page: this.data.currentPage
       }
     }
-    wx.showLoading({
-      title: 'loading',
-    })
-    app.loadMore(that, request, "financingNeed", that.data.financingNeed)
+    app.loadMore(that, request, "financingNeed")
   },
   // 项目详情
   projectDetail: function (e) {

@@ -176,6 +176,6 @@ Page({
             }
         }
         //调用通用加载函数
-        app.loadMore(that, request, "dataList", that.data.dataList)
+        app.loadMore(that, request, "dataList")
     },
 })

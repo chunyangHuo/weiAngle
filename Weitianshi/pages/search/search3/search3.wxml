@@ -20,7 +20,7 @@
     </view>
   </block>
   <!--fa列表  -->
-  <block wx:for="{{res_match}}" wx:key="{{res_match}}" wx:if='{{investorList}}'>
+  <block wx:for="{{res_match}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
     <view class='investorCard'>
       <template is='InvestorCard' data='{{item}}'></template>
       <template is='cardBottom1' data='{{item}}'></template>
@@ -94,10 +94,10 @@
 
 
 <!--搜索结果无-->
-<view class="nullState" wx:if="{{empty == '1'}}">
+<!-- <view class="nullState">
   <view class="nullState_text">
     <view>暂无数据</view>
   </view>
-</view>
+</view> -->
 <!--信息反馈-->
 <view class="error" wx:if="{{error==1}}">{{error_text}}</view>

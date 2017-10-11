@@ -163,7 +163,7 @@
   top: -4rpx;
 }
 
-.user_text {
+/* .user_text {
   height: 104rpx;
   width: 104rpx;
   border-radius: 50%;
@@ -171,7 +171,7 @@
    position: absolute;
   right: -220rpx;
   top: -4rpx;
-}
+} */
 .topPic{
   height:46rpx;
   width:64rpx;
@@ -189,4 +189,9 @@
   left: 302rpx;
   font-size: 36rpx;
   color: #999;
+}
+
+
+.t-highBox{
+  display: none;
 }

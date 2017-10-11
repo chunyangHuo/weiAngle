@@ -112,7 +112,7 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "contacts", that.data.contacts)
+    app.loadMore(that, request, "contacts")
   },
   //列表加载
   browseMe:function(user_id){
