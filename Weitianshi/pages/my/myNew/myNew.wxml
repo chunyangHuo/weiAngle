@@ -87,15 +87,21 @@
 <view class="outSideBox">
   <view class="flex blockInfo" bindtap="identity">
     <view class="flex">
-      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <image src="/img/icon-shenfenrenzheng@2x.png" class="blockPic"></image>
       <view class="blockTitle">身份认证</view>
     </view>
-    <view class="blockContent">立即认证</view>
+    <view class="blockContent" wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
+    <view class="identifyContent" wx:if="{{status == 3}}">审核未通过</view>
+    <view class="identifyContent on" wx:if="{{status == 1}}">审核中</view>
+    <view class="identifyContent" wx:if="{{status == 2}}">{{user.authentication[0].group_title}}</view>
   </view>
   <view class="blockInfo flex" bindtap="projectShop">
     <view class="flex">
-      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <image src="/img/Shape@2x.png" class="blockPic"></image>
       <view class="blockTitle">项目店铺</view>
+      <image src="/img/img-fazhuanshu@2x.png" class="FaShop"></image>
+      <image src="/img/img-xiangmuzhanshi@2x.png" class="FaShop"></image>
+      <image src="/img/img-anyuanshouji@2x.png" class="FaShop"></image>
     </view>
     <view class="flex">
       <view class="number">{{count.project_count}}</view>
@@ -104,7 +110,7 @@
   </view>
   <view class="blockInfo flex" bindtap="contactProject">
     <view class="flex">
-      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
+      <image src="/img/icon-yuetandexiangmu@2x.png" class="blockPic"></image>
       <view class="blockTitle">约谈的项目</view>
     </view>
     <view class="flex">

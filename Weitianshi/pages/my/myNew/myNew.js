@@ -38,6 +38,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            console.log(res)
             wx.hideLoading()
             var user = res.data.data.user;
             var count = res.data.data.count;
@@ -45,9 +46,9 @@ Page({
             var resource = res.data.data.resource_info;
             var project_info = res.data.data.project_info;
             var user_name = res.data.data.user.user_real_name;
-            wx.setNavigationBarTitle({
-              title: user_name + "的投资名片",
-            })
+            // wx.setNavigationBarTitle({
+            //   title: user_name + "的投资名片",
+            // })
             that.setData({
               user: user,
               invest: invest,
@@ -63,6 +64,27 @@ Page({
       } else {
         app.noUserId()
       }
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          let status = res.data.status;
+          if (status != 0) {
+            let group_id = res.data.group.group_id;
+            that.setData({
+              group_id: group_id
+            })
+          }
+          that.setData({
+            status: status
+          })
+        }
+      })
     })
 
   },
@@ -91,8 +113,50 @@ Page({
     })
   },
   //身份验证
-  identity: function () {
-
+  identity: function (e) {
+    let status = this.data.status;
+    var user_id = wx.getStorageSync('user_id');
+    // 0未认证 1待审核 2 认证成功 3 拒绝
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          // if (complete == 1) {
+          //   //如果信息完整就可以显示去认证
+            if (status == 0) {
+              wx.navigateTo({
+                url: '/pages/my/identity/indentity/indentity',
+              })
+            } else if (status == 1) {
+              wx.navigateTo({
+                url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
+              })
+            } else if (status == 2) {
+              wx.navigateTo({
+                url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
+              })
+            } else if (status == 3) {
+              wx.navigateTo({
+                url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
+              })
+            }
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        // } else {
+        //   wx.navigateTo({
+        //     url: '/pages/register/personInfo/personInfo?type=2'
+        //   })
+        // }
+      },
+    });
   },
   //项目店铺
   projectShop: function () {

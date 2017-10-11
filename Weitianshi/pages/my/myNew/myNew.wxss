@@ -133,7 +133,7 @@ page {
   border-radius: 8rpx;
   width: 208rpx;
   height: 80rpx;
-  padding:32rpx 0;
+  padding: 32rpx 0;
 }
 
 .user_popularity view:first-child, .user_attention view:first-child,
@@ -197,9 +197,9 @@ page {
 .blockPic {
   width: 32rpx;
   height: 32rpx;
-  opacity: 0.3;
-   margin-right: 32rpx; 
-  margin-top:40rpx;
+  /* opacity: 0.3; */
+  margin-right: 32rpx;
+  margin-top: 40rpx;
 }
 
 .blockTitle {
@@ -234,10 +234,27 @@ page {
   padding: 39rpx 0;
 }
 
-.popularity-Num,.attention-Num {
+.popularity-Num, .attention-Num {
   font-size: 36rpx;
   color: #333;
   line-height: 36rpx;
   text-align: center;
   margin-bottom: 16rpx;
+}
+
+.FaShop {
+  border-radius: 4rpx;
+  width: 76rpx;
+  height: 32rpx;
+  margin-top: 40rpx;
+  margin-left:12rpx;
+}
+/*身份认证  */
+.identifyContent {
+  font-size: 24rpx;
+  color: #40587a;
+  width: 120rpx;
+   line-height: 54rpx; 
+  text-align: center;
+  margin-bottom: 29rpx;
 }

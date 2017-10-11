@@ -31,7 +31,7 @@ Page({
     power_share_status: 1,
     power_investor_status: 1,
     company_open_status: 0,
-    subscribe:{
+    subscribe: {
       white_company: 0,
       white_user: 0,
       black_company: '',
@@ -41,8 +41,10 @@ Page({
   onLoad: function (options) {
     var that = this;
     let type = options.type;
+    let pro_total_score = 14.4;
     that.setData({
-      type: type
+      type: type,
+      pro_total_score: pro_total_score
     })
     //初始化
     wx.removeStorageSync("industryCurrent0")
@@ -101,10 +103,12 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     app.identity(user_id, res => {
       console.log(res)
-      let group_id = res.data.group.group_id;
-      that.setData({
-        group_id: group_id
-      })
+      if (res.data.status != 0) {
+        let group_id = res.data.group.group_id;
+        that.setData({
+          group_id: group_id
+        })
+      }
     })
     //填入所属领域,项目介绍,所在地区
     var that = this;
@@ -143,6 +147,7 @@ Page({
     that.setData({
       projectName: projectName
     })
+   this.totalScore(projectName)
   },
   //公司名称
   companyName: function (e) {
@@ -151,6 +156,7 @@ Page({
     that.setData({
       companyName: companyName
     })
+    this.totalScore(companyName)
   },
   //文本框输入
   bindTextAreaBlur: function (e) {
@@ -167,6 +173,7 @@ Page({
     that.setData({
       pro_finance_stock_after: pro_finance_stock_after
     })
+    this.totalScore(pro_finance_stock_after)
   },
   //项目亮点
   slectInput: function (e) {
@@ -285,6 +292,7 @@ Page({
     this.setData({
       service_ps_bp: service_ps_bp
     })
+    this.totalScore(service_ps_bp)
   },
   //需要融资股份(FA)服务
   switchChange2: function (e) {
@@ -297,6 +305,7 @@ Page({
     this.setData({
       service_fa: service_fa
     })
+    this.totalScore(service_fa)
   },
   //是否需要云投行服务
   switchChange3: function (e) {
@@ -309,6 +318,7 @@ Page({
     this.setData({
       service_yun: service_yun
     })
+    this.totalScore(service_yun)
   },
   //私密性设置
   initPrivacy: function () {
@@ -340,12 +350,12 @@ Page({
     // ===========================私密性设置=====================
     let subscribe = this.data.subscribe;
 
-    if (subscribe.white_company == true){
+    if (subscribe.white_company == true) {
       subscribe.white_company = 1
       this.setData({
         subscribe: subscribe
       })
-    }else{
+    } else {
       subscribe.white_company = 0
       this.setData({
         subscribe: subscribe
@@ -371,7 +381,8 @@ Page({
     // let white_user = this.data.subscribe.white_user;
     // let black_company = this.data.subscribe.black_company;
     // let black_user = this.data.subscribe.black_user;
-    
+    let pro_total_score = this.data.pro_total_score;
+    console.log(pro_total_score)
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
       wx.request({
         url: url_common + '/api/project/createProject',
@@ -395,7 +406,8 @@ Page({
           power_share_status: power_share_status,
           power_investor_status: power_investor_status,
           company_open_status: company_open_status,
-          subscribe: subscribe
+          subscribe: subscribe,
+          pro_total_score: pro_total_score
         },
         method: 'POST',
         success: function (res) {
@@ -432,4 +444,14 @@ Page({
       app.errorHide(that, "请完整填写信息", 1500)
     }
   },
+  //完整度
+totalScore:function(name){
+  let pro_total_score = this.data.pro_total_score;
+ if(name){
+   pro_total_score = pro_total_score +2.4;
+   this.setData({
+     pro_total_score:pro_total_score
+   })
+ }
+}
 });

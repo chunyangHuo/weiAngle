@@ -16,9 +16,32 @@ Page({
   },
 
   onLoad: function (options) {
+    let user_id = wx.getStorageSync('user_id');
+    let that = this;
     if (options.project) {
       this.setData({
         project_id: options.project
+      })
+      wx.request({
+        url: url_common + '/api/project/getProjectEditInfo',
+        data: {
+          user_id: user_id,
+          project_id: options.project
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          that.setData({
+            open_status: res.data.data.open_status,
+            power_share_status: res.data.data.power_share_status,
+            power_investor_status: res.data.data.power_investor_status,
+            company_open_status: res.data.data.company_open_status,
+            white_company: res.data.data.black_list.white_company,
+            white_user: res.data.data.black_list.white_user,
+            black_company: res.data.data.black_list.black_company,
+            black_user: res.data.data.black_list.black_user
+          })
+        }
       })
     } else {
 
@@ -129,11 +152,12 @@ Page({
     let white_user = this.data.white_user;
     let black_company = this.data.black_company;
     let black_user = this.data.black_user;
-    let pages = getCurrentPages();
-    let currPage = pages[pages.length - 1];
-    let prevPage = pages[pages.length - 2];
-    let subscribe = prevPage.data.subscribe;
-    console.log(subscribe)
+    if (!project_id) {
+      let pages = getCurrentPages();
+      let currPage = pages[pages.length - 1];
+      let prevPage = pages[pages.length - 2];
+      let subscribe = prevPage.data.subscribe;
+    }
     if (project_id) {
       wx.request({
         url: url_common + '/api/project/set',
@@ -166,7 +190,7 @@ Page({
       company_open_status = company_open_status;
       subscribe.white_company = white_company;
       subscribe.white_user = white_user;
-      subscribe. black_company = black_company;
+      subscribe.black_company = black_company;
       subscribe.black_user = black_user
       prevPage.setData({
         open_status: open_status,

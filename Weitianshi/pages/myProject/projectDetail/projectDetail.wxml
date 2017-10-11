@@ -71,7 +71,7 @@
   </view>
   <view class="flex btn1" bindtap="maintainProject">
     <image src="/img/icon-wanzhengdu@2x.png" class="btnPic"></image>
-    <view class="contactProject">完整度：90%</view>
+    <view class="contactProject">完整度：{{project.pro_total_score}}%</view>
   </view>
   <view class="flex btn2" bindtap="initPrivacy">
     <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>

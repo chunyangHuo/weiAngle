@@ -200,7 +200,7 @@
     <view class="flex title" catchtap="projectFinance">
       <view>
         <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
-        {{text}}
+        {{text}}<label wx:if="{{playTime == 1}}">({{count.project_count}})</label>
       </view>
       <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
@@ -234,7 +234,7 @@
     <view class="flex title" catchtap="investCase">
       <view>
         <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-        成功案例
+        成功案例<label wx:if="{{playTime == 1}}"> ({{invest_case.length}})</label>
       </view>
       <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
