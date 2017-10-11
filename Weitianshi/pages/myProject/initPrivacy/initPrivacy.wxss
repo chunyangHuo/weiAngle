@@ -1,4 +1,6 @@
-/* pages/myProject/initPrivacy/initPrivacy.wxss *//* pages/secretsPage/secretsPage.wxss */
+/* pages/myProject/initPrivacy/initPrivacy.wxss */
+
+/* pages/secretsPage/secretsPage.wxss */
 
 .outBox {
   background: #fff;
@@ -78,22 +80,29 @@
   font-size: 24rpx;
   color: #666;
   line-height: 24rpx;
-  margin-top:48rpx;
+  margin-top: 48rpx;
 }
+
 .blackName {
   font-size: 32rpx;
   color: #333;
   line-height: 32rpx;
 }
-.blackTips1{
-  margin-top:32rpx;
+
+.blackTips1 {
+  margin-top: 32rpx;
 }
+
 .inputBox {
   border: 1rpx solid #e6e6e6;
-  width: 341px;
-  height: 55px;
-  margin-top:24rpx;
+  width: 682rpx;
+  height: 110rpx;
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: #999;
+  line-height: 110rpx;
 }
-.highBox{
-  height:98rpx;
+
+.highBox {
+  height: 98rpx;
 }

@@ -36,9 +36,9 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         wx.hideLoading();
         let pushToList = res.data.data;
-  
         let count1 = res.data.count;
         that.setData({
           count1: count1,
@@ -401,7 +401,7 @@ Page({
   //约谈信息发送
   yesBtn: function () {
     let that = this;
-    let  currentProject_id = this.data.currentProject_id;
+    let currentProject_id = this.data.currentProject_id;
     let push_id = this.data.push_id;
     let pushToList = this.data.pushToList;
     let message = this.data.message;
@@ -429,19 +429,19 @@ Page({
             success: function (res) {
               let statusCode = res.data.status_code;
               if (statusCode == 2000000) {
-                  pushToList.forEach((x) => {
-                    if (x.push_id == push_id) {
-                      x.handle_status = 1
-                    }
-                  })
-                  wx.showToast({
-                    title: '已感兴趣',
-                    icon: 'success',
-                    duration: 2000
-                  })
-                  that.setData({
-                    pushToList: pushToList
-                  })
+                pushToList.forEach((x) => {
+                  if (x.push_id == push_id) {
+                    x.handle_status = 1
+                  }
+                })
+                wx.showToast({
+                  title: '已感兴趣',
+                  icon: 'success',
+                  duration: 2000
+                })
+                that.setData({
+                  pushToList: pushToList
+                })
               } else {
                 console.log(statusCode)
               }
@@ -450,6 +450,36 @@ Page({
           that.setData({
             modalBox: 0
           })
+        }
+      }
+    })
+  },
+  //加入项目库
+  addProjectLibrary: function (e) {
+    let user_id = wx.getStorageSync('user_id');
+    let project_id = e.currentTarget.dataset.project;
+    let pushToList = this.data.pushToList;
+    let  that = this;
+console.log(pushToList)
+    wx.request({
+      url: url_common + '/api/project/importProject',
+      data: {
+        user_id: user_id,
+        project_id: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code==2000000){
+            pushToList.forEach((x) => {
+              if (x.project_id == project_id) {
+                x.import_status = 1
+              }
+              that.setData({
+                pushToList: pushToList
+              })
+            })
+        }else{
+          console.log(res.data.error_msg)
         }
       }
     })

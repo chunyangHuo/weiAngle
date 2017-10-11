@@ -1,5 +1,5 @@
-<!-- <import src="/pages/Template/Template.wxml" />
-<template is="topBlock" wx:if='{{share_id}}'></template> -->
+<import src="/pages/Template/Template.wxml" />
+<template is="topBlock" wx:if='{{share_id}}'></template>
 <view id="myDetail">
   <view class="classname">
     <view class="projectDetailTop">
@@ -59,9 +59,9 @@
 
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}} project-detail-tabm" data-current="0" bindtap="swichNav">详情</view>
 
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} buyers-mapm" data-current="1" bindtap="swichNav" >买家图谱</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} buyers-mapm" data-current="1" bindtap="swichNav">买家图谱</view>
 
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav" >一键尽调</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav">一键尽调</view>
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:336px" bindchange="bindChange">
     <!--项目详情  -->
@@ -322,7 +322,7 @@
       </scroll-view>
     </swiper-item>
     <!--买家图谱  -->
-     <swiper-item>
+    <swiper-item>
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
         <view class="buyerPage">
           <block wx:for="{{investor2}}" wx:key="{{investor2}}">
@@ -333,7 +333,7 @@
                 <view class="status" wx:if="{{item.follow_status ==1}}">我的人脉</view>
               </view>
               <!--名片内容  -->
-              <view class="outsideBox" data-id="{{item.user_id}}"  bindtap="detail">
+              <view class="outsideBox" data-id="{{item.user_id}}" bindtap="detail">
                 <view class="classname">
                   <view class="applyMyProject">
                     <view class="introduceBox flex">
@@ -385,7 +385,7 @@
           <template is="hasNothing" data="{{emptyNumber:investor2}}"></template>
         </view>
       </scroll-view>
-    </swiper-item  > 
+    </swiper-item>
     <!--一键尽调页面的内容-->
     <swiper-item>
       <scroll-view scroll-y="true">
@@ -715,7 +715,7 @@
   </view>
   <view class="flex btn1" bindtap="maintainProject">
     <image src="/img/icon-wanzhengdu@2x.png" class="btnPic"></image>
-    <view class="contactProject">完整度：90%</view>
+    <view class="contactProject">完整度：{{project.pro_total_score}}%</view>
   </view>
   <view class="flex btn2" bindtap="initPrivacy">
     <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>

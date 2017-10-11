@@ -26,7 +26,10 @@ Page({
       url: "/pages/form/industry/industry?current=2",
       css: "checkOn",
       value: ["选择领域"],
-      id: []
+      id: [],
+      service_fa : 1,
+      service_yun:1,
+      service_ps_bp:1
     }
   },
   onLoad: function (options) {
@@ -85,6 +88,10 @@ Page({
         let pro_company_name = theData.pro_company_name;
         let pro_name = theData.pro_name;
         let pro_finance_stock_after = theData.pro_finance_stock_after;
+        console.log(pro_finance_stock_after)
+        let service_fa = theData.service_fa;
+        let service_yun = theData.service_yun;
+        let service_ps_bp = theData.service_ps_bp;
         var industry = theData.pro_industry;
         var industryValue = [];
         var industryId = [];
@@ -144,10 +151,12 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     app.identity(user_id, res => {
       console.log(res)
-      let group_id = res.data.group.group_id;
-      that.setData({
-        group_id: group_id
-      })
+      if (res.data.status != 0) {
+        let group_id = res.data.group.group_id;
+        that.setData({
+          group_id: group_id
+        })
+      }
     })
     if (wx.getStorageSync("m_belongArea") != '') {
       var belongArea = wx.getStorageSync('m_belongArea');
@@ -326,6 +335,9 @@ Page({
     let pro_company_name = that.data.pro_company_name;
     let pro_name = that.data.pro_name;
     let pro_finance_stock_after = that.data.pro_finance_stock_after;
+    let service_fa = theData.service_fa;
+    let service_yun = theData.service_yun;
+    let service_ps_bp = theData.service_ps_bp;
     this.setData({
       upLoad: 0
     })
@@ -366,7 +378,10 @@ Page({
                     "pro_goodness": pro_goodness,
                     "pro_company_name": pro_company_name,
                     "pro_name": pro_name,
-                    "pro_finance_stock_after": pro_finance_stock_after
+                    "pro_finance_stock_after": pro_finance_stock_after,
+                    "service_fa": service_fa,
+                    "service_yun": service_yun,
+                    "service_ps_bp": service_ps_bp
                   }
                 },
                 method: 'POST',
@@ -382,7 +397,7 @@ Page({
               })
 
             },
-            fail:(res)=>{
+            fail: (res) => {
               console.log("失败")
             }
             // }
@@ -405,6 +420,9 @@ Page({
     let pro_company_name = that.data.pro_company_name;
     let pro_name = that.data.pro_name;
     let pro_finance_stock_after = that.data.pro_finance_stock_after;
+    let service_fa = theData.service_fa;
+    let service_yun = theData.service_yun;
+    let service_ps_bp = theData.service_ps_bp;
     this.setData({
       upLoad: 0
     })
@@ -431,7 +449,10 @@ Page({
               "pro_goodness": pro_goodness,
               "pro_company_name": pro_company_name,
               "pro_name": pro_name,
-              "pro_finance_stock_after": pro_finance_stock_after
+              "pro_finance_stock_after": pro_finance_stock_after,
+              "service_fa": service_fa,
+              "service_yun": service_yun,
+              "service_ps_bp": service_ps_bp
             }
           },
           method: 'POST',
@@ -441,7 +462,7 @@ Page({
                 url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
               })
               that.setData({
-                modalBox:0
+                modalBox: 0
               })
             }
           }
@@ -452,8 +473,9 @@ Page({
   },
   //私密性设置
   initPrivacy: function () {
+    let project = this.data.pro_id;
     wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy',
+      url: '/pages/myProject/initPrivacy/initPrivacy?project=' + project,
     })
   },
   //点击发布
@@ -479,6 +501,9 @@ Page({
     var current = this.data.current;
     var pro_goodness = this.data.pro_goodness;
     var upLoad = this.data.upLoad;
+    let service_fa = this.data.service_fa;
+    let service_yun = this.data.service_yun;
+    let service_ps_bp = this.data.service_ps_bp;
     this.setData({
       upLoad: 1
     })
@@ -524,6 +549,9 @@ Page({
     var tipsIndex = that.data.tipsIndex;
     var pro_goodness = that.data.pro_goodness;
     var upLoad = that.data.upLoad;
+    let service_fa = that.data.service_fa;
+    let service_yun = that.data.service_yun;
+    let service_ps_bp = that.data.service_ps_bp;
     wx.request({
       url: url_common + '/api/project/updateProject',
       data: {
@@ -538,7 +566,11 @@ Page({
         pro_area_province: provinceNum,
         pro_area_city: cityNum,
         is_exclusive: tipsIndex,
-        pro_goodness: pro_goodness
+        pro_goodness: pro_goodness,
+        service_fa   : service_fa,
+        service_yun: service_yun,
+        service_ps_bp: service_ps_bp,
+        pro_finance_stock_after: pro_finance_stock_after
       },
       method: 'POST',
       success: function (res) {

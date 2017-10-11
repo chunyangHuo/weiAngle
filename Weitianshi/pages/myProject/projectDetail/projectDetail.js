@@ -110,6 +110,7 @@ Page({
               },
               method: 'POST',
               success: function (res) {
+                console.log(res)
                 let brandList = res.data.data.brand;
                 let project = res.data.data;
                 let user = res.data.user;
