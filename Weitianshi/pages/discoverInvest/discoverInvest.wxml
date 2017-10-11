@@ -21,12 +21,12 @@
       </block>
     </scroll-view>
     <!--空状态-->
-    <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
+    <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image>
   </swiper-item>
   <!--FA(融资顾问) -->
   <swiper-item data-current='1'>
-    <scroll-view scroll-y="true" bindscrolltolower="loadMore">
-      <block wx:for="{{res_match}}" wx:key="{{res_match}}">
+   <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+      <block wx:for="{{faList}}" wx:key="{{faList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
           <template is='cardBottom1' data='{{item}}'></template>
@@ -34,7 +34,7 @@
       </block>
     </scroll-view>
     <!--空状态-->
-    <view wx:if="{{financingNeed==''}}">
+    <view wx:if="{{faList==''}}">
       <image class="empty" src="/img/img-wujieguo@3x.png"></image>
     </view>
   </swiper-item>
