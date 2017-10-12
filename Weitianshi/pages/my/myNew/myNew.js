@@ -38,7 +38,6 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
             wx.hideLoading()
             var user = res.data.data.user;
             var count = res.data.data.count;
@@ -71,7 +70,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {

@@ -8,7 +8,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 0,//选项卡
+    currentTab: 1,//选项卡
     firstName: "代",
     id: "",
     page: 1,
@@ -34,14 +34,14 @@ Page({
     textBeyond1: false,//项目亮点的全部和收起是否显示标志
     textBeyond2: false,//创始人的全部和收起是否显示标志
     textBeyond3: false,//资金用途的全部和收起是否显示标志
-    show_detail:true,
-    show_company:true,
+    show_detail: true,
+    show_company: true,
   },
   onLoad: function (options) {
     this.setData({
       index: options.index,
       id: options.id,
-      currentTab: options.currentTab,
+      // currentTab: options.currentTab,
       shareType: options.type
     });
 
@@ -103,7 +103,7 @@ Page({
       url: url_common + '/api/project/getProjectDetail',
       data: {
         user_id: user_id,
-        project_id:id
+        project_id: id
       },
       method: 'POST',
       success: function (res) {
@@ -416,8 +416,10 @@ Page({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
+        let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
+          matchCount: matchCount,
           page_end: res.data.page_end
         });
         wx.hideToast({
@@ -753,22 +755,115 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = e.currentTarget.dataset.id;
     let project_id = this.data.id;
+    let investor2 = this.data.investor2;
     wx.request({
-      url: url_common + '/api/project/pushProjectToUser',
+      url: url_common + '/api/user/getPushProjectTimes',
       data: {
-        user_id: user_id,
-        pushed_user_id: pushed_user_id,
-        pushed_project: project_id
+        user_id: user_id
       },
       method: 'POST',
       success: function (res) {
-        let statusCode = res.data.status_code;
-        if (statusCode == 2000000) {
-          wx.showToast({
-            title: '成功',
-            icon: 'success',
-            duration: 2000
+        console.log(res)
+        let remainTimes = res.data.data.remain_times;
+        if (remainTimes != 0) {
+          wx.request({
+            url: url_common + '/api/project/pushProjectToUser',
+            data: {
+              user_id: user_id,
+              pushed_user_id: pushed_user_id,
+              pushed_project: project_id
+            },
+            method: 'POST',
+            success: function (res) {
+              let statusCode = res.data.status_code;
+              if (statusCode == 2000000) {
+                wx.showToast({
+                  title: '成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+              }
+              investor2.forEach((x) => {
+                if (x.investor_id == pushed_user_id) {
+                  x.push_status = 1
+                }
+              })
+              that.setData({
+                investor2: investor2
+              })
+            }
           })
+        } else {
+          app.errorHide(that, "今日推送次数已用完", 1000)
+        }
+      }
+    })
+  },
+  //删除项目
+  deleteProject: function () {
+    let project_id = this.data.id;
+    let user_id = wx.getStorageSync('user_id');
+    wx.showModal({
+      title: '提示',
+      content: '确认删除项目?',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: url_common + '/api/project/deleteProject',
+            data: {
+              user_id: user_id,
+              project_id: project_id
+            },
+            method: 'POST',
+            success: function (res) {
+              if (res.data.status_code = 2000000) {
+                wx.navigateTo({
+                  url: '/pages/my/projectShop/projectShop/projectShop',
+                })
+              } else {
+                console.log(res.data.errMsg)
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+  },
+  //匹配推荐删除
+  deletePerson: function (e) {
+    let investor_id = e.currentTarget.dataset.investor;
+    let project_id = this.data.id;
+    let investor2 = this.data.investor2;
+    let  that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let matchCount = this.data.matchCount;
+    wx.request({
+      url: url_common + '/api/project/exceptMatchAction',
+      data: {
+        user_id: user_id,
+        project_id: project_id,
+        investor_id: investor_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code = 2000000) {
+          investor2.forEach((x) => {
+            if (x.investor_id == investor_id) {
+              x.remove = 1
+            }
+          })
+          matchCount = matchCount-1;
+          that.setData({
+            investor2: investor2,
+            matchCount: matchCount
+          })
+          console.log(investor2)
+        } else {
+          console.log(res.data.errMsg)
         }
       }
     })
