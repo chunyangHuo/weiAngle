@@ -1142,9 +1142,12 @@ App({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
+        let matchCount = res.data.match_count;
+        console.log(matchCount)
         that.setData({
           investor2: investor2,
-          page_end: res.data.page_end
+          page_end: res.data.page_end,
+          matchCount: matchCount
         });
         wx.hideToast({
           title: 'loading...',

@@ -88,7 +88,6 @@ Page({
         let pro_company_name = theData.pro_company_name;
         let pro_name = theData.pro_name;
         let pro_finance_stock_after = theData.pro_finance_stock_after;
-        console.log(pro_finance_stock_after)
         let service_fa = theData.service_fa;
         let service_yun = theData.service_yun;
         let service_ps_bp = theData.service_ps_bp;
@@ -135,7 +134,10 @@ Page({
           pro_goodness: pro_goodness,
           pro_company_name: pro_company_name,
           pro_name: pro_name,
-          pro_finance_stock_after: pro_finance_stock_after
+          pro_finance_stock_after: pro_finance_stock_after,
+          service_fa: service_fa,
+          service_yun: service_yun,
+          service_ps_bp: service_ps_bp
         })
       },
       fail: function (res) {
@@ -282,11 +284,6 @@ Page({
   //需要Bp美化
   switchChange1: function (e) {
     let service_ps_bp = e.detail.value;
-    if (e.detail.value == false) {
-      service_ps_bp: 0
-    } else {
-      service_ps_bp: 1
-    }
     this.setData({
       service_ps_bp: service_ps_bp
     })
@@ -302,11 +299,6 @@ Page({
   //需要融资股份(FA)服务
   switchChange2: function (e) {
     let service_fa = e.detail.value;
-    if (e.detail.value == false) {
-      service_fa: 0
-    } else {
-      service_fa: 1
-    }
     this.setData({
       service_fa: service_fa
     })
@@ -314,11 +306,6 @@ Page({
   //是否需要云投行服务
   switchChange3: function (e) {
     let service_yun = e.detail.value;
-    if (e.detail.value == false) {
-      service_yun: 0
-    } else {
-      service_yun: 1
-    }
     this.setData({
       service_yun: service_yun
     })
@@ -357,8 +344,6 @@ Page({
           wx.scanCode({
             success: (res) => {
               console.log(res)
-              // function (res) {
-              console.log(1111)
               var user_id = wx.getStorageSync("user_id");//用戶id
               var credential = res.result;//二维码扫描信息
               var project_id = that.data.pro_id;
@@ -388,7 +373,6 @@ Page({
                 success: function (res) {
                   console.log(res)
                   if (res.data.status_code == 2000000) {
-                    console.log("连东篱会计法")
                     wx.navigateTo({
                       url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
                     })
@@ -400,7 +384,6 @@ Page({
             fail: (res) => {
               console.log("失败")
             }
-            // }
           })
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -501,9 +484,9 @@ Page({
     var current = this.data.current;
     var pro_goodness = this.data.pro_goodness;
     var upLoad = this.data.upLoad;
-    let service_fa = this.data.service_fa;
-    let service_yun = this.data.service_yun;
-    let service_ps_bp = this.data.service_ps_bp;
+    let service_fa = Number(this.data.service_fa);
+    let service_yun = Number(this.data.service_yun);
+    let service_ps_bp = Number(this.data.service_ps_bp);
     this.setData({
       upLoad: 1
     })
@@ -549,9 +532,9 @@ Page({
     var tipsIndex = that.data.tipsIndex;
     var pro_goodness = that.data.pro_goodness;
     var upLoad = that.data.upLoad;
-    let service_fa = that.data.service_fa;
-    let service_yun = that.data.service_yun;
-    let service_ps_bp = that.data.service_ps_bp;
+    let service_fa = Number(that.data.service_fa);
+    let service_yun = Number(that.data.service_yun);
+    let service_ps_bp= Number(that.data.service_ps_bp);
     wx.request({
       url: url_common + '/api/project/updateProject',
       data: {
