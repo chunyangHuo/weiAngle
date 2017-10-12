@@ -1,11 +1,12 @@
+
 //项目查看申请
-function applyProject(e,that,str) {
+function projectApply(e, that, str) {
   let user_id = wx.getStorageSync('user_id');//获取我的user_id
   let content = e.currentTarget.dataset.content;
   let project_id = e.currentTarget.dataset.project;
   let dataList = that.data[str];
   let app = getApp();
-  let url_common=app.globalData.url_common;
+  let url_common = app.globalData.url_common;
   // content: 0(申请查看) 1: (重新申请)
   // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
   wx.request({
@@ -183,6 +184,66 @@ function applyProject(e,that,str) {
     },
   });
 }
+
+//推送项目 (user_id:谁推送的; pushTo_user_id:推送给谁的; pushed_project_id:推送的项目)
+function projectOneKeyPush(that, pushTo_user_id, pushed_project_id,callback) {
+  let app = getApp();
+  let url_common = app.globalData.url_common;
+  wx.showLoading({
+    title: 'loading',
+    mask:true,
+  })
+  let user_id = wx.getStorageSync('user_id');
+  // 获取可用推送次数
+  wx.request({
+    url: url_common + '/api/user/getPushProjectTimes',
+    data:{
+      user_id: user_id
+    },
+    method:"POST",
+    success(res){
+      console.log('getPushProjectTimes',res);
+      let remain_time=res.data.data.remain_times;
+      if(remain_time<1){
+        app.errorHide(that,"您今日的推送次数已经用光了",3000)
+      }else{
+        pushRequest();
+      }
+    },
+    complete(){
+      wx.hideLoading();
+    }
+  })
+  // 实现推送
+  function pushRequest(){
+    wx.request({
+      url: url_common + '/api/project/pushProjectToUser',
+      data: {
+        user_id: user_id,
+        pushed_user_id: pushTo_user_id,
+        pushed_project: pushed_project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000
+          })
+        } else if (statusCode == 490001) {
+          app.errorHide(that, "没有选择任何项目", 1000)
+        }
+        callback(res);
+      },
+      complete(){
+        wx.hideLoading();
+      }
+    })
+  }
+}
 export {
-  applyProject
+  projectApply,
+  projectOneKeyPush
 }

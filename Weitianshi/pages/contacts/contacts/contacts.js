@@ -7,8 +7,8 @@ Page({
     notIntegrity: 0,//检查个人信息是否完整
     industryFilter: [],
     stageFilter: [],
-    empty: 0
-
+    empty: 0,
+    activtyBanner:app.globalData.picUrl.activtyBanner,
   },
   onShow: function () {
     var that = this;
@@ -195,7 +195,7 @@ Page({
   //如何拓展人脉
   howTo: function () {
     wx.navigateTo({
-      url: '/pages/contactsActivty/expandContacts/expandContacts'
+      url: '/pages/contactsActivty/activtyPage/explainActivty/explainActivty'
     })
   },
   //活动详情

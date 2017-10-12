@@ -883,12 +883,13 @@ textarea {
   color: #40587a;
 }
 
-.t-time {
+.t-outBox .t-time {
   font-size: 20rpx;
   color: #999;
   line-height: 20rpx;
   text-align: right;
   margin: 10rpx 0 20rpx 0;
+  padding-right: 32rpx;
 }
 
 .t-appling, .t-refuseToRead, .t-agreeToRead {

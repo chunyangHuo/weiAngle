@@ -16,14 +16,14 @@ Page({
     //banner
     bannerIndex: 0,
     imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      app.globalData.picUrl.activtyBanner,
+      app.globalData.picUrl.banner_workBench,
     ],
   },
   onShow: function () {
     let that = this;
     let user_id = this.data.user_id;
+
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -62,6 +62,22 @@ Page({
     that.setData({ currentTab: e.detail.current });
     this.tabChange(current);
   },
+  // 轮播图跳转
+  bannerLink(e){
+    let index = e.currentTarget.dataset.index;
+    switch (index){
+      case 0:
+        wx.navigateTo({
+          url: '/pages/contactsActivty/activtyDetail/activtyDetail',
+        })
+        break;
+      case 1:
+        wx.navigateTo({
+          url: '/pages/contactsActivty/activtyPage/workBenchJump/workBenchJump',
+        })
+        break;
+    }
+  },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {
     if (current === 0) {
@@ -75,6 +91,10 @@ Page({
   // 请求最新tab页面项目数据(辅助函数)
   newestProject() {
     let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
@@ -83,21 +103,29 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        wx.hideLoading()
-        console.log(res)
+        console.log('最新', res)
         var financingNeed = res.data.data;
+        financingNeed.forEach(x => {
+          x.pro_time = x.pro_time.substr(5, 11);
+          console.log(x.pro_time)
+        })
+        console.log(financingNeed)
         that.setData({
           financingNeed: financingNeed,
         })
       },
-      fail: function (res) {
-        console.log(res)
-      },
+      complete() {
+        wx.hideLoading();
+      }
     })
   },
   // 请求精选tab页面数据(辅助函数)
   selectProject() {
     let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     app.httpPost({
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
@@ -110,6 +138,7 @@ Page({
       that.setData({
         slectProject: slectProject,
       })
+      wx.hideLoading();
     })
   },
   // 上拉加载

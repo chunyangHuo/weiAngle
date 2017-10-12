@@ -76,7 +76,8 @@
     "pages/contactsActivty/activtyRegister/activtyRegister",
     "pages/contactsActivty/topPlayer/topPlayer",
     "pages/contactsActivty/warbandMember/warbandMember",
-    "pages/contactsActivty/expandContacts/expandContacts",
+    "pages/contactsActivty/activtyPage/explainActivty/explainActivty",
+    "pages/contactsActivty/activtyPage/workBenchJump/workBenchJump",
     "pages/remark/remarkList/remarkList",
     "pages/remark/remarkEdit/remarkEdit"
   ],
