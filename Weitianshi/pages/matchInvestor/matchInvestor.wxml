@@ -14,7 +14,7 @@
       <view class='itemCard'>
         <view class='cardTop flex'>
           <view>匹配推荐: {{item.match_count}}人</view>
-          <button class='pushBtn'>一键推送</button>
+          <button class='pushBtn' data-pro-id='{{item.project_id}}' bindtap='goToMatchInvestor'>一键推送</button>
         </view>
         <!--匹配到的投资人  -->
         <view class='matchInvestor flex'>
@@ -42,7 +42,7 @@
         <!--卡片底部  -->
         <view class="ProjectDetailInfo flex">
           <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{item.project_id}}">
-            <view class="viewTimeAll screenPersonColor project-sentimentm">
+            <view class="viewTimeAll screenPersonColor project-sentimentm" bindtap='viewProject'>
               <view class="viewTimeNew" wx:if="{{item.count.view_times_new != 0}}">+{{item.count.view_times_new}}</view>
               浏览：
               <label>{{item.count.view_times_all}}</label>

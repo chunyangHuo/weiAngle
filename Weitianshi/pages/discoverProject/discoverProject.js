@@ -24,6 +24,9 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
 
+    // app.operationModel('projectApply')
+
+
     //初始化数据
     app.initPage(that)
     wx.showLoading({

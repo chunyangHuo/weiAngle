@@ -53,6 +53,23 @@ Page({
       }
     })
   },
+  //一键推送
+  goToMatchInvestor(e){
+    let id=e.currentTarget.dataset.proId;
+    wx.navigateTo({
+      url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1
+    })
+  },
+  // 浏览
+  viewProject: function (e) {
+    let projectId = e.currentTarget.dataset.proid;
+    wx.setStorageSync("projectId", projectId)
+    wx.navigateTo({
+      url: '/pages/message/viewProjectUser/viewProjectUser',
+    })
+  },
+
+
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
   toCreateProject: function () {

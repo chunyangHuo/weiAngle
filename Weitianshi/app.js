@@ -605,7 +605,17 @@ App({
         parameter.push(arguments[i])
       }
     }
-    OperationModel[func](...parameter);
+    switch (parameter.length){
+      case 0: 
+        OperationModel[func]();
+        break;
+      case 1:
+        OperationModel[func](parameter);
+        break;
+      case 2:
+        OperationModel[func](...parameter);
+        break;
+    }
   },
 
   //初始本地缓存
