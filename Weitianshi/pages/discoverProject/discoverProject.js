@@ -66,9 +66,9 @@ Page({
     this.tabChange(current);
   },
   // 轮播图跳转
-  bannerLink(e){
+  bannerLink(e) {
     let index = e.currentTarget.dataset.index;
-    switch (index){
+    switch (index) {
       case 0:
         wx.navigateTo({
           url: '/pages/contactsActivty/activtyDetail/activtyDetail',
@@ -206,7 +206,19 @@ Page({
   // 申请查看
   matchApply(e) {
     let that = this;
-    app.applyProject(e, that, 'slectProject');
+    let pro_id = e.currentTarget.dataset.project;
+    let slectProject = that.data.slectProject;
+ 
+    app.operationModel('projectApply', pro_id, res => {
+      slectProject.forEach(x => {
+        if (x.project_id == pro_id) {
+          x.relationship_button = 1;
+        }
+      })
+      that.setData({
+        slectProject: slectProject
+      })
+    });
   },
   // 人脉大赛
   competitor: function () {

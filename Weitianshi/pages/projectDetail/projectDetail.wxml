@@ -59,7 +59,7 @@
     <!--三个tab页  -->
     <include src='/utils/threeTab.wxml' />
     <!--申请查看未能过-->
-    <view class="lockStyle" wx:if="{{button_type != 1}}">
+    <view class="lockStyle" wx:if="{{show_detail != 1}}">
       <image class="lock" src="/img/img-suo2@2x.png"></image>
       <image src="/img/img-bg@2x(2).png" class="lockBackground"> </image>
     </view>

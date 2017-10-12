@@ -958,7 +958,10 @@ Page({
   applyProject: function (e) {
     let that = this;
     let user_id = this.data.user_id;
-    app.applyProject(e, that, "project")
+    let pro_id=this.data.id;
+    app.operationModel('projectApply',pro_id,res=>{
+      console.log(res)
+    })
   },
   //项目打分
   // projectRemark:function(){

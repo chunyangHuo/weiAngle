@@ -77,7 +77,7 @@ function projectApply(pro_id,callBack) {
       } else if (status == 2) {
         if (group_id) {
           if (group_id == 18 || group_id == 6) {
-            this.projectApplyDirect(pro_id,callBack);
+            projectApplyDirect(pro_id,callBack);
           } else if (group_id == 21) {
             wx.showModal({
               title: '友情提示',
