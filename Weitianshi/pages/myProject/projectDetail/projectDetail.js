@@ -753,50 +753,27 @@ Page({
   pushProject: function (e) {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
-    let pushed_user_id = e.currentTarget.dataset.id;
+    let pushed_user_id = e.currentTarget.dataset.investor;
     let project_id = this.data.id;
     let investor2 = this.data.investor2;
-    wx.request({
-      url: url_common + '/api/user/getPushProjectTimes',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        let remainTimes = res.data.data.remain_times;
-        if (remainTimes != 0) {
-          wx.request({
-            url: url_common + '/api/project/pushProjectToUser',
-            data: {
-              user_id: user_id,
-              pushed_user_id: pushed_user_id,
-              pushed_project: project_id
-            },
-            method: 'POST',
-            success: function (res) {
-              let statusCode = res.data.status_code;
-              if (statusCode == 2000000) {
-                wx.showToast({
-                  title: '成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-              }
-              investor2.forEach((x) => {
-                if (x.investor_id == pushed_user_id) {
-                  x.push_status = 1
-                }
-              })
-              that.setData({
-                investor2: investor2
-              })
-            }
-          })
-        } else {
-          app.errorHide(that, "今日推送次数已用完", 1000)
-        }
+    app.operationModel('projectOneKeyPush', that, pushed_user_id, project_id, function (res) {
+      console.log(res)
+      let statusCode = res.data.status_code;
+      if (statusCode == 2000000) {
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000
+        })
       }
+      investor2.forEach((x) => {
+        if (x.investor_id == pushed_user_id) {
+          x.push_status = 1
+        }
+      })
+      that.setData({
+        investor2: investor2
+      })
     })
   },
   //删除项目
@@ -838,7 +815,7 @@ Page({
     let investor_id = e.currentTarget.dataset.investor;
     let project_id = this.data.id;
     let investor2 = this.data.investor2;
-    let  that = this;
+    let that = this;
     let user_id = wx.getStorageSync('user_id');
     let matchCount = this.data.matchCount;
     wx.request({
@@ -856,7 +833,7 @@ Page({
               x.remove = 1
             }
           })
-          matchCount = matchCount-1;
+          matchCount = matchCount - 1;
           that.setData({
             investor2: investor2,
             matchCount: matchCount

@@ -235,7 +235,9 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id,callback) {
         } else if (statusCode == 490001) {
           app.errorHide(that, "没有选择任何项目", 1000)
         }
-        callback(res);
+        if(callback){
+          callback(res);
+        }
       },
       complete(){
         wx.hideLoading();
