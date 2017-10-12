@@ -270,7 +270,7 @@
     <swiper-item wx:if='{{show_company}}'>
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
         <view class="buyerPage">
-          <view id="matching">匹配推荐：<label>{{matchCount}}</label>个</view>
+          <view id="matching">匹配推荐：<label >{{matchCount}}</label>个</view>
           <block wx:for="{{investor2}}" wx:key="{{investor2}}">
             <view class="resourceBox" wx:if="{{item.remove !=1}}">
               <view class="flex" id="introduce">
@@ -322,7 +322,7 @@
                     <image src="/img/icon-yichu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent btnContent1">移除</view>
                   </view>
-                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}" wx:if="{{item.push_status == 0}}">
+                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}"  data-investor="{{item.investor_id}}" wx:if="{{item.push_status == 0}}">
                     <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent">推送项目</view>
                   </view>

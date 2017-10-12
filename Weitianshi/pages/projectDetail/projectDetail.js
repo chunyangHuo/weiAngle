@@ -18,8 +18,8 @@ Page({
     textBeyond1: false,//项目亮点的全部和收起是否显示标志
     modalBox: 0,
     currentTab: 0,//选项卡
-    show_detail:false,
-    show_company:false,
+    show_detail: false,
+    show_company: false,
   },
   onLoad: function (options) {
     var that = this;
@@ -39,7 +39,7 @@ Page({
 
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
     if (!options.share_id) {
-      that.showStatus(that, id,"");
+      that.showStatus(that, id, "");
     } else {
       app.loginPage(function (user_id) {
         that.setData({
@@ -229,7 +229,7 @@ Page({
   },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取
-  showStatus(that, pro_id, is_share,show_company) {
+  showStatus(that, pro_id, is_share, show_company) {
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/project/projectWithUserRelationship',
@@ -247,14 +247,14 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        console.log(show_detail,show_company)
-        that.projectDetailInfo(that,pro_id,is_share,show_company);
+        console.log(show_detail, show_company)
+        that.projectDetailInfo(that, pro_id, is_share, show_company);
       }
     })
   },
 
   //项目详情信息
-  projectDetailInfo(that, id, is_share,show_company) {
+  projectDetailInfo(that, id, is_share, show_company) {
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/project/getProjectDetail',
@@ -273,7 +273,7 @@ Page({
         let pro_goodness = res.data.data.pro_goodness;
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
-           let button_type = res.data.button_type;
+        let button_type = res.data.button_type;
         // 如果项目亮点字数超出字,刚显示全部按钮
         if (pro_goodness.length > 50) {
           that.setData({
@@ -300,7 +300,7 @@ Page({
           pro_industry: pro_industry
         })
         // 核心团队
-        if (project.core_users != 0) {
+        if (project.core_users) {
           let core_memberArray = project.core_users;
           core_memberArray.forEach((x, index) => {
             core_memberArray[index] = x;
@@ -311,49 +311,54 @@ Page({
         }
         // 标签 type:0; 项目标签 type:1 团队标签
         let infoTagArray = project.tag;
-        let tagOfPro = [];//项目资料的标签
-        let teamOfPro = [];//核心团队的标签
-        for (let i = 0; i < infoTagArray.length; i++) {
-          if (infoTagArray[i].type == 0) {
-            tagOfPro.push(infoTagArray[i])
-          } else if (infoTagArray[i].type == 1) {
-            teamOfPro.push(infoTagArray[i])
+        if (infoTagArray) {
+          let tagOfPro = [];//项目资料的标签
+          let teamOfPro = [];//核心团队的标签
+          for (let i = 0; i < infoTagArray.length; i++) {
+            if (infoTagArray[i].type == 0) {
+              tagOfPro.push(infoTagArray[i])
+            } else if (infoTagArray[i].type == 1) {
+              teamOfPro.push(infoTagArray[i])
+            }
           }
+          tagOfPro.forEach((x, index) => {
+            tagOfPro[index].tag_name = x.tag_name;
+          })
+          teamOfPro.forEach((x, index) => {
+            teamOfPro[index].tag_name = x.tag_name;
+          })
+          that.setData({
+            tagOfPro: tagOfPro,
+            teamOfPro: teamOfPro
+          })
         }
-        tagOfPro.forEach((x, index) => {
-          tagOfPro[index].tag_name = x.tag_name;
-        })
-        teamOfPro.forEach((x, index) => {
-          teamOfPro[index].tag_name = x.tag_name;
-        })
-        that.setData({
-          tagOfPro: tagOfPro,
-          teamOfPro: teamOfPro
-        })
         // 融资信息
         let pro_history_financeList = project.pro_history_finance;
-        pro_history_financeList.forEach((x, index) => {
-          pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
-          pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
-          pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
-          pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
-
-        })
-        that.setData({
-          pro_history_financeList: pro_history_financeList
-        })
+        if (pro_history_financeList) {
+          pro_history_financeList.forEach((x, index) => {
+            pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
+            pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
+            pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
+            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
+          })
+          that.setData({
+            pro_history_financeList: pro_history_financeList
+          })
+        }
         // 里程碑
         let mileStoneArray = project.pro_develop;
-        mileStoneArray.forEach((x, index) => {
-          mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
-          mileStoneArray[index].dh_event = x.dh_event;
-        })
+        if (mileStoneArray) {
+          mileStoneArray.forEach((x, index) => {
+            mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
+            mileStoneArray[index].dh_event = x.dh_event;
+          })
 
-        that.setData({
-          mileStoneArray: mileStoneArray,
-          industy_sort: industy_sort,
-          pro_goodness: pro_goodness
-        });
+          that.setData({
+            mileStoneArray: mileStoneArray,
+            industy_sort: industy_sort,
+            pro_goodness: pro_goodness
+          });
+        }
         //一键尽调
         let company_name = that.data.pro_company_name;
         if (company_name == '') {
@@ -364,10 +369,10 @@ Page({
 
 
         // 如果显示一键尽调和买家图谱则调用数据
-        if(show_company){
+        if (show_company) {
           that.oneKeyRearchInfo(company_name);
           that.matchInvestorInfo(id);
-        } 
+        }
       },
     })
   },
@@ -582,8 +587,10 @@ Page({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
+        let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
+          matchCount: matchCount,
           page_end: res.data.page_end
         });
         wx.hideToast({
