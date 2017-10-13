@@ -5,9 +5,9 @@ import * as SearchModel from '../../utils/searchModel';
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
-    investorList:[],
-    faList:[],
-    myContacts:[],
+    investorList: [],
+    faList: [],
+    myContacts: [],
     //选项卡
     winWidth: 0,
     winHeight: 0,
@@ -241,18 +241,67 @@ Page({
   onShareAppMessage: function () {
     return ShareModel.discoverInvestShare();
   },
-  // 申请查看
-  matchApply(e) {
-    let that = this;
-    app.applyProject(e, that, 'slectProject');
-  },
   // 项目推送
-  projectPush(e){
+  projectPush(e) {
     console.log(1)
-    let pushTo_user_id=e.currentTarget.dataset.id;
-    app.operationModel('projectPush',pushTo_user_id);
+    let pushTo_user_id = e.currentTarget.dataset.id;
+    app.operationModel('projectPush', pushTo_user_id);
   },
-
+  // 申请加人脉
+  contactsAdd(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAdd', added_user_id, function (res) {
+      console.log('申请添加人脉完成', res);
+      that.contactsAddSuccessFunc(res, added_user_id, 2);
+    });
+  },
+  // 直接加人脉
+  contactsAddDirect(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+      console.log('直接添加人脉完成', res)
+      that.contactsAddSuccessFunc(res, added_user_id, 1);
+    });
+  },
+  // 加人脉成功后处理(辅助函数)
+  contactsAddSuccessFunc(res, added_user_id, num) {
+    let that = this;
+    let investorList = this.data.investorList;
+    let faList = this.data.faList
+    if (res.data.status_code == 2000000) {
+      //更改投资人和FA列表中该人的加人脉按钮的字段
+      if (investorList) {
+        investorList.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          investorList: investorList
+        })
+      }
+      if (faList) {
+        console.log(faList,added_user_id)
+        faList.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          faList: faList
+        })
+      }
+    } else {
+      app.errorHide(that, res.data.error_Msg, 3000)
+    }
+  },
+  //找项目投资人
+  matchInvestor() {
+    wx.navigateTo({
+      url: '/pages/matchInvestor/matchInvestor'
+    })
+  },
 
   // ------------------------------------筛选搜索-------------------------------------
   // 下拉框

@@ -36,6 +36,7 @@ Page({
     textBeyond3: false,//资金用途的全部和收起是否显示标志
     show_detail: true,
     show_company: true,
+    type:2,
   },
   onLoad: function (options) {
     this.setData({
@@ -749,33 +750,7 @@ Page({
       url: '/pages/message/contactProject/projectList/projectList?id=' + project_id,
     })
   },
-  //推送项目
-  pushProject: function (e) {
-    let that = this;
-    let user_id = wx.getStorageSync('user_id');
-    let pushed_user_id = e.currentTarget.dataset.investor;
-    let project_id = this.data.id;
-    let investor2 = this.data.investor2;
-    app.operationModel('projectOneKeyPush', that, pushed_user_id, project_id, function (res) {
-      console.log(res)
-      let statusCode = res.data.status_code;
-      if (statusCode == 2000000) {
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }
-      investor2.forEach((x) => {
-        if (x.investor_id == pushed_user_id) {
-          x.push_status = 1
-        }
-      })
-      that.setData({
-        investor2: investor2
-      })
-    })
-  },
+
   //删除项目
   deleteProject: function () {
     let project_id = this.data.id;
@@ -809,6 +784,33 @@ Page({
       }
     })
 
+  },
+  //推送项目
+  pushProject: function (e) {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let pushed_user_id = e.currentTarget.dataset.investor;
+    let project_id = this.data.id;
+    let investor2 = this.data.investor2;
+    app.operationModel('projectOneKeyPush', that, pushed_user_id, project_id, function (res) {
+      console.log(res)
+      let statusCode = res.data.status_code;
+      if (statusCode == 2000000) {
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+      investor2.forEach((x) => {
+        if (x.investor_id == pushed_user_id) {
+          x.push_status = 1
+        }
+      })
+      that.setData({
+        investor2: investor2
+      })
+    })
   },
   //匹配推荐删除
   deletePerson: function (e) {

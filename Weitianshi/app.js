@@ -612,7 +612,7 @@ App({
       case 1:
         OperationModel[func](parameter);
         break;
-      case 2:
+      default:
         OperationModel[func](...parameter);
         break;
     }

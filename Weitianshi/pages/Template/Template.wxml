@@ -1005,7 +1005,7 @@
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
     </view> -->
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}'>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' bindtap='contactsAdd'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
       <view>加人脉</view> 
     </view>
@@ -1017,7 +1017,7 @@
       <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
       <view style='color:#999;'>待验证</view>
     </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}'>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' bindtap='contactsAddDirect'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
       <view>加人脉</view>
     </view>

@@ -18,13 +18,31 @@ function checkUserInfo(callBack) {
             callBack(res)
           }
         } else if (complete == 0) {
-          wx.navigateTo({
-            url: '/pages/register/companyInfo/companyInfo?type=1'
+          wx.showModal({
+            title: "提示",
+            content: "请先绑定个人信息",
+            success: function (res) {
+              wx.setStorageSync('followed_user_id', followed_user_id)
+              if (res.confirm == true) {
+                wx.navigateTo({
+                  url: '/pages/register/companyInfo/companyInfo'
+                })
+              }
+            }
           })
         }
       } else {
-        wx.navigateTo({
-          url: '/pages/register/personInfo/personInfo?type=2'
+        wx.showModal({
+          title: "提示",
+          content: "请先绑定个人信息",
+          success: function (res) {
+            wx.setStorageSync('followed_user_id', followed_user_id)
+            if (res.confirm == true) {
+              wx.navigateTo({
+                url: '/pages/register/personInfo/personInfo'
+              })
+            }
+          }
         })
       }
       console.log('checkUserInfo', res);
@@ -33,7 +51,7 @@ function checkUserInfo(callBack) {
 }
 
 //验校用户角色身份信息,如果是投资人或是买方FA则进行项目查看项目
-function projectApply(pro_id,callBack) {
+function projectApply(pro_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
@@ -44,7 +62,7 @@ function projectApply(pro_id,callBack) {
     },
     method: 'POST',
     success: function (res) {
-      console.log('getUserGroupByStatus',res);
+      console.log('getUserGroupByStatus', res);
       // 0:未认证1:待审核 2 审核通过 3审核未通过
       let status = res.data.status;
       if (status != 0) {
@@ -77,7 +95,7 @@ function projectApply(pro_id,callBack) {
       } else if (status == 2) {
         if (group_id) {
           if (group_id == 18 || group_id == 6) {
-            projectApplyDirect(pro_id,callBack);
+            projectApplyDirect(pro_id, callBack);
           } else if (group_id == 21) {
             wx.showModal({
               title: '友情提示',
@@ -144,41 +162,6 @@ function projectApply(pro_id,callBack) {
   })
 }
 
-//直接项目查看申请(辅助函数)
-function projectApplyDirect(pro_id,callBack){
-  let app = getApp();
-  let url_common = app.globalData.url_common;
-  let user_id = wx.getStorageSync('user_id');
-  // 发送申请
-  wx.request({
-    url: url_common + '/api/project/applyProject',
-    data: {
-      user_id: user_id,
-      project_id: pro_id
-    },
-    method: 'POST',
-    success: function (res) {
-      if (res.data.status_code == 2000000) {
-        wx.showToast({
-          title: '已提交申请',
-          icon: 'success',
-          duration: 2000
-        })
-        if(callBack){ 
-          callBack(res)
-        }
-        console.log('applyProject',res)
-      } else if (statusCode == 5005005) {
-        wx.showToast({
-          title: '请勿重复申请',
-          icon: 'success',
-          duration: 2000
-        })
-      }
-    }
-  })
-}
-
 //项目一键推送 (user_id:谁推送的; pushTo_user_id:推送给谁的; pushed_project_id:推送的项目)
 function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
   let app = getApp();
@@ -210,7 +193,7 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
         } else if (statusCode == 490001) {
           app.errorHide(that, "没有选择任何项目", 1000)
         }
-        if(callback){
+        if (callback) {
           callback(res);
         }
       },
@@ -221,9 +204,68 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
   }
 }
 
+//项目推送 (user_id:谁推送的; pushTo_user_id:推送给谁的)
+function projectPush(pushTo_user_id) {
+  let app = getApp();
+  let url_common = app.globalData.url_common;
+  let user_id = wx.getStorageSync('user_id');
+
+  getPushProjectTimes(res => {
+    checkUserInfo(x => {
+      wx.navigateTo({
+        url: '/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id,
+      })
+    })
+  })
+}
+
+//人脉添加
+function contactsAdd(added_user_id, callBack) {
+  let app = getApp();
+  let url_common = app.globalData.url_common;
+  let user_id = wx.getStorageSync('user_id');
+  checkUserInfo(x=>{
+    wx.request({
+      url: url_common + '/api/user/UserApplyFollowUser',
+      data: {
+        user_id: user_id,
+        applied_user_id: added_user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (callBack) {
+          callBack(res)
+        }
+      }
+    })
+  })
+}
+
+//人脉添加(直接)
+function cotactsAddDirect(added_user_id, callBack) {
+  let app = getApp();
+  let url_common = app.globalData.url_common;
+  let user_id = wx.getStorageSync('user_id');
+  checkUserInfo(x=>{
+    wx.request({
+      url: url_common + '/api/user/handleApplyFollowUser',
+      data: {
+        user_id: user_id,
+        apply_user_id: added_user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (callBack) {
+          callBack(res)
+        }
+      }
+    })
+  })
+}
+
 //获取用户当日推送次数(辅助函数)
-function getPushProjectTimes(callBack){
-  let user_id=wx.getStorageSync('user_id');
+function getPushProjectTimes(callBack) {
+  let user_id = wx.getStorageSync('user_id');
   let app = getApp();
   let url_common = app.globalData.url_common;
   wx.request({
@@ -238,7 +280,7 @@ function getPushProjectTimes(callBack){
       if (remain_time < 1) {
         app.errorHide(that, "您今日的推送次数已经用光了", 3000)
       } else {
-        if(callBack){
+        if (callBack) {
           callBack(res)
         }
       }
@@ -249,24 +291,48 @@ function getPushProjectTimes(callBack){
   })
 }
 
-//项目推送 (user_id:谁推送的; pushTo_user_id:推送给谁的)
-function projectPush(pushTo_user_id){
+//直接项目查看申请(辅助函数)
+function projectApplyDirect(pro_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-
-  getPushProjectTimes(res=>{
-    checkUserInfo(x => {
-      wx.navigateTo({
-        url: '/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id,
-      })
-    })
+  // 发送申请
+  wx.request({
+    url: url_common + '/api/project/applyProject',
+    data: {
+      user_id: user_id,
+      project_id: pro_id
+    },
+    method: 'POST',
+    success: function (res) {
+      if (res.data.status_code == 2000000) {
+        wx.showToast({
+          title: '已提交申请',
+          icon: 'success',
+          duration: 2000
+        })
+        if (callBack) {
+          callBack(res)
+        }
+        console.log('applyProject', res)
+      } else if (statusCode == 5005005) {
+        wx.showToast({
+          title: '请勿重复申请',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }
   })
-} 
+}
+
+
 
 export {
   checkUserInfo,
   projectApply,
   projectOneKeyPush,
-  projectPush
+  projectPush,
+  contactsAdd,
+  cotactsAddDirect
 }

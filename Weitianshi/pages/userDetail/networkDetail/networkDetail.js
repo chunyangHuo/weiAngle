@@ -200,72 +200,72 @@ Page({
       }
     })
   },
-// 二维码分享页面
-shareSth: function (e) {
-  var QR_id = e.currentTarget.dataset.clickid;
-  wx.setStorageSync('QR_id', QR_id)
-  wx.navigateTo({
-    url: '/pages/my/qrCode/qrCode',
-  })
-},
-//分享页面
-onShareAppMessage: function () {
-  let that=this;
-  return ShareModel.networkDetailShare(that);
-},
-//项目融资
-projectFinance: function () {
-  var followed_user_id = this.data.user_id;
-  wx.navigateTo({
-    url: '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + followed_user_id,
-  })
-},
-//融资项目详情
-financingDetail: function (e) {
-  var id = e.currentTarget.dataset.id;
-  wx.navigateTo({
-    url: '/pages/projectDetail/projectDetail?id=' + id,
-  })
-},
-// 推送项目
-pushProjectTo: function (options) {
-  var personId = this.data.user_id;
-  let view_id = this.data.view_id;
-  var push_id = this.data.followed_user_id;
-  wx.request({
-    url: url_common + '/api/user/checkUserInfo',
-    data: {
-      user_id: view_id
-    },
-    method: 'POST',
-    success: function (res) {
-      if (res.data.status_code == 2000000) {
-        var complete = res.data.is_complete;
-        if (complete == 1) {
-          //信息完整，正常的推送项目
-          wx.navigateTo({
-            url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + personId,
-          })
-        } else if (complete == 0) {
-          wx.navigateTo({
-            url: '/pages/register/companyInfo/companyInfo'
-          })
+  // 二维码分享页面
+  shareSth: function (e) {
+    var QR_id = e.currentTarget.dataset.clickid;
+    wx.setStorageSync('QR_id', QR_id)
+    wx.navigateTo({
+      url: '/pages/my/qrCode/qrCode',
+    })
+  },
+  //分享页面
+  onShareAppMessage: function () {
+    let that = this;
+    return ShareModel.networkDetailShare(that);
+  },
+  //项目融资
+  projectFinance: function () {
+    var followed_user_id = this.data.user_id;
+    wx.navigateTo({
+      url: '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + followed_user_id,
+    })
+  },
+  //融资项目详情
+  financingDetail: function (e) {
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/projectDetail/projectDetail?id=' + id,
+    })
+  },
+  // 推送项目
+  pushProjectTo: function (options) {
+    var personId = this.data.user_id;
+    let view_id = this.data.view_id;
+    var push_id = this.data.followed_user_id;
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: view_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //信息完整，正常的推送项目
+            wx.navigateTo({
+              url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + personId,
+            })
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo'
+            })
+          }
         }
       }
-    }
-  });
-},
-//人气进入
-popularity: function() {
-  let id = this.data.user_id;//当前用户的
-  wx.navigateTo({
-    url: '/pages/message/browseMe/browseMe?id=' + id
-  })
-}   ,
-// 加我为人脉
-attention: function () {
-  wx.navigateTo({
-    url: '/pages/message/beAddedContacts/beAddedContacts'
-  })
-},
+    });
+  },
+  // 人气进入
+  popularity: function () {
+    let id = this.data.user_id;//当前用户的
+    wx.navigateTo({
+      url: '/pages/message/browseMe/browseMe?id=' + id
+    })
+  },
+  // 加我为人脉
+  attention: function () {
+    wx.navigateTo({
+      url: '/pages/message/beAddedContacts/beAddedContacts'
+    })
+  },
 });

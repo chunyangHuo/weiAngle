@@ -318,11 +318,11 @@
                   <view class="aLine" wx:if="{{type==2}}"></view>
                 </view>
                 <view class="btnBox flex" wx:if="{{type==2}}">
-                  <view class="flex" catchtap="deletePerson" data-investor="{{item.investor_id}}">
+                  <view class="flex" catchtap="deletePerson" data-investor="{{item.investor_id}}" catchtap='deleteProject'>
                     <image src="/img/icon-yichu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent btnContent1">移除</view>
                   </view>
-                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}"  data-investor="{{item.investor_id}}" wx:if="{{item.push_status == 0}}">
+                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}"  data-investor="{{item.investor_id}}" wx:if="{{item.push_status == 0}}" catchtap='pushProject'>
                     <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent">推送项目</view>
                   </view>
