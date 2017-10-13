@@ -70,30 +70,26 @@
         </view>
         <view class="btnBox">
           <view class="insideBox flex">
-            <view class="flex pushProject">
+             <view class="flex pushProject" catchtap="pushProject" data-id="{{item.user_id}}"  wx:if="{{item.push_status == 0}}">
               <image src="/img/icon-tuisongxiangmu@2x.png" class="btnPic"></image>
               <view class="pushContent">推送项目</view>
-            </view>
-            <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}" data-investor="{{item.investor_id}}" wx:if="{{item.push_status == 0}}">
-              <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
-              <view class="btnContent">推送项目</view>
-            </view>
+            </view> 
             <view class="flex" wx:if="{{item.push_status == 1}}">
-              <image src="/img/icon-yituisong@2x.png" class="pushProject pushProject1"></image>
+              <image src="/img/icon-yituisong@2x.png" class="btnPic"></image>
               <view class="btnContented">已推送</view>
             </view>
-            <!-- <view class="flex addPerson" wx:if="{{item.is_connect == 0 || item.is_connect == 3}}">
+              <view class="flex addPerson" wx:if="{{item.is_connect == 0 || item.is_connect == 3}}" catchtap="addPerson">
               <image src="/img/icon-jiarenmai@2x.png" class="btnPic btnPic2"></image>
               <view class="classname">加人脉</view>
-            </view> -->
-            <view class="flex addPerson">
+            </view>  
+            <view class="flex addPerson" wx:if="{{item.is_connect == 2}}">
               <image src="/img/icon-daiyanzheng@2x.png" class="btnPic btnPic2 afterApply"></image>
               <view class="classname">待验证</view>
             </view>
-            <view class="flex addPerson" wx:if="{{item.is_connect == 1}}">
+             <view class="flex addPerson" wx:if="{{item.is_connect == 1}}">
               <image src="/img/icon-huweirenmai@2x.png" class="btnPic btnPic2"></image>
               <view class="classname">已为人脉</view>
-            </view>
+            </view> 
           </view>
         </view>
       </view>

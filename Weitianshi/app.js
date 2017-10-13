@@ -605,6 +605,7 @@ App({
         parameter.push(arguments[i])
       }
     }
+    console.log(func,parameter)
     switch (parameter.length){
       case 0: 
         OperationModel[func]();

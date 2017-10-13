@@ -267,6 +267,13 @@ Page({
       success: function (res) {
         let brandList = res.data.data.brand;
         let project = res.data.data;
+        console.log(project)
+        if (project.pro_BP) {
+          let BPath = project.pro_BP.file_url;
+          that.setData({
+            BPath: BPath
+          })
+        }
         let user = res.data.user;
         let count = project.count;
         let pro_company_name = project.pro_company_name;
@@ -366,7 +373,6 @@ Page({
             nothing: 0
           })
         }
-
 
         // 如果显示一键尽调和买家图谱则调用数据
         if (show_company) {
@@ -815,9 +821,34 @@ Page({
   },
   //联系项目方
   contactPerson: function () {
-    this.setData({
-      modalBox: 1
-    })
+    let user_id = wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以联系项目方
+            this.setData({
+              modalBox: 1
+            })
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      },
+    });
+
   },
   //关闭模态框
   closeModal: function () {
