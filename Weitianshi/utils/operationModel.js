@@ -242,7 +242,7 @@ function contactsAdd(added_user_id, callBack) {
 }
 
 //人脉添加(直接)
-function cotactsAddDirect(added_user_id, callBack) {
+function contactsAddDirect(added_user_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
@@ -334,5 +334,5 @@ export {
   projectOneKeyPush,
   projectPush,
   contactsAdd,
-  cotactsAddDirect
+  contactsAddDirect
 }

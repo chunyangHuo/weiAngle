@@ -125,8 +125,42 @@ Page({
       })
     })
   },
-  //添加人脉
-  addPerson:function(){
-    
-  }
+    // 申请加人脉
+  contactsAdd(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAdd', added_user_id, function (res) {
+      console.log('申请添加人脉完成', res);
+      that.contactsAddSuccessFunc(res, added_user_id, 2);
+    });
+  },
+  // 直接加人脉
+  contactsAddDirect(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+      console.log('直接添加人脉完成', res)
+      that.contactsAddSuccessFunc(res, added_user_id, 1);
+    });
+  },
+  // 加人脉成功后处理(辅助函数)
+  contactsAddSuccessFunc(res, added_user_id, num) {
+    let that = this;
+    let metList = this.data.metList;
+    if (res.data.status_code == 2000000) {
+      //更改投资人和FA列表中该人的加人脉按钮的字段
+      if (metList) {
+        metList.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          metList: metList
+        })
+      }
+    } else {
+      app.errorHide(that, res.data.error_Msg, 3000)
+    }
+  },
 })
