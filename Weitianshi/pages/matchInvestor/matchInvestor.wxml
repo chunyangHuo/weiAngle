@@ -35,26 +35,28 @@
             <view class='is_exclusive' wx:if='{{item.is_exclusive===2}}'>非独</view>
           </view>
           <view class='industryArr'>{{item.industryArr}}</view>
-          <view class='otherTag'>{{item.otherTag}}</view>
-          <view class='publish' wx:if='{{item.open_status==1}}'>公开</view>
-          <view class='publish' wx:else>私密</view>
+          <view class="flex publishTag">
+            <view class='otherTag'>{{item.otherTag}}</view>
+            <view class='publish' wx:if='{{item.open_status==1}}'>公开</view>
+            <view class='publish' wx:else>私密</view>
+          </view>
         </view>
         <!--卡片底部  -->
         <view class="ProjectDetailInfo flex">
           <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{item.project_id}}">
-            <view class="viewTimeAll screenPersonColor project-sentimentm" bindtap='viewProject'>
+            <view class="viewTimeAll screenPersonColor project-sentimentm">
               <view class="viewTimeNew" wx:if="{{item.count.view_times_new != 0}}">+{{item.count.view_times_new}}</view>
               浏览：
               <label>{{item.count.view_times_all}}</label>
             </view>
           </view>
-          <view class="flex sceenPerson" catchtap="applyPerson">
+          <view class="flex sceenPerson" catchtap="applyPerson" data-proid="{{item.project_id}}">
             <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.apply_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">申请查看：
               <label>{{item.count.apply_times_all}}</label>
             </view>
           </view>
-          <view class="flex sceenPerson" catchtap="hasMeeting">
+          <view class="flex sceenPerson" catchtap="hasMeeting" data-proid="{{item.project_id}}">
             <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.apply_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">约谈：
               <label>{{item.count.apply_times_all}}</label>

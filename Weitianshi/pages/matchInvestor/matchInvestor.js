@@ -53,19 +53,37 @@ Page({
       }
     })
   },
+  //发布融资项目
+  publicBtn:function(){
+    CreateProject.toCreateProject();
+  },
   //一键推送
   goToMatchInvestor(e){
-    let id=e.currentTarget.dataset.proId;
+    let id=e.currentTarget.dataset.proid;
     wx.navigateTo({
       url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1
     })
   },
   // 浏览
   viewProject: function (e) {
-    let projectId = e.currentTarget.dataset.proid;
-    wx.setStorageSync("projectId", projectId)
+    let project_id = e.currentTarget.dataset.proid;
     wx.navigateTo({
-      url: '/pages/message/viewProjectUser/viewProjectUser',
+      url: '/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id,
+    })
+  },
+  //申请查看
+  applyPerson:function(e){
+    console.log(e)
+    let proid = e.currentTarget.dataset.proid;
+    wx.navigateTo({
+      url: '/pages/message/applyPerson/applyPerson?id=' + proid,
+    })
+  },
+  //约谈
+  hasMeeting:function(e){
+    let projectId = e.currentTarget.dataset.proid;
+    wx.navigateTo({
+      url: '/pages/message/contactProject/projectList/projectList?id=' + projectId,
     })
   },
 

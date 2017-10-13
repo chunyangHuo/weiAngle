@@ -8,18 +8,22 @@ Page({
         count: 0
     },
     onLoad: function (options) {
-
+      let project_id = options.project_id;
+      this.setData({
+        project_id : project_id
+      })
     },
     onShow: function () {
       wx.showLoading({
         title: 'loading',
         mask: true,
       })
+      console.log(111)
         var that = this;
         // 初始化下拉加载相关参数
         app.initPage(that);
         var user_id = this.data.user_id;
-        let project_id = wx.getStorageSync("projectId");
+        let project_id = this.data.project_id;
         // 获取浏览我的用户信息
         if (user_id) {
             wx.request({
@@ -31,6 +35,8 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
+                  console.log(res)
+                  console.log(1221)
                   wx.hideLoading()
                     var contacts = res.data.list.users;
                     var count = res.data.list.count;

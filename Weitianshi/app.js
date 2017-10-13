@@ -605,6 +605,7 @@ App({
         parameter.push(arguments[i])
       }
     }
+    console.log(func,parameter)
     switch (parameter.length){
       case 0: 
         OperationModel[func]();
@@ -612,7 +613,7 @@ App({
       case 1:
         OperationModel[func](parameter);
         break;
-      case 2:
+      default:
         OperationModel[func](...parameter);
         break;
     }

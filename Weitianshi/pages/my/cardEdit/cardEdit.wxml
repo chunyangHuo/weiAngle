@@ -31,7 +31,7 @@
   </view>
   <view class="card">
     <view class="text">个人描述</view>
-    <textarea class="" id="describe" value="{{user_info.user_intro}}" bindinput="describeEdit" />
+    <textarea class="" id="describe" value="{{user_info.user_intro}}" bindinput="describeEdit" maxlength="1000"/>
   </view>
 </view>
 <!--错误提示-->

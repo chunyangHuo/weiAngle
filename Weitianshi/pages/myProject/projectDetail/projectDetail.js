@@ -413,7 +413,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
         let matchCount = res.data.match_count;
@@ -563,10 +562,9 @@ Page({
   },
   // 浏览
   viewProject: function (e) {
-    let projectId = e.currentTarget.dataset.proid;
-    wx.setStorageSync("projectId", projectId)
+    let project_id = this.data.id;
     wx.navigateTo({
-      url: '/pages/message/viewProjectUser/viewProjectUser',
+      url: '/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id,
     })
   },
   // 完善公司信息
@@ -753,7 +751,7 @@ Page({
   pushProject: function (e) {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
-    let pushed_user_id = e.currentTarget.dataset.investor;
+    let pushed_user_id = e.currentTarget.dataset.id;
     let project_id = this.data.id;
     let investor2 = this.data.investor2;
     app.operationModel('projectOneKeyPush', that, pushed_user_id, project_id, function (res) {
@@ -767,7 +765,7 @@ Page({
         })
       }
       investor2.forEach((x) => {
-        if (x.investor_id == pushed_user_id) {
+        if (x.user_id == pushed_user_id) {
           x.push_status = 1
         }
       })
@@ -785,7 +783,6 @@ Page({
       content: '确认删除项目?',
       success: function (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           wx.request({
             url: url_common + '/api/project/deleteProject',
             data: {
