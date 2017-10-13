@@ -114,7 +114,7 @@
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
 <!--详情,买家图谱,一键尽调三个Tab页模版  -->
-<template name='threeTab'>
+<template name='threeTab' data="{{type:2}}">
 
 </template>
 <!-- <template is='threeTab' data='{{currentTab,pro_goodness,project,tagOfPro,brandList,investor2,nothing,projectDetailsList,project_labelArray,projectDetailsOne,company,projectInfoList}}'>

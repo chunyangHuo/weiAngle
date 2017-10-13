@@ -315,9 +315,9 @@
                       </view>
                     </view>
                   </view>
-                  <view class="aLine"></view>
+                  <view class="aLine" wx:if="{{type==2}}"></view>
                 </view>
-                <view class="btnBox flex">
+                <view class="btnBox flex" wx:if="{{type==2}}">
                   <view class="flex" catchtap="deletePerson" data-investor="{{item.investor_id}}">
                     <image src="/img/icon-yichu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent btnContent1">移除</view>
