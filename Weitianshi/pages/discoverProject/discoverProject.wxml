@@ -42,3 +42,5 @@
 <template is='createProject'></template>
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--人脉王浮票  -->
+<view class="competitor" bindtap="competitor">人脉王大赛</view>

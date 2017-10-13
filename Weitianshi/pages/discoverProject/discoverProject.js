@@ -208,7 +208,7 @@ Page({
     let that = this;
     let pro_id = e.currentTarget.dataset.project;
     let slectProject = that.data.slectProject;
- 
+
     app.operationModel('projectApply', pro_id, res => {
       slectProject.forEach(x => {
         if (x.project_id == pro_id) {

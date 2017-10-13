@@ -15,9 +15,13 @@ page {
   color: #666;
 }
 
+button {
+  border: none;
+}
+
 input {
   border-radius: 4px;
-  padding: 30rpx 32rpx;
+  padding: 20rpx 32rpx;
   background: #f2f2f2;
   width: 100%;
   margin-bottom: 48rpx;
@@ -32,7 +36,7 @@ input {
 
 .clear {
   position: absolute;
-  top: 21rpx;
+  top: 12rpx;
   right: 32rpx;
   z-index: 999;
   background: #f2f2f2;
@@ -57,14 +61,42 @@ input {
   font-size: 32rpx;
   border-radius: 200rpx;
   /* width: 300rpx !important; */
-  width: 46% !important;
-  display: inline-block
-}
-.nextBtn:first-child{
-    margin-right: 46rpx;
+  width: 92% !important;
+  display: inline-block;
 }
 
+.nextBtn:first-child {
+  margin-right: 46rpx;
+}
 
-.error{
-  bottom:346rpx;
+/*微信绑定  */
+
+.WXbind {
+  background: #f2f2f2;
+  border-radius: 4px;
+  font-size: 28rpx;
+  color: #40587a;
+  width: 232rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+button {
+  border: 0 #333 white;
+}
+
+button::after {
+  border: 0 #333 white;
+}
+
+.telephoneText {
+  width: 370rpx;
+}
+
+.or {
+  line-height: 88rpx;
+}
+
+.error {
+  bottom: 346rpx;
 }

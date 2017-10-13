@@ -6,9 +6,8 @@ import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     status: false,
+    activtyDetail: app.globalData.picUrl.activtyDetail
   },
-  onLoad: function (options) { },
-
   onShow: function () {
     let that = this;
     app.loginPage(function (user_id) {

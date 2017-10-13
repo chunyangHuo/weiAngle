@@ -15,6 +15,7 @@ Page({
     slectProject: '',
     // 筛选搜索
     SearchInit: SearchModel.data,
+    activtyBanner: app.globalData.picUrl.activtyBanner,
   },
   onShow: function () {
     let that = this;
@@ -282,7 +283,7 @@ Page({
         })
       }
       if (faList) {
-        console.log(faList,added_user_id)
+        console.log(faList, added_user_id)
         faList.forEach(x => {
           if (x.user_id == added_user_id) {
             x.follow_status = num
@@ -302,7 +303,12 @@ Page({
       url: '/pages/matchInvestor/matchInvestor'
     })
   },
-
+  //活动详情
+  goTo: function () {
+    wx.navigateTo({
+      url: '/pages/contactsActivty/activtyDetail/activtyDetail',
+    })
+  },
   // ------------------------------------筛选搜索-------------------------------------
   // 下拉框
   move(e) {

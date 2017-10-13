@@ -25,7 +25,7 @@
   </swiper-item>
   <!--FA(融资顾问) -->
   <swiper-item data-current='1'>
-   <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
       <block wx:for="{{faList}}" wx:key="{{faList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
@@ -40,7 +40,7 @@
   </swiper-item>
   <!--我的  -->
   <swiper-item data-current='2'>
-    <template is='myContacts' data='{{contacts}}'></template>
+    <template is='myContacts' data='{{contacts,activtyBanner}}'></template>
     <!--空状态-->
     <view wx:if="{{empty == 1}}">
       <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
@@ -63,6 +63,9 @@
 <!---------------------------------------------------------------------------->
 <!--我的人脉  -->
 <template name='myContacts'>
+  <view bindtap="goTo">
+    <image src="{{activtyBanner}}" class="contactsPic"></image>
+  </view>
   <scroll-view scroll-y="true" bindscrolltolower="loadMore">
     <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
       <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">

@@ -60,3 +60,8 @@
   height: 24rpx;
   margin-right: 12rpx;
 }
+
+.contactsPic{
+  width: 750rpx;
+  height:280rpx;
+}
