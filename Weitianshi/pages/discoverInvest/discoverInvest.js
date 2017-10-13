@@ -246,37 +246,11 @@ Page({
     let that = this;
     app.applyProject(e, that, 'slectProject');
   },
-  // 项目详情 
-  projectDetail: function (e) {
-    let project_id = e.currentTarget.dataset.project;
-    // 判斷項目是不是自己的
-    wx.request({
-      url: url + '/api/project/projectIsMine',
-      data: {
-        project_id: project_id
-      },
-      method: 'POST',
-      success: function (res) {
-        let that = this;
-        let userId = res.data.user_id;
-        let user = wx.getStorageSync('user_id');
-        if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
-        } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
-        }
-      }
-    })
-  },
-  //找项目投资人
-  matchInvestor() {
-    wx.navigateTo({
-      url: '/pages/matchInvestor/matchInvestor'
-    })
+  // 项目推送
+  projectPush(e){
+    console.log(1)
+    let pushTo_user_id=e.currentTarget.dataset.id;
+    app.operationModel('projectPush',pushTo_user_id);
   },
 
 

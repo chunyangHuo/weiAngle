@@ -997,7 +997,7 @@
 <!--卡片底部----推送项目和加人脉  -->
 <template name='cardBottom1'>
   <view class='t-cardBottom flex'>
-    <view class='t-cardBottomItem flex'>
+    <view class='t-cardBottomItem flex'  data-id='{{item.user_id}}' bindtap='projectPush'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>推送项目</span>
     </view>
@@ -1007,7 +1007,7 @@
     </view> -->
     <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>加人脉</view>
+      <view>加人脉</view> 
     </view>
     <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==1}}'>
       <image class='t-itemPic' src='/img/icon-huweirenmai@2x.png'></image>
