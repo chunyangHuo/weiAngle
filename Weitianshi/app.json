@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/discoverProject/discoverProject",
     "pages/discoverInvest/discoverInvest",
+    "pages/discoverProject/discoverProject",
     "pages/match/selectProject/selectProject",
     "pages/match/match/match/match",
     "pages/my/my/my",

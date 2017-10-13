@@ -230,7 +230,7 @@ App({
   },
 
   //根据用户信息完整度跳转不同的页面/*注册且信息完善:targetUrl; 注册信息不完善:companyInfo; 未注册: personInfo;*/
-  infoJump(targetUrl) {
+  infoJump(targetUrl){
     let user_id = wx.getStorageSync('user_id');
     // 核对用户信息是否完整
     wx.request({
