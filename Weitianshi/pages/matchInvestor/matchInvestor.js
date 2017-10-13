@@ -5,7 +5,7 @@ var url_common = app.globalData.url_common;
 import * as CreateProject from '../../utils/createProjectBottom'
 Page({
   data: {
-
+    imgUrls:  app.globalData.picUrl.page_matchInvestorEmpty
   },
   onLoad() {
     this.getMyProject();
@@ -41,8 +41,8 @@ Page({
                 }
               })
             }
-            if(x.pro_finance_stock_after==0.00) x.pro_finance_stock_after=0;
-            x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after +'%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
+            if (x.pro_finance_stock_after == 0.00) x.pro_finance_stock_after = 0;
+            x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after + '%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
           })
         }
         console.log('项目列表', myProject)
@@ -54,12 +54,12 @@ Page({
     })
   },
   //发布融资项目
-  publicBtn:function(){
+  publicBtn: function () {
     CreateProject.toCreateProject();
   },
   //一键推送
-  goToMatchInvestor(e){
-    let id=e.currentTarget.dataset.proid;
+  goToMatchInvestor(e) {
+    let id = e.currentTarget.dataset.proid;
     wx.navigateTo({
       url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1
     })
@@ -72,7 +72,7 @@ Page({
     })
   },
   //申请查看
-  applyPerson:function(e){
+  applyPerson: function (e) {
     console.log(e)
     let proid = e.currentTarget.dataset.proid;
     wx.navigateTo({
@@ -80,7 +80,7 @@ Page({
     })
   },
   //约谈
-  hasMeeting:function(e){
+  hasMeeting: function (e) {
     let projectId = e.currentTarget.dataset.proid;
     wx.navigateTo({
       url: '/pages/message/contactProject/projectList/projectList?id=' + projectId,

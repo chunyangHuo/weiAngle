@@ -102,7 +102,7 @@
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
             </view>
             <!--产品  -->
-            <view class="brightPoint">
+            <view class="brightPoint" wx:if="{{brandList.length != 0}}">
               <view class="brightPointBox flex">
                 <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
                 <view class="title star">产品</view>
