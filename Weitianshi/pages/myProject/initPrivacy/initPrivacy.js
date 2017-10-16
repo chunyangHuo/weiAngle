@@ -54,24 +54,22 @@ Page({
           }
         }
       })
-    } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user){
+    } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user) {
       that.setData({
         open_status: Number(options.open_status),
-        power_share_status: Number(options.power_share_status) ,
+        power_share_status: Number(options.power_share_status),
         power_investor_status: Number(options.power_investor_status),
-        company_open_status: !Number(options.company_open_status),
+        company_open_status: Number(options.company_open_status),
         white_company: Number(options.whiteCompany),
         white_user: Number(options.white_user),
-        black_company : options.black_company,
+        black_company: options.black_company,
         black_user: options.black_user
       })
     }
-    console.log(options)
-    console.log(this.data)
   },
 
   onShow: function () {
-    console.log(this.data)
+
   },
   //公开项目
   switchChange1: function (e) {
@@ -177,11 +175,14 @@ Page({
       open_status = open_status;
       power_share_status = power_share_status;
       power_investor_status = power_investor_status;
-      company_open_status = company_open_status;
+      console.log(company_open_status)
+      company_open_status = Number(!company_open_status);
+      console.log(company_open_status)
       subscribe.white_company = white_company;
       subscribe.white_user = white_user;
       subscribe.black_company = black_company;
       subscribe.black_user = black_user
+      console.log(this.data)
       prevPage.setData({
         open_status: open_status,
         power_share_status: power_share_status,

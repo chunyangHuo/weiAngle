@@ -231,7 +231,7 @@ Page({
       case 2:
         {
           let request = {
-            url: url_common + '/api/project/getMarketProjectList',
+            url: url_common + '/api/user/getMyFollowList',
             data: {
               user_id: user_id,
               page: this.data.currentPage,

@@ -10,6 +10,7 @@ Page({
     investorList: [],
     faList: [],
     myList: [],
+    placeHold: "请输入姓名、公司、品牌"
   },
   onLoad: function (options) {
     let that = this;
@@ -21,6 +22,39 @@ Page({
       entrance: entrance
     });
     app.initPage(that);
+    switch (entrance) {
+      case 'selected':
+        wx.setNavigationBarTitle({
+          title: '项目搜索',
+        })
+        that.setData({
+          placeHold: "请输入项目名称，公司名称"
+        })
+        break;
+      case 'newest':
+        wx.setNavigationBarTitle({
+          title: '项目搜索',
+        })
+        that.setData({
+          placeHold: "请输入项目名称，公司名称"
+        })
+        break;
+      case "investorList":
+        wx.setNavigationBarTitle({
+          title: '人脉搜索',
+        })
+        break;
+      case "faList":
+        wx.setNavigationBarTitle({
+          title: '人脉搜索',
+        })
+        break;
+      case "myList":
+        wx.setNavigationBarTitle({
+          title: '人脉搜索',
+        })
+        break;
+    }
   },
   //搜索事件
   searchSth: function (e) {
@@ -166,7 +200,7 @@ Page({
       case 'myList':
         {
           request = {
-            url: url_common + '/api/project/getMarketProjectList',
+            url: url_common + '/api/user/getMyFollowList',
             data: {
               user_id: user_id,
               page: this.data.currentPage,
