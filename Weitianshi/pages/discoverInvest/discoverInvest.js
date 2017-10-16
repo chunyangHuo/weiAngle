@@ -170,11 +170,11 @@ Page({
           wx.hideLoading();
           console.log('我的人脉列表', res);
           if (res.data.status_code == '2000000') {
-            let contacts = res.data.data;//所有的用户
+            let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
             SearchInit.currentIndex = 5;
             that.setData({
-              contacts: contacts,
+              myList: myList,
               page_end: page_end,
               SearchInit: SearchInit
             })

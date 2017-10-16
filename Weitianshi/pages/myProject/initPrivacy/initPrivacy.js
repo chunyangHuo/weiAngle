@@ -75,6 +75,8 @@ Page({
         black_user: options.black_user
       })
     }
+    console.log(options)
+    console.log(this.data)
   },
 
   onShow: function () {

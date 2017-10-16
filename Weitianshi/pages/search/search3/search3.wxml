@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="search_frame">
   <label class="searchBox flex">
-    <input class="search" placeholder="请输入项目介绍、项目名称、公司" bindinput="searchSth" />
+    <input class="search" placeholder="请输入姓名、品牌、公司" bindinput="searchSth" />
   </label>
   <view class="esc" bindtap="searchEsc">取消</view>
 </view>
@@ -20,84 +20,84 @@
     </view>
   </block>
   <!--fa列表  -->
-  <block wx:for="{{res_match}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
+  <block wx:for="{{faList}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
     <view class='investorCard'>
       <template is='InvestorCard' data='{{item}}'></template>
       <template is='cardBottom1' data='{{item}}'></template>
     </view>
   </block>
   <!--我的人脉列表  -->
-   <block wx:for="{{contacts}}" wx:key="{{item.user_id}}" wx:if='{{contacts}}'>
-        <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
-          <view class="user_info flex">
-            <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-            <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
-            <view class="user_info_right">
-              <view class="flex frame">
-                <view class="name_flex flex">
-                  <view class="user_name">{{item.user_real_name}}</view>
-                  <view class="user_career">{{item.user_company_career}}</view>
-                </view>
-                <label class="telephoneLab telephonem" data-telephone="{{item.user_mobile}}" catchtap="telephone">
-                  <image class="telephone" src="/img/icon-phone@3x.png"></image>
-                </label>
-              </view>
-              <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
+  <block wx:for="{{myList}}" wx:key="{{item.user_id}}" wx:if='{{myList}}'>
+    <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
+      <view class="user_info flex">
+        <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+        <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+        <view class="user_info_right">
+          <view class="flex frame">
+            <view class="name_flex flex">
+              <view class="user_name">{{item.user_real_name}}</view>
+              <view class="user_career">{{item.user_company_career}}</view>
             </view>
+            <label class="telephoneLab telephonem" data-telephone="{{item.user_mobile}}" catchtap="telephone">
+              <image class="telephone" src="/img/icon-phone@3x.png"></image>
+            </label>
           </view>
-          <view class="investor_info">
+          <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
+        </view>
+      </view>
+      <view class="investor_info">
 
-            <!--投资领域-->
-            <view class="investor_industry_frame flex" wx:if="{{item.user_invest_industry !=''}}">
-              <view class="investor_text">投资领域:</view>
-              <view class="investor_right flex">
-                <block wx:for="{{item.user_invest_industry}}" wx:for-item="industry" wx:key="{{industry.industry_id}}">
-                  <view class="industry" hidden="{{index>3}}">{{industry.industry_name}}</view>
-                </block>
-              </view>
-            </view>
-
-            <!--投资轮次-->
-            <view class="investor_industry_frame flex" wx:if="{{item.user_invest_stage !=''}}">
-              <view class="investor_text">投资轮次:</view>
-              <view class="investor_right flex">
-                <block wx:for="{{item.user_invest_stage}}" wx:for-item="stage" wx:key="{{stage.stage_id}}">
-                  <view class="stage">{{stage.stage_name}}</view>
-                </block>
-              </view>
-            </view>
-
-            <!--拥有资源-->
-            <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
-              <view class="investor_text">寻求资源:</view>
-              <view class="investor_right flex">
-                <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
-                  <view class="res_find">{{res_find.resource_name}}</view>
-                </block>
-              </view>
-            </view>
-
-            <!--寻求资源-->
-            <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
-              <view class="investor_text">拥有资源:</view>
-              <view class="investor_right flex">
-                <block wx:for="{{item.user_resource_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
-                  <view class="res_give">{{res_give.resource_name}}</view>
-                </block>
-              </view>
-            </view>
+        <!--投资领域-->
+        <view class="investor_industry_frame flex" wx:if="{{item.user_invest_industry !=''}}">
+          <view class="investor_text">投资领域:</view>
+          <view class="investor_right flex">
+            <block wx:for="{{item.user_invest_industry}}" wx:for-item="industry" wx:key="{{industry.industry_id}}">
+              <view class="industry" hidden="{{index>3}}">{{industry.industry_name}}</view>
+            </block>
           </view>
         </view>
-      </block>
+
+        <!--投资轮次-->
+        <view class="investor_industry_frame flex" wx:if="{{item.user_invest_stage !=''}}">
+          <view class="investor_text">投资轮次:</view>
+          <view class="investor_right flex">
+            <block wx:for="{{item.user_invest_stage}}" wx:for-item="stage" wx:key="{{stage.stage_id}}">
+              <view class="stage">{{stage.stage_name}}</view>
+            </block>
+          </view>
+        </view>
+
+        <!--拥有资源-->
+        <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
+          <view class="investor_text">寻求资源:</view>
+          <view class="investor_right flex">
+            <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
+              <view class="res_find">{{res_find.resource_name}}</view>
+            </block>
+          </view>
+        </view>
+
+        <!--寻求资源-->
+        <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
+          <view class="investor_text">拥有资源:</view>
+          <view class="investor_right flex">
+            <block wx:for="{{item.user_resource_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
+              <view class="res_give">{{res_give.resource_name}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
 </scroll-view>
 
 
 
 <!--搜索结果无-->
-<!-- <view class="nullState">
+<view class="nullState" hidden='{{slectProject.length+financingNeed.length+investorList.length+faList.length+myList.length>0}}'>
   <view class="nullState_text">
     <view>暂无数据</view>
   </view>
-</view> -->
+</view>
 <!--信息反馈-->
 <view class="error" wx:if="{{error==1}}">{{error_text}}</view>

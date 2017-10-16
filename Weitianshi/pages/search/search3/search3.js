@@ -9,7 +9,7 @@ Page({
     slectProject: [],
     investorList: [],
     faList: [],
-    contacts: [],
+    myList: [],
   },
   onLoad: function (options) {
     let that = this;
@@ -73,25 +73,37 @@ Page({
     })
   },
   //点击进入项目详情
-  projectDetail(e) {
-    let id = e.currentTarget.dataset.id;
-    let user_id = this.data.user_id;
-    let currentUser = wx.getStorageSync('user_id');
-    console.log(user_id)
-    console.log(currentUser)
-    if (user_id == currentUser) {
-      wx.navigateTo({
-        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
-      })
-    } else if (user_id != currentUser) {
-      wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + id,
-      })
-    }
+  projectDetail: function (e) {
+    var project_id = e.currentTarget.dataset.project;
+    // 判斷項目是不是自己的
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        if (userId == user) {
+          wx.navigateTo({
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/projectDetail/projectDetail?id=' + project_id,
+          })
+        }
+      }
+    })
   },
   //点击进入用户详情
   userDetail(e) {
-
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+    })
   },
   //上拉加载
   loadMore: function () {
@@ -294,10 +306,10 @@ Page({
           wx.hideLoading();
           console.log('我的人脉列表', res);
           if (res.data.status_code == '2000000') {
-            var contacts = res.data.data;//所有的用户
+            var myList = res.data.data;//所有的用户
             var page_end = res.data.page_end;
             that.setData({
-              contacts: contacts,
+              myList: myList,
               page_end: page_end,
             })
           }

@@ -28,6 +28,7 @@ Page({
     currentTab: 0,//选项卡
     show_detail: false,
     show_company: false,
+    message:""
   },
   onLoad: function (options) {
     var that = this;
@@ -797,27 +798,23 @@ Page({
     let message = this.data.message;
     let project_id = this.data.id;//项目id
     let user_id = wx.getStorageSync('user_id'); //当前登陆者的 id
-    if (message) {
-      wx.request({
-        url: url_common + '/api/project/met',
-        data: {
-          user_id: user_id,
-          project_id: project_id,
-          remark: message
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-          if (res.data.status_code == 2000000) {
-            that.setData({
-              modalBox: 0
-            })
-          }
+    wx.request({
+      url: url_common + '/api/project/met',
+      data: {
+        user_id: user_id,
+        project_id: project_id,
+        remark: message
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        if (res.data.status_code == 2000000) {
+          that.setData({
+            modalBox: 0
+          })
         }
-      })
-    } else {
-      this.closeModal();
-    }
+      }
+    })
   },
   /*点击tab切换*/
   swichNav: function (e) {

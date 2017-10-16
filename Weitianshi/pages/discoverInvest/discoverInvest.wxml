@@ -40,7 +40,7 @@
   </swiper-item>
   <!--我的  -->
   <swiper-item data-current='2'>
-    <template is='myContacts' data='{{contacts,activtyBanner}}'></template>
+    <template is='myContacts' data='{{myList,activtyBanner}}'></template>
     <!--空状态-->
     <view wx:if="{{empty == 1}}">
       <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
@@ -67,7 +67,7 @@
     <image src="{{activtyBanner}}" class="contactsPic"></image>
   </view>
   <scroll-view scroll-y="true" bindscrolltolower="loadMore">
-    <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
+    <block wx:for="{{myList}}" wx:key="{{item.user_id}}">
       <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
         <view class="user_info flex">
           <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
