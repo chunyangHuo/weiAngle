@@ -114,14 +114,35 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
+        console.log(pro_goodness)
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         // 如果项目亮点字数超出字,刚显示全部按钮
-        if (pro_goodness.length > 50) {
+        if (pro_goodness[0].goodness_desc.length > 50) {
+          that.setData({
+            textBeyond0: true
+          })
+        }
+        if (pro_goodness[1].goodness_desc.length > 50) {
           that.setData({
             textBeyond1: true
           })
         }
+        if (pro_goodness[2].goodness_desc.length > 50) {
+          that.setData({
+            textBeyond2: true
+          })
+        }
+        if (pro_goodness[3].goodness_desc.length > 50) {
+          that.setData({
+            textBeyond3: true
+          })
+        }
+        // if (pro_goodness[4].goodness_desc.length > 50) {
+        //   that.setData({
+        //     textBeyond4: true
+        //   })
+        // }
         that.setData({
           project: project,
           user: user,
@@ -146,6 +167,7 @@ Page({
           core_memberArray.forEach((x, index) => {
             core_memberArray[index] = x;
           })
+          console.log(core_memberArray.length)
           that.setData({
             core_memberArray: core_memberArray
           })
@@ -559,6 +581,8 @@ Page({
       this.setData({
         industrialChangeMore: 0
       })
+    } else if (id == 6) {
+ 
     }
   },
   // 浏览
@@ -701,6 +725,15 @@ Page({
       that.setData({
         moreInfo: 4
       })
+    }else if(id == 5){
+      that.setData({
+        moreInfo:5
+      })
+    }
+    else if (id == 6) {
+      that.setData({
+        moreInfo: 6
+      })
     }
   },
   noMoreInfo: function (e) {
@@ -714,15 +747,26 @@ Page({
       that.setData({
         moreInfo: 0
       })
+    }else if(id == 5){
+      that.setData({
+        moreInfo: 0
+      })
+    } else if (id == 6) {
+      that.setData({
+        moreInfo: 0
+      })
     }
   },
   // 项目详情中的显示全部
-  allBrightPoint: function () {
+  allBrightPoint: function (e) {
+    console.log(e)
+    let check = e.currentTarget.dataset.check;
+    console.log(check)
     this.setData({
       isChecked: false
     })
   },
-  noBrightPoint: function () {
+  noBrightPoint: function (e) {
     this.setData({
       isChecked: true
     })

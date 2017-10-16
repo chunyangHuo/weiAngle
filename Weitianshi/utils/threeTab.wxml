@@ -20,8 +20,8 @@
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
                 {{pro_goodness[0].goodness_desc}}
               </view>
-              <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
-              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label>
+              <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond0}}"  data-check="{{0}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond0}}"  data-check="{{0}}">收起</label>
             </view>
             <!--项目资料-->
             <view class="material" style="position:relative;" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
@@ -74,8 +74,8 @@
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
                 {{pro_goodness[1].goodness_desc}}
               </view>
-              <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
-              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+               <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}" data-check="{{1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> 
             </view>
             <!--产品概况-->
             <view class="brightPoint" wx:if="{{pro_goodness[2].goodness_desc}}">
@@ -86,8 +86,8 @@
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
                 {{pro_goodness[2].goodness_desc}}
               </view>
-              <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
-              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+               <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond2}}"  data-check="{{2}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond2}}"  data-check="{{2}}">收起</label> 
             </view>
             <!--商业模式-->
             <view class="brightPoint" wx:if="{{pro_goodness[3].goodness_desc}}">
@@ -98,8 +98,8 @@
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
                 {{pro_goodness[3].goodness_desc}}
               </view>
-              <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
-              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label> -->
+               <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond3}}"  data-check="{{3}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond3}}"  data-check="{{3}}">收起</label> 
             </view>
             <!--产品  -->
             <view class="brightPoint" wx:if="{{brandList.length != 0}}">
@@ -107,7 +107,7 @@
                 <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
                 <view class="title star">产品</view>
               </view>
-              <block wx:for="{{brandList}}" wx:key="{{index}}">
+              <block wx:for="{{brandList}}" wx:key="{{index}}" wx:if="{{index<2 ||moreInfo ==5}}">
                 <view id="productBox">
                   <view class="flex productInside">
                     <view class="productTitle">{{item.brand_name}}</view>
@@ -116,6 +116,8 @@
                   <view class="productContent">{{item.brand_desc}}</view>
                 </view>
               </block>
+              <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfo !=5 &&brandList.length >2}}" data-id="{{5}}">展开</view>
+              <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 5}}" data-id="{{5}}">收起</view>
             </view>
             <!--品牌-->
             <!--<view class="companyBrand">
@@ -148,7 +150,7 @@
                   </view>
                 </view>
                 <view class="personAll" wx:if="{{project.core_users}}">
-                  <view class="personInfo" wx:for="{{core_memberArray}}" wx:key="{{index}}">
+                  <view class="personInfo" wx:for="{{core_memberArray}}" wx:key="{{index}}" wx:if="{{index<2 ||moreInfo ==6}}">
                     <view class="personInfoList flex">
                       <label class="personName">{{core_memberArray[index].ct_member_name}}</label>
                       <label class="personPosition">{{core_memberArray[index].ct_member_career}}</label>
@@ -158,6 +160,8 @@
                   </view>
                 </view>
               </view>
+              <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfo !=6 &&core_memberArray.length >2}}" data-id="{{6}}">展开</view>
+              <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 6}}" data-id="{{6}}">收起</view>
             </view>
             <!--融资信息-->
             <view class="information" wx:if="{{project.pro_finance_stock_after != '' || project.pro_scale != '' || project.pro_finance_value != ''||  pro_history_financeList.length != 0||project.pro_finance_use != ''}}">
@@ -270,7 +274,7 @@
     <swiper-item wx:if='{{show_company}}'>
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
         <view class="buyerPage">
-          <view id="matching">匹配推荐：<label >{{matchCount}}</label>个</view>
+          <view id="matching">匹配推荐：<label>{{matchCount}}</label>个</view>
           <block wx:for="{{investor2}}" wx:key="{{investor2}}">
             <view class="resourceBox" wx:if="{{item.remove !=1}}">
               <view class="flex" id="introduce">
@@ -322,7 +326,7 @@
                     <image src="/img/icon-yichu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent btnContent1">移除</view>
                   </view>
-                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}"  data-investor="{{item.investor_id}}" wx:if="{{item.push_status == 0}}" catchtap='pushProject'>
+                  <view class="flex" catchtap="pushProject" data-id="{{item.user_id}}" data-investor="{{item.investor_id}}" wx:if="{{item.push_status == 0}}" catchtap='pushProject'>
                     <image src="/img/icon-tuisongxiangmu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent">推送项目</view>
                   </view>
