@@ -17,6 +17,7 @@ page {
 
 button {
   border: none;
+  padding: 0 16rpx;
 }
 
 input {
@@ -37,7 +38,7 @@ input {
 .clear {
   position: absolute;
   top: 12rpx;
-  right: 32rpx;
+  right: 0;
   z-index: 999;
   background: #f2f2f2;
   border: none;
@@ -61,7 +62,7 @@ input {
   font-size: 32rpx;
   border-radius: 200rpx;
   /* width: 300rpx !important; */
-  width: 92% !important;
+  width: 100% !important;
   display: inline-block;
 }
 
@@ -81,13 +82,13 @@ input {
   line-height: 88rpx;
 }
 
-button {
+ button {
   border: 0 #333 white;
-}
-
+} 
+ 
 button::after {
-  border: 0 #333 white;
-}
+  border: none;
+} 
 
 .telephoneText {
   width: 370rpx;
@@ -95,6 +96,9 @@ button::after {
 
 .or {
   line-height: 88rpx;
+  margin:0 12rpx;
+  font-size: 28rpx;
+  color:#cccccc;
 }
 
 .error {
