@@ -133,6 +133,7 @@ page {
   margin-right: 132rpx;
   font-size: 20rpx;
   color: #666;
+  border-radius: 8rpx;
 }
 
 .user_popularity view:first-child, .user_attention view:first-child,

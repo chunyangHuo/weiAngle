@@ -95,17 +95,20 @@
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation identitym" bindtap="toAccreditation">立即认证</view>
   </view>
-  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
-  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>
-  <view class="pushing" wx:if="{{button_type == 0}}">申请中</view>
+  <!-- <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
+  <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view> -->
+  <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox" wx:if="{{button_type == 1}}">
+<view class=" flex floatBtn flexBox">
   <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
-  <view class="contactProject" bindtap="contactPerson">联系项目方</view>
-  <view class="businessBook" bindtap="businessBook">商业计划书</view>
+  <view class="contactProject" catap="contactPerson">联系项目方</view>
+  <view class="businessBook" catch="businessBook" wx:if="{{button_type == 1}}">商业计划书</view>
+  <view class="businessBook1" wx:if="{{button_type == 0}}">申请中</view>
+  <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
+  <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>
 </view>
 
 <view class="modalBox" hidden="{{modalBox==0}}">

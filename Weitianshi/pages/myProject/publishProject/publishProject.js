@@ -101,6 +101,11 @@ Page({
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
+    //返回上一页时启动onShow;
+    let pages = getCurrentPages();
+    let pre = pages[pages.length - 2];
+    pre.data.firstTime = false;
+
     app.identity(user_id, res => {
       console.log(res)
       if (res.data.status != 0) {

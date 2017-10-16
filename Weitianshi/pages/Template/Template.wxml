@@ -23,7 +23,7 @@
         <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-        <view class="userPart flex" wx:if="{{user.identify_status == 2 &&IdentificationShow==1}}">
+        <view class="userPart flex" wx:if="{{user.identify_status == 2}}">
           <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
           <view class="userPart1">{{user.authentication[0].group_title}}</view>
         </view>
@@ -194,7 +194,7 @@
   </view>
 </template>
 
-<!--My我的项目库-->
+<!--项目店铺-->
 <template name="financingProject">
   <view class="user_project_info my-projectm">
     <view class="flex title" catchtap="projectFinance">
@@ -202,6 +202,7 @@
         <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
         {{text}}<label wx:if="{{playTime == 1}}">({{count.project_count}})</label>
       </view>
+      <view class="classname">查看更多</view>
       <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="projcet_info_frame">
@@ -601,7 +602,7 @@
         </view>
         <view class="classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view class="t-time">{{item.created_at}}</view>
+      <view id="t-time">{{item.created_at}}</view>
     </view>
   </block>
   <view class="highBox"></view>

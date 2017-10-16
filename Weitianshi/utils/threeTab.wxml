@@ -30,11 +30,11 @@
                 <view class="title">项目介绍</view>
               </view>
               <view class="contentAll">
-                <view class="titleRightBP send-bpm" bindtap="sendBp">发送BP
+                <view class="titleRightBP send-bpm" bindtap="businessBook">发送BP
                   <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                 </view>
                 <view>
-                  <view class="titleRightBP send-bpm" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">发送BP
+                  <view class="titleRightBP send-bpm" bindtap="businessBook" wx:if="{{project.pro_BP.length != 0}}">发送BP
                     <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                   </view>
                   <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
@@ -110,10 +110,10 @@
               <block wx:for="{{brandList}}" wx:key="{{index}}" wx:if="{{index<2 ||moreInfo ==5}}">
                 <view id="productBox">
                   <view class="flex productInside">
-                    <view class="productTitle">{{item.brand_name}}</view>
-                    <view class="pro_sort projectTips">{{item.brand_type}}</view>
+                    <view class="productTitle" wx:if="{{item.brand_name}}">{{item.brand_name}}</view>
+                    <view class="pro_sort projectTips" wx:if="{{item.brand_type}}">{{item.brand_type}}</view>
                   </view>
-                  <view class="productContent">{{item.brand_desc}}</view>
+                  <view class="productContent" wx:if="{{item.brand_desc}}">{{item.brand_desc}}</view>
                 </view>
               </block>
               <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfo !=5 &&brandList.length >2}}" data-id="{{5}}">展开</view>
@@ -324,7 +324,7 @@
                   <view class="aLine" wx:if="{{type==2}}"></view>
                 </view>
                 <view class="btnBox flex" wx:if="{{type==2}}">
-                  <view class="flex" catchtap="deletePerson" data-investor="{{item.investor_id}}" catchtap='deleteProject'>
+                  <view class="flex" catchtap="deletePerson" data-investor="{{item.investor_id}}" >
                     <image src="/img/icon-yichu@2x.png" class="pushProject pushProject1"></image>
                     <view class="btnContent btnContent1">移除</view>
                   </view>

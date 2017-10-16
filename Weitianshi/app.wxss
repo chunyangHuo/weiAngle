@@ -1190,3 +1190,10 @@ textarea {
   text-align: right;
   border-radius: 35rpx 0 0 35rpx;
 }
+#t-time {
+  font-size: 20rpx;
+  color: #999;
+  line-height: 20rpx;
+  text-align: right;
+  margin: 10rpx 0 20rpx 0;
+}

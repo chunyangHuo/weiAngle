@@ -85,177 +85,177 @@ Page({
   },
 
   //项目详情(无效)
-  getInfo(that, user_id, id) {
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
-    wx.request({
-      url: url_common + '/api/project/getProjectDetail',
-      data: {
-        user_id: user_id,
-        project_id: id
-      },
-      method: 'POST',
-      success: function (res) {
-        wx.hideLoading()
-        // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
-        var project = res.data.data;
-        console.log(res)
-        console.log(project)
-        if (project.pro_BP) {
-          let BPath = project.pro_BP.file_url;
-          that.setData({
-            BPath: BPath
-          })
-        }
-        var user = res.data.user;
-        var firstName = user.user_name.substr(0, 1) || '';
-        var pro_industry = project.pro_industry;
-        var pro_company_name = project.pro_company_name;
-        let industy_sort = [];
-        let pro_goodness = project.pro_goodness;
-        console.log(pro_goodness)
-        let button_type = res.data.button_type;
-        console.log(button_type)
-        let currentUser = user.user_id;
-        //判断是不是自己的项目
-        if (currentUser === user_id) {
-          wx.navigateTo({
-            url: 'pages/myProject/projectDetail/projectDetail?id=' + that.data.id,
-          })
-          return
-        }
-        // 项目介绍的标签
-        if (button_type == 2 || button_type == 3) {
-          for (var i = 0; i < pro_industry.length; i++) {
-            industy_sort.push(pro_industry[i].industry_name)
-          }
-          that.setData({
-            industy_sort: industy_sort,
-            button_type: button_type,
-            currentUser: currentUser
-          })
-          if (pro_goodness[0].goodness_desc.length > 50) {
-            that.setData({
-              textBeyond0: true
-            })
-          }
-          if (pro_goodness[1].goodness_desc.length > 50) {
-            that.setData({
-              textBeyond1: true
-            })
-          }
-          if (pro_goodness[2].goodness_desc.length > 50) {
-            that.setData({
-              textBeyond2: true
-            })
-          }
-          if (pro_goodness[3].goodness_desc.length > 50) {
-            that.setData({
-              textBeyond3: true
-            })
-          }
-          if (project.pro_finance_use.length > 50) {
-            that.setData({
-              textBeyond4: true
-            })
-          }
-        }
-        var firstName = user.user_name.substr(0, 1);
-        // 如果项目亮点字数超出字,刚显示全部按钮
-        that.setData({
-          project: project,
-          user: user,
-          firstName: firstName,
-          pro_company_name: pro_company_name
-        });
-        // if (button_type == 1 || button_type == 2 || button_type == 3)
-        if (button_type == 1) {
-          // 项目介绍的标签
-          var pro_industry = project.pro_industry;
-          for (var i = 0; i < pro_industry.length; i++) {
-            industy_sort.push(pro_industry[i].industry_name)
-          }
-          that.setData({
-            industy_sort: industy_sort,
-            pro_industry: pro_industry
-          })
-          if (pro_goodness.length > 50) {
-            that.setData({
-              textBeyond1: true
-            })
-          }
-          // 核心团队
-          if (project.core_users) {
-            let core_memberArray = project.core_users;
-            core_memberArray.forEach((x, index) => {
-              core_memberArray[index] = x;
-            })
-            that.setData({
-              core_memberArray: core_memberArray
-            })
-          }
-          // 标签 type:0; 项目标签 type:1 团队标签
-          let infoTagArray = project.tag;
-          let tagOfPro = [];//项目资料的标签
-          let teamOfPro = [];//核心团队的标签//核心团队的标签
-          for (var i = 0; i < infoTagArray.length; i++) {
-            if (infoTagArray[i].type == 0) {
-              tagOfPro.push(infoTagArray[i])
-            } else if (infoTagArray[i].type == 1) {
-              teamOfPro.push(infoTagArray[i])
-            }
-          }
-          tagOfPro.forEach((x, index) => {
-            tagOfPro[index].tag_name = x.tag_name;
-          })
-          that.setData({
-            tagOfPro: tagOfPro
-          })
-          teamOfPro.forEach((x, index) => {
-            teamOfPro[index].tag_name = x.tag_name;
-          })
-          that.setData({
-            teamOfPro: teamOfPro
-          })
-          // 融资信息
-          let pro_history_financeList = project.pro_history_finance;
-          pro_history_financeList.forEach((x, index) => {
-            pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
-            pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
-            pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
-            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
+  // getInfo(that, user_id, id) {
+  //   wx.showLoading({
+  //     title: 'loading',
+  //     mask: true,
+  //   })
+  //   wx.request({
+  //     url: url_common + '/api/project/getProjectDetail',
+  //     data: {
+  //       user_id: user_id,
+  //       project_id: id
+  //     },
+  //     method: 'POST',
+  //     success: function (res) {
+  //       wx.hideLoading()
+  //       // button_type:0->待处理 1->不显示任何内容(1.自己看自己2.推送的3.已经申请通过的) 2->申请被拒绝 3->申请按钮
+  //       var project = res.data.data;
+  //       console.log(res)
+  //       console.log(project)
+  //       if (project.pro_BP) {
+  //         let BPath = project.pro_BP.file_url;
+  //         that.setData({
+  //           BPath: BPath
+  //         })
+  //       }
+  //       var user = res.data.user;
+  //       var firstName = user.user_name.substr(0, 1) || '';
+  //       var pro_industry = project.pro_industry;
+  //       var pro_company_name = project.pro_company_name;
+  //       let industy_sort = [];
+  //       let pro_goodness = project.pro_goodness;
+  //       console.log(pro_goodness)
+  //       let button_type = res.data.button_type;
+  //       console.log(button_type)
+  //       let currentUser = user.user_id;
+  //       //判断是不是自己的项目
+  //       if (currentUser === user_id) {
+  //         wx.navigateTo({
+  //           url: 'pages/myProject/projectDetail/projectDetail?id=' + that.data.id,
+  //         })
+  //         return
+  //       }
+  //       // 项目介绍的标签
+  //       if (button_type == 2 || button_type == 3) {
+  //         for (var i = 0; i < pro_industry.length; i++) {
+  //           industy_sort.push(pro_industry[i].industry_name)
+  //         }
+  //         that.setData({
+  //           industy_sort: industy_sort,
+  //           button_type: button_type,
+  //           currentUser: currentUser
+  //         })
+  //         if (pro_goodness[0].goodness_desc.length > 50) {
+  //           that.setData({
+  //             textBeyond0: true
+  //           })
+  //         }
+  //         if (pro_goodness[1].goodness_desc.length > 50) {
+  //           that.setData({
+  //             textBeyond1: true
+  //           })
+  //         }
+  //         if (pro_goodness[2].goodness_desc.length > 50) {
+  //           that.setData({
+  //             textBeyond2: true
+  //           })
+  //         }
+  //         if (pro_goodness[3].goodness_desc.length > 50) {
+  //           that.setData({
+  //             textBeyond3: true
+  //           })
+  //         }
+  //         if (project.pro_finance_use.length > 50) {
+  //           that.setData({
+  //             textBeyond4: true
+  //           })
+  //         }
+  //       }
+  //       var firstName = user.user_name.substr(0, 1);
+  //       // 如果项目亮点字数超出字,刚显示全部按钮
+  //       that.setData({
+  //         project: project,
+  //         user: user,
+  //         firstName: firstName,
+  //         pro_company_name: pro_company_name
+  //       });
+  //       // if (button_type == 1 || button_type == 2 || button_type == 3)
+  //       if (button_type == 1) {
+  //         // 项目介绍的标签
+  //         var pro_industry = project.pro_industry;
+  //         for (var i = 0; i < pro_industry.length; i++) {
+  //           industy_sort.push(pro_industry[i].industry_name)
+  //         }
+  //         that.setData({
+  //           industy_sort: industy_sort,
+  //           pro_industry: pro_industry
+  //         })
+  //         if (pro_goodness.length > 50) {
+  //           that.setData({
+  //             textBeyond1: true
+  //           })
+  //         }
+  //         // 核心团队
+  //         if (project.core_users) {
+  //           let core_memberArray = project.core_users;
+  //           core_memberArray.forEach((x, index) => {
+  //             core_memberArray[index] = x;
+  //           })
+  //           that.setData({
+  //             core_memberArray: core_memberArray
+  //           })
+  //         }
+  //         // 标签 type:0; 项目标签 type:1 团队标签
+  //         let infoTagArray = project.tag;
+  //         let tagOfPro = [];//项目资料的标签
+  //         let teamOfPro = [];//核心团队的标签//核心团队的标签
+  //         for (var i = 0; i < infoTagArray.length; i++) {
+  //           if (infoTagArray[i].type == 0) {
+  //             tagOfPro.push(infoTagArray[i])
+  //           } else if (infoTagArray[i].type == 1) {
+  //             teamOfPro.push(infoTagArray[i])
+  //           }
+  //         }
+  //         tagOfPro.forEach((x, index) => {
+  //           tagOfPro[index].tag_name = x.tag_name;
+  //         })
+  //         that.setData({
+  //           tagOfPro: tagOfPro
+  //         })
+  //         teamOfPro.forEach((x, index) => {
+  //           teamOfPro[index].tag_name = x.tag_name;
+  //         })
+  //         that.setData({
+  //           teamOfPro: teamOfPro
+  //         })
+  //         // 融资信息
+  //         let pro_history_financeList = project.pro_history_finance;
+  //         pro_history_financeList.forEach((x, index) => {
+  //           pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
+  //           pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
+  //           pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
+  //           pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
 
-          })
-          that.setData({
-            pro_history_financeList: pro_history_financeList
-          })
-          // 里程碑
-          let mileStoneArray = project.pro_develop;
-          mileStoneArray.forEach((x, index) => {
-            mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
-            mileStoneArray[index].dh_event = x.dh_event;
-          })
+  //         })
+  //         that.setData({
+  //           pro_history_financeList: pro_history_financeList
+  //         })
+  //         // 里程碑
+  //         let mileStoneArray = project.pro_develop;
+  //         mileStoneArray.forEach((x, index) => {
+  //           mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
+  //           mileStoneArray[index].dh_event = x.dh_event;
+  //         })
 
-          that.setData({
-            mileStoneArray: mileStoneArray,
-            industy_sort: industy_sort,
-            pro_goodness: pro_goodness
-          });
-        }
-        var followed_user_id = res.data.user.user_id;
-        that.setData({
-          project: project,
-          user: user,
-          firstName: firstName,
-          pro_industry: pro_industry,
-          followed_user_id: followed_user_id,
-          button_type: button_type
-        });
-      }
-    })
-  },
+  //         that.setData({
+  //           mileStoneArray: mileStoneArray,
+  //           industy_sort: industy_sort,
+  //           pro_goodness: pro_goodness
+  //         });
+  //       }
+  //       var followed_user_id = res.data.user.user_id;
+  //       that.setData({
+  //         project: project,
+  //         user: user,
+  //         firstName: firstName,
+  //         pro_industry: pro_industry,
+  //         followed_user_id: followed_user_id,
+  //         button_type: button_type
+  //       });
+  //     }
+  //   })
+  // },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取
   showStatus(that, pro_id, is_share, show_company) {
@@ -307,46 +307,59 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
-        console.log(pro_goodness[0].goodness_desc.length)
+        console.log(pro_goodness)
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         let button_type = res.data.button_type;
         // 如果项目亮点字数超出字,刚显示全部按钮
-        if (pro_goodness[0].goodness_desc.length > 50) {
-          console.log("textBeyond0")
-          that.setData({
-            textBeyond0: true
-          })
+        if (pro_goodness.length != 0) {
+          if (pro_goodness[0].goodness_desc.length > 50) {
+            console.log("textBeyond0")
+            that.setData({
+              textBeyond0: true
+            })
+          }
+          if (pro_goodness.length == 2) {
+            if (pro_goodness[1].goodness_desc.length > 50) {
+              that.setData({
+                textBeyond1: true
+              })
+            }
+          }
+          if (pro_goodness.length == 3) {
+            if (pro_goodness[2].goodness_desc.length > 50) {
+              that.setData({
+                textBeyond2: true
+              })
+            }
+          }
+          if (pro_goodness.length == 4) {
+            if (pro_goodness[3].goodness_desc.length > 50) {
+              that.setData({
+                textBeyond3: true
+              })
+            }
+          }
         }
-        if (pro_goodness[1].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond1: true
-          })
-        }
-        if (pro_goodness[2].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond2: true
-          })
-        }
-        if (pro_goodness[3].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond3: true
-          })
-        }
-        if (project.pro_finance_use.length > 50) {
-          that.setData({
-            textBeyond4: true
-          })
+        if (project.pro_finance_use) {
+          if (project.pro_finance_use.length > 50) {
+            that.setData({
+              textBeyond4: true
+            })
+          }
         }
         // 项目介绍的标签
         if (button_type == 2 || button_type == 3) {
-          for (var i = 0; i < pro_industry.length; i++) {
-            industy_sort.push(pro_industry[i].industry_name)
+          if (pro_industry) {
+            for (var i = 0; i < pro_industry.length; i++) {
+              industy_sort.push(pro_industry[i].industry_name)
+            }
           }
+
           that.setData({
             industy_sort: industy_sort,
             button_type: button_type,
-            currentUser: currentUser
+            // currentUser: currentUser
           })
 
         }
@@ -902,6 +915,7 @@ Page({
   //联系项目方
   contactPerson: function () {
     let user_id = wx.getStorageSync('user_id');
+    let that  = this;
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
       data: {
@@ -913,7 +927,7 @@ Page({
           var complete = res.data.is_complete;
           if (complete == 1) {
             //如果信息完整就可以联系项目方
-            this.setData({
+            that.setData({
               modalBox: 1
             })
           } else if (complete == 0) {
@@ -956,23 +970,27 @@ Page({
     let message = this.data.message;
     let project_id = this.data.id;//项目id
     let user_id = wx.getStorageSync('user_id'); //当前登陆者的 id
-    wx.request({
-      url: url_common + '/api/project/met',
-      data: {
-        user_id: user_id,
-        project_id: project_id,
-        remark: message
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        if (res.data.status_code == 2000000) {
-          that.setData({
-            modalBox: 0
-          })
-        }
-      }
-    })
+ if(message){
+   wx.request({
+     url: url_common + '/api/project/met',
+     data: {
+       user_id: user_id,
+       project_id: project_id,
+       remark: message
+     },
+     method: 'POST',
+     success: function (res) {
+       console.log(res)
+       if (res.data.status_code == 2000000) {
+         that.setData({
+           modalBox: 0
+         })
+       }
+     }
+   })
+ }else{
+   app.errorHide(that, "请填写你的约谈需求", 1000)
+ }
   },
   /*点击tab切换*/
   swichNav: function (e) {
@@ -1112,9 +1130,14 @@ Page({
   applyProject: function (e) {
     let that = this;
     let user_id = this.data.user_id;
-    let pro_id=this.data.id;
-    app.operationModel('projectApply',pro_id,res=>{
+    let pro_id = this.data.id;
+    app.operationModel('projectApply', pro_id, res => {
       console.log(res)
+      if (res.data.status_code =2000000){
+        this.setData({
+          button_type : 0
+        })
+      }
     })
   },
   //分享引导跳转

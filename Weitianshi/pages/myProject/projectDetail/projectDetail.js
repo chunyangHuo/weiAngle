@@ -124,30 +124,41 @@ Page({
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         // 如果项目亮点字数超出字,刚显示全部按钮
-        if (pro_goodness[0].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond0: true
-          })
-        }
-        if (pro_goodness[1].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond1: true
-          })
-        }
-        if (pro_goodness[2].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond2: true
-          })
-        }
-        if (pro_goodness[3].goodness_desc.length > 50) {
-          that.setData({
-            textBeyond3: true
-          })
-        }
-        if (project.pro_finance_use.length > 50) {
-          that.setData({
-            textBeyond4: true
-          })
+        if (pro_goodness.length != 0) {
+          if (pro_goodness[0].goodness_desc.length > 50) {
+            console.log("textBeyond0")
+            that.setData({
+              textBeyond0: true
+            })
+          }
+          if (pro_goodness.length >=2) {
+            if (pro_goodness[1].goodness_desc.length > 50) {
+              that.setData({
+                textBeyond1: true
+              })
+            }
+          }
+          if (pro_goodness.length >= 3) {
+            if (pro_goodness[2].goodness_desc.length > 50) {
+              that.setData({
+                textBeyond2: true
+              })
+            }
+          }
+          if (pro_goodness.length >= 4) {
+            if (pro_goodness[3].goodness_desc.length > 50) {
+              that.setData({
+                textBeyond3: true
+              })
+            }
+          }}
+
+        if (project.pro_finance_use) {
+          if (project.pro_finance_use.length > 50) {
+            that.setData({
+              textBeyond4: true
+            })
+          }
         }
         that.setData({
           project: project,
@@ -633,6 +644,67 @@ Page({
         }
       }
     })
+  },
+  //商业计划书
+  businessBook: function () {
+    let BPath = this.data.BPath;
+    let user_id = wx.getStorageSync('user_id');
+    let project_id = this.data.id;
+    let that = this;
+    if (BPath) {
+      wx.showActionSheet({
+        itemList: ['直接预览', '发送到邮箱'],
+        success: function (res) {
+          console.log(res.tapIndex)
+          if (res.tapIndex == 1) {
+            wx.request({
+              url: url_common + '/api/user/checkUserInfo',
+              data: {
+                user_id: user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log(res)
+                let userEmail = res.data.user_email;
+                if (userEmail) {
+                  that.setData({
+                    userEmail: userEmail,
+                    sendPc: 1,
+                    checkEmail: true,
+                  })
+                } else {
+                  that.setData({
+                    sendPc: 1,
+                    checkEmail: false
+                  })
+                }
+              }
+            })
+          } else if (res.tapIndex == 0) {
+            wx.downloadFile({
+              url: BPath,
+              success: function (res) {
+                var filePath = res.tempFilePath
+                wx.openDocument({
+                  filePath: filePath,
+                  success: function (res) {
+                    console.log('打开文档成功')
+                  }
+                })
+              }
+            })
+          }
+        },
+        fail: function (res) {
+          console.log(res.errMsg)
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '未上传商业计划书',
+      })
+    }
   },
   // 更改邮箱
   writeBpEmail: function (e) {

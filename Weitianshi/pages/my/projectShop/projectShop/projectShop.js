@@ -75,6 +75,7 @@ Page({
 
   },
   onShow: function (){
+    console.log(111)
     if(!this.data.firstTime){
       console.log('onShow',this.data.user_id)
       this.setData({
