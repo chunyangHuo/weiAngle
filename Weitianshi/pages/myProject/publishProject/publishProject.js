@@ -20,6 +20,9 @@ Page({
     loading: '0',
     pro_goodness: "",
     modalBox: 0,
+    switchChange1:0,
+    switchChange2:0,
+    switchChange3:0,
     industryCard: {
       text: "项目领域*",
       url: "/pages/form/industry/industry?current=0",
@@ -104,8 +107,9 @@ Page({
     //返回上一页时启动onShow;
     let pages = getCurrentPages();
     let pre = pages[pages.length - 2];
-    pre.data.firstTime = false;
-
+    if (pre) {
+      pre.data.firstTime = false;
+    }
     app.identity(user_id, res => {
       console.log(res)
       if (res.data.status != 0) {
@@ -334,8 +338,13 @@ Page({
   },
   //私密性设置
   initPrivacy: function () {
+    let open_status = this.data.open_status;
+    let power_share_status = this.data.power_share_status;
+    let power_investor_status = this.data.power_investor_status;
+    let company_open_status = this.data.company_open_status;
+    let subscribe = this.data.subscribe;
     wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy',
+      url: '/pages/myProject/initPrivacy/initPrivacy?open_status=' + open_status + '&power_share_status=' + power_share_status + '&power_investor_status=' + power_investor_status + '&company_open_status=' + company_open_status
     })
   },
   //点击发布
@@ -441,5 +450,68 @@ Page({
         pro_total_score: pro_total_score
       })
     }
-  }
+  },
+  //到电脑
+  upLoadPc: function () {
+    var that = this;
+    var pro_intro = this.data.describe;//描述
+    var industry = this.data.industryCard.id;//id
+    var pro_finance_stage = this.data.stage_index;
+    var pro_finance_scale = this.data.scale_index;
+    var is_exclusive = this.data.tipsIndex;
+    var pro_goodness = this.data.pro_goodness;
+    let pro_company_name = that.data.pro_company_name;
+    let pro_name = that.data.pro_name;
+    let pro_finance_stock_after = that.data.pro_finance_stock_after;
+    let service_fa = that.data.service_fa;
+    let service_yun = that.data.service_yun;
+    let service_ps_bp = that.data.service_ps_bp;
+    this.setData({
+      upLoad: 0
+    })
+    //保存项目更改
+    // that.updata(that)
+    wx.scanCode({
+      success: function (res) {
+        var user_id = wx.getStorageSync("user_id");//用戶id
+        var credential = res.result;//二维码扫描信息
+        var project_id = that.data.pro_id;
+        wx.request({
+          url: app.globalData.url_common + '/api/auth/writeUserInfo',
+          data: {
+            type: 'update',
+            user_id: user_id,
+            project_id: project_id,
+            credential: credential,
+            pro_data: {
+              "pro_intro": pro_intro,
+              "industry": industry,
+              "pro_finance_stage": pro_finance_stage,
+              "pro_finance_scale": pro_finance_scale,
+              "is_exclusive": is_exclusive,
+              "pro_goodness": pro_goodness,
+              "pro_company_name": pro_company_name,
+              "pro_name": pro_name,
+              "pro_finance_stock_after": pro_finance_stock_after,
+              "service_fa": service_fa,
+              "service_yun": service_yun,
+              "service_ps_bp": service_ps_bp
+            }
+          },
+          method: 'POST',
+          success: function (res) {
+            if (res.data.status_code == 2000000) {
+              wx.navigateTo({
+                url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
+              })
+              that.setData({
+                modalBox: 0
+              })
+            }
+          }
+        })
+
+      },
+    })
+  },
 });

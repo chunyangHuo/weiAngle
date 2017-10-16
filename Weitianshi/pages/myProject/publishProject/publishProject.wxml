@@ -70,10 +70,10 @@
   <input  />
   </view>-->
   <!--上传BP-->
-  <view class="bp flex">
+  <!-- <view class="bp flex">
     <view>项目计划书</view>
     <view class="bpBtn bp-uploadm" bindtap="upLoad">去PC上传</view>
-  </view>
+  </view> -->
   <!-- <button class="nextBtn publish-project-confirm" bindtap="public">
     发布
   </button> -->
@@ -125,19 +125,24 @@
 </view>
 <view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
   <view class="content">需要Bp美化</view>
-  <switch checked bindchange="switchChange1" class="switchTab" />
+  <switch  bindchange="switchChange1" class="switchTab" />
 </view>
 <view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
-  <view class="content">需要融资股份（FA）服务</view>
-  <switch checked bindchange="switchChange2" class="switchTab" />
+  <view class="content">需要融资顾问（FA）服务</view>
+  <switch  bindchange="switchChange2" class="switchTab" />
 </view>
 <view class="choiceBox flex" wx:if="{{group_id == 21|| group_id == 18 || group_id == 6}}">
-  <view class="content">是否需要云投行服务</view>
-  <switch checked bindchange="switchChange3" class="switchTab" />
+  <view class="content">是否需要云投行（FA）合作</view>
+  <switch  bindchange="switchChange3" class="switchTab" />
 </view>
-<view class="question">
+<view class="question" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
   <view class="questionWhy">Q：什么是融资顾问服务</view>
   <view class="answer">A：微天使平台会结合您的融资需求推荐最适合的FA，帮助您打磨 商业计划，梳理BP，引荐投资机构。（业务同学会通过您在平台 留下的联系方式与您沟通具体融资需求）
+  </view>
+</view>
+<view class="question"  wx:if="{{group_id == 21|| group_id == 18 || group_id == 6}}">
+  <view class="questionWhy">Q：什么是要云投行合作</view>
+  <view class="answer">A：微天使平台将协助您寻找最合适的投资机构，并与合作伙伴共同协助推进您的项目融资。（业务同学会通过您在平台留下的联系方式与您沟通具体合作方式）
   </view>
 </view>
 <!-- <button class="nextBtn" bindtap="public">

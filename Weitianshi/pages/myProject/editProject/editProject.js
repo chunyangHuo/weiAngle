@@ -403,9 +403,9 @@ Page({
     let pro_company_name = that.data.pro_company_name;
     let pro_name = that.data.pro_name;
     let pro_finance_stock_after = that.data.pro_finance_stock_after;
-    let service_fa = theData.service_fa;
-    let service_yun = theData.service_yun;
-    let service_ps_bp = theData.service_ps_bp;
+    let service_fa = that.data.service_fa;
+    let service_yun = that.data.service_yun;
+    let service_ps_bp = that.data.service_ps_bp;
     this.setData({
       upLoad: 0
     })

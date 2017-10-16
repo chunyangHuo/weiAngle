@@ -22,6 +22,7 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options.open_status)
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     if (options.project) {
@@ -54,7 +55,17 @@ Page({
         }
       })
     } else {
-
+      console.log(5555)
+      let open_status = Number(options.open_status);
+      let power_share_status = Number(options.power_share_status);
+      let power_investor_status = Number(power_investor_status);
+      let company_open_status = Number(company_open_status)
+      that.setData({
+        open_status: open_status,
+        power_share_status: power_share_status ,
+        power_investor_status: options.power_investor_status,
+        company_open_status: options.company_open_status,
+      })
     }
   },
 
@@ -128,9 +139,7 @@ Page({
     let power_investor_status = Number(this.data.power_investor_status);
     let company_open_status = Number(!this.data.company_open_status);
     let white_company = Number(this.data.white_company);
-    console.log(this.data.white_user)
     let white_user = Number(this.data.white_user);
-    console.log(white_user)
     let black_company = this.data.black_company;
     let black_user = this.data.black_user;
     let subscribe = this.data.subscribe;
