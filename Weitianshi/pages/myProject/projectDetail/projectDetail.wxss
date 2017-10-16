@@ -1724,6 +1724,18 @@ scroll-view {
   border: none;
 }
 
+.businessBook1 {
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: center;
+  background: #ccc;
+  padding: 30rpx 0;
+  border-right: 1rpx solid #e6e6e6;
+  width:243rpx;
+}
+
 /*买家图谱  */
 
 .buyerPage {
