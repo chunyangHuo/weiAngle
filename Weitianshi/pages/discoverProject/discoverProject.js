@@ -15,6 +15,7 @@ Page({
     SearchInit: SearchModel.data,
     //banner
     bannerIndex: 0,
+    modalBox: 0,
     imgUrls: [
       app.globalData.picUrl.activtyBanner,
       app.globalData.picUrl.banner_workBench,
@@ -301,5 +302,18 @@ Page({
   // 在电脑上创建
   createProjectPc() {
     CreateProject.createProjectPc();
+  },
+  //电脑上传
+  //去电脑上传
+  toPc: function () {
+    this.setData({
+      modalBox: 1
+    })
+  },
+  //关闭模态框
+  closeModal: function () {
+    this.setData({
+      modalBox: 0
+    })
   },
 })

@@ -494,13 +494,13 @@
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
   <view class="flex pc-guidem">
-    <view class="pointToPC" bindtap="upLoad">
+    <view class="pointToPC" bindtap="toPc">
       <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
       去电脑上创建项目更方便
       <label class="pointPcToNet">></label>
     </view>
   </view>
-</template>>
+</template>
 
 <!--身份认证列表-->
 <template name="identityList">
@@ -822,7 +822,7 @@
     <view class="t-accreditation flex">
       <view>提交项目,加速融资</view>
       <view class="t-btnToAccreditation" bindtap="toCreateProject">创建项目</view>
-      <view class="t-goPc" bindtap='createProjectPc'>电脑上创建</view>
+      <view class="t-goPc" bindtap='toPc'>电脑上创建</view>
     </view>
   </view>
 </template>
