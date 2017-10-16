@@ -58,11 +58,6 @@
     </view>
   </view>
 
-  <view class="bp flex">
-    <view>项目计划书</view>
-    <view class="bpBtn" bindtap="upLoad">去PC上传</view>
-  </view>
-
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 

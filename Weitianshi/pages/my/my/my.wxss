@@ -42,7 +42,7 @@ page {
   justify-content: space-between;
   padding: 32rpx;
   flex-wrap: wrap;
-  padding-bottom:20rpx;
+  padding-bottom: 20rpx;
 }
 
 .user_left {
@@ -69,7 +69,6 @@ page {
   /*margin-bottom: 96rpx;*/
   margin-bottom: 0;
 }
-
 
 .user_right {
   width: 20%;
@@ -167,7 +166,7 @@ page {
   width: 36rpx;
   height: 36rpx;
   display: block;
-  padding: 0 32rpx;
+  padding-right: 32rpx;
   margin-right: -32rpx;
 }
 
@@ -192,12 +191,12 @@ page {
   height: 94rpx;
   margin: 0 32rpx;
   border-radius: 8rpx;
- overflow: hidden;
+  overflow: hidden;
 }
 
 .user_invest_info, .user_resource_info, .user_project_info, .user_invest_case {
-  background: white;
-  padding: 32rpx;
+background:#fafafa;
+ margin: 32rpx;
   margin-bottom: 32rpx;
 }
 
@@ -704,9 +703,10 @@ page {
   color: #40587a;
   line-height: 24rpx;
   text-align: left;
-  margin-left:24rpx;
-  margin-bottom:12rpx;
+  margin-left: 24rpx;
+  margin-bottom: 12rpx;
 }
+
 .competitor {
   position: fixed;
   bottom: 132rpx;
@@ -718,7 +718,7 @@ page {
   height: 33px;
   font-family: MicrosoftYaHei;
   font-size: 28rpx;
-  color: #ffffff;
+  color: #fff;
   letter-spacing: 0;
   line-height: 66rpx;
   text-align: right;
@@ -730,22 +730,30 @@ page {
   background: #e6e6e6;
   width: 622rpx;
   height: 1rpx;
-  margin-top:32rpx;
+  margin-top: 32rpx;
   display: inline-block;
 }
 
 .messageIconStyle {
-   width:36rpx;
-  height:36rpx;
-  /* margin-right:42rpx; */
-  /* margin-left:42rpx; */
+  width: 36rpx;
+  height: 36rpx;
+  /* margin-right:42rpx; *//* margin-left:42rpx; */
 }
-.iconBox{
-  margin-top:20rpx;
-  width:662rpx;
+
+.iconBox {
+  margin-top: 20rpx;
+  width: 662rpx;
 }
-.littleBox{
-  margin-right:78rpx;
-  width:36rpx;
-  height:36rpx;
+
+.littleBox {
+  margin-right: 78rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.seeMore {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  text-align: right;
 }
