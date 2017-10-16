@@ -14,8 +14,16 @@ Page({
     companyName: "",
     stock: 0,
     load: 0,
-    isChecked: true,
+    isChecked0: true,
+    isChecked1: true,
+    isChecked2: true,
+    isChecked3: true,
+    isChecked4: true,
+    textBeyond0: false,
     textBeyond1: false,//项目亮点的全部和收起是否显示标志
+    textBeyond2: false,//创始人的全部和收起是否显示标志
+    textBeyond3: false,//资金用途的全部和收起是否显示标志
+    textBeyond4: false,
     modalBox: 0,
     currentTab: 0,//选项卡
     show_detail: false,
@@ -107,6 +115,7 @@ Page({
         var pro_company_name = project.pro_company_name;
         let industy_sort = [];
         let pro_goodness = project.pro_goodness;
+        console.log(pro_goodness)
         let button_type = res.data.button_type;
         console.log(button_type)
         let currentUser = user.user_id;
@@ -127,9 +136,29 @@ Page({
             button_type: button_type,
             currentUser: currentUser
           })
-          if (pro_goodness.length > 50) {
+          if (pro_goodness[0].goodness_desc.length > 50) {
+            that.setData({
+              textBeyond0: true
+            })
+          }
+          if (pro_goodness[1].goodness_desc.length > 50) {
             that.setData({
               textBeyond1: true
+            })
+          }
+          if (pro_goodness[2].goodness_desc.length > 50) {
+            that.setData({
+              textBeyond2: true
+            })
+          }
+          if (pro_goodness[3].goodness_desc.length > 50) {
+            that.setData({
+              textBeyond3: true
+            })
+          }
+          if (project.pro_finance_use.length > 50) {
+            that.setData({
+              textBeyond4: true
             })
           }
         }
@@ -267,7 +296,7 @@ Page({
       success: function (res) {
         let brandList = res.data.data.brand;
         let project = res.data.data;
-        console.log(project)
+
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -278,14 +307,48 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
+        console.log(pro_goodness[0].goodness_desc.length)
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         let button_type = res.data.button_type;
         // 如果项目亮点字数超出字,刚显示全部按钮
-        if (pro_goodness.length > 50) {
+        if (pro_goodness[0].goodness_desc.length > 50) {
+          console.log("textBeyond0")
+          that.setData({
+            textBeyond0: true
+          })
+        }
+        if (pro_goodness[1].goodness_desc.length > 50) {
           that.setData({
             textBeyond1: true
           })
+        }
+        if (pro_goodness[2].goodness_desc.length > 50) {
+          that.setData({
+            textBeyond2: true
+          })
+        }
+        if (pro_goodness[3].goodness_desc.length > 50) {
+          that.setData({
+            textBeyond3: true
+          })
+        }
+        if (project.pro_finance_use.length > 50) {
+          that.setData({
+            textBeyond4: true
+          })
+        }
+        // 项目介绍的标签
+        if (button_type == 2 || button_type == 3) {
+          for (var i = 0; i < pro_industry.length; i++) {
+            industy_sort.push(pro_industry[i].industry_name)
+          }
+          that.setData({
+            industy_sort: industy_sort,
+            button_type: button_type,
+            currentUser: currentUser
+          })
+
         }
         that.setData({
           project: project,
@@ -627,6 +690,15 @@ Page({
       that.setData({
         moreInfo: 4
       })
+    } else if (id == 5) {
+      that.setData({
+        moreInfo: 5
+      })
+    }
+    else if (id == 6) {
+      that.setData({
+        moreInfo: 6
+      })
     }
   },
   noMoreInfo: function (e) {
@@ -637,6 +709,14 @@ Page({
         moreInfoList: 0
       })
     } else if (id == 4) {
+      that.setData({
+        moreInfo: 0
+      })
+    } else if (id == 5) {
+      that.setData({
+        moreInfo: 0
+      })
+    } else if (id == 6) {
       that.setData({
         moreInfo: 0
       })
@@ -917,15 +997,58 @@ Page({
     return ShareModel.projectDetailShare(that);
   },
   // 项目详情中的展开和收起
-  allBrightPoint: function () {
-    this.setData({
-      isChecked: false
-    })
+  allBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: false
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: false
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: false
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: false
+      })
+    } else if (check == 4) {
+      this.setData({
+        isChecked4: false
+      })
+    }
   },
-  noBrightPoint: function () {
-    this.setData({
-      isChecked: true
-    })
+  noBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: true
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: true
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: true
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: true
+      })
+    }
+    else if (check == 4) {
+      this.setData({
+        isChecked4: true
+      })
+    }
   },
   // 立即认证
   toAccreditation: function () {

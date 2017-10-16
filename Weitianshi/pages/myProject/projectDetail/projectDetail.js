@@ -29,14 +29,20 @@ Page({
     page_end: false,
     pro_status: {},//运营状态
     loadMorecheck: true,//下拉加载更多判断,
-    isChecked: true,
+    isChecked0: true,
+    isChecked1: true,
+    isChecked2: true,
+    isChecked3: true,
+    isChecked4: true,
     checkEmail: false,
+    textBeyond0: false,
     textBeyond1: false,//项目亮点的全部和收起是否显示标志
     textBeyond2: false,//创始人的全部和收起是否显示标志
     textBeyond3: false,//资金用途的全部和收起是否显示标志
+    textBeyond4: false,
     show_detail: true,
     show_company: true,
-    type:2,
+    type: 2,
   },
   onLoad: function (options) {
     this.setData({
@@ -138,11 +144,11 @@ Page({
             textBeyond3: true
           })
         }
-        // if (pro_goodness[4].goodness_desc.length > 50) {
-        //   that.setData({
-        //     textBeyond4: true
-        //   })
-        // }
+        if (project.pro_finance_use.length > 50) {
+          that.setData({
+            textBeyond4: true
+          })
+        }
         that.setData({
           project: project,
           user: user,
@@ -582,7 +588,7 @@ Page({
         industrialChangeMore: 0
       })
     } else if (id == 6) {
- 
+
     }
   },
   // 浏览
@@ -725,9 +731,9 @@ Page({
       that.setData({
         moreInfo: 4
       })
-    }else if(id == 5){
+    } else if (id == 5) {
       that.setData({
-        moreInfo:5
+        moreInfo: 5
       })
     }
     else if (id == 6) {
@@ -747,7 +753,7 @@ Page({
       that.setData({
         moreInfo: 0
       })
-    }else if(id == 5){
+    } else if (id == 5) {
       that.setData({
         moreInfo: 0
       })
@@ -759,17 +765,57 @@ Page({
   },
   // 项目详情中的显示全部
   allBrightPoint: function (e) {
-    console.log(e)
     let check = e.currentTarget.dataset.check;
-    console.log(check)
-    this.setData({
-      isChecked: false
-    })
+    if (check == 0) {
+      this.setData({
+        isChecked0: false
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: false
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: false
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: false
+      })
+    } else if (check == 4) {
+      this.setData({
+        isChecked4: false
+      })
+    }
   },
   noBrightPoint: function (e) {
-    this.setData({
-      isChecked: true
-    })
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: true
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: true
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: true
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: true
+      })
+    }
+    else if (check == 4) {
+      this.setData({
+        isChecked4: true
+      })
+    }
   },
   //项目详情页面,申请查看跳转列表
   applyPerson: function (e) {
