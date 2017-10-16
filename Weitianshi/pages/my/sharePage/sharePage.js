@@ -283,5 +283,10 @@ Page({
         }
       },
     });
+  },
+  //分享引导跳转
+  shareJump(e) {
+    let index = e.currentTarget.dataset.index;
+    app.shareJump(index);
   }
 }); 

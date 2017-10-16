@@ -152,6 +152,7 @@ function shareProjectPage(id, title, share_id) {
   let json = {
     title: title,
     path: path,
+    imageUrl: "http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/20170904/card_share_2.jpg",
   }
   return json
 }
