@@ -44,7 +44,8 @@ Page({
       url: url_common + '/api/project/metViewed',
       data: {
         user_id: user_id,
-        type_id: 9
+        type_id: 9,
+        project_id: project_id
       },
       method: "POST",
       success:function(res){
@@ -89,7 +90,8 @@ Page({
   },
   //点击跳转到用户详情
   personDetail: function (e) {
-    var id = e.currentTarget.dataset.project;
+    console.log(e)
+    var id = e.currentTarget.dataset.id;
     app.console(id)
     wx.navigateTo({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
@@ -162,5 +164,5 @@ Page({
     } else {
       app.errorHide(that, res.data.error_Msg, 3000)
     }
-  },
+  }
 })

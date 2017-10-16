@@ -57,7 +57,7 @@
             </view>
           </view>
           <view class="flex sceenPerson" catchtap="hasMeeting" data-proid="{{item.project_id}}">
-            <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.meet_times_new}}</view>
+            <view class="applyProjectNew" wx:if="{{item.count.meet_times_new != 0}}">+{{item.count.meet_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">约谈：
               <label>{{item.count.meet_times_all}}</label>
             </view>

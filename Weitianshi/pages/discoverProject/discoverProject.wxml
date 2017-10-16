@@ -44,3 +44,15 @@
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <!--人脉王浮票  -->
 <view class="competitor" bindtap="competitor">人脉王大赛</view>
+<!--电脑上传扫一扫  -->
+<view class="modalBox" hidden="{{modalBox==0}}">
+  <view class="classname" bindtap="closeModal">
+    <image src="/img/icon-guanbi@2x.png" class="close"></image>
+  </view>
+  <view class="contactModalBox">
+    <image src="/img/img-saoyisao@2x.png" class="aPic"></image>
+    <view class="modalTitle">电脑打开,点击扫一扫</view>
+    <view class="modalTips">www.weitianshi.cn/qr</view>
+    <view class="btn" bindtap="createProjectPc">扫一扫</view>
+  </view>
+</view>

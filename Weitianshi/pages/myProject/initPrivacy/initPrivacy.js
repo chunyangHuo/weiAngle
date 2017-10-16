@@ -8,7 +8,7 @@ Page({
     open_status: 1,
     power_share_status: 1,
     power_investor_status: 1,
-    company_open_status: 1,
+    company_open_status: 0,
     white_company: 0,
     white_user: 0,
     black_company: '',
@@ -22,8 +22,7 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options.whiteCompany)
-    console.log(options.white_user)
+    console.log(options)
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     if (options.project) {
@@ -56,21 +55,13 @@ Page({
         }
       })
     } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user){
-      let open_status = Number(options.open_status);
-      let power_share_status = Number(options.power_share_status);
-      let power_investor_status = Number(options.power_investor_status);
-      let company_open_status = Number(!options.company_open_status);
-      let whiteCompany = Number(options.whiteCompany);
-      console.log(whiteCompany)
-      let white_user = Number(options.white_user);
-      console.log(white_user)
       that.setData({
-        open_status : open_status,
-        power_share_status : power_share_status ,
-        power_investor_status: company_open_status,
-        company_open_status: company_open_status,
-        whiteCompany : whiteCompany,
-        white_user : white_user,
+        open_status: Number(options.open_status),
+        power_share_status: Number(options.power_share_status) ,
+        power_investor_status: Number(options.power_investor_status),
+        company_open_status: !Number(options.company_open_status),
+        white_company: Number(options.whiteCompany),
+        white_user: Number(options.white_user),
         black_company : options.black_company,
         black_user: options.black_user
       })
@@ -80,7 +71,7 @@ Page({
   },
 
   onShow: function () {
-
+    console.log(this.data)
   },
   //公开项目
   switchChange1: function (e) {

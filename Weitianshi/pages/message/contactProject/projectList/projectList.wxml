@@ -45,11 +45,11 @@
           <view class="t-roundGroupPush flex" wx:if="{{item.resource.res_give != ''}}">
             <view class="t-roundGroupTitle">提供资源：</view>
             <view class="t-roundGroupContent">
-              <block wx:for="{{item.resource.res_give}}" wx:key="{{item.resource.res_give.index}}" wx:for-item='userGive'>
-                <label class="{{userGive.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index < item.resource.res_give.length-1}}">
+              <block wx:for="{{item.give_resource}}" wx:key="{{item.give_resource.index}}" wx:for-item='userGive'>
+                <label class="{{userGive.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index < item.give_resource.length-1}}">
                {{userGive.resource_name}}、
               </label>
-                <label class="{{userGive.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index ==  item.resource.res_give.length-1}}">
+                <label class="{{userGive.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index ==  item.give_resource.length-1}}">
                {{userGive.resource_name}}
               </label>
               </block>
@@ -58,14 +58,14 @@
           <view class="t-roundGroupPush flex" wx:if="{{item.resource.res_find != ''}}">
             <view class="t-roundGroupTitle">寻求资源：</view>
             <view class="t-roundGroupContent">
-              <block wx:for="{{item.resource.res_find}}" wx:key="{{item.resource.res_find.index}}" wx:for-item='userFind'>
-                <label class="{{userFind.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index < item.resource.res_find.length-1}}">{{userFind.resource_name}}、</label>
-                <label class="{{userFind.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index ==item.resource.res_find.length-1}}">{{userFind.resource_name}}</label>
+              <block wx:for="{{item.find_resource}}" wx:key="{{item.find_resource.index}}" wx:for-item='userFind'>
+                <label class="{{userFind.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index < item.find_resource.length-1}}">{{userFind.resource_name}}、</label>
+                <label class="{{userFind.is_match == 1 ? 't-hightLight':'t-noLight'}}" wx:if="{{index ==item.find_resource.length-1}}">{{userFind.resource_name}}</label>
               </block>
             </view>
           </view>
           <view>
-            <view class="t-describe" wx:if="{{item.resource.res_desc != null}}">{{item.resource.res_desc}}</view>
+            <view class="t-describe" wx:if="{{item.investor_desc != null}}">{{item.investor_desc}}</view>
           </view>
         </view>
         <view class="btnBox">
