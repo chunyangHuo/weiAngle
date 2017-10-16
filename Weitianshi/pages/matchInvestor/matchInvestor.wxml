@@ -11,10 +11,10 @@
   <!--展示内容  -->
   <scroll-view class='scroll' scroll-y="true" bindscrolltolower='loadMore'>
     <block wx:for='{{myProject}}' wx:key='{{item.project_id}}'>
-      <view class='itemCard'>
+      <view class='itemCard' data-id='{{item.project_id}}' bindtap='projectDetail'>
         <view class='cardTop flex'>
           <view>匹配推荐: {{item.match_count}}人</view>
-          <button class='pushBtn' data-pro-id='{{item.project_id}}' bindtap='goToMatchInvestor'>一键推送</button>
+          <button class='pushBtn' data-pro-id='{{item.project_id}}' catchtap='goToMatchInvestor'>一键推送</button>
         </view>
         <!--匹配到的投资人  -->
         <view class='matchInvestor flex'>

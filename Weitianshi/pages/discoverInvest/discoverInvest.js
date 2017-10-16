@@ -17,6 +17,13 @@ Page({
     SearchInit: SearchModel.data,
     activtyBanner: app.globalData.picUrl.activtyBanner,
   },
+  onLoad(options){
+    if(options.currentTab){
+      this.setData({
+        currentTab:options.currentTab
+      })
+    }
+  },
   onShow: function () {
     let that = this;
     let user_id = this.data.user_id;

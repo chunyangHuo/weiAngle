@@ -20,6 +20,13 @@ Page({
       app.globalData.picUrl.banner_workBench,
     ],
   },
+  onLoad(options) {
+    if (options.currentTab) {
+      this.setData({
+        currentTab: options.currentTab
+      })
+    }
+  },
   onShow: function () {
     let that = this;
     let user_id = this.data.user_id;

@@ -234,7 +234,6 @@ Page({
       },
     })
   },
-
   //一键尽调信息(辅助函数)
   oneKeyRearchInfo(company_name) {
     let that = this;
@@ -429,7 +428,6 @@ Page({
       }
     })
   },
-
   //买家图谱信息
   matchInvestorInfo(id) {
     let that = this;
@@ -457,7 +455,6 @@ Page({
       }
     })
   },
-
   // 买家图谱上拉加载
   loadMore: function () {
     let that = this;
@@ -959,5 +956,10 @@ Page({
         }
       }
     })
-  }
+  },
+  //分享引导跳转
+  shareJump(e){
+    let index=e.currentTarget.dataset.index;
+    app.shareJump(index);
+  } 
 });

@@ -6,8 +6,8 @@
   <view class="esc" bindtap="searchEsc">取消</view>
 </view>
 <view style="height:112rpx;"></view>
-<!--个人店铺  -->
-<scroll-view style="height:1200rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
+<!--展示内容  -->
+<scroll-view style="height:1200rpx;" scroll-y="true" bindscrolltolower='loadMore'>
   <!--精选  -->
   <template is="selectProject" data="{{list:slectProject,type:2}}" wx:if='{{slectProject}}'></template>
   <!--最新  -->

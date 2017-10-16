@@ -95,7 +95,7 @@ Page({
 
   },
   //上拉加载
-  myPublicProject: function () {
+  loadMore: function () {
     let entrance = this.data.entrance;
     let that = this;
     let user_id = wx.getStorageSync('user_id');

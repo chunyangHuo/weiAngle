@@ -830,11 +830,11 @@
 <template name="topBlock">
   <view id='topBlock'>
     <view class="t-contactsPic">
-      <view class="t-blockContent">这里是ldkjfklasdjf sdlkjf sld 文案</view>
+      <!-- <view class="t-blockContent">这里是文案</view> -->
       <view class="flex t-btnBox">
-        <view class="t-faBtn">fa</view>
-        <view class="t-investorBtn">投资方</view>
-        <view class="t-startupBtn">创业者</view>
+        <view class="t-faBtn" bindtap='shareJump' data-index='0'>fa</view>
+        <view class="t-investorBtn" bindtap='shareJump' data-index='1'>投资方</view>
+        <view class="t-startupBtn" bindtap='shareJump' data-index='2'>创业者</view>
       </view>
     </view>
   </view>

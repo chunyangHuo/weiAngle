@@ -183,7 +183,6 @@ Page({
       pro_goodness: e.detail.value
     })
   },
-
   //是否独家的效果实现
   tipsOn: function (e) {
     var that = this;
@@ -191,14 +190,12 @@ Page({
       tips_index: e.target.dataset.tips
     })
   },
-
   //项目阶段
   stage: function (e) {
     this.setData({
       stage_index: e.detail.value,
     });
   },
-
   //期望融资
   expect: function (e) {
     this.setData({
@@ -415,7 +412,7 @@ Page({
               })
             } else {
               wx.switchTab({
-                url: '/pages/match/match/match/match'
+                url: '/pages/discoverProject/discoverProject'
               });
             }
           } else {

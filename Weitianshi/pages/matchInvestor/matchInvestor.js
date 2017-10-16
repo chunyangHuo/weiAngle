@@ -86,7 +86,13 @@ Page({
       url: '/pages/message/contactProject/projectList/projectList?id=' + projectId,
     })
   },
-
+  //项目详情
+  projectDetail(e){
+    let pro_id=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/myProject/projectDetail/projectDetail?id='+pro_id,
+    })
+  },
 
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面

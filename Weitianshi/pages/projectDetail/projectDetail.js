@@ -1117,6 +1117,11 @@ Page({
       console.log(res)
     })
   },
+  //分享引导跳转
+  shareJump(e) {
+    let index = e.currentTarget.dataset.index;
+    app.shareJump(index);
+  } 
   //项目打分
   // projectRemark:function(){
   //   wx.navigateTo({

@@ -1,6 +1,6 @@
 import * as request from './utils/http';
 import * as OperationModel from './utils/operationModel';
-import {picUrl} from './utils/picUrlModel';
+import { picUrl } from './utils/picUrlModel';
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -230,7 +230,7 @@ App({
   },
 
   //根据用户信息完整度跳转不同的页面/*注册且信息完善:targetUrl; 注册信息不完善:companyInfo; 未注册: personInfo;*/
-  infoJump(targetUrl){
+  infoJump(targetUrl) {
     let user_id = wx.getStorageSync('user_id');
     // 核对用户信息是否完整
     wx.request({
@@ -593,21 +593,21 @@ App({
   },
 
   //用户操作模块(util/operationModel)
-  operationModel(){
-    let func=arguments[0];
-    let parameter=[];
-    if(typeof func !='string'){
+  operationModel() {
+    let func = arguments[0];
+    let parameter = [];
+    if (typeof func != 'string') {
       console.log('第一个参数必需为调用函数名')
       return
     }
-    for(let i=0;i<arguments.length;i++){ 
-      if(i>0){
+    for (let i = 0; i < arguments.length; i++) {
+      if (i > 0) {
         parameter.push(arguments[i])
       }
     }
 
-    switch (parameter.length){
-      case 0: 
+    switch (parameter.length) {
+      case 0:
         OperationModel[func]();
         break;
       case 1:
@@ -619,10 +619,34 @@ App({
     }
   },
 
+  //分享引导模块跳转
+  shareJump(num) {
+    switch (num) {
+      case '0':
+        wx.switchTab({
+          url: '/pages/discoverInvest/discoverInvest',
+        });
+        break;
+      case '1':
+        wx.switchTab({
+          url: '/pages/discoverProject/discoverProject',
+        });
+        break;
+      case '2':
+        wx.switchTab({
+          url: '/pages/discoverInvest/discoverInvest',
+        });
+        break;
+      default:
+        console.log('app.shareJump()参数错数');
+        break;
+    }
+  },
+
   //初始本地缓存
   globalData: {
     error: 0,
-    picUrl:picUrl,
+    picUrl: picUrl,
     app_key: 'wxos_lt',
     // url: "https://lbs.weitianshi.cn",
     // url_common: "https://lbs.weitianshi.cn"
@@ -743,7 +767,7 @@ App({
       },
     })
   },
-  
+
 
   //一键尽调信息(辅助函数)
   oneKeyRearchInfo(that, e) {

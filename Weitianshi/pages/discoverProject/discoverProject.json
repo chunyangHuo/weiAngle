@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "找项目"
+  "navigationBarTitleText": "找项目",
+  "navigationBarBackgroundColor": "#40587a", 
+  "navigationBarTextStyle": "white"
 }
