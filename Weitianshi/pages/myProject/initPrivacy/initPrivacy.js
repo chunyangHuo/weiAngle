@@ -22,7 +22,8 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options.open_status)
+    console.log(options.whiteCompany)
+    console.log(options.white_user)
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     if (options.project) {
@@ -54,17 +55,24 @@ Page({
           }
         }
       })
-    } else {
-      console.log(5555)
+    } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user){
       let open_status = Number(options.open_status);
       let power_share_status = Number(options.power_share_status);
-      let power_investor_status = Number(power_investor_status);
-      let company_open_status = Number(company_open_status)
+      let power_investor_status = Number(options.power_investor_status);
+      let company_open_status = Number(!options.company_open_status);
+      let whiteCompany = Number(options.whiteCompany);
+      console.log(whiteCompany)
+      let white_user = Number(options.white_user);
+      console.log(white_user)
       that.setData({
-        open_status: open_status,
-        power_share_status: power_share_status ,
-        power_investor_status: options.power_investor_status,
-        company_open_status: options.company_open_status,
+        open_status : open_status,
+        power_share_status : power_share_status ,
+        power_investor_status: company_open_status,
+        company_open_status: company_open_status,
+        whiteCompany : whiteCompany,
+        white_user : white_user,
+        black_company : options.black_company,
+        black_user: options.black_user
       })
     }
   },

@@ -343,8 +343,13 @@ Page({
     let power_investor_status = this.data.power_investor_status;
     let company_open_status = this.data.company_open_status;
     let subscribe = this.data.subscribe;
+    let whiteCompany = subscribe.white_company;
+    let white_user = subscribe.white_user;
+    let black_company = subscribe.black_company;
+    let black_user = subscribe.black_user;
     wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy?open_status=' + open_status + '&power_share_status=' + power_share_status + '&power_investor_status=' + power_investor_status + '&company_open_status=' + company_open_status
+      url: '/pages/myProject/initPrivacy/initPrivacy?open_status=' + open_status + '&power_share_status=' + power_share_status + '&power_investor_status=' + power_investor_status + '&company_open_status=' + company_open_status +
+      '&white_user=' + white_user + '&whiteCompany=' + whiteCompany + '&black_company=' + black_company + '&black_user=' + black_user
     })
   },
   //点击发布
