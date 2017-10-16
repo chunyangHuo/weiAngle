@@ -98,6 +98,12 @@ Page({
       url: '/pages/message/browseMe/browseMe'
     })
   },
+  //头像编辑
+  avatarEdit() {
+    wx.navigateTo({
+      url: '/pages/my/cardEdit/cardEdit',
+    })
+  },
   //加我为人脉
   attention: function () {
     wx.navigateTo({
@@ -126,28 +132,28 @@ Page({
           var complete = res.data.is_complete;
           // if (complete == 1) {
           //   //如果信息完整就可以显示去认证
-            if (status == 0) {
-              wx.navigateTo({
-                url: '/pages/my/identity/indentity/indentity',
-              })
-            } else if (status == 1) {
-              wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
-              })
-            } else if (status == 2) {
-              wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
-              })
-            } else if (status == 3) {
-              wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
-              })
-            }
-          } else if (complete == 0) {
+          if (status == 0) {
             wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
+              url: '/pages/my/identity/indentity/indentity',
+            })
+          } else if (status == 1) {
+            wx.navigateTo({
+              url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
+            })
+          } else if (status == 2) {
+            wx.navigateTo({
+              url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
+            })
+          } else if (status == 3) {
+            wx.navigateTo({
+              url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
             })
           }
+        } else if (complete == 0) {
+          wx.navigateTo({
+            url: '/pages/register/companyInfo/companyInfo?type=1'
+          })
+        }
         // } else {
         //   wx.navigateTo({
         //     url: '/pages/register/personInfo/personInfo?type=2'

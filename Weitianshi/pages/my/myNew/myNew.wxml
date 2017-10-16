@@ -29,7 +29,7 @@
     <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱：暂无编辑
     </view>
   </view>
-  <view class="user_right" style="position:relative;">
+  <view class="user_right" style="position:relative;" catchtap='avatarEdit'>
     <icon class='avatarEdit'>
       <image src='/img/icon-revise@3x.png'></image>
     </icon>
