@@ -36,20 +36,20 @@ Page({
           metList: metList,
           count: count
         })
-      }
-    })
 
-    //向后台发送信息取消红点
-    wx.request({
-      url: url_common + '/api/project/metViewed',
-      data: {
-        user_id: user_id,
-        type_id: 9,
-        project_id: project_id
-      },
-      method: "POST",
-      success:function(res){
-        console.log(res)
+        //向后台发送信息取消红点
+        wx.request({
+          url: url_common + '/api/project/metViewed',
+          data: {
+            user_id: user_id,
+            type_id: 9,
+            project_id: project_id
+          },
+          method: "POST",
+          success: function (res) {
+            console.log(res)
+          }
+        })
       }
     })
     this.setData({
