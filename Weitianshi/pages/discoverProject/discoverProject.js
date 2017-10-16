@@ -161,6 +161,7 @@ Page({
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
         user_id: user_id,
+        filter: this.data.SearchInit.searchData,
         page: this.data.currentPage,
       }
     }
@@ -175,6 +176,7 @@ Page({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
         user_id: this.data.user_id,
+        filter: this.data.SearchInit.searchData,
         page: this.data.currentPage
       }
     }

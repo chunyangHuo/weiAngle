@@ -69,6 +69,17 @@ page {
   /*margin-bottom: 96rpx;*/
   margin-bottom: 0;
 }
+.avatarEdit{
+  position: absolute;
+  right: 0;
+  top: -6rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+.user_right .avatarEdit image{
+  width: 100%;
+  height: 100%;
+}
 
 .user_right {
   width: 20%;

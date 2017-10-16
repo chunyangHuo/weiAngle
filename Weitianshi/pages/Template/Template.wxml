@@ -947,7 +947,8 @@
         </view>
         <view class="t-classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view class="t-time">{{item.pro_time}}</view>
+      <view class="t-time" wx:if='{{timeShow}}'>{{item.pro_time}}</view>
+      <view class="t-time" wx:else></view>
     </view>
   </block>
   <view class="t-highBox"></view>

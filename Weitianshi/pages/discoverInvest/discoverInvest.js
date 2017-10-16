@@ -239,11 +239,10 @@ Page({
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "financingNeed")
+          app.loadMore(that, request, "myList")
         }
         break;
     }
-
   },
   // 分享当前页面
   onShareAppMessage: function () {

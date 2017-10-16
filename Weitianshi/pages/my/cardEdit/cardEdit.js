@@ -141,7 +141,7 @@ Page({
                 success: function (res) {
                     if (res.data.status_code == 2000000) {
                         wx.switchTab({
-                            url: '/pages/my/my/my',
+                            url: '/pages/my/myNew/myNew',
                         })
                     } else {
                         wx.showModal({

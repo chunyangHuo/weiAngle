@@ -31,8 +31,8 @@ Page({
     isChecked: true,
     contentMore: false,
     otherPerson: false,
-    notHave:1,
-    firstTime:true
+    notHave: 1,
+    firstTime: true
   },
   onLoad: function (options) {
     wx.showLoading({
@@ -65,7 +65,7 @@ Page({
         this.setData({
           user_id: user_id
         })
-      } 
+      }
       this.getProjectInfo();
       this.getUserInfo();
       // 打上check属性
@@ -74,10 +74,10 @@ Page({
 
 
   },
-  onShow: function (){
+  onShow: function () {
     console.log(111)
-    if(!this.data.firstTime){
-      console.log('onShow',this.data.user_id)
+    if (!this.data.firstTime) {
+      console.log('onShow', this.data.user_id)
       this.setData({
         requestCheck: true,
         currentPage: 1,
@@ -88,8 +88,8 @@ Page({
     }
   },
   //获取项目详情
-  getProjectInfo(){
-    let that=this;
+  getProjectInfo() {
+    let that = this;
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -110,8 +110,8 @@ Page({
     });
   },
   //获取用户详情 
-  getUserInfo(){
-    let that=this;
+  getUserInfo() {
+    let that = this;
     wx.request({
       url: url_common + '/api/user/getUserBasicInfo',
       data: {
@@ -147,7 +147,7 @@ Page({
   },
   //分享页面
   onShareAppMessage: function () {
-    let that=this;
+    let that = this;
     return ShareModel.projectShopShare(that);
   },
   // 下拉框
@@ -430,7 +430,10 @@ Page({
           currentPage: currentPage
         })
       }
-    })
+    });
+    if (page_end = true) {
+      app.errorHide(that, '没有更多了', 3000)
+    }
   },
   // 项目详情
   detail: function (e) {

@@ -104,8 +104,8 @@
   <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
-  <view class="contactProject" catap="contactPerson">联系项目方</view>
-  <view class="businessBook" catch="businessBook" wx:if="{{button_type == 1}}">商业计划书</view>
+  <view class="contactProject" catchtap="contactPerson">联系项目方</view>
+  <view class="businessBook" catchtap="businessBook" wx:if="{{button_type == 1}}">商业计划书</view>
   <view class="businessBook1" wx:if="{{button_type == 0}}">申请中</view>
   <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
   <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>

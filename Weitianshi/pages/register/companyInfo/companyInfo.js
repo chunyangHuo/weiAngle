@@ -227,7 +227,7 @@ Page({
                                     })
                                 } else {
                                     wx.switchTab({
-                                        url: "/pages/match/match/match/match"
+                                        url: "/pages/discoverProject/discoverProject"
                                     });
                                 }
                             }

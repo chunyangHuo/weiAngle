@@ -46,7 +46,7 @@
                   <view class="grayName" wx:if="{{project.pro_name != ''}}">项目名称：
                     <label class="materialContent">{{project.pro_name}}</label>
                   </view>
-                  <view class="grayName" wx:if="{{project.pro_company_name != ''}}">公司名称：
+                  <view class="grayName" wx:if="{{project.pro_company_name != ''}}" wx:if='{{show_company==true}}'>公司名称：
                     <label class="materialContent byPass">{{project.pro_company_name}}</label>
                   </view>
                   <view class="grayName" wx:if="{{project.pro_status != ''}}">运营状态：

@@ -23,7 +23,7 @@
               <image class='investorPic' src='{{investor.investor_logo_url}}' wx:if='{{investor.investor_logo_url}}'></image>
               <view class='investorPic' wx:else>{{investor.investor_logo_text}}</view>
               <view class='investorName'>{{investor.investor_name}}</view>
-              <view class='investorBand'>{{investor.investor_career}}</view>
+              <view class='investorBand'>{{investor.investor_company}}</view>
             </view>
           </block>
         </view>
@@ -57,9 +57,9 @@
             </view>
           </view>
           <view class="flex sceenPerson" catchtap="hasMeeting" data-proid="{{item.project_id}}">
-            <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.apply_times_new}}</view>
+            <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.meet_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">约谈：
-              <label>{{item.count.apply_times_all}}</label>
+              <label>{{item.count.meet_times_all}}</label>
             </view>
           </view>
         </view>

@@ -5,10 +5,12 @@ var url_common = app.globalData.url_common;
 import * as CreateProject from '../../utils/createProjectBottom'
 Page({
   data: {
-    imgUrls:  app.globalData.picUrl.page_matchInvestorEmpty
+    imgUrls: app.globalData.picUrl.page_matchInvestorEmpty
   },
   onLoad() {
+    let that = this;
     this.getMyProject();
+    app.initPage(that);
   },
   // 获取项目信息
   getMyProject() {
@@ -59,7 +61,7 @@ Page({
   },
   //一键推送
   goToMatchInvestor(e) {
-    let id = e.currentTarget.dataset.proid;
+    let id = e.currentTarget.dataset.proId;
     wx.navigateTo({
       url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1
     })
@@ -87,10 +89,43 @@ Page({
     })
   },
   //项目详情
-  projectDetail(e){
-    let pro_id=e.currentTarget.dataset.id;
+  projectDetail(e) {
+    let pro_id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/myProject/projectDetail/projectDetail?id='+pro_id,
+      url: '/pages/myProject/projectDetail/projectDetail?id=' + pro_id,
+    })
+  },
+  //加载更多
+  loadMore() {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let currentPage = this.data.currentPage;
+    let myProject=this.data.myPrjoect;
+    let request = {
+      url: url_common + '/api/project/getMyProjectList',
+      data: {
+        user_id: user_id,
+        type: 'match'
+      },
+      page: currentPage
+    }
+    app.loadMore2(that, request, res => {
+      console.log(res)
+      let newPage = res.data.data;
+      let page_end = res.data.page_end;
+      if (myProject) {
+        myProject = myProject.concat(newPage)
+        currentPage++;
+        that.setData({
+          myProject: myProject,
+          page_end: page_end,
+          requestCheck: true,
+          currentPage: currentPage
+        })
+      }
+      if(page_end=true){
+        app.errorHide(that,'没有更多了',3000)
+      }
     })
   },
 

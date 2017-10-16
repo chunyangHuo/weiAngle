@@ -369,7 +369,7 @@ Page({
     let company_open_status = this.data.company_open_status;
     let pro_total_score = this.data.pro_total_score;
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
-      wx.request({
+      app.httpPost({
         url: url_common + '/api/project/createProject',
         data: {
           user_id: user_id,
@@ -394,36 +394,34 @@ Page({
           subscribe: subscribe,
           pro_total_score: pro_total_score
         },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-          if (res.data.status_code == 2000000) {
-            //数据清空
-            wx.setStorageSync('project_id', res.data.project_id);
-            wx.setStorageSync('describe', "");
-            wx.setStorageSync('console_stage', 0);
-            wx.setStorageSync('console_expect', 0);
-            wx.setStorageSync('belongArea', "选择城市");
-            wx.setStorageSync('provinceNum', 0);
-            wx.setStorageSync('cityNum', 0);
-            wx.setStorageSync('tips', 4);
-            wx.setStorageSync('enchangeCheck', [])
-            wx.setStorageSync('enchangeValue', []);
-            wx.setStorageSync('enchangeId', []);
-            wx.setStorageSync('pro_goodness', "");
-            if (type == 8) {
-              wx.navigateBack({
-                delta: 1
-              })
-            } else {
-              wx.switchTab({
-                url: '/pages/discoverProject/discoverProject'
-              });
-            }
+      }).then(res => {
+        console.log(res)
+        if (res.data.status_code == 2000000) {
+          //数据清空
+          wx.setStorageSync('project_id', res.data.project_id);
+          wx.setStorageSync('describe', "");
+          wx.setStorageSync('console_stage', 0);
+          wx.setStorageSync('console_expect', 0);
+          wx.setStorageSync('belongArea', "选择城市");
+          wx.setStorageSync('provinceNum', 0);
+          wx.setStorageSync('cityNum', 0);
+          wx.setStorageSync('tips', 4);
+          wx.setStorageSync('enchangeCheck', [])
+          wx.setStorageSync('enchangeValue', []);
+          wx.setStorageSync('enchangeId', []);
+          wx.setStorageSync('pro_goodness', "");
+          if (type == 8) {
+            wx.navigateBack({
+              delta: 1
+            })
           } else {
-            app.errorHide(that, res.data.error_msg, 3000)
+            wx.switchTab({
+              url: '/pages/discoverProject/discoverProject'
+            });
           }
-        },
+        } else {
+          app.errorHide(that, res.data.error_msg, 3000)
+        }
       })
     } else {
       app.errorHide(that, "请完整填写信息", 1500)

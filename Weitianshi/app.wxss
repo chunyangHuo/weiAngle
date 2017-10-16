@@ -563,7 +563,7 @@ textarea {
   top: 80rpx;
   left: 0;
   background: white;
-  z-index: 999;
+  z-index: 9999;
   padding-bottom: 12rpx;
 }
 
@@ -889,7 +889,6 @@ textarea {
   line-height: 20rpx;
   text-align: right;
   margin: 10rpx 0 20rpx 0;
-  padding-right: 32rpx;
 }
 
 .t-appling, .t-refuseToRead, .t-agreeToRead {
