@@ -303,7 +303,7 @@ margin-top: 72rpx;
 .close{
   width:48rpx;
   height:48rpx;
-  position: absolute;
+  position: fixed;
   top:185rpx;
   right:94rpx;
     z-index:999999999;

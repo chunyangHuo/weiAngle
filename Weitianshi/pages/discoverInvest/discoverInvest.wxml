@@ -66,7 +66,7 @@
   <view bindtap="goTo">
     <image src="{{activtyBanner}}" class="contactsPic"></image>
   </view>
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore">
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore"  style='height:70%'>
     <block wx:for="{{myList}}" wx:key="{{item.user_id}}">
       <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
         <view class="user_info flex">
