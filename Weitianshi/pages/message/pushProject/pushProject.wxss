@@ -197,7 +197,7 @@ page {
   line-height: 52rpx;
 }
 
-.btnHaveInterest, .btnNoInterest {
+.btnHaveInterest, .btnNoInterest,.addProjectTo{
   font-size: 24rpx;
   color: #40587a;
   border: 1px solid #40587a;
@@ -211,6 +211,8 @@ page {
 .btnHaveInterest {
   margin: 20rpx 0 0 0;
   padding: 0 8rpx;
+  color:#fff;
+  background:#40587a;
 }
 
 #time {
@@ -219,6 +221,12 @@ page {
   line-height: 20rpx;
   text-align: right;
   margin: 10rpx 0 20rpx 0;
+}
+.addProjectTo{
+    margin: 20rpx 0 0 0;
+  padding: 0 8rpx;
+  color:#40587a;
+  background:#fff;
 }
 
 /*==========我申请查看的项目===============  */

@@ -501,5 +501,36 @@ Page({
         }
       }
     })
+  },
+  //加入项目库
+  addProjectLibrary: function (e) {
+    console.log(111)
+    let user_id = wx.getStorageSync('user_id');
+    let project_id = e.currentTarget.dataset.project;
+    let pushToList = this.data.pushToList;
+    let that = this;
+    console.log(pushToList)
+    wx.request({
+      url: url_common + '/api/project/importProject',
+      data: {
+        user_id: user_id,
+        project_id: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          pushToList.forEach((x) => {
+            if (x.project_id == project_id) {
+              x.import_status = 1
+            }
+            that.setData({
+              pushToList: pushToList
+            })
+          })
+        } else {
+          console.log(res.data.error_msg)
+        }
+      }
+    })
   }
 })

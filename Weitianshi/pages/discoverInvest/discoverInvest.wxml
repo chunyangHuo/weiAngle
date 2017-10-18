@@ -13,6 +13,7 @@
   <!--投资人  -->
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+      <view class="aBox"></view>
       <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
@@ -26,6 +27,7 @@
   <!--FA(融资顾问) -->
   <swiper-item data-current='1'>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+      <view class="aBox"></view>
       <block wx:for="{{faList}}" wx:key="{{faList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
@@ -60,6 +62,13 @@
 <!--找项目投资人浮票  -->
 <view class="t-competitor" bindtap="matchInvestor">找项目投资人</view>
 
+<!--下面的浮动按钮-->
+<view class="floatBtn">
+  <view class="accreditation flex" wx:if="{{status == 0 ||status ==3}}">
+    <view>认证投资人、买家FA才可申请查看</view>
+    <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
+  </view>
+</view>
 <!---------------------------------------------------------------------------->
 <!--我的人脉  -->
 <template name='myContacts'>

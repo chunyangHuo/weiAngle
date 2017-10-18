@@ -35,7 +35,7 @@ Page({
         type_id: 0
       }
     ],
-    status:0
+    status: 0
   },
   onShow: function () {
     //消除人脉缓存
@@ -45,53 +45,53 @@ Page({
     var messageList = this.data.messageList;
     let count = this.data.count;
     let type_id = this.data.type_id;
- if(user_id){
-   wx.request({
-     url: url_common + '/api/message/messageType',
-     data: {
-       user_id: user_id
-     },
-     method: 'POST',
-     success: function (res) {
-       var list = res.data.data;
-       list.forEach((x, index) => {
-         messageList[index].message_name = x.message_name;
-         messageList[index].count = x.count;
-         messageList[index].type_id = x.type_id;
-         if (x.count) {
-           messageList[index].count = x.count
-         } else {
-           messageList[index].count = 0
-         }
-       })
-       that.setData({
-         messageList: messageList,
-         count: count,
-         type_id: type_id
-       })
-     }
-   })
-   wx.request({
-     url: url_common + '/api/user/getUserGroupByStatus',
-     data: {
-       user_id: user_id
-     },
-     method: 'POST',
-     success: function (res) {
-       // 0:未认证1:待审核 2 审核通过 3审核未通过
-       let status = res.data.status;
-       if (status != 0) {
-         let group_id = res.data.group.group_id;
-         that.setData({
-           group_id: group_id
-         })
-       }
-       that.setData({
-         status: status
-       })
-     }
-   })
- }
+    if (user_id) {
+      wx.request({
+        url: url_common + '/api/message/messageType',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          var list = res.data.data;
+          list.forEach((x, index) => {
+            messageList[index].message_name = x.message_name;
+            messageList[index].count = x.count;
+            messageList[index].type_id = x.type_id;
+            if (x.count) {
+              messageList[index].count = x.count
+            } else {
+              messageList[index].count = 0
+            }
+          })
+          that.setData({
+            messageList: messageList,
+            count: count,
+            type_id: type_id
+          })
+        }
+      })
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          let status = res.data.status;
+          if (status != 0) {
+            let group_id = res.data.group.group_id;
+            that.setData({
+              group_id: group_id
+            })
+          }
+          that.setData({
+            status: status
+          })
+        }
+      })
+    }
   },
 
   // 跳转到人脉申请页面
@@ -178,7 +178,7 @@ Page({
   //测试一键尽调
   testOneKey() {
     wx.navigateTo({
-        url: '/pages/oneKeyResearch/oneKeyResearch?id=RpAQ5jpx',
+      url: '/pages/oneKeyResearch/oneKeyResearch?id=RpAQ5jpx',
     })
   }
 })

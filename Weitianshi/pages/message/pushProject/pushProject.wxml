@@ -49,7 +49,7 @@
               <view class="projectInfo flex">
                 <view class="seeNum">{{item.view_count}}人看过项目</view>
                 <view class="interest flex">
-                  <view class="btnHaveInterest not-interestedm" catchtap="addProjectLibrary" data-push="{{item.push_id}}" data-project="{{item.project_id}}" wx:if="{{item.import_status  == 0}}">加入项目库</view>
+                  <view class="addProjectTo not-interestedm" catchtap="addProjectLibrary" data-push="{{item.push_id}}" data-project="{{item.project_id}}" wx:if="{{item.import_status  == 0}}">加入项目库</view>
                   <view class="haveInterest" wx:if="{{item.import_status  == 1}}">已加入</view>
                   <view class="btnNoInterest not-interestedm" catchtap="noInteresting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{2}}" data-project="{{item.project_id}}">没兴趣</view>
                   <view class="btnHaveInterest interestedm" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0||item.handle_status == 3}}" data-status="{{1}}" data-project="{{item.project_id}}">联系项目方</view>
