@@ -256,7 +256,7 @@ Page({
     var thisData = e.currentTarget.dataset;
     var index = thisData.index;
     wx.navigateTo({
-      url: '/pages/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
+      url: '/pages/projectDetail/projectDetail?id=' + thisData.id
     })
   },
   // 项目融资触底刷新

@@ -21,22 +21,26 @@ function networkDetailShare(that) {
 function myProjectDetailShare(that) {
   let pro_intro = that.data.project.pro_intro;
   let id = that.data.id;
-  let share_id = that.data.view_id;
+  let share_id = wx.getStorageSync('user_id');
   let title = pro_intro;
-  /* return {
+  return {
     title: title,
     path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
-  } */
-  return shareProjectPage(id, title, share_id)
+  }
 }
 //他人项目详情分享
 function projectDetailShare(that) {
   var pro_intro = that.data.project.pro_intro;
   //id :当前页面的项目id
   let id = that.data.id;
-  let share_id = that.data.currentUser;
+  let share_id = wx.getStorageSync('user_id');
   let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
   let title = pro_intro;
+  return {
+    title: pro_intro,
+    path: path,
+    imageUrl: app.globalData.picUrl.shareCommon,
+  }
   return shareProjectPage(id, title, share_id)
 }
 
@@ -145,19 +149,6 @@ function warbandMemberShare(that) {
 }
 
 /* -------------------------------------------------------------------- */
-//分享项目详情(user_id为数据所有人ID,share_Id为分享人的ID)
-function shareProjectPage(id, title, share_id) {
-  let url = app.globalData.url;
-  let url_common = app.globalData.url_common;
-  let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
-  let json = {
-    title: title,
-    path: path,
-    imageUrl: app.globalData.picUrl.shareCommon,
-  }
-  return json
-}
-
 //分享名片详情(user_id为数据所有人ID,share_Id为分享人的ID,name为数据所有人的姓名)
 function sharePage(user_id, share_id, name) {
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;

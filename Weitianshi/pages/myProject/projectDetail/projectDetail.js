@@ -131,7 +131,7 @@ Page({
               textBeyond0: true
             })
           }
-          if (pro_goodness.length >=2) {
+          if (pro_goodness.length >= 2) {
             if (pro_goodness[1].goodness_desc.length > 50) {
               that.setData({
                 textBeyond1: true
@@ -151,7 +151,8 @@ Page({
                 textBeyond3: true
               })
             }
-          }}
+          }
+        }
 
         if (project.pro_finance_use) {
           if (project.pro_finance_use.length > 50) {
@@ -1030,8 +1031,8 @@ Page({
     })
   },
   //分享引导跳转
-  shareJump(e){
-    let index=e.currentTarget.dataset.index;
+  shareJump(e) {
+    let index = e.currentTarget.dataset.index;
     app.shareJump(index);
-  } 
+  }
 });
