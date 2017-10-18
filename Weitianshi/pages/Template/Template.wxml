@@ -111,157 +111,166 @@
 
 <!--My个人描述-->
 <template name="userIntro">
-  <view class="user_intro" bindtap="cardEdit">
-    <view class="intro_title flex">
-      <view class="title flex">
-        <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
-        个人描述
-      </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+<view class="user_intro" bindtap="cardEdit">
+  <view class="intro_title flex">
+    <view class="title flex">
+      <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
+      个人描述
     </view>
-    <view class="intro_content" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
-    <view style="height:32rpx;" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}"></view>
   </view>
+  <view class="intro_content" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
+  <!-- <view style="height:32rpx;" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}"></view> -->
+</view>
 </template>
 
 <!--My寻找案源-->
 <template name="InvestInfo">
   <view class="user_invest_info publish-investmentm" bindtap="findProjectEdit">
-    <view class="flex title">
-      <view class="title">
-        <image class="title_icon" src="/img/icon-anyuan@3x.png"></image>
-        寻找案源
-      </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+  <view class="flex title">
+    <view class="title">
+      <image class="title_icon" src="/img/icon-anyuan@3x.png"></image>
+      投资需求
     </view>
-
-    <!--投资领域-->
-    <view class="invest_title" wx:if="{{invest.invest_industry!=''}}" hidden="{{!invest.invest_industry}}">投资领域</view>
-    <view class="invest_industry_frame" hidden="{{!invest.invest_industry}}">
-      <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
-        <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
-      </block>
-    </view>
-
-    <!--投资轮次-->
-    <view class="invest_title" wx:if="{{invest.invest_stage!=''}}" hidden="{{!invest.invest_stage}}">投资轮次</view>
-    <view class="invest_stage_frame" hidden="{{!invest.invest_stage}}">
-      <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
-        <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
-      </block>
-    </view>
-
-    <!--投资金额-->
-    <view class="invest_title" wx:if="{{invest.invest_scale!=''}}" hidden="{{!invest.invest_scale}}">投资金额</view>
-    <view class="invest_scale_frame" hidden="{{!invest.invest_scale}}">
-      <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
-        <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
-      </block>
-    </view>
-
-    <!--具体描述-->
-    <view class="invest_title" hidden="{{!invest.invest_desc}}">具体描述</view>
-    <view class="invest_desc" hidden="{{!invest.invest_desc}}">{{invest.invest_desc}}</view>
   </view>
+  <!--投资领域-->
+  <view class="invest_title" wx:if="{{invest.invest_industry!=''}}" hidden="{{!invest.invest_industry}}">投资领域</view>
+  <view class="invest_industry_frame" hidden="{{!invest.invest_industry}}">
+    <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
+      <label class="investStyle" wx:if="{{index < invest.invest_industry.length-1}}" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}、</label>
+      <label class="investStyle" wx:if="{{index == invest.invest_industry.length-1}}" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</label>
+    </block>
+  </view>
+  <!--投资轮次-->
+  <view class="invest_title" wx:if="{{invest.invest_stage!=''}}" hidden="{{!invest.invest_stage}}">投资轮次</view>
+  <view class="invest_stage_frame" hidden="{{!invest.invest_stage}}">
+    <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
+      <label class="investStyle" wx:if="{{index < invest.invest_stage.length-1}}" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}、</label>
+      <label class="investStyle" wx:if="{{index == invest.invest_stage.length-1}}" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</label>
+    </block>
+  </view>
+  <!--投资金额-->
+  <view class="invest_title" wx:if="{{invest.invest_scale!=''}}" hidden="{{!invest.invest_scale}}">投资金额</view>
+  <view class="invest_scale_frame" hidden="{{!invest.invest_scale}}">
+    <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
+      <label class="investStyle" wx:if="{{index < invest.invest_scale.length-1}}" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}、</label>
+      <label class="investStyle" wx:if="{{index == invest.invest_scale.length-1}}" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</label>
+    </block>
+  </view>
+  <!--具体描述-->
+  <view class="invest_title" hidden="{{!invest.invest_desc}}">具体描述</view>
+  <view class="investStyle" hidden="{{!invest.invest_desc}}">{{invest.invest_desc}}</view>
+</view>    
 </template>
 
 <!--My资源对接-->
 <template name="resourceInfo">
-  <view class="user_resource_info publish-resourcesm" bindtap="resourceEnchangeEdit">
-    <view class="flex title">
-      <view>
-        <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
-        资源对接
+    <view class="user_resource_info publish-resourcesm" bindtap="resourceEnchangeEdit">
+      <view class="flex title">
+        <view>
+          <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
+          资源需求
+        </view>
       </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
-    </view>
 
-    <!--可提供资源-->
-    <view class="resource_title" wx:if="{{resource.res_give!=''}}" hidden="{{!resource.res_give}}">可提供资源</view>
-    <view class="res_give_frame" wx:if="{{resource.res_give!=''}}" hidden="{{!resource.res_give}}">
-      <block wx:for="{{resource.res_give}}" wx:key="{{item.resource_id}}">
-        <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
-      </block>
-    </view>
+      <!--可提供资源-->
+      <view class="resource_title" wx:if="{{resource.res_give!=''}}" hidden="{{!resource.res_give}}">拥有的资源</view>
+      <view class="res_give_frame" wx:if="{{resource.res_give!=''}}" hidden="{{!resource.res_give}}">
+        <block wx:for="{{resource.res_give}}" wx:key="{{item.resource_id}}">
+          <label class="investStyle" wx:if="{{index < resource.res_give.length-1}}" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}、</label>
+          <label class="investStyle" wx:if="{{index == resource.res_give.length-1}}" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</label>
+        </block>
+      </view>
 
-    <!--正寻求资源-->
-    <view class="resource_title" wx:if="{{resource.res_find !=''}}" hidden="{{!resource.res_find}}">正寻求资源</view>
-    <view class="res_find_frame" wx:if="{{resource.res_find !=''}}" hidden="{{!resource.res_find}}">
-      <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
-        <view class="res_find" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
-      </block>
+      <!--正寻求资源-->
+      <view class="resource_title" wx:if="{{resource.res_find !=''}}" hidden="{{!resource.res_find}}">寻求的资源</view>
+      <view class="res_find_frame" wx:if="{{resource.res_find !=''}}" hidden="{{!resource.res_find}}">
+        <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
+          <label class="investStyle" wx:if="{{index < resource.res_find.length-1}}" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}、</label>
+          <label class="investStyle" wx:if="{{index ==  resource.res_find.length-1}}" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.resource_name}}</label>
+        </block>
+      </view>
+      <!--具体描述  -->
+      <view class="invest_title" hidden="{{!resource.res_desc}}">具体描述</view>
+      <view class="investStyle" hidden="{{!resource.res_desc}}">{{resource.res_desc}}</view>
     </view>
-  </view>
 </template>
 
 <!--项目店铺-->
 <template name="financingProject">
-  <view class="user_project_info my-projectm">
-    <view class="flex title" catchtap="projectFinance">
-      <view>
-        <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
-        {{text}}<label wx:if="{{playTime == 1}}">({{count.project_count}})</label>
-      </view>
-      <view class="classname">查看更多</view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
-    </view>
-    <view class="projcet_info_frame">
-      <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card my-projectm" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="financingDetail" wx:if="{{index<3}}">
-          <view class="pro_intro">
-            {{item.pro_intro||item.case_name}}
-          </view>
-          <view class="pro_industry_frame flex">
-            <block wx:for="{{item.pro_industry||item.case_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
-              <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-            </block>
-          </view>
-          <view class="flex s_pro_sorts">
-            <view class="pro_sorts flex">
-              <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-              <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-              <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+    <view class="user_project_info my-projectm">
+      <view class="intro_title">
+        <view class="flex title" catchtap="projectFinance">
+          <view class="flex">
+            <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
+            <view>
+            {{text}}<label wx:if="{{playTime == 1}}">({{count.project_count}})</label>
             </view>
+          </view>
+          <view class="flex">
+            <view class="seeMore">查看更多</view>
+            <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+          </view>
+        </view>
+      </view>
+      <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
+        <view class="user_project_frame">
+          <view class="flex">
+            <view class="pro_intro">{{item.pro_intro||item.case_name}}</view>
+            <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+            <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+          </view>
+          <block wx:for="{{item.pro_industry||item.case_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
+            <label class="noLight" wx:if="{{index < item.pro_industry.length-1}}" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}、</label>
+            <label class="noLight" wx:if="{{index == item.pro_industry.length-1}}" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</label>
+          </block>
+          <view class="flex">
+            <view class="noLight" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}、</view>
+            <view class="noLight" wx:if="{{item.pro_finance_stock_after}}">{{item.pro_finance_stock_after}}%、</view>
+            <view class="noLight" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}、</view>
+            <view class="noLight" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
           </view>
         </view>
       </block>
-    </view>
   </view>
 </template>
 
 <!--My投资案例-->
 <template name="investProject">
-  <view class="user_project_info investment-casem">
-    <view class="flex title" catchtap="investCase">
-      <view>
-        <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-        成功案例<label wx:if="{{playTime == 1}}"> ({{invest_case.length}})</label>
-      </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
-    </view>
-    <view class="invest_info_frame">
-      <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
-        <view class="project_card" data-id="{{item.case_id}}" data-index="{{index}}">
-          <view class="case_name_frame flex">
-            <image class="case_pic" src="/img/dot@3x.png"></image>
-            <view class="pro_intro">{{item.case_name}}</view>
+    <view class="user_project_info investment-casem">
+      <view class="intro_title">
+        <view class="flex title" catchtap="investCase">
+          <view class="flex">
+            <image class="title_icon" src="/img/icon-anli@3x.png"></image>
+            成功案例<label wx:if="{{playTime == 1}}"> ({{invest_case.length}})</label>
           </view>
-          <view class="pro_industry_frame flex">
-            <block wx:for="{{item.industry}}" wx:key="{{pro_industry.industry_id}}" wx:for-item="pro_industry">
-              <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-            </block>
-          </view>
-          <view class="flex s_pro_sorts">
-            <view class="pro_sorts flex">
-              <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
-              <view class="pro_sort" wx:if="{{item.case_area}}">{{item.case_area.area_title}}</view>
-              <view class="pro_sort" wx:if="{{item.case_money}}">{{item.case_money}}万</view>
-            </view>
+          <view class="flex">
+            <view class="seeMore">查看更多</view>
+            <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
           </view>
         </view>
-      </block>
+      </view>
+      <view class="invest_info_frame">
+        <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
+          <view class="user_project_frame" data-id="{{item.case_id}}" data-index="{{index}}">
+            <view class="flex">
+              <view class="project_time" wx:if="{{item.created_at}}">{{item.created_at}}</view>
+              <view class="project_name" wx:if="{{item.case_name}}">{{item.case_name}}</view>
+              <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
+            </view>
+            <block wx:for="{{item.industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
+              <label class="noLight" wx:if="{{index < item.industry.length -1}}" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}、</label>
+              <label class="noLight" wx:if="{{index == item.industry.length-1}}" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</label>
+            </block>
+            <view class="flex s_pro_sorts">
+              <view class="pro_sorts flex">
+                <view class="noLight" wx:if="{{item.case_money}}">{{item.case_money}}万、</view>
+                <view class="noLight" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
     </view>
-  </view>
 </template>
 
 <!--项目融资列表 && 投资案例列表-->
@@ -947,7 +956,7 @@
         </view>
         <view class="t-classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view class="t-time" wx:if='{{timeShow}}'>{{item.pro_time}}</view>
+      <view class="t-time" wx:if='{{timeShow}}'>{{item.created_at}}</view>
       <view class="t-time" wx:else></view>
     </view>
   </block>

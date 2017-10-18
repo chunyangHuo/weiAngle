@@ -32,3 +32,21 @@
    padding-bottom: 0;
   border:none;
 }
+.t-outBox .t-describle {
+  font-size: 34rpx;
+  color: #333;
+  line-height: 38rpx;
+  text-align: left;
+  margin-bottom: 80rpx;
+  /* width:1418rpx; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.t-insideBox {
+  padding: 40rpx 32rpx 40rpx 32rpx;
+  background: #fff;
+  border-radius: 8rpx;
+}

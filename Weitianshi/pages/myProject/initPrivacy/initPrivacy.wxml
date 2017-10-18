@@ -39,9 +39,9 @@
 </view>
 <view class="blackNameList">
   <view class="blackName">黑名单设置</view>
-    <view class="blackTips blackTips1">针对一下投资机构,屏蔽项目展示</view>
+    <view class="blackTips blackTips1">针对以下投资机构,屏蔽项目展示</view>
     <input class="inputBox" bindinput="blackCompany" maxlength="500" value="{{black_company}}"  placeholder="请输入"/>
-    <view class="blackTips">针对一下用户,屏蔽项目显示</view>
+    <view class="blackTips">针对以下用户,屏蔽项目显示</view>
     <input class="inputBox"  bindinput="blackUser" maxlength="500" value="{{black_user}}" placeholder="请输入"/>
 </view>
 <view class="highBox"></view>

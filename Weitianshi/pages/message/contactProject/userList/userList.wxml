@@ -2,7 +2,7 @@
 <view class="s_frame" hidden="{{projectList=='' || !projectList}}">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" style="height:1334rpx;" >
     <template is="allNumber" data="{{count:count,text:'约谈的项目'}}"></template>
-    <template is="selectProject" data="{{list:projectList,type:3}}"></template>
+    <template is="selectProject" data="{{list:projectList,type:3,timeShow:true}}"></template>
   </scroll-view>
 </view>
 

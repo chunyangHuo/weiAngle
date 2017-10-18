@@ -6,16 +6,11 @@ page {
   height: 100%;
 }
 
-scroll-view {
-  height: 93%;
-}
+/* scroll-view {
+  height: 96%;
+} */
 
 /*我的项目卡片*/
-
-.on {
-  color: #40587a;
-  text-align: center;
-}
 
 .noMessage {
   background: white;
@@ -357,7 +352,7 @@ scroll-view {
   padding: 0 16rpx;
   margin-right: 24rpx;
   flex-wrap: norap;
-  margin-bottom: 24rpx;
+  margin-bottom: 10rpx;
 }
 
 #oneKey .similarCompany {
@@ -822,7 +817,7 @@ scroll-view {
 }
 
 #oneKey .companyNewsContentBox {
-  padding-bottom: 40rpx;
+  /* padding-bottom: 40rpx; */
   border-left: 1rpx solid #e6e6e6;
 }
 
@@ -956,7 +951,7 @@ scroll-view {
 #oneKey .competitorProjectIntro {
   font-size: 22rpx;
   color: #999;
-  line-height: 22rpx;
+  line-height: 26rpx;
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1006,7 +1001,7 @@ scroll-view {
 
 #oneKey .history_financing_rounds {
   position: absolute;
-  right: 32rpx;
+  right: 16rpx;
   /* bottom:70rpx; */
 }
 
@@ -1057,7 +1052,7 @@ scroll-view {
   display: inline-block;
   width: 33.3%;
   font-size: 26rpx;
-  color: #40587a;
+  color: #999;
   line-height: 62rpx;
   text-align: center;
 }
@@ -1183,7 +1178,7 @@ scroll-view {
   border-radius: 98rpx;
   border: 1rpx solid #40587a;
   text-align: center;
-  height: 44rpx;
+  height: 36rpx;
   width: auto;
   line-height: 44rpx;
   padding: 0 16rpx;
@@ -1577,7 +1572,8 @@ scroll-view {
 
 .more {
   color: #009eff;
-  font-size: 12px;
+  font-size: 24rpx;
+  margin-top: 8rpx;
 }
 
 .checkEmail {
@@ -1636,6 +1632,7 @@ scroll-view {
   padding: 30rpx;
   position: relative;
   margin-bottom: 16rpx;
+  height:128rpx;
 }
 
 #productBox .productTitle {
@@ -1664,6 +1661,7 @@ scroll-view {
 
 .productContent {
   font-size: 24rpx;
+  line-height: 30rpx;
   color: #666;
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
@@ -1716,9 +1714,9 @@ scroll-view {
   border-right: 1rpx solid #e6e6e6;
 }
 
-.contactProject {
+/* .contactProject {
   padding-right: 30rpx;
-}
+} */
 
 .businessBook {
   border: none;
@@ -1935,7 +1933,7 @@ scroll-view {
 
 .btnContent {
   font-size: 28rpx;
-  color: #40587a;
+  color: #666;
   line-height: 28rpx;
   text-align: left;
 }
