@@ -65,3 +65,50 @@
   width: 750rpx;
   height:280rpx;
 }
+/*认证细腻  */
+
+.accreditation {
+  background: #fff1e8;
+  height: 88rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 88rpx;
+  text-align: left;
+  padding-left: 32rpx;
+}
+
+.toAccreditation {
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  margin-top: 18rpx;
+  position: absolute;
+  right: 32rpx;
+}
+
+.push {
+  height: 88rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  background: #40587a;
+  text-align: center;
+  color: #fff;
+}
+
+.pushing {
+  background: #ccc;
+  height: 88rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  text-align: center;
+  color: #fff;
+}
+.aBox{
+  height:32rpx;
+  width:100%;
+}

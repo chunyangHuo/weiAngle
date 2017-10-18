@@ -149,7 +149,7 @@ page {
 
  .user_attention view:first-child,
 .user_potential view:first-child {
-  font-size: 28rpx;
+  /* font-size: 28rpx; */
   color: #666;
   height: 40rpx;
   flex: column;

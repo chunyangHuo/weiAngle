@@ -1,31 +1,29 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view id="my" scroll-y="true">
-<template is="topBlock"></template>
+  <template is="topBlock"></template>
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user,count:count,text:'加他为人脉',show:0,IdentificationShow:0,playTime:1}}"></template>
+  <template is="userInfo" data="{{user:user,count:count,text:'收藏他',show:0,IdentificationShow:0,playTime:1}}"></template>
+  <view class="downBox">
+    <!--个人描述-->
+    <template is="userIntro" data="{{user:user}}"></template>
 
-  <!--个人描述-->
-  <template is="userIntro" data="{{user:user}}"></template>
+    <!--项目店铺-->
+    <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:1}}"></template>
 
-  <!--他的项目库-->
-  <template is="financingProject" data="{{project_info:project_info,text:'他的项目库',canEdit:1}}"></template>
+    <!--成功案例-->
+    <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
 
-   <!--投资案例-->
-  <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
-  
-  <!--寻找案源-->
-  <template is="InvestInfo" data="{{invest:invest}}"></template>
+    <!--投资需求-->
+    <template is="InvestInfo" data="{{invest:invest}}"></template>
 
-  <!--资源对接-->
-  <template is="resourceInfo" data="{{resource:resource}}"></template>
+    <!--资源需求-->
+    <template is="resourceInfo" data="{{resource:resource}}"></template>
 
- 
+    <template is="forButton"></template>
 
-  <template is="forButton"></template>
-
-  <!--我的人脉和加入人脉-->
-  <!--button——type =  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉-->
-  <!--<view class="aboutNetwork flex" wx:if="{{button_type == 0||button_type==3}}">
+    <!--我的人脉和加入人脉-->
+    <!--button——type =  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉-->
+    <!--<view class="aboutNetwork flex" wx:if="{{button_type == 0||button_type==3}}">
     <view bindtap="addNetwork">加人脉</view>
   </view> 
   <view class="aboutNetwork flex" wx:if="{{button_type == 4}}">
@@ -34,11 +32,12 @@
   <view class="floatBtn flex waitPerson" wx:if="{{button_type==2}}">
     <button class="waitPersonBtn" style="background: #f2f2f2;color:#cccccc;">待验证</button>
   </view>-->
+  </view>
   <view class="flex sharePageButton floatBtn">
+    <view class="myContacts  my-contactsm" bindtap="toContacts">创建我的名片</view>
     <view class="myContacts addPerson pushprojectm" bindtap="pushProject">推送项目</view>
     <view class="giveProject" wx:if="{{button_type == 1}}">已为人脉</view>
     <view class="addNetwork add-contactsm" bindtap="addNetwork" wx:if="{{button_type == 0||button_type==3 ||button_type == 4}}">加人脉</view>
-    <view class="giveProject" bindtap="addNetwork"  wx:if="{{button_type==2}}">待验证</view>
-    <view class="myContacts addPerson my-contactsm" bindtap="toContacts">我的人脉</view>
+    <view class="giveProject" bindtap="addNetwork" wx:if="{{button_type==2}}">待验证</view>
   </view>
 </scroll-view>

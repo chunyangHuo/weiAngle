@@ -3,19 +3,20 @@
 <view id='matchInvestor'>
   <!--蓝顶  -->
   <view class='blueTop'>
-    <view class='publicButton' bindtap='publicBtn'>
+    <view class='publicButton flex' bindtap='publicBtn'>
       <image src='/img/icon-fabu@2x.png'></image>
-      发布融资项目
+     <view class="publicButtonTitle"> 发布融资项目</view>
     </view>
   </view>
   <!--展示内容  -->
   <scroll-view class='scroll' scroll-y="true" bindscrolltolower='loadMore'>
     <block wx:for='{{myProject}}' wx:key='{{item.project_id}}'>
       <view class='itemCard' data-id='{{item.project_id}}' bindtap='projectDetail'>
-        <view class='cardTop flex'>
+        <view class="flex cardTop">
           <view>匹配推荐: {{item.match_count}}人</view>
           <button class='pushBtn' data-pro-id='{{item.project_id}}' catchtap='goToMatchInvestor'>一键推送</button>
         </view>
+        <view class="line" wx:if="{{item.match_count!=0}}"></view>
         <!--匹配到的投资人  -->
         <view class='matchInvestor flex'>
           <block wx:for='{{item.match_investors}}' wx:key='investor.investor_id' wx:for-item='investor' wx:for-index='investorIndex'>

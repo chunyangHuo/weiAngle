@@ -19,17 +19,21 @@ page {
   background: white;
   border-radius: 52rpx;
   padding: 0 5%;
-  text-align: center;
+  /* text-align: center; */
   line-height: 104rpx;
   font-size: 32rpx;
   color: #40587a;
+}
+
+.publicButtonTitle {
+  margin-left: 38%;
 }
 
 .publicButton image {
   width: 28rpx;
   height: 28rpx;
   position: absolute;
-  left: 30%;
+  left: 34%;
   top: 36%;
 }
 
@@ -47,13 +51,17 @@ page {
 }
 
 .cardTop {
-  font-size: 12px;
+  font-size: 24rpx;
   color: #666;
   padding-bottom: 20rpx;
   justify-content: space-between;
-  border-bottom: 1rpx solid #e6e6e6;
+  /* border-bottom: 1rpx solid #e6e6e6; */
 }
-
+.line{
+  width:100%;
+  height:2rpx;
+  background: #e6e6e6;
+}
 .cardTop .pushBtn {
   width: 136rpx;
   height: 52rpx;
@@ -62,13 +70,15 @@ page {
   font-size: 24rpx;
   line-height: 52rpx;
   margin: 0;
-  border-radius: 4px;
+  border-radius: 4rpx;
   padding-left: 0;
   padding-right: 0;
 }
-.matchInvestor{
+
+.matchInvestor {
   padding-top: 28rpx;
-} 
+}
+
 .matchInvestor .investorItem {
   width: 25%;
 }
@@ -94,9 +104,12 @@ page {
 .matchInvestor .investorBand {
   font-size: 22rpx;
   color: #666;
-  line-height: 22rpx;
+  line-height: 24rpx;
   text-align: center;
   margin-top: 8rpx;
+  width: 152rpx;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .projectDetal {
@@ -109,6 +122,7 @@ height:81px; */
 .projectTop {
   justify-content: space-between;
   padding: 24rpx 24rpx;
+  padding-bottom: 20rpx;
   margin-top: 28rpx;
 }
 
@@ -135,11 +149,11 @@ height:81px; */
 .industryArr, .otherTag {
   font-size: 24rpx;
   color: #666;
-  padding: 10rpx 24rpx;
+  padding: 0 24rpx;
 }
 
 .otherTag {
-  padding: 24rpx 24rpx;
+  padding: 20rpx 24rpx;
 }
 
 .publishTag {
@@ -208,9 +222,11 @@ height:81px; */
 }
 
 /*为空的时候的样式  */
-.emptyStyle{
-    text-align: center;
+
+.emptyStyle {
+  text-align: center;
 }
+
 .emptyStyle image {
   width: 438rpx;
   height: 370rpx;
