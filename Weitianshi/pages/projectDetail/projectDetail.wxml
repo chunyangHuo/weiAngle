@@ -57,7 +57,7 @@
       </view>
     </view>
     <!--三个tab页  -->
-    <include src='/utils/threeTab.wxml' />
+    <include src='/utils/wxml/threeTab.wxml' />
     <!--申请查看未能过-->
     <view class="lockStyle" wx:if="{{show_detail != 1}}">
       <image class="lock" src="/img/img-suo2@2x.png"></image>

@@ -57,7 +57,7 @@
       </view>
     </view>
   </view>
-  <include src='/utils/threeTab.wxml'/>
+  <include src='/utils/wxml/threeTab.wxml'/>
 </view>
 
 <!--下面的浮动按钮-->

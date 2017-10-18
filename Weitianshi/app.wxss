@@ -1,6 +1,5 @@
-/**app.wxss**/
-@import "weui.wxss";
-@import '/utils/myContactsCard.wxss';
+/* @import "weui.wxss"; */
+@import '/utils/wxss/myContactsCard.wxss';
 
 scroll-view {
   height: 100%;

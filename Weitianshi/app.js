@@ -1,4 +1,4 @@
-import * as request from './utils/http';
+import * as request from './utils/httpModel';
 import * as OperationModel from './utils/operationModel';
 import { picUrl } from './utils/picUrlModel';
 //app.js
