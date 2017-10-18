@@ -644,7 +644,7 @@ App({
   },
 
   //初始本地缓存
-  globalData: {
+  globalData: { 
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',

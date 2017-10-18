@@ -31,8 +31,7 @@ Page({
   },
 
   onShareAppMessage: function () {
-    console.log(SharePage.activtyShare)
-    return SharePage.activtyShare();
+    return ShareModel.activtyShare();
   },
   //报名
   enroll: function (e) {
