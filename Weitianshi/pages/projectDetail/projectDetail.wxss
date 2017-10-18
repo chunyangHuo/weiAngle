@@ -11,11 +11,11 @@ scroll-view {
 
 /*我的项目卡片*/
 
-.on {
+/* .on {
   color: #ccc;
   border-bottom: 5rpx solid #333;
   text-align: center;
-}
+} */
 
 .more {
   color: #009eff;

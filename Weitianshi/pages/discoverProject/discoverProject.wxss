@@ -1,9 +1,10 @@
 /*tab切换页  */
+
 .swiper-tab {
   width: 100%;
   line-height: 80rpx;
   background: #40587a;
-  z-index:999;
+  z-index: 999;
 }
 
 .swiper-tab-list {
@@ -14,6 +15,11 @@
   line-height: 62rpx;
   text-align: center;
   border: none;
+  /* margin-left:30%; */
+}
+
+.swiper-tab {
+  padding-left: 30%;
 }
 
 .on {
@@ -21,19 +27,22 @@
   text-align: center;
   font-size: 26rpx;
   line-height: 80rpx;
+  border-bottom: 4rpx solid white;
 }
 
-.dropDown{
-  top:160rpx;
+.dropDown {
+  top: 160rpx;
 }
 
 /*banner轮播图  */
-.slide-image{
-  width:100%;
+
+.slide-image {
+  width: 100%;
   height: 100%;
 }
 
 /*精选项目copy  */
+
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -61,6 +70,7 @@
 }
 
 /*人脉王浮标  */
+
 .competitor {
   position: fixed;
   bottom: 132rpx;
@@ -79,7 +89,9 @@
   border-radius: 35rpx 0 0 35rpx;
   padding-right: 28rpx;
 }
+
 /*模态框  */
+
 .modalBox {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -87,8 +99,9 @@
   position: absolute;
   left: 0;
   top: 0;
-   z-index:9999999;
+  z-index: 9999999;
 }
+
 .contactModalBox {
   height: 652rpx;
   width: 506rpx;
@@ -97,59 +110,66 @@
   margin-left: 64rpx;
   padding: 40rpx 32rpx 32rpx 32rpx;
   position: relative;
-  z-index:99999999;
+  z-index: 99999999;
 }
-.modalTitle{
-font-size:32rpx;
-color:#333333;
-line-height:32rpx;
-text-align:center;
-margin-bottom:16rpx;
+
+.modalTitle {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 32rpx;
+  text-align: center;
+  margin-bottom: 16rpx;
 }
-.modalContent{
-border:1rpx solid #e6e6e6;
-/* width:504rpx; */
-height:258rpx;
-margin-bottom:48rpx;
-margin-right: 0;
-outline: none;
-padding-top:20rpx;
-padding-left:24rpx;
-font-size:28rpx;
-color:#999999;
-line-height:28rpx;
+
+.modalContent {
+  border: 1rpx solid #e6e6e6;
+  /* width:504rpx; */
+  height: 258rpx;
+  margin-bottom: 48rpx;
+  margin-right: 0;
+  outline: none;
+  padding-top: 20rpx;
+  padding-left: 24rpx;
+  font-size: 28rpx;
+  color: #999;
+  line-height: 28rpx;
 }
-.modalTips{
-font-size:28rpx;
-color:#666666;
-line-height:40rpx;
-text-align:center;
-padding:0 28rpx;
+
+.modalTips {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 40rpx;
+  text-align: center;
+  padding: 0 28rpx;
 }
-.btn{
-background:#40587a;
-border-radius:6rpx;
-width:506rpx;
-height:88rpx;
-font-size:32rpx;
-color:#ffffff;
-line-height:88rpx;
-text-align:center;
-margin-top: 72rpx;
+
+.btn {
+  background: #40587a;
+  border-radius: 6rpx;
+  width: 506rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 88rpx;
+  text-align: center;
+  margin-top: 72rpx;
 }
-.close{
-  width:48rpx;
-  height:48rpx;
+
+.close {
+  width: 48rpx;
+  height: 48rpx;
   position: absolute;
-  top:185rpx;
-  right:94rpx;
-    z-index:999999999;
+  top: 185rpx;
+  right: 94rpx;
+  z-index: 999999999;
 }
-.aPic{
-  height:250rpx;
-  width:276rpx;
+
+.aPic {
+  height: 250rpx;
+  width: 276rpx;
   margin: 96rpx 0 62rpx 118rpx;
 }
-.newBox{
-  color:#333
+
+.newBox {
+  color: #333;
 }

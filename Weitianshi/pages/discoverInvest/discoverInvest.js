@@ -26,7 +26,6 @@ Page({
   },
   onShow: function () {
     let that = this;
-    let user_id = this.data.user_id;
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -40,8 +39,30 @@ Page({
       that.setData({
         user_id: user_id
       });
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          let status = res.data.status;
+          if (status != 0) {
+            let group_id = res.data.group.group_id;
+            that.setData({
+              group_id: group_id
+            })
+          }
+          that.setData({
+            status: status
+          })
+        }
+      })
       that.investorList();
     })
+
   },
   // 点击tab切换
   swichNav: function (e) {

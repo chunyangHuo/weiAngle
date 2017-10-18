@@ -334,6 +334,8 @@ page {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width:510rpx;
+  margin-right:32rpx;
 }
 
 .noLight {
@@ -771,4 +773,14 @@ page {
   margin-right: 78rpx;
   width: 36rpx;
   height: 36rpx;
+}
+.is_exclusive {
+  border: 2rpx solid #40587a;
+  border-radius: 4rpx;
+  width: 46rpx;
+  height: 28rpx;
+  color: #40587a;
+  font-size: 18rpx;
+  line-height: 28rpx;
+  text-align: center;
 }
