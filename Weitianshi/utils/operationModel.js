@@ -296,34 +296,38 @@ function projectApplyDirect(pro_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-  // 发送申请
-  wx.request({
-    url: url_common + '/api/project/applyProject',
-    data: {
-      user_id: user_id,
-      project_id: pro_id
-    },
-    method: 'POST',
-    success: function (res) {
-      if (res.data.status_code == 2000000) {
-        wx.showToast({
-          title: '已提交申请',
-          icon: 'success',
-          duration: 2000
-        })
-        if (callBack) {
-          callBack(res)
+  checkUserInfo(
+    res=>{
+      // 发送申请
+      wx.request({
+        url: url_common + '/api/project/applyProject',
+        data: {
+          user_id: user_id,
+          project_id: pro_id
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            wx.showToast({
+              title: '已提交申请',
+              icon: 'success',
+              duration: 2000
+            })
+            if (callBack) {
+              callBack(res)
+            }
+            console.log('applyProject', res)
+          } else if (statusCode == 5005005) {
+            wx.showToast({
+              title: '请勿重复申请',
+              icon: 'success',
+              duration: 2000
+            })
+          }
         }
-        console.log('applyProject', res)
-      } else if (statusCode == 5005005) {
-        wx.showToast({
-          title: '请勿重复申请',
-          icon: 'success',
-          duration: 2000
-        })
-      }
+      })
     }
-  })
+  )
 }
 
 
