@@ -83,10 +83,11 @@
   line-height: 38rpx;
   text-align: left;
   margin-bottom: 32rpx;
-  /* width:1418rpx; */
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .allIndustry {

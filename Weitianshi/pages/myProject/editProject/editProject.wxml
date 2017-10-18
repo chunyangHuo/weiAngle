@@ -11,7 +11,7 @@
   </view>
   <view class="card">
     <view class="text">项目介绍*</view>
-    <textarea placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
+    <input  placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
   </view>
 
   <!--项目领域-->

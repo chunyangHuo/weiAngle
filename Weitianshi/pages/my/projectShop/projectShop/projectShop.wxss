@@ -1,8 +1,10 @@
 /* pages/my/projectFinance/projectFinance.wxss */
-page{
+
+page {
   height: 100%;
   /* overflow: hidden; */
 }
+
 .weui-media-box__desc:last-child {
   border-right: none;
 }
@@ -158,7 +160,7 @@ page{
   line-height: 88rpx;
   color: #fff;
   font-size: 30rpx;
-  background:#40587a;
+  background: #40587a;
 }
 
 .shop {
@@ -226,12 +228,14 @@ page{
 .outBox .describle {
   font-size: 32rpx;
   color: #333;
-  line-height: 32rpx;
+  line-height: 38rpx;
   text-align: left;
   margin-bottom: 36rpx;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .allIndustry {
@@ -545,14 +549,22 @@ page{
   letter-spacing: 0;
   line-height: 28rpx;
   text-align: center;
-   margin-top: 144rpx;
+  margin-top: 144rpx;
 }
+
 .btnGroup {
-  margin-bottom:20rpx;
+  margin-bottom: 20rpx;
 }
-.projectList{
+
+.projectList {
   height: 454rpx;
 }
-.newProjectList{
-  height:726rpx;
+
+.newProjectList {
+  height: 726rpx;
+}
+
+.newProject {
+  padding-right: 122rpx;
+  padding-left: 122rpx;
 }

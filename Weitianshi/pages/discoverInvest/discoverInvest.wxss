@@ -1,15 +1,16 @@
 /*tab切换页  */
+
 .swiper-tab {
   width: 100%;
   line-height: 80rpx;
   background: #40587a;
-  z-index:999;
+  z-index: 999;
 }
 
 .swiper-tab-list {
   display: inline-block;
   padding-left: 32rpx;
-  padding-right:32rpx;
+  padding-right: 32rpx;
   font-size: 26rpx;
   color: #999;
   line-height: 62rpx;
@@ -24,17 +25,19 @@
   line-height: 80rpx;
 }
 
-.dropDown{
-  top:160rpx;
+.dropDown {
+  top: 160rpx;
 }
 
 /*banner轮播图  */
-.slide-image{
-  width:100%;
+
+.slide-image {
+  width: 100%;
   height: 100%;
 }
 
 /*精选项目copy  */
+
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -61,10 +64,11 @@
   margin-right: 12rpx;
 }
 
-.contactsPic{
+.contactsPic {
   width: 750rpx;
-  height:280rpx;
+  height: 280rpx;
 }
+
 /*认证细腻  */
 
 .accreditation {
@@ -108,7 +112,30 @@
   text-align: center;
   color: #fff;
 }
-.aBox{
-  height:32rpx;
-  width:100%;
+
+.aBox {
+  height: 32rpx;
+  width: 100%;
+}
+
+.t-highBox {
+  height: 88rpx;
+  width: 100%;
+}
+.searchNothing {
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: center;
+  margin-top: 252rpx;
+}
+
+.searchLine {
+  margin-bottom: 72rpx;
+  height: 2rpx;
+  margin-left:32rpx;
+  margin-right: 32rpx;
+  border-bottom:2rpx dashed #999;
+  width: 90%;
 }
