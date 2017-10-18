@@ -3,24 +3,25 @@
 
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,blue:blue,count:count,text:'收藏他',show:0,IdentificationShow:1,playTime:1}}"></template>
+  <view class="downBox">
+    <!--个人描述-->
+    <template is="userIntro" data="{{user:user}}"></template>
 
-  <!--个人描述-->
-  <template is="userIntro" data="{{user:user}}"></template>
+    <!--项目店铺-->
+    <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:1}}"></template>
 
-  <!--他的项目库-->
-  <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:1}}"></template>
+    <!--成功案例-->
+    <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
 
-  <!--投资案例-->
-  <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
-  
-  <!--寻找案源-->
-  <template is="InvestInfo" data="{{invest:invest}}"></template>
+    <!--投资需求-->
+    <template is="InvestInfo" data="{{invest:invest}}"></template>
 
-  <!--资源对接-->
-  <template is="resourceInfo" data="{{resource:resource}}"></template>
+    <!--资源需求-->
+    <template is="resourceInfo" data="{{resource:resource}}"></template>
 
 
-  <view style="height:88rpx;"></view>
+    <view style="height:88rpx;"></view>
+  </view>
   <!--加人脉按钮-->
   <!-- button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉 -->
   <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3||button_type == 4}}">
@@ -35,7 +36,7 @@
   </view>
   <!--button-type == 2 待验证状态  -->
   <view class="floatBtn flex addPerson" wx:if="{{button_type==2}}">
-    <view class="flex pushProjectBox"  data-id="{{user.user_id}}">
+    <view class="flex pushProjectBox" data-id="{{user.user_id}}">
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
       <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
     </view>

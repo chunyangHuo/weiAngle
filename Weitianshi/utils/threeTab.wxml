@@ -30,11 +30,11 @@
                 <view class="title">项目介绍</view>
               </view>
               <view class="contentAll">
-                <view class="titleRightBP send-bpm" bindtap="businessBook">发送BP
+                <view class="titleRightBP send-bpm" bindtap="businessBook">查看BP
                   <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                 </view>
                 <view>
-                  <view class="titleRightBP send-bpm" bindtap="businessBook" wx:if="{{project.pro_BP.length != 0}}">发送BP
+                  <view class="titleRightBP send-bpm" bindtap="businessBook" wx:if="{{project.pro_BP.length != 0}}">查看BP
                     <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                   </view>
                   <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
@@ -233,7 +233,7 @@
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
             <!--FA签约-->
-            <view class="signFA" wx:if="{{project.pro_FA}}">
+            <!-- <view class="signFA" wx:if="{{project.pro_FA}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>
@@ -266,7 +266,7 @@
                   </view>
                 </view>
               </view>
-            </view>
+            </view> -->
           </view>
           <view style="height:24rpx;"></view>
         </view>

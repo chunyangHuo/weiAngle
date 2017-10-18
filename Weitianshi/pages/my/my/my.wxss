@@ -9,33 +9,6 @@ page {
   height: 100%;
 }
 
-/*用户名片*/
-
-.user_edit {
-  display: block;
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 0;
-  padding-left: 20rpx;
-  margin-top: 140rpx;
-  text-align: right;
-  border: none !important;
-  position: absolute;
-  top: 116rpx;
-  right: 44rpx;
-}
-
-.user_edit image {
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 0;
-}
-
-.user_email label {
-  margin-right: -40rpx;
-  margin-top: -40rpx;
-}
-
 .user_info {
   margin: 40rpx 32rpx;
   background: white;
@@ -49,47 +22,26 @@ page {
   width: 80%;
 }
 
-.Identification {
-  margin: 4rpx;
-  border: 2rpx solid #40587a;
-  border-radius: 200rpx;
-  width: 100rpx;
-  height: 40rpx;
-  color: #40587a;
-  position: absolute;
-  top: 160rpx;
-  right: 12rpx;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 40rpx;
+.user_intro, .user_project_info, .user_invest_info, .user_resource_info {
+  background: #fafafa;
+  border-radius: 4rpx;
+  width: 638rpx;
+  margin-bottom: 24rpx;
+  padding: 32rpx 24rpx;
 }
 
-.user_left .flex:first-child {
-  align-items: flex-end;
-  /*margin-bottom: 96rpx;*/
-  margin-bottom: 0;
-}
-
-.user_right {
-  width: 20%;
-  height: 120rpx;
-}
-
-.user_right image {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-}
-
-.user_down {
-  background: white;
-  padding: 32rpx 64rpx;
+.intro_title {
+  height: 32rpx;
+  color: #333;
   margin-bottom: 32rpx;
 }
 
-.user_pic, user_text {
-  display: flex;
-  flex-direction: column-reverse;
+.intro_title .iconEdit, .title .iconEdit {
+  width: 36rpx;
+  height: 36rpx;
+  display: block;
+  padding-right: 32rpx;
+  margin-right: -32rpx;
 }
 
 .user_name {
@@ -124,6 +76,187 @@ page {
   width: auto;
 }
 
+.renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+  margin-left: 8rpx;
+  margin: 17rpx 4rpx 0 8rpx;
+}
+
+.userPart {
+  font-size: 20rpx;
+  color: #d3b987;
+  line-height: 48rpx;
+  text-align: left;
+}
+
+.userPart1 {
+  margin-top: 4rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  width: auto;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #333;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+.intro_content {
+  font-size: 26rpx;
+  color: #666;
+  text-align: left;
+  line-height: 38rpx;
+}
+
+.intro_title {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title .title_icon {
+  width: 28rpx;
+  height: 28rpx;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  margin-right: 16rpx;
+}
+
+/* .title view {
+  font-size: 28rpx;
+  color: #333;
+  align-items: center;
+  height: 32rpx;
+  line-height: 32rpx;
+  display: flex;
+} */
+
+.title image {
+  width: 22rpx;
+  height: 22rpx;
+}
+
+.userAuthentication {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  text-align: left;
+  margin-left: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.user_right {
+  width: 20%;
+  height: 120rpx;
+}
+
+.user_right image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.user_pic, user_text {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.Identification {
+  margin: 4rpx;
+  border: 2rpx solid #40587a;
+  border-radius: 200rpx;
+  width: 100rpx;
+  height: 40rpx;
+  color: #40587a;
+  position: absolute;
+  top: 160rpx;
+  right: 12rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.IdentificationNum {
+  height: 616rpx;
+  width: 534rpx;
+  background-color: white;
+  margin-top: 206rpx;
+  margin-left: 64rpx;
+  padding: 56rpx 44rpx 48rpx 44rpx;
+}
+
+.IdentificationTitle {
+  font-family: MicrosoftYaHei;
+  font-size: 44rpx;
+  color: #1f2d3d;
+  line-height: 44rpx;
+  text-align: center;
+  margin: 0 36rpx 24rpx 30rpx;
+}
+
+.IdentificationNumText {
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #c0ccda;
+  line-height: 20rpx;
+  text-align: center;
+  margin-bottom: 118rpx;
+}
+
+.user_edit {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 0;
+  padding-left: 20rpx;
+  margin-top: 140rpx;
+  text-align: right;
+  border: none !important;
+  position: absolute;
+  top: 116rpx;
+  right: 44rpx;
+}
+
+.user_edit image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 0;
+}
+
+.line {
+  background: #e6e6e6;
+  width: 622rpx;
+  height: 1rpx;
+  margin-top: 32rpx;
+  display: inline-block;
+}
+
+.iconBox {
+  margin-top: 20rpx;
+  width: 662rpx;
+}
+
+.littleBox {
+  margin-right: 78rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.messageIconStyle {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.user_down {
+  background: white;
+  padding: 32rpx 64rpx;
+  margin-bottom: 32rpx;
+}
+
 .user_popularity, .user_attention, .user_potential {
   width: 120rpx;
   background: #f2f2f2;
@@ -144,242 +277,131 @@ page {
   /*justify-content: center;*/
 }
 
+.popularityNum, .potentialNum, .attentionNum {
+  font-size: 8px;
+  color: #f44c4c;
+  line-height: 20rpx;
+  text-align: left;
+  position: absolute;
+  left: 20%;
+}
+
+.popularity-Num, .attention-Num, .potential-Num {
+  font-size: 32rpx;
+  color: #333;
+  letter-spacing: 0;
+  margin-top: 2rpx;
+  line-height: 46rpx;
+  text-align: center;
+}
+
+.popularity-people {
+  font-size: 20rpx;
+  color: #666;
+  /*line-height: 60rpx;*/
+  text-align: center;
+}
+
+.attentionNum {
+  left: 54%;
+}
+
 .user_potential {
   margin-right: 0;
 }
 
-/*个人描述*/
-
-.user_intro {
-  background: white;
-  margin-bottom: 32rpx;
-}
-
-.user_intro .intro_title {
-  color: #333;
-  font-size: 28rpx;
+.downBox {
+  background: #fff;
   padding: 32rpx;
+}
+
+/*店铺的样式  */
+
+.user_project_frame {
+  background: #fff;
+  border-radius: 4rpx;
+  border: 1rpx solid #e6e6e6;
+  margin-bottom: 22rpx;
+  width: 590rpx;
+  padding: 24rpx;
+  position: relative;
+}
+
+.pro_intro {
+  font-size: 26rpx;
+  color: #333;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.noLight {
+  font-size: 24rpx;
+  color: #666;
+  text-align: left;
+  margin-top: 22rpx;
+}
+
+.projectDetailType {
+  border-radius: 4rpx;
+  width: 48rpx;
   height: 32rpx;
+  position: absolute;
+  right: 24rpx;
 }
 
-.intro_title .iconEdit, .title .iconEdit {
-  width: 36rpx;
-  height: 36rpx;
-  display: block;
-  padding-right: 32rpx;
-  margin-right: -32rpx;
-}
+/*成功案例  */
 
-.s_pro_sorts {
-  align-items: baseline;
-}
-
-.s_iconEdit {
-  width: 26rpx;
-  height: 26rpx;
-  display: block;
-}
-
-.sort_frame {
-  align-items: center;
-}
-
-.user_intro .intro_content {
-  padding: 19rpx 22rpx;
-  background: #f2f2f2;
-  font-size: 20rpx;
-  height: 94rpx;
-  margin: 0 32rpx;
-  border-radius: 8rpx;
+.project_time, .project_name {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 26rpx;
+  white-space: nowrap;
   overflow: hidden;
 }
 
-.user_invest_info, .user_resource_info, .user_project_info, .user_invest_case {
-background:#fafafa;
- margin: 32rpx;
-  margin-bottom: 32rpx;
+.project_time {
+  width: 94rpx;
+  margin-right: 48rpx;
 }
 
-.user_invest_case {
-  margin-bottom: 0;
-}
-
-.title {
-  font-size: 28rpx;
-  color: #333;
-  justify-content: space-between;
-  vertical-align: middle;
-}
-
-.intro_title {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title .title_icon {
-  width: 32rpx;
-  height: 32rpx;
-  padding: 0;
-  margin: 0;
-  font-size: 0;
-  margin-right: 16rpx;
-}
-
-.title view {
-  font-size: 28rpx;
-  color: #333;
-  align-items: center;
-  height: 32rpx;
-  line-height: 32rpx;
-  display: flex;
-}
-
-.title image {
-  width: 22rpx;
-  height: 22rpx;
-}
-
-/*寻找案源*/
-
-.invest_title, .resource_title {
-  font-size: 24rpx;
-  margin-bottom: 32rpx;
-  padding-top: 24rpx;
-}
-
-.invest_info_frame .project_card {
-  border: none;
-  border-left: 1px solid #e0e0e0;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-bottom: 64rpx;
-}
-
-.invest_info_frame .project_card:last-child {
-  border-left: 0;
-  padding-bottom: 64rpx;
-}
-
-.case_pic {
-  width: 16rpx;
-  height: 16rpx;
-  margin-left: -40rpx;
-  margin-right: 32rpx;
-}
-
-.project_card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8rpx;
-  padding: 32rpx;
-  margin-bottom: 22rpx;
-}
-
-.project_card:first-child {
-  margin-top: 32rpx;
-}
-
-.invest_info_frame .project_card:last-child {
-  margin-bottom: 0;
-  padding-bottom: 32rpx;
-}
-
-.invest_title {
-  font-size: 24rpx;
-  color: #333;
-  margin-bottom: 32rpx;
-}
-
-.invest_stage_frame, .invest_scale_frame, .invest_industry_frame,
-.res_find_frame, .res_give_frame {
-  display: flex;
-  margin-bottom: 24rpx;
-}
-
-.invest_industry, .invest_stage, .invest_scale, .res_find, .res_give {
-  font-size: 20rpx;
-  padding: 10rpx 14rpx;
-  border: 1px solid #666;
-  color: #666;
-  border-radius: 8rpx;
-  margin-right: 22rpx;
-}
-
-.invest_desc {
-  padding: 18rpx 24rpx;
-  background: #f2f2f2;
-  font-size: 20rpx;
-  height: 132rpx;
-  border-radius: 8rpx;
-}
-
-/*资源对接*/
-
-.pro_intro {
-  font-size: 28rpx;
-  color: #333;
-}
-
-.pro_industry_frame {
-  width: 100%;
-  margin-top: 16rpx;
-}
-
-.pro_industry {
-  border-right: 1px solid #e0e0e0;
-  padding-right: 13rpx;
-  padding-left: 13rpx;
-  font-size: 24rpx;
-  color: #666;
-}
-
-.pro_industry:first-child {
-  padding-left: 0;
-}
-
-.pro_industry:last-child {
-  border: none;
-}
-
-.pro_sorts {
-  width: 100%;
-  margin-top: 20rpx;
+.project_name {
+  width: 368rpx;
 }
 
 .pro_sort {
   font-size: 20rpx;
-  color: #999;
+  color: #40587a;
   border-radius: 98rpx;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #40587a;
   text-align: center;
   height: 30rpx;
   line-height: 30rpx;
   padding: 0 16rpx;
-  margin-right: 24rpx;
+  white-space: nowrap;
 }
 
-/*投资案例*/
-
-.case_point {
-  width: 16rpx;
-  height: 16rpx;
+.seeMore {
+  font-size: 24rpx;
+  color: #40587a;
 }
 
-.case_name {
-  font-size: 28rpx;
-  color: #333;
-  padding-right: 460rpx;
-}
+/*投资需求  */
 
-.case_time {
-  width: 125rpx;
-  height: 28rpx;
-  line-height: 28rpx;
-  border-radius: 8rpx;
-  background: #f2f2f2;
+.invest_title, .resource_title {
+  font-size: 24rpx;
   color: #999;
-  font-size: 20rpx;
-  text-align: center;
+  line-height: 24rpx;
+  text-align: left;
+  margin-top: 48rpx;
+}
+
+.investStyle {
+  font-size: 24rpx;
+  color: #666;
+  text-align: left;
+  margin-top: 22rpx;
 }
 
 /*去交换*/
@@ -749,11 +771,4 @@ background:#fafafa;
   margin-right: 78rpx;
   width: 36rpx;
   height: 36rpx;
-}
-
-.seeMore {
-  font-size: 24rpx;
-  color: #40587a;
-  line-height: 24rpx;
-  text-align: right;
 }

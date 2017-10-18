@@ -1,35 +1,33 @@
 <import src="/pages/Template/Template.wxml" />
+
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
 
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'收藏我',show : 1,IdentificationShow :1,playTime:0}}"></template>
 
-  <!--个人描述-->
-  <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
-  <!--项目融资-->
-  <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:canEdit,count:count,playTime:1}}"></template>
+  <view class="downBox">
+    <!--个人描述  -->
+    <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
+    <!--项目店铺  -->
+    <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:canEdit,count:count,playTime:1}}"></template>
+    <!--成功案例  -->
+    <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit,playTime:1}}"></template>
+    <!--  投资需求-->
+    <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
+    <!--资源需求  -->
+    <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>
+    <view style="height:92rpx;"></view>
+    <!--交换名片-->
+    <view class="changeCard flex" wx:if="{{!options}}">
+      <view>交换名片,搭建我的人脉库</view>
+      <button bindtap="cardChange">去交换</button>
+    </view>
 
-  <!--投资案例-->
-  <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit,playTime:1}}"></template>
-
-  <!--寻找案源-->
-  <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
-
-  <!--资源对接-->
-  <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>
-
-  <view style="height:92rpx;"></view>
-
-  <!--交换名片-->
-  <view class="changeCard flex" wx:if="{{!options}}">
-    <view>交换名片,搭建我的人脉库</view>
-    <button bindtap="cardChange">去交换</button>
-  </view>
-
-  <!--我的人脉和加入人脉-->
-  <view class="aboutNetwork flex" wx:if="{{options}}">
-    <view bindtap="myNetwork">我的人脉</view>
-    <view bindtap="addNetwork">加入人脉</view>
+    <!--我的人脉和加入人脉-->
+    <view class="aboutNetwork flex" wx:if="{{options}}">
+      <view bindtap="myNetwork">我的人脉</view>
+      <view bindtap="addNetwork">加入人脉</view>
+    </view>
   </view>
 </scroll-view>
 <view class="showModal" hidden="{{modal==0}}" bindtap="hideModal">

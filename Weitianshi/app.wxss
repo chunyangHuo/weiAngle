@@ -662,7 +662,7 @@ textarea {
 
 .t-outBox .t-describle {
   font-size: 34rpx;
-  color: #666;
+  color: #333;
   line-height: 38rpx;
   text-align: left;
   margin-bottom: 34rpx;
