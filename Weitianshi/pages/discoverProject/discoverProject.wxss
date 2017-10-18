@@ -107,10 +107,11 @@
   width: 506rpx;
   background-color: white;
   margin-top: 206rpx;
-  margin-left: 64rpx;
+  margin-left: 79rpx;
   padding: 40rpx 32rpx 32rpx 32rpx;
   position: relative;
   z-index: 99999999;
+  border-radius: 4rpx;
 }
 
 .modalTitle {
@@ -160,7 +161,7 @@
   height: 48rpx;
   position: absolute;
   top: 185rpx;
-  right: 94rpx;
+  right: 78rpx;
   z-index: 999999999;
 }
 
@@ -172,4 +173,22 @@
 
 .newBox {
   color: #333;
+}
+
+.searchNothing {
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: center;
+  margin-top: 252rpx;
+}
+
+.searchLine {
+  margin-bottom: 72rpx;
+  height: 2rpx;
+  margin-left:32rpx;
+  margin-right: 32rpx;
+  border-bottom:2rpx dashed #999;
+  width: 90%;
 }

@@ -22,6 +22,10 @@
         </block>
       </swiper>
       <template is="selectProject" data="{{list:slectProject,type:2}}"></template>
+      <view class="searchNothing" wx:if="{{slectProject.length == 0}}">
+        <view class="searchLine"></view>
+        <view class="classname">暂时没有符合该条件的项目</view>
+      </view>
     </scroll-view>
     <!--空状态-->
     <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
@@ -31,6 +35,10 @@
     <!--项目展示  -->
     <scroll-view scroll-y="true" bindscrolltolower="loadMore2">
       <template is="selectProject" data="{{list:financingNeed,type:2,timeShow:true}}"></template>
+      <view class="searchNothing" wx:if="{{financingNeed.length == 0}}">
+        <view class="searchLine"></view>
+        <view class="classname">暂时没有符合该条件的项目</view>
+      </view>
     </scroll-view>
     <!--空状态-->
     <view wx:if="{{financingNeed==''}}">

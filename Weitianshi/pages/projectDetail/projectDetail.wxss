@@ -1245,10 +1245,10 @@ button::after {
 
 .contactModalBox {
   height: 616rpx;
-  width: 534rpx;
+  width: 506rpx;
   background-color: white;
   margin-top: 206rpx;
-  margin-left: 64rpx;
+  margin-left: 90rpx;
   padding: 40rpx 32rpx 32rpx 32rpx;
   position: relative;
 }

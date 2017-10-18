@@ -176,11 +176,10 @@ page {
 }
 
 .tipsNew {
-  /* height: 82rpx; */
-  padding: 30rpx 0;
-  padding-top:0;
-    justify-content: center;
-    align-items: center;
+  padding: 30rpx 32rpx;
+  padding-top: 0;
+  justify-content: right;
+  align-items: right;
 }
 
 .tipsPic {
@@ -257,10 +256,11 @@ page {
   width: 506rpx;
   background-color: white;
   margin-top: 206rpx;
-  margin-left: 64rpx;
+  margin-left: 79rpx;
   padding: 40rpx 32rpx 32rpx 32rpx;
   position: fixed;
   z-index:99999999;
+  border-radius: 4rpx;
 }
 .modalTitle{
 font-size:32rpx;
@@ -305,7 +305,7 @@ margin-top: 72rpx;
   height:48rpx;
   position: fixed;
   top:185rpx;
-  right:94rpx;
+  right:78rpx;
     z-index:999999999;
 }
 .aPic{
