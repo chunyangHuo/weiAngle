@@ -303,7 +303,8 @@ page {
 }
 
 .empty {
-  padding-top: 281rpx;
+  padding-top: 178rpx;
+  padding-bottom:216rpx;
   width: 252rpx;
   height: 190rpx;
   padding-left: 215rpx;
@@ -1711,6 +1712,7 @@ page {
   text-align: center;
   background: #40587a;
   margin: 30rpx 0;
+  padding-right:10rpx;
   border-right: 1rpx solid #e6e6e6;
 }
 
@@ -1731,7 +1733,7 @@ page {
   background: #ccc;
   padding: 30rpx 0;
   border-right: 1rpx solid #e6e6e6;
-  width:243rpx;
+  width:266rpx;
 }
 
 /*买家图谱  */
@@ -1970,4 +1972,7 @@ page {
   color: #ccc;
   line-height: 28rpx;
   text-align: left;
+}
+.hasNothing{
+    color: #666;
 }

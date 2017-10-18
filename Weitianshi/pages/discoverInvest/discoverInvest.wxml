@@ -14,6 +14,13 @@
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
       <view class="aBox"></view>
+      <template is="searchNothing" data="{{empty:investorList}}"></template>
+      <block wx:for="{{faList}}" wx:key="{{faList}}">
+        <view class='investorCard'>
+          <template is='InvestorCard' data='{{item}}'></template>
+          <template is='cardBottom1' data='{{item}}'></template>
+        </view>
+      </block>
       <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
@@ -28,6 +35,7 @@
   <swiper-item data-current='1'>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
       <view class="aBox"></view>
+      <template is="searchNothing" data="{{empty:faList}}"></template>
       <block wx:for="{{faList}}" wx:key="{{faList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
@@ -139,4 +147,10 @@
       </view>
     </block>
   </scroll-view>
+</template>
+<template name="searchNothing">
+  <view class="searchNothing" wx:if="{{empty.length == 0}}">
+     <view class="searchLine"></view>
+    <view class="classname">暂时没有符合该条件的项目</view>
+  </view>
 </template>

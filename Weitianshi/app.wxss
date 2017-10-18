@@ -666,9 +666,11 @@ textarea {
   text-align: left;
   margin-bottom: 34rpx;
   /* width:1418rpx; */
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .t-allIndustry {
@@ -860,10 +862,6 @@ textarea {
   right: 224rpx;
 }
 
-.t-highBox {
-  height: 88rpx;
-  width: 100%;
-}
 
 .t-readed {
   color: #40587a;
