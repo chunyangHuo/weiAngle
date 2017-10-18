@@ -124,7 +124,8 @@ Page({
       success: function (res) {
         let brandList = res.data.data.brand;
         let project = res.data.data;
-
+        console.log(user_id,id,is_share)
+        console.log(res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -135,7 +136,6 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
-        console.log(pro_goodness)
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         let button_type = res.data.button_type;
@@ -305,7 +305,10 @@ Page({
             nothing: nothing
           })
         } else {
-          let projectInfoList = res.data.data.project_product;
+          let projectInfoList;
+          if (res.data.data.project_product){
+            projectInfoList = res.data.data.project_product;
+          }
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
@@ -975,4 +978,4 @@ Page({
   //     url: "/pages/remark/remarkList/remarkList",
   //   })
   // }
-})
+}) 

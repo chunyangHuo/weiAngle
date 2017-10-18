@@ -328,6 +328,6 @@ Page({
   },
   // 分享名片
   onShareAppMessage(e) {
-    return SharePage.topPlayerShare(e)
+    return ShareModel.topPlayerShare(e)
   },
 })

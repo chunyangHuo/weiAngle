@@ -48,7 +48,7 @@ Page({
             console.log(res)
             var user = res.data.user_info;
             var count = res.data.count;
-            var invest = res.data.invest_info;   
+            var invest = res.data.invest_info;
             var resource = res.data.resource_info;
             var project_info = res.data.project_info;
             var invest_case = res.data.invest_case;
@@ -197,8 +197,8 @@ Page({
   },
   //分享页面
   onShareAppMessage: function () {
-    let that=this;
-    return SharePage.myCardShare(that);
+    let that = this;
+    return ShareModel.myCardShare(that);
   },
 
   //取消分享

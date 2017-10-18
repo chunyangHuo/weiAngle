@@ -23,10 +23,11 @@ function myProjectDetailShare(that) {
   let id = that.data.id;
   let share_id = that.data.view_id;
   let title = pro_intro;
-  return {
+  /* return {
     title: title,
     path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
-  }
+  } */
+  return shareProjectPage(id, title, share_id)
 }
 //他人项目详情分享
 function projectDetailShare(that) {

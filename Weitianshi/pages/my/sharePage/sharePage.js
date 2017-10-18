@@ -8,7 +8,7 @@ Page({
     user: "",
     followed_user_id: "",
   },
-  onLoad: function (options) {
+  onLoad: function (options) { 
     console.log('this is sharePage')
     let that = this;
     let followed_user_id = options.user_id;
