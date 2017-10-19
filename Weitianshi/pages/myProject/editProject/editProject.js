@@ -27,9 +27,9 @@ Page({
       css: "checkOn",
       value: ["选择领域"],
       id: [],
-      service_fa : 1,
-      service_yun:1,
-      service_ps_bp:1
+      service_fa : 0,
+      service_yun:0,
+      service_ps_bp:0
     }
   },
   onLoad: function (options) {
