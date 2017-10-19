@@ -202,9 +202,7 @@
         <view class="flex title" catchtap="projectFinance">
           <view class="flex">
             <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
-            <view>
-            {{text}}<label wx:if="{{playTime == 1}}">({{count.project_count}})</label>
-            </view>
+            <view>{{text}}<label>({{count.project_count}})</label></view>
           </view>
           <view class="flex">
             <view class="seeMore">查看更多</view>
@@ -216,8 +214,6 @@
         <view class="user_project_frame" catchtap="financingDetail" data-id="{{item.pro_id}}">
           <view class="flex">
             <view class="pro_intro">{{item.pro_intro||item.case_name}}</view>
-            <!-- <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-            <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image> -->
             <view class='is_exclusive' wx:if='{{item.is_exclusive===1}}'>独家</view>
             <view class='is_exclusive' wx:if='{{item.is_exclusive===2}}'>非独</view>
           </view>
@@ -238,16 +234,16 @@
 
 <!--My投资案例-->
 <template name="investProject">
-    <view class="user_project_info investment-casem" wx:if="{{canEdit}}">
+    <view class="user_project_info investment-casem">
       <view class="intro_title">
         <view class="flex title" catchtap="investCase">
           <view class="flex">
             <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-            成功案例<label wx:if="{{playTime == 1}}"> ({{invest_case.length}})</label>
+            成功案例<label> ({{invest_case.length}})</label>
           </view>
-          <view class="flex">
+          <view class="flex"  wx:if="{{canEdit}}">
             <view class="seeMore">查看更多</view>
-            <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+            <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
           </view>
         </view>
       </view>
