@@ -43,7 +43,8 @@ Page({
       id: id,
       share_id: options.share_id
     });
-
+    // 为上拉加载准备
+    app.initPage(that);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
@@ -543,7 +544,6 @@ Page({
 
   // 买家图谱上拉加载
   loadMore: function () {
-    console.log('bbbbbbbbbbbb')
     let that = this;
     let user_id = this.data.user_id;
     let id = this.data.id;
@@ -690,6 +690,17 @@ Page({
                 method: 'POST',
                 success: function (res) {
                   console.log(res)
+                  wx.request({
+                    url: url_common + '/api/project/insertViewBpRecord',
+                    data: {
+                      user_id: user_id,
+                      project_id: project_id
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                      console.log(res)
+                    }
+                  })
                 }
               })
               that.setData({
@@ -772,6 +783,17 @@ Page({
                   filePath: filePath,
                   success: function (res) {
                     console.log('打开文档成功')
+                    wx.request({
+                      url: url_common + '/api/project/insertViewBpRecord',
+                      data: {
+                        user_id: user_id,
+                        project_id: project_id
+                      },
+                      method: 'POST',
+                      success: function (res) {
+                        console.log(res)
+                      }
+                    })
                   }
                 })
               }
