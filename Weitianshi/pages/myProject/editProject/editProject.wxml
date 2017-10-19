@@ -109,7 +109,7 @@
   <switch checked="{{service_ps_bp}}" bindchange="switchChange1" class="switchTab" />
 </view>
 <view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
-  <view class="content">需要融资股份（FA）服务</view>
+  <view class="content">需要融资顾问（FA）服务</view>
   <switch checked="{{service_fa}}" bindchange="switchChange2" class="switchTab" />
 </view>
 <view class="choiceBox flex" wx:if="{{group_id == 21|| group_id == 18 || group_id == 6}}">

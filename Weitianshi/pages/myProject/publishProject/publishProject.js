@@ -20,9 +20,9 @@ Page({
     loading: '0',
     pro_goodness: "",
     modalBox: 0,
-    switchChange1:0,
-    switchChange2:0,
-    switchChange3:0,
+    service_fa: 0,
+    service_yun: 0,
+    service_ps_bp: 0,
     industryCard: {
       text: "项目领域*",
       url: "/pages/form/industry/industry?current=0",
@@ -156,7 +156,6 @@ Page({
     that.setData({
       projectName: projectName
     })
-    this.totalScore(projectName)
   },
   //公司名称
   companyName: function (e) {
@@ -165,7 +164,6 @@ Page({
     that.setData({
       companyName: companyName
     })
-    this.totalScore(companyName)
   },
   //文本框输入
   bindTextAreaBlur: function (e) {
@@ -182,7 +180,6 @@ Page({
     that.setData({
       pro_finance_stock_after: pro_finance_stock_after
     })
-    this.totalScore(pro_finance_stock_after)
   },
   //项目亮点
   slectInput: function (e) {
@@ -315,7 +312,6 @@ Page({
     this.setData({
       service_ps_bp: service_ps_bp
     })
-    this.totalScore(service_ps_bp)
   },
   //需要融资股份(FA)服务
   switchChange2: function (e) {
@@ -323,7 +319,6 @@ Page({
     this.setData({
       service_fa: service_fa
     })
-    this.totalScore(service_fa)
   },
   //是否需要云投行服务
   switchChange3: function (e) {
@@ -331,7 +326,6 @@ Page({
     this.setData({
       service_yun: service_yun
     })
-    this.totalScore(service_yun)
   },
   //私密性设置
   initPrivacy: function () {
@@ -377,6 +371,12 @@ Page({
     this.setData({
       subscribe: subscribe
     })
+    this.totalScore(pro_name)
+    this.totalScore(pro_company_name)
+    this.totalScore(pro_finance_stock_after)
+    this.totalScore(service_yun)
+    this.totalScore(service_fa)
+    this.totalScore(service_ps_bp)
     let open_status = this.data.open_status;
     let power_share_status = this.data.power_share_status;
     let power_investor_status = this.data.power_investor_status;
@@ -444,6 +444,7 @@ Page({
   //完整度
   totalScore: function (name) {
     let pro_total_score = this.data.pro_total_score;
+    console.log(pro_total_score)
     if (name) {
       pro_total_score = pro_total_score + 2.4;
       this.setData({

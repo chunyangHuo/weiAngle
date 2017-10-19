@@ -125,15 +125,15 @@
 </view>
 <view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
   <view class="content">需要Bp美化</view>
-  <switch  bindchange="switchChange1" class="switchTab" />
+  <switch  bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
 </view>
 <view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
   <view class="content">需要融资顾问（FA）服务</view>
-  <switch  bindchange="switchChange2" class="switchTab" />
+  <switch  bindchange="switchChange2" class="switchTab" checked="{{service_fa}}" />
 </view>
 <view class="choiceBox flex" wx:if="{{group_id == 21|| group_id == 18 || group_id == 6}}">
   <view class="content">是否需要云投行（FA）合作</view>
-  <switch  bindchange="switchChange3" class="switchTab" />
+  <switch  bindchange="switchChange3" class="switchTab"  checked="{{service_yun}}"/>
 </view>
 <view class="question" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
   <view class="questionWhy">Q：什么是融资顾问服务</view>

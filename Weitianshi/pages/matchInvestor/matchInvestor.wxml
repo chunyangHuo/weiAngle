@@ -67,7 +67,7 @@
       </view>
     </block>
     <!--内容为空的时候的样式  -->
-    <view class="emptyStyle" wx:if="{{!myProject}}">
+    <view class="emptyStyle" wx:if="{{myProject.length == 0}}">
       <view class="hasNothing">暂无数据，发布融资项目，可匹配投资人</view>
       <image src="{{imgUrls}}"></image>
     </view>
