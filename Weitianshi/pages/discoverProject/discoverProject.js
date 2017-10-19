@@ -218,13 +218,24 @@ Page({
     let that = this;
     let pro_id = e.currentTarget.dataset.project;
     let slectProject = that.data.slectProject;
+    let financingNeed = that.data.financingNeed;
+    let currentTab = that.data.currentTab;
 
     app.operationModel('projectApply', pro_id, res => {
-      slectProject.forEach(x => {
-        if (x.project_id == pro_id) {
-          x.relationship_button = 1;
-        }
-      })
+      console.log(res)
+      if (currentTab == 0) {
+        slectProject.forEach(x => {
+          if (x.project_id == pro_id) {
+            x.relationship_button = 1;
+          }
+        })
+      } else {
+        financingNeed.forEach(x => {
+          if (x.project_id == pro_id) {
+            x.relationship_button = 1;
+          }
+        })
+      }
       that.setData({
         slectProject: slectProject
       })

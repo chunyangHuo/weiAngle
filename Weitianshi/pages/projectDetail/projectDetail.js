@@ -513,6 +513,25 @@ Page({
     })
   },
 
+  // 买家图谱上拉加载
+  loadMore: function () {
+    console.log('bbbbbbbbbbbb')
+    let that = this;
+    let user_id = this.data.user_id;
+    let id = this.data.id;
+    let currentPage = this.data.currentPage;
+    let request = {
+      url: url_common + '/api/project/getProjectMatchInvestors',
+      data: {
+        user_id: user_id,
+        project_id: id,
+        page: currentPage
+      },
+    }
+    //调用通用加载函数
+    app.loadMore(that, request, "investor2")
+  },
+
   /* -----------------------交互行为------------------------------------------- */
   // 用户详情
   userDetail: function (e) {

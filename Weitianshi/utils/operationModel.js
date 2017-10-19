@@ -48,7 +48,7 @@ function checkUserInfo(callBack) {
   })
 }
 
-//验校用户角色身份信息,如果是投资人或是买方FA则进行项目查看项目
+//项目查看申请
 function projectApply(pro_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
