@@ -269,7 +269,7 @@
               </view>
             </view> -->
           </view>
-          <view style="height:24rpx;"></view>
+          <view style="height:36rpx;"></view>
         </view>
       </scroll-view>
     </swiper-item>

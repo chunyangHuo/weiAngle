@@ -21,6 +21,7 @@
           </swiper-item>
         </block>
       </swiper>
+      <view style="height:32rpx;"></view>
       <template is="selectProject" data="{{list:slectProject,type:2}}"></template>
       <view class="searchNothing" wx:if="{{slectProject.length == 0}}">
         <view class="searchLine"></view>

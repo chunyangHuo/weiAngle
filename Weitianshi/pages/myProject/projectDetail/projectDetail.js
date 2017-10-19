@@ -43,6 +43,7 @@ Page({
     show_detail: true,
     show_company: true,
     type: 2,
+    other:true
   },
   onLoad: function (options) {
     this.setData({

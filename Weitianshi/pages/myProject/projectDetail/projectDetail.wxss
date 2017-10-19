@@ -998,6 +998,7 @@ page {
 
 #oneKey .bottomBox {
   position: relative;
+  margin-top:24rpx;
 }
 
 #oneKey .history_financing_rounds {
@@ -1712,7 +1713,7 @@ page {
   text-align: center;
   background: #40587a;
   margin: 30rpx 0;
-  padding-right: 10rpx;
+  padding-right: 36rpx;
   border-right: 1rpx solid #e6e6e6;
 }
 
