@@ -1,1 +1,8 @@
-/* pages/activtyPage/activtyPage/activtyPage.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+#activtyPage image {
+  width: 750rpx;
+}

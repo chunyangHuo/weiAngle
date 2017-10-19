@@ -31,6 +31,11 @@ Page({
     /*wx.showShareMenu({
         withShareTicket: true,
     })*/
+    if (user_id == view_id) {
+      wx.switchTab({
+        url: '/pages/my/my/my',
+      })
+    }
 
     //用戶的个人信息
     wx.request({

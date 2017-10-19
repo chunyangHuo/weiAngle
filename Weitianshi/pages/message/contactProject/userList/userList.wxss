@@ -52,3 +52,13 @@
   background: #fff;
   border-radius: 8rpx;
 }
+
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+.hasNothing {
+  color: #666;
+}

@@ -82,7 +82,7 @@
     <view class="projectBoxContent flex">
       <view class="projectTitle">投后股份（%）</view>
       <view class="flex">
-        <input class="projectContentInput newBox" placeholder="请输入投后股权占比" type='number' placeholder-style="color:#ccc" bindinput="projectFinance" value="{{pro_finance_stock_after}}"/>
+        <input class="projectContentInput newBox" placeholder="请输入投后股权占比"  placeholder-style="color:#ccc" bindinput="projectFinance" value="{{pro_finance_stock_after}}"/>
         <view class="flex">
           <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
         </view>

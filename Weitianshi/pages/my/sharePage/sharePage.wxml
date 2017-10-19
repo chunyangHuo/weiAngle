@@ -37,7 +37,7 @@
     <view class="myContacts  my-contactsm" bindtap="toContacts">创建我的名片</view>
     <view class="myContacts addPerson pushprojectm" bindtap="pushProject">推送项目</view>
     <view class="giveProject" wx:if="{{button_type == 1}}">已为人脉</view>
-    <view class="addNetwork add-contactsm" bindtap="addNetwork" wx:if="{{button_type == 0||button_type==3 ||button_type == 4}}">加人脉</view>
+    <view class="addNetwork add-contactsm" bindtap="addNetwork" wx:if="{{button_type == 0||button_type==3 ||button_type == 4}}">保存名片</view>
     <view class="giveProject" bindtap="addNetwork" wx:if="{{button_type==2}}">待验证</view>
   </view>
 </scroll-view>

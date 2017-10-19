@@ -246,7 +246,7 @@ Page({
   },
   //跳转到我的人脉
   toContacts: function () {
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/my/myNew/myNew',
     })
   },

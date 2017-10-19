@@ -80,7 +80,7 @@ Page({
   bannerLink(e) {
     let index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '',
+      url: '/pages/activtyPage/activtyPage/activtyPage?index=' + index,
     })
   },
   // tab页面切换数据调用(辅助函数)

@@ -1,2 +1,3 @@
-<!--pages/activtyPage/activtyPage/activtyPage.wxml-->
-<text>pages/activtyPage/activtyPage/activtyPage.wxml</text>
+<view id='activtyPage'>
+  <image mode='widthFix' src='{{activtyPagePic}}'></image>
+</view>
