@@ -58,6 +58,10 @@ Page({
             wx.navigateTo({
               url: '/pages/myProject/projectDetail/projectDetail?id=' + id,
             })
+          }else{
+           that.setData({
+             other:false
+           })
           }
         });
       }

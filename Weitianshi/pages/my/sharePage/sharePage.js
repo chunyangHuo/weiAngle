@@ -33,6 +33,7 @@ Page({
         success: function (res) {
           let user = res.data.user_info;
           let count = res.data.count;
+          console.log(count)
           let invest = res.data.invest_info;
           let resource = res.data.resource_info;
           let project_info = res.data.project_info;
@@ -246,7 +247,7 @@ Page({
   //跳转到我的人脉
   toContacts: function () {
     wx.switchTab({
-      url: '/pages/contacts/contacts/contacts',
+      url: '/pages/my/myNew/myNew',
     })
   },
   // 跳转到推送项目页面
