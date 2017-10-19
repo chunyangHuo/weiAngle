@@ -143,7 +143,7 @@ Page({
     var user_id = this.data.user;
     // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
     if (id == user_id) {
-      wx.switchTab({
+      wx.navigateTo({
         url: '/pages/my/my/my'
       })
     } else {
@@ -297,7 +297,7 @@ Page({
   // 返回对接页面
   backToResource: function () {
     wx.switchTab({
-      url: '/pages/match/match/match/match',
+      url: '/pages/discoverProject/discoverProject',
     })
   }
 });

@@ -116,10 +116,10 @@ Page({
       success: function (res) {
         console.log('最新', res)
         var financingNeed = res.data.data;
-        financingNeed.forEach(x => {
-          x.pro_time = x.pro_time.substr(5, 11);
-          console.log(x.pro_time)
-        })
+        // financingNeed.forEach(x => {
+        //   x.pro_time = x.pro_time.substr(5, 11);
+        //   console.log(x.pro_time)
+        // })
         console.log(financingNeed)
         that.setData({
           financingNeed: financingNeed,
@@ -218,15 +218,23 @@ Page({
     let that = this;
     let pro_id = e.currentTarget.dataset.project;
     let slectProject = that.data.slectProject;
-
+    let financingNeed = that.data.financingNeed;
     app.operationModel('projectApply', pro_id, res => {
+      console.log(res)
       slectProject.forEach(x => {
         if (x.project_id == pro_id) {
-          x.relationship_button = 1;
+          x.relationship_button = 0;
         }
       })
+      financingNeed.forEach(x => {
+        if (x.project_id == pro_id) {
+          x.relationship_button = 0;
+        }
+      })
+      
       that.setData({
-        slectProject: slectProject
+        slectProject: slectProject,
+        financingNeed: financingNeed
       })
     });
   },

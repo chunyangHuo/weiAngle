@@ -1324,3 +1324,12 @@ button::after {
   border-radius: 35rpx 0 0 35rpx;
   padding-right: 28rpx;
 }
+.historyInvestTitle{
+  font-size: 24rpx;
+  color: #999;
+  margin:32rpx 0 24rpx 0;
+  text-align: left;
+}
+.investBox view{
+  text-align: left;
+}

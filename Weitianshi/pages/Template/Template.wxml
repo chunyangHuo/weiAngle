@@ -954,12 +954,13 @@
             <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" catchtap="matchApply">申请查看</view>
             <view class="t-refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
             <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+            <view wx:if="{{item.relationship_button == 5}}"></view>
             <view class="t-toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
           </view>
         </view>
         <view class="t-classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view class="t-time" wx:if='{{timeShow}}'>{{item.created_at}}</view>
+      <view class="t-time" wx:if='{{timeShow}}'>{{item.created_at||item.pro_time}}</view>
       <view class="t-time" wx:else></view>
     </view>
   </block>

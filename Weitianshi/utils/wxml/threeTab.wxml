@@ -144,7 +144,7 @@
                 <view class="title"> 核心团队</view>
               </view>
               <view class="contentAll">
-                <view class="flex" style="margin-bottom:48rpx;">
+                <view class="flex" style="margin-bottom:48rpx;"  wx:if="{{teamOfPro.length!=0}}">
                   <view class="pro_sorts flex" wx:for="{{teamOfPro}}" wx:key="{{index}}">
                     <view class="pro_sort">{{teamOfPro[index].tag_name}}</view>
                   </view>
@@ -198,6 +198,7 @@
                   <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked4== false && textBeyond4}}" data-check="{{4}}">收起</label>
                 </view>
                 <view class="investBox" wx:if="{{pro_history_financeList}}">
+                <view class="historyInvestTitle">历史融资</view>
                   <view class="invest" wx:for="{{pro_history_financeList}}" wx:if="{{index<2||moreInfoList == 3}}" wx:key="{{index}}">
                     <view class="investBoxContent flex" wx:if="{{pro_history_financeList.length != 0}}">
                       <image class="case_pic" src="/img/dot@3x.png"></image>

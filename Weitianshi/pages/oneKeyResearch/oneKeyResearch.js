@@ -437,7 +437,7 @@ Page({
   },
   //跳转到我的页面
   toMy: function () {
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/my/my/my',
     })
   },

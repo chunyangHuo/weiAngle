@@ -107,7 +107,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
-      wx.switchTab({
+      wx.navigateTo({
         url: '/pages/my/my/my',
       })
     } else {

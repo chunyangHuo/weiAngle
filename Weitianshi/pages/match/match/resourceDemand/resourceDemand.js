@@ -209,7 +209,7 @@ Page({
         }
       })
       if (current == 1) {
-        wx.switchTab({
+        wx.navigateTo({
           url: '/pages/my/my/my',
         })
       } else {

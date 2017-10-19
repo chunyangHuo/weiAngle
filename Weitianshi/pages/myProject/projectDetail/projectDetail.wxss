@@ -304,7 +304,7 @@ page {
 
 .empty {
   padding-top: 178rpx;
-  padding-bottom:216rpx;
+  padding-bottom: 216rpx;
   width: 252rpx;
   height: 190rpx;
   padding-left: 215rpx;
@@ -1633,7 +1633,7 @@ page {
   padding: 30rpx;
   position: relative;
   margin-bottom: 16rpx;
-  height:128rpx;
+  height: 128rpx;
 }
 
 #productBox .productTitle {
@@ -1712,7 +1712,7 @@ page {
   text-align: center;
   background: #40587a;
   margin: 30rpx 0;
-  padding-right:10rpx;
+  padding-right: 10rpx;
   border-right: 1rpx solid #e6e6e6;
 }
 
@@ -1733,7 +1733,7 @@ page {
   background: #ccc;
   padding: 30rpx 0;
   border-right: 1rpx solid #e6e6e6;
-  width:266rpx;
+  width: 266rpx;
 }
 
 /*买家图谱  */
@@ -1800,6 +1800,10 @@ page {
   line-height: 28rpx;
   text-align: left;
   margin-right: 16rpx;
+  width: 224rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .introduceBox {
@@ -1814,6 +1818,10 @@ page {
   text-align: left;
   margin-right: 16rpx;
   align-items: flex-end;
+  width: 144rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .applyMyProject .userPart {
@@ -1829,6 +1837,9 @@ page {
   line-height: 24rpx;
   text-align: left;
   margin-bottom: 84rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .investmentGroup {
@@ -1973,6 +1984,16 @@ page {
   line-height: 28rpx;
   text-align: left;
 }
-.hasNothing{
-    color: #666;
+
+.hasNothing {
+  color: #666;
+}
+.historyInvestTitle{
+  font-size: 24rpx;
+  color: #999;
+  margin:32rpx 0 24rpx 0;
+  text-align: left;
+}
+.investBox view{
+  text-align: left;
 }

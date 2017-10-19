@@ -28,7 +28,7 @@ Page({
     currentTab: 0,//选项卡
     show_detail: false,
     show_company: false,
-    message:""
+    message: ""
   },
   onLoad: function (options) {
     var that = this;
@@ -124,7 +124,7 @@ Page({
       success: function (res) {
         let brandList = res.data.data.brand;
         let project = res.data.data;
-        console.log(user_id,id,is_share)
+        console.log(user_id, id, is_share)
         console.log(res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
@@ -306,7 +306,7 @@ Page({
           })
         } else {
           let projectInfoList;
-          if (res.data.data.project_product){
+          if (res.data.data.project_product) {
             projectInfoList = res.data.data.project_product;
           }
           let company = res.data.data.company;
@@ -971,7 +971,76 @@ Page({
   shareJump(e) {
     let index = e.currentTarget.dataset.index;
     app.shareJump(index);
-  }
+  },
+  //进入投资人用户详情
+  detail(e) {
+    let id = e.currentTarget.dataset.id;
+    let user_id = wx.getStorageSync('user_id');
+    if (id != user_id) {
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+      })
+    } else if (id == user_id) {
+      wx.navigateTo({
+        url: '/pages/my/my/my'
+      })
+    }
+  },
+  // 一键尽调页面展开
+  //查看全部
+  checkMore: function (e) {
+    let id = e.target.dataset.id;
+    if (id == 1) {
+      this.setData({
+        companyMileStoneMore: 1
+      })
+    } else if (id == 2) {
+      // 新闻接口
+      this.setData({
+        companyNews: 2
+      })
+    } else if (id == 3) {
+      // 竞品
+      this.setData({
+        competitorMore: 3
+      })
+    } else if (id == 4) {
+      this.setData({
+        historyMore: 4
+      })
+    } else if (id == 5) {
+      this.setData({
+        industrialChangeMore: 5
+      })
+    }
+  },
+  // 折叠
+  noCheckMore: function (e) {
+    let id = e.target.dataset.id;
+    if (id == 1) {
+      this.setData({
+        companyMileStoneMore: 0
+      })
+    } else if (id == 2) {
+      this.setData({
+        companyNews: 0
+      })
+    } else if (id == 3) {
+      this.setData({
+        competitorMore: 0
+      })
+    } else if (id == 4) {
+      this.setData({
+        historyMore: 0
+      })
+    } else if (id == 5) {
+      this.setData({
+        industrialChangeMore: 0
+      })
+    } else if (id == 6) {
+
+    }
+  },
   //项目打分
   // projectRemark:function(){
   //   wx.navigateTo({

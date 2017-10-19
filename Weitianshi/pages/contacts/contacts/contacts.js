@@ -119,7 +119,7 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm == true) {
-                wx.switchTab({
+                wx.navigateTo({
                   url: '/pages/my/my/my',
                 })
               }
