@@ -131,7 +131,7 @@ Page({
               textBeyond0: true
             })
           }
-          if (pro_goodness.length >=2) {
+          if (pro_goodness.length >= 2) {
             if (pro_goodness[1].goodness_desc.length > 50) {
               that.setData({
                 textBeyond1: true
@@ -151,7 +151,8 @@ Page({
                 textBeyond3: true
               })
             }
-          }}
+          }
+        }
 
         if (project.pro_finance_use) {
           if (project.pro_finance_use.length > 50) {
@@ -909,6 +910,7 @@ Page({
   },
   //推送项目
   pushProject: function (e) {
+    console.log(e)
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = e.currentTarget.dataset.id;
@@ -923,15 +925,17 @@ Page({
           icon: 'success',
           duration: 2000
         })
+        investor2.forEach((x) => {
+          if (x.user_id == pushed_user_id) {
+            x.push_status = 1
+          }
+        })
+        that.setData({
+          investor2: investor2
+        })
+      }else{
+        app.errorHide(that,res.data.error_msg,3000)
       }
-      investor2.forEach((x) => {
-        if (x.user_id == pushed_user_id) {
-          x.push_status = 1
-        }
-      })
-      that.setData({
-        investor2: investor2
-      })
     })
   },
   //删除项目
@@ -966,33 +970,6 @@ Page({
       }
     })
 
-  },
-  //推送项目
-  pushProject: function (e) {
-    let that = this;
-    let user_id = wx.getStorageSync('user_id');
-    let pushed_user_id = e.currentTarget.dataset.investor;
-    let project_id = this.data.id;
-    let investor2 = this.data.investor2;
-    app.operationModel('projectOneKeyPush', that, pushed_user_id, project_id, function (res) {
-      console.log(res)
-      let statusCode = res.data.status_code;
-      if (statusCode == 2000000) {
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }
-      investor2.forEach((x) => {
-        if (x.investor_id == pushed_user_id) {
-          x.push_status = 1
-        }
-      })
-      that.setData({
-        investor2: investor2
-      })
-    })
   },
   //匹配推荐删除
   deletePerson: function (e) {
@@ -1030,8 +1007,8 @@ Page({
     })
   },
   //分享引导跳转
-  shareJump(e){
-    let index=e.currentTarget.dataset.index;
+  shareJump(e) {
+    let index = e.currentTarget.dataset.index;
     app.shareJump(index);
-  } 
+  }
 });

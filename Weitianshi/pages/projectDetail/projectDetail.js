@@ -33,9 +33,9 @@ Page({
   onLoad: function (options) {
     var that = this;
     var id = options.id;//当前被查看用户的项目id
+    var share_id = options.share_id;
     var page = this.data.page;
     var user_id = '';
-    var share_id = '';
     var view_id = '';
     var user_id = wx.getStorageSync('user_id');
     that.setData({
@@ -48,13 +48,13 @@ Page({
 
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
     if (!options.share_id) {
-      that.showStatus(that, id, "");
+      that.showStatus(that, id, "", 0);
     } else {
       app.loginPage(function (user_id) {
         that.setData({
           user_id: user_id,
         })
-        that.showStatus(that, id, "share");
+        that.showStatus(that, id, "share", options.share_id);
       })
     }
   },
@@ -86,14 +86,15 @@ Page({
   },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取
-  showStatus(that, pro_id, is_share, show_company) {
+  showStatus(that, pro_id, is_share, share_id) {
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/project/projectWithUserRelationship',
       data: {
         user_id: user_id,
         project_id: pro_id,
-        source: is_share
+        source: is_share,
+        share_id: share_id
       },
       method: 'POST',
       success: function (res) {
@@ -105,20 +106,21 @@ Page({
           show_company: show_company
         });
         console.log(show_detail, show_company)
-        that.projectDetailInfo(that, pro_id, is_share, show_company);
+        that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
   },
 
   //项目详情信息
-  projectDetailInfo(that, id, is_share, show_company) {
+  projectDetailInfo(that, id, is_share, share_id, show_company) {
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/project/getProjectDetail',
       data: {
         user_id: user_id,
         project_id: id,
-        scource: is_share
+        source: is_share,
+        share_id: share_id
       },
       method: 'POST',
       success: function (res) {
@@ -309,6 +311,7 @@ Page({
           if (res.data.data.project_product) {
             projectInfoList = res.data.data.project_product;
           }
+          let projectInfoList = res.data.data.project_product;
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
@@ -512,6 +515,25 @@ Page({
         })
       }
     })
+  },
+
+  // 买家图谱上拉加载
+  loadMore: function () {
+    console.log('bbbbbbbbbbbb')
+    let that = this;
+    let user_id = this.data.user_id;
+    let id = this.data.id;
+    let currentPage = this.data.currentPage;
+    let request = {
+      url: url_common + '/api/project/getProjectMatchInvestors',
+      data: {
+        user_id: user_id,
+        project_id: id,
+        page: currentPage
+      },
+    }
+    //调用通用加载函数
+    app.loadMore(that, request, "investor2")
   },
 
   /* -----------------------交互行为------------------------------------------- */
