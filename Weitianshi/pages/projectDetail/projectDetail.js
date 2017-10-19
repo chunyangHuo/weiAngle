@@ -311,7 +311,7 @@ Page({
           if (res.data.data.project_product) {
             projectInfoList = res.data.data.project_product;
           }
-          let projectInfoList = res.data.data.project_product;
+        
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
