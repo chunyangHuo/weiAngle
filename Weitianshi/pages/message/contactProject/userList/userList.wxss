@@ -39,9 +39,11 @@
   text-align: left;
   margin-bottom: 80rpx;
   /* width:1418rpx; */
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 
@@ -49,4 +51,14 @@
   padding: 40rpx 32rpx 40rpx 32rpx;
   background: #fff;
   border-radius: 8rpx;
+}
+
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+.hasNothing {
+  color: #666;
 }

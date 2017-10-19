@@ -11,7 +11,7 @@
   </view>
   <view class="card">
     <view class="text">项目介绍*</view>
-    <input  placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
+    <input placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
   </view>
 
   <!--项目领域-->
@@ -82,7 +82,7 @@
     <view class="projectBoxContent flex">
       <view class="projectTitle">投后股份（%）</view>
       <view class="flex">
-        <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value="{{pro_finance_stock_after}}"/>
+        <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value="{{pro_finance_stock_after}}" />
         <view class="flex">
           <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
         </view>
@@ -104,17 +104,19 @@
   <image src="/img/icon-zhuyi@2x.png" class="tipsPic"></image>
   <view class="tipsContent">未经您的许可，项目数据绝对私密安全</view>
 </view>
-<view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
+<view class="choiceBox flex" wx:if="{{!yesData}}">
   <view class="content">需要Bp美化</view>
   <switch checked="{{service_ps_bp}}" bindchange="switchChange1" class="switchTab" />
 </view>
-<view class="choiceBox flex" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
+<view class="choiceBox flex" wx:if="{{!yesData}}">
   <view class="content">需要融资顾问（FA）服务</view>
   <switch checked="{{service_fa}}" bindchange="switchChange2" class="switchTab" />
 </view>
-<view class="choiceBox flex" wx:if="{{group_id == 21|| group_id == 18 || group_id == 6}}">
-  <view class="content">是否需要云投行服务</view>
-  <switch checked="{{service_yun}}" bindchange="switchChange3" class="switchTab" />
+<view wx:if="{{yesData}}">
+  <view class="choiceBox flex">
+    <view class="content">是否需要云投行服务</view>
+    <switch checked="{{service_yun}}" bindchange="switchChange3" class="switchTab" />
+  </view>
 </view>
 <view class="question">
   <view class="questionWhy">Q：什么是融资顾问服务</view>

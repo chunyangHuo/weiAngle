@@ -1758,7 +1758,7 @@ page {
 
 .resourceBox {
   border-radius: 0 0 4px 4px;
-  margin-bottom: 32rpx;
+  padding-bottom: 32rpx;
   padding-top: 0;
 }
 
@@ -1947,7 +1947,7 @@ page {
 
 .btnContent {
   font-size: 28rpx;
-  color: #666;
+  color: #46587a;
   line-height: 28rpx;
   text-align: left;
 }
@@ -1955,6 +1955,7 @@ page {
 .btnContent1 {
   padding-right: 120rpx;
   border-right: 1rpx solid #e6e6e6;
+   color: #666;
 }
 
 .pushProject {
