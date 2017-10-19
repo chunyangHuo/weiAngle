@@ -306,6 +306,7 @@ function projectApplyDirect(pro_id, callBack) {
     },
     method: 'POST',
     success: function (res) {
+      let statusCode = res.data.status_code;
       if (res.data.status_code == 2000000) {
         wx.showToast({
           title: '已提交申请',

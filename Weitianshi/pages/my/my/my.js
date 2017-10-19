@@ -257,7 +257,7 @@ Page({
   },
   //确定或稍后再试
   laterOn: function () {
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/my/my/my',
     })
     this.setData({

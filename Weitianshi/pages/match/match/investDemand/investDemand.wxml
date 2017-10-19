@@ -62,8 +62,7 @@
     <view class="weui-loadmore__tips">正在加载</view>
   </view>
 </view>
-<template is="loadMore" data="{{loading:1}}"></template>
+<!-- <template is="loadMore" data="{{loading:1}}"></template> -->
 
 
-
-<!--此页面作废  -->
+  

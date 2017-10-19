@@ -364,12 +364,12 @@ Page({
                         wx.setStorageSync('investor_id', res.data.investor_id)
                         var current = that.data.current;
                         if (current == 1) {
-                            wx.switchTab({
+                          wx.redirectTo({
                                 url: "/pages/my/my/my"
                             })
                         } else {
                             wx.switchTab({
-                                url: '/pages/match/match/match/match'
+                              url: '/pages/discoverProject/discoverProject'
                             });
                         }
 
