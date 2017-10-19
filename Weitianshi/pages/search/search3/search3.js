@@ -144,7 +144,7 @@ Page({
     let entrance = this.data.entrance;
     let that = this;
     let user_id = wx.getStorageSync('user_id');
-    let search=this.data.SearchInit.searchData.search
+    let search = this.data.SearchInit.searchData.search
     let request;
     switch (entrance) {
       case 'newest':
@@ -175,7 +175,7 @@ Page({
             data: {
               user_id: user_id,
               page: this.data.currentPage,
-              search:search
+              search: search
             }
           }
           //调用通用加载函数
@@ -188,7 +188,7 @@ Page({
             url: url_common + '/api/investor/searchInvestor',
             data: {
               user_id: user_id,
-              search:search,
+              search: search,
               page: this.data.currentPage,
             }
           }
@@ -202,7 +202,7 @@ Page({
             url: url_common + '/api/investor/searchInvestor',
             data: {
               user_id: user_id,
-              search:search,
+              search: search,
               page: this.data.currentPage,
             }
           }
@@ -211,6 +211,58 @@ Page({
         }
         break;
     }
+  },
+  //申请查看
+  matchApply(e) {
+    let that = this;
+    let pro_id = e.currentTarget.dataset.project;
+    let slectProject = that.data.slectProject;
+    let financingNeed = that.data.financingNeed;
+    let currentTab = that.data.currentTab;
+    app.operationModel('projectApply', pro_id, res => {
+      console.log(res)
+      if (currentTab == 0) {
+        slectProject.forEach(x => {
+          if (x.project_id == pro_id) {
+            x.relationship_button = 0;
+          }
+        })
+      } else {
+        financingNeed.forEach(x => {
+          if (x.project_id == pro_id) {
+            x.relationship_button = 0;
+          }
+        })
+      }
+      that.setData({
+        slectProject: slectProject,
+        financingNeed: financingNeed
+      })
+    });
+  },
+  // 项目推送
+  projectPush(e) {
+    console.log(1)
+    let pushTo_user_id = e.currentTarget.dataset.id;
+    app.operationModel('projectPush', pushTo_user_id);
+  },
+  // 申请加人脉
+  contactsAdd(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAdd', added_user_id, function (res) {
+      console.log('申请添加人脉完成', res);
+      that.contactsAddSuccessFunc(res, added_user_id, 2);
+    });
+  },
+  // 直接加人脉
+  contactsAddDirect(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+      console.log('直接添加人脉完成', res)
+      that.contactsAddSuccessFunc(res, added_user_id, 1);
+    });
   },
 
   // ----------------------------------获取搜索结果---------------------------------------------------
@@ -394,9 +446,9 @@ Page({
               break;
             }
           }
-        }else{
+        } else {
           wx.hideLoading();
-          app.errorHide(that,res.data.error_msg,3000)
+          app.errorHide(that, res.data.error_msg, 3000)
         }
       }
     })
