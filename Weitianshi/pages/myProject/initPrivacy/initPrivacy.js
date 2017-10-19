@@ -42,7 +42,7 @@ Page({
             open_status: res.data.data.open_status,
             power_share_status: res.data.data.power_share_status,
             power_investor_status: res.data.data.power_investor_status,
-            company_open_status: !res.data.data.company_open_status,
+            company_open_status: res.data.data.company_open_status,
             black_company: res.data.data.black_list.black_company,
             black_user: res.data.data.black_list.black_user
           })
@@ -136,7 +136,7 @@ Page({
     let open_status = Number(this.data.open_status);
     let power_share_status = Number(this.data.power_share_status);
     let power_investor_status = Number(this.data.power_investor_status);
-    let company_open_status = Number(!this.data.company_open_status);
+    let company_open_status = Number(this.data.company_open_status);
     let white_company = Number(this.data.white_company);
     let white_user = Number(this.data.white_user);
     let black_company = this.data.black_company;
@@ -150,7 +150,7 @@ Page({
           open_status: open_status,
           power_share_status: power_share_status,
           power_investor_status: power_investor_status,
-          company_open_status: company_open_status,
+          company_open_status: Number(!company_open_status),
           white_company: white_company,
           white_user: white_user,
           black_company: black_company,
@@ -176,7 +176,7 @@ Page({
       power_share_status = power_share_status;
       power_investor_status = power_investor_status;
       console.log(company_open_status)
-      company_open_status = Number(!company_open_status);
+      company_open_status = Number(company_open_status);
       console.log(company_open_status)
       subscribe.white_company = white_company;
       subscribe.white_user = white_user;

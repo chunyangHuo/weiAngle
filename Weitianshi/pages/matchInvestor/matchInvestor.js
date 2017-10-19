@@ -100,7 +100,7 @@ Page({
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let currentPage = this.data.currentPage;
-    let myProject = this.data.myPrjoect;
+    let myProject = this.data.myProject;
     let request = {
       url: url_common + '/api/project/getMyProjectList',
       data: {

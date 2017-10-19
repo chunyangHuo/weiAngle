@@ -141,7 +141,7 @@ height:81px; */
   font-size: 26rpx;
   color: #333;
   width: 518rpx;
-  overflow: hide;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
