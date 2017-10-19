@@ -8,7 +8,7 @@
     <template is="userIntro" data="{{user:user}}"></template>
 
     <!--项目店铺-->
-    <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:1}}"></template>
+    <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:1,count:count}}"></template>
 
     <!--成功案例-->
     <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>

@@ -256,19 +256,19 @@ Page({
       }
     });
   },
-  // 人气进入
-  popularity: function () {
-    let id = this.data.user_id;//当前用户的
-    wx.navigateTo({
-      url: '/pages/message/browseMe/browseMe?id=' + id
-    })
-  },
+  // // 人气进入
+  // popularity: function () {
+  //   let id = this.data.user_id;//当前用户的
+  //   wx.navigateTo({
+  //     url: '/pages/message/browseMe/browseMe?id=' + id
+  //   })
+  // },
   // 加我为人脉
-  attention: function () {
-    wx.navigateTo({
-      url: '/pages/message/beAddedContacts/beAddedContacts'
-    })
-  },
+  // attention: function () {
+  //   wx.navigateTo({
+  //     url: '/pages/message/beAddedContacts/beAddedContacts'
+  //   })
+  // },
   //分享引导跳转
   shareJump(e) {
     let index = e.currentTarget.dataset.index;
