@@ -407,4 +407,64 @@ Page({
       phoneNumber: telephone,
     })
   },
+  // -----------------------------------立即认证
+  // 立即认证
+  toAccreditation: function () {
+    let status = this.data.status;
+    let user_id = wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以显示去认证
+            if (status == 0) {
+              wx.navigateTo({
+                url: '/pages/my/identity/indentity/indentity'
+              })
+            } else if (status == 3) {
+              wx.showModal({
+                title: '友情提示',
+                content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+                confirmColor: "#333333;",
+                confirmText: "重新认证",
+                showCancel: false,
+                success: function (res) {
+                  wx.request({
+                    url: url_common + '/api/user/getUserGroupByStatus',
+                    data: {
+                      user_id: user_id
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                      let group_id = res.data.group.group_id;
+                      wx.navigateTo({
+                        url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
+                      })
+                    }
+                  })
+                }
+              })
+            }
+          } else if (complete == 0) {
+            wx.removeStorageSync('followed_user_id')
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.removeStorageSync('followed_user_id')
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      },
+    });
+  },
 })
+

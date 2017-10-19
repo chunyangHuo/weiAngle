@@ -39,9 +39,11 @@
   text-align: left;
   margin-bottom: 80rpx;
   /* width:1418rpx; */
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 
