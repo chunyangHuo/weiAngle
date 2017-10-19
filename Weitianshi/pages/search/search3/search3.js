@@ -218,16 +218,16 @@ Page({
     let pro_id = e.currentTarget.dataset.project;
     let slectProject = that.data.slectProject;
     let financingNeed = that.data.financingNeed;
-    let currentTab = that.data.currentTab;
+    let entrance = that.data.entrance;
     app.operationModel('projectApply', pro_id, res => {
       console.log(res)
-      if (currentTab == 0) {
+      if (entrance == 'selected') {
         slectProject.forEach(x => {
           if (x.project_id == pro_id) {
             x.relationship_button = 0;
           }
         })
-      } else {
+      } else if (entrance == 'newest') {
         financingNeed.forEach(x => {
           if (x.project_id == pro_id) {
             x.relationship_button = 0;
@@ -264,7 +264,37 @@ Page({
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
-
+  // 加人脉成功后处理(辅助函数)
+  contactsAddSuccessFunc(res, added_user_id, num) {
+    let that = this;
+    let investorList = this.data.investorList;
+    let faList = this.data.faList
+    if (res.data.status_code == 2000000) {
+      //更改投资人和FA列表中该人的加人脉按钮的字段
+      if (investorList) {
+        investorList.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          investorList: investorList
+        })
+      }
+      if (faList) {
+        faList.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          faList: faList
+        })
+      }
+    } else {
+      app.errorHide(that, res.data.error_Msg, 3000)
+    }
+  },
   // ----------------------------------获取搜索结果---------------------------------------------------
   // 最新
   newestProject() {
@@ -437,8 +467,10 @@ Page({
               break;
             }
             case 2: {
+              wx.hideLoading();
               var myList = res.data.data;//所有的用户
-              var page_end = res.data.page_end;
+              var page_end = res.data.page_end;  
+              console.log(myList)
               that.setData({
                 myList: myList,
                 page_end: page_end,

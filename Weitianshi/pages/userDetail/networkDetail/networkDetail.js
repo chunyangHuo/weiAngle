@@ -33,7 +33,7 @@ Page({
     })*/
     if (user_id == view_id) {
       wx.switchTab({
-        url: '/pages/my/my/my',
+        url: '/pages/my/myNew/myNew',
       })
     }
 

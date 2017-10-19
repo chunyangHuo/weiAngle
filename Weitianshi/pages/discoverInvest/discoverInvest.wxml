@@ -18,13 +18,13 @@
       <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1' data='{{item}}'></template>
+          <template is='cardBottom1' data='{{item,user_id}}'></template>
         </view>
       </block>
       <block wx:for="{{investorList}}" wx:key="{{investorList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1' data='{{item}}'></template>
+          <template is='cardBottom1' data='{{item,user_id}}'></template>
         </view>
       </block>
     </scroll-view>
@@ -39,7 +39,7 @@
       <block wx:for="{{faList}}" wx:key="{{faList}}">
         <view class='investorCard'>
           <template is='InvestorCard' data='{{item}}'></template>
-          <template is='cardBottom1' data='{{item}}'></template>
+          <template is='cardBottom1' data='{{item,user_id}}'></template>
         </view>
       </block>
     </scroll-view>

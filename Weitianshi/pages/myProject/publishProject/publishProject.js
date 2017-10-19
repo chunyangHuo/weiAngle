@@ -403,6 +403,31 @@ Page({
     let company_open_status = this.data.company_open_status;
     let pro_total_score = this.data.pro_total_score;
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
+      // 投后股份项数值限定
+      function checkNumber(data) {
+        var reg = /^\d+\.[0-9]{2}/;
+        if (reg.test(data)) {
+          return true;
+        }
+        return false;
+      }
+      //处理下投后股份数据类型 
+      if (isNan(pro_finance_stock_after)){     
+      }else{
+        pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
+      }
+      console.log(pro_finance_stock_after)
+      console.log(typeof pro_finance_stock_after)
+      if (typeof pro_finance_stock_after =='number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
+        if (pro_finance_stock_after < 0) {
+          app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
+        } else if (pro_finance_stock_after > 100) {
+          app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
+        } else if (typeof pro_finance_stock_after == 'number') {
+          app.errorHide(that, '投后股份项应该为数字', 3000);
+        }
+        return;
+      }
       app.httpPost({
         url: url_common + '/api/project/createProject',
         data: {
@@ -464,7 +489,6 @@ Page({
   //完整度
   totalScore: function (name) {
     let pro_total_score = this.data.pro_total_score;
-    console.log(pro_total_score)
     if (name) {
       pro_total_score = pro_total_score + 2.4;
       this.setData({

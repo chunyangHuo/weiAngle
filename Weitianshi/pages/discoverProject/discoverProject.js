@@ -78,7 +78,7 @@ Page({
   },
   // 轮播图跳转
   bannerLink(e) {
-    let index = e.currentTarget.dataset.index;
+    let index = e.currentTarget.dataset.index + 1;
     wx.navigateTo({
       url: '/pages/activtyPage/activtyPage/activtyPage?index=' + index,
     })
