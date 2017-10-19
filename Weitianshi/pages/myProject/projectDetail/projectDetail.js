@@ -114,6 +114,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         let brandList = res.data.data.brand;
         let project = res.data.data;
         let user = res.data.user;
@@ -123,6 +124,12 @@ Page({
         console.log(pro_goodness)
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
+        if (project.pro_BP) {
+          let BPath = project.pro_BP.file_url;
+          that.setData({
+            BPath: BPath
+          })
+        }
         // 如果项目亮点字数超出字,刚显示全部按钮
         if (pro_goodness.length != 0) {
           if (pro_goodness[0].goodness_desc.length > 50) {
@@ -649,6 +656,7 @@ Page({
   //商业计划书
   businessBook: function () {
     let BPath = this.data.BPath;
+    console.log(BPath)
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
@@ -933,8 +941,8 @@ Page({
         that.setData({
           investor2: investor2
         })
-      }else{
-        app.errorHide(that,res.data.error_msg,3000)
+      } else {
+        app.errorHide(that, res.data.error_msg, 3000)
       }
     })
   },

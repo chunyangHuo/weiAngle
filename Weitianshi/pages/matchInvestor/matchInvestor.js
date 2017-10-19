@@ -7,7 +7,7 @@ Page({
   data: {
     imgUrls: app.globalData.picUrl.page_matchInvestorEmpty
   },
-  onLoad() {
+  onShow() {
     let that = this;
     this.getMyProject();
     app.initPage(that);
