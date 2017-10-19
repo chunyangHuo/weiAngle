@@ -377,6 +377,34 @@ Page({
   },
   //联系项目方
   contactPerson: function () {
+    let user_id = wx.getStorageSync('user_id');
+    let that = this;
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以联系项目方
+            that.setData({
+              modalBox: 1
+            })
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      },
+    });
 
   },
   //关闭模态框
