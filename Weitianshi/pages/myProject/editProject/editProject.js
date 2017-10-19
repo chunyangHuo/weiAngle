@@ -155,8 +155,27 @@ Page({
       console.log(res)
       if (res.data.status != 0) {
         let group_id = res.data.group.group_id;
+        if (res.data.status == 2) {
+          if (group_id == 6 || group_id == 18 || group_id == 21) {
+            that.setData({
+              yesData: true
+            })
+          } else {
+            that.setData({
+              yesData: false
+            })
+          }
+        } else {
+          that.setData({
+            yesData: false
+          })
+        }
         that.setData({
           group_id: group_id
+        })
+      } else {
+        that.setData({
+          yesData: false
         })
       }
     })
