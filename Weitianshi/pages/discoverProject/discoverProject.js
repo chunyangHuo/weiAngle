@@ -17,8 +17,11 @@ Page({
     bannerIndex: 0,
     modalBox: 0,
     imgUrls: [
-      app.globalData.picUrl.activtyBanner,
-      app.globalData.picUrl.banner_workBench,
+      app.globalData.picUrl.banner_1,
+      app.globalData.picUrl.banner_2,
+      app.globalData.picUrl.banner_3,
+      app.globalData.picUrl.banner_4,
+      app.globalData.picUrl.banner_5,
     ],
   },
   onLoad(options) {
@@ -76,18 +79,9 @@ Page({
   // 轮播图跳转
   bannerLink(e) {
     let index = e.currentTarget.dataset.index;
-    switch (index) {
-      case 0:
-        wx.navigateTo({
-          url: '/pages/contactsActivty/activtyDetail/activtyDetail',
-        })
-        break;
-      case 1:
-        wx.navigateTo({
-          url: '/pages/contactsActivty/activtyPage/workBenchJump/workBenchJump',
-        })
-        break;
-    }
+    wx.navigateTo({
+      url: '',
+    })
   },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {

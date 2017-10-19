@@ -311,7 +311,6 @@ Page({
         })
       }
       if (faList) {
-        console.log(faList, added_user_id)
         faList.forEach(x => {
           if (x.user_id == added_user_id) {
             x.follow_status = num
