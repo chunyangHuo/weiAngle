@@ -429,7 +429,7 @@ Page({
               delta: 1
             })
           } else {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/matchInvestor/matchInvestor'
             });
           }
