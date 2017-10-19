@@ -1,10 +1,11 @@
 /*tab切换页  */
 
 .swiper-tab {
-  width: 100%;
+  width: 88%;
   line-height: 80rpx;
   background: #40587a;
   z-index: 999;
+  padding-left: 12%;
 }
 
 .swiper-tab-list {
@@ -23,6 +24,7 @@
   text-align: center;
   font-size: 26rpx;
   line-height: 80rpx;
+  border-bottom: 4rpx solid white;
 }
 
 .dropDown {
