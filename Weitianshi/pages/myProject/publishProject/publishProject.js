@@ -429,8 +429,8 @@ Page({
               delta: 1
             })
           } else {
-            wx.switchTab({
-              url: '/pages/discoverProject/discoverProject'
+            wx.navigateTo({
+              url: '/pages/matchInvestor/matchInvestor'
             });
           }
         } else {

@@ -653,6 +653,7 @@
             <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">收起</view>
           </view>
+          <view style="height:88rpx;"></view>
         </view>
         <view class="noMessage" wx:if="{{nothing == 0}}">
           <image src="/img/img-kong@2x.png" class="nothing"></image>
