@@ -91,9 +91,11 @@ Page({
     if (current === 0) {
       //请求投资人列表
       this.investorList();
+      console.log(this.data.investorList)
     } else if (current === 1) {
       //请求FA列表
       this.faList();
+      console.log(this.data.faList)
     } else if (current === 2) {
       //请求我的人脉列表
       this.myList();

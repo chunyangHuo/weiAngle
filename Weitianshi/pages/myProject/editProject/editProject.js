@@ -27,9 +27,9 @@ Page({
       css: "checkOn",
       value: ["选择领域"],
       id: [],
-      service_fa : 1,
-      service_yun:1,
-      service_ps_bp:1
+      service_fa: 1,
+      service_yun: 1,
+      service_ps_bp: 1
     }
   },
   onLoad: function (options) {
@@ -198,7 +198,6 @@ Page({
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   },
-
   //文本框输入
   bindTextAreaBlur: function (e) {
     var that = this;
@@ -215,14 +214,12 @@ Page({
       pro_goodness: e.detail.value
     })
   },
-
   // 选择领域
   industry: function () {
     wx.navigateTo({
       url: '/pages/form/industry/industry?current=' + 2
     })
   },
-
   //是否独家的效果实现
   tipsOn: function (e) {
     var that = this;
@@ -230,14 +227,12 @@ Page({
       tipsIndex: e.target.dataset.tipsIndex
     })
   },
-
   //项目阶段
   stage: function (e) {
     this.setData({
       stage_index: e.detail.value,
     });
   },
-
   //期望融资
   scale: function (e) {
     this.setData({
@@ -491,6 +486,25 @@ Page({
       upLoad: 1
     })
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4 && pro_goodness !== "") {
+      // 投后股份项数值限定
+      function checkNumber(data) {
+        var reg = /^\d+\.[0-9]{2}/;
+        if (reg.test(data)) {
+          return true;
+        }
+        return false;
+      }
+      console.log(checkNumber(pro_finance_stock_after))
+      if (pro_finance_stock_after < 0 || pro_finance_stock_after > 100 || checkNumber(pro_finance_stock_after)) {
+        if (pro_finance_stock_after < 0) {
+          app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
+        } else if (pro_finance_stock_after > 100) {
+          app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
+        } else {
+          app.errorHide(that, '投后股份项应该为小数位不超过两位的数字', 3000);
+        }
+        return;
+      }
       //保存项目更改
       that.updata(that)
     } else {
@@ -534,7 +548,7 @@ Page({
     var upLoad = that.data.upLoad;
     let service_fa = Number(that.data.service_fa);
     let service_yun = Number(that.data.service_yun);
-    let service_ps_bp= Number(that.data.service_ps_bp);
+    let service_ps_bp = Number(that.data.service_ps_bp);
     wx.request({
       url: url_common + '/api/project/updateProject',
       data: {
@@ -550,7 +564,7 @@ Page({
         pro_area_city: cityNum,
         is_exclusive: tipsIndex,
         pro_goodness: pro_goodness,
-        service_fa   : service_fa,
+        service_fa: service_fa,
         service_yun: service_yun,
         service_ps_bp: service_ps_bp,
         pro_finance_stock_after: pro_finance_stock_after

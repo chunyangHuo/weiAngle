@@ -324,3 +324,8 @@ page {
 .newBox {
   color: #333;
 }
+
+/*错误反馈修改  */
+.error{
+  height: 140rpx;
+}
