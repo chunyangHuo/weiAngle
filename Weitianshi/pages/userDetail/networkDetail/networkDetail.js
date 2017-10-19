@@ -44,6 +44,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         console.log(res)
+        console.log(res.data.count.project_count)
         var user = res.data.user_info;
         var count = res.data.count;
         var invest = res.data.invest_info;
