@@ -18,6 +18,7 @@ let data = {
     stage: [],
     scale: [],
     hotCity: [],
+    search:"",
   },
   industry: wx.getStorageSync('industry'),
   stage: wx.getStorageSync('stage'),

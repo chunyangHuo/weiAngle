@@ -86,13 +86,13 @@ Page({
           this.newestProject();
           break;
         case "investorList":
-          this.investorList();
+          this.newSearch(0);
           break;
         case "faList":
-          this.faList();
+          this.newSearch(1);
           break;
         case "myList":
-          this.myList();
+          this.newSearch(2);
           break;
       }
     }, 1500)
@@ -144,6 +144,7 @@ Page({
     let entrance = this.data.entrance;
     let that = this;
     let user_id = wx.getStorageSync('user_id');
+    let search=this.data.SearchInit.searchData.search
     let request;
     switch (entrance) {
       case 'newest':
@@ -170,12 +171,11 @@ Page({
       case 'investorList':
         {
           request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
+            url: url_common + '/api/investor/searchInvestor',
             data: {
               user_id: user_id,
-              type: 'investor',
               page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
+              search:search
             }
           }
           //调用通用加载函数
@@ -185,12 +185,11 @@ Page({
       case 'faList':
         {
           request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
+            url: url_common + '/api/investor/searchInvestor',
             data: {
               user_id: user_id,
-              type: 'fa',
+              search:search,
               page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
             }
           }
           //调用通用加载函数
@@ -200,11 +199,11 @@ Page({
       case 'myList':
         {
           request = {
-            url: url_common + '/api/user/getMyFollowList',
+            url: url_common + '/api/investor/searchInvestor',
             data: {
               user_id: user_id,
+              search:search,
               page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
             }
           }
           //调用通用加载函数
@@ -351,4 +350,55 @@ Page({
       })
     }
   },
+
+  // 新搜索逻辑
+  newSearch(num) {
+    let user_id = this.data.user_id;
+    let that = this;
+    let search = this.data.SearchInit.searchData.search;
+    wx.request({
+      url: url_common + '/api/investor/searchInvestor',
+      data: {
+        user_id: user_id,
+        search: search,
+      },
+      method: 'POST',
+      success(res) {
+        if (res.data.status_code == 2000000) {
+          switch (num) {
+            case 0: {
+              console.log('投资人列表', res.data.data)
+              wx.hideLoading();
+              var investorList = res.data.data;
+              that.setData({
+                investorList: investorList,
+              })
+              break;
+            }
+            case 1: {
+              console.log('FA列表', res.data.data)
+              wx.hideLoading();
+              var faList = res.data.data;
+              that.setData({
+                faList: faList,
+              })
+              break;
+            }
+            case 2: {
+              var myList = res.data.data;//所有的用户
+              var page_end = res.data.page_end;
+              that.setData({
+                myList: myList,
+                page_end: page_end,
+              })
+              break;
+            }
+          }
+        }else{
+          wx.hideLoading();
+          app.errorHide(that,res.data.error_msg,3000)
+        }
+      }
+    })
+  }
 })

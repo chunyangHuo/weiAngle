@@ -44,6 +44,26 @@ Page({
       share_id: options.share_id
     });
 
+    // 判斷項目是不是自己的
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        let ownerId = res.data.user_id;
+        app.loginPage(function (user_id) {
+          if (ownerId === user_id) {
+            wx.navigateTo({
+              url: '/pages/myProject/projectDetail/projectDetail?id=' + id,
+            })
+          }
+        });
+      }
+    })
+
+
     this.identityInfo(that);
 
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
@@ -311,7 +331,6 @@ Page({
           if (res.data.data.project_product) {
             projectInfoList = res.data.data.project_product;
           }
-          let projectInfoList = res.data.data.project_product;
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;

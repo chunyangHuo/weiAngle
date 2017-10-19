@@ -100,14 +100,14 @@ Page({
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let currentPage = this.data.currentPage;
-    let myProject=this.data.myPrjoect;
+    let myProject = this.data.myPrjoect;
     let request = {
       url: url_common + '/api/project/getMyProjectList',
       data: {
         user_id: user_id,
-        type: 'match'
+        type: 'match',
+        page: currentPage
       },
-      page: currentPage
     }
     app.loadMore2(that, request, res => {
       console.log(res)
@@ -123,8 +123,8 @@ Page({
           currentPage: currentPage
         })
       }
-      if(page_end=true){
-        app.errorHide(that,'没有更多了',3000)
+      if (page_end = true) {
+        app.errorHide(that, '没有更多了', 3000)
       }
     })
   },

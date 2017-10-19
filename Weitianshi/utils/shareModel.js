@@ -24,7 +24,7 @@ function myProjectDetailShare(that) {
   let share_id = wx.getStorageSync('user_id');
   let title = pro_intro;
   return {
-    title: title,
+    title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
     path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
   }
 }
@@ -37,7 +37,7 @@ function projectDetailShare(that) {
   let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
   let title = pro_intro;
   return {
-    title: pro_intro,
+    title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
     path: path,
     imageUrl: app.globalData.picUrl.shareCommon,
   }
@@ -155,7 +155,7 @@ function sharePage(user_id, share_id, name) {
   let url = app.globalData.url;
   let url_common = app.globalData.url_common;
   let json = {
-    title: '［换名片］' + name + '的投资名片，请点击查看',
+    title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
     imageUrl: app.globalData.picUrl.shareCommon,
   }
