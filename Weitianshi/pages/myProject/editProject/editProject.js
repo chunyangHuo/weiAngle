@@ -27,9 +27,9 @@ Page({
       css: "checkOn",
       value: ["选择领域"],
       id: [],
-      service_fa : 0,
-      service_yun:0,
-      service_ps_bp:0
+      service_fa: 0,
+      service_yun: 0,
+      service_ps_bp: 0
     }
   },
   onLoad: function (options) {
@@ -494,12 +494,18 @@ Page({
         }
         return false;
       }
-      console.log(checkNumber(pro_finance_stock_after))
-      if (pro_finance_stock_after < 0 || pro_finance_stock_after > 100 || checkNumber(pro_finance_stock_after)) {
+      if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100 || checkNumber(pro_finance_stock_after)) {
         if (pro_finance_stock_after < 0) {
           app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
         } else if (pro_finance_stock_after > 100) {
           app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
+        } else if (typeof pro_finance_stock_after != 'number') {
+          // 投后股份是非必填项
+          if (pro_finance_stock_after == '') {
+            that.updata(that)
+          } else {
+            app.errorHide(that, '投后股份项应该为数字', 3000);
+          }
         } else {
           app.errorHide(that, '投后股份项应该为小数位不超过两位的数字', 3000);
         }

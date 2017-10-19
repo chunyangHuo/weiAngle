@@ -138,7 +138,6 @@ Page({
         let email = this.data.email;
         let user_id = wx.getStorageSync('user_id');
         let type = this.data.type;
-
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({

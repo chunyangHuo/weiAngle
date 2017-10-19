@@ -16,14 +16,14 @@
   <block wx:for="{{investorList}}" wx:key="{{investorList}}" wx:if='{{investorList}}'>
     <view class='investorCard'>
       <template is='InvestorCard' data='{{item}}'></template>
-      <template is='cardBottom1' data='{{item}}'></template>
+      <template is='cardBottom1' data='{{item,user_id}}'></template>
     </view>
   </block>
   <!--fa列表  -->
   <block wx:for="{{faList}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
     <view class='investorCard'>
       <template is='InvestorCard' data='{{item}}'></template>
-      <template is='cardBottom1' data='{{item}}'></template>
+      <template is='cardBottom1' data='{{item,user_id}}'></template>
     </view>
   </block>
   <!--我的人脉列表  -->
