@@ -176,7 +176,7 @@ Page({
                                                 confirmText: "到人脉库",
                                                 success: function () {
                                                     wx.switchTab({
-                                                        url: '/pages/contacts/contacts/contacts',
+                                                      url: '/pages/discoverInvest/discoverInvest',
                                                     })
                                                 }
                                             })
@@ -202,7 +202,7 @@ Page({
                                                 confirmText: "到人脉库",
                                                 success: function () {
                                                     wx.switchTab({
-                                                        url: '/pages/contacts/contacts/contacts',
+                                                      url: '/pages/discoverInvest/discoverInvest',
                                                     })
                                                 }
                                             })

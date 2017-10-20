@@ -100,7 +100,7 @@ Page({
         wx.setStorageSync('industryFilter', industryFilter);
         wx.setStorageSync('stageFilter', stageFilter);
         wx.switchTab({
-          url: '/pages/contacts/contacts/contacts',
+          url: '/pages/discoverInvest/discoverInvest',
         })
     },
 

@@ -84,7 +84,7 @@ Page({
   // 取消
   searchEsc: function () {
     wx.switchTab({
-      url: '/pages/contacts/contacts/contacts'
+      url: '/pages/discoverInvest/discoverInvest'
     })
   },
   // 一键拨号

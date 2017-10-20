@@ -144,7 +144,7 @@ function addNetWork(that, follow_user_id, followed_user_id) {
                     confirmText: "到人脉库",
                     success: function (res) {
                         wx.switchTab({
-                            url: '/pages/contacts/contacts/contacts',
+                          url: '/pages/discoverInvest/discoverInvest',
                         })
                     }
                 })
@@ -156,7 +156,7 @@ function addNetWork(that, follow_user_id, followed_user_id) {
                     confirmText: "到人脉库",
                     success: function () {
                         wx.switchTab({
-                            url: '/pages/contacts/contacts/contacts',
+                          url: '/pages/discoverInvest/discoverInvest',
                         })
                     }
                 })
