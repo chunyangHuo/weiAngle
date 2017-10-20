@@ -871,10 +871,10 @@
     <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
     <!--下拉框  -->
     <view class='dropDown withAnimate'>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==0}}'>项目领域</view>
+      <!-- <view class='dropTitle' wx:if='{{SearchInit.currentIndex==0}}'>项目领域</view>
       <view class='dropTitle' wx:if='{{SearchInit.currentIndex==1}}'>融资轮次</view>
       <view class='dropTitle' wx:if='{{SearchInit.currentIndex==2}}'>期望融资</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==3}}'>项目地区</view>
+      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==3}}'>项目地区</view> -->
       <!--多选框  -->
       <view class='flex dropFlex'>
         <!--领域  -->

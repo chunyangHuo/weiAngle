@@ -173,8 +173,9 @@ page {
 .myShop {
   margin-top: 28rpx;
   border-right: 1rpx solid #fff;
-  padding-right: 66rpx;
+  padding-right: 48rpx;
   padding-left: 60rpx;
+  height:60rpx;
 }
 
 .empty {
@@ -565,6 +566,6 @@ page {
 }
 
 .newProject {
-  padding-right: 122rpx;
-  padding-left: 122rpx;
+  /* padding-right: 122rpx; */
+  padding-left: 20rpx;
 }

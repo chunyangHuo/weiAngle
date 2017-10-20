@@ -162,7 +162,7 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 wx.switchTab({
-                  url: '/pages/contacts/contacts/contacts',
+                  url: '/pages/discoverInvest/discoverInvest',
                 })
               } else if (res.cancel) {
               }
@@ -203,7 +203,7 @@ Page({
                     success: function (res) {
                       if (res.confirm) {
                         wx.switchTab({
-                          url: '/pages/contacts/contacts/contacts',
+                          url: '/pages/discoverInvest/discoverInvest',
                         })
                       } else if (res.cancel) {
                         console.log('用户点击取消')

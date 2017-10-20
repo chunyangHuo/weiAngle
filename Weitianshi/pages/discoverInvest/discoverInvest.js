@@ -120,7 +120,6 @@ Page({
           that.setData({
             investorList: investorList,
             SearchInit: SearchInit
-
           })
         }
       }
@@ -166,6 +165,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           that.setData({
             notIntegrity: res.data.is_complete,
             empty: 1
@@ -207,9 +207,16 @@ Page({
   // 用户详情
   userDetail: function (e) {
     let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    var user_id = wx.getStorageSync("user_id");//用戶id
+    if(id == user_id){
+      wx.switchTab({
+        url: '/pages/my/myNew/myNew',
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+      })
+    }
   },
   // 上拉加载
   loadMore: function () {
