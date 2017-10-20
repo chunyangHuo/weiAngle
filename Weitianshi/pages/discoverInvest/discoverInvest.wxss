@@ -141,3 +141,6 @@
   border-bottom:2rpx dashed #999;
   width: 90%;
 }
+.btnGroup{
+  height:50rpx;
+}

@@ -563,7 +563,7 @@ textarea {
   left: 0;
   background: white;
   z-index: 9999;
-  padding-bottom: 12rpx;
+  padding-bottom: 48rpx;
 }
 
 .dropTitle {

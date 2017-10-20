@@ -135,9 +135,16 @@ Page({
   //点击进入用户详情
   userDetail(e) {
     let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    var user_id = wx.getStorageSync("user_id");//用戶id
+    if (id == user_id) {
+      wx.switchTab({
+        url: '/pages/my/myNew/myNew',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+      })
+    }
   },
   //上拉加载
   loadMore: function () {
