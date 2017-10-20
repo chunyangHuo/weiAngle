@@ -53,7 +53,6 @@ Page({
         }
       })
     } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user) {
-      console.log('company_open_status', company_open_status)
       that.setData({
         open_status: Number(options.open_status),
         power_share_status: Number(options.power_share_status),
@@ -161,29 +160,35 @@ Page({
       subscribe: subscribe
     })
     // 保存私密性
-    wx.request({
-      url: url_common + '/api/project/set',
-      data: {
-        project_id: project_id,
-        open_status: open_status,
-        power_share_status: power_share_status,
-        power_investor_status: power_investor_status,
-        company_open_status: Number(!company_open_status),
-        white_company: white_company,
-        white_user: white_user,
-        black_company: black_company,
-        black_user: black_user
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          wx.navigateBack({
-            delta: 1,
-          })
-        } else {
-          console.log(res.data.error_msg)
+    if (project_id) {
+      wx.request({
+        url: url_common + '/api/project/set',
+        data: {
+          project_id: project_id,
+          open_status: open_status,
+          power_share_status: power_share_status,
+          power_investor_status: power_investor_status,
+          company_open_status: Number(!company_open_status),
+          white_company: white_company,
+          white_user: white_user,
+          black_company: black_company,
+          black_user: black_user
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            wx.navigateBack({
+              delta: 1,
+            })
+          } else {
+            app.errorHide(that, res.data.error_msg, 3000)
+          }
         }
-      }
-    })
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
   }
 })
