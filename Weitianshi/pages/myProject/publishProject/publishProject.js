@@ -30,6 +30,7 @@ Page({
       value: ["选择领域"],
       id: []
     },
+    pro_finance_stock_after: 0,
     open_status: 1,
     power_share_status: 1,
     power_investor_status: 1,
@@ -412,22 +413,21 @@ Page({
         }
         return false;
       }
+      console.log('befor', pro_finance_stock_after)
       //处理下投后股份数据类型 
       if (isNaN(pro_finance_stock_after)) {
       } else {
         pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
       }
+      console.log('later', pro_finance_stock_after)
       if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
         if (pro_finance_stock_after < 0) {
           app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
         } else if (pro_finance_stock_after > 100) {
           app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
         } else if (typeof pro_finance_stock_after != 'number') {
-          if (pro_finance_stock_after == '') {
-            that.updata(that)
-          } else {
-            app.errorHide(that, '投后股份项应该为数字', 3000);
-          }
+          console.log(pro_finance_stock_after)
+          app.errorHide(that, '投后股份项应该为数字', 3000);
         }
         return;
       }

@@ -43,12 +43,13 @@ Page({
     show_detail: true,
     show_company: true,
     type: 2,
-    other:true
+    other: true
   },
   onLoad: function (options) {
     this.setData({
       index: options.index,
       id: options.id,
+      share_id: options.share_id,
       // currentTab: options.currentTab,
       shareType: options.type
     });
@@ -94,8 +95,9 @@ Page({
             that.projectDetailInfo(id);
             that.matchInvestorInfo(id);
           } else {
+            console.log('share_id',share_id)
             wx.redirectTo({
-              url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=0',
+              url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id,
             })
           }
         });

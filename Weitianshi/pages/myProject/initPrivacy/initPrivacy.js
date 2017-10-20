@@ -22,7 +22,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(options)
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     if (options.project) {
@@ -37,7 +36,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           that.setData({
             open_status: res.data.data.open_status,
             power_share_status: res.data.data.power_share_status,
@@ -55,6 +53,7 @@ Page({
         }
       })
     } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user) {
+      console.log('company_open_status', company_open_status)
       that.setData({
         open_status: Number(options.open_status),
         power_share_status: Number(options.power_share_status),
@@ -142,57 +141,49 @@ Page({
     let black_company = this.data.black_company;
     let black_user = this.data.black_user;
     let subscribe = this.data.subscribe;
-    if (project_id) {
-      wx.request({
-        url: url_common + '/api/project/set',
-        data: {
-          project_id: project_id,
-          open_status: open_status,
-          power_share_status: power_share_status,
-          power_investor_status: power_investor_status,
-          company_open_status: Number(!company_open_status),
-          white_company: white_company,
-          white_user: white_user,
-          black_company: black_company,
-          black_user: black_user
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status_code == 2000000) {
-            wx.navigateBack({
-              delta: 1,
-            })
-          } else {
-            console.log(res.data.error_msg)
-          }
-        }
-      })
-    } else {
-      let pages = getCurrentPages();
-      let currPage = pages[pages.length - 1];
-      let prevPage = pages[pages.length - 2];
-      let subscribe = prevPage.data.subscribe;
-      open_status = open_status;
-      power_share_status = power_share_status;
-      power_investor_status = power_investor_status;
-      console.log(company_open_status)
-      company_open_status = Number(!company_open_status);
-      console.log(company_open_status)
-      subscribe.white_company = white_company;
-      subscribe.white_user = white_user;
-      subscribe.black_company = black_company;
-      subscribe.black_user = black_user
-      console.log(this.data)
-      prevPage.setData({
+    //暂存私密性选项
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1];
+    let prevPage = pages[pages.length - 2];
+    open_status = open_status;
+    power_share_status = power_share_status;
+    power_investor_status = power_investor_status;
+    company_open_status = Number(!company_open_status);
+    subscribe.white_company = white_company;
+    subscribe.white_user = white_user;
+    subscribe.black_company = black_company;
+    subscribe.black_user = black_user
+    prevPage.setData({
+      open_status: open_status,
+      power_share_status: power_share_status,
+      power_investor_status: power_investor_status,
+      company_open_status: company_open_status,
+      subscribe: subscribe
+    })
+    // 保存私密性
+    wx.request({
+      url: url_common + '/api/project/set',
+      data: {
+        project_id: project_id,
         open_status: open_status,
         power_share_status: power_share_status,
         power_investor_status: power_investor_status,
-        company_open_status: company_open_status,
-        subscribe: subscribe
-      })
-      wx.navigateBack({
-        delta: 1
-      })
-    }
+        company_open_status: Number(!company_open_status),
+        white_company: white_company,
+        white_user: white_user,
+        black_company: black_company,
+        black_user: black_user
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        } else {
+          console.log(res.data.error_msg)
+        }
+      }
+    })
   }
 })

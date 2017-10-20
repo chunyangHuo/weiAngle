@@ -23,9 +23,10 @@ function myProjectDetailShare(that) {
   let id = that.data.id;
   let share_id = wx.getStorageSync('user_id');
   let title = pro_intro;
+  console.log(share_id)
   return {
     title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
-    path: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
+    path: '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
   }
 }
 //他人项目详情分享
