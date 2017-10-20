@@ -117,24 +117,25 @@ Page({
         if (res.data.status == 2) {
           if (group_id == 6 || group_id == 18 || group_id == 21) {
             that.setData({
-              yesData: true
+              yesData: true,
+              group_id: group_id
             })
           } else {
             that.setData({
-              yesData: false
+              yesData: false,
+              group_id: group_id
             })
           }
         } else {
           that.setData({
-            yesData: false
+            yesData: false,
+            group_id: group_id
           })
         }
-        that.setData({
-          group_id: group_id
-        })
       } else {
         that.setData({
-          yesData: false
+          yesData: false,
+          group_id: group_id
         })
       }
     })

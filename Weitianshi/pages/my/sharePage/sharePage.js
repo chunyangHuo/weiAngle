@@ -8,7 +8,7 @@ Page({
     user: "",
     followed_user_id: "",
   },
-  onLoad: function (options) { 
+  onLoad: function (options) {
     console.log('this is sharePage')
     let that = this;
     let followed_user_id = options.user_id;
@@ -68,7 +68,24 @@ Page({
       that.setData({
         user_id: user_id,
       })
+      //查看是否注册
+      wx.request({
+        url: url_common + '/api/user/checkUserInfo',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            let complete = res.data.is_complete;
+            that.setData({
+              complete: complete
+            })
+          }
+        },
+      });
     })
+
   },
 
   // 添加人脉
@@ -166,7 +183,6 @@ Page({
         success: function (res) {
           if (res.data.status_code == 2000000) {
             let complete = res.data.is_complete;
-
             if (complete == 1) {
               //如果信息完整就直接添加人脉
               wx.request({
@@ -245,10 +261,41 @@ Page({
     })
   },
   //跳转到我的人脉
-  toContacts: function () {
-    wx.navigateTo({
+  toContactsMy: function () {
+    wx.switchTab({
       url: '/pages/my/myNew/myNew',
     })
+  },
+  //跳转注册
+  toContacts: function () {
+    //走正常申请流程
+    let user_id = this.data.user_id;//我的id,查看者的id
+    let followed_user_id = this.data.followed_user_id; 
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          let complete = res.data.is_complete;
+          if (complete == 1) {
+          
+          } else if (complete == 0) {
+            wx.setStorageSync('followed_user_id', followed_user_id)
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo'
+            })
+          }
+        } else {
+          wx.setStorageSync('followed_user_id', followed_user_id)
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo'
+          })
+        }
+      },
+    });
   },
   // 跳转到推送项目页面
   pushProject: function () {
