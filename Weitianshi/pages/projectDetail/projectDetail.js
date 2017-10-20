@@ -24,6 +24,7 @@ Page({
     textBeyond2: false,//创始人的全部和收起是否显示标志
     textBeyond3: false,//资金用途的全部和收起是否显示标志
     textBeyond4: false,
+    textBeyond5: false,
     modalBox: 0,
     currentTab: 0,//选项卡
     show_detail: false,
@@ -171,7 +172,8 @@ Page({
           if (pro_goodness[0].goodness_desc.length > 50) {
             console.log("textBeyond0")
             that.setData({
-              textBeyond0: true
+              textBeyond0: true,
+              textBeyond5: true
             })
           }
           if (pro_goodness.length == 2) {
@@ -938,6 +940,7 @@ Page({
   },
   noBrightPoint: function (e) {
     let check = e.currentTarget.dataset.check;
+    console.log(check)
     if (check == 0) {
       this.setData({
         isChecked0: true
@@ -1027,7 +1030,6 @@ Page({
     let user_id = this.data.user_id;
     let pro_id = this.data.id;
     app.operationModel('projectApply', pro_id, res => {
-      console.log(res)
       if (res.data.status_code = 2000000) {
         this.setData({
           button_type: 0

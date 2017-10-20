@@ -52,8 +52,8 @@
           <view class="title star">{{pro_goodness[0].goodness_title}}</view>
         </view>
         <view class="brightContent" class="{{isChecked0?'brightContent':'brightContentAfter'}}" value="{{number}}" wx:if="{{project.pro_goodness}}">{{pro_goodness[0].goodness_desc}}</view>
-        <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked0 == true&& textBeyond0}}">全部</label>
-        <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked0== false&& textBeyond0}}">收起</label>
+        <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked0 == true&& textBeyond5}}" data-check="{{0}}">全部</label>
+        <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked0== false&& textBeyond5}}" data-check="{{0}}" >收起</label>
       </view>
     </view>
     <!--三个tab页  -->
