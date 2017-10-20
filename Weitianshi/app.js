@@ -645,6 +645,33 @@ App({
     }
   },
 
+  //投后股份格式校验
+  stockCheck(that,pro_finance_stock_after){
+    // 投后股份项数值限定
+    function checkNumber(data) {
+      var reg = /^\d+\.[0-9]{2}/;
+      if (reg.test(data)) {
+        return true;
+      }
+      return false;
+    }
+    //处理下投后股份数据类型 
+    if (isNaN(pro_finance_stock_after)) {
+    } else {
+      pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
+    }
+    if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
+      if (pro_finance_stock_after < 0) {
+        this.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
+      } else if (pro_finance_stock_after > 100) {
+        this.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
+      } else if (typeof pro_finance_stock_after != 'number') {
+        this.errorHide(that, '投后股份项应该为数字', 3000);
+      }
+      return;
+    }
+  }, 
+
   //初始本地缓存
   globalData: { 
     error: 0,

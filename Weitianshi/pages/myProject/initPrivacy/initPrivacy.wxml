@@ -6,7 +6,7 @@
     <switch checked="{{open_status}}" bindchange="switchChange1" class="switchTab" />
   </view>
   <view class="choiceBox flex">
-    <view class="content">分享后好友直接查看项目信息、BP资料</view>
+    <view class="content">仅自己分享后好友直接查看项目信息、BP资料</view>
     <switch checked="{{power_share_status}}" bindchange="switchChange2" class="switchTab" />
   </view>
   <view class="choiceBox flex">

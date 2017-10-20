@@ -43,7 +43,7 @@
                   <view class="proposal grayName" wx:if="{{project.pro_BP.length != 0}}">商业计划书：
                     <label class="materialContent">{{project.pro_BP.file_title}}</label>
                   </view>
-                  <view class="grayName" wx:if="{{project.pro_name != ''}}">项目名称：
+                  <view class="grayName" wx:if="{{project.pro_name != ''}}" wx:if='{{show_company==true}}'>项目名称：
                     <label class="materialContent">{{project.pro_name}}</label>
                   </view>
                   <view class="grayName" wx:if="{{project.pro_company_name != ''}}" wx:if='{{show_company==true}}'>公司名称：

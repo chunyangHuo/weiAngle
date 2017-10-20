@@ -174,8 +174,8 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
     mask: true,
   })
   let user_id = wx.getStorageSync('user_id');
-  getPushProjectTimes(pushRequest())
   checkUserInfo(x=>{
+    getPushProjectTimes(pushRequest())
     // 实现推送
     function pushRequest() {
       wx.request({
@@ -214,8 +214,8 @@ function projectPush(pushTo_user_id) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-  getPushProjectTimes(res => {
-    checkUserInfo(x => {
+  checkUserInfo(x => {
+    getPushProjectTimes(res => {
       wx.navigateTo({
         url: '/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id,
       })

@@ -39,7 +39,6 @@ function projectDetailShare(that) {
   return {
     title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
     path: path,
-    imageUrl: app.globalData.picUrl.shareCommon,
   }
   return shareProjectPage(id, title, share_id)
 }
@@ -157,7 +156,6 @@ function sharePage(user_id, share_id, name) {
   let json = {
     title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
-    imageUrl: app.globalData.picUrl.shareCommon,
   }
   return json
 }

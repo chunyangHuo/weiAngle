@@ -234,32 +234,10 @@ Page({
     })
   },
   // 推送项目
-  pushProjectTo: function (options) {
-    var personId = this.data.user_id;
-    let view_id = this.data.view_id;
-    var push_id = this.data.followed_user_id;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: view_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //信息完整，正常的推送项目
-            wx.navigateTo({
-              url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + personId,
-            })
-          } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo'
-            })
-          }
-        }
-      }
-    });
+  pushProjectTo: function () {
+    var push_id = this.data.user_id;
+    console.log(push_id)
+    app.operationModel('projectPush', push_id)
   },
   // // 人气进入
   // popularity: function () {
