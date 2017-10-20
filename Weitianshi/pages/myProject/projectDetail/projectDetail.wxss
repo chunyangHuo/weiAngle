@@ -1613,7 +1613,7 @@ page {
 .btnPic {
   height: 28rpx;
   width: 28rpx;
-  margin-right: 16rpx;
+  /* margin-right: 16rpx; */
   margin-top: 30rpx;
 }
 
@@ -1715,6 +1715,7 @@ page {
   margin: 30rpx 0;
   padding-right: 36rpx;
   border-right: 1rpx solid #e6e6e6;
+    white-space: nowrap;
 }
 
 /* .contactProject {
