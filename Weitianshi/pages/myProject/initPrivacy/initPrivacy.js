@@ -176,7 +176,7 @@ Page({
       power_share_status = power_share_status;
       power_investor_status = power_investor_status;
       console.log(company_open_status)
-      company_open_status = Number(company_open_status);
+      company_open_status = Number(!company_open_status);
       console.log(company_open_status)
       subscribe.white_company = white_company;
       subscribe.white_user = white_user;

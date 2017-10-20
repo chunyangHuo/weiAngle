@@ -123,7 +123,7 @@ Page({
           currentPage: currentPage
         })
       }
-      if (page_end = true) {
+      if (page_end == true) {
         app.errorHide(that, '没有更多了', 3000)
       }
     })

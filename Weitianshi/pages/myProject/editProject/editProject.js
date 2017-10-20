@@ -525,7 +525,11 @@ Page({
         } else if (pro_finance_stock_after > 100) {
           app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
         } else if (typeof pro_finance_stock_after != 'number') {
-          app.errorHide(that, '投后股份项应该为数字', 3000);
+          if (pro_finance_stock_after==''){
+            that.updata(that)
+          }else{
+            app.errorHide(that, '投后股份项应该为数字', 3000);
+          }
         }
         return;
       }
