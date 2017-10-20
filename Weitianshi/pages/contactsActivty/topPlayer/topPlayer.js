@@ -64,7 +64,7 @@ Page({
   //返回小程序
   backTo: function () {
     wx.switchTab({
-      url: '/pages/match/selectProject/selectProject',
+      url: '/pages/discoverProject/discoverProject',
     })
   },
   //搜索战队
