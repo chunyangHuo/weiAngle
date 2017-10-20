@@ -446,7 +446,8 @@ Page({
     let that = this;
     let search = this.data.SearchInit.searchData.search;
     wx.request({
-      url: url_common + '/api/investor/searchInvestor',
+      // url: url_common + '/api/investor/searchInvestor',
+      url: url_common + '/api/user/searchUser',
       data: {
         user_id: user_id,
         search: search,

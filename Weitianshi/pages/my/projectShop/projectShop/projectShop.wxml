@@ -137,7 +137,7 @@
     <view bindtap="pushProject">
       <label class="myShop">推荐项目给他</label>
     </view>
-    <view bindtap="moreProject" class="newProject">更多精选项目</view>
+    <view bindtap="moreProject" class="moreProject">更多精选项目</view>
   </view>
   <!--模态层  -->
   <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>

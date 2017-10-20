@@ -21,7 +21,9 @@ page {
 .user_left {
   width: 80%;
 }
-
+.myUserInfo{
+  align-self:flex-end;
+}
 .user_intro, .user_project_info, .user_invest_info, .user_resource_info {
   background: #fafafa;
   border-radius: 4rpx;
