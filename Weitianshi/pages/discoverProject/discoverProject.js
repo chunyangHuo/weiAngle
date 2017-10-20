@@ -30,7 +30,7 @@ Page({
         currentTab: options.currentTab
       })
     }
-   
+
   },
   onShow: function () {
     let that = this;
@@ -244,6 +244,14 @@ Page({
   // 下拉框
   move(e) {
     let that = this;
+    let SearchInit = this.data.SearchInit;
+    SearchInit.industry = wx.getStorageSync('industry');
+    SearchInit.stage = wx.getStorageSync('stage');
+    SearchInit.scale = wx.getStorageSync('scale');
+    SearchInit.hotCity = wx.getStorageSync('hotCity');
+    this.setData({
+      SearchInit: SearchInit
+    })
     SearchModel.move(e, that)
   },
   // 标签选择
