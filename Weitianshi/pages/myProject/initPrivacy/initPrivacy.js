@@ -37,7 +37,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log('inRes',res)
           that.setData({
             open_status: res.data.data.open_status,
             power_share_status: res.data.data.power_share_status,
@@ -69,7 +68,6 @@ Page({
         })
       }
     }
-    console.log('In', this.data)
   },
   //公开项目
   switchChange1: function (e) {
@@ -155,7 +153,6 @@ Page({
       subscribe
     }
     wx.setStorageSync('setPrivacy', setPrivacy)
-    console.log('out', setPrivacy)
     // 保存私密性
     if (project_id) {
       wx.request({
