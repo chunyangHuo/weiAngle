@@ -152,6 +152,10 @@ Page({
       black_user,
       subscribe
     }
+    setPrivacy.subscribe.white_company = white_company;
+    setPrivacy.subscribe.white_user = white_user;
+    setPrivacy.subscribe.black_company = black_company;
+    setPrivacy.subscribe.black_user = black_user;
     wx.setStorageSync('setPrivacy', setPrivacy)
     // 保存私密性
     if (project_id) {

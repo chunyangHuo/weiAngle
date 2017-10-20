@@ -140,6 +140,21 @@ Page({
         })
       }
     })
+    let setPrivacy=wx.getStorageSync('setPrivacy');
+    console.log(setPrivacy)
+    if (setPrivacy) {
+      that.setData({
+        open_status: setPrivacy.open_status,
+        power_share_status: setPrivacy.power_share_status,
+        power_investor_status: setPrivacy.power_investor_status,
+        company_open_status: setPrivacy.company_open_status,
+        white_company: setPrivacy.white_company,
+        white_user: setPrivacy.white_user,
+        black_company: setPrivacy.black_company,
+        black_user: setPrivacy.black_user,
+        subscribe: setPrivacy.subscribe
+      })
+    }
 
     //填入所属领域,项目介绍,所在地区
     var that = this;
@@ -351,15 +366,6 @@ Page({
   },
   //私密性设置
   initPrivacy: function () {
-    let open_status = this.data.open_status;
-    let power_share_status = this.data.power_share_status;
-    let power_investor_status = this.data.power_investor_status;
-    let company_open_status = this.data.company_open_status;
-    let subscribe = this.data.subscribe;
-    let whiteCompany = subscribe.white_company;
-    let white_user = subscribe.white_user;
-    let black_company = subscribe.black_company;
-    let black_user = subscribe.black_user;
     wx.navigateTo({
       url: '/pages/myProject/initPrivacy/initPrivacy'
     })
@@ -451,7 +457,7 @@ Page({
           open_status: open_status,
           power_share_status: power_share_status,
           power_investor_status: power_investor_status,
-          company_open_status: company_open_status,
+          company_open_status: Number(!company_open_status),
           subscribe: subscribe,
           pro_total_score: pro_total_score
         },
@@ -471,6 +477,7 @@ Page({
           wx.setStorageSync('enchangeValue', []);
           wx.setStorageSync('enchangeId', []);
           wx.setStorageSync('pro_goodness', "");
+          wx.removeStorageSync('setPrivacy');
           if (type == 8) {
             wx.navigateBack({
               delta: 1
