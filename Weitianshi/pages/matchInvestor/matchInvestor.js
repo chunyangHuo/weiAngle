@@ -11,6 +11,13 @@ Page({
     let that = this;
     this.getMyProject();
     app.initPage(that);
+    app.loginPage((user_id)=>{
+      if(user_id == 0){
+        that.setData({
+          noUserId : true
+        })
+      }
+    });
   },
   // 获取项目信息
   getMyProject() {

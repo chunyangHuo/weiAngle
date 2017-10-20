@@ -174,7 +174,7 @@ page {
   margin-top: 28rpx;
   border-right: 1rpx solid #fff;
   padding-right: 48rpx;
-  padding-left: 60rpx;
+  padding-left: 48rpx;
   height:60rpx;
 }
 
@@ -566,6 +566,9 @@ page {
 }
 
 .newProject {
-  /* padding-right: 122rpx; */
-  padding-left: 20rpx;
+  padding-right: 122rpx;
+  padding-left: 122rpx;
+}
+.moreProject{
+  padding-left:40rpx;
 }
