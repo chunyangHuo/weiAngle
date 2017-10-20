@@ -24,6 +24,7 @@ Page({
   onLoad: function (options) {
     let user_id = wx.getStorageSync('user_id');
     let that = this;
+    // options.project存在为编辑项目;不存在为创建项目
     if (options.project) {
       this.setData({
         project_id: options.project
@@ -36,11 +37,12 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log('inRes',res)
           that.setData({
             open_status: res.data.data.open_status,
             power_share_status: res.data.data.power_share_status,
             power_investor_status: res.data.data.power_investor_status,
-            company_open_status: res.data.data.company_open_status,
+            company_open_status: !res.data.data.company_open_status,
             black_company: res.data.data.black_list.black_company,
             black_user: res.data.data.black_list.black_user
           })
@@ -52,22 +54,22 @@ Page({
           }
         }
       })
-    } else if (options.open_status || options.power_share_status || options.company_open_status || options.whiteCompany || options.white_user) {
-      that.setData({
-        open_status: Number(options.open_status),
-        power_share_status: Number(options.power_share_status),
-        power_investor_status: Number(options.power_investor_status),
-        company_open_status: Number(options.company_open_status),
-        white_company: Number(options.whiteCompany),
-        white_user: Number(options.white_user),
-        black_company: options.black_company,
-        black_user: options.black_user
-      })
+    } else {
+      let setPrivacy = wx.getStorageSync('setPrivacy');
+      if (setPrivacy){
+        that.setData({
+          open_status: setPrivacy.open_status,
+          power_share_status: setPrivacy.power_share_status,
+          power_investor_status: setPrivacy.power_investor_status,
+          company_open_status: setPrivacy.company_open_status,
+          white_company: setPrivacy.white_company,
+          white_user: setPrivacy.white_user,
+          black_company: setPrivacy.black_company,
+          black_user: setPrivacy.black_user
+        })
+      }
     }
-  },
-
-  onShow: function () {
-
+    console.log('In', this.data)
   },
   //公开项目
   switchChange1: function (e) {
@@ -141,24 +143,19 @@ Page({
     let black_user = this.data.black_user;
     let subscribe = this.data.subscribe;
     //暂存私密性选项
-    let pages = getCurrentPages();
-    let currPage = pages[pages.length - 1];
-    let prevPage = pages[pages.length - 2];
-    open_status = open_status;
-    power_share_status = power_share_status;
-    power_investor_status = power_investor_status;
-    company_open_status = Number(!company_open_status);
-    subscribe.white_company = white_company;
-    subscribe.white_user = white_user;
-    subscribe.black_company = black_company;
-    subscribe.black_user = black_user
-    prevPage.setData({
-      open_status: open_status,
-      power_share_status: power_share_status,
-      power_investor_status: power_investor_status,
-      company_open_status: company_open_status,
-      subscribe: subscribe
-    })
+    let setPrivacy = {
+      open_status,
+      power_share_status,
+      power_investor_status,
+      company_open_status,
+      white_company,
+      white_user,
+      black_company,
+      black_user,
+      subscribe
+    }
+    wx.setStorageSync('setPrivacy', setPrivacy)
+    console.log('out', setPrivacy)
     // 保存私密性
     if (project_id) {
       wx.request({

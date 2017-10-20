@@ -135,7 +135,7 @@
       <label class="myShop">我的店铺</label>
     </view>
     <view bindtap="pushProject">
-      <label class="myShop">推荐项目给他</label>
+      <label class="myShop">推送项目</label>
     </view>
     <view bindtap="moreProject" class="moreProject">更多精选项目</view>
   </view>

@@ -570,5 +570,5 @@ page {
   padding-left: 122rpx;
 }
 .moreProject{
-  padding-left:40rpx;
+  padding-left:70rpx;
 }

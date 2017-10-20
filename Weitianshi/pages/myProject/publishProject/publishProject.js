@@ -361,8 +361,7 @@ Page({
     let black_company = subscribe.black_company;
     let black_user = subscribe.black_user;
     wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy?open_status=' + open_status + '&power_share_status=' + power_share_status + '&power_investor_status=' + power_investor_status + '&company_open_status=' + company_open_status +
-      '&white_user=' + white_user + '&whiteCompany=' + whiteCompany + '&black_company=' + black_company + '&black_user=' + black_user
+      url: '/pages/myProject/initPrivacy/initPrivacy'
     })
   },
   //点击发布
