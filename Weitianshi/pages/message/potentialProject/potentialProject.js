@@ -275,7 +275,7 @@ Page({
             }
           })
         } else {
-        app.errorHide(that, "没有更多了", that, 3000)
+          app.errorHide(that, "没有更多了", that, 3000)
           that.setData({
             requestCheckBoolean: true
           });
@@ -316,7 +316,18 @@ Page({
   matchApply: function (e) {
     let user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
-    app.applyProject(e, that,"getMatchList")
+    let getMatchList = this.data.getMatchList;
+    let pro_id = e.currentTarget.dataset.project;
+    app.operationModel('projectApply', pro_id, res => {
+      getMatchList.forEach((x) => {
+        if (x.project_id == pro_id) {
+          x.relationship_button = 0
+        }
+      })
+      that.setData({
+        getMatchList: getMatchList
+      })
+    });
   },
   //重新申请
   matchReApply: function (e) {

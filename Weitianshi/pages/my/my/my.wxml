@@ -3,7 +3,7 @@
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
 
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'收藏我',show : 1,IdentificationShow :1,playTime:0}}"></template>
+  <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'加我为人脉',show : 1,IdentificationShow :1,playTime:0}}"></template>
 
   <view class="downBox">
     <!--个人描述  -->
