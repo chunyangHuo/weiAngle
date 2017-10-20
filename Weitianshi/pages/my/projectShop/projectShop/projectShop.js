@@ -518,7 +518,7 @@ Page({
   //更多精选项目
   moreProject: function () {
     wx.switchTab({
-      url: '/pages/match/selectProject/selectProject',
+      url: '/pages/discoverProject/discoverProject',
     })
   },
   //跳转到我的店铺
