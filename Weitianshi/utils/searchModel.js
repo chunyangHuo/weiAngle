@@ -1,4 +1,5 @@
 var app = getApp();
+var url_common = app.globalData.url_common;
 //searchData
 let data = {
   firstTime: true,
@@ -18,29 +19,69 @@ let data = {
     stage: [],
     scale: [],
     hotCity: [],
-    search:"",
+    search: "",
   },
   industry: wx.getStorageSync('industry'),
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity')
 }
+function setStorage1() {
+  wx.request({
+    url: url_common + '/api/category/getProjectCategory',
+    method: 'POST',
+    success: function (res) {
+      let thisData = res.data.data;
+      thisData.area.forEach((x) => { x.check = false })
+      thisData.industry.forEach((x) => { x.check = false })
+      thisData.scale.forEach((x) => { x.check = false })
+      thisData.stage.forEach((x) => { x.check = false })
+      data.industry = thisData.industry;
+      data.scale = thisData.scale;
+      data.stage = thisData.stage;
+      wx.setStorageSync("industry", thisData.industry)
+      wx.setStorageSync("scale", thisData.scale)
+      wx.setStorageSync("stage", thisData.stage)
+    },
+  })
+}
+function setStorage2(){
+  //获取热门城市并存入缓存
+  wx.request({
+    url: url_common + '/api/category/getHotCity',
+    data: {},
+    method: 'POST',
+    success: function (res) {
+      let hotCity = res.data.data;
+      hotCity.forEach((x) => {
+        x.checked = false;
+      })
+      data.hotCity=hotCity;
+      wx.setStorageSync('hotCity', hotCity)
+    }
+  });
+}
+setStorage1();
+setStorage2();
+
 // 下拉框
 function move(e, that) {
-  let SearchInit=that.data.SearchInit;
+  let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
   let currentIndex = SearchInit.currentIndex;
   this.initData(that);
+  console.log(SearchInit.searchData.industry)
+  //如果无industry之类没缓存获取各分类的信息并存入缓存
   if (currentIndex != index) {
-    SearchInit.currentIndex=index;
+    SearchInit.currentIndex = index;
     that.setData({
-      SearchInit:SearchInit
+      SearchInit: SearchInit
     })
     this.getOffset(that);
   } else {
-    SearchInit.currentIndex=5;
+    SearchInit.currentIndex = 5;
     that.setData({
-      SearchInit:SearchInit
+      SearchInit: SearchInit
     })
   }
 }
@@ -89,13 +130,16 @@ function initItem(str, that) {
       console.log('initItem()出了问题')
   }
   itemArr = [];
-  item.forEach(x => {
-    x.check = false;
-    if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
-      x.check = true;
-      itemArr.push(x)
-    }
-  })
+  if (item) {
+    item.forEach(x => {
+      x.check = false;
+      if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
+        x.check = true;
+        itemArr.push(x)
+      }
+    })
+  }
+
   tab.forEach(x => {
     if (x.id == itemStr) {
       if (itemArr.length > 0) {
@@ -181,7 +225,7 @@ function reset(that) {
       }
   }
 }
-function allReset(that){
+function allReset(that) {
   this.itemReset('industry', that);
   this.itemReset('stage', that);
   this.itemReset('scale', that);
@@ -205,7 +249,7 @@ function itemReset(str, that) {
 }
 // 筛选确定
 function searchCertain(that) {
-  let SearchInit=that.data.SearchInit;
+  let SearchInit = that.data.SearchInit;
   let currentIndex = that.data.SearchInit.currentIndex;
   let searchData = that.data.SearchInit.searchData;
   let newArr = [];
@@ -269,7 +313,7 @@ function searchCertain(that) {
         let SerachInit = that.data.SearchInit;
         SearchInit.currentInit = 5;
         that.setData({
-          SearchInit:SearchInit,
+          SearchInit: SearchInit,
           myProject: res.data.data
         })
       }
@@ -278,14 +322,14 @@ function searchCertain(that) {
 }
 // 点击modal层
 function modal(that) {
-  let SearchInit=that.data.SearchInit;
-  SearchInit.currentIndex=5;
+  let SearchInit = that.data.SearchInit;
+  SearchInit.currentIndex = 5;
   that.setData({
-    SearchInit:SearchInit
+    SearchInit: SearchInit
   })
 }
 //搜索
-function searchSth(that,str) {
+function searchSth(that, str) {
   let user_id = that.data.user_id;
   wx.navigateTo({
     url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,

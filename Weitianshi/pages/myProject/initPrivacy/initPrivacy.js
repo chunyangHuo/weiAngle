@@ -129,6 +129,7 @@ Page({
   },
   //保存私密性设置
   saveInitPrivacy: function () {
+    console.log(1)
     var that = this;
     let project_id = this.data.project_id;
     let open_status = Number(this.data.open_status);

@@ -145,6 +145,7 @@ page {
   width: 208rpx;
   height: 80rpx;
   padding: 32rpx 0;
+  position: relative;
 }
 
  .user_attention view:first-child,
@@ -282,5 +283,5 @@ page {
   line-height: 20rpx;
   text-align: left;
   position: absolute;
-  left: 20%;
+  right: 20%;
 }
