@@ -140,6 +140,7 @@ Page({
     }).then(res => {
       wx.hideLoading()
       var slectProject = res.data.data;
+      console.log(slectProject)
       that.setData({
         slectProject: slectProject,
       })

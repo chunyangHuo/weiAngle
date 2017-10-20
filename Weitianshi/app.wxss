@@ -943,6 +943,9 @@ textarea {
   line-height: 28rpx;
   text-align: left;
   margin-right: 16rpx;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .t-introduceBox {
