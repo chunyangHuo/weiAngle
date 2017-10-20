@@ -599,8 +599,9 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         wx.removeStorageSync("industryCurrent2");
-        if (res.status_code = 2000000) {
+        if (res.status_code == 2000000) {
           if (upLoad == 1) {
             wx.navigateBack({//页面返回
               delta: 2 // 回退前 delta(默认为1) 页面
@@ -608,7 +609,7 @@ Page({
           }
         } else {
           wx.showToast({
-            title: res.status_code
+            title: res.error_msg
           })
         }
       },

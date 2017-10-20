@@ -18,12 +18,12 @@
 <template name="userInfo">
   <view class="user_info flex user-infom" bindtap="cardEdit">
     <view class="user_left">
-      <view class="flex">
-        <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
-        <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
-        <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
-        <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-        <view class="userPart flex" wx:if="{{user.identify_status == 2}}">
+      <view class="flex myUserInfo">
+        <view class="user_name myUserInfo" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
+        <view class="user_name myUserInfo" wx:if="{{!user.user_real_name}}">代替名</view>
+        <view class="user_career myUserInfo" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
+        <view class="user_career myUserInfo" wx:if="{{!user.user_company_career}}">职位名称</view>
+        <view class="userPart flex myUserInfo" wx:if="{{user.identify_status == 2}}">
           <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
           <view class="userPart1">{{user.authentication[0].group_title}}</view>
         </view>
@@ -131,6 +131,9 @@
         <image class="title_icon" src="/img/icon-anyuan@3x.png"></image>
         投资需求
       </view>
+      <view class="flex">
+        <image class="iconEdit"src="/img/icon-edit@3x.png"></image>
+      </view>
     </view>
     <!--投资领域-->
     <view class="invest_title" wx:if="{{invest.invest_industry!=''}}" hidden="{{!invest.invest_industry}}">投资领域</view>
@@ -166,9 +169,12 @@
 <template name="resourceInfo">
   <view class="user_resource_info publish-resourcesm" bindtap="resourceEnchangeEdit">
     <view class="flex title">
-      <view>
+      <view  class="title">
         <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
         资源需求
+      </view>
+      <view class="flex">
+        <image class="iconEdit"src="/img/icon-edit@3x.png"></image>
       </view>
     </view>
 
