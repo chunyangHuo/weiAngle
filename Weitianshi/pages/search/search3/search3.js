@@ -256,6 +256,7 @@ Page({
   // 申请加人脉
   contactsAdd(e) {
     let added_user_id = e.currentTarget.dataset.id;
+    console.log(added_user_id)
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
       console.log('申请添加人脉完成', res);
@@ -275,7 +276,8 @@ Page({
   contactsAddSuccessFunc(res, added_user_id, num) {
     let that = this;
     let investorList = this.data.investorList;
-    let faList = this.data.faList
+    let faList = this.data.faList;
+    let myList = this.data.myList;
     if (res.data.status_code == 2000000) {
       //更改投资人和FA列表中该人的加人脉按钮的字段
       if (investorList) {
@@ -296,6 +298,16 @@ Page({
         })
         that.setData({
           faList: faList
+        })
+      }
+      if (myList) {
+        myList.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          myList: myList
         })
       }
     } else {
