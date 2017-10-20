@@ -145,7 +145,7 @@
   </view>
 </view>
 <view class="question" wx:if="{{group_id == 21|| group_id == 18 || group_id == 6}}">
-  <view class="questionWhy">Q：什么是要云投行合作</view>
+  <view class="questionWhy">Q：什么是云投行合作</view>
   <view class="answer">A：微天使平台将协助您寻找最合适的投资机构，并与合作伙伴共同协助推进您的项目融资。（业务同学会通过您在平台留下的联系方式与您沟通具体合作方式）
   </view>
 </view>

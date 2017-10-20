@@ -63,16 +63,16 @@
 <view class="user_down flex">
   <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity">
     <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
-    <label class="popularityNum" wx:if="{{count.user_view_new && show ==1}}">+{{count.user_view_new}}</label>
-    <label class="popularityNum" wx:if="{{count.user_view_new==0 || show ==0}}"></label>
+    <label class="popularityNum" wx:if="{{count.user_view_new}}">+{{count.user_view_new}}</label>
+    <label class="popularityNum" wx:if="{{count.user_view_new==0}}"></label>
     <view wx:if="{{!user.user_popularity}}" class="popularity-Num">{{count.user_view_all}}</view>
     <view class="popularity-people">人气</view>
   </view>
   <!--加我为人脉-->
   <view class="user_attention user_tips contacts-requestm" bindtap="attention">
     <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
-    <label class="attentionNum" wx:if="{{count.user_followed_new && show ==1}}">+{{count.user_followed_new}}</label>
-    <label class="popularityNum" wx:if="{{count.user_followed_new==0 || show ==0}}"></label>
+    <label class="attentionNum" wx:if="{{count.user_followed_new}}">+{{count.user_followed_new}}</label>
+    <label class="popularityNum" wx:if="{{count.user_followed_new==0}}"></label>
     <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all}}
     </view>
     <view class="attention-people">加我为人脉</view>
@@ -80,8 +80,8 @@
   <!--潜在项目-->
   <view class="user_potential user_tips potential-projectm" bindtap="pushTo">
     <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
-    <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
-    <label class="popularityNum" wx:if="{{count.project_push_new==0 || show ==0}}"></label>
+    <label class="potentialNum" wx:if="{{count.project_push_new}}">+{{count.project_push_new}}</label>
+    <label class="popularityNum" wx:if="{{count.project_push_new==0}}"></label>
     <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.project_push_all}}</view>
     <view class="potential-content">潜在项目</view>
   </view>

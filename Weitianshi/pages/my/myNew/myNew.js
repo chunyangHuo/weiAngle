@@ -38,6 +38,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            console.log('myInfo',res)
             wx.hideLoading()
             var user = res.data.data.user;
             var count = res.data.data.count;
