@@ -95,7 +95,7 @@ Page({
             that.projectDetailInfo(id);
             that.matchInvestorInfo(id);
           } else {
-            console.log('share_id',share_id)
+            console.log('share_id', share_id)
             wx.redirectTo({
               url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id,
             })
@@ -693,6 +693,10 @@ Page({
               }
             })
           } else if (res.tapIndex == 0) {
+            wx.showLoading({
+              title: 'loading',
+              mask: true,
+            })
             wx.downloadFile({
               url: BPath,
               success: function (res) {
@@ -700,6 +704,7 @@ Page({
                 wx.openDocument({
                   filePath: filePath,
                   success: function (res) {
+                    wx.hideLoading();
                     console.log('打开文档成功')
                   }
                 })

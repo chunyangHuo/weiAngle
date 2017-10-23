@@ -176,6 +176,7 @@ Page({
         method: 'POST',
         success: function (res) {
           if (res.data.status_code == 2000000) {
+            wx.removeStorageSync('setPrivacy');
             wx.navigateBack({
               delta: 1,
             })
