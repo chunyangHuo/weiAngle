@@ -57,7 +57,7 @@ Page({
         let ownerId = res.data.user_id;
         app.loginPage(function (user_id) {
           if (ownerId === user_id) {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/myProject/projectDetail/projectDetail?id=' + id,
             })
           }else{
