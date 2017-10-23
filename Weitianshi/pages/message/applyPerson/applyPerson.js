@@ -31,6 +31,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         wx.hideLoading()
         let contentList = res.data.data;
         let count = res.data.count;
@@ -64,11 +65,13 @@ Page({
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var currentPage = this.data.currentPage;
+    let project_id = this.data.project_id;
     var request = {
       url: url_common + '/api/message/applyProjectToMe',
       data: {
         user_id: user_id,
-        page: this.data.currentPage
+        page: this.data.currentPage,
+        project_id: project_id
       }
     }
     //调用通用加载函数

@@ -735,6 +735,10 @@ Page({
               }
             })
           } else if (res.tapIndex == 0) {
+            wx.showLoading({
+              title: 'loading',
+              mask: true,
+            })
             wx.downloadFile({
               url: BPath,
               success: function (res) {
@@ -742,6 +746,7 @@ Page({
                 wx.openDocument({
                   filePath: filePath,
                   success: function (res) {
+                    wx.hideLoading();
                     console.log('打开文档成功')
                   }
                 })
