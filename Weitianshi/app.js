@@ -9,6 +9,11 @@ App({
     let url_common = this.globalData.url_common;
     let that = this;
 
+    //打开调试模式
+    wx.setEnableDebug({
+      enableDebug: true,
+    })
+
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
       //获取code

@@ -26,51 +26,15 @@ let data = {
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity')
 }
-function setStorage1() {
-  wx.request({
-    url: url_common + '/api/category/getProjectCategory',
-    method: 'POST',
-    success: function (res) {
-      let thisData = res.data.data;
-      thisData.area.forEach((x) => { x.check = false })
-      thisData.industry.forEach((x) => { x.check = false })
-      thisData.scale.forEach((x) => { x.check = false })
-      thisData.stage.forEach((x) => { x.check = false })
-      data.industry = thisData.industry;
-      data.scale = thisData.scale;
-      data.stage = thisData.stage;
-      wx.setStorageSync("industry", thisData.industry)
-      wx.setStorageSync("scale", thisData.scale)
-      wx.setStorageSync("stage", thisData.stage)
-    },
-  })
-}
-function setStorage2(){
-  //获取热门城市并存入缓存
-  wx.request({
-    url: url_common + '/api/category/getHotCity',
-    data: {},
-    method: 'POST',
-    success: function (res) {
-      let hotCity = res.data.data;
-      hotCity.forEach((x) => {
-        x.checked = false;
-      })
-      data.hotCity=hotCity;
-      wx.setStorageSync('hotCity', hotCity)
-    }
-  });
-}
-setStorage1();
-setStorage2();
 
 // 下拉框
 function move(e, that) {
   let SearchInit = that.data.SearchInit;
+  console.log('operation_move_SearchInit', SearchInit)
+  console.log(data)
   let index = e.currentTarget.dataset.index;
   let currentIndex = SearchInit.currentIndex;
   this.initData(that);
-  console.log(SearchInit.searchData.industry)
   //如果无industry之类没缓存获取各分类的信息并存入缓存
   if (currentIndex != index) {
     SearchInit.currentIndex = index;

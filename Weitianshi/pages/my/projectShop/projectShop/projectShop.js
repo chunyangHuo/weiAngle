@@ -395,7 +395,7 @@ Page({
       currentIndex: 5
     })
   },
-  //搜索
+  // 搜索
   searchSth: function () {
     let user_id = this.data.user_id;
     wx.navigateTo({
@@ -440,14 +440,16 @@ Page({
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
     let index = thisData.index;
-    let currentTab = this.data.currentTab;
-    if (currentTab == 1) {
+    let user_id = wx.getStorageSync('user_id');
+    let followed_user_id = this.followed_user_id;
+    // followed_user_id 存在:他人的店铺详情;不存在:自己的店铺详情
+    if (followed_user_id) {
       wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + id,
+        url: '/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id
       })
     } else {
       wx.navigateTo({
-        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
+        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
       })
     }
   },

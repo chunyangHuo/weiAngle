@@ -49,8 +49,7 @@ Page({
     this.setData({
       index: options.index,
       id: options.id,
-      share_id: options.share_id,
-      // currentTab: options.currentTab,
+      currentTab: options.currentTab,
       shareType: options.type
     });
 
@@ -61,8 +60,8 @@ Page({
     let id = this.data.id;
     let index = this.data.index;
     let currentPage = this.data.currentPage;
-    let avatarUrl = wx.getStorageSync('avatarUrl');
     let new_company_name = this.data.newCompanyName;
+    let avatarUrl = wx.getStorageSync('avatarUrl');
     let investor = this.data.investor;
     let industry_tag = [];
     let scale_tag = [];
@@ -70,8 +69,6 @@ Page({
     let pro_goodness = "";
     // 为上拉加载准备
     app.initPage(that);
-    // 判斷項目是不是自己的
-    console.log(that.data.id)
     wx.request({
       url: url + '/api/project/projectIsMine',
       data: {
@@ -95,16 +92,61 @@ Page({
             that.projectDetailInfo(id);
             that.matchInvestorInfo(id);
           } else {
-            console.log('share_id',share_id)
             wx.redirectTo({
-              url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id,
+              url: '/pages/projectDetail/projectDetail?id=' + id,
             })
           }
         });
       }
     })
+    /* that.isProjectMine(id, res => {
+      //项目详情,一键尽调,买家图谱数据载入
+      that.projectDetailInfo(id);
+      that.matchInvestorInfo(id);
+    }, ) */
   },
 
+
+  //判断项目是不是自己的
+  isProjectMine(id, callBack1, callBack2) {
+    let that = this;
+    let avatarUrl = wx.getStorageSync('avatarUrl');
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        let ownerId = res.data.user_id;
+        //获取user_id
+        app.loginPage(function (user_id) {
+          that.setData({
+            user_id: user_id,
+            avatarUrl: avatarUrl,
+          })
+          if (ownerId === user_id) {
+            wx.showLoading({
+              title: 'loading',
+              mask: true,
+            })
+            callBack1(res)
+          } else {
+            let share_id = that.data.share_id;
+            if (!share_id) { }
+            console.log('share_id', share_id)
+            wx.redirectTo({
+              url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id,
+            })
+            if (callBack2) {
+              callBack2(res)
+            }
+          }
+        });
+      }
+    })
+  },
+  // 
   //项目详情信息
   projectDetailInfo(id) {
     let that = this;
