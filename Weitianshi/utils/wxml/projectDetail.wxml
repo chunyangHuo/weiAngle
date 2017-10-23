@@ -100,7 +100,7 @@
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox" hidden='oneKeyRearch'>
+<view class=" flex floatBtn flexBox" hidden='{{oneKeyRearch}}'>
   <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
