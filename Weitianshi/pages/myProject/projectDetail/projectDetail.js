@@ -42,7 +42,6 @@ Page({
     textBeyond4: false,
     show_detail: true,
     show_company: true,
-    pro:true,
     type: 2,
     other: true,
   },
@@ -173,7 +172,9 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
-        console.log(pro_goodness)
+        let pro_market_genera = res.data.data.pro_market_genera;
+        let pro_service = res.data.data.pro_service;
+        let pro_business_model = res.data.data.pro_business_model;
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         if (project.pro_BP) {
@@ -183,17 +184,72 @@ Page({
           })
         }
         // 如果项目亮点字数超出字,刚显示全部按钮
-        if (pro_goodness) {
+        if (pro_goodness.length != 0) {
+          let arr=[];
         for (let i = 0; i < pro_goodness.length; i++) {
-          console.log(pro_goodness[i].goodness_desc)
-          if (pro_goodness[i].goodness_desc >80) {
-            this.pro=false;
-            console.log("textBeyond0")
+          arr.push(pro_goodness[i].goodness_desc.length)
+        }    
+         if (Math.max.apply(null, arr) >41) {
             that.setData({
-              textBeyond0: true
+              textBeyond0: true,
+              isChecked0 : true,
             })
-          } 
+          } else 
+            that.setData({
+              textBeyond0: false,
+              isChecked0:false,
+            })
         }
+        // 如果市场概况字数超出字,刚显示全部按钮
+        if (pro_market_genera.length!=0) {
+          let arr = [];
+          for (let i = 0; i < pro_goodness.length; i++) {
+            arr.push(pro_market_genera[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
+            that.setData({
+              textBeyond1: true,
+              isChecked1: true,
+            })
+          } else
+            that.setData({
+              textBeyond1: false,
+              isChecked1: false,
+            })
+        }
+        // 如果产品概况字数超出字,刚显示全部按钮
+        if (pro_service.length != 0) {
+          let arr = [];
+          for (let i = 0; i < pro_service.length; i++) {
+            arr.push(pro_service[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
+            that.setData({
+              textBeyond2: true,
+              isChecked2: true,
+            })
+          } else
+            that.setData({
+              textBeyond2: false,
+              isChecked2: false,
+            })
+        }
+        // 如果商业模式字数超出字,刚显示全部按钮
+        if (pro_business_model.length != 0) {
+          let arr = [];
+          for (let i = 0; i < pro_business_model.length; i++) {
+            arr.push(pro_business_model[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
+            that.setData({
+              textBeyond3: true,
+              isChecked3: true,
+            })
+          } else
+            that.setData({
+              textBeyond3: false,
+              isChecked3: false,
+            })
         }
         // if (pro_goodness.length != 0) {
         //   if (pro_goodness[0].goodness_desc.length > 50) {
@@ -915,7 +971,8 @@ Page({
     let check = e.currentTarget.dataset.check;
     if (check == 0) {
       this.setData({
-        isChecked0: false
+        isChecked0: false,
+        textBeyond0:true
       })
     } else if (check == 1) {
       this.setData({
@@ -941,7 +998,8 @@ Page({
     let check = e.currentTarget.dataset.check;
     if (check == 0) {
       this.setData({
-        isChecked0: true
+        isChecked0: true,
+        textBeyond0:true
       })
     } else if (check == 1) {
       this.setData({

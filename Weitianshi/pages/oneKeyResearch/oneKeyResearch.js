@@ -576,6 +576,103 @@ Page({
         checkEmail: false,
         userEmail: userEmail
       })
+<<<<<<< HEAD
+      // 载入项目详情数据
+      wx.request({
+        url: url_common + '/api/project/getProjectDetail',
+        data: {
+          user_id: user_id,
+          project_id: that.data.id,
+          scene: "scan_qrcode"
+        },
+        method: 'POST',
+        success: function (res) {
+          var project = res.data.data;
+          var user = res.data.user;
+          let count = project.count;
+          var pro_company_name = project.pro_company_name;
+          let pro_goodness = res.data.data.pro_goodness;
+          let pro_market_genera = res.data.data.pro_market_genera;
+          let pro_service = res.data.data.pro_service;
+          let pro_business_model = res.data.data.pro_business_model;
+          let industy_sort = [];
+          var firstName = user.user_name.substr(0, 1);
+          // 如果项目亮点字数超出字,刚显示全部按钮
+          if (pro_goodness.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_goodness.length; i++) {
+              arr.push(pro_goodness[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond0: true,
+                isChecked0: true,
+              })
+            } else
+              that.setData({
+                textBeyond0: false,
+                isChecked0: false,
+              })
+          }
+          // 如果市场概况字数超出字,刚显示全部按钮
+          if (pro_market_genera.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_goodness.length; i++) {
+              arr.push(pro_market_genera[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond1: true,
+                isChecked1: true,
+              })
+            } else
+              that.setData({
+                textBeyond1: false,
+                isChecked1: false,
+              })
+          }
+          // 如果产品概况字数超出字,刚显示全部按钮
+          if (pro_service.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_service.length; i++) {
+              arr.push(pro_service[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond2: true,
+                isChecked2: true,
+              })
+            } else
+              that.setData({
+                textBeyond2: false,
+                isChecked2: false,
+              })
+          }
+          // 如果商业模式字数超出字,刚显示全部按钮
+          if (pro_business_model.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_business_model.length; i++) {
+              arr.push(pro_business_model[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond3: true,
+                isChecked3: true,
+              })
+            } else
+              that.setData({
+                textBeyond3: false,
+                isChecked3: false,
+              })
+          }
+          // // 如果项目亮点字数超出字,刚显示全部按钮
+          // if (pro_goodness.length > 50) {
+          //   that.setData({
+          //     textBeyond1: true
+          //   })
+          // }
+          that.setData({
+=======
     }
   },
   // 发送
@@ -594,6 +691,7 @@ Page({
         wx.request({
           url: url_common + '/api/user/updateUser',
           data: {
+>>>>>>> f62ed7808c6e048b6cb733d2e52472f33ff2aac4
             user_id: user_id,
             user_email: userEmail
           },
@@ -1031,6 +1129,314 @@ Page({
       })
     } else if (id == 6) {
 
+<<<<<<< HEAD
+              })
+              // 项目信息
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerProject',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  app.console("项目信息")
+                  app.console(res)
+                  let projectDetailsList = res.data.data;
+                  app.console(projectDetailsList)
+                  if (projectDetailsList.length != 0) {
+                    let projectDetailsOne = projectDetailsList[0];
+                    let project_labelList = projectDetailsList[0].project_label;
+                    let project_labelArray = project_labelList.split(","); //字符分割 
+                    project_labelArray.forEach((x, index) => {
+                      project_labelArray[index] = x;
+                    })
+                    app.console("array")
+                    app.console(project_labelArray)
+                    // let project_labelArrayOne = project_labelArray[0]
+                    let project_views = JSON.parse(projectDetailsList[0].project_views);
+                    that.setData({
+                      projectDetailsOne: projectDetailsOne,
+                      project_labelArray: project_labelArray
+                    })
+                  }
+                  that.setData({
+                    projectDetailsList: projectDetailsList
+                  })
+                }
+              })
+              //工商变更
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerBrand',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  app.console("工商变更")
+                  app.console(res)
+                  // 变更信息
+                  let brandInfoList = res.data.data.brand;
+                  let companyChangeList = res.data.data.company_change;
+                  brandInfoList.forEach((x, index) => {
+                    brandInfoList[index].company_brand_name = x.company_brand_name;
+                    brandInfoList[index].company_brand_registration_number = x.company_brand_registration_number;
+                    brandInfoList[index].company_brand_status = x.company_brand_status;
+                    brandInfoList[index].company_brand_time = app.changeTime(x.company_brand_time);
+                    brandInfoList[index].company_brand_type = x.company_brand_type;
+                    app.console(x.company_brand_time)
+                  })
+                  companyChangeList.forEach((x, index) => {
+                    companyChangeList[index].company_change_after = x.company_change_after;
+                    companyChangeList[index].company_change_before = x.company_change_before;
+                    companyChangeList[index].company_change_matter = x.company_change_matter;
+                    companyChangeList[index].company_change_time = app.changeTime(x.company_change_time);
+                  })
+                  that.setData({
+                    brandInfoList: brandInfoList,
+                    companyChangeList: companyChangeList
+                  })
+                }
+              })
+              // 核心成员
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerTeam',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  let teamList = res.data.data;
+                  app.console(teamList)
+                  teamList.forEach((x, index) => {
+                    teamList[index].team_member_name = x.team_member_name;
+                  })
+                  that.setData({
+                    teamList: teamList
+                  })
+                }
+              })
+              // 历史融资
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerHistoryFinance',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  app.console("历史融资")
+                  app.console(res)
+                  let historyFinance = res.data.data;
+                  historyFinance.forEach((x, index) => {
+                    historyFinance[index].history_financing_money = x.history_financing_money;
+                    historyFinance[index].history_financing_rounds = x.history_financing_rounds;
+                    historyFinance[index].history_financing_who = x.history_financing_who;
+                    historyFinance[index].history_financing_time = app.changeTimeStyle(x.history_financing_time);
+                  })
+                  that.setData({
+                    historyFinance: historyFinance
+                  })
+                }
+              })
+              // 里程碑
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerMilestone',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  let mileStone = res.data.data;
+                  app.console(mileStone)
+                  mileStone.forEach((x, index) => {
+                    mileStone[index].milestone_event = x.milestone_event;
+                    mileStone[index].milestone_time = app.changeTimeStyle(x.milestone_time);
+                  })
+                  that.setData({
+                    mileStone: mileStone
+                  })
+                }
+              })
+              //新闻
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerNews',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  app.console("新聞")
+                  app.console(res)
+                  let newsList = res.data.data;
+                  app.console(newsList)
+                  newsList.forEach((x, index) => {
+                    newsList[index].project_news_label = x.project_news_label;
+                    newsList[index].source = x.source;
+                    newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
+                    newsList[index].project_news_title = x.project_news_title;
+                  })
+                  that.setData({
+                    newsList: newsList
+                  })
+                }
+              })
+              // 竞品
+              wx.request({
+                url: url_common + '/api/dataTeam/getCrawlerCompeting',
+                data: {
+                  com_id: com_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  app.console("竞品")
+                  app.console(res)
+                  let competeList = res.data.data;
+                  competeList.forEach((x, index) => {
+                    competeList[index].source = x.source;
+                    competeList[index].competing_goods_name = x.competing_goods_name;
+                    competeList[index].competing_goods_label = x.competing_goods_label;
+                    competeList[index].competing_goods_logo = x.competing_goods_logo;
+                    competeList[index].competing_goods_Financing_rounds = x.competing_goods_Financing_rounds;
+                    competeList[index].competing_goods_Financing_time = app.changeTimeStyle(x.competing_goods_Financing_time);
+                    competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
+                    competeList[index].competing_goods_industry = x.competing_goods_industry;
+                  })
+                  that.setData({
+                    competeList: competeList
+                  })
+                }
+              })
+            }
+          })
+        }
+      })
+      that.setData({
+        sendCompany: 0,
+      })
+    }
+  },
+  // 取消
+  bpModalCancel: function (options) {
+    app.console(options)
+    let index = options.currentTarget.dataset.index;
+    let that = this;
+    let sendPc = that.data.sendPc;
+    if (index == 0) {
+      that.setData({
+        sendPc: 0
+      })
+    } else if (index == 1) {
+      that.setData({
+        sendCompany: 0
+      })
+    }
+  },
+  // 项目详情-里程碑 查看全部
+  moreInfo: function (e) {
+    app.console(e)
+    let id = e.target.dataset.id;
+    let that = this;
+    if (id == 3) {
+      that.setData({
+        moreInfoList: 3
+      })
+    } else if (id == 4) {
+      that.setData({
+        moreInfo: 4
+      })
+    }
+  },
+  noMoreInfo: function (e) {
+    let id = e.target.dataset.id;
+    let that = this;
+    if (id == 3) {
+      that.setData({
+        moreInfoList: 0
+      })
+    } else if (id == 4) {
+      that.setData({
+        moreInfo: 0
+      })
+    }
+  },
+  // 项目详情中的显示全部
+  allBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: false,
+        textBeyond0: true
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: false
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: false
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: false
+      })
+    } else if (check == 4) {
+      this.setData({
+        isChecked4: false
+      })
+    }
+  },
+  noBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: true,
+        textBeyond0: true
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: true
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: true
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: true
+      })
+    }
+    else if (check == 4) {
+      this.setData({
+        isChecked4: true
+      })
+    }
+  },
+  //项目详情页面,申请查看跳转列表
+  applyPerson: function (e) {
+    let proid = e.target.dataset.proid;
+    wx.navigateTo({
+      url: '/pages/message/applyPerson/applyPerson?id=' + proid,
+    })
+  },
+  // 买家图谱上拉加载
+  loadMore: function () {
+    var that = this;
+    var user_id = this.data.user_id;
+    var id = this.data.id;
+    var currentPage = this.data.currentPage;
+    var request = {
+      url: url_common + '/api/project/getProjectMatchInvestors',
+      data: {
+        user_id: user_id,
+        project_id: id,
+        page: currentPage,
+        type: "scan_qrcode"
+      },
+=======
+>>>>>>> f62ed7808c6e048b6cb733d2e52472f33ff2aac4
     }
   },
   //项目打分
