@@ -50,7 +50,6 @@
     "pages/contacts/contacts/contacts",
     "pages/contacts/contactsEdit/constactsEdit",
     "pages/userDetail/networkDetail/networkDetail",
-    "pages/userDetail/cardDetail/cardDetail",
     "pages/projectDetail/projectDetail",
     "pages/myProject/editProject/editProject",
     "pages/myProject/projectDetail/projectDetail",

@@ -2,7 +2,6 @@ var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-// pages/message/bePushedProject/bePushedProject.js
 Page({
   data: {
     winWidth: 0,//选项卡
