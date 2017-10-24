@@ -5,82 +5,6 @@ page {
 }
 
 .statusPic {
-  height: 176rpx;
-  width: 176rpx;
-  /* margin: 200rpx 0 64rpx 288rpx; */
-  margin: 130rpx 0 64rpx 288rpx;
-}
-
-.statusTitle {
-  font-size: 32rpx;
-  color: #333;
-  letter-spacing: 0;
-  line-height: 32rpx;
-  text-align: center;
-  margin-bottom: 80rpx;
-}
-
-#textContent {
-  background: #fafafa;
-  border-radius: 4rpx;
-  /* width: 558rpx; *//* margin-left: 96rpx; */
-  width: 602rpx;
-  height: 120rpx;
-  margin-left: 48rpx;
-  margin-bottom: 32rpx;
-  font-size: 24rpx;
-  color: #ccc;
-  /* line-height: 24rpx; */
-  text-align: left;
-  padding: 24rpx 26rpx;
-}
-
-.QRCode {
-  height: 160rpx;
-  width: 160rpx;
-  margin: 56rpx 294rpx;
-}
-
-.contextContent {
-  font-size: 24rpx;
-  color: #999;
-  letter-spacing: 0;
-  line-height: 24rpx;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 16rpx;
-}
-
-.btnYes {
-  background: #40587a;
-  border-radius: 8rpx;
-  width: 654rpx;
-  height: 88rpx;
-  font-size: 32rpx;
-  color: #fff;
-  line-height: 88rpx;
-  text-align: center;
-  margin-left: 48rpx;
-  margin-top: 134rpx;
-}
-
-.reaccreditation {
-  background: #40587a;
-  border-radius: 8rpx;
-  width: 304rpx;
-  height: 90rpx;
-  font-size: 32rpx;
-  color: #fff;
-  line-height: 88rpx;
-  text-align: center;
-  margin-left: 48rpx;
-  margin-top: 134rpx;
-}
-
-/*新样式  */
-
-.statusPic {
-  background: #28dc41;
   width: 80rpx;
   height: 80rpx;
   border-radius: 100%;
@@ -109,7 +33,49 @@ page {
   text-align: left;
   margin-bottom: 12rpx;
 }
-.picAfter{
-  width:750rpx;
-  height:944rpx;
+
+.picAfter {
+  width: 750rpx;
+  height: 944rpx;
+}
+
+#textContent {
+  background: #fafafa;
+  border-radius: 4rpx;
+  width: 602rpx;
+  height: 120rpx;
+  margin-left: 48rpx;
+  margin-bottom: 32rpx;
+  font-size: 24rpx;
+  color: #ccc;
+  text-align: left;
+  padding: 24rpx 26rpx;
+}
+
+.btnYes {
+  background: #40587a;
+  width: 100%;
+  text-align: center;
+  height: 88rpx;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 88rpx;
+}
+.reaccreditation {
+  background: #40587a;
+  width: 50%;
+  height: 28rpx;
+  margin-top:30rpx;
+ margin-bottom: 30rpx;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  border-right:1rpx solid  white;
+}
+.backColor{
+    background: #40587a;
+    height:88rpx;
+}
+.no-border{
+  border-right: none;
 }

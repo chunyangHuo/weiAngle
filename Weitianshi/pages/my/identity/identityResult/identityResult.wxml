@@ -25,18 +25,24 @@
 
 <view class="upBox flex">
   <view class="statusPic">
-    <!-- <image src="{{imgUrls}}" class="statusPic"></image> -->
+    <image src="/img/icon-shenhezhong@2x.png" class="statusPic" wx:if="{{status == 1}}"></image>
+    <image src="/img/icon-chenggong@2x.png" class="statusPic" wx:if="{{status == 2}}"></image>
+    <image src="/img/icon-shibai@2x.png" class="statusPic" wx:if="{{status == 3}}"></image>
   </view>
   <view class="classname">
-    <view class="statusTitle">{{group_title}}认证审核通过</view>
+    <view class="statusTitle" wx:if="{{status == 1}}">{{group_title}}认证审核中</view>
+    <view class="statusTitle" wx:if="{{status == 2}}">{{group_title}}认证审核通过</view>
+    <view class="statusTitle" wx:if="{{status == 3}}">{{group_title}}认证审核未通过</view>
     <view>认证会员将由微天使创始人直接服务 </view>
     <view>加FA哥微信weitianshicn</view>
   </view>
 </view>
 <textarea id="textContent" bindinput="leaveMessage" maxlength="500" placeholder="如需认证其他身份，可在此留言" />
 <image src="{{imgUrls}}" class="picAfter"></image>
-<view class="btnYes" bindtap="btnYes" wx:if="{{status != 3}}">确定</view>
-<view class="flex" wx:if="{{status == 3}}">
-  <view class="reaccreditation" bindtap="reaccreditation">重新认证</view>
-  <view class="reaccreditation" bindtap="reaccreditationYes">确定</view>
+<view class="floatBtn">
+  <view class="btnYes" bindtap="btnYes" wx:if="{{status != 3}}">确定</view>
+  <view class="flex backColor" wx:if="{{status == 3}}">
+    <view class="reaccreditation" bindtap="reaccreditation">重新认证</view>
+    <view class="reaccreditation no-border" bindtap="reaccreditationYes">确定</view>
+  </view>
 </view>

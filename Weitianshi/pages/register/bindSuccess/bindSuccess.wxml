@@ -1,0 +1,10 @@
+<view class="upBox flex">
+  <view class="statusPic">
+    <image src="/img/icon-chenggong@2x.png" class="statusPic"></image>
+  </view>
+  <view class="bindSuccess">绑定成功</view>
+</view>
+<image src="{{imgUrls}}" class="picAfter"></image>
+<view class="floatBtn">
+  <view class="btnYes" bindtap="btnYes">完成</view>
+</view>

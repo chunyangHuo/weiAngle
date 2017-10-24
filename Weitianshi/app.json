@@ -23,6 +23,7 @@
     "pages/register/personInfo/personInfo",
     "pages/register/companyInfo/companyInfo",
     "pages/register/bindPhone/bindPhone",
+    "pages/register/bindSuccess/bindSuccess",
     "pages/identity/chooseIdentity/chooseIdentity",
     "pages/identity/identityResult/identityResult",
     "pages/identity/sellerFA/sellerFA",
