@@ -1,0 +1,2 @@
+<import src="/pages/Template/Template.wxml" />
+<template is="jumpToWhere" data="{{text:'推送成功',imgUrls:imgUrls}}"></template>

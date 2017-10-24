@@ -1160,6 +1160,7 @@ textarea {
   text-align: center;
   vertical-align: middle;
   justify-content: center;
+
 }
 
 .t-itemPic {
@@ -1218,4 +1219,46 @@ textarea {
 .t-loadmore__tips{
   display: inline-block;
   vertical-align: middle;
+}
+/*绑定页面  */
+
+.t-upBox {
+  background: #fff;
+  /* border:0 solid #f0f0f0; */
+  box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.10);
+  border-radius: 4rpx;
+  width: 488rpx;
+  height: 98rpx;
+  padding: 50rpx 126rpx 26rpx 40rpx;
+  font-size: 32rpx;
+  line-height: 34rpx;
+  margin: 32rpx 48rpx;
+  color: #333;
+}
+
+.t-statusPic {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+  margin: 0;
+  margin-right: 24rpx;
+}
+
+.t-btnYes {
+  background: #40587a;
+  width: 100%;
+  text-align: center;
+  height: 88rpx;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 88rpx;
+}
+
+.t-bindSuccess {
+  margin-top:24rpx;
+}
+
+.t-picAfter {
+  width: 750rpx;
+  height: 944rpx;
 }
