@@ -1761,3 +1761,5 @@ border-right:1rpx solid #999999;
 .projectDetailLine:last-child{
   border-right:none;
 }
+@import '/pages/projectDetail/projectDetail.wxss'
+

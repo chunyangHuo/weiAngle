@@ -61,8 +61,8 @@ Page({
       console.log(share_id, followed_user_id, view_id)
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
-        wx.navigateTo({
-          url: '/pages/my/my/my',
+        wx.switchTab({
+          url: '/pages/my/myNew/myNew',
         })
       }
       that.setData({

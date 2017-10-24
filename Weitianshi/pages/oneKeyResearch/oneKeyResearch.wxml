@@ -658,3 +658,5 @@
     </view>
   </view>
 </view>
+<include src='/utils/wxml/projectDetail' />
+
