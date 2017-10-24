@@ -36,7 +36,7 @@ function toCreateProject() {
 function createProjectPc(){
   wx.scanCode({
     success: function (res) {
-      var user_id = user_id;
+      var user_id = wx.getStorageSync('user_id');
       var credential = res.result;//二维码扫描信息
       //发送扫描结果和项目相关数据到后台
       wx.request({ 

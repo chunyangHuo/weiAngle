@@ -240,3 +240,6 @@ height:81px; */
   margin-bottom: 40rpx;
   margin-top: 210rpx;
 }
+.afterIdentity{
+  
+}

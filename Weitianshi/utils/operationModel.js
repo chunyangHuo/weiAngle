@@ -174,8 +174,8 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
     mask: true,
   })
   let user_id = wx.getStorageSync('user_id');
-  checkUserInfo(x=>{
-    getPushProjectTimes(pushRequest())
+  checkUserInfo(x => {
+    getPushProjectTimes(that,pushRequest())
     // 实现推送
     function pushRequest() {
       wx.request({
@@ -210,12 +210,12 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
 }
 
 //项目推送 (user_id:谁推送的; pushTo_user_id:推送给谁的)
-function projectPush(pushTo_user_id) {
+function projectPush(that, pushTo_user_id) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
   checkUserInfo(x => {
-    getPushProjectTimes(res => {
+    getPushProjectTimes(that,res => {
       wx.navigateTo({
         url: '/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id,
       })
@@ -268,7 +268,7 @@ function contactsAddDirect(added_user_id, callBack) {
 }
 
 //获取用户当日推送次数(辅助函数)
-function getPushProjectTimes(callBack) {
+function getPushProjectTimes(that,callBack) {
   let user_id = wx.getStorageSync('user_id');
   let app = getApp();
   let url_common = app.globalData.url_common;

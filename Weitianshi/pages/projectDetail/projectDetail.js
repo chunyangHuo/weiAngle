@@ -57,7 +57,7 @@ Page({
         let ownerId = res.data.user_id;
         app.loginPage(function (user_id) {
           if (ownerId === user_id) {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/myProject/projectDetail/projectDetail?id=' + id,
             })
           }else{
@@ -777,6 +777,10 @@ Page({
               }
             })
           } else if (res.tapIndex == 0) {
+            wx.showLoading({
+              title: 'loading',
+              mask: true,
+            })
             wx.downloadFile({
               url: BPath,
               success: function (res) {
@@ -785,6 +789,7 @@ Page({
                   filePath: filePath,
                   success: function (res) {
                     console.log('打开文档成功')
+                    wx.hideLoading();
                     wx.request({
                       url: url_common + '/api/project/insertViewBpRecord',
                       data: {

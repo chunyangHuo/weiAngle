@@ -17,10 +17,10 @@ Page({
     SearchInit: SearchModel.data,
     activtyBanner: app.globalData.picUrl.activtyBanner,
   },
-  onLoad(options){
-    if(options.currentTab){
+  onLoad(options) {
+    if (options.currentTab) {
       this.setData({
-        currentTab:options.currentTab
+        currentTab: options.currentTab
       })
     }
   },
@@ -208,11 +208,11 @@ Page({
   userDetail: function (e) {
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
-    if(id == user_id){
+    if (id == user_id) {
       wx.switchTab({
         url: '/pages/my/myNew/myNew',
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
       })
@@ -278,9 +278,9 @@ Page({
   },
   // 项目推送
   projectPush(e) {
-    console.log(1)
+    let that = this;
     let pushTo_user_id = e.currentTarget.dataset.id;
-    app.operationModel('projectPush', pushTo_user_id);
+    app.operationModel('projectPush',that,pushTo_user_id);
   },
   // 申请加人脉
   contactsAdd(e) {
