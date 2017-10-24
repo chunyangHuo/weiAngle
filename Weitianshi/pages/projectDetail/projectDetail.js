@@ -164,40 +164,112 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
+        let pro_market_genera = res.data.data.pro_market_genera;
+        let pro_service = res.data.data.pro_service;
+        let pro_business_model = res.data.data.pro_business_model;
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         let button_type = res.data.button_type;
+
         // 如果项目亮点字数超出字,刚显示全部按钮
         if (pro_goodness.length != 0) {
-          if (pro_goodness[0].goodness_desc.length > 50) {
-            console.log("textBeyond0")
+          let arr = [];
+          for (let i = 0; i < pro_goodness.length; i++) {
+            arr.push(pro_goodness[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
             that.setData({
               textBeyond0: true,
-              textBeyond5: true
+              isChecked0: true,
             })
-          }
-          if (pro_goodness.length == 2) {
-            if (pro_goodness[1].goodness_desc.length > 50) {
-              that.setData({
-                textBeyond1: true
-              })
-            }
-          }
-          if (pro_goodness.length == 3) {
-            if (pro_goodness[2].goodness_desc.length > 50) {
-              that.setData({
-                textBeyond2: true
-              })
-            }
-          }
-          if (pro_goodness.length == 4) {
-            if (pro_goodness[3].goodness_desc.length > 50) {
-              that.setData({
-                textBeyond3: true
-              })
-            }
-          }
+          } else
+            that.setData({
+              textBeyond0: false,
+              isChecked0: false,
+            })
         }
+        // 如果市场概况字数超出字,刚显示全部按钮
+        if (pro_market_genera.length != 0) {
+          let arr = [];
+          for (let i = 0; i < pro_goodness.length; i++) {
+            arr.push(pro_market_genera[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
+            that.setData({
+              textBeyond1: true,
+              isChecked1: true,
+            })
+          } else
+            that.setData({
+              textBeyond1: false,
+              isChecked1: false,
+            })
+        }
+        // 如果产品概况字数超出字,刚显示全部按钮
+        if (pro_service.length != 0) {
+          let arr = [];
+          for (let i = 0; i < pro_service.length; i++) {
+            arr.push(pro_service[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
+            that.setData({
+              textBeyond2: true,
+              isChecked2: true,
+            })
+          } else
+            that.setData({
+              textBeyond2: false,
+              isChecked2: false,
+            })
+        }
+        // 如果商业模式字数超出字,刚显示全部按钮
+        if (pro_business_model.length != 0) {
+          let arr = [];
+          for (let i = 0; i < pro_business_model.length; i++) {
+            arr.push(pro_business_model[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 41) {
+            that.setData({
+              textBeyond3: true,
+              isChecked3: true,
+            })
+          } else
+            that.setData({
+              textBeyond3: false,
+              isChecked3: false,
+            })
+        }
+        // // 如果项目亮点字数超出字,刚显示全部按钮
+        // if (pro_goodness.length != 0) {
+        //   if (pro_goodness[0].goodness_desc.length > 50) {
+        //     console.log("textBeyond0")
+        //     that.setData({
+        //       textBeyond0: true,
+        //       textBeyond5: true
+        //     })
+        //   }
+        //   if (pro_goodness.length == 2) {
+        //     if (pro_goodness[1].goodness_desc.length > 50) {
+        //       that.setData({
+        //         textBeyond1: true
+        //       })
+        //     }
+        //   }
+        //   if (pro_goodness.length == 3) {
+        //     if (pro_goodness[2].goodness_desc.length > 50) {
+        //       that.setData({
+        //         textBeyond2: true
+        //       })
+        //     }
+        //   }
+        //   if (pro_goodness.length == 4) {
+        //     if (pro_goodness[3].goodness_desc.length > 50) {
+        //       that.setData({
+        //         textBeyond3: true
+        //       })
+        //     }
+        //   }
+        // }
         if (project.pro_finance_use) {
           if (project.pro_finance_use.length > 50) {
             that.setData({

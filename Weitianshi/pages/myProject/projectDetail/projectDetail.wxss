@@ -1161,11 +1161,12 @@ page {
 #projectBox .goodTitle1{
   text-align: left;
    height: auto;
+   line-height: 50rpx;
 }
 #projectBox .brightUnfold{
-   height: 90rpx;
+   height: 110rpx;
   text-align: left;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
   text-overflow: ellipsis;
@@ -1177,7 +1178,7 @@ page {
    height: auto;
   font-size: 26rpx;
   color: #666;
-  line-height: 39rpx;
+  line-height: 45rpx;
   text-align: left;
 }
 #projectBox .brightContent {
@@ -1185,7 +1186,7 @@ page {
   /* height: 72rpx; */
   font-size: 26rpx;
   color: #666;
-  line-height: 45rpx;
+  line-height: 50rpx;
   text-align: left;
 
 }

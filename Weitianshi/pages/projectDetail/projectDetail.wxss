@@ -499,8 +499,55 @@ scroll-view {
 .star {
   margin-bottom: 26rpx;
 }
+.goodTitle{
+   font-size: 28rpx;
+  color: #333;
+  /* line-height: 28rpx; */
+  text-align: left;
+  display: inline;
+}
+ .goodTitle1{
+  text-align: left;
+   height: auto;
+   line-height: 50rpx;
+}
+ .brightUnfold{
+   height: 110rpx;
+  text-align: left;
+  /* margin-bottom: 20rpx; */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; 
+}
+.brightUnfoldAfter{
+   height: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 45rpx;
+  text-align: left;
+}
+ .brightContent {
+   display: inline;
+  /* height: 72rpx; */
+  font-size: 26rpx;
+  color: #666;
+  line-height: 50rpx;
+  text-align: left;
 
-.brightContent {
+}
+
+.brightContentAfter {
+  height: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
+}
+
+/* .brightContent {
   height: auto;
   font-size: 26rpx;
   color: #666;
@@ -521,7 +568,7 @@ scroll-view {
   color: #666;
   line-height: 39rpx;
   text-align: left;
-}
+} */
 
 .title {
   font-size: 28rpx;
@@ -734,8 +781,8 @@ button::after {
   margin-bottom: 26rpx;
 }
 
-#projectBox .brightContent {
-  /* height: 72rpx; */
+/* #projectBox .brightContent {
+  /* height: 72rpx; 
   font-size: 26rpx;
   color: #666;
   line-height: 39rpx;
@@ -754,7 +801,7 @@ button::after {
   color: #666;
   line-height: 39rpx;
   text-align: left;
-}
+} */
 
 /* 
 #projectBox  .pro_sort {

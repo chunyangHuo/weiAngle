@@ -102,14 +102,85 @@ Page({
           let count = project.count;
           var pro_company_name = project.pro_company_name;
           let pro_goodness = res.data.data.pro_goodness;
+          let pro_market_genera = res.data.data.pro_market_genera;
+          let pro_service = res.data.data.pro_service;
+          let pro_business_model = res.data.data.pro_business_model;
           let industy_sort = [];
           var firstName = user.user_name.substr(0, 1);
           // 如果项目亮点字数超出字,刚显示全部按钮
-          if (pro_goodness.length > 50) {
-            that.setData({
-              textBeyond1: true
-            })
+          if (pro_goodness.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_goodness.length; i++) {
+              arr.push(pro_goodness[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond0: true,
+                isChecked0: true,
+              })
+            } else
+              that.setData({
+                textBeyond0: false,
+                isChecked0: false,
+              })
           }
+          // 如果市场概况字数超出字,刚显示全部按钮
+          if (pro_market_genera.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_goodness.length; i++) {
+              arr.push(pro_market_genera[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond1: true,
+                isChecked1: true,
+              })
+            } else
+              that.setData({
+                textBeyond1: false,
+                isChecked1: false,
+              })
+          }
+          // 如果产品概况字数超出字,刚显示全部按钮
+          if (pro_service.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_service.length; i++) {
+              arr.push(pro_service[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond2: true,
+                isChecked2: true,
+              })
+            } else
+              that.setData({
+                textBeyond2: false,
+                isChecked2: false,
+              })
+          }
+          // 如果商业模式字数超出字,刚显示全部按钮
+          if (pro_business_model.length != 0) {
+            let arr = [];
+            for (let i = 0; i < pro_business_model.length; i++) {
+              arr.push(pro_business_model[i].goodness_desc.length)
+            }
+            if (Math.max.apply(null, arr) > 41) {
+              that.setData({
+                textBeyond3: true,
+                isChecked3: true,
+              })
+            } else
+              that.setData({
+                textBeyond3: false,
+                isChecked3: false,
+              })
+          }
+          // // 如果项目亮点字数超出字,刚显示全部按钮
+          // if (pro_goodness.length > 50) {
+          //   that.setData({
+          //     textBeyond1: true
+          //   })
+          // }
           that.setData({
             user_id: user_id,
             project: project,
@@ -919,15 +990,60 @@ Page({
     }
   },
   // 项目详情中的显示全部
-  allBrightPoint: function () {
-    this.setData({
-      isChecked: false
-    })
+  allBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: false,
+        textBeyond0: true
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: false
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: false
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: false
+      })
+    } else if (check == 4) {
+      this.setData({
+        isChecked4: false
+      })
+    }
   },
-  noBrightPoint: function () {
-    this.setData({
-      isChecked: true
-    })
+  noBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 0) {
+      this.setData({
+        isChecked0: true,
+        textBeyond0: true
+      })
+    } else if (check == 1) {
+      this.setData({
+        isChecked1: true
+      })
+    }
+    else if (check == 2) {
+      this.setData({
+        isChecked2: true
+      })
+    }
+    else if (check == 3) {
+      this.setData({
+        isChecked3: true
+      })
+    }
+    else if (check == 4) {
+      this.setData({
+        isChecked4: true
+      })
+    }
   },
   //项目详情页面,申请查看跳转列表
   applyPerson: function (e) {
