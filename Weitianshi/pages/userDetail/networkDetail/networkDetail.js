@@ -235,9 +235,9 @@ Page({
   },
   // 推送项目
   pushProjectTo: function () {
-    var push_id = this.data.user_id;
-    console.log(push_id)
-    app.operationModel('projectPush', push_id)
+    let push_id = this.data.user_id;
+    let that = this;
+    app.operationModel('projectPush', that, push_id)
   },
   // // 人气进入
   // popularity: function () {

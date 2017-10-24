@@ -35,3 +35,8 @@
 .bindSuccess {
   margin-top:24rpx;
 }
+
+.picAfter {
+  width: 750rpx;
+  height: 944rpx;
+}

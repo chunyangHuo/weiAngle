@@ -141,16 +141,16 @@ Page({
                 success: function (res) {
                     let statusCode = res.data.status_code;
                     if (statusCode == 2000000) {
-                        wx.showToast({
-                            title: '成功',
-                            icon: 'success',
-                            duration: 2000
-                        })
+                        // wx.showToast({
+                        //     title: '成功',
+                        //     icon: 'success',
+                        //     duration: 2000
+                        // })
                         setTimeout(function () {
-                            wx.navigateBack({
-                                delta: 1
+                            wx.navigateTo({
+                              url: '/pages/myProject/pushToSuccess/pushToSuccess',
                             })
-                        }, 2000)
+                        }, 1000)
                     } else if (statusCode == 490001) {
                         app.errorHide(that, "没有选择任何项目", 1000)
                     }

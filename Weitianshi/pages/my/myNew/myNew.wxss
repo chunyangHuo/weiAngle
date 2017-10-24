@@ -253,7 +253,7 @@ page {
 }
 
 .popularity-Num, .attention-Num {
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
   font-size: 36rpx;
   color: #333;
   line-height: 36rpx;
@@ -278,10 +278,11 @@ page {
   margin-bottom: 29rpx;
 }
 .popularityNum, .potentialNum, .attentionNum {
-  font-size: 8px;
+  font-size: 16rpx;
   color: #f44c4c;
   line-height: 20rpx;
   text-align: left;
   position: absolute;
   right: 20%;
+  top:13%;
 }

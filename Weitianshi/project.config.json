@@ -1,0 +1,46 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true
+	},
+	"compileType": "weapp",
+	"libVersion": "1.6.0",
+	"appid": "wxdf2eba3b79b83110",
+	"projectname": "%E5%BE%AE%E5%A4%A9%E4%BD%BF",
+	"condition": {
+		"weapp": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "分享后的项目店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": "followed_user_id=Np38mX9r"
+				},
+				{
+					"id": -1,
+					"name": "项目亮点",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=v0e4KqrL&index=undefined&share_id=bpjqNzDW"
+				},
+				{
+					"id": -1,
+					"name": "项目亮点",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=v0e4KqrL"
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

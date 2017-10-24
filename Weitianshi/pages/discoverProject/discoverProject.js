@@ -30,8 +30,6 @@ Page({
         currentTab: options.currentTab
       })
     }
-  },
-  onShow: function () {
     let that = this;
     let user_id = this.data.user_id;
 
@@ -49,6 +47,7 @@ Page({
         user_id: user_id
       });
       that.selectProject();
+      that.newestProject();
     })
   },
   // 点击tab切换
@@ -82,13 +81,13 @@ Page({
   },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {
-    if (current === 0) {
+    /* if (current === 0) {
       //请求精选项目列表
       this.selectProject();
     } else if (current === 1) {
       //请求最新项目列表
       this.newestProject();
-    }
+    } */
   },
   // 请求最新tab页面项目数据(辅助函数)
   newestProject() {

@@ -478,15 +478,9 @@ Page({
           wx.setStorageSync('enchangeId', []);
           wx.setStorageSync('pro_goodness', "");
           wx.removeStorageSync('setPrivacy');
-          if (type == 8) {
-            wx.navigateBack({
-              delta: 1
-            })
-          } else {
-            wx.redirectTo({
-              url: '/pages/matchInvestor/matchInvestor'
-            });
-          }
+          wx.navigateTo({
+            url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type,
+          })
         } else {
           app.errorHide(that, res.data.error_msg, 3000)
         }

@@ -1057,3 +1057,17 @@
     <view class="t-loadmore__tips">正在加载</view>
   </view>
 </template>
+
+<!--跳转页面  -->
+<template name="jumpToWhere">
+  <view class="t-upBox flex">
+    <view class="t-statusPic">
+      <image src="/img/icon-chenggong@2x.png" class="t-statusPic"></image>
+    </view>
+    <view class="t-bindSuccess">{{text}}</view>
+  </view>
+  <image src="{{imgUrls}}" class="t-picAfter"></image>
+  <view class="floatBtn">
+    <view class="t-btnYes" bindtap="btnYes">完成</view>
+  </view>
+</template>

@@ -249,9 +249,9 @@ Page({
   },
   // 项目推送
   projectPush(e) {
-    console.log(1)
+    let that = this;
     let pushTo_user_id = e.currentTarget.dataset.id;
-    app.operationModel('projectPush', pushTo_user_id);
+    app.operationModel('projectPush', that, pushTo_user_id);
   },
   // 申请加人脉
   contactsAdd(e) {
@@ -489,7 +489,7 @@ Page({
             case 2: {
               wx.hideLoading();
               var myList = res.data.data;//所有的用户
-              var page_end = res.data.page_end;  
+              var page_end = res.data.page_end;
               console.log(myList)
               that.setData({
                 myList: myList,
