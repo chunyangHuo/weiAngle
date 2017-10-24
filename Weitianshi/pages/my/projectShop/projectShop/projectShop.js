@@ -457,10 +457,6 @@ Page({
   editDetail: function (e) {
     this.identity('/pages/myProject/publishProject/publishProject?type=8', 1)
   },
-  // 按钮一号
-  buttonOne: function () {
-    app.infoJump("/pages/myProject/publishProject/publishProject");
-  },
   // 店铺装修
   decorate: function () {
     let user_id = this.data.userInfo.user_id;

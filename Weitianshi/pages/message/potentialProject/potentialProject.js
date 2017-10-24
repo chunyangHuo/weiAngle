@@ -255,7 +255,7 @@ Page({
           });
           //请求加载数据
           wx.request({
-            url: url_common + '/api/message/pushProjectList',
+            url: url_common + '/api/message/getProjectWithPushToMe',
             data: {
               user_id: user_id,
               page: this.data.otherCurrentPage
