@@ -440,16 +440,12 @@ Page({
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
     let index = thisData.index;
-    let currentTab = this.data.currentTab;
-    if (currentTab == 1) {
+    let user_id = this.data.user_id;
+    console.log()
       wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + id,
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
-      })
-    }
+        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id
+    
+    })
   },
   // 新增项目
   editDetail: function (e) {

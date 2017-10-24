@@ -42,8 +42,9 @@ Page({
     textBeyond4: false,
     show_detail: true,
     show_company: true,
+    pro:true,
     type: 2,
-    other: true
+    other: true,
   },
   onLoad: function (options) {
     this.setData({
@@ -53,9 +54,14 @@ Page({
       // currentTab: options.currentTab,
       shareType: options.type
     });
-
   },
   onShow: function () {
+    let share_id = this.data.share_id;
+    console.log(share_id);
+    //返回上一页时启动onShow;
+    let pages = getCurrentPages();
+    let pre = pages[pages.length - 2];
+    pre.data.firstTime = false;
     //  投资人数据
     let that = this;
     let id = this.data.id;
@@ -71,7 +77,6 @@ Page({
     // 为上拉加载准备
     app.initPage(that);
     // 判斷項目是不是自己的
-    console.log(that.data.id)
     wx.request({
       url: url + '/api/project/projectIsMine',
       data: {
@@ -95,7 +100,6 @@ Page({
             that.projectDetailInfo(id);
             that.matchInvestorInfo(id);
           } else {
-            console.log('share_id',share_id)
             wx.redirectTo({
               url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id,
             })
@@ -103,8 +107,8 @@ Page({
         });
       }
     })
+   
   },
-
   //项目详情信息
   projectDetailInfo(id) {
     let that = this;
@@ -134,35 +138,47 @@ Page({
           })
         }
         // 如果项目亮点字数超出字,刚显示全部按钮
-        if (pro_goodness.length != 0) {
-          if (pro_goodness[0].goodness_desc.length > 50) {
+        if (pro_goodness) {
+        for (let i = 0; i < pro_goodness.length; i++) {
+          console.log(pro_goodness[i].goodness_desc)
+          if (pro_goodness[i].goodness_desc >80) {
+            this.pro=false;
             console.log("textBeyond0")
             that.setData({
               textBeyond0: true
             })
-          }
-          if (pro_goodness.length >= 2) {
-            if (pro_goodness[1].goodness_desc.length > 50) {
-              that.setData({
-                textBeyond1: true
-              })
-            }
-          }
-          if (pro_goodness.length >= 3) {
-            if (pro_goodness[2].goodness_desc.length > 50) {
-              that.setData({
-                textBeyond2: true
-              })
-            }
-          }
-          if (pro_goodness.length >= 4) {
-            if (pro_goodness[3].goodness_desc.length > 50) {
-              that.setData({
-                textBeyond3: true
-              })
-            }
-          }
+          } 
         }
+        }
+        // if (pro_goodness.length != 0) {
+        //   if (pro_goodness[0].goodness_desc.length > 50) {
+        //     console.log("textBeyond0")
+        //     that.setData({
+        //       textBeyond0: true
+        //     })
+        //   }
+        //   if (pro_goodness.length >= 2) {
+        //     if (pro_goodness[1].goodness_desc.length > 50) {
+        //       that.setData({
+        //         textBeyond1: true
+        //       })
+        //     }
+        //   }
+        //   if (pro_goodness.length >= 3) {
+        //     if (pro_goodness[2].goodness_desc.length > 50) {
+        //       that.setData({
+        //         textBeyond2: true
+        //       })
+        //     }
+        //   }
+        //   if (pro_goodness.length >= 4) {
+        //     if (pro_goodness[3].goodness_desc.length > 50) {
+        //       that.setData({
+        //         textBeyond3: true
+        //       })
+        //     }
+        //   }
+        // }
 
         if (project.pro_finance_use) {
           if (project.pro_finance_use.length > 50) {
