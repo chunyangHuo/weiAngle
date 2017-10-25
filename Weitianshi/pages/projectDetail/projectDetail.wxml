@@ -208,5 +208,5 @@
 
 <!--项目打分  -->
 <!-- <view class="remark" bindtap="projectRemark">项目打分</view> -->
-<include src='/utils/wxml/projectDetail' />
+<!-- <include src='/utils/wxml/projectDetail' /> -->
 
