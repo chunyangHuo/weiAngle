@@ -5,7 +5,8 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-
+    modalBox: 0,
+    modal: 0,
   },
   onLoad: function (options) {
 
@@ -46,6 +47,7 @@ Page({
             var resource = res.data.data.resource_info;
             var project_info = res.data.data.project_info;
             var user_name = res.data.data.user.user_real_name;
+            let user_company_name= res.data.data.user.user_company_name;
             // wx.setNavigationBarTitle({
             //   title: user_name + "的投资名片",
             // })
@@ -54,7 +56,8 @@ Page({
               invest: invest,
               resource: resource,
               project_info: project_info,
-              count: count
+              count: count,
+              user_company_name : user_company_name
             })
           },
           fail: function (res) {
@@ -187,5 +190,95 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     return ShareModel.myCardShare(that);
+  },
+  // 查税号
+  searchIdentification: function (e) {
+    var that = this;
+    var user_id = this.data.user_id;
+    var modal = this.data.modal;
+    var com_name = this.data.user_company_name;
+    var status_code = this.data.status_code;
+    wx.request({
+      url: url_common + '/api/dataTeam/taxNumber',
+      data: {
+        user_id: user_id,
+        com_name: com_name
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        let data = res.data;
+        if (data.status_code == 460004) {
+          that.setData({
+            modalStyle: 1,
+            modalBox: 1
+          })
+        } else if (data.status_code == 2000000) {
+          that.setData({
+            modalStyle: 0,
+            modalBox: 1
+          })
+          let data = res.data.data;
+          let com_name = data.com_name;
+          var tax_member = data.tax_mumber;
+          that.setData({
+            data: data,
+            com_name: com_name,
+            tax_member: tax_member,
+            modalStyle: 0
+          })
+        }
+      }
+    })
+  },
+  //完善公司信息
+  writeInformation: function () {
+    wx.navigateTo({
+      url: '/pages/my/cardEdit/cardEdit',
+    })
+    this.setData({
+      modalBox: 0
+    })
+  },
+  //确定或稍后再试
+  laterOn: function () {
+    wx.switchTab({
+      url: '/pages/my/myNew/myNew',
+    })
+    this.setData({
+      modalBox: 0
+    })
+  },
+  //复制税号
+  copyNum: function () {
+    let num = this.data.tax_member;
+    wx.setClipboardData({
+      data: num,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success'
+        })
+        wx.getClipboardData({
+          success: function (res) {
+          }
+        })
+      }
+    })
+  },
+  //点击modal后消失
+  hideModal() {
+    let modal = this.data.modal;
+    this.setData({
+      modal: 0
+    })
+  },
+  // 二维码分享按钮
+  shareSth: function (e) {
+    var QR_id = e.currentTarget.dataset.clickid;
+    wx.setStorageSync('QR_id', QR_id)
+    wx.navigateTo({
+      url: '/pages/my/qrCode/qrCode',
+    })
   },
 })
