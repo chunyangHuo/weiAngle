@@ -80,7 +80,10 @@
     "pages/contactsActivty/warbandMember/warbandMember",
     "pages/contactsActivty/activtyPage/explainActivty/explainActivty",
     "pages/remark/remarkList/remarkList",
-    "pages/activtyPage/activtyPage/activtyPage"
+    "pages/activtyPage/activtyPage/activtyPage",
+    "pages/FAIndustryAlliance/FAIndustryAlliance/FAIndustryAlliance",
+    "pages/FAIndustryAlliance/FAIndustryAllianceRegister/FAIndustryAllianceRegister",
+    "pages/FAIndustryAlliance/FAIndustryAllianceShare/FAIndustryAllianceShare"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

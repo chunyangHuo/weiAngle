@@ -247,8 +247,7 @@
       <view class="flex title" catchtap="investCase">
         <view class="flex">
           <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-          成功案例
-          <label> ({{invest_case.length}})</label>
+          成功案例<label> ({{invest_case.length}})</label>
         </view>
         <view class="flex" wx:if="{{canEdit}}">
           <view class="seeMore">查看更多</view>
