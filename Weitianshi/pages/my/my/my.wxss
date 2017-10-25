@@ -729,8 +729,9 @@ page {
   color: #40587a;
   line-height: 24rpx;
   text-align: left;
-  margin-left: 24rpx;
-  margin-bottom: 12rpx;
+  /* margin-left: 24rpx;
+  margin-bottom: 12rpx; */
+    align-self:flex-end;
 }
 
 .competitor {

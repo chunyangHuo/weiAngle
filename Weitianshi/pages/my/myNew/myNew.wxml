@@ -36,6 +36,12 @@
     <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
     <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
     <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
+    <view class="Identification">
+      <view catchtap="searchIdentification">查税号</view>
+    </view>
+    <view class="user_edit" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
+      <image src="/img/img-share.png" style="width: 40rpx;height: 42rpx; border-radius:0;"></image>
+    </view>
   </view>
   <view class="line"></view>
   <view class="flex iconBox">
@@ -135,3 +141,32 @@
 
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--税号-->
+<view class="modalBox" hidden="{{modalBox==0}}">
+  <view class="IdentificationNum">
+    <view class="flex">
+      <label class="oneLine"></label>
+      <view class="IdentificationTitle">公司税号</view>
+      <label class="oneLine"></label>
+    </view>
+    <view class="IdentificationNumText">*未办理三证合一、五证合一的公司不适用此税号</view>
+    <view class="IdentificationNumCompany" wx:if="{{modalStyle == 0}}">
+      <view class="companyTitle">公司</view>
+      <view class="companyName">{{data.com_name}}</view>
+      <view class="companyTitle">税号</view>
+      <text class="IdentificationNumber">{{tax_member}}</text>
+      <view class="modalBtn flex">
+        <view class="modalYes" bindtap="copyNum">复制税号</view>
+        <view class="modalYes" bindtap="laterOn">确定</view>
+      </view>
+    </view>
+    <view class="IdentificationNumCompany" wx:if="{{modalStyle == 1}}">
+      <view class="informationText">暂未查询到税号</view>
+      <view class="informationText">请先完善公司全称或稍后再试</view>
+      <view class="informationBtn flex">
+        <view class="informationYes" catchtap="writeInformation">去完善</view>
+        <view class="informationYes" catchtap="laterOn">稍后再试</view>
+      </view>
+    </view>
+  </view>
+</view>
