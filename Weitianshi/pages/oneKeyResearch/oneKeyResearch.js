@@ -88,6 +88,9 @@ Page({
         let count = project.count;
         let pro_company_name = project.pro_company_name;
         let pro_goodness = res.data.data.pro_goodness;
+        let pro_market_genera = res.data.data.pro_market_genera;
+        let pro_service = res.data.data.pro_service;
+        let pro_business_model = res.data.data.pro_business_model;
         let industy_sort = [];
         let firstName = user.user_name.substr(0, 1);
         let button_type = res.data.button_type;
@@ -183,11 +186,15 @@ Page({
           pro_company_name: pro_company_name,
           count: count,
           pro_goodness: pro_goodness,
+          pro_market_genera: pro_market_genera,
+          pro_service :pro_service,
+          pro_business_model:pro_business_model,
           brandList: brandList,
           button_type: button_type
         });
         // 项目介绍的标签
         let pro_industry = project.pro_industry;
+
         for (let i = 0; i < pro_industry.length; i++) {
           industy_sort.push(pro_industry[i].industry_name)
         }
@@ -256,13 +263,13 @@ Page({
           });
         }
         //一键尽调
-        let company_name = that.data.pro_company_name;
-        if (company_name == '') {
-          that.setData({
-            nothing: 0
-          })
-        }
-
+        let company_name = that.data.pro_company_name||' ';
+        // if (company_name == '') {
+        //   that.setData({
+        //     nothing: 0
+        //   })
+        // }
+        console.log(company_name);
         // 如果显示一键尽调和买家图谱则调用数据
         that.oneKeyRearchInfo(company_name);
         that.matchInvestorInfo(id);
