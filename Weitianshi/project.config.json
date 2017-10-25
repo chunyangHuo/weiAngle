@@ -12,8 +12,15 @@
 	"projectname": "%E5%BE%AE%E5%A4%A9%E4%BD%BF",
 	"condition": {
 		"weapp": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "oneKeyResearch",
+					"pathName": "pages/oneKeyResearch/oneKeyResearch",
+					"query": "id=Np8k7VWR"
+				}
+			]
 		},
 		"search": {
 			"current": -1,
