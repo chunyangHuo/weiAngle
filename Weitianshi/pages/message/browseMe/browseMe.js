@@ -34,6 +34,27 @@ Page({
     let pushTo_user_id = e.currentTarget.dataset.id;
     app.operationModel('projectPush', that, pushTo_user_id);
   },
+  // 加人脉成功后处理(辅助函数)
+  contactsAddSuccessFunc(res, added_user_id, num) {
+    let that = this;
+    var contacts = this.data.contacts;
+    console.log(contacts);
+    if (res.data.status_code == 2000000) {
+      //更改投资人和FA列表中该人的加人脉按钮的字段
+      if (contacts) {
+        contacts.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num
+          }
+        })
+        that.setData({
+          contacts: contacts
+        })
+      }
+    } else {
+      app.errorHide(that, res.data.error_Msg, 3000)
+    }
+  },
   // 申请加人脉
   contactsAdd(e) {
     let added_user_id = e.currentTarget.dataset.id;
