@@ -15,8 +15,6 @@ Page({
       user_id: user_id
     })
     // 初始化案例编辑时的领域和地区
-    wx.removeStorageSync('case_domainValue');
-    wx.removeStorageSync('case_domainId');
     wx.removeStorageSync('addcase_belongArea')
     // 载入我的个人信息
     if (user_id) {

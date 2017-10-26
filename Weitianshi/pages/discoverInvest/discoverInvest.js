@@ -61,6 +61,8 @@ Page({
         }
       })
       that.investorList();
+      that.faList();
+      that.myList();
     })
 
   },
@@ -88,6 +90,20 @@ Page({
   },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {
+    /*  if (current === 0) {
+       //请求投资人列表
+       this.investorList();
+     } else if (current === 1) {
+       //请求FA列表
+       this.faList();
+     } else if (current === 2) {
+       //请求我的人脉列表
+       this.myList();
+     } */
+  },
+  //下拉刷新
+  onPullDownRefresh() {
+    let current = this.data.currentTab;
     if (current === 0) {
       //请求投资人列表
       this.investorList();
@@ -280,7 +296,7 @@ Page({
   projectPush(e) {
     let that = this;
     let pushTo_user_id = e.currentTarget.dataset.id;
-    app.operationModel('projectPush',that,pushTo_user_id);
+    app.operationModel('projectPush', that, pushTo_user_id);
   },
   // 申请加人脉
   contactsAdd(e) {

@@ -72,13 +72,6 @@ Page({
     that.setData({ currentTab: e.detail.current });
     this.tabChange(current);
   },
-  // 轮播图跳转
-  bannerLink(e) {
-    let index = e.currentTarget.dataset.index + 1;
-    wx.navigateTo({
-      url: '/pages/activtyPage/activtyPage/activtyPage?index=' + index,
-    })
-  },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {
     /* if (current === 0) {
@@ -88,6 +81,24 @@ Page({
       //请求最新项目列表
       this.newestProject();
     } */
+  },
+  // 轮播图跳转
+  bannerLink(e) {
+    let index = e.currentTarget.dataset.index + 1;
+    wx.navigateTo({
+      url: '/pages/activtyPage/activtyPage/activtyPage?index=' + index,
+    })
+  },
+  // 下拉刷新
+  onPullDownRefresh() {
+    let current = this.data.currentTab;
+    if (current === 0) {
+      //请求精选项目列表
+      this.selectProject();
+    } else if (current === 1) {
+      //请求最新项目列表
+      this.newestProject();
+    }
   },
   // 请求最新tab页面项目数据(辅助函数)
   newestProject() {
@@ -315,7 +326,6 @@ Page({
   createProjectPc() {
     CreateProject.createProjectPc();
   },
-  //电脑上传
   //去电脑上传
   toPc: function () {
     this.setData({

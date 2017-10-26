@@ -68,28 +68,6 @@ function createProjectPc(){
   })
 }
 
-function str2int(x){
-  if(typeof x =='string'){
-    return x*1
-  }else{
-    console.log(arguments)
-    console.log('argument TYPE ERROR')
-  }
-}
-
-let strArry=['1','2','3','4','5','7']
-
-function map(x,y){
-  if(typeof x !='function'){
-    console.log()
-  }else if(typeof y !='arry'){
-    console.log()
-  }else{
-
-  }
-}
-
-str2int(8)
 export {
   toCreateProject,createProjectPc
 }

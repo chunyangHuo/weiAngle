@@ -130,7 +130,6 @@ Page({
       if (this.data.belongArea == "") {
         wx.setStorageSync('m_belongArea', "选择地区")
       } else {
-
         wx.setStorageSync('m_belongArea', this.data.belongArea);
         wx.setStorageSync('m_provinceNum', this.data.provinceNum);
         wx.setStorageSync('m_cityNum', this.data.cityNum);

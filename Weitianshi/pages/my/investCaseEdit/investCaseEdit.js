@@ -60,7 +60,6 @@ Page({
     if (options.index) {
       var case_index = options.index;
       let industryCard = this.data.industryCard;
-      console.log(industryCard)
       let that = this;
       var user_id = wx.getStorageSync('user_id');
       wx.request({
@@ -71,8 +70,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
-
           let invest_case = res.data.data;
           let industry = invest_case.case_industry;
           var industry_arr = [];
@@ -118,25 +115,15 @@ Page({
   },
   onShow: function () {
     var case_index = this.data.case_index;
-    var industry = wx.getStorageSync('case_domainValue');
-    var industryId = wx.getStorageSync('case_domainId');
     var belongArea = wx.getStorageSync('addcase_belongArea');
-    if (belongArea){
+    console.log('belongArea', belongArea)
+    if (belongArea) {
       belongArea.area_title = belongArea.belongArea;
-    }
-    //如果维护项目就不用再去读领域的缓存
-    if (case_index) {
       this.setData({
         belongArea: belongArea
       })
-      console.log(belongArea)
-    } else {
-      this.setData({
-        industry: industry,
-        industryId: industryId,
-        belongArea: belongArea
-      })
     }
+
 
     // -------------------对industry相关数据进行处理---------------------------------
 
@@ -173,7 +160,6 @@ Page({
   //项目阶段
   case_stage: function (e) {
     var case_stage = this.data.case_stage;
-    console.log(case_stage)
     var case_stage_name = this.data.case_stage_name;
     var stage_index = e.detail.value;
     var stage = this.data.stage;
@@ -183,6 +169,7 @@ Page({
       case_stage: stageId[stage_index],
       case_stage_name: stage[stage_index]
     })
+    console.log(this.data.case_stage_name, this.data.case_stage)
   },
   //项目金额
   case_money: function (e) {
@@ -219,17 +206,28 @@ Page({
     var stageId = this.data.stageId;
     var stage_index = this.data.stage_index;
     let case_stage_id = this.data.case_stage_id;
-    // var case_stage = case_stage || stageId[stage_index];
-    var case_stage = case_stage_id || stageId[stage_index];
+    var case_stage = this.data.case_stage || case_stage_id;
     var case_money = this.data.case_money;
     var case_time = this.data.case_time;
     var belongArea = this.data.belongArea
-    var case_province = belongArea.provinceNum;
-    var case_city = belongArea.cityNum;
-    console.log(case_stage)
+    var case_province = belongArea.provinceNum || belongArea.pid;
+    var case_city = belongArea.cityNum || belongArea.area_id;
     console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
     console.log(user_id, case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city, belongArea)
-    if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择' && case_province != undefined && case_city != undefined) {
+    if (case_name == '') {
+      app.errorHide(that, "项目名称不能为空", 1500)
+    } else if (case_industry.length < 1) {
+      app.errorHide(that, "领域不能为空", 1500)
+    } else if (case_stage.length < 1) {
+      app.errorHide(that, "轮次不能为空", 1500)
+    } else if (case_money.length < 1) {
+      app.errorHide(that, "投资金额不能为空", 1500)
+    } else if (case_time == '请选择') {
+      app.errorHide(that, "交易时间不能为空", 1500)
+    } else if (belongArea.length < 1) {
+      // case_city == [] || case_province == undefined
+      app.errorHide(that, "地区不能为空", 1500)
+    } else {
       if (case_index) {
         wx.request({
           url: url_common + '/api/user/editUserProjectCase',
@@ -249,11 +247,11 @@ Page({
             console.log(res)
             if (res.data.status_code == 2000000) {
               wx.removeStorageSync("industryCurrent3")
-              wx.removeStorageSync('case_domainValue');
-              wx.removeStorageSync('case_domainId')
               wx.navigateBack({
                 delta: 1,
               })
+            } else {
+              app.errorHide(that, res.data.error_msg, 3000)
             }
           },
           fail: function (res) {
@@ -278,11 +276,11 @@ Page({
           success: function (res) {
             if (res.data.status_code == 2000000) {
               wx.removeStorageSync("industryCurrent3")
-              wx.removeStorageSync('case_domainValue');
-              wx.removeStorageSync('case_domainId')
               wx.navigateBack({
                 delta: 1,
               })
+            } else {
+              app.errorHide(that, res.data.error_msg, 3000)
             }
           },
           fail: function (res) {
@@ -290,22 +288,8 @@ Page({
           },
         })
       }
-    } else {
-      if (case_name == undefined) {
-        app.errorHide(that, "项目名称不能为空", 1500)
-      } else if (case_industry == '') {
-        app.errorHide(that, "领域不能为空", 1500)
-      } else if (case_stage == 0) {
-        app.errorHide(that, "轮次不能为空", 1500)
-      } else if (case_money == undefined) {
-        app.errorHide(that, "投资金额不能为空", 1500)
-      } else if (case_time == '请选择') {
-        app.errorHide(that, "交易时间不能为空", 1500)
-      } else if (belongArea == '') {
-        // case_city == [] || case_province == undefined
-        app.errorHide(that, "地区不能为空", 1500)
-      }
     }
+
   },
   onUnload: function () {
     wx.setStorageSync('provinceNum', [])

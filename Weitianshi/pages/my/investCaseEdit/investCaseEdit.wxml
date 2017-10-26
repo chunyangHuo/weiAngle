@@ -1,4 +1,4 @@
-<import src="/pages/Template/Template.wxml"/>
+<import src="/pages/Template/Template.wxml" />
 <!--pages/my/investCaseEdit/investCaseEdit.wxml-->
 <view id="cardEdit">
   <view class="card">
@@ -7,7 +7,7 @@
   </view>
 
   <!--项目领域-->
-  <template is="input_jump" data="{{...industryCard}}" ></template>
+  <template is="input_jump" data="{{...industryCard}}"></template>
 
   <view class="card">
     <view class="text">项目轮次*</view>
@@ -17,7 +17,7 @@
   </view>
   <view class="card">
     <view class="text">投资金额(万元)*</view>
-    <input class="" id="case_money" placeholder="请输入" value="{{case_money}}" bindblur="case_money" maxlength="10" type="number"/>
+    <input class="" id="case_money" placeholder="请输入" value="{{case_money}}" bindblur="case_money" maxlength="10" type="number" />
   </view>
   <view class="card">
     <view class="text">交易时间*</view>
@@ -27,11 +27,11 @@
   </view>
   <view class="card">
     <view class="text">投资地区*</view>
-       <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.area_title||"请选择"}}</view>
+    <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.area_title||"请选择"}}</view>
   </view>
 </view>
 <view style="height:118rpx;"></view>
 <template is="buttonOne" data="{{text:'保存',btnName:'buttonOne'}}"></template>
 
-  <!--错语提示-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--错语提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
