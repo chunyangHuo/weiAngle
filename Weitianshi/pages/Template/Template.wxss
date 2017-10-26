@@ -249,4 +249,9 @@ border-radius: 100rpx;*/
   font-size: 28rpx;
   margin-bottom: 16rpx;
 }
+.line{
+  width: 5rpx;
+  height: 35rpx;
+  background:#f2f2f2
+}
 
