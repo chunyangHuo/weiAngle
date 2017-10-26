@@ -1024,6 +1024,7 @@
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>推送项目</span>
     </view>
+     <view class="t-line"></view>   
     <!-- <view class='t-cardBottomItem flex'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
