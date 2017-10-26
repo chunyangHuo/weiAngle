@@ -39,6 +39,7 @@ Page({
                   console.log(1221)
                   wx.hideLoading()
                     var contacts = res.data.list.users;
+                    console.log(contacts)
                     var count = res.data.list.count;
                     that.setData({
                         contacts: contacts,
@@ -190,5 +191,51 @@ Page({
                 }
             }
         }
-    }
+    },
+    // 项目推送
+    projectPush(e) {
+      let that = this;
+      let pushTo_user_id = e.currentTarget.dataset.id;
+      app.operationModel('projectPush', that, pushTo_user_id);
+    },
+    // 申请加人脉
+    contactsAdd(e) {
+      let added_user_id = e.currentTarget.dataset.id;
+      let that = this;
+      app.operationModel('contactsAdd', added_user_id, function (res) {
+        console.log('申请添加人脉完成', res);
+        that.contactsAddSuccessFunc(res, added_user_id, 2);
+      });
+    },
+    // 直接加人脉
+    contactsAddDirect(e) {
+      let added_user_id = e.currentTarget.dataset.id;
+      let that = this;
+      app.operationModel('contactsAddDirect', added_user_id, function (res) {
+        console.log('直接添加人脉完成', res)
+        that.contactsAddSuccessFunc(res, added_user_id, 1);
+      });
+    },
+    // 加人脉成功后处理(辅助函数)
+    contactsAddSuccessFunc(res, added_user_id, num) {
+      var that = this;
+      var user_id = wx.getStorageSync('user_id');//获取我的user_id
+      var followed_user_id = e.target.dataset.followedid;//当前用户的user_id
+      var follow_status = e.currentTarget.dataset.follow_status;
+      var index = e.target.dataset.index;
+      var contacts = this.data.contacts
+      if (res.data.status_code == 2000000) {
+        //将状态设为"未验证"
+        contacts.forEach((x) => {
+          if (x.user_id == followed_user_id) {
+            x.follow_status = 1
+          }
+        })
+        that.setData({
+          contacts: contacts
+        })
+      } else {
+        app.errorHide(that, res.data.error_Msg, 3000)
+      }
+    },
 })
