@@ -78,69 +78,56 @@
     <image src="{{activtyBanner}}" class="contactsPic"></image>
   </view>
   <scroll-view scroll-y="true" bindscrolltolower="loadMore"  style='height:70%'>
+    <view class="aBox"></view>
     <block wx:for="{{myList}}" wx:key="{{item.user_id}}">
-      <view class="t-myContactsCard  contacts-detailm" data-id="{{item.user_id}}" bindtap="userDetail">
-        <view class="user_info flex">
-          <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-          <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
-          <view class="user_info_right">
-            <view class="flex frame">
-              <view class="name_flex flex">
-                <view class="user_name">{{item.user_real_name}}</view>
-                <view class="user_career">{{item.user_company_career}}</view>
-              </view>
-              <label class="telephoneLab telephonem" data-telephone="{{item.user_mobile}}" catchtap="telephone">
-                <image class="telephone" src="/img/icon-phone@3x.png"></image>
-              </label>
-            </view>
-            <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
+     <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
+      <view class="t-applyMyProject t-contacts-detailm">
+        <view class="t-introduceBox flex">
+          <view class="t-userName">{{item.user_real_name}}</view>
+          <view class="t-userPosition">{{item.user_company_career}}</view>
+          <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
+            <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
+            <view class="t-userPart1">{{item.authentication[0].group_title}}</view>
+          </view>
+          <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+          <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
+        </view>
+        <view class="t-userCompany">{{item.user_company_name}}</view>
+        <view class="t-record">{{item.active_status}}</view>
+        <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_industry.length != 0}}">
+          <view class="t-roundGroupTitle">投资领域：</view>
+          <view class="t-roundGroupContent">
+            <block wx:for="{{item.user_invest_industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
+              <label wx:if="{{index < item.user_invest_industry.length-1}}">{{industryItem.industry_name}}、</label>
+              <label wx:if="{{index ==  item.user_invest_industry.length-1}}"> {{industryItem.industry_name}} </label>
+            </block>
           </view>
         </view>
-        <view class="investor_info">
-
-          <!--投资领域-->
-          <view class="investor_industry_frame flex" wx:if="{{item.user_invest_industry !=''}}">
-            <view class="investor_text">投资领域:</view>
-            <view class="investor_right flex">
-              <block wx:for="{{item.user_invest_industry}}" wx:for-item="industry" wx:key="{{industry.industry_id}}">
-                <view class="industry" hidden="{{index>3}}">{{industry.industry_name}}</view>
-              </block>
-            </view>
-          </view>
-
-          <!--投资轮次-->
-          <view class="investor_industry_frame flex" wx:if="{{item.user_invest_stage !=''}}">
-            <view class="investor_text">投资轮次:</view>
-            <view class="investor_right flex">
-              <block wx:for="{{item.user_invest_stage}}" wx:for-item="stage" wx:key="{{stage.stage_id}}">
-                <view class="stage">{{stage.stage_name}}</view>
-              </block>
-            </view>
-          </view>
-
-          <!--拥有资源-->
-          <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
-            <view class="investor_text">寻求资源:</view>
-            <view class="investor_right flex">
-              <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
-                <view class="res_find">{{res_find.resource_name}}</view>
-              </block>
-            </view>
-          </view>
-
-          <!--寻求资源-->
-          <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
-            <view class="investor_text">拥有资源:</view>
-            <view class="investor_right flex">
-              <block wx:for="{{item.user_resource_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
-                <view class="res_give">{{res_give.resource_name}}</view>
-              </block>
-            </view>
+        <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_stage.length != 0}}">
+          <view class="t-roundGroupTitle">投资轮次：</view>
+          <view class="t-roundGroupContent">
+            <block wx:for="{{item.user_invest_stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
+              <label wx:if="{{index < item.user_invest_stage.length-1}}">{{stageItem.stage_name}}、</label>
+              <label wx:if="{{index ==item.user_invest_stage.length-1}}">{{stageItem.stage_name}}</label>
+            </block>
           </view>
         </view>
       </view>
-    </block>
-  </scroll-view>
+     <view class='cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
+    <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' catchtap='projectPush'>
+      <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
+      <span>推送项目</span>
+    </view>
+     <view class="t-line"></view>   
+    <view class='t-cardBottomItem flex'  data-telephone="{{item.user_mobile}}" catchtap="telephone" >
+      <image class='t-itemPic' src='/img/icon-dadainhua@2x.png'></image>
+      <view >打电话</view>
+    </view>
+  </view>
+  <view  class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
+</view>
+</block>
+</scroll-view>
 </template>
 <template name="searchNothing">
   <view class="searchNothing" wx:if="{{empty.length == 0}}">

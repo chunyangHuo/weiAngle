@@ -144,3 +144,13 @@
 .btnGroup{
   height:50rpx;
 }
+.cardBottom {
+  border-top: 2rpx solid #e6e6e6;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  margin: 0;
+  font-size: 28rpx;
+  color: #40587a;
+  background: white;
+  margin-bottom:24rpx;
+}

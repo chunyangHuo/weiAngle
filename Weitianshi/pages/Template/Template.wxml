@@ -1020,7 +1020,7 @@
 <!--卡片底部----推送项目和加人脉  -->
 <template name='cardBottom1'>
   <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-    <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' bindtap='projectPush'>
+    <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' catchtap='projectPush'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>推送项目</span>
     </view>
@@ -1028,7 +1028,7 @@
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
     </view> -->
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' bindtap='contactsAdd'>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' catchtap='contactsAdd'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
       <view>加人脉</view>
     </view>
@@ -1040,7 +1040,7 @@
       <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
       <view style='color:#999;'>待验证</view>
     </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' bindtap='contactsAddDirect'>
+    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
       <view>加人脉</view>
     </view>
