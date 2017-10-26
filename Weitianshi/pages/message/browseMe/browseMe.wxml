@@ -24,11 +24,11 @@
                 <view class="t-introduceBox flex">
                   <view class="t-userName">{{item.user_real_name}}</view>
                   <view class="t-userPosition">{{item.user_company_career}}</view>
-                  <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
+                  <view class="t-userPart flex" wx:if="{{item.user_groups[0].group_title}}">
                     <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
-                    <view class="t-userPart1">{{item.authentication[0].group_title}}</view>
+                    <view class="t-userPart1">{{item.user_groups[0].group_title}}</view>
                   </view>
-                  <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
+                  <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
                   <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
                 </view>
                 <view class="t-userCompany">{{item.user_company_name}}</view>
