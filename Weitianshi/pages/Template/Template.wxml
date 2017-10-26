@@ -282,7 +282,7 @@
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
   <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" bindtap="detail" data-id='{{myProject.case_id}}'>
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}"  data-id='{{myProject.case_id}}'>
       <view class="title" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
         <block wx:for="{{myProject.pro_industry||myProject.industry}}" wx:for-item="sort" wx:key="*this">
@@ -298,7 +298,7 @@
           <view class="weui-media-box__desc tip">{{myProject.case_area.area_title||myProject.pro_area.area_title}}</view>
           <view class="weui-media-box__desc tip">{{myProject.pro_scale.scale_money||myProject.case_money}}万</view>
         </view>
-        <image class="editIcon" data-index="{{index}}" data-id="{{myProject.pro_id}}" src="/img/icon-pen.png" bindtap="editDetail"></image>
+        <!-- <image class="editIcon" data-index="{{index}}" data-id="{{myProject.pro_id}}" src="/img/icon-pen.png" bindtap="editDetail"></image> -->
       </view>
     </view>
   </view>
