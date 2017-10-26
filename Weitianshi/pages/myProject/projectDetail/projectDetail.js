@@ -189,7 +189,7 @@ Page({
         for (let i = 0; i < pro_goodness.length; i++) {
           arr.push(pro_goodness[i].goodness_desc.length)
         }    
-         if (Math.max.apply(null, arr) >41) {
+         if (Math.max.apply(null, arr) >250 ){
             that.setData({
               textBeyond0: true,
               isChecked0 : true,
@@ -206,7 +206,7 @@ Page({
           for (let i = 0; i < pro_goodness.length; i++) {
             arr.push(pro_market_genera[i].goodness_desc.length)
           }
-          if (Math.max.apply(null, arr) > 41) {
+          if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond1: true,
               isChecked1: true,
@@ -223,7 +223,7 @@ Page({
           for (let i = 0; i < pro_service.length; i++) {
             arr.push(pro_service[i].goodness_desc.length)
           }
-          if (Math.max.apply(null, arr) > 41) {
+          if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond2: true,
               isChecked2: true,
@@ -240,7 +240,7 @@ Page({
           for (let i = 0; i < pro_business_model.length; i++) {
             arr.push(pro_business_model[i].goodness_desc.length)
           }
-          if (Math.max.apply(null, arr) > 41) {
+          if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond3: true,
               isChecked3: true,
