@@ -1262,3 +1262,8 @@ textarea {
   width: 750rpx;
   height: 944rpx;
 }
+.t-line{
+  width: 5rpx;
+  height: 35rpx;
+  background:#f2f2f2
+}

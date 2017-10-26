@@ -1,5 +1,5 @@
 /* pages/message/browseMe/browseMe.wxss */
-
+@import '/pages/Template/Template.wxss';
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
