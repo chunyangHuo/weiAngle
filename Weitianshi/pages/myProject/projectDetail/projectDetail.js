@@ -59,7 +59,9 @@ Page({
     //返回上一页时启动onShow;
     let pages = getCurrentPages();
     let pre = pages[pages.length - 2];
-    pre.data.firstTime = false;
+    if (pre) {
+      pre.data.firstTime = false;
+    }
     //  投资人数据
     let that = this;
     let id = this.data.id;
@@ -104,7 +106,7 @@ Page({
         });
       }
     })
-    
+
     /* that.isProjectMine(id, res => {
       //项目详情,一键尽调,买家图谱数据载入
       that.projectDetailInfo(id);
@@ -185,23 +187,23 @@ Page({
         }
         // 如果项目亮点字数超出字,刚显示全部按钮
         if (pro_goodness.length != 0) {
-          let arr=[];
-        for (let i = 0; i < pro_goodness.length; i++) {
-          arr.push(pro_goodness[i].goodness_desc.length)
-        }    
-         if (Math.max.apply(null, arr) >250 ){
+          let arr = [];
+          for (let i = 0; i < pro_goodness.length; i++) {
+            arr.push(pro_goodness[i].goodness_desc.length)
+          }
+          if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond0: true,
-              isChecked0 : true,
+              isChecked0: true,
             })
-          } else 
+          } else
             that.setData({
               textBeyond0: false,
-              isChecked0:false,
+              isChecked0: false,
             })
         }
         // 如果市场概况字数超出字,刚显示全部按钮
-        if (pro_market_genera.length!=0) {
+        if (pro_market_genera.length != 0) {
           let arr = [];
           for (let i = 0; i < pro_goodness.length; i++) {
             arr.push(pro_market_genera[i].goodness_desc.length)
@@ -972,7 +974,7 @@ Page({
     if (check == 0) {
       this.setData({
         isChecked0: false,
-        textBeyond0:true
+        textBeyond0: true
       })
     } else if (check == 1) {
       this.setData({
@@ -999,7 +1001,7 @@ Page({
     if (check == 0) {
       this.setData({
         isChecked0: true,
-        textBeyond0:true
+        textBeyond0: true
       })
     } else if (check == 1) {
       this.setData({
