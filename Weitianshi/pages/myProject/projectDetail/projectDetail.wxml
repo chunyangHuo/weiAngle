@@ -65,7 +65,7 @@
   <button class="push" disabled="true">一键推送(近期开放)</button>
 </view> -->
 <!-- <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}"> -->
-<view class=" flex floatBtn flexBox">
+<view class=" flex floatBtn flexBox" hidden="{{currentTab==1 }}">
   <view class="collectBox" bindtap="deleteProject">
     <image src="/img/icon-shanchu@2x.png" class="collectPic"></image>
   </view>
