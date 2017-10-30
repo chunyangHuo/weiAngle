@@ -115,7 +115,7 @@ Page({
         // 如果市场概况字数超出字,刚显示全部按钮
         if (pro_market_genera.length != 0) {
           let arr = [];
-          for (let i = 0; i < pro_goodness.length; i++) {
+          for (let i = 0; i < pro_market_genera.length; i++) {
             arr.push(pro_market_genera[i].goodness_desc.length)
           }
           if (Math.max.apply(null, arr) > 250) {
