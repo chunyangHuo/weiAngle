@@ -49,6 +49,7 @@ export function getRequestKey(data) {
 }
 //所有与服务器进行http请求的出口
 export function http(data) {
+  let app = getApp();
   if (!isObject(data)) {
     throw Error('ajax请求参数必须是json对象: ' + data)
   }
@@ -72,8 +73,13 @@ export function http(data) {
         removeRequestKey(ajaxKey)
         let statusCode = res.statusCode
         if (statusCode === 200 || statusCode === 304) {
-          return resolve(res)
+          if (res.data.status_code === 2000000) {
+            return resolve(res)
+          } else {
+
+          }
         }
+        throw Error('请求接口失败')
         return reject(res)
       }
     })
