@@ -68,7 +68,16 @@
     "pages/activtyPage/activtyPage/activtyPage",
     "pages/FAIndustryAlliance/FAIndustryAlliance/FAIndustryAlliance",
     "pages/FAIndustryAlliance/FAIndustryAllianceRegister/FAIndustryAllianceRegister",
-    "pages/FAIndustryAlliance/FAIndustryAllianceShare/FAIndustryAllianceShare"
+    "pages/FAIndustryAlliance/FAIndustryAllianceShare/FAIndustryAllianceShare",
+    "pages/organization/org_search/org_search",
+    "pages/organization/org_library/org_library",
+    "pages/organization/org_detail/org_detail",
+    "pages/organization/subPage/project_orgMatch/project_orgMatch",
+    "pages/organization/subPage/list_industry/list_industry",
+    "pages/organization/subPage/list_investCase/list_investCase",
+    "pages/organization/subPage/list_orgMember/list_orgMember",
+    "pages/organization/subPage/list_media/list_media",
+    "pages/organization/subPage/guide_help/guide_help"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

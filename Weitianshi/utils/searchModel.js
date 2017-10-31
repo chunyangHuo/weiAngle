@@ -251,6 +251,7 @@ function searchCertain(that) {
     currentPage: 1,
     page_end: false
   })
+  console.log(that.data.SearchInit)
 
   return searchData;
 

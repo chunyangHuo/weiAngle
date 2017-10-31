@@ -61,6 +61,7 @@ Page({
     let pre = pages[pages.length - 2];
     if (pre) {
       pre.data.firstTime = false;
+      
     }
     //  投资人数据
     let that = this;

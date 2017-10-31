@@ -677,6 +677,14 @@ App({
     }
   }, 
 
+  //页栈超出处理
+  openMorePage(){
+    let pages = getCurrentPages();
+    if(pages.length == 5){
+      pages.splice(0,1)
+    }
+  },
+
   //初始本地缓存
   globalData: { 
     error: 0,
