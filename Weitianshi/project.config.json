@@ -12,14 +12,8 @@
 	"projectname": "%E5%BE%AE%E5%A4%A9%E4%BD%BF",
 	"condition": {
 		"weapp": {
-			"current": -1,
+			"current": 8,
 			"list": [
-				{
-					"id": 0,
-					"name": "oneKeyResearch",
-					"pathName": "pages/oneKeyResearch/oneKeyResearch",
-					"query": "id=Np8k7VWR"
-				},
 				{
 					"id": 1,
 					"name": "FAIndustryAllianceRegister",
@@ -49,6 +43,30 @@
 					"name": "分享后的我的项目 ",
 					"pathName": "pages/projectDetail/projectDetail",
 					"query": "id=e0qQB10v&&share_id=mr93M3KW"
+				},
+				{
+					"id": 5,
+					"name": "project_orgMatch",
+					"pathName": "pages/organization/subPage/project_orgMatch/project_orgMatch",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "list_media",
+					"pathName": "pages/organization/subPage/list_media/list_media",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "list_investCase",
+					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "org_detail",
+					"pathName": "pages/organization/org_detail/org_detail",
+					"query": ""
 				}
 			]
 		},

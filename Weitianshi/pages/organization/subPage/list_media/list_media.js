@@ -1,4 +1,8 @@
 // pages/organization/subPage/list_media/list_media.js
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+import * as ShareModel from '../../../../utils/shareModel';
 Page({
 
   /**
