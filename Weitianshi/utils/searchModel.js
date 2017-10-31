@@ -30,8 +30,6 @@ let data = {
 // 下拉框
 function move(e, that) {
   let SearchInit = that.data.SearchInit;
-  console.log('operation_move_SearchInit', SearchInit)
-  console.log(data)
   let index = e.currentTarget.dataset.index;
   let currentIndex = SearchInit.currentIndex;
   this.initData(that);

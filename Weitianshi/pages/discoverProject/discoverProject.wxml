@@ -5,10 +5,30 @@
 </view>
 <!--筛选和搜索  -->
 <template is='search' data='{{SearchInit}}'></template>
-<view class='searchList'>
-  <block wx:for='{{}}}' wx:key='{{}}'>
-    <view></view>
-  </block>
+<view class='searchList flex'>
+  <view class='search_industry flex'>
+    <block wx:for='{{SearchInit.industry}}' wx:key='{{SearchInit.industry}}'>
+      <view hidden='{{item.check==false}}' data-id='{{item.industry_id}}'>
+      {{item.industry_name}}
+      <image style='width:20rpx;height:20rpx;' src='/img/icon-jujue@2x.png'></image>
+      </view>
+    </block>
+  </view>
+  <view class='search_stage flex'>
+    <block wx:for='{{SearchInit.stage}}' wx:key='{{SearchInit.stage}}'>
+      <view hidden='{{item.check==false}}'>{{item.stage_name}}</view>
+    </block>
+  </view>
+  <view class='search_scale flex'>
+    <block wx:for='{{SearchInit.scale}}' wx:key='{{SearchInit.scale}}'>
+      <view hidden='{{item.check==false}}'>{{item.scale_money}}</view>
+    </block>
+  </view>
+  <view class='search_hotCity flex'>
+    <block wx:for='{{SearchInit.hotCity}}' wx:key='{{SearchInit.hotCity}}'>
+      <view hidden='{{item.check==false}}'>{{item.area_title}}</view>
+    </block>
+  </view>
 </view>
 <!--项目展示列表  -->
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:865rpx" bindchange="bindChange">

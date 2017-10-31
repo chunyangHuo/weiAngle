@@ -73,7 +73,7 @@ App({
       success: function (res) {
         let hotCity = res.data.data;
         hotCity.forEach((x) => {
-          x.checked = false;
+          x.check = false;
         })
         wx.setStorageSync('hotCity', hotCity)
       }
@@ -651,7 +651,7 @@ App({
   },
 
   //投后股份格式校验
-  stockCheck(that,pro_finance_stock_after){
+  stockCheck(that, pro_finance_stock_after) {
     // 投后股份项数值限定
     function checkNumber(data) {
       var reg = /^\d+\.[0-9]{2}/;
@@ -675,18 +675,22 @@ App({
       }
       return;
     }
-  }, 
-
-  //页栈超出处理
-  openMorePage(){
-    let pages = getCurrentPages();
-    if(pages.length == 5){
-      pages.splice(0,1)
-    }
   },
 
+  //页栈超出处理
+  href(url) {
+    let pages = getCurrentPages();
+    if (pages.length == 5) {
+      pages.splice(0, 1)
+    }
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
+
   //初始本地缓存
-  globalData: { 
+  globalData: {
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',

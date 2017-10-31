@@ -25,6 +25,7 @@ Page({
     ],
   },
   onLoad(options) {
+    console.log(this.data)
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
@@ -303,6 +304,7 @@ Page({
     this.setData({
       SearchInit: SearchInit
     })
+    console.log(this.data.SearchInit)
   },
   // 点击modal层
   modal() {
