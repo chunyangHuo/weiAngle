@@ -139,7 +139,7 @@ Page({
       title: 'loading',
       mask: true,
     })
-    app.httpPost({
+    app.httpPost(that,{
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
         user_id: this.data.user_id,
