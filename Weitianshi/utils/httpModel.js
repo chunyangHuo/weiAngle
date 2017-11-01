@@ -73,13 +73,15 @@ export function http(data) {
         removeRequestKey(ajaxKey)
         let statusCode = res.statusCode
         if (statusCode === 200 || statusCode === 304) {
-          if (res.data.status_code === 2000000) {
+          if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
             return resolve(res)
           } else {
 
           }
+        }else{
+          throw Error('请求接口失败')
         }
-        throw Error('请求接口失败')
+        
         return reject(res)
       }
     })
