@@ -139,13 +139,13 @@ Page({
       title: 'loading',
       mask: true,
     })
-    app.httpPost(that,{
+    app.httpPost({
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
         user_id: this.data.user_id,
         filter: this.data.SearchInit.searchData
       }
-    }).then(res => {
+    },that).then(res => {
       wx.hideLoading()
       var slectProject = res.data.data;
       console.log(slectProject)

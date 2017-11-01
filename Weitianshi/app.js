@@ -627,8 +627,8 @@ App({
   },
 
   //请求封装
-  httpPost(that,data) {
-    return request.httpPost(data,that)
+  httpPost(data, that) {
+    return request.httpPost(data, that)
   },
 
   //用户操作模块(util/operationModel)
