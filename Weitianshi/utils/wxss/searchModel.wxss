@@ -116,7 +116,7 @@
 }
 
 #searchModel2 .scroll{
-  width: 1000rpx;
+  width: 700rpx;
 }
 
 #searchModel2 .label {
@@ -128,7 +128,8 @@
   color: #009eff;
   margin: 0 16rpx;
   margin-top: 32rpx;
-  height: 28rpx
+  height: 28rpx;
+  min-width: 100rpx;
 }
 #searchModel2 .label image{
   margin-left: 14rpx;
