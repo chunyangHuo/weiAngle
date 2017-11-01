@@ -1,1 +1,79 @@
 /* pages/organization/subPage/list_industry/list_industry.wxss */
+.page{
+  background: #fff;
+}
+.outStyleBox {
+  margin-bottom: 32rpx;
+  background: #fff;
+  padding: 32rpx;
+}
+.blockTitle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 33rpx;
+  text-align: left;
+  margin-bottom: 16rpx;
+}
+
+.blockIntro {
+  font-size: 20rpx;
+  color: #999;
+  line-height: 22rpx;
+  text-align: left;
+  margin-bottom: 40rpx;
+}
+
+.industryTitleBlock {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 22rpx;
+  text-align: left;
+}
+
+.industryTitle {
+  margin-right: 40rpx;
+  margin-bottom: 32rpx;
+}
+
+.industryTitle:first-child {
+  margin-right: 298rpx;
+}
+
+.industryTitle:last-child {
+  margin-right: 0;
+}
+
+.industryContentBlock {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 30rpx;
+  text-align: left;
+  margin-bottom: 64rpx;
+}
+
+.industryContentBlock:last-child {
+  margin-bottom: 0;
+}
+
+.industryContentTitle {
+  width: 342rpx;
+}
+
+.industryContent {
+  width: 128rpx;
+}
+
+.industryContent:last-child {
+  width: 88rpx;
+}
+
+.allThing {
+  font-size: 24rpx;
+  color: #009eff;
+  line-height: 26rpx;
+  text-align: right;
+}
+
+.title {
+  justify-content: space-between;
+}

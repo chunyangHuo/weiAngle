@@ -136,3 +136,113 @@ color:#666666;
   border: 1px solid rgba(0, 158, 255, 0.20);
   color: #009eff;
 }
+
+
+/*投资机构  */
+
+#investment .investGroupBlock {
+  padding-bottom: 40rpx;
+  padding-top: 40rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+#investment .investGroupBlock:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+#investment .investGroupLeft {
+  height: 104rpx;
+  width: 104rpx;
+  background: blueviolet;
+  margin-right: 24rpx;
+}
+
+#investment .investTitle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 32rpx;
+  text-align: left;
+}
+
+ #investment .investNum {
+  font-size: 24rpx;
+  color: #fc703e;
+  line-height: 26rpx;
+  text-align: right;
+}
+
+#investment .investTitleBlock {
+  margin-bottom: 20rpx;
+  justify-content: space-between;
+}
+
+#investment .investIntro {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  margin-bottom: 28rpx;
+  width: 550rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#investment .mainCase {
+  border: 1rpx solid rgba(0, 158, 255, 0.20);
+  border-radius: 4rpx;
+  width: 56rpx;
+  height: 28rpx;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  color: #009eff;
+  text-align: center;
+  margin-right: 13rpx;
+}
+
+#investment .mainCaseContent {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 36rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  width: 480rpx;
+  margin-bottom:28rpx;
+}
+
+ #investment .projectListBlock {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 510rpx;
+  background: #fafafa;
+  border-radius: 4rpx;
+  height: 56rpx;
+  padding: 24rpx;
+  font-size: 24rpx;
+  color: #40587a;
+}
+
+#investment .mainCaseBox {
+  margin-bottom: 28rpx;
+}
+
+#investment .tapCase {
+  border: 1rpx solid #bcf1d3;
+  border-radius: 4rpx;
+  width: 56rpx;
+  height: 28rpx;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  color: #10ad57;
+  text-align: center;
+  margin-right: 13rpx;
+}
+

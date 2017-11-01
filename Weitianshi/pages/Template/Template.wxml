@@ -864,7 +864,7 @@
 <!--筛选和搜索  -->
 <template name='search'>
   <!--筛选和搜索  -->
-  <view id='searchModel' class="screen flex">
+  <view id='searchModel' class="screen flex" wx:if="{{currentTab != 0}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
       <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
@@ -1116,5 +1116,49 @@
 
 <!--投资领域  -->
 <template name="industry">
-<view class="detailType1 detailColor detailRight">{{item.industry_name}}</view>
+  <view class="detailType1 detailColor detailRight">{{item.industry_name}}</view>
+</template>
+
+<!--投资机构  -->
+
+<template name="investment">
+  <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
+    <view class="investGroupBlock flex">
+      <view class="investGroupLeft" >
+      <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
+      <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
+      </view>
+      <view class="investGroupRight">
+        <view class="flex investTitleBlock">
+          <view class="investTitle">{{item.investment_name}}</view>
+          <view class="investNum"><label>{{item.investment_event_count}}</label>个投资案例</view>
+        </view>
+        <view class="investIntro">{{item.investment_introduce}}</view>
+        <view class="flex">
+          <label class="mainCase">主投</label>
+          <view class="mainCaseContent">
+            <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:if="{{item.industry_list.length != 0}}" wx:for-item="industryList">
+              <label wx:if="{{index <  item.industry_list.length-1}}">{{industryList.industry_name}}、</label>
+              <label wx:if="{{index == item.industry_list.length-1}}">{{industryList.industry_name}}</label>
+            </block>
+          </view>
+        </view>
+        <view class="flex">
+          <label class="tapCase">标签</label>
+          <view class="mainCaseContent">
+            <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:if="{{item.style_list.length != 0}}" wx:for-item="styleList">
+              <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label>
+              <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label>
+            </block>
+          </view>
+        </view>
+        <view class="projectListBlock">
+          <block wx:for="{{item.project_list}}" wx:key="{{index}}" wx:if="{{item.project_list.length != 0}}" wx:for-item="projectList">
+            <label wx:if="{{index < item.project_list.length-1}}">{{projectList.event_time}}【{{projectList.event_project_name}}】、</label>
+            <label wx:if="{{index == item.project_list.length-1}}">{{projectList.event_time}}【{{projectList.event_project_name}}】</label>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
 </template>

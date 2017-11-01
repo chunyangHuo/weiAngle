@@ -114,11 +114,9 @@
   height: 112rpx;
   background: #f3f4f8;
 }
-
 #searchModel2 .scroll{
-  width: 1000rpx;
+  width: 640rpx;
 }
-
 #searchModel2 .label {
   padding: 12rpx;
   background: rgba(0, 158, 255, 0.10);
@@ -128,8 +126,14 @@
   color: #009eff;
   margin: 0 16rpx;
   margin-top: 32rpx;
-  height: 28rpx
+  height: 28rpx;
 }
 #searchModel2 .label image{
   margin-left: 14rpx;
+}
+#searchModel2 .allReset{
+  font-size: 24rpx;
+  color:#009eff;
+  line-height: 112rpx;
+  margin-right: 32rpx;
 }

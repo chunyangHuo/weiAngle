@@ -60,6 +60,7 @@ Page({
           })
         }
       })
+      that.investment();
       that.investorList();
       that.faList();
       that.myList();
@@ -104,7 +105,10 @@ Page({
   //下拉刷新
   onPullDownRefresh() {
     let current = this.data.currentTab;
-    if (current === 1) {
+    if (current === 0) {
+      //投资机构
+      this.investment();
+    } else if (current === 1) {
       //请求投资人列表
       this.investorList();
     } else if (current === 2) {
@@ -114,6 +118,27 @@ Page({
       //请求我的人脉列表
       this.myList();
     }
+  },
+  //投资机构列表信息
+  investment() {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    app.httpPost({
+      url: url_common + '/api/investment',
+      data: {}
+    }).then(res => {
+      wx.hideLoading()
+      let investormentList = res.data.data;
+      let investment_list = investormentList.investment_list;
+      that.setData({
+        investormentList: investormentList,
+        investment_list: investment_list
+      })
+      wx.hideLoading();
+    })
   },
   //投资人列表信息
   investorList() {
@@ -489,5 +514,23 @@ Page({
       },
     });
   },
+  // 搜索跳转
+  allSearch: function () {
+    wx.navigateTo({
+      url: '/pages/organization/org_search/org_search',
+    })
+  },
+  //跳转热门领域全部
+  toGoIndustry:function(){
+    wx.navigateTo({
+      url: '/pages/organization/subPage/list_industry/list_industry',
+    })
+  },
+  //投资机构全部
+  toGoInvestment:function(){
+    wx.navigateTo({
+      url: '/pages/organization/org_library/org_library',
+    })
+  }
 })
 

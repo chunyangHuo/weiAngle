@@ -1,2 +1,10 @@
-<!--pages/organization/org_library/org_library.wxml-->
-<text>pages/organization/org_library/org_library.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<!--筛选和搜索  -->
+<!-- <template is='search' data='{{SearchInit,currentTab}}'></template> -->
+<view class="topPic">
+  <!-- <image src=""></image> -->
+</view>
+<!--投资机构  -->
+<view class="outStyleBox" id="investment">
+  <template is="investment" data="{{investment_list}}"></template>
+</view>
