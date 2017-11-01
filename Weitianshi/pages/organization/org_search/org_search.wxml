@@ -1,2 +1,49 @@
-<!--pages/organization/org_search/org_search.wxml-->
-<text>pages/organization/org_search/org_search.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="box">
+  <view class="flex">
+    <input class="searchSth" />
+    <view class="cancel">取消</view>
+  </view>
+</view>
+
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">综合</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">投资机构</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">投资领域</view>
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">机构成员</view>
+</view>
+<swiper>
+  <swiper-item data-current='0'>
+    <scroll-view style="height:100%;" scroll-y="true">
+      <view class="outStyleBox">
+        <view class="blockTitle">成员</view>
+        <view class="memberInfo flex">
+          <view class="memberInfoLeft"></view>
+          <view class="memberInfoRight">
+            <view class="flex memberInfoTop">
+              <view class="memberName">张孙峰的</view>
+              <view class="memberTitle">在职</view>
+            </view>
+            <view class="flex memberCompany">
+            <label>杭州投着乐网络科技有限公司</label> · <label>联合创始人</label>
+            </view>
+            <view class="memberDes">这里是个人简介这里是个人简介 这里是个人简介这里是个人简介，字数可能会有点长这里是...</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item data-current='1'>
+    <scroll-view style="height:100%;" scroll-y="true">
+    </scroll-view>
+  </swiper-item>
+  <swiper-item data-current='2'>
+    <scroll-view style="height:100%;" scroll-y="true">
+    </scroll-view>
+  </swiper-item>
+  <swiper-item data-current='3'>
+    <scroll-view style="height:100%;" scroll-y="true">
+
+    </scroll-view>
+  </swiper-item>
+</swiper>

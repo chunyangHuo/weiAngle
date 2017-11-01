@@ -487,8 +487,8 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let project_id = e.currentTarget.dataset.project;
     let pushToList = this.data.pushToList;
-    let  that = this;
-console.log(pushToList)
+    let that = this;
+    console.log(pushToList)
     wx.request({
       url: url_common + '/api/project/importProject',
       data: {
@@ -497,16 +497,16 @@ console.log(pushToList)
       },
       method: 'POST',
       success: function (res) {
-        if (res.data.status_code==2000000){
-            pushToList.forEach((x) => {
-              if (x.project_id == project_id) {
-                x.import_status = 1
-              }
-              that.setData({
-                pushToList: pushToList
-              })
+        if (res.data.status_code == 2000000) {
+          pushToList.forEach((x) => {
+            if (x.project_id == project_id) {
+              x.import_status = 1
+            }
+            that.setData({
+              pushToList: pushToList
             })
-        }else{
+          })
+        } else {
           console.log(res.data.error_msg)
         }
       }

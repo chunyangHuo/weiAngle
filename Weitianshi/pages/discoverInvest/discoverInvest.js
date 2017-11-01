@@ -104,13 +104,13 @@ Page({
   //下拉刷新
   onPullDownRefresh() {
     let current = this.data.currentTab;
-    if (current === 0) {
+    if (current === 1) {
       //请求投资人列表
       this.investorList();
-    } else if (current === 1) {
+    } else if (current === 2) {
       //请求FA列表
       this.faList();
-    } else if (current === 2) {
+    } else if (current === 3) {
       //请求我的人脉列表
       this.myList();
     }
@@ -242,7 +242,7 @@ Page({
     let currentPage = this.data.currentPage;
     let currentTab = this.data.currentTab;
     switch (currentTab) {
-      case 0:
+      case 1:
         {
           let request = {
             url: url_common + '/api/investor/getInvestorListByGroup',
@@ -257,7 +257,7 @@ Page({
           app.loadMore(that, request, "investorList")
         }
         break;
-      case 1:
+      case 2:
         {
           let request = {
             url: url_common + '/api/investor/getInvestorListByGroup',
@@ -272,7 +272,7 @@ Page({
           app.loadMore(that, request, "faList")
         }
         break;
-      case 2:
+      case 3:
         {
           let request = {
             url: url_common + '/api/user/getMyFollowList',
@@ -385,13 +385,13 @@ Page({
     let that = this;
     let searchData = SearchModel.searchCertain(that);
     let current = this.data.currentTab;
-    if (current == 0) {
+    if (current == 1) {
       console.log('筛选投资人', searchData);
       this.investorList();
-    } else if (current == 1) {
+    } else if (current == 2) {
       console.log('筛选FA', searchData);
       this.faList();
-    } else if (current == 2) {
+    } else if (current == 3) {
       console.log('筛选我的', searchData);
       this.myList();
     } else {
@@ -409,13 +409,13 @@ Page({
     let currentTab = this.data.currentTab;
     let str;
     switch (currentTab) {
-      case 0:
+      case 1:
         str = 'investorList';
         break;
-      case 1:
+      case 2:
         str = 'faList';
         break;
-      case 2:
+      case 3:
         str = 'myList';
         break;
     }
