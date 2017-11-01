@@ -1,2 +1,21 @@
-<!--pages/organization/subPage/list_industry/list_industry.wxml-->
-<text>pages/organization/subPage/list_industry/list_industry.wxml</text>
+<!--热门领域  -->
+<view class="outStyleBox">
+  <view class="flex title">
+    <view class="blockTitle">热门领域</view>
+  </view>
+  <view class="blockIntro">* 近一年行业热门投资的相关数据</view>
+  <view class="industryTitleBlock flex">
+    <view class="industryTitle">领域</view>
+    <view class="industryTitle">已投机构</view>
+    <view class="industryTitle">获投项目</view>
+    <view class="industryTitle">媒体热度</view>
+  </view>
+  <block wx:for="{{industry_list.industry_list}}" wx:key="{{index}}">
+    <view class="industryContentBlock flex">
+      <view class="industryContentTitle">{{item.industry_name}}</view>
+      <view class="industryContent">{{item.invested_num}}</view>
+      <view class="industryContent">{{item.project_num}}</view>
+      <view class="industryContent">{{item.media_hot}}</view>
+    </view>
+  </block>
+</view>

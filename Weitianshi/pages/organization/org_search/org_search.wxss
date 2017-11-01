@@ -54,7 +54,12 @@
   background: #fff;
   padding: 32rpx;
 }
-
+.swiper-box .blockTitle{
+  text-align: left;
+}
+.swiper-box .memberDes{
+  text-align: left;
+}
 .blockTitle {
   font-size: 30rpx;
   color: #333;
@@ -65,7 +70,12 @@
 
 .memberInfo {
   border-bottom: 1rpx solid #e6e6e6;
-  /* margin-bottom: 40rpx;  */
+  padding-bottom: 40rpx;
+}
+
+.memberInfo:last-child {
+  border: 0;
+  padding-bottom:0;
 }
 
 .memberInfoLeft {
@@ -84,7 +94,7 @@
   font-size: 30rpx;
   color: #333;
   letter-spacing: 0;
-  line-height: 15px;
+  line-height: 30rpx;
   text-align: left;
 }
 
@@ -105,7 +115,7 @@
   color: #666;
   line-height: 28rpx;
   text-align: left;
-  margin-bottom: 26rpx;
+  margin-bottom:26rpx;
 }
 
 .memberDes {
@@ -118,5 +128,4 @@
   line-height: 32rpx;
   text-align: left;
   padding: 20rpx 24rpx;
-  margin-bottom: 40rpx;
 }

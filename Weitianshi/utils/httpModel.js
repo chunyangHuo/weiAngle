@@ -77,11 +77,15 @@ export function http(data, that) {
             return resolve(res)
           } else {
             throw Error(res.data.error_msg)
-            app.errorHide(that,res.data.error_msg, 3000)
+            if(that){
+              app.errorHide(that,res.data.error_msg, 3000)
+            }
           }
         } else {
           throw Error('请求接口失败')
-          app.errorHide(that, '请求接口失败', 3000)
+          if(that){
+             app.errorHide(that, '请求接口失败', 3000)
+          }
         }
         return reject(res)
       }

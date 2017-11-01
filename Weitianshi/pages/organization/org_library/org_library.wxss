@@ -1,1 +1,7 @@
 /* pages/organization/org_library/org_library.wxss */
+
+.topPic {
+  background: #5881bc;
+  width: 375px;
+  height: 140px;
+}
