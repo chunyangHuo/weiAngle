@@ -1,37 +1,117 @@
 <!--pages/organization/org_detail/org_detail.wxml-->
 <import src="/pages/Template/Template.wxml" />
-<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+<scroll-view style='heigt:3000rpx;' scroll-y='true' >
   <!--投资机构类型，标签  -->
   <view class="media">
     <view class="inMedia">
       <view class="detailIntroduce flex">
         <view class="detailLogo">
-          <view class="detailLogo1"></view>
+          <view class="detailLogo1">
+          <image src="{{info.investment_logo}}"></image>
+          </view>
         </view>
-        <view class="detailName">功夫带</view>
+        <view class="detailName">{{info.investment_name}}</view>
       </view>
       <view class="mediaLine"></view>
       <view class="detailType">
-        <view class="detailType1 detailColor detailRight">机构类型</view>
-        <view class="detailType1 detailColor detailRight">类型</view>
+        <block wx:for="{{info.type_list}}" wx:key="{{item}}">
+         <view class="detailType1 detailColor detailRight">{{item.type_name}}</view>
+        </block>
+      </view>
+
+      <view class="detailType">
+         <block wx:for="{{info.style_list}}" wx:key="{{item}}">
+         <view class="detailType1 detailColor1 detailRight">{{item.style_name}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!--投资策略  -->
+  <view class="media">
+    <view class="inMedia investBottom">
+      <view class="investStrategy">投资策略</view>
+      <view class="investStrategy1">* 根据机构近期投资事件刻画投资图谱</view>
+      <view class="investImg"></view>
+    </view>
+  </view>
+  <!--机构介绍  -->
+  <view class="media">
+    <view class="inMedia investBottom">
+      <view class="investStrategy investBottom">机构介绍</view>
+      <view  class="{{checkedArr.ischecked1?'investIntroduce':'investIntroduceAfter'}}">{{info.investment_introduce}}</view>
+      <label class="more" bindtap="allPoint1" wx:if="{{checkedArr.ischecked1 == true && longMore==true }}">更多</label>
+    <label class="more" bindtap="allPoint1" wx:if="{{checkedArr.ischecked1 == false && longMore==true }}">收起</label>
+    </view>
+  </view>
+   <!--资本规模  -->
+  <view class="media">
+    <view class="inMedia investBottom">
+     <view class="scale">
+     <view class="scaleTitle investBottom">管理资本规模</view>
+     <view class="scaleDetail">
+     600亿人民币   其中包含  40亿美元 200亿人民币600亿人民币   其中包含  40亿美元 200亿人民币
+     </view>
+     </view>
+   <view class="scale">
+     <view class="scaleTitle investBottom">管理资本规模</view>
+     <view class="scaleDetail">
+     600亿人民币   其中包含  40亿美元 200亿人民币600亿人民币   其中包含  40亿美元 200亿人民币
+     </view>
+     </view>
+    </view>
+  </view>
+   <!--投资领域  -->
+  <view class="media">
+    <view class="inMedia investBottom">
+     <view class="industry investBottom">投资领域</view>
+      <view class="detailType">
+       <block wx:for="{{info.industry_list}}" wx:key="{{item}}">
+        <!-- <view class="detailType1 detailColor detailRight">{{item.industry_name}}</view> -->
+         <template is='industry' data='{{item}}'></template>
+        </block>
+        <!-- <view class="detailType1 detailColor detailRight">类型</view>
         <view class="detailType1 detailColor detailRight">类型类型</view>
         <view class="detailType1 detailColor detailRight">机构</view>
         <view class="detailType1 detailColor detailRight">类构</view>
         <view class="detailType1 detailColor detailRight">机构类型</view>
-        <view class="detailType1 detailColor detailRight">类型</view>
-      </view>
-
-      <view class="detailType">
-        <view class="detailType1 detailColor1 detailRight">机构风格标签二</view>
-        <view class="detailType1 detailColor1 detailRight">类型</view>
-        <view class="detailType1 detailColor1 detailRight">这是机构风格</view>
-        <view class="detailType1 detailColor1 detailRight">机构</view>
-        <view class="detailType1 detailColor1 detailRight">机构的</view>
+        <view class="detailType1 detailColor detailRight">类型</view> -->
       </view>
     </view>
   </view>
-
-
+     <!--投资轮次  -->
+  <view class="media">
+    <view class="inMedia investBottom">
+     <view class="industry investBottom">投资轮次</view>
+      <view class="detailType">
+       <view class="detailType">
+       <block wx:for="{{info.stage_list}}" wx:key="{{item}}">
+        <view class="detailType1 detailColor1 detailRight">{{item.stage_name}}</view>
+        </block>
+      </view>
+      </view>
+    </view>
+  </view>
+   <!--基金管理方  -->
+  <view class="media">
+    <view class="inMedia investBottom">
+     <view class="industry investBottom">基金管理方</view>
+     <view class="manageCompany">和谐爱奇投资管理有限公司</view>
+    
+    </view>
+  </view>
+    <!--投资案例  -->
+  <view class="media">
+    <view class="inMedia investBottom flex case1">
+     <view class="case investBottom">投资案例</view>
+     <view class="caseAll investBottom">
+      <view class="caseIn"> 全部</view>
+     <view class="caseIn">({{investment_events.investment_event_total_num}})</view>
+     </view>
+    </view>
+     <block wx:for="{{investment_events.list}}" wx:key="{{investment_events.list}}">
+     <template is='invest' data='{{item}}'></template>
+    </block> 
+  </view>
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 

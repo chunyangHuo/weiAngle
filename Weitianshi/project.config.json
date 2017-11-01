@@ -67,6 +67,12 @@
 					"name": "org_detail",
 					"pathName": "pages/organization/org_detail/org_detail",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "org_search",
+					"pathName": "pages/organization/org_search/org_search",
+					"query": ""
 				}
 			]
 		},

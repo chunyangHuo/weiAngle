@@ -11,6 +11,7 @@ page {
   height: auto;
   background: #fff;
   margin-top: 37.44rpx;
+  /* box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10); */
 }
 
 .inMedia {
@@ -45,11 +46,12 @@ page {
 .detailLogo1 {
   width: 154.44rpx;
   height: 154.44rpx;
-  background: red;
+  /* background: red; */
 }
-
+.detailLogo1 image{
+  width: 100%
+}
 .detailType {
-  
 }
 
 .detailType1 {
@@ -77,4 +79,99 @@ page {
   background: rgba(16, 173, 87, 0.10);
   border: 1px solid rgba(16, 173, 87, 0.20);
   color: #10ad57;
+}
+
+.investStrategy {
+  font-size: 15px;
+  color: #333;
+}
+
+.investStrategy1 {
+  font-size: 11px;
+  color: #999;
+  margin-top: 15rpx;
+}
+
+.investImg {
+  width: 100%;
+  height: 327rpx;
+  background: red;
+  margin-top: 15rpx;
+}
+
+.investBottom {
+  padding-bottom: 20rpx;
+}
+
+.investIntroduce {
+  font-size: 14px;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 46rpx;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.investIntroduceAfter {
+  font-size: 14px;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 46rpx;
+}
+.caseIn{
+  display: inline-block
+}
+.more {
+  color: #009eff;
+  font-size: 24rpx;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  margin-top: 20rpx;
+}
+
+.scaleTitle {
+  font-size: 15px;
+  color: #333;
+}
+.scaleDetail{
+  font-size:14px;
+color:#666666;
+line-height: 40rpx;
+margin-bottom: 20rpx;
+}
+.industry{
+  font-size:15px;
+color:#333333;
+}
+.manageCompany{
+  background:rgba(244,76,76,0.10);
+border:1px solid rgba(244,76,76,0.20);
+border-radius:2px;
+width:360.36rpx;
+height:51.48rpx;
+font-size:12px;
+color:#f44c4c;
+text-align: center;
+line-height: 51.48rpx;
+}
+.case1{
+ justify-content:space-between;
+text-align: left;
+}
+.case{
+  font-size:15px;
+color:#333333;
+text-align: left;
+/* display: inline-block */
+}
+.caseAll{
+  font-size:12px;
+color:#009eff;
+text-align: right;
+/* display: inline-block */
 }
