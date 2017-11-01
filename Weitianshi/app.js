@@ -508,7 +508,29 @@ App({
       console.log(x)
     }
   },
-
+  //展开
+  allPoint: function (that,i,n=7) {
+    if(i==0){
+      let checkedArr = {};
+      for(let x=0;x<n;x++){
+        let str1='ischecked'+x;
+        checkedArr[str1]=true;
+      }
+      that.setData({
+        checkedArr:checkedArr
+      })
+    }else{
+      let checkedArr = that.data.checkedArr;
+      for (let x = 0; x < n; x++) {
+        let str1 = 'ischecked' + x;
+        checkedArr[str1] = !checkedArr[str1];
+      }
+      that.setData({
+        checkedArr: checkedArr
+      })
+    }
+    console.log(that.data.checkedArr);
+  },
   //时间戳转换
   changeTime(x) {
     let n;

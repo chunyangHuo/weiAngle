@@ -1,38 +1,16 @@
 <!--pages/organization/subPage/list_investCase/list_investCase.wxml-->
 <import src="/pages/Template/Template.wxml" />
-<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+<view>
   <view class="investImg">
-    <image></image>
+    <image src="{{newPage.investment_event_url}}"></image>
   </view>
-  <view class="media">
-    <view class="inMedia">
-      <view class="flex investW">
-        <view class="investLogo">
-          <view class="investLogo1"></view>
-        </view>
-        <view class="investRight">
-         <view class="investName flex">
-         <view class="investName1">项目名称</view>
-         <view class="investHot">Hot</view>
-         <view class="investWheel">多轮陪伴</view>
-         </view>
-         <view class="investIndury">人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据人工智能、大数据</view>
-         <view class="investOther flex">
-         <view class="investLeft">IPO上市后</view>
-         <view class="investLeft">|</view>
-         <view class="investLeft">1000-2000万</view>
-         <view class="investLeft">|</view> 
-         <view> 2017-03-02</view>
-         </view>
-         <view class="investDetail">真格基金、IDG资本、真格基金、IDG资本、荣恩资本、同道管理顾问荣恩资本、同道管理顾问、真格基金、IDG资本、荣恩资本、同道管理顾问、真格基金、IDG资本、荣恩资本、同道管理顾问、真格基金、IDG资本、荣恩资本、同道管理顾问、</view>
-        </view>
-      </view>
-      <view class="mediaLine"></view>
-    </view>
-  </view>
-
-
+<!--循环投资案例  -->
+  <scroll-view  wx:if="{{project_list.length != 0}}" style='heigt:90%;'  scroll-y='true' bindscrolltolower='loadMore'>
+    <block wx:for="{{project_list}}" wx:key="{{project_list}}">
+     <template is='invest' data='{{item}}'></template>
+    </block>
+  </scroll-view>
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
-</scroll-view>
+</view>
