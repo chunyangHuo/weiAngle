@@ -864,7 +864,7 @@
 <!--筛选和搜索  -->
 <template name='search'>
   <!--筛选和搜索  -->
-  <view id='searchModel' class="screen flex">
+  <view id='searchModel' class="screen flex" wx:if="{{currentTab != 0}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
       <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>

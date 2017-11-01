@@ -168,15 +168,44 @@
   height: 216px;
   width: 100%;
   background: yellow;
+  position: relative;
+}
+
+.searchImageBox {
+  background: #009eff;
+  width: 120rpx;
+  height: 76rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.searchImage {
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  top: 22rpx;
+  right: 37rpx;
+}
+
+.swiper-box .bigTitle .searchSth {
+  text-align: left;
 }
 
 .searchSth {
   background: #fff;
   border: 1rpx solid rgba(64, 88, 122, 0.30);
   border-radius: 4rpx;
-  width: 622rpx;
-  height: 76rpx;
-  margin-left: 62rpx;
+  width: 596rpx;
+  height: 18rpx;
+  position: absolute;
+  top: 294rpx;
+  left: 62rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  padding: 28rpx 0 30rpx 26rpx;
 }
 
 .outStyleBox {
@@ -209,6 +238,8 @@
   border-radius: 8rpx;
   width: 220rpx;
   height: 152rpx;
+  margin-bottom: 16rpx;
+  margin-right: 12rpx;
 }
 
 .investStyleTitle {
@@ -382,4 +413,20 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+}
+
+.mainCaseBox {
+  margin-bottom: 28rpx;
+}
+
+.tapCase {
+  border: 1rpx solid #bcf1d3;
+  border-radius: 4rpx;
+  width: 56rpx;
+  height: 28rpx;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  color: #10ad57;
+  text-align: center;
+  margin-right: 13rpx;
 }

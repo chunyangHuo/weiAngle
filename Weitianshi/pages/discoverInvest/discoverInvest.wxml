@@ -6,7 +6,7 @@
   <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">我的人脉</view>
 </view>
 <!--筛选和搜索  -->
-<template is='search' data='{{SearchInit}}'></template>
+<template is='search' data='{{SearchInit,currentTab}}'></template>
 <!--项目展示列表  -->
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:945rpx" bindchange="bindChange">
   <!--模态层  -->
@@ -14,15 +14,23 @@
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true">
       <view class="bigTitle">
-        <view class="searchSth"></view>
+        <view class="searchSth" bindtap="allSearch">请输入机构名称，成员姓名，投资领域
+          <view class="searchImageBox">
+            <image src="/img/icon-sousuo@2x.png" class="searchImage"></image>
+          </view>
+        </view>
       </view>
       <!--投资风格  -->
       <view class="outStyleBox">
         <view class="blockTitle">投资风格</view>
         <view class="blockIntro">*机器人Angel深度挖掘机构投资风格</view>
-        <view class="investStyleBlock">
-          <view class="investStyleTitle">财务投资</view>
-          <view class="investStyleNum"><label>10</label>个机构</view>
+        <view class="flex">
+          <block wx:for="{{investormentList.style_list}}" wx:key="{{index}}">
+            <view class="investStyleBlock">
+              <view class="investStyleTitle">{{item.style_name}}</view>
+              <view class="investStyleNum"><label>{{item.investmen_num}}</label>个机构</view>
+            </view>
+          </block>
         </view>
       </view>
 
@@ -39,66 +47,53 @@
           <view class="industryTitle">获投项目</view>
           <view class="industryTitle">媒体热度</view>
         </view>
-        <view class="industryContentBlock flex">
-          <view class="industryContentTitle">大数据</view>
-          <view class="industryContent">11</view>
-          <view class="industryContent">12</view>
-          <view class="industryContent">190</view>
-        </view>
-        <view class="industryContentBlock flex">
-          <view class="industryContentTitle">本地生活</view>
-          <view class="industryContent">11</view>
-          <view class="industryContent">198</view>
-          <view class="industryContent">99</view>
-        </view>
+        <block wx:for="{{investormentList.industry_list}}" wx:key="{{index}}">
+          <view class="industryContentBlock flex">
+            <view class="industryContentTitle">{{item.industry_name}}</view>
+            <view class="industryContent">{{item.invested_num}}</view>
+            <view class="industryContent">{{item.project_num}}</view>
+            <view class="industryContent">{{item.media_hot}}</view>
+          </view>
+        </block>
       </view>
 
       <!--投资机构  -->
       <view class="outStyleBox">
         <view class="flex title">
           <view class="blockTitle">投资机构</view>
-          <view class="allThing">全部<label>(10)</label></view>
+          <view class="allThing">全部<label>（{{investormentList.investment_list.investment_total_num}}）</label></view>
         </view>
-        <view class="investGroupBlock flex">
-          <view class="investGroupLeft"></view>
-          <view class="investGroupRight">
-            <view class="flex investTitleBlock">
-              <view class="investTitle">拉钩科技</view>
-              <view class="investNum"><label>2</label>个投资案例</view>
-            </view>
-            <view class="investIntro">这里是机构的一句话介绍，就显示一行最大宽度290是最宽哦最宽的</view>
-            <view class="flex">
-              <label class="mainCase">主投</label>
-              <view class="mainCaseContent">人脸识别、无人零售、人工智能、大数据、理财通等</view>
-            </view>
-            <view class="flex">
-              <label class="mainCase">标签</label>
-              <view class="mainCaseContent">人脸识别、无人零售、人工智能、大数据、理财通等</view>
-            </view>
-            <view class="investTime">2015-01【项目】、2016-04【项目名称】、2015-01【项目】、2016-04【项目名称】、
+        <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
+          <view class="investGroupBlock flex">
+            <view class="investGroupLeft"></view>
+            <view class="investGroupRight">
+              <view class="flex investTitleBlock">
+                <view class="investTitle">{{item.investment_name}}</view>
+                <view class="investNum"><label>{{item.investment_event_count}}</label>个投资案例</view>
+              </view>
+              <view class="investIntro">{{item.investment_introduce}}</view>
+              <view class="flex">
+                <label class="mainCase">主投</label>
+                <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:if="{{item.industry_list.length != 0}}" wx:for-item="industryList">
+                <view class="classname">{{industryList.length}}</view>
+                  <label class="mainCaseContent"  wx:if="{{index <  industryList.length-1}}">{{industryList.industry_name}}、</label>
+                  <label class="mainCaseContent" wx:if="{{index == industryList.length-1}}">{{industryList.industry_name}}</label>
+                </block>
+              </view>
+              <view class="flex">
+                <label class="tapCase">标签</label>
+                <view class="mainCaseContent">人脸识别、无人零售、人工智能、大数据、理财通等、无人零售、人工智能、大数据、理财通等</view>
+              </view>
+              <view class="investTime">2015-01【项目】、2016-04【项目名称】、2015-01【项目】、2016-04【项目名称】、04【项目名称】、2015-01【项目】、2016-04【项目名称】、
+
+                <block wx:for="{{item.project_list}}" wx:key="{{index}}" wx:if="{{item.project_list.length != 0}}" wx:for-item="projectList">
+                  <label class="investTime" wx:if="{{index < projectList.length-1}}">{{item.event_time}}【{{item.event_project_name}}】、</label>
+                  <label class="investTime" wx:if="{{index == projectList.length-1}}">{{item.event_time}}【{{item.event_project_name}}】</label>
+                </block>
+              </view>
             </view>
           </view>
-        </view>
-        <view class="investGroupBlock flex">
-          <view class="investGroupLeft"></view>
-          <view class="investGroupRight">
-            <view class="flex investTitleBlock">
-              <view class="investTitle">拉钩科技</view>
-              <view class="investNum"><label>2</label>个投资案例</view>
-            </view>
-            <view class="investIntro">这里是机构的一句话介绍，就显示一行最大宽度290是最宽哦最宽的</view>
-            <view class="flex">
-              <label class="mainCase">主投</label>
-              <view class="mainCaseContent">人脸识别、无人零售、人工智能、大数据、理财通等、无人零售、人工智能、大数据、理财通等</view>
-            </view>
-            <view class="flex">
-              <label class="mainCase">标签</label>
-              <view class="mainCaseContent">人脸识别、无人零售、人工智能、大数据、理财通等、无人零售、人工智能、大数据、理财通等</view>
-            </view>
-            <view class="investTime">2015-01【项目】、2016-04【项目名称】、2015-01【项目】、2016-04【项目名称】、04【项目名称】、2015-01【项目】、2016-04【项目名称】、
-            </view>
-          </view>
-        </view>
+        </block>
       </view>
       <view style="height:100rpx;"></view>
     </scroll-view>
@@ -155,10 +150,10 @@
 <!--错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <!--找项目投资人浮票  -->
-<view class="t-competitor" bindtap="matchInvestor">找项目投资人</view>
+<view class="t-competitor" bindtap="matchInvestor" wx:if="{{currentTab != 0}}">找项目投资人</view>
 
 <!--下面的浮动按钮-->
-<view class="floatBtn">
+<view class="floatBtn" wx:if="{{currentTab != 0}}">
   <view class="accreditation flex" wx:if="{{status == 0 ||status ==3}}">
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
