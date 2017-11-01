@@ -132,7 +132,7 @@
         投资需求
       </view>
       <view class="flex">
-        <image class="iconEdit"src="/img/icon-edit@3x.png"></image>
+        <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
       </view>
     </view>
     <!--投资领域-->
@@ -169,12 +169,12 @@
 <template name="resourceInfo">
   <view class="user_resource_info publish-resourcesm" bindtap="resourceEnchangeEdit">
     <view class="flex title">
-      <view  class="title">
+      <view class="title">
         <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
         资源需求
       </view>
       <view class="flex">
-        <image class="iconEdit"src="/img/icon-edit@3x.png"></image>
+        <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
       </view>
     </view>
 
@@ -247,7 +247,8 @@
       <view class="flex title" catchtap="investCase">
         <view class="flex">
           <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-          成功案例<label> ({{invest_case.length}})</label>
+          成功案例
+          <label> ({{invest_case.length}})</label>
         </view>
         <view class="flex" wx:if="{{canEdit}}">
           <view class="seeMore">查看更多</view>
@@ -282,7 +283,7 @@
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
   <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}"  data-id='{{myProject.case_id}}'>
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}'>
       <view class="title" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
         <block wx:for="{{myProject.pro_industry||myProject.industry}}" wx:for-item="sort" wx:key="*this">
@@ -1024,7 +1025,7 @@
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>推送项目</span>
     </view>
-     <view class="t-line"></view>   
+    <view class="t-line"></view>
     <!-- <view class='t-cardBottomItem flex'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
@@ -1047,7 +1048,7 @@
     </view>
 
   </view>
-  <view  class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
+  <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
 </template>
 
 <!--加载更多  -->
@@ -1074,49 +1075,50 @@
 
 <!--投资案例  -->
 <template name="invest">
- <view class="media">
-        <view class="inMedia">
-          <view class="flex investW">
-            <view class="investLogo">
-              <view class="investLogo1">
-              <image src="{{item.project_logo}}"></image></view>
-            </view>
-            <view class="investRight">
-              <view class="investName flex">
-                <view class="investName1">{{item.project_name}}</view>
-                <view class="investHot" wx:if="{{item.is_hot==1}}">Hot</view>
-                <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}">
-                <view class="investWheel investInduryone">{{item.style_name}}</view>
-               </block>
-               
-              </view>
-              <view class="investIndury">
-               <block wx:for="{{item.industry_list}}" wx:key="{{item.industry_list}}">
-               <view class="investInduryone">{{item.industry_name}}、</view>
-               </block>
-              </view>
-              <view class="investOther flex">
-                <view class=" investLeft">{{item.project_round}}</view>
-                <view class="investLeft">|</view>
-                <view class="investLeft">{{item.project_money}}</view>
-                <view class="investLeft">|</view>
-                <view>{{item.event_time}}</view>
-              </view>
-              <view class="investDetail">
-               <block wx:for="{{item.investment_list}}" wx:key="{{item.investment_list}}">
-               <view class="investInduryone">{{item.investment_name}}、</view>
-               </block>
-              </view>
-            </view>
+  <view id="invest" class="media">
+    <view class="inMedia">
+      <view class="flex investW">
+        <view class="investLogo">
+          <view class="investLogo1">
+            <image src="{{item.project_logo}}"></image>
           </view>
-          <view class="mediaLine"></view>
+        </view>
+        <view class="investRight">
+          <view class="investName flex">
+            <view class="investName1">{{item.project_name}}</view>
+            <view class="investHot" wx:if="{{item.is_hot==1}}">Hot</view>
+            <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}">
+              <view class="investWheel investInduryone">{{item.style_name}}</view>
+            </block>
+
+          </view>
+          <view class="investIndury">
+            <block wx:for="{{item.industry_list}}" wx:key="{{item.industry_list}}">
+              <view class="investInduryone">{{item.industry_name}}、</view>
+            </block>
+          </view>
+          <view class="investOther flex">
+            <view class=" investLeft">{{item.project_round}}</view>
+            <view class="investLeft">|</view>
+            <view class="investLeft">{{item.project_money}}</view>
+            <view class="investLeft">|</view>
+            <view>{{item.event_time}}</view>
+          </view>
+          <view class="investDetail">
+            <block wx:for="{{item.investment_list}}" wx:key="{{item.investment_list}}">
+              <view class="investInduryone">{{item.investment_name}}、</view>
+            </block>
+          </view>
         </view>
       </view>
+      <view class="mediaLine"></view>
+    </view>
+  </view>
 </template>
 
 <!--投资领域  -->
 <template name="industry">
-  <view class="detailType1 detailColor detailRight">{{item.industry_name}}</view>
+  <view id="industry" class="detailType1 detailColor detailRight">{{item.industry_name}}</view>
 </template>
 
 <!--投资机构  -->
@@ -1124,14 +1126,15 @@
 <template name="investment">
   <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
     <view class="investGroupBlock flex">
-      <view class="investGroupLeft" >
-      <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
-      <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
+      <view class="investGroupLeft">
+        <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
+        <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
       </view>
       <view class="investGroupRight">
         <view class="flex investTitleBlock">
           <view class="investTitle">{{item.investment_name}}</view>
-          <view class="investNum"><label>{{item.investment_event_count}}</label>个投资案例</view>
+          <view class="investNum">
+            <label>{{item.investment_event_count}}</label>个投资案例</view>
         </view>
         <view class="investIntro">{{item.investment_introduce}}</view>
         <view class="flex">

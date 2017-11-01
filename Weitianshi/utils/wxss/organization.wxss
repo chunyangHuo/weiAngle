@@ -1,55 +1,55 @@
 /*投资案例样式  */
-.media {
+
+#invest .media {
   width: 100%;
   height: auto;
   background: #fff;
 }
 
-.inMedia {
+#invest .inMedia {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
   padding-top: 42rpx;
   padding-left: 32rpx;
   padding-right: 32rpx;
 }
 
-.mediaLine {
+#invest .mediaLine {
   border-bottom: 1px solid #e6e6e6;
 }
 
-
-
-.investLogo {
+#invest .investLogo {
   width: 20%;
 }
 
-.investLogo1 {
+#invest .investLogo1 {
   width: 121.68rpx;
   height: 121.68rpx;
 }
-.investLogo1 image{
+
+#invest .investLogo1 image {
   width: 100%;
 }
 
-.investRight {
+#invest .investRight {
   width: 80%;
   height: auto;
 }
 
-.investW {
+#invest .investW {
   flex-wrap: wrap;
 }
 
-.investName {
+#invest .investName {
   /* height: 37.44rpx; */
   margin-bottom: 22rpx;
 }
 
-.investName1 {
+#invest .investName1 {
   font-size: 15px;
   color: #333;
 }
 
-.investHot {
+#invest .investHot {
   width: 70.2rpx;
   height: 37.44rpx;
   background: #fa855c;
@@ -61,7 +61,7 @@
   margin-left: 18.72rpx;
 }
 
-.investWheel {
+#invest .investWheel {
   background: #009eff;
   border-radius: 2px;
   display: inline-block;
@@ -74,10 +74,10 @@
   margin-left: 18.72rpx;
 }
 
-.investIndury {
+#invest .investIndury {
   font-size: 12px;
   color: #666;
-  height:auto;
+  height: auto;
   line-height: 38rpx;
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
@@ -87,36 +87,42 @@
   -webkit-box-orient: vertical;
   margin-bottom: 24rpx;
 }
-.investInduryone{
-  display: inline-block
+
+#invest .investInduryone {
+  display: inline-block;
 }
-.investOther{
-  font-size:12px;
-color:#666666;
+
+#invest .investOther {
+  font-size: 12px;
+  color: #666;
 }
-.investLeft{
+
+#invest .investLeft {
   margin-right: 20rpx;
-  display: inline-block
+  display: inline-block;
 }
-.investDetail{
+
+#invest .investDetail {
   padding: 18rpx;
   margin-top: 20rpx;
-  font-size:12px;
-  color:#40587a;
+  font-size: 12px;
+  color: #40587a;
   height: auto;
   /* max-height:75rpx;  */
   line-height: 46rpx;
-   overflow: hidden;
+  overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   margin-bottom: 30rpx;
- background:#fafafa;
+  background: #fafafa;
 }
+
 /*标签样式  */
-.detailType1 {
+
+#industry .detailType1 {
   display: inline-block;
   padding: 0 10rpx;
   height: 56rpx;
@@ -126,17 +132,16 @@ color:#666666;
   line-height: 56rpx;
 }
 
-.detailRight {
+#industry .detailRight {
   margin-right: 30rpx;
   margin-bottom: 20rpx;
 }
 
-.detailColor {
+#industry .detailColor {
   background: rgba(0, 158, 255, 0.10);
   border: 1px solid rgba(0, 158, 255, 0.20);
   color: #009eff;
 }
-
 
 /*投资机构  */
 
@@ -165,7 +170,7 @@ color:#666666;
   text-align: left;
 }
 
- #investment .investNum {
+#investment .investNum {
   font-size: 24rpx;
   color: #fc703e;
   line-height: 26rpx;
@@ -212,10 +217,10 @@ color:#666666;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   width: 480rpx;
-  margin-bottom:28rpx;
+  margin-bottom: 28rpx;
 }
 
- #investment .projectListBlock {
+#investment .projectListBlock {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -245,4 +250,3 @@ color:#666666;
   text-align: center;
   margin-right: 13rpx;
 }
-
