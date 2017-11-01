@@ -1,4 +1,4 @@
-let requestList = {} //api请求记录
+export let requestList = {} //api请求记录
 
 //判断是否为对象
 function isObject(x) {

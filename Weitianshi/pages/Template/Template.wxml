@@ -1071,3 +1071,50 @@
     <view class="t-btnYes" bindtap="btnYes">完成</view>
   </view>
 </template>
+
+<!--投资案例  -->
+<template name="invest">
+ <view class="media">
+        <view class="inMedia">
+          <view class="flex investW">
+            <view class="investLogo">
+              <view class="investLogo1">
+              <image src="{{item.project_logo}}"></image></view>
+            </view>
+            <view class="investRight">
+              <view class="investName flex">
+                <view class="investName1">{{item.project_name}}</view>
+                <view class="investHot" wx:if="{{item.is_hot==1}}">Hot</view>
+                <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}">
+                <view class="investWheel investInduryone">{{item.style_name}}</view>
+               </block>
+               
+              </view>
+              <view class="investIndury">
+               <block wx:for="{{item.industry_list}}" wx:key="{{item.industry_list}}">
+               <view class="investInduryone">{{item.industry_name}}、</view>
+               </block>
+              </view>
+              <view class="investOther flex">
+                <view class=" investLeft">{{item.project_round}}</view>
+                <view class="investLeft">|</view>
+                <view class="investLeft">{{item.project_money}}</view>
+                <view class="investLeft">|</view>
+                <view>{{item.event_time}}</view>
+              </view>
+              <view class="investDetail">
+               <block wx:for="{{item.investment_list}}" wx:key="{{item.investment_list}}">
+               <view class="investInduryone">{{item.investment_name}}、</view>
+               </block>
+              </view>
+            </view>
+          </view>
+          <view class="mediaLine"></view>
+        </view>
+      </view>
+</template>
+
+<!--投资领域  -->
+<template name="industry">
+<view class="detailType1 detailColor detailRight">{{item.industry_name}}</view>
+</template>
