@@ -9,9 +9,9 @@
   <scroll-view class='scroll' scroll-x='true'>
     <view class='search_industry flex'>
       <block wx:for='{{SearchInit.industry}}' wx:key='{{SearchInit.industry}}'>
-        <view class='label' hidden='{{item.check==false}}' data-id='{{item.industry_id}}'>
-          {{item.industry_name}}
-          <image style='width:20rpx;height:20rpx;' src='/img/icon-jujue@2x.png'></image>
+        <view class='label flex' hidden='{{item.check==false}}' data-id='{{item.industry_id}}'>
+          <view>{{item.industry_name}}</view>
+          <image style='width:20rpx;height:20rpx;' src='/img/delete.png'></image>
         </view>
       </block>
     </view>
@@ -31,6 +31,7 @@
       </block>
     </view>
   </scroll-view>
+  <view class='allReset' bindtap='allReset'>清空</view>
 </view>
 <!--项目展示列表  -->
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:865rpx" bindchange="bindChange">

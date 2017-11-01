@@ -1,66 +1,37 @@
 // pages/organization/org_library/org_library.js
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
+import * as SearchModel from '../../../utils/searchModel';
+import * as ShareModel from '../../../utils/shareModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  },
   onLoad: function (options) {
-  
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    app.httpPost({
+      url: url_common + '/api/investment/list',
+      data: {}
+    }).then(res => {
+      console.log(res)
+      wx.hideLoading()
+      let investormentList = res.data.data;
+      let investment_list = investormentList.investment_list;
+      that.setData({
+        investormentList: investormentList,
+        investment_list: investment_list
+      })
+      wx.hideLoading();
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

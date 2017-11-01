@@ -79,6 +79,15 @@ App({
       }
     });
 
+    //获取新领域标签并存入缓存 
+    this.httpPost({
+      url: url_common +'/api/investment/industrylist',
+      data:{}
+    }).then(res=>{
+      console.log(this)
+      console.log(res)
+    })
+
   },
   onError(msg) {
     console.log(msg)

@@ -54,7 +54,12 @@
   background: #fff;
   padding: 32rpx;
 }
-
+.swiper-box .blockTitle{
+  text-align: left;
+}
+.swiper-box .memberDes{
+  text-align: left;
+}
 .blockTitle {
   font-size: 30rpx;
   color: #333;

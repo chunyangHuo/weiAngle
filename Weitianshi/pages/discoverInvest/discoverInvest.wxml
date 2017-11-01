@@ -38,7 +38,7 @@
       <view class="outStyleBox">
         <view class="flex title">
           <view class="blockTitle">热门领域</view>
-          <view class="allThing">全部<label>(10)</label></view>
+          <view class="allThing" bindtap="toGoIndustry">全部<label>(10)</label></view>
         </view>
         <view class="blockIntro">* 近一年行业热门投资的相关数据</view>
         <view class="industryTitleBlock flex">
@@ -58,43 +58,14 @@
       </view>
 
       <!--投资机构  -->
-      <view class="outStyleBox">
+      <view class="outStyleBox" id="investment">
         <view class="flex title">
           <view class="blockTitle">投资机构</view>
-          <view class="allThing">全部<label>（{{investormentList.investment_list.investment_total_num}}）</label></view>
+          <view class="allThing" bindtap="toGoInvestment">全部<label>（{{investormentList.investment_list.investment_total_num}}）</label></view>
         </view>
-        <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
-          <view class="investGroupBlock flex">
-            <view class="investGroupLeft"></view>
-            <view class="investGroupRight">
-              <view class="flex investTitleBlock">
-                <view class="investTitle">{{item.investment_name}}</view>
-                <view class="investNum"><label>{{item.investment_event_count}}</label>个投资案例</view>
-              </view>
-              <view class="investIntro">{{item.investment_introduce}}</view>
-              <view class="flex">
-                <label class="mainCase">主投</label>
-                <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:if="{{item.industry_list.length != 0}}" wx:for-item="industryList">
-                <view class="classname">{{industryList.length}}</view>
-                  <label class="mainCaseContent"  wx:if="{{index <  industryList.length-1}}">{{industryList.industry_name}}、</label>
-                  <label class="mainCaseContent" wx:if="{{index == industryList.length-1}}">{{industryList.industry_name}}</label>
-                </block>
-              </view>
-              <view class="flex">
-                <label class="tapCase">标签</label>
-                <view class="mainCaseContent">人脸识别、无人零售、人工智能、大数据、理财通等、无人零售、人工智能、大数据、理财通等</view>
-              </view>
-              <view class="investTime">2015-01【项目】、2016-04【项目名称】、2015-01【项目】、2016-04【项目名称】、04【项目名称】、2015-01【项目】、2016-04【项目名称】、
-
-                <block wx:for="{{item.project_list}}" wx:key="{{index}}" wx:if="{{item.project_list.length != 0}}" wx:for-item="projectList">
-                  <label class="investTime" wx:if="{{index < projectList.length-1}}">{{item.event_time}}【{{item.event_project_name}}】、</label>
-                  <label class="investTime" wx:if="{{index == projectList.length-1}}">{{item.event_time}}【{{item.event_project_name}}】</label>
-                </block>
-              </view>
-            </view>
-          </view>
-        </block>
+        <template is="investment" data="{{investment_list}}"></template>
       </view>
+
       <view style="height:100rpx;"></view>
     </scroll-view>
   </swiper-item>

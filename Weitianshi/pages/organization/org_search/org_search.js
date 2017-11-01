@@ -9,14 +9,16 @@ Page({
     currentTab: 0,
   },
 
- 
+
   onLoad: function (options) {
-  
+
   },
   onShow: function () {
-  
+    let that = this;
+    that.investment();
+    that.investmentMember()
   },
-    // 点击tab切换
+  // 点击tab切换
   swichNav: function (e) {
     let that = this;
     let current = e.target.dataset.current;
@@ -38,4 +40,48 @@ Page({
     that.setData({ currentTab: e.detail.current });
     // this.tabChange(current);
   },
+  //投资机构列表信息
+  investment() {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    app.httpPost({
+      url: url_common + '/api/investment',
+      data: {}
+    }).then(res => {
+      wx.hideLoading()
+      let investormentList = res.data.data;
+      let investment_list = investormentList.investment_list;
+      that.setData({
+        investormentList: investormentList,
+        investment_list: investment_list
+      })
+      wx.hideLoading();
+    })
+  },
+  //投资领域
+  //机构成员
+  investmentMember() {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    app.httpPost({
+      url: url_common + '/api/investment/members',
+      data: {
+        investment_id: '1'
+      }
+    }).then(res => {
+      console.log(res)
+      wx.hideLoading()
+      let memberList = res.data.data;
+      that.setData({
+        memberList: memberList
+      })
+      wx.hideLoading();
+    })
+  }
 })
