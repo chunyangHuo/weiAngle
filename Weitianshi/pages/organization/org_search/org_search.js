@@ -75,9 +75,8 @@ Page({
         investment_id: '1'
       }
     }).then(res => {
-      console.log(res)
       wx.hideLoading()
-      let memberList = res.data.data;
+      let memberList = res.data.data.memberlist;
       that.setData({
         memberList: memberList
       })

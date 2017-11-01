@@ -17,21 +17,7 @@
     <scroll-view style="height:100%;" scroll-y="true">
       <view class="outStyleBox">
         <view class="blockTitle">成员</view>
-        <block wx:for="{{memberList}}" wx:key="{{index}}">
-          <view class="memberInfo flex">
-            <view class="memberInfoLeft"></view>
-            <view class="memberInfoRight">
-              <view class="flex memberInfoTop">
-                <view class="memberName">{{memberList.member_name}}</view>
-                <view class="memberTitle">{{memberList.member_position}}</view>
-              </view>
-              <view class="flex memberCompany">
-                <label>杭州投着乐网络科技有限公司</label> · <label>联合创始人</label>
-              </view>
-              <view class="memberDes">{{memberList.member_introduce}}</view>
-            </view>
-          </view>
-        </block>
+        <template is="memberList" data="{{memberList}}"></template>
       </view>
     </scroll-view>
   </swiper-item>
