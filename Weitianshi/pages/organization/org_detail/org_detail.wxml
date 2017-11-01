@@ -1,2 +1,38 @@
 <!--pages/organization/org_detail/org_detail.wxml-->
-<text>pages/organization/org_detail/org_detail.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+  <!--投资机构类型，标签  -->
+  <view class="media">
+    <view class="inMedia">
+      <view class="detailIntroduce flex">
+        <view class="detailLogo">
+          <view class="detailLogo1"></view>
+        </view>
+        <view class="detailName">功夫带</view>
+      </view>
+      <view class="mediaLine"></view>
+      <view class="detailType">
+        <view class="detailType1 detailColor detailRight">机构类型</view>
+        <view class="detailType1 detailColor detailRight">类型</view>
+        <view class="detailType1 detailColor detailRight">类型类型</view>
+        <view class="detailType1 detailColor detailRight">机构</view>
+        <view class="detailType1 detailColor detailRight">类构</view>
+        <view class="detailType1 detailColor detailRight">机构类型</view>
+        <view class="detailType1 detailColor detailRight">类型</view>
+      </view>
+
+      <view class="detailType">
+        <view class="detailType1 detailColor1 detailRight">机构风格标签二</view>
+        <view class="detailType1 detailColor1 detailRight">类型</view>
+        <view class="detailType1 detailColor1 detailRight">这是机构风格</view>
+        <view class="detailType1 detailColor1 detailRight">机构</view>
+        <view class="detailType1 detailColor1 detailRight">机构的</view>
+      </view>
+    </view>
+  </view>
+
+
+  <!--错误提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+</scroll-view>

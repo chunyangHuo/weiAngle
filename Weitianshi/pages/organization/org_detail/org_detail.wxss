@@ -1,1 +1,80 @@
 /* pages/organization/org_detail/org_detail.wxss */
+
+page {
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.media {
+  width: 92%;
+  margin: 0 auto;
+  height: auto;
+  background: #fff;
+  margin-top: 37.44rpx;
+}
+
+.inMedia {
+  /* padding: 42rpx 32rpx -2rpx 32rpx;  */
+  padding-top: 42rpx;
+  padding-left: 32rpx;
+  padding-right: 32rpx;
+}
+
+.mediaLine {
+  margin-top: 30rpx;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 35rpx;
+}
+
+.detailIntroduce {
+  flex-wrap: wrap;
+}
+
+.detailLogo {
+  width: 30%;
+}
+
+.detailName {
+  width: 70%;
+  font-size: 16px;
+  color: #333;
+  vertical-align: middle;
+  padding-top: 30rpx;
+}
+
+.detailLogo1 {
+  width: 154.44rpx;
+  height: 154.44rpx;
+  background: red;
+}
+
+.detailType {
+  
+}
+
+.detailType1 {
+  display: inline-block;
+  padding: 0 10rpx;
+  height: 56rpx;
+  border-radius: 4rpx;
+  font-size: 12px;
+  text-align: center;
+  line-height: 56rpx;
+}
+
+.detailRight {
+  margin-right: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.detailColor {
+  background: rgba(0, 158, 255, 0.10);
+  border: 1px solid rgba(0, 158, 255, 0.20);
+  color: #009eff;
+}
+
+.detailColor1 {
+  background: rgba(16, 173, 87, 0.10);
+  border: 1px solid rgba(16, 173, 87, 0.20);
+  color: #10ad57;
+}

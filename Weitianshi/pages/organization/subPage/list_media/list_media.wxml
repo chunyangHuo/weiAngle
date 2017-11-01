@@ -1,2 +1,23 @@
 <!--pages/organization/subPage/list_media/list_media.wxml-->
-<text>pages/organization/subPage/list_media/list_media.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+<view class="media">
+  <view class="inMedia">
+   <view class="mediaTime flex">2017-07-07</view>
+   <view class="mediaTitle">
+   昨天签署了一份协议昨天签署了一份协议昨天签署了一份协议昨天签署了一份协议昨天签署了一份协议昨天签署了一份协议昨天签署了一份协议
+   </view>
+   <view class=" mediaType flex">
+    <view class="mediaTypeRight">产品类型</view>
+    <view class="mediaTypeRight">|</view>
+    <view>www.baidu.com</view>
+   </view>
+   <view class="mediaLine"></view>
+  </view>  
+</view> 
+
+
+  <!--错误提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+</scroll-view>
