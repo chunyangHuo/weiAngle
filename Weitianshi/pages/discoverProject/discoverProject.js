@@ -145,7 +145,7 @@ Page({
         user_id: this.data.user_id,
         filter: this.data.SearchInit.searchData
       }
-    }).then(res => {
+    },that).then(res => {
       wx.hideLoading()
       var slectProject = res.data.data;
       console.log(slectProject)

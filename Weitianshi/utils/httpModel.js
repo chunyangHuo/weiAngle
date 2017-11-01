@@ -48,8 +48,7 @@ export function getRequestKey(data) {
   return ajaxKey
 }
 //所有与服务器进行http请求的出口
-export function http(data) {
-  let app = getApp();
+export function http(data, that) {
   if (!isObject(data)) {
     throw Error('ajax请求参数必须是json对象: ' + data)
   }
@@ -71,17 +70,23 @@ export function http(data) {
       complete: function (res) {
         // 请求完成，释放记录的key，可以发起下次请求了
         removeRequestKey(ajaxKey)
-        let statusCode = res.statusCode
+        let statusCode = res.statusCode;
+        let app = getApp();
         if (statusCode === 200 || statusCode === 304) {
           if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
             return resolve(res)
           } else {
-
+            throw Error(res.data.error_msg)
+            if(that){
+              app.errorHide(that,res.data.error_msg, 3000)
+            }
           }
-        }else{
+        } else {
           throw Error('请求接口失败')
+          if(that){
+             app.errorHide(that, '请求接口失败', 3000)
+          }
         }
-        
         return reject(res)
       }
     })
@@ -94,9 +99,9 @@ export function httpGet(data) {
 }
 
 //通用post请求方法
-export function httpPost(data) {
+export function httpPost(data, that) {
   data.method = 'POST'
-  return http(data)
+  return http(data, that)
 }
 
 // 该方法适用于串行请求的api

@@ -7,7 +7,6 @@ App({
   onLaunch(options) {
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
-    let that = this;
 
     /* //打开调试模式
     wx.setEnableDebug({
@@ -79,15 +78,39 @@ App({
       }
     });
 
-    //获取新领域标签并存入缓存 
-    this.httpPost({
-      url: url_common +'/api/investment/industrylist',
-      data:{}
-    }).then(res=>{
-      console.log(this)
-      console.log(res)
-    })
+    function dealLabel(e) {
+      e.forEach(x => {
+        x.check = false;
+      })
+    }
 
+    function dealLabelChild(e) {
+      e.forEach(x => {
+        console.log(x)
+        console.log(x.child)
+        x.child.forEach(y => {
+          y.check = false;
+        })
+      })
+    }
+
+    //获取新一代标签并存入缓存 
+    /* this.httpPost({
+      url: url_common + '/api/investment/industrylist',
+      data: {}
+    }).then(res => {
+      let newIndustry = res.data.data.industry_list;
+      // dealLabelChild(newIndustry);
+      console.log('newIndustry', newIndustry)
+      this.httpPost({
+        url: url_common + '/api/investment/arealist',
+        data: {}
+      }).then(res => {
+        let newArea = res.data.data.area_list;
+        dealLabel("newArea");
+        console.log('newArea', newArea)
+      })
+    }) */
   },
   onError(msg) {
     console.log(msg)
@@ -604,8 +627,8 @@ App({
   },
 
   //请求封装
-  httpPost(data) {
-    return request.httpPost(data)
+  httpPost(data, that) {
+    return request.httpPost(data, that)
   },
 
   //用户操作模块(util/operationModel)
