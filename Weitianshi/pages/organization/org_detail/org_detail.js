@@ -12,6 +12,7 @@ Page({
    */
   data: {
     longMore: false,
+    listMore:false,
   },
 
   /**
@@ -41,6 +42,7 @@ Page({
     var that=this;
     app.allPoint(that,1);
   },
+  // 详情信息获取
   orgDetail(){
     var that=this;
    
@@ -51,15 +53,23 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
+        console.log("机构详情",res);
         let orgDetail=res.data.data;
         let info = res.data.data.info;
         let investment_events = res.data.data.investment_events;
         let media_list = res.data.data.media_list;
+        let member_list = res.data.data.member_list; 
+        let memberList = member_list.list; 
+        let leave_member_list = res.data.data.leave_member_list;
+        let leaveList = leave_member_list.list;
         that.setData({
           info:info,
           investment_events: investment_events,
-          media_list: media_list
+          media_list: media_list,
+          member_list: member_list,
+          memberList:memberList,
+          leave_member_list: leave_member_list,
+          leaveList: leaveList
         })
         wx.setNavigationBarTitle({
           title: info.investment_name
@@ -73,9 +83,26 @@ Page({
             longMore: false
           })
         }
-  
       }
     })
+  },
+  //查看全部
+  checkMore: function (e) {
+    let id = e.target.dataset.id;
+      if (id == 5) {
+      this.setData({
+        industrialChangeMore: 5
+      })
+    }
+  },
+  // 折叠
+  noCheckMore: function (e) {
+    let id = e.target.dataset.id;
+    if (id == 5) {
+      this.setData({
+        industrialChangeMore: 0
+      })
+    } 
   },
   /**
    * 生命周期函数--监听页面隐藏

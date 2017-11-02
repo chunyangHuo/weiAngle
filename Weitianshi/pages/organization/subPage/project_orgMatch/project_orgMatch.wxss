@@ -1,51 +1,18 @@
-/* pages/organization/subPage/project_orgMatch/project_orgMatch.wxss */
-/* pages/my/projectFinance/projectFinance.wxss */
+/* pages/organization/subPage/list_orgMember/list_orgMember.wxss */
 
 page {
   height: 100%;
   /* overflow: hidden; */
 }
 
-
-
-/*名片*/
-
-.outBox {
-  margin: 0;
-  width: auto;
+.media12 {
   height: auto;
-  position: relative;
-}
-
-.insideBox {
-  padding: 32rpx 32rpx 24rpx 32rpx;
   background: #fff;
-  border-radius: 8rpx;
+  padding: 0 30rpx;
 }
 
-.outBox .describle {
-  font-size: 32rpx;
+.matchIntro {
+  font-size: 15px;
   color: #333;
-  line-height: 38rpx;
-  text-align: left;
-  margin-bottom: 36rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.emptyStyle {
-  font-size: 28rpx;
-  color: #999;
-  letter-spacing: 0;
-  line-height: 28rpx;
-  text-align: center;
-  margin-top: 144rpx;
-}
-.orgImg{
-  width: 104rpx;
-  height: 104rpx;
-background: red
+  padding-top: 15rpx;
 }
