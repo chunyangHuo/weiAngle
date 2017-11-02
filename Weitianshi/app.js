@@ -85,8 +85,8 @@ App({
       console.log(str, variable)
     }
 
-    function dealLabelChild(e) {
-      e.forEach(x => {
+    function dealLabelChild(variable,str) {
+      variable.forEach(x => {
         console.log(x)
         console.log(x.child)
         x.child.forEach(y => {
@@ -100,15 +100,29 @@ App({
       url: url_common + '/api/investment/industrylist',
       data: {}
     }).then(res => {
-      let newIndustry = res.data.data.industry_list;
+      let label_industry = res.data.data.industry_list;
       // dealLabelChild(newIndustry);
-      console.log('newIndustry', newIndustry)
+      console.log('label_industry', label_industry)
       this.httpPost({
         url: url_common + '/api/investment/arealist',
         data: {}
       }).then(res => {
-        let newArea = res.data.data.area_list;
-        dealLabel(newArea,'newArea');
+        let label_area = res.data.data.area_list;
+        dealLabel(label_area,'label_area');
+        this.httpPost({
+          url: url_common + '/api/investment/stylelist',
+          data:{}
+        }).then(res=>{
+          let label_style=res.data.data.style_list;
+          dealLabel(label_style,'label_style')
+          this.httpPost({
+            url: url_common +'/api/investment/typelist',
+            data:{}
+          }).then(res=>{
+            let label_type = res.data.data.type_list;
+            dealLabel(label_type, 'label_type')
+          })
+        })
       })
     }) 
   },
@@ -748,11 +762,11 @@ App({
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',
-    url: "https://lbs.weitianshi.cn",
-    url_common: "https://lbs.weitianshi.cn"
+    // url: "https://lbs.weitianshi.cn",
+    // url_common: "https://lbs.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 });
