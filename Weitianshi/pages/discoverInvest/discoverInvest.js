@@ -516,21 +516,15 @@ Page({
   },
   // 搜索跳转
   allSearch: function () {
-    wx.navigateTo({
-      url: '/pages/organization/org_search/org_search',
-    })
+    app.href('/pages/organization/org_search/org_search')
   },
   //跳转热门领域全部
   toGoIndustry:function(){
-    wx.navigateTo({
-      url: '/pages/organization/subPage/list_industry/list_industry',
-    })
+    app.href('/pages/organization/subPage/list_industry/list_industry')
   },
   //投资机构全部
   toGoInvestment:function(){
-    wx.navigateTo({
-      url: '/pages/organization/org_library/org_library',
-    })
+    app.href('/pages/organization/org_library/org_library')
   }
 })
 

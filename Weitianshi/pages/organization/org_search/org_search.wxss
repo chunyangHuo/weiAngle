@@ -2,6 +2,13 @@
   background: #fff;
 }
 
+#investment .blockTitle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 33rpx;
+  text-align: left;
+}
+
 .searchSth {
   background: #f2f2f2;
   border-radius: 8rpx;
@@ -24,6 +31,7 @@
   background: #fff;
   line-height: 80rpx;
   z-index: 999;
+  margin-bottom: 32rpx;
 }
 
 .swiper-tab-list {
@@ -45,4 +53,21 @@
   font-size: 26rpx;
   line-height: 80rpx;
   border-bottom: 4rpx solid #40587a;
+}
+
+.searchSth {
+  font-size: 28rpx;
+  color: #ccc;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+.hasNothing {
+  margin-top: 410rpx;
+  font-size: 36rpx;
+  color: #999;
+  line-height: 36rpx;
+}
+.swiper-box #memberList  {
+  text-align: left;
 }

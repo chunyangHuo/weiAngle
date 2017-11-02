@@ -223,6 +223,7 @@
   padding: 24rpx;
   font-size: 24rpx;
   color: #40587a;
+  text-align: left;
 }
 
 #investment .mainCaseBox {
@@ -255,6 +256,7 @@
 #memberList  .swiper-box .memberDes{
   text-align: left;
 }
+
 #memberList  .blockTitle {
   font-size: 30rpx;
   color: #333;
@@ -325,7 +327,17 @@
   text-align: left;
   padding: 20rpx 24rpx;
 }
-
+#memberList .memberTitleLeave{
+  border: 1rpx solid #cccccc;
+  border-radius: 120rpx;
+  width: 54rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color: #cccccc;
+  text-align: center;
+  margin-left: 16rpx;
+}
 /*媒体新闻样式  */
 #mediaNew {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
