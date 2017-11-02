@@ -327,7 +327,17 @@
   text-align: left;
   padding: 20rpx 24rpx;
 }
-
+#memberList .memberTitleLeave{
+  border: 1rpx solid #cccccc;
+  border-radius: 120rpx;
+  width: 54rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color: #cccccc;
+  text-align: center;
+  margin-left: 16rpx;
+}
 /*媒体新闻样式  */
 #mediaNew {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
