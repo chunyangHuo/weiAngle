@@ -240,6 +240,92 @@
   text-align: center;
   margin-right: 13rpx;
 }
+
+
+/*机构成员  */
+
+ .outStyleBox {
+  margin-bottom: 32rpx;
+  background: #fff;
+  padding: 32rpx;
+}
+#memberList  .swiper-box .blockTitle{
+  text-align: left;
+}
+#memberList  .swiper-box .memberDes{
+  text-align: left;
+}
+#memberList  .blockTitle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 33rpx;
+  text-align: left;
+  margin-bottom: 40rpx;
+}
+
+#memberList  .memberInfo {
+  border-bottom: 1rpx solid #e6e6e6;
+  padding-bottom: 40rpx;
+  margin-top:40rpx;
+}
+
+#memberList  .memberInfo:last-child {
+  border: 0;
+  padding-bottom:0;
+}
+
+#memberList  .memberInfoLeft {
+  background: #f0f0f0;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  margin-right: 24rpx;
+}
+
+#memberList .memberInfoTop {
+  margin-bottom: 28rpx;
+}
+
+#memberList  .memberName {
+  font-size: 30rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 30rpx;
+  text-align: left;
+}
+
+#memberList .memberTitle {
+  border: 1rpx solid #40587a;
+  border-radius: 120rpx;
+  width: 54rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color: #40587a;
+  text-align: center;
+  margin-left: 16rpx;
+}
+
+#memberList .memberCompany {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 28rpx;
+  text-align: left;
+  margin-bottom:26rpx;
+}
+
+#memberList .memberDes {
+  background: #fafafa;
+  border-radius: 4rpx;
+  width: 510rpx;
+  height: 64rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 32rpx;
+  text-align: left;
+  padding: 20rpx 24rpx;
+}
+
 /*媒体新闻样式  */
 #mediaNew {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */

@@ -1183,16 +1183,20 @@
 <template name="memberList">
   <block wx:for="{{memberList}}" wx:key="{{index}}">
     <view class="memberInfo flex">
-      <view class="memberInfoLeft"></view>
+      <view class="memberInfoLeft">
+      <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->
+       <!-- <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view> -->
+      </view>
       <view class="memberInfoRight">
         <view class="flex memberInfoTop">
           <view class="memberName">{{item.member_name}}</view>
-          <view class="memberTitle">{{item.is_former}}</view>
+          <view class="memberTitle" wx:if="{{item.is_former == 0}}">在职</view>
+            <view class="memberTitle" wx:if="{{item.is_former == 1}}">离职</view>
         </view>
-        <view class="flex memberCompany">
+        <view class="flex memberCompany"  wx:if="{{item.investment_name || item.member_position}}">
           <label>{{item.investment_name}}</label> · <label>{{item.member_position}}</label>
         </view>
-        <view class="memberDes">{{item.member_introduce}}</view>
+        <view class="memberDes" wx:if="{{item.member_introduce}}">{{item.member_introduce}}</view>
       </view>
     </view>
   </block>
