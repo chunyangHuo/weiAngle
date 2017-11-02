@@ -15,7 +15,7 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:945rpx" bindchange="bindChange">
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true">
-      <view class="outStyleBox">
+      <view class="outStyleBox" id="memberList">
         <view class="blockTitle">成员</view>
         <template is="memberList" data="{{memberList}}"></template>
       </view>
