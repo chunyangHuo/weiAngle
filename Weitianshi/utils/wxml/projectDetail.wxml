@@ -45,7 +45,8 @@
       </view>
     </view>
     <!--项目亮点-->
-     <view class="brightBox" style="background: white;" >
+    <view class="brightBox" style="background: white;" wx:if="{{button_type != 1}}">
+      <!--wx:if="{{pro_goodness[0].goodness_title}}"  -->
       <!-- <view class="brightPoint">
         <view class="brightPointBox flex">
           <image src="/img/img-star.png" class="titlePic"></image>
@@ -137,7 +138,7 @@
             </view>
     </view> 
     <!--三个tab页  -->
-    <!-- <include src='/utils/wxml/threeTab.wxml' /> -->
+     <include src='/utils/wxml/threeTab.wxml' /> 
     <!--申请查看未能过-->
     <view class="lockStyle" wx:if="{{show_detail != 1}}">
       <image class="lock" src="/img/img-suo2@2x.png"></image>
@@ -180,7 +181,7 @@
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox" hidden='{{oneKeyRearch}}'>
+<view class=" flex floatBtn flexBox">
   <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
@@ -197,7 +198,7 @@
   </view>
   <view class="contactModalBox">
     <view class="modalTitle">联系项目方</view>
-    <textarea class="modalContent" placeholder="请描述您的意向约谈时间,方式" bindinput="contentProject" />
+    <textarea class="modalContent" placeholder="请简要描述您的意向约谈时间,方式" bindinput="contentProject" />
     <view class="modalTips">微天使将为您联系项目方并安排约谈或添加FA哥微信：weitianshicn</view>
     <view class="btn" bindtap="yesBtn">确定</view>
   </view>
