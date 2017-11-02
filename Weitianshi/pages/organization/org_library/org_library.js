@@ -31,7 +31,15 @@ Page({
   },
 
   onShow: function () {
-  
-  },
 
+  },
+  // 上拉加载
+  loadMore: function () {
+
+  },
+  //跳转机构详情
+  institutionalDetails: function (e) {
+    let id = e.currentTarget.dataset.id;
+
+  }
 })

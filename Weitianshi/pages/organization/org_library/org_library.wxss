@@ -2,6 +2,6 @@
 
 .topPic {
   background: #5881bc;
-  width: 375px;
-  height: 140px;
+  width: 100%;
+  height: 280rpx;
 }

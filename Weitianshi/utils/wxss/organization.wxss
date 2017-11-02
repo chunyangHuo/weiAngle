@@ -223,6 +223,7 @@
   padding: 24rpx;
   font-size: 24rpx;
   color: #40587a;
+  text-align: left;
 }
 
 #investment .mainCaseBox {
@@ -255,6 +256,7 @@
 #memberList  .swiper-box .memberDes{
   text-align: left;
 }
+
 #memberList  .blockTitle {
   font-size: 30rpx;
   color: #333;
