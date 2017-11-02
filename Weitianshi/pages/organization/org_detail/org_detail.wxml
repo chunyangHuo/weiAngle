@@ -95,8 +95,9 @@
   <view class="media1">
     <view class="inMedia investBottom">
      <view class="industry investBottom">基金管理方</view>
-     <view class="manageCompany">和谐爱奇投资管理有限公司</view>
-    
+      <block wx:for="{{info.manage_fund_list}}" wx:key="{{item}}">
+     <view class="manageCompany">{{item.manage_fund_name}}</view>
+    </block>
     </view>
   </view>
     <!--投资案例  -->
@@ -110,6 +111,20 @@
     </view>
      <block wx:for="{{investment_events.list}}" wx:key="{{investment_events.list}}">
      <template is='invest' data='{{item}}'></template>
+    </block> 
+  </view>
+  <!--媒体新闻  -->
+   <!--投资案例  -->
+  <view class="media1">
+    <view class="inMedia investBottom flex case1">
+     <view class="case investBottom">媒体新闻</view>
+     <view class="caseAll investBottom">
+      <view class="caseIn"> 全部</view>
+     <view class="caseIn">({{media_list.investment_event_total_num}})</view>
+     </view>
+    </view>
+     <block wx:for="{{media_list.list}}" wx:key="{{media_list.list}}">
+     <template is='media' data='{{item}}'></template>
     </block> 
   </view>
   <!--错误提示-->
