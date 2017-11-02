@@ -10,12 +10,18 @@
     <view class="industryTitle">获投项目</view>
     <view class="industryTitle">媒体热度</view>
   </view>
-  <block wx:for="{{industry_list.industry_list}}" wx:key="{{index}}">
+  <block wx:for="{{industry_list.list}}" wx:key="{{index}}">
     <view class="industryContentBlock flex">
       <view class="industryContentTitle">{{item.industry_name}}</view>
       <view class="industryContent">{{item.invested_num}}</view>
       <view class="industryContent">{{item.project_num}}</view>
-      <view class="industryContent">{{item.media_hot}}</view>
+      <view class="industryContent flex">
+        <view>{{item.media_hot}}</view>
+        <image src="/img/icon-jiantouxia@2x.png" class="arrow" wx:if="{{item.status == 2}}"></image>
+        <image src="/img/icon-jiantoushang@2x.png" class="arrow" wx:if="{{item.status == 1}}"></image>
+        <view class="up" wx:if="{{item.status == 1}}">{{item.media_fix}}</view>
+        <view class="down" wx:if="{{item.status == 2}}">{{item.media_fix}}</view>
+      </view>
     </view>
   </block>
 </view>

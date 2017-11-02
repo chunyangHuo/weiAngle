@@ -1127,7 +1127,7 @@
 <!--投资机构  -->
 <template name="investment">
   <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
-    <view class="investGroupBlock flex">
+    <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}">
       <view class="investGroupLeft">
         <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
         <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
@@ -1158,9 +1158,9 @@
           </view>
         </view>
         <view class="projectListBlock">
-          <block wx:for="{{item.project_list}}" wx:key="{{index}}" wx:if="{{item.project_list.length != 0}}" wx:for-item="projectList">
-            <label wx:if="{{index < item.project_list.length-1}}">{{projectList.event_time}}【{{projectList.event_project_name}}】、</label>
-            <label wx:if="{{index == item.project_list.length-1}}">{{projectList.event_time}}【{{projectList.event_project_name}}】</label>
+          <block wx:for="{{item.investment_events}}" wx:key="{{index}}" wx:if="{{item.investment_events.length != 0}}" wx:for-item="investment_eventsList">
+            <label wx:if="{{index < item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】、</label>
+            <label wx:if="{{index == item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】</label>
           </block>
         </view>
       </view>
@@ -1186,7 +1186,7 @@
 
 <!--机构成员  -->
 <template name="memberList">
-  <block wx:for="{{memberList}}" wx:key="{{index}}">
+  <block wx:for="{{memberList.list}}" wx:key="{{index}}">
     <view class="memberInfo flex">
       <view class="memberInfoLeft">
         <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->

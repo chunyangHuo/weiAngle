@@ -5,6 +5,11 @@
   <!-- <image src=""></image> -->
 </view>
 <!--投资机构  -->
-<view class="outStyleBox" id="investment">
-  <template is="investment" data="{{investment_list}}"></template>
-</view>
+<scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
+  <view class="outStyleBox" id="investment">
+    <template is="investment" data="{{investment_list}}"></template>
+  </view>
+</scroll-view>
+
+<!--错误提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
