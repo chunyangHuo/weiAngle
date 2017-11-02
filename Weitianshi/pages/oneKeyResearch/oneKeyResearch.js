@@ -151,7 +151,7 @@ Page({
           for (let i = 0; i < pro_business_model.length; i++) {
             arr.push(pro_business_model[i].goodness_desc.length)
           }
-          if (Math.max.apply(null, arr) > 1) {
+          if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond3: true,
               isChecked3: true,
