@@ -1075,8 +1075,7 @@
 
 <!--投资案例  -->
 <template name="invest">
-  <view id="invest" class="media">
-    <view class="inMedia">
+    <view  id="invest" class="invest">
       <view class="flex investW">
         <view class="investLogo">
           <view class="investLogo1">
@@ -1111,14 +1110,14 @@
           </view>
         </view>
       </view>
-      <view class="mediaLine"></view>
+      <!-- <view class="mediaLine"></view> -->
     </view>
-  </view>
+ 
 </template>
 
 <!--投资领域  -->
 <template name="industry">
-  <view id="industry" class="detailType1 detailColor detailRight">{{item.industry_name}}</view>
+  <view id="industry">{{item.industry_name}}</view>
 </template>
 
 <!--投资机构  -->
@@ -1165,6 +1164,21 @@
   </block>
 </template>
 
+<!--媒体新闻  -->
+<template name="media">
+<view id="mediaNew" class="inMedia ">
+   <view class="mediaTime flex">{{item.time}}</view>
+   <view class="mediaTitle">
+   {{item.content}}
+   </view>
+   <view class=" mediaType flex">
+    <view class="mediaTypeRight">{{item.industry_name}}</view>
+    <view class="mediaTypeRight">|</view>
+    <view>{{item.ori_url}}</view>
+   </view>
+   <!-- <view class="mediaLine"></view> -->
+  </view>
+  
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList}}" wx:key="{{index}}">
