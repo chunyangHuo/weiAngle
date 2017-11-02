@@ -45,8 +45,9 @@
       </view>
     </view>
     <!--项目亮点-->
-    <view class="brightBox" style="background: white;" wx:if="{{pro_goodness[0].goodness_title}}" wx:if="{{button_type != 1}}">
-      <view class="brightPoint">
+    <view class="brightBox" style="background: white;" wx:if="{{button_type != 1}}">
+      <!--wx:if="{{pro_goodness[0].goodness_title}}"  -->
+      <!-- <view class="brightPoint">
         <view class="brightPointBox flex">
           <image src="/img/img-star.png" class="titlePic"></image>
           <view class="title star">{{pro_goodness[0].goodness_title}}</view>
@@ -54,6 +55,88 @@
         <view class="brightContent" class="{{isChecked0?'brightContent':'brightContentAfter'}}" value="{{number}}" wx:if="{{project.pro_goodness}}">{{pro_goodness[0].goodness_desc}}</view>
         <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked0 == true&& textBeyond5}}" data-check="{{0}}">全部</label>
         <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked0== false&& textBeyond5}}" data-check="{{0}}" >收起</label>
+      </view> -->
+      <!--项目亮点-->
+      <view class="brightPoint " wx:if="{{project.pro_goodness.length!=0}}">
+        <view class="brightPointBox flex">
+          <image src="/img/img-star.png" class="titlePic"></image>
+          <view class="title star">项目亮点</view>
+        </view>
+        <view class="{{isChecked0?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}">
+          <block wx:for="{{project.pro_goodness}}" wx:for-item="goodness" wx:key="{{index}}">
+            <view class="goodTitle1">
+              <view class="goodTitle">【{{goodness.goodness_title}}】</view>
+              <view class="brightContent">
+                {{goodness.goodness_desc}}
+              </view>
+            </view>
+          </block>
+
+        </view>
+        <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked0 == true && textBeyond0==true}}" data-check="{{0}}">全部</label>
+        <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked0== false && textBeyond0==true}}" data-check="{{0}}">收起</label>
+      </view>
+      <view wx:if="{{show_detail}}">
+        <!--市场概况pro_market_genera  -->
+        <view class="brightPoint " wx:if="{{project.pro_market_genera.length!=0}}">
+          <view class="brightPointBox flex">
+            <image src="/img/icon-shichanggaikuang@2x.png" class="titlePic"></image>
+            <view class="title star">市场概况</view>
+          </view>
+          <view class="{{isChecked1?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}">
+            <block wx:for="{{project.pro_market_genera}}" wx:for-item="goodness" wx:key="{{index}}">
+              <view class="goodTitle1">
+                <view class="goodTitle">【{{goodness.goodness_title}}】</view>
+                <view class="brightContent">
+                  {{goodness.goodness_desc}}
+                </view>
+              </view>
+            </block>
+
+          </view>
+          <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked1 == true && textBeyond1==true}}" data-check="{{1}}">全部</label>
+          <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked1== false && textBeyond1==true}}" data-check="{{1}}">收起</label>
+        </view>
+        <!--产品概况pro_service -->
+        <view class="brightPoint " wx:if="{{project.pro_service.length!=0}}">
+          <view class="brightPointBox flex">
+            <image src="/img/icon-chanpingaikuang@2x.png" class="titlePic"></image>
+            <view class="title star">产品概况</view>
+          </view>
+          <view class="{{isChecked2?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}">
+            <block wx:for="{{project.pro_service}}" wx:for-item="goodness" wx:key="{{index}}">
+              <view class="goodTitle1">
+                <view class="goodTitle">【{{goodness.goodness_title}}】</view>
+                <view class="brightContent">
+                  {{goodness.goodness_desc}}
+                </view>
+              </view>
+            </block>
+
+          </view>
+          <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked2 == true && textBeyond2==true}}" data-check="{{2}}">全部</label>
+          <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked2== false && textBeyond2==true}}" data-check="{{2}}">收起</label>
+        </view>
+        <!--商业模式 pro_business_model -->
+        <view class="brightPoint " wx:if="{{project.pro_business_model.length!=0}}">
+          <view class="brightPointBox flex">
+            <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image>
+            <view class="title star">商业模式</view>
+          </view>
+          <view class="{{isChecked3?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}">
+            <block wx:for="{{project.pro_business_model}}" wx:for-item="goodness" wx:key="{{index}}">
+              <view class="goodTitle1">
+                <view class="goodTitle">【{{goodness.goodness_title}}】</view>
+                <view class="brightContent">
+                  {{goodness.goodness_desc}}
+                </view>
+              </view>
+            </block>
+
+          </view>
+          <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked3 == true && textBeyond3==true}}" data-check="{{3}}">全部</label>
+          <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked3== false && textBeyond3==true}}" data-check="{{3}}">收起</label>
+        </view>
       </view>
     </view>
     <!--三个tab页  -->
@@ -100,7 +183,7 @@
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox" hidden='{{oneKeyRearch}}'>
+<view class=" flex floatBtn flexBox">
   <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
@@ -117,7 +200,7 @@
   </view>
   <view class="contactModalBox">
     <view class="modalTitle">联系项目方</view>
-    <textarea class="modalContent" placeholder="请描述您的意向约谈时间,方式" bindinput="contentProject" />
+    <textarea class="modalContent" placeholder="请简要描述您的意向约谈时间,方式" bindinput="contentProject" />
     <view class="modalTips">微天使将为您联系项目方并安排约谈或添加FA哥微信：weitianshicn</view>
     <view class="btn" bindtap="yesBtn">确定</view>
   </view>
