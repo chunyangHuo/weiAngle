@@ -1178,6 +1178,7 @@
    </view>
    <!-- <view class="mediaLine"></view> -->
   </view>
+</template>  
   
 <!--机构成员  -->
 <template name="memberList">
