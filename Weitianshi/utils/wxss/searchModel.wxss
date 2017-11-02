@@ -114,9 +114,11 @@
   height: 112rpx;
   background: #f3f4f8;
 }
-#searchModel2 .scroll{
+
+#searchModel2 .scroll {
   width: 640rpx;
 }
+
 #searchModel2 .label {
   padding: 12rpx;
   background: rgba(0, 158, 255, 0.10);
@@ -125,15 +127,23 @@
   font-size: 24rpx;
   color: #009eff;
   margin: 0 16rpx;
-  margin-top: 32rpx;
+  margin-top: 28rpx;
   height: 28rpx;
+  position: relative;
 }
-#searchModel2 .label image{
-  margin-left: 14rpx;
+
+#searchModel2 .label image {
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  top: 8rpx;
+  right: 0;
+  padding: 10rpx;
 }
-#searchModel2 .allReset{
+
+#searchModel2 .allReset {
+  margin-left: 32rpx;
   font-size: 24rpx;
-  color:#009eff;
+  color: #009eff;
   line-height: 112rpx;
-  margin-right: 32rpx;
 }

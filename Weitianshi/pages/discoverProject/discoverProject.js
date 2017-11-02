@@ -271,6 +271,11 @@ Page({
     let that = this;
     SearchModel.tagsCheck(e, that)
   },
+  // 筛选删除
+  deleteLabel(){
+    let id=e.currrentTarget.dataset.id;
+    console.log(id)
+  },
   // 筛选重置
   reset() {
     let that = this;

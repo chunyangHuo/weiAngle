@@ -9,9 +9,9 @@
   <scroll-view class='scroll' scroll-x='true'>
     <view class='search_industry flex'>
       <block wx:for='{{SearchInit.industry}}' wx:key='{{SearchInit.industry}}'>
-        <view class='label flex' hidden='{{item.check==false}}' data-id='{{item.industry_id}}'>
+        <view class='label flex' style='min-width:{{item.industry_name.length*24+40}}rpx' hidden='{{item.check==false}}' >
           <view>{{item.industry_name}}</view>
-          <image style='width:20rpx;height:20rpx;' src='/img/delete.png'></image>
+          <image src='/img/delete.png' data-id='{{item.industry_id}}' bindtap='deleteLabel'></image>
         </view>
       </block>
     </view>

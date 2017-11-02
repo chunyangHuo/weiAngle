@@ -69,8 +69,7 @@ Page({
       data: {
         user_id: user_id,
         project_id: id,
-        source: is_share,
-        share_id: share_id
+        scene: 'scan_qrcode'
       },
       method: 'POST',
       success: function (res) {
@@ -152,7 +151,7 @@ Page({
           for (let i = 0; i < pro_business_model.length; i++) {
             arr.push(pro_business_model[i].goodness_desc.length)
           }
-          if (Math.max.apply(null, arr) >1) {
+          if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond3: true,
               isChecked3: true,
@@ -187,8 +186,8 @@ Page({
           count: count,
           pro_goodness: pro_goodness,
           pro_market_genera: pro_market_genera,
-          pro_service :pro_service,
-          pro_business_model:pro_business_model,
+          pro_service: pro_service,
+          pro_business_model: pro_business_model,
           brandList: brandList,
           button_type: button_type
         });
@@ -263,7 +262,7 @@ Page({
           });
         }
         //一键尽调
-        let company_name = that.data.pro_company_name||' ';
+        let company_name = that.data.pro_company_name || ' ';
         // if (company_name == '') {
         //   that.setData({
         //     nothing: 0
@@ -303,7 +302,10 @@ Page({
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
-          let time = app.changeTime(com_time);
+          let time='';
+          if(com_time){
+              time = app.changeTime(com_time);
+          }
           if (projectInfoList.length != 0) {
             projectInfoList.forEach((x, index) => {
               projectInfoList[index] = x;
