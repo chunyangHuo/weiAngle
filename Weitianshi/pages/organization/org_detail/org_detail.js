@@ -55,9 +55,11 @@ Page({
         let orgDetail=res.data.data;
         let info = res.data.data.info;
         let investment_events = res.data.data.investment_events;
+        let media_list = res.data.data.media_list;
         that.setData({
           info:info,
-          investment_events: investment_events
+          investment_events: investment_events,
+          media_list: media_list
         })
         wx.setNavigationBarTitle({
           title: info.investment_name
