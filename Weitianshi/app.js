@@ -78,10 +78,11 @@ App({
       }
     });
 
-    function dealLabel(e) {
-      e.forEach(x => {
+    function dealLabel(variable,str) {
+      variable.forEach(x => {
         x.check = false;
       })
+      console.log(str, variable)
     }
 
     function dealLabelChild(e) {
@@ -95,7 +96,7 @@ App({
     }
 
     //获取新一代标签并存入缓存 
-    /* this.httpPost({
+     this.httpPost({
       url: url_common + '/api/investment/industrylist',
       data: {}
     }).then(res => {
@@ -107,10 +108,9 @@ App({
         data: {}
       }).then(res => {
         let newArea = res.data.data.area_list;
-        dealLabel("newArea");
-        console.log('newArea', newArea)
+        dealLabel(newArea,'newArea');
       })
-    }) */
+    }) 
   },
   onError(msg) {
     console.log(msg)

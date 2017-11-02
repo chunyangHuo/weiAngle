@@ -1121,7 +1121,6 @@
 </template>
 
 <!--投资机构  -->
-
 <template name="investment">
   <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
     <view class="investGroupBlock flex">
@@ -1179,4 +1178,22 @@
    </view>
    <!-- <view class="mediaLine"></view> -->
   </view>
+  
+<!--机构成员  -->
+<template name="memberList">
+  <block wx:for="{{memberList}}" wx:key="{{index}}">
+    <view class="memberInfo flex">
+      <view class="memberInfoLeft"></view>
+      <view class="memberInfoRight">
+        <view class="flex memberInfoTop">
+          <view class="memberName">{{item.member_name}}</view>
+          <view class="memberTitle">{{item.is_former}}</view>
+        </view>
+        <view class="flex memberCompany">
+          <label>{{item.investment_name}}</label> · <label>{{item.member_position}}</label>
+        </view>
+        <view class="memberDes">{{item.member_introduce}}</view>
+      </view>
+    </view>
+  </block>
 </template>
