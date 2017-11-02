@@ -12,6 +12,14 @@ page {
 
 /*我的项目卡片*/
 
+.jigou {
+  font-size: 28rpx;
+  color: #fff;
+  justify-content:center;
+ /* line-height: 82rpx; */
+ align-items:center;
+}
+
 .noMessage {
   background: white;
   height: 100%;
@@ -998,7 +1006,7 @@ page {
 
 #oneKey .bottomBox {
   position: relative;
-  margin-top:24rpx;
+  margin-top: 24rpx;
 }
 
 #oneKey .history_financing_rounds {
@@ -1151,20 +1159,23 @@ page {
 .star {
   margin-bottom: 26rpx;
 }
-#projectBox .goodTitle{
-   font-size: 28rpx;
+
+#projectBox .goodTitle {
+  font-size: 28rpx;
   color: #333;
   /* line-height: 28rpx; */
   text-align: left;
   display: inline;
 }
-#projectBox .goodTitle1{
+
+#projectBox .goodTitle1 {
   text-align: left;
-   height: auto;
-   line-height: 50rpx;
+  height: auto;
+  line-height: 50rpx;
 }
-#projectBox .brightUnfold{
-   height: 550rpx;
+
+#projectBox .brightUnfold {
+  height: 550rpx;
   text-align: left;
   /* margin-bottom: 20rpx; */
   overflow: hidden;
@@ -1172,23 +1183,24 @@ page {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 10;
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
 }
-#projectBox .brightUnfoldAfter{
-   height: auto;
+
+#projectBox .brightUnfoldAfter {
+  height: auto;
   font-size: 26rpx;
   color: #666;
   line-height: 45rpx;
   text-align: left;
 }
+
 #projectBox .brightContent {
-   display: inline;
+  display: inline;
   /* height: 72rpx; */
   font-size: 26rpx;
   color: #666;
   line-height: 50rpx;
   text-align: left;
-
 }
 
 #projectBox .brightContentAfter {
@@ -1740,7 +1752,7 @@ page {
   margin: 30rpx 0;
   padding-right: 36rpx;
   border-right: 1rpx solid #e6e6e6;
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 /* .contactProject {
@@ -1981,7 +1993,7 @@ page {
 .btnContent1 {
   padding-right: 120rpx;
   border-right: 1rpx solid #e6e6e6;
-   color: #666;
+  color: #666;
 }
 
 .pushProject {
@@ -2016,12 +2028,14 @@ page {
 .hasNothing {
   color: #666;
 }
-.historyInvestTitle{
+
+.historyInvestTitle {
   font-size: 24rpx;
   color: #999;
-  margin:32rpx 0 24rpx 0;
+  margin: 32rpx 0 24rpx 0;
   text-align: left;
 }
-.investBox view{
+
+.investBox view {
   text-align: left;
 }

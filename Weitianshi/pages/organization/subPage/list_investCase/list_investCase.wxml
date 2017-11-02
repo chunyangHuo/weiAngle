@@ -4,12 +4,12 @@
   <view class="investImg">
     <image src="{{newPage.investment_event_url}}"></image>
   </view>
-<!--循环投资案例  -->
-  <scroll-view  wx:if="{{project_list.length != 0}}" style='heigt:90%;'  scroll-y='true' bindscrolltolower='loadMore'>
-  <view class="media">
-    <block wx:for="{{project_list}}" wx:key="{{project_list}}">
-     <template is='invest' data='{{item}}'></template>
-    </block>
+  <!--循环投资案例  -->
+  <scroll-view wx:if="{{project_list.length != 0}}" style='heigt:90%;' scroll-y='true' bindscrolltolower='loadMore'>
+    <view class="media">
+      <block wx:for="{{project_list}}" wx:key="{{project_list}}">
+        <template is='invest' data='{{item}}'></template>
+      </block>
     </view>
   </scroll-view>
   <!--错误提示-->

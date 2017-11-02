@@ -1,39 +1,14 @@
-<!--pages/organization/subPage/project_orgMatch/project_orgMatch.wxml-->
+<!--pages/organization/subPage/list_orgMember/list_orgMember.wxml-->
+<!--pages/organization/subPage/list_media/list_media.wxml-->
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
-  <!-- 店铺描述   -->
-  <!-- <view class="shopDesBox" wx:if="{{userInfo.user_intro}}">
-    <view class="shopDes">店铺描述</view>
-    <view class="shopContent" class="{{isChecked?'shopContent':'shopContentAfer'}}">{{userInfo.user_intro}}</view>
-    <label class="more" bindtap="allPoint" wx:if="{{isChecked == true && contentMore== true}}">全部</label>
-    <label class="more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">收起</label>
-  </view>
-  <view style="height:30rpx;"></view> -->
-  <!--符合条件的我的项目  -->
-  <view wx:if="{{myProject.length !=0}}">
-    <block wx:for="{{myProject}}" wx:key="{{index}}">
-      <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
-        <view class="insideBox">
-          <view data-id="{{item.project_id}}" bindtap="detail">
-          <!--项目介绍  -->
-            <view class="flex">
-              <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-            </view>
-             <!--买家谱图列表  -->
-              <view class="orgImg">
-               <image></image>
-              </view>
-      
-          
-          </view>
-        </view>
-      </view>
-    </block>
-  </view>
-  <view class="emptyStyle" wx:if="{{myProject.length==0 && notHave != 0}}">
-    <view>您的店铺是空的</view>
-    <view>点击“新增项目”打造店铺</view>
-  </view>
+ 
+<view class="media12">
+   <view class="matchIntro">{{newPage.pro_intro}}</view>
+   <view id="investment1">
+     <template is='investment1' data='{{investment_list}}'></template>
+   </view>
+ </view>
 
 
   <!--错误提示-->

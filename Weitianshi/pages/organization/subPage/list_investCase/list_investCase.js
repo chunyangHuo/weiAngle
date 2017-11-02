@@ -52,15 +52,12 @@ Page({
       },
     }
     app.loadMore2(that, request, res => {
-      console.log(res)
+      console.log("投资案例",res)
       let newPage = res.data.data;
       let list = res.data.data.project_list;
       let page_end = res.data.data.page_end;
       if (list) {
-        console.log(list);
-        console.log(project_list);
         let newProject = project_list.concat(list)
-        console.log(newProject);
         currentPage++;
         that.setData({
           project_list: newProject,

@@ -51,7 +51,7 @@ Page({
       },
     }
     app.loadMore2(that, request, res => {
-      console.log(res)
+      console.log("媒体新闻",res)
       let newPage = res.data.data;
       let list = res.data.data.media_list;
       let page_end = res.data.data.page_end;
@@ -64,7 +64,6 @@ Page({
           requestCheck: true,
           currentPage: currentPage
         })
-        console.log(that.data.media_list)
       }
       if (page_end == true) {
         app.errorHide(that, '没有更多了', 3000)

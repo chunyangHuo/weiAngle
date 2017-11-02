@@ -521,13 +521,13 @@ Page({
     })
   },
   //跳转热门领域全部
-  toGoIndustry:function(){
+  toGoIndustry: function () {
     wx.navigateTo({
       url: '/pages/organization/subPage/list_industry/list_industry',
     })
   },
   //投资机构全部
-  toGoInvestment:function(){
+  toGoInvestment: function () {
     wx.navigateTo({
       url: '/pages/organization/org_library/org_library',
     })
