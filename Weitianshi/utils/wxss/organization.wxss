@@ -24,7 +24,7 @@
 }
 
 #invest .investLogo1 image {
-   width: 121.68rpx;
+  width: 121.68rpx;
   height: 121.68rpx;
 }
 
@@ -221,8 +221,9 @@
   width: 510rpx;
   background: #fafafa;
   border-radius: 4rpx;
-  height: 56rpx;
-  padding: 24rpx;
+  height: auto;
+  line-height: 45rpx;
+  padding: 18rpx;
   font-size: 24rpx;
   color: #40587a;
   text-align: left;
@@ -330,17 +331,19 @@
   text-align: left;
   padding: 20rpx 24rpx;
 }
-#memberList .memberTitleLeave{
-  border: 1rpx solid #cccccc;
+
+#memberList .memberTitleLeave {
+  border: 1rpx solid #ccc;
   border-radius: 120rpx;
   width: 54rpx;
   height: 30rpx;
   line-height: 30rpx;
   font-size: 20rpx;
-  color: #cccccc;
+  color: #ccc;
   text-align: center;
   margin-left: 16rpx;
 }
+
 /*媒体新闻样式  */
 
 #mediaNew {
@@ -542,7 +545,6 @@
   width: 73%;
 }
 
-
 #investment1 .investGroupLeft {
   height: 104rpx;
   width: 104rpx;
@@ -553,17 +555,16 @@
 }
 
 #investment1 .match {
- 
-  font-size:22px;
-color:#fc703e;
-text-align: left
+  font-size: 22px;
+  color: #fc703e;
+  text-align: left;
 }
 
 #investment1 .match1 {
- margin-bottom: 10rpx;
+  margin-bottom: 10rpx;
   font-size: 10px;
   color: #999;
-  text-align: left
+  text-align: left;
 }
 
 #investment1 .investTitle {
@@ -633,11 +634,13 @@ text-align: left
   width: 510rpx;
   background: #fafafa;
   border-radius: 4rpx;
-  height: 56rpx;
-  padding: 24rpx;
+  height: auto;
+  line-height: 45rpx;
+  padding: 18rpx;
   font-size: 24rpx;
   color: #40587a;
-  margin-bottom: 30rpx;
+  text-align: left;
+  margin-bottom: 20rpx;
 }
 
 #investment1 .mainCaseBox {

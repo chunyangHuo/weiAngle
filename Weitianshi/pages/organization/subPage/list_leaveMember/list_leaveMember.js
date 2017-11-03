@@ -32,11 +32,10 @@ Page({
   onShow: function () {
     let that = this;
     that.setData({
-      newPage: '',
       requestCheck: true,
       currentPage: 0,
       page_end: false,
-      investment_list: []
+      memberList: []
     })
     // app.initPage(that);
     this.loadMore();
@@ -44,38 +43,32 @@ Page({
   loadMore() {
     let that = this;
     let currentPage = this.data.currentPage;
-    let investment_list = this.data.investment_list;
+    let memberList = this.data.memberList;
     let request = {
-      url: url_common + '/api/investment/matchs',
+      url: url_common + '/api/investment/members',
       data: {
         page: this.data.currentPage
       },
     }
     app.loadMore2(that, request, res => {
-      console.log("机构版买家图谱", res)
+      console.log("在职成员", res)
       let newPage = res.data.data;
-      let list = res.data.data.investment_list;
+      let list = res.data.data.memberlist;
       let page_end = res.data.data.page_end;
       if (list) {
-        let newProject = investment_list.concat(list)
+        let newProject = memberList.concat(list)
         currentPage++;
         that.setData({
-          newPage: newPage,
-          investment_list: newProject,
+          memberList: newProject,
           page_end: page_end,
           requestCheck: true,
           currentPage: currentPage
         })
       }
-      console.log("list", that.data.investment_list);
       if (page_end == true) {
         app.errorHide(that, '没有更多了', 3000)
       }
     })
-  },
-  // 跳转详情页
-  institutionalDetails1: function () {
-    app.href('/pages/organization/org_detail/org_detail')
   },
   /**
    * 生命周期函数--监听页面隐藏

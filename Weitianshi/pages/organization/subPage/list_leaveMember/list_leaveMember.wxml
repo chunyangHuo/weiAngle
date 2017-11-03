@@ -2,13 +2,13 @@
 <!--pages/organization/subPage/list_media/list_media.wxml-->
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
-
-  <view class="media12">
-
-    <block wx:for="{{memberList}}" wx:key="{{memberList}}">
-      <template is='memberList1' data='{{item}}'></template>
+ 
+<view class="media12">
+  
+ <block wx:for="{{memberList}}" wx:key="{{memberList}}">
+     <template is='memberList1' data='{{item}}'></template>
     </block>
-  </view>
+</view> 
 
 
   <!--错误提示-->

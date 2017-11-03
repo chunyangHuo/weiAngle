@@ -114,8 +114,6 @@ Page({
       that.matchInvestorInfo(id);
     }, ) */
   },
-
-
   //判断项目是不是自己的
   isProjectMine(id, callBack1, callBack2) {
     let that = this;
@@ -1148,5 +1146,9 @@ Page({
   shareJump(e) {
     let index = e.currentTarget.dataset.index;
     app.shareJump(index);
+  },
+  // 机构版买家图谱跳转
+  toMap:function(){
+    app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch')
   }
 });

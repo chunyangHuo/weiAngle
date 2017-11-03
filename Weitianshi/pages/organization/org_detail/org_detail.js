@@ -12,21 +12,21 @@ Page({
    */
   data: {
     longMore: false,
-    listMore:false,
+    listMore: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -38,47 +38,47 @@ Page({
     this.orgDetail();
   },
   //展开收起
-  allPoint1(){
-    var that=this;
-    app.allPoint(that,1);
+  allPoint1() {
+    var that = this;
+    app.allPoint(that, 1);
   },
   // 详情信息获取
-  orgDetail(){
-    var that=this;
-   
+  orgDetail() {
+    var that = this;
+
     wx.request({
       url: url_common + '/api/investment/info',
       data: {
-        
+
       },
       method: 'POST',
       success: function (res) {
-        console.log("机构详情",res);
-        let orgDetail=res.data.data;
+        console.log("机构详情", res);
+        let orgDetail = res.data.data;
         let info = res.data.data.info;
         let investment_events = res.data.data.investment_events;
         let media_list = res.data.data.media_list;
-        let member_list = res.data.data.member_list; 
-        let memberList = member_list.list; 
+        let member_list = res.data.data.member_list;
+        let memberList = member_list.list;
         let leave_member_list = res.data.data.leave_member_list;
         let leaveList = leave_member_list.list;
         that.setData({
-          info:info,
+          info: info,
           investment_events: investment_events,
           media_list: media_list,
           member_list: member_list,
-          memberList:memberList,
+          memberList: memberList,
           leave_member_list: leave_member_list,
           leaveList: leaveList
         })
         wx.setNavigationBarTitle({
           title: info.investment_name
         })
-        if (info.investment_introduce.length>88){
+        if (info.investment_introduce.length > 88) {
           that.setData({
             longMore: true
           })
-        }else{
+        } else {
           that.setData({
             longMore: false
           })
@@ -89,7 +89,7 @@ Page({
   //查看全部
   checkMore: function (e) {
     let id = e.target.dataset.id;
-      if (id == 5) {
+    if (id == 5) {
       this.setData({
         industrialChangeMore: 5
       })
@@ -102,40 +102,57 @@ Page({
       this.setData({
         industrialChangeMore: 0
       })
-    } 
+    }
+  },
+  // 投资案例跳转
+  toCase: function () {
+    app.href('/pages/organization/subPage/list_investCase/list_investCase')
+  },
+  // 媒体跳转
+  toMedia: function () {
+    app.href('/pages/organization/subPage/list_media/list_media')
+  },
+  // 在职跳转
+  toMember: function () {
+    app.href('/pages/organization/subPage/list_orgMember/list_orgMember')
+  },
+  // 离职成员跳转
+  toLeave: function () {
+    app.href('/pages/organization/subPage/list_leaveMember/list_leaveMember')
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
-  }
+    let that = this;
+    // return ShareModel.myProjectDetailShare(that);
+  },
 })

@@ -78,7 +78,7 @@
     <view class="businessBook">私密性设置</view>
   </view>
 </view>
-<view class=" flex floatBtn flexBox jigou" hidden="{{currentTab==0||currentTab==2 }}">
+<view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}">
      机构版买家图谱
 </view>
 <!--邮箱-->
