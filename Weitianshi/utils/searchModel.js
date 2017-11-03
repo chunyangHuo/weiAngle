@@ -3,12 +3,18 @@ var url_common = app.globalData.url_common;
 //searchData
 let data = {
   firstTime: true,
-  tab: [
+   tab: [
     { name: '领域', check: false, arr: false, id: 'industry' },
     { name: '轮次', check: false, arr: false, id: "stage" },
     { name: '金额', check: false, arr: false, id: "scale" },
     { name: '地区', check: false, arr: false, id: "hotCity" }
-  ],
+  ], 
+  /* tab: [
+    { name: '领域', check: false, arr: false, id: 'industry' },
+    { name: '地区', check: false, arr: false, id: "stage" },
+    { name: '类型 ', check: false, arr: false, id: "scale" },
+    { name: '风格', check: false, arr: false, id: "hotCity" }
+  ], */
   currentIndex: 5,
   industryArr: [],
   stageArr: [],
