@@ -1219,7 +1219,7 @@
         <view class="flex memberInfoTop">
           <view class="memberName">{{item.member_name}}</view>
           <view class="memberTitle" wx:if="{{item.is_former == 0}}">在职</view>
-          <view class="memberTitle" wx:if="{{item.is_former == 1}}">离职</view>
+          <view class="memberTitleLeave" wx:if="{{item.is_former == 1}}">离职</view>
         </view>
         <view class="flex memberCompany" wx:if="{{item.investment_name || item.member_position}}">
           <label>{{item.investment_name}}</label> ·

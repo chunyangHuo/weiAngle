@@ -213,19 +213,20 @@
 }
 
 #investment .projectListBlock {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  width: 510rpx;
-  background: #fafafa;
-  border-radius: 4rpx;
-  height: 56rpx;
-  padding: 24rpx;
-  font-size: 24rpx;
-  color: #40587a;
-  text-align: left;
+overflow:hidden;
+text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
+width:510rpx;
+background:#fafafa;
+border-radius:4rpx;
+height:auto;
+line-height:45rpx;
+padding:18rpx;
+font-size:24rpx;
+color:#40587a;
+text-align:left;
 }
 
 #investment .mainCaseBox {
@@ -323,12 +324,18 @@
   background: #fafafa;
   border-radius: 4rpx;
   width: 510rpx;
-  height: 64rpx;
+  /* height: 64rpx; */
   font-size: 24rpx;
   color: #999;
-  line-height: 32rpx;
+  line-height: 46rpx;
   text-align: left;
   padding: 20rpx 24rpx;
+  overflow:hidden;
+text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
+
 }
 #memberList .memberTitleLeave{
   border: 1rpx solid #cccccc;
