@@ -116,13 +116,12 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('最新', res)
         var financingNeed = res.data.data;
+        console.log('最新', financingNeed)
         // financingNeed.forEach(x => {
         //   x.pro_time = x.pro_time.substr(5, 11);
         //   console.log(x.pro_time)
         // })
-        console.log(financingNeed)
         that.setData({
           financingNeed: financingNeed,
         })
@@ -148,7 +147,7 @@ Page({
     },that).then(res => {
       wx.hideLoading()
       var slectProject = res.data.data;
-      console.log(slectProject)
+      console.log('精选',slectProject)
       that.setData({
         slectProject: slectProject,
       })

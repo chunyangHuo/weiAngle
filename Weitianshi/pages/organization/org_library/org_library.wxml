@@ -1,6 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <!--筛选和搜索  -->
-<!-- <template is='search' data='{{SearchInit,currentTab}}'></template> -->
+ <template is='search' data='{{SearchInit,currentTab}}'></template> 
+ <template is='searchResult' data='{{SearchInit}}'></template>
 <view class="topPic">
   <!-- <image src=""></image> -->
 </view>

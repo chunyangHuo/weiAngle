@@ -877,10 +877,6 @@
     <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
     <!--下拉框  -->
     <view class='dropDown withAnimate'>
-      <!-- <view class='dropTitle' wx:if='{{SearchInit.currentIndex==0}}'>项目领域</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==1}}'>融资轮次</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==2}}'>期望融资</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==3}}'>项目地区</view> -->
       <!--多选框  -->
       <view class='flex dropFlex'>
         <!--领域  -->
@@ -914,6 +910,33 @@
         <button bindtap='searchCertain'>确定</button>
       </view>
     </view>
+  </view>
+</template>
+
+<!--筛选结果展示横列(单个)  -->
+<template name='searchResult_single'>
+  <view class='resultType flex'>
+    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}'>
+      <view class='label flex' style='min-width:{{item[typeName].length*24+40}}rpx' hidden='{{item.check==false}}'>
+        <view>{{item[typeName]}}</view>
+        <image src='/img/delete.png' data-id='{{item[typeId]}}' bindtap='deleteLabel'></image>
+      </view>
+    </block>
+  </view>
+</template>
+
+<!--筛选结果展示横列(全部)  -->
+<template name='searchResult'>
+  <view id='searchModel2' class='searchList flex'>
+    <scroll-view class='scroll flex' scroll-x='true'>
+      <view class='flex'>
+        <template is='searchResult_single' data='{{SearchInit,type:"industry",typeName:"industry_name",typeId:"industry_id"}}'></template>
+        <template is='searchResult_single' data='{{SearchInit,type:"stage",typeName:"stage_name",typeId:"stage_id"}}'></template>
+        <template is='searchResult_single' data='{{SearchInit,type:"scale",typeName:"scale_money",typeId:"scale_id"}}'></template>
+        <template is='searchResult_single' data='{{SearchInit,type:"hotCity",typeName:"area_title",typeId:"area_id"}}'></template>
+      </view>
+    </scroll-view>
+    <view class='allReset' bindtap='allReset'>清空</view>
   </view>
 </template>
 
@@ -1080,7 +1103,7 @@
       <view class="investLogo">
         <view class="investLogo1">
           <image src="{{item.project_logo}}" wx:if="{{item.project_logo}}"></image>
-           <image src="/img/warband-logo.png"  wx:if="{{item.project_logo==''}}"></image>
+          <image src="/img/warband-logo.png" wx:if="{{item.project_logo==''}}"></image>
         </view>
       </view>
       <view class="investRight">
@@ -1108,7 +1131,7 @@
         <view class="investDetail">
           <block wx:for="{{item.investment_list}}" wx:key="{{index}}" wx:for-item="investList">
             <!-- <view class="investInduryone" >{{item.investment_name}}、</view> -->
-             <view class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">{{investList.investment_name}}、</view>
+            <view class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">{{investList.investment_name}}、</view>
             <view class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">{{investList.investment_name}}</view>
           </block>
         </view>
@@ -1211,32 +1234,32 @@
 <!--详情中机构成员  -->
 <template name="memberList1">
   <view id="memberList1">
- 
-      <view class="memberInfo flex">
-        <view class="memberInfoLeft">
-          <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->
-          <!-- <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view> -->
-        </view>
-        <view class="memberInfoRight">
-          <view class="flex memberInfoTop">
-            <view class="memberName">{{item.member_name}}</view>
-            <view class="memberTitle">{{item.member_position}}</view>
-          </view>
-          <view class="flex memberCompany" wx:if="{{item.industry_list}}">
-            <view class="memberMain1">
-              <view class="memberMain">主投</view>
-            </view>
-            <view class="memberIndustry">
-              <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:for-item="memList">
-                  <view class="memberName1" wx:if="{{index <  item.industry_list.length-1}}">{{memList.industry_name}}、</view>
-            <view class="memberName1" wx:if="{{index == item.industry_list.length-1}}">{{memList.industry_name}}</view>
-              </block>
-            </view>
-          </view>
-          <view class="memberDes" wx:if="{{item.member_introduce}}">{{item.member_introduce}}</view>
-        </view>
+
+    <view class="memberInfo flex">
+      <view class="memberInfoLeft">
+        <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->
+        <!-- <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view> -->
       </view>
-   
+      <view class="memberInfoRight">
+        <view class="flex memberInfoTop">
+          <view class="memberName">{{item.member_name}}</view>
+          <view class="memberTitle">{{item.member_position}}</view>
+        </view>
+        <view class="flex memberCompany" wx:if="{{item.industry_list}}">
+          <view class="memberMain1">
+            <view class="memberMain">主投</view>
+          </view>
+          <view class="memberIndustry">
+            <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:for-item="memList">
+              <view class="memberName1" wx:if="{{index <  item.industry_list.length-1}}">{{memList.industry_name}}、</view>
+              <view class="memberName1" wx:if="{{index == item.industry_list.length-1}}">{{memList.industry_name}}</view>
+            </block>
+          </view>
+        </view>
+        <view class="memberDes" wx:if="{{item.member_introduce}}">{{item.member_introduce}}</view>
+      </view>
+    </view>
+
   </view>
 </template>
 
@@ -1244,13 +1267,13 @@
 <template name="investment1">
   <block wx:for="{{investment_list}}" wx:key="{{index}}">
     <view class="investGroupBlock flex">
-    <view class="invest1Left">
-      <view class="investGroupLeft">
-        <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
-        <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
-      </view>
-      <view class="match1">匹配度</view>
-      <view class="match">{{item.match_rate}}%</view>
+      <view class="invest1Left">
+        <view class="investGroupLeft">
+          <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
+          <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
+        </view>
+        <view class="match1">匹配度</view>
+        <view class="match">{{item.match_rate}}%</view>
       </view>
       <view class="investGroupRight">
         <view class="flex investTitleBlock">
