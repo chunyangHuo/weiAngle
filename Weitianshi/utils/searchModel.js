@@ -3,46 +3,55 @@ var url_common = app.globalData.url_common;
 //searchData
 let data = {
   firstTime: true,
-  /* tab: [
+  tab: [
     { name: '领域', check: false, arr: false, id: 'industry' },
     { name: '轮次', check: false, arr: false, id: "stage" },
     { name: '金额', check: false, arr: false, id: "scale" },
     { name: '地区', check: false, arr: false, id: "hotCity" }
-  ], */
-   tab: [
-    { name: '领域', check: false, arr: false, id: 'label_industry' },
-    { name: '地区', check: false, arr: false, id: "label_area" },
-    { name: '类型 ', check: false, arr: false, id: "label_style" },
-    { name: '风格', check: false, arr: false, id: "label_type" }
-  ], 
+  ],
   currentIndex: 5,
   industryArr: [],
   stageArr: [],
   scaleArr: [],
   hotCityArr: [],
-  label_industryArr:[],
-  label_areaArr:[],
-  label_style:[],
-  label_type:[],
+  label_industryArr: [],
+  label_areaArr: [],
+  label_style: [],
+  label_type: [],
   searchData: {
     industry: [],
     stage: [],
     scale: [],
     hotCity: [],
-    label_industry:[],
-    label_area:[],
-    label_style:[],
-    label_type:[],
+    label_industry: [],
+    label_area: [],
+    label_style: [],
+    label_type: [],
     search: "",
   },
   industry: wx.getStorageSync('industry'),
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  label_industry:wx.getStorageSync('label_industry'),
-  label_area:wx.getStorageSync('label_area'),
-  label_style:wx.getStorageSync('label_style'),
-  label_type:wx.getStorageSync('label_type')
+  label_industry: wx.getStorageSync('label_industry'),
+  label_area: wx.getStorageSync('label_area'),
+  label_style: wx.getStorageSync('label_style'),
+  label_type: wx.getStorageSync('label_type')
+}
+
+//更改搜索模块初始化设置
+function reInitSearch(that, data) {
+  let SearchInit = that.data.SearchInit;
+  if (typeof data != 'object') {
+    throw Error('reInitSearch的第二个参数类型必须为对象');
+    return
+  }
+  for (let [key, value] of data) {
+    SearchInit[key] = value;
+  }
+  that.setData({
+    SearchInit: SearchInit
+  })
 }
 
 // 下拉框
@@ -161,6 +170,7 @@ function itemCheck(e, str, itemIdStr, that) {
   let itemArr = SearchInit[itemArrStr];
   let target = e.currentTarget.dataset.item;
   let index = e.currentTarget.dataset.index;
+  console.log(item, itemArr)
   if (target.check == false) {
     if (itemArr.length < 5) {
       item[index].check = true;
@@ -319,6 +329,7 @@ function searchSth(that, str) {
 
 export {
   data,
+  reInitSearch,
   move,
   getOffset,
   initData,

@@ -919,7 +919,7 @@
     <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}'>
       <view class='label flex' style='min-width:{{item[typeName].length*24+40}}rpx' hidden='{{item.check==false}}'>
         <view>{{item[typeName]}}</view>
-        <image src='/img/delete.png' data-id='{{item[typeId]}}' bindtap='deleteLabel'></image>
+        <image src='/img/delete.png' data-index="{{index}}" bindtap='tagsCheck'></image>
       </view>
     </block>
   </view>

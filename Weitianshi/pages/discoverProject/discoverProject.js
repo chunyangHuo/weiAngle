@@ -267,23 +267,15 @@ Page({
   },
   // 标签选择
   tagsCheck(e) {
-    let that = this;
-    SearchModel.tagsCheck(e, that)
-  },
-  // 筛选删除
-  deleteLabel(){
-    let id=e.currrentTarget.dataset.id;
-    console.log(id)
+    SearchModel.tagsCheck(e, this)
   },
   // 筛选重置
   reset() {
-    let that = this;
-    SearchModel.reset(that)
+    SearchModel.reset(this)
   },
   // 筛选全部重置
   allReset() {
-    let that = this;
-    SearchModel.allReset(that)
+    SearchModel.allReset(this)
   },
   // 筛选确定
   searchCertain() {
@@ -312,8 +304,7 @@ Page({
   },
   // 点击modal层
   modal() {
-    let that = this;
-    SearchModel.modal(that)
+    SearchModel.modal(this)
   },
   //搜索
   searchSth() {

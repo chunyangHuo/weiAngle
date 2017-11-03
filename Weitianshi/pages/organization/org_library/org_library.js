@@ -29,6 +29,16 @@ Page({
       })
       wx.hideLoading();
     })
+
+    //更改搜索模块初始化设置
+    SearchModel.reInitSearch(that,{
+      tab: [
+        { name: '领域', check: false, arr: false, id: 'label_industry' },
+        { name: '地区', check: false, arr: false, id: "label_area" },
+        { name: '风格', check: false, arr: false, id: "label_style" },
+        { name: '类型', check: false, arr: false, id: "label_type" }
+      ],
+    })
   },
 
   onShow: function () {
@@ -43,7 +53,8 @@ Page({
     let id = e.currentTarget.dataset.id;
 
   },
-   // --------------------------筛选搜索--------------------------------------------------
+  // --------------------------筛选搜索-------------------------------------------------
+
   // 下拉框
   move(e) {
     let that = this;
@@ -61,23 +72,15 @@ Page({
   },
   // 标签选择
   tagsCheck(e) {
-    let that = this;
-    SearchModel.tagsCheck(e, that)
-  },
-  // 筛选删除
-  deleteLabel() {
-    let id = e.currrentTarget.dataset.id;
-    console.log(id)
+    SearchModel.tagsCheck(e, this)
   },
   // 筛选重置
   reset() {
-    let that = this;
-    SearchModel.reset(that)
+    SearchModel.reset(this)
   },
   // 筛选全部重置
   allReset() {
-    let that = this;
-    SearchModel.allReset(that)
+    SearchModel.allReset(this)
   },
   // 筛选确定
   searchCertain() {
@@ -109,7 +112,7 @@ Page({
     let that = this;
     SearchModel.modal(that)
   },
-  //搜索
+  // 搜索
   searchSth() {
     let that = this;
     let str;
