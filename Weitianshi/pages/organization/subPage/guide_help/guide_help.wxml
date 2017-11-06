@@ -1,2 +1,21 @@
-<!--pages/organization/subPage/guide_help/guide_help.wxml-->
-<text>pages/organization/subPage/guide_help/guide_help.wxml</text>
+<view class="content">
+  <view class="howTo">“如何寻找项目的潜在投资者？”</view>
+  <view class="contentBox">
+    <view class="title">1、<label class="littleTitle">【财务投资】</label>投资方的投资思路</view>
+    <view class="investmentSpecial"><label class="special">投资特点</label>：这类投资者并不一定相信他未来有没有变现的那一天，但他们敏锐的市场洞察力，强大的后续融资能力，保证这个项目有后来者接盘，能保证自己在投资中获取中短期财务价值。</view>
+    <view class="project">典型机构：飞马旅、杭州投着乐网络科技有限公司、杭州投着乐网络科技有限公司</view>
+    <view class="project">投资项目：微天使乐投平台、微天使乐投平台、微天使乐投平台</view>
+  </view>
+<block wx:for="{{project}}" wx:key="{{index}}">
+  <view class="contentBox">
+    <view class="title">1、<label class="littleTitle">【{{item.title}}】</label>投资方的投资思路</view>
+    <view class="investmentSpecial"><label class="special">投资特点</label>{{item.special}}</view>
+    <view class="project">典型机构：{{item.organization}}</view>
+    <view class="project">投资项目：{{item.projectList}}</view>
+  </view>
+</block>
+</view>
+<view class="classname">
+  <image src="/img/img-fageerweima.png" class="QR"></image>
+  <view class="weChat">添加FA哥微信了解更多</view>
+</view>

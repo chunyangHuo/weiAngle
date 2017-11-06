@@ -2,14 +2,14 @@
 <!--筛选和搜索  -->
  <template is='search' data='{{SearchInit,currentTab}}'></template> 
  <template is='searchResult' data='{{SearchInit}}'></template>
-<view class="topPic">
-  <!-- <image src=""></image> -->
+<view class="topPic" bindtap="guideHelp">
+   <image src="{{imgUrls}}" class="topPic"></image> 
 </view>
 <!--投资机构  -->
 <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
   <view class="outStyleBox" id="investment">
     <template is="investment" data="{{investment_list}}"></template>
-  </view>
+  </view> 
 </scroll-view>
 
 <!--错误提示-->

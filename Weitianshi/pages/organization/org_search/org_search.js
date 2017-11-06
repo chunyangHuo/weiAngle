@@ -82,54 +82,9 @@ Page({
       delta: 1
     })
   },
-  //投资机构列表信息
-  // investment() {
-  //   let that = this;
-  //   wx.showLoading({
-  //     title: 'loading',
-  //     mask: true,
-  //   })
-  //   app.httpPost({
-  //     url: url_common + '/api/investment',
-  //     data: {}
-  //   }).then(res => {
-  //     wx.hideLoading()
-  //     let investormentList = res.data.data;
-  //     let investment_list = investormentList.investment_list;
-  //     that.setData({
-  //       investormentList: investormentList,
-  //       investment_list: investment_list
-  //     })
-  //     wx.hideLoading();
-  //   })
-  // },
-  //投资领域
-  // inputValue(e){
-  //   let companyName = e.detail.value;
-  //   let that = this;
-  //   that.setData({
-  //     company_name: companyName
-  //   })
-  // },
-  //机构成员
-  // investmentMember() {
-  //   let that = this;
-  //   wx.showLoading({
-  //     title: 'loading',
-  //     mask: true,
-  //   })
-  //   app.httpPost({
-  //     url: url_common + '/api/investment/members',
-  //     data: {
-  //       investment_id: '1'
-  //     }
-  //   }).then(res => {
-  //     wx.hideLoading()
-  //     let memberList = res.data.data.memberlist;
-  //     that.setData({
-  //       memberList: memberList
-  //     })
-  //     wx.hideLoading();
-  //   })
-  // }
+//机构成员跳转
+  findMember(e){
+    let memberId = e.currentTarget.dataset.memberid;
+    // app.href('/pages/organization/subPage/list_orgMember/list_orgMember?memberId=?'+memberId)
+  },
 })

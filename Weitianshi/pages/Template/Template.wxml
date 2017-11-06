@@ -1210,7 +1210,7 @@
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList.list}}" wx:key="{{index}}">
-    <view class="memberInfo flex">
+    <view class="memberInfo flex" data-memberid="{{item.member_id}}" bindtap="findMember">
       <view class="memberInfoLeft">
         <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->
         <!-- <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view> -->
@@ -1222,7 +1222,8 @@
           <view class="memberTitleLeave" wx:if="{{item.is_former == 1}}">离职</view>
         </view>
         <view class="flex memberCompany" wx:if="{{item.investment_name || item.member_position}}">
-          <label>{{item.investment_name}}</label> ·
+          <label>{{item.investment_name}}</label> 
+          <label wx:if="{{item.investment_name&&item.member_position}}">·</label>
           <label>{{item.member_position}}</label>
         </view>
         <view class="memberDes" wx:if="{{item.member_introduce}}">{{item.member_introduce}}</view>
