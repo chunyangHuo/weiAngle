@@ -109,8 +109,8 @@
   <view class="media1" wx:if="{{investment_events.list}}">
     <view class="inMedia  flex case1">
       <view class="case ">投资案例</view>
-      <view class="caseAll ">
-        <view class="caseIn caseLeft" bindtap="toCase"> 全部</view>
+      <view class="caseAll" bindtap="toCase">
+        <view class="caseIn caseLeft"> 全部</view>
         <view class="caseIn">({{investment_events.investment_event_total_num}})</view>
       </view>
     </view>
@@ -122,8 +122,8 @@
   <view class="media1" wx:if="{{media_list.list}}">
     <view class="inMedia  flex case1">
       <view class="case ">媒体</view>
-      <view class="caseAll ">
-        <view class="caseIn" bindtap='toMedia'> 全部</view>
+      <view class="caseAll " bindtap='toMedia'>
+        <view class="caseIn"> 全部</view>
         <view class="caseIn caseLeft">({{media_list.media_total_num}})</view>
       </view>
     </view>
@@ -135,8 +135,8 @@
   <view class="media1" wx:if="{{memberList}}">
     <view class="inMedia  flex case1">
       <view class="case ">在职成员</view>
-      <view class="caseAll ">
-        <view class="caseIn" bindtap='toMember'> 全部</view>
+      <view class="caseAll " bindtap='toMember'>
+        <view class="caseIn"> 全部</view>
         <view class="caseIn caseLeft">({{member_list.member_total_num}})</view>
       </view>
     </view>
@@ -147,9 +147,9 @@
   <!--离职成员  -->
   <view class="media1" wx:if="{{leaveList}}">
     <view class="inMedia  flex case1">
-      <view class="case " bindtap='toLeave'>离职成员</view>
-      <view class="caseAll ">
-        <view class="caseIn" bindtap='toLeave'> 全部</view>
+      <view class="case ">离职成员</view>
+      <view class="caseAll " bindtap='toLeave'>
+        <view class="caseIn"> 全部</view>
         <view class="caseIn caseLeft">({{leave_member_list.member_total_num}})</view>
       </view>
     </view>

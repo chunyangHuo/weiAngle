@@ -61,8 +61,8 @@ function discoverInvestShare() {
 
 function orgDetail(){
   return{
-    title:"详情",
-    path:'pages/organization/org_detail/org_detail'
+    title:'机构详情',
+    path:'/pages/organization/org_detail/org_detail'
   }
 }
 //个人店铺分享

@@ -1234,7 +1234,7 @@
 
 <!--详情中机构成员  -->
 <template name="memberList1">
-  <view id="memberList1">
+  <view id="memberList1" >
 
     <view class="memberInfo flex">
       <view class="memberInfoLeft">

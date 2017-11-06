@@ -1,5 +1,4 @@
 /*投资案例样式  */
-
 #invest {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
   padding-top: 42rpx;
@@ -402,11 +401,17 @@
   background: #fff;
   padding: 32rpx;
 }
-
-#memberList1 {
-  width: 94%;
-  height: auto;
+#memberList1{
+   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
+  padding-top: 42rpx;
+  /* padding-left: 32rpx;
+  padding-right: 32rpx; */
+  border-bottom: 1px solid #e6e6e6;
   margin: 0 auto;
+  width: 92%;
+}
+#memberList1:last-child {
+  border-bottom: 0;
 }
 
 #memberList1 .memberInfoLeft {
