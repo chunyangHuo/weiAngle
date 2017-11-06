@@ -7,7 +7,8 @@ import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     //筛选搜索
-    SearchInit: SearchModel.data
+    SearchInit: SearchModel.data,
+    imgUrls: app.globalData.picUrl.invest_org
   },
   onLoad: function (options) {
     let that = this;
@@ -116,5 +117,8 @@ Page({
     str = this.data.currentTab == 0 ? "selected" : "newest"
     SearchModel.searchSth(that, str)
   },
-
+//跳转帮助
+  guideHelp(){
+    app.href('/pages/organization/subPage/guide_help/guide_help')
+  }
 })
