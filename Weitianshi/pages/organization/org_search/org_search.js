@@ -84,7 +84,12 @@ Page({
   },
 //机构成员跳转
   findMember(e){
-    let memberId = e.currentTarget.dataset.memberid;
-    // app.href('/pages/organization/subPage/list_orgMember/list_orgMember?memberId=?'+memberId)
+    let id = e.currentTarget.dataset.investment_id;
+    app.href('/pages/organization/org_detail/org_detail?id=' + id)
+  },
+  //机构详情跳转
+  institutionalDetails(e) {
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/organization/org_detail/org_detail?id=' + id)
   },
 })

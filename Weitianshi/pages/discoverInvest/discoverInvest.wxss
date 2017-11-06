@@ -23,6 +23,14 @@
   margin-right: 0;
 }
 
+.swiper-box {
+  height: 945rpx;
+}
+
+.swiper-box-other {
+  height: 1034rpx;
+}
+
 .on {
   color: white;
   text-align: center;
@@ -214,6 +222,10 @@
   padding: 32rpx;
 }
 
+.outStyleBox:last-child {
+  margin-bottom: 0;
+}
+
 /* 投资风格 */
 
 .blockTitle {
@@ -256,11 +268,11 @@
   line-height: 25rpx;
 }
 
-.swiper-box .outStyleBox view {
+.swiper-box-other .outStyleBox view {
   text-align: left;
 }
 
-.swiper-box .outStyleBox .investStyleBlock view {
+.swiper-box-other .outStyleBox .investStyleBlock view {
   text-align: center;
 }
 
@@ -320,6 +332,7 @@
 .title {
   justify-content: space-between;
 }
+
 .down {
   font-size: 20rpx;
   color: #28dc41;
@@ -337,6 +350,11 @@
 .arrow {
   width: 12rpx;
   height: 6rpx;
-  padding-top : 12rpx;
-  margin:0 4rpx 0 12rpx
+  padding-top: 12rpx;
+  margin: 0 4rpx 0 12rpx;
+}
+
+.high {
+  height: 88rpx;
+  width: 100%;
 }

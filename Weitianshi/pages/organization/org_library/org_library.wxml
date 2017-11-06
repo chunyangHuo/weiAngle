@@ -6,7 +6,7 @@
    <image src="{{imgUrls}}" class="topPic"></image> 
 </view>
 <!--投资机构  -->
-<scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
+<scroll-view scroll-y="true" bindscrolltolower='loadMore' scroll-top="{{scroll}}" style="height:1254rpx"  >
   <view class="outStyleBox" id="investment">
     <template is="investment" data="{{investment_list}}"></template>
   </view> 

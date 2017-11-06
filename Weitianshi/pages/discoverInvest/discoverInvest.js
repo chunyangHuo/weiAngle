@@ -519,12 +519,18 @@ Page({
     app.href('/pages/organization/org_search/org_search')
   },
   //跳转热门领域全部
-  toGoIndustry:function(){
+  toGoIndustry: function () {
     app.href('/pages/organization/subPage/list_industry/list_industry')
   },
   //投资机构全部
-  toGoInvestment:function(){
+  toGoInvestment: function () {
     app.href('/pages/organization/org_library/org_library')
-  }
+  },
+  //投资机构跳转
+  institutionalDetails(e) {
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/organization/org_detail/org_detail?id=' + id)
+    
+  },
 })
 
