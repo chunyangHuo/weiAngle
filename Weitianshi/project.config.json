@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 12,
 			"list": [
 				{
 					"id": 1,
@@ -93,6 +93,12 @@
 					"id": -1,
 					"name": "list_orgMember",
 					"pathName": "pages/organization/subPage/list_orgMember/list_orgMember",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "投资机构",
+					"pathName": "pages/organization/org_library/org_library",
 					"query": ""
 				}
 			]
