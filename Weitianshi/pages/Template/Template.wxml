@@ -259,7 +259,7 @@
       <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
         <view class="user_project_frame" data-id="{{item.case_id}}" data-index="{{index}}">
           <view class="flex">
-            <view class="project_time" wx:if="{{item.created_at}}">{{item.created_at}}</view>
+            <view class="project_time" wx:if="{{item.case_deal_time}}">{{item.case_deal_time}}</view>
             <view class="project_name" wx:if="{{item.case_name}}">{{item.case_name}}</view>
             <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
           </view>
