@@ -366,7 +366,7 @@ page {
 }
 
 .project_time {
-  width: 94rpx;
+  width: 164rpx;
   margin-right: 48rpx;
 }
 
