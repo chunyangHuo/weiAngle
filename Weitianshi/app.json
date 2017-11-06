@@ -76,6 +76,7 @@
     "pages/organization/subPage/list_industry/list_industry",
     "pages/organization/subPage/list_investCase/list_investCase",
     "pages/organization/subPage/list_orgMember/list_orgMember",
+    "pages/organization/subPage/list_leaveMember/list_leaveMember",
     "pages/organization/subPage/list_media/list_media",
     "pages/organization/subPage/guide_help/guide_help"
   ],

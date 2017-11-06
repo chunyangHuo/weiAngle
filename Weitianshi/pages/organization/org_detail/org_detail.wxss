@@ -11,7 +11,7 @@ page {
   height: auto;
   background: #fff;
   margin-top: 37.44rpx;
-   box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10); 
+  box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10);
 }
 
 .inMedia {
@@ -48,10 +48,12 @@ page {
   height: 154.44rpx;
   /* background: red; */
 }
-.detailLogo1 image{
+
+.detailLogo1 image {
   width: 154.44rpx;
   height: 154.44rpx;
 }
+
 .detailType {
 }
 
@@ -98,9 +100,11 @@ page {
   height: 327rpx;
   margin-top: 15rpx;
 }
-.investImg image{
-  width: 100%
+
+.investImg image {
+  width: 100%;
 }
+
 .investBottom {
   padding-bottom: 20rpx;
 }
@@ -124,9 +128,11 @@ page {
   letter-spacing: 0;
   line-height: 46rpx;
 }
-.caseIn{
-  display: inline-block
+
+.caseIn {
+  display: inline-block;
 }
+
 .more {
   color: #009eff;
   font-size: 24rpx;
@@ -140,45 +146,52 @@ page {
   font-size: 15px;
   color: #333;
 }
-.scaleDetail{
-  font-size:14px;
-color:#666666;
-line-height: 40rpx;
-margin-bottom: 20rpx;
+
+.scaleDetail {
+  font-size: 14px;
+  color: #666;
+  line-height: 40rpx;
+  margin-bottom: 20rpx;
 }
-.industry{
-  font-size:15px;
-color:#333333;
+
+.industry {
+  font-size: 15px;
+  color: #333;
 }
-.manageCompany{
-  background:rgba(244,76,76,0.10);
-border:1px solid rgba(244,76,76,0.20);
-border-radius:2px;
-display: inline-block;
-padding: 0 20rpx;
-height:51.48rpx;
-font-size:12px;
-color:#f44c4c;
-text-align: center;
-line-height: 51.48rpx;
-margin-bottom: 25rpx;
+
+.manageCompany {
+  background: rgba(244, 76, 76, 0.10);
+  border: 1px solid rgba(244, 76, 76, 0.20);
+  border-radius: 2px;
+  display: inline-block;
+  padding: 0 20rpx;
+  height: 51.48rpx;
+  font-size: 12px;
+  color: #f44c4c;
+  text-align: center;
+  line-height: 51.48rpx;
+  margin-bottom: 25rpx;
 }
-.case1{
- justify-content:space-between;
-text-align: left;
+
+.case1 {
+  justify-content: space-between;
+  text-align: left;
 }
-.case{
-  font-size:15px;
-color:#333333;
-text-align: left;
-/* display: inline-block */
+
+.case {
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+  /* display: inline-block */
 }
-.caseAll{
-  font-size:12px;
-color:#009eff;
-text-align: right;
-/* display: inline-block */
+
+.caseAll {
+  font-size: 12px;
+  color: #009eff;
+  text-align: right;
+  /* display: inline-block */
 }
-.caseLeft{
+
+.caseLeft {
   margin-left: 10rpx;
 }

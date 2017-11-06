@@ -1,5 +1,4 @@
 let app = getApp();
-
 //我的名片分享
 function myCardShare(that) {
   let user_id = wx.getStorageSync('user_id');
@@ -60,6 +59,12 @@ function discoverInvestShare() {
   }
 }
 
+function orgDetail(){
+  return{
+    title:"详情",
+    path:'pages/organization/org_detail/org_detail'
+  }
+}
 //个人店铺分享
 function projectShopShare(that) {
   let myProject = that.data.myProject;

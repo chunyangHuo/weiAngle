@@ -7,8 +7,8 @@
       <view class="detailIntroduce flex">
         <view class="detailLogo">
           <view class="detailLogo1">
-             <image src="{{info.investment_logo}}"  wx:if="{{info.investment_logo}}"></image> 
-            <image src="/img/warband-logo.png"  wx:if="{{info.investment_logo==''}}"></image> 
+            <image src="{{info.investment_logo}}" wx:if="{{info.investment_logo}}"></image>
+            <image src="/img/warband-logo.png" wx:if="{{info.investment_logo==''}}"></image>
           </view>
         </view>
         <view class="detailName">{{info.investment_name}}</view>
@@ -28,7 +28,7 @@
     </view>
   </view>
   <!--投资策略  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{info.investment_strategy}}">
     <view class="inMedia investBottom">
       <view class="investStrategy">投资策略</view>
       <view class="investStrategy1">* 根据机构近期投资事件刻画投资图谱</view>
@@ -38,7 +38,7 @@
     </view>
   </view>
   <!--机构介绍  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{info.investment_introduce}}">
     <view class="inMedia investBottom">
       <view class="investStrategy investBottom">机构介绍</view>
       <view class="{{checkedArr.ischecked1?'investIntroduce':'investIntroduceAfter'}}">{{info.investment_introduce}}</view>
@@ -47,15 +47,15 @@
     </view>
   </view>
   <!--资本规模  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{info.investment_capital_scale||info.investment_project_scale}}">
     <view class="inMedia investBottom">
-      <view class="scale">
+      <view class="scale" wx:if="{{info.investment_capital_scale}}">
         <view class="scaleTitle investBottom">管理资本规模</view>
         <view class="scaleDetail">
           {{info.investment_capital_scale}}
         </view>
       </view>
-      <view class="scale">
+      <view class="scale" wx:if="{{info.investment_project_scale}}">
         <view class="scaleTitle investBottom">单个项目投资规模</view>
         <view class="scaleDetail">
           {{info.investment_project_scale}}
@@ -64,7 +64,7 @@
     </view>
   </view>
   <!--投资领域  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{info.industry_list}}">
     <view class="inMedia investBottom">
       <view class="industry investBottom">投资领域</view>
       <view class="detailType">
@@ -82,7 +82,7 @@
     </view>
   </view>
   <!--投资轮次  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{info.stage_list}}">
     <view class="inMedia investBottom">
       <view class="industry investBottom">投资轮次</view>
       <view class="detailType">
@@ -95,7 +95,7 @@
     </view>
   </view>
   <!--基金管理方  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{info.manage_fund_list}}">
     <view class="inMedia investBottom">
       <view class="industry investBottom flex">基金管理方</view>
       <block wx:for="{{info.manage_fund_list}}" wx:key="{{index}}" wx:if="{{index<2 ||industrialChangeMore == 5}}">
@@ -106,11 +106,11 @@
     </view>
   </view>
   <!--投资案例  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{investment_events.list}}">
     <view class="inMedia  flex case1">
       <view class="case ">投资案例</view>
       <view class="caseAll ">
-        <view class="caseIn caseLeft"> 全部</view>
+        <view class="caseIn caseLeft" bindtap="toCase"> 全部</view>
         <view class="caseIn">({{investment_events.investment_event_total_num}})</view>
       </view>
     </view>
@@ -119,11 +119,11 @@
     </block>
   </view>
   <!--媒体新闻  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{media_list.list}}">
     <view class="inMedia  flex case1">
       <view class="case ">媒体</view>
       <view class="caseAll ">
-        <view class="caseIn"> 全部</view>
+        <view class="caseIn" bindtap='toMedia'> 全部</view>
         <view class="caseIn caseLeft">({{media_list.media_total_num}})</view>
       </view>
     </view>
@@ -132,29 +132,29 @@
     </block>
   </view>
   <!--在职成员  -->
-  <view class="media1">
+  <view class="media1" wx:if="{{memberList}}">
     <view class="inMedia  flex case1">
       <view class="case ">在职成员</view>
       <view class="caseAll ">
-        <view class="caseIn"> 全部</view>
+        <view class="caseIn" bindtap='toMember'> 全部</view>
         <view class="caseIn caseLeft">({{member_list.member_total_num}})</view>
       </view>
     </view>
-   <block wx:for="{{memberList}}" wx:key="{{memberList}}">
-     <template is='memberList1' data='{{item}}'></template>
+    <block wx:for="{{memberList}}" wx:key="{{memberList}}">
+      <template is='memberList1' data='{{item}}'></template>
     </block>
   </view>
-   <!--离职成员  -->
-  <view class="media1">
+  <!--离职成员  -->
+  <view class="media1" wx:if="{{leaveList}}">
     <view class="inMedia  flex case1">
-      <view class="case ">离职成员</view>
+      <view class="case " bindtap='toLeave'>离职成员</view>
       <view class="caseAll ">
-        <view class="caseIn"> 全部</view>
+        <view class="caseIn" bindtap='toLeave'> 全部</view>
         <view class="caseIn caseLeft">({{leave_member_list.member_total_num}})</view>
       </view>
     </view>
-   <block wx:for="{{leaveList}}" wx:key="{{leaveList}}">
-     <template is='memberList1' data='{{item}}'></template>
+    <block wx:for="{{leaveList}}" wx:key="{{leaveList}}">
+      <template is='memberList1' data='{{item}}'></template>
     </block>
   </view>
   <!--错误提示-->

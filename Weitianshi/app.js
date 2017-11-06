@@ -544,7 +544,6 @@ App({
         checkedArr: checkedArr
       })
     }
-    console.log(that.data.checkedArr);
   },
   //时间戳转换
   changeTime(x) {

@@ -9,14 +9,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    project_id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      project_id: options.project_id,
+    });
   },
 
   /**
@@ -32,7 +34,7 @@ Page({
   onShow: function () {
     let that = this;
     that.setData({
-      newPage:'',
+      newPage: '',
       requestCheck: true,
       currentPage: 0,
       page_end: false,
@@ -41,6 +43,10 @@ Page({
     // app.initPage(that);
     this.loadMore();
   },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh()
+  },
   loadMore() {
     let that = this;
     let currentPage = this.data.currentPage;
@@ -48,6 +54,7 @@ Page({
     let request = {
       url: url_common + '/api/investment/matchs',
       data: {
+        project_id: this.data.project_id,
         page: this.data.currentPage
       },
     }
@@ -67,11 +74,16 @@ Page({
           currentPage: currentPage
         })
       }
-      console.log("list", that.data.investment_list);
       if (page_end == true) {
         app.errorHide(that, '没有更多了', 3000)
       }
     })
+  },
+  // 跳转详情页
+  institutionalDetails1: function (e) {
+    let thisData = e.currentTarget.dataset;
+    console.log(thisData);
+    app.href('/pages/organization/org_detail/org_detail')
   },
   /**
    * 生命周期函数--监听页面隐藏

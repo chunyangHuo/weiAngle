@@ -35,7 +35,7 @@ Page({
       requestCheck: true,
       currentPage: 0,
       page_end: false,
-      media_list: []
+      memberList: []
     })
     // app.initPage(that);
     this.loadMore();
@@ -43,24 +43,23 @@ Page({
   loadMore() {
     let that = this;
     let currentPage = this.data.currentPage;
-    let media_list = this.data.media_list;
+    let memberList = this.data.memberList;
     let request = {
-      url: url_common + '/api/investment/medias',
+      url: url_common + '/api/investment/members',
       data: {
-        investment_id:1,
         page: this.data.currentPage
       },
     }
     app.loadMore2(that, request, res => {
-      console.log("媒体新闻", res)
+      console.log("在职成员", res)
       let newPage = res.data.data;
-      let list = res.data.data.media_list;
+      let list = res.data.data.memberlist;
       let page_end = res.data.data.page_end;
       if (list) {
-        let newProject = media_list.concat(list)
+        let newProject = memberList.concat(list)
         currentPage++;
         that.setData({
-          media_list: newProject,
+          memberList: newProject,
           page_end: page_end,
           requestCheck: true,
           currentPage: currentPage

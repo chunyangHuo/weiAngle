@@ -9,14 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -29,12 +29,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that=this;
+    let that = this;
     that.setData({
       requestCheck: true,
       currentPage: 0,
       page_end: false,
-      project_list:[]
+      project_list: []
     })
     // app.initPage(that);
     this.loadMore();
@@ -52,7 +52,7 @@ Page({
       },
     }
     app.loadMore2(that, request, res => {
-      console.log("投资案例",res)
+      console.log("投资案例", res)
       let newPage = res.data.data;
       let list = res.data.data.project_list;
       let page_end = res.data.data.page_end;
