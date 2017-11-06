@@ -153,6 +153,6 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
-    // return ShareModel.myProjectDetailShare(that);
+    return ShareModel.myProjectDetailShare(that);
   },
 })

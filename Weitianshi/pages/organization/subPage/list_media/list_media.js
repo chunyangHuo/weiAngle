@@ -47,6 +47,7 @@ Page({
     let request = {
       url: url_common + '/api/investment/medias',
       data: {
+        investment_id:1,
         page: this.data.currentPage
       },
     }

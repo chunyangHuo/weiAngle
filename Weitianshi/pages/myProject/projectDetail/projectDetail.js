@@ -52,6 +52,7 @@ Page({
       currentTab: options.currentTab,
       shareType: options.type
     });
+    console.log(this.data.id);
   },
   onShow: function () {
     let share_id = this.data.share_id;
@@ -61,7 +62,7 @@ Page({
     let pre = pages[pages.length - 2];
     if (pre) {
       pre.data.firstTime = false;
-      
+
     }
     //  投资人数据
     let that = this;
@@ -1148,7 +1149,8 @@ Page({
     app.shareJump(index);
   },
   // 机构版买家图谱跳转
-  toMap:function(){
-    app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch')
+  toMap: function () {
+    var that = this;
+    app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
   }
 });
