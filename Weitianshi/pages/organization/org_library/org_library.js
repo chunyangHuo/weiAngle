@@ -37,14 +37,25 @@ Page({
   },
   // 上拉加载
   loadMore: function () {
-
+    console.log("loadMore")
+    let that = this;
+    let user_id = this.data.user_id;
+    let currentPage = this.data.currentPage;
+    let currentTab = this.data.currentTab;
+    var request = {
+      url: url_common + '/api/investment/list',
+      data: {
+      }
+    }
+    //调用通用加载函数
+    app.loadMore(that, request, "investment_list")
   },
   //跳转机构详情
   institutionalDetails: function (e) {
     let id = e.currentTarget.dataset.id;
 
   },
-   // --------------------------筛选搜索--------------------------------------------------
+  // --------------------------筛选搜索--------------------------------------------------
   // 下拉框
   move(e) {
     let that = this;
@@ -117,8 +128,17 @@ Page({
     str = this.data.currentTab == 0 ? "selected" : "newest"
     SearchModel.searchSth(that, str)
   },
-//跳转帮助
-  guideHelp(){
+  //跳转帮助
+  guideHelp() {
     app.href('/pages/organization/subPage/guide_help/guide_help')
-  }
+  },
+  //机构详情跳转
+  institutionalDetails(e) {
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/organization/org_detail/org_detail?id=' + id)
+  },
+
+  onShareAppMessage: function () {
+    return ShareModel.projectListShare();
+  },
 })

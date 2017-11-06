@@ -58,6 +58,13 @@ function discoverInvestShare() {
     path: '/pages/discoverInvest/discoverInvest'
   }
 }
+//项目库分享
+function projectListShare() {
+  return {
+    title: '来微天使找优质人脉',
+    path: '/pages/organization/org_library/org_library'
+  }
+}
 
 function orgDetail(){
   return{
