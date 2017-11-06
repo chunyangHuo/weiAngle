@@ -70,6 +70,9 @@
   margin-bottom: 32rpx;
   text-align: center;
 }
+#searchModel .longCheckBox {
+  width: 208rpx;
+}
 
 #searchModel .btnGroup button {
   width: 322rpx;

@@ -19,7 +19,6 @@ Page({
       url: url_common + '/api/investment/list',
       data: {}
     }).then(res => {
-      console.log(res)
       wx.hideLoading()
       let investormentList = res.data.data;
       let investment_list = investormentList.investment_list;
@@ -31,12 +30,12 @@ Page({
     })
 
     //更改搜索模块初始化设置
-    SearchModel.reInitSearch(that,{
+    SearchModel.reInitSearch(that, {
       tab: [
-        { name: '领域', check: false, arr: false, id: 'label_industry' },
-        { name: '地区', check: false, arr: false, id: "label_area" },
-        { name: '风格', check: false, arr: false, id: "label_style" },
-        { name: '类型', check: false, arr: false, id: "label_type" }
+        { name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false },
+        { name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_name', longCheckBox: false },
+        { name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
+        { name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false }
       ],
     })
   },

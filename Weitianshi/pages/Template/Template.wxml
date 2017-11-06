@@ -862,6 +862,8 @@
   </view>
 </template>
 
+<!-------------------------------筛选-------------------------------------------------  -->
+
 <!--筛选和搜索  -->
 <template name='search'>
   <!--筛选和搜索  -->
@@ -879,29 +881,8 @@
     <view class='dropDown withAnimate'>
       <!--多选框  -->
       <view class='flex dropFlex'>
-        <!--领域  -->
-        <block wx:for='{{SearchInit.industry}}' wx:if='{{SearchInit.currentIndex==0}}' wx:key='item.industry_id' wx:for-item='item1' wx:for-index='index1'>
-          <view class='checkbox {{item1.check==true?"checkOne":""}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
-            {{item1.industry_name}}
-          </view>
-        </block>
-        <!--轮次  -->
-        <block wx:for='{{SearchInit.stage}}' wx:if='{{SearchInit.currentIndex==1}}' wx:key='item.stage_id' wx:for-item='item2' wx:for-index='index2'>
-          <view class='checkbox {{item2.check==true?"checkOne":""}}' data-item="{{item2}}" data-index="{{index2}}" bindtap='tagsCheck'>
-            {{item2.stage_name}}
-          </view>
-        </block>
-        <!--金额  -->
-        <block wx:for='{{SearchInit.scale}}' wx:if='{{SearchInit.currentIndex==2}}' wx:key='item.sacle_id' wx:for-item='item3' wx:for-index='index3'>
-          <view class='checkbox scale {{item3.check==true?"checkOne":""}}' data-item="{{item3}}" data-index="{{index3}}" bindtap='tagsCheck'>
-            {{item3.scale_money}}
-          </view>
-        </block>
-        <!--地区  -->
-        <block wx:for='{{SearchInit.hotCity}}' wx:if='{{SearchInit.currentIndex==3}}' wx:key='item.area_id' wx:for-item='item4' wx:for-index='index4'>
-          <view class='checkbox {{item4.check==true?"checkOne":""}}' data-item="{{item4}}" data-index="{{index4}}" bindtap='tagsCheck'>
-            {{item4.area_title}}
-          </view>
+        <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
+          <template is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
         </block>
       </view>
       <!--重置确定  -->
@@ -913,16 +894,13 @@
   </view>
 </template>
 
-<!--筛选结果展示横列(单个)  -->
-<template name='searchResult_single'>
-  <view class='resultType flex'>
-    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}'>
-      <view class='label flex' style='min-width:{{item[typeName].length*24+40}}rpx' hidden='{{item.check==false}}'>
-        <view>{{item[typeName]}}</view>
-        <image src='/img/delete.png' data-index="{{index}}" bindtap='tagsCheck'></image>
-      </view>
-    </block>
-  </view>
+<!--筛选下拉框(单个)  -->
+<template name='searchDropItem'>
+  <block wx:for='{{SearchInit[label]}}' wx:for-item='item1' wx:for-index='index1' wx:key='item1[itemId]'>
+    <view hidden='{{SearchInit.currentIndex!=index}}' class='checkbox {{item1.check==true?"checkOne":""}} {{longCheckBox==true?"longCheckBox":""}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
+      {{item1[itemName]}}
+    </view>
+  </block>
 </template>
 
 <!--筛选结果展示横列(全部)  -->
@@ -940,6 +918,19 @@
   </view>
 </template>
 
+<!--筛选结果展示横列(单个)  -->
+<template name='searchResult_single'>
+  <view class='resultType flex'>
+    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}'>
+      <view class='label flex' style='min-width:{{item[typeName].length*24+40}}rpx' hidden='{{item.check==false}}'>
+        <view>{{item[typeName]}}</view>
+        <image src='/img/delete.png' data-str='{{type}}' data-itemIdStr='{{typeId}}'  data-item="{{item}}" data-index="{{index}}" bindtap='tagsCheck'></image>
+      </view>
+    </block>
+  </view>
+</template>
+
+<!--------------------------------------------------------------------------------  -->
 <!--精选项目卡片 -->
 <template name="selectProject">
   <block wx:for="{{list}}" wx:key="{{index}}">
