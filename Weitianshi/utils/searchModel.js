@@ -3,34 +3,56 @@ var url_common = app.globalData.url_common;
 //searchData
 let data = {
   firstTime: true,
-   tab: [
-    { name: '领域', check: false, arr: false, id: 'industry' },
-    { name: '轮次', check: false, arr: false, id: "stage" },
-    { name: '金额', check: false, arr: false, id: "scale" },
-    { name: '地区', check: false, arr: false, id: "hotCity" }
-  ], 
-  /* tab: [
-    { name: '领域', check: false, arr: false, id: 'industry' },
-    { name: '地区', check: false, arr: false, id: "stage" },
-    { name: '类型 ', check: false, arr: false, id: "scale" },
-    { name: '风格', check: false, arr: false, id: "hotCity" }
-  ], */
+  tab: [
+    { name: '领域', label: 'industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false },
+    { name: '轮次', label: "stage", itemId: 'stage_id', itemName: 'stage_name', longCheckBox: false },
+    { name: '金额', label: "scale", itemId: 'scale_id', itemName: 'scale_money', longCheckBox: true },
+    { name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false }
+  ],
   currentIndex: 5,
   industryArr: [],
   stageArr: [],
   scaleArr: [],
   hotCityArr: [],
+  label_industryArr: [],
+  label_areaArr: [],
+  label_style: [],
+  label_type: [],
   searchData: {
     industry: [],
     stage: [],
     scale: [],
     hotCity: [],
+    label_industry: [],
+    label_area: [],
+    label_style: [],
+    label_type: [],
     search: "",
   },
   industry: wx.getStorageSync('industry'),
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
-  hotCity: wx.getStorageSync('hotCity')
+  hotCity: wx.getStorageSync('hotCity'),
+  label_industry: wx.getStorageSync('label_industry'),
+  label_area: wx.getStorageSync('label_area'),
+  label_style: wx.getStorageSync('label_style'),
+  label_type: wx.getStorageSync('label_type')
+}
+
+//更改搜索模块初始化设置
+function reInitSearch(that, data) {
+  let SearchInit = that.data.SearchInit;
+  if (typeof data != 'object') {
+    throw Error('reInitSearch的第二个参数类型必须为对象');
+    return
+  }
+  for (let key in data) {
+    SearchInit[key] = data[key];
+  }
+  console.log(SearchInit)
+  that.setData({
+    SearchInit: SearchInit
+  })
 }
 
 // 下拉框
@@ -65,13 +87,15 @@ function getOffset(that) {
     res.height     // 节点的高度
   }).exec()
 }
-// 初始化check值(辅助函数)
-function initData(that) {
-  this.initItem('industry', that);
-  this.initItem('stage', that);
-  this.initItem('scale', that);
-  this.initItem('hotCity', that);
+// 初始化所有check值
+function initData(that, showLabel) {
+  let SearchInit = that.data.SearchInit;
+  let tab = SearchInit.tab;
+  tab.forEach(x => {
+    this.initItem(x.label, that)
+  })
 }
+// 初始化某项check值(辅助函数)
 function initItem(str, that) {
   let SearchInit = that.data.SearchInit;
   let itemStr = str;
@@ -93,6 +117,18 @@ function initItem(str, that) {
       break;
     case 'hotCity':
       itemIdStr = 'area_id'
+      break;
+    case 'label_industry':
+      itemIdStr = 'industry_id'
+      break;
+    case 'label_area':
+      itemIdStr = 'area_id'
+      break;
+    case 'label_style':
+      itemIdStr = 'style_id'
+      break;
+    case 'label_type':
+      itemIdStr = 'type_id'
       break;
     default:
       console.log('initItem()出了问题')
@@ -122,26 +158,40 @@ function initItem(str, that) {
   })
 }
 // 标签选择
+// function tagsCheck(e, that) {
+//   let currentIndex = that.data.SearchInit.currentIndex;
+//   switch (currentIndex) {
+//     case 0:
+//       this.itemCheck(e, 'industry', 'industry_id', that);
+//       break;
+//     case 1:
+//       this.itemCheck(e, 'stage', 'stage_id', that);
+//       break;
+//     case 2:
+//       this.itemCheck(e, 'scale', 'scale_id', that);
+//       break;
+//     case 3:
+//       this.itemCheck(e, 'hotCity', 'area_id', that);
+//       break;
+//     case 4:
+//       this.itemCheck(e, 'label_industry', 'industry_id', that);
+//       break;
+//     case 5:
+//       this.itemCheck(e, 'label_area', 'area_id', that);
+//       break;
+//     case 6:
+//       this.itemCheck(e, 'label_style', 'style_id', that);
+//       break;
+//     case 7:
+//       this.itemCheck(e, 'label_type', 'type_id', that);
+//       break;
+//     default:
+//       console.log('tagCheck()出错了')
+//   }
+// }
 function tagsCheck(e, that) {
-  let currentIndex = that.data.SearchInit.currentIndex;
-  switch (currentIndex) {
-    case 0:
-      this.itemCheck(e, 'industry', 'industry_id', that);
-      break;
-    case 1:
-      this.itemCheck(e, 'stage', 'stage_id', that);
-      break;
-    case 2:
-      this.itemCheck(e, 'scale', 'scale_id', that);
-      break;
-    case 3:
-      this.itemCheck(e, 'hotCity', 'area_id', that);
-      break;
-    default:
-      console.log('tagCheck()出错了')
-  }
-}
-function itemCheck(e, str, itemIdStr, that) {
+  let str = e.currentTarget.dataset.str;
+  let itemIdStr = e.currentTarget.dataset.itemidstr;
   let SearchInit = that.data.SearchInit;
   let itemStr = str;
   let itemArrStr = str + 'Arr';
@@ -149,6 +199,7 @@ function itemCheck(e, str, itemIdStr, that) {
   let itemArr = SearchInit[itemArrStr];
   let target = e.currentTarget.dataset.item;
   let index = e.currentTarget.dataset.index;
+  // console.log(item, itemArr, target, index)
   if (target.check == false) {
     if (itemArr.length < 5) {
       item[index].check = true;
@@ -307,12 +358,13 @@ function searchSth(that, str) {
 
 export {
   data,
+  reInitSearch,
   move,
   getOffset,
   initData,
   initItem,
   tagsCheck,
-  itemCheck,
+  // itemCheck,
   reset,
   allReset,
   itemReset,

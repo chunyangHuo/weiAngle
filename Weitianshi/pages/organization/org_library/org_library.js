@@ -20,7 +20,6 @@ Page({
       url: url_common + '/api/investment/list',
       data: {}
     }).then(res => {
-      console.log(res)
       wx.hideLoading()
       let investormentList = res.data.data;
       let investment_list = investormentList.investment_list;
@@ -29,6 +28,16 @@ Page({
         investment_list: investment_list
       })
       wx.hideLoading();
+    })
+
+    //更改搜索模块初始化设置
+    SearchModel.reInitSearch(that, {
+      tab: [
+        { name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false },
+        { name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_name', longCheckBox: false },
+        { name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
+        { name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false }
+      ],
     })
   },
 
@@ -55,7 +64,9 @@ Page({
     let id = e.currentTarget.dataset.id;
 
   },
+
   // --------------------------筛选搜索--------------------------------------------------
+  
   // 下拉框
   move(e) {
     let that = this;
@@ -73,23 +84,15 @@ Page({
   },
   // 标签选择
   tagsCheck(e) {
-    let that = this;
-    SearchModel.tagsCheck(e, that)
-  },
-  // 筛选删除
-  deleteLabel() {
-    let id = e.currrentTarget.dataset.id;
-    console.log(id)
+    SearchModel.tagsCheck(e, this)
   },
   // 筛选重置
   reset() {
-    let that = this;
-    SearchModel.reset(that)
+    SearchModel.reset(this)
   },
   // 筛选全部重置
   allReset() {
-    let that = this;
-    SearchModel.allReset(that)
+    SearchModel.allReset(this)
   },
   // 筛选确定
   searchCertain() {
@@ -121,7 +124,7 @@ Page({
     let that = this;
     SearchModel.modal(that)
   },
-  //搜索
+  // 搜索
   searchSth() {
     let that = this;
     let str;
