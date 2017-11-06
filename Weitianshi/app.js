@@ -78,53 +78,54 @@ App({
       }
     });
 
-    function dealLabel(variable,str) {
+    function dealLabel(variable, str) {
       variable.forEach(x => {
         x.check = false;
       })
       console.log(str, variable)
+      wx.setStorageSync(str, variable)
     }
 
-    function dealLabelChild(variable,str) {
+    function dealLabelChild(variable, str) {
       variable.forEach(x => {
-        console.log(x)
-        console.log(x.child)
         x.child.forEach(y => {
           y.check = false;
         })
       })
+      console.log(str, variable)
+      wx.setStorageSync(str, variable)
     }
 
     //获取新一代标签并存入缓存 
-     this.httpPost({
+    this.httpPost({
       url: url_common + '/api/investment/industrylist',
       data: {}
     }).then(res => {
       let label_industry = res.data.data.industry_list;
-      // dealLabelChild(newIndustry);
-      console.log('label_industry', label_industry)
+      dealLabelChild( label_industry, 'label_industry');
+ 
       this.httpPost({
-        url: url_common + '/api/investment/arealist',
-        data: {}
-      }).then(res => {
-        let label_area = res.data.data.area_list;
-        dealLabel(label_area,'label_area');
-        this.httpPost({
-          url: url_common + '/api/investment/stylelist',
-          data:{}
-        }).then(res=>{
-          let label_style=res.data.data.style_list;
-          dealLabel(label_style,'label_style')
+          url: url_common + '/api/investment/arealist',
+          data: {}
+        }).then(res => {
+          let label_area = res.data.data.area_list;
+          dealLabel(label_area, 'label_area');
           this.httpPost({
-            url: url_common +'/api/investment/typelist',
-            data:{}
-          }).then(res=>{
-            let label_type = res.data.data.type_list;
-            dealLabel(label_type, 'label_type')
+            url: url_common + '/api/investment/stylelist',
+            data: {}
+          }).then(res => {
+            let label_style = res.data.data.style_list;
+            dealLabel(label_style, 'label_style')
+            this.httpPost({
+              url: url_common + '/api/investment/typelist',
+              data: {}
+            }).then(res => {
+              let label_type = res.data.data.type_list;
+              dealLabel(label_type, 'label_type')
+            })
           })
         })
-      })
-    }) 
+    })
   },
   onError(msg) {
     console.log(msg)
@@ -523,17 +524,17 @@ App({
     }
   },
   //展开
-  allPoint: function (that,i,n=7) {
-    if(i==0){
+  allPoint: function (that, i, n = 7) {
+    if (i == 0) {
       let checkedArr = {};
-      for(let x=0;x<n;x++){
-        let str1='ischecked'+x;
-        checkedArr[str1]=true;
+      for (let x = 0; x < n; x++) {
+        let str1 = 'ischecked' + x;
+        checkedArr[str1] = true;
       }
       that.setData({
-        checkedArr:checkedArr
+        checkedArr: checkedArr
       })
-    }else{
+    } else {
       let checkedArr = that.data.checkedArr;
       for (let x = 0; x < n; x++) {
         let str1 = 'ischecked' + x;

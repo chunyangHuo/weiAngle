@@ -877,10 +877,6 @@
     <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
     <!--下拉框  -->
     <view class='dropDown withAnimate'>
-      <!-- <view class='dropTitle' wx:if='{{SearchInit.currentIndex==0}}'>项目领域</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==1}}'>融资轮次</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==2}}'>期望融资</view>
-      <view class='dropTitle' wx:if='{{SearchInit.currentIndex==3}}'>项目地区</view> -->
       <!--多选框  -->
       <view class='flex dropFlex'>
         <!--领域  -->
@@ -914,6 +910,33 @@
         <button bindtap='searchCertain'>确定</button>
       </view>
     </view>
+  </view>
+</template>
+
+<!--筛选结果展示横列(单个)  -->
+<template name='searchResult_single'>
+  <view class='resultType flex'>
+    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}'>
+      <view class='label flex' style='min-width:{{item[typeName].length*24+40}}rpx' hidden='{{item.check==false}}'>
+        <view>{{item[typeName]}}</view>
+        <image src='/img/delete.png' data-id='{{item[typeId]}}' bindtap='deleteLabel'></image>
+      </view>
+    </block>
+  </view>
+</template>
+
+<!--筛选结果展示横列(全部)  -->
+<template name='searchResult'>
+  <view id='searchModel2' class='searchList flex'>
+    <scroll-view class='scroll flex' scroll-x='true'>
+      <view class='flex'>
+        <template is='searchResult_single' data='{{SearchInit,type:"industry",typeName:"industry_name",typeId:"industry_id"}}'></template>
+        <template is='searchResult_single' data='{{SearchInit,type:"stage",typeName:"stage_name",typeId:"stage_id"}}'></template>
+        <template is='searchResult_single' data='{{SearchInit,type:"scale",typeName:"scale_money",typeId:"scale_id"}}'></template>
+        <template is='searchResult_single' data='{{SearchInit,type:"hotCity",typeName:"area_title",typeId:"area_id"}}'></template>
+      </view>
+    </scroll-view>
+    <view class='allReset' bindtap='allReset'>清空</view>
   </view>
 </template>
 
@@ -1196,7 +1219,7 @@
         <view class="flex memberInfoTop">
           <view class="memberName">{{item.member_name}}</view>
           <view class="memberTitle" wx:if="{{item.is_former == 0}}">在职</view>
-          <view class="memberTitle" wx:if="{{item.is_former == 1}}">离职</view>
+          <view class="memberTitleLeave" wx:if="{{item.is_former == 1}}">离职</view>
         </view>
         <view class="flex memberCompany" wx:if="{{item.investment_name || item.member_position}}">
           <label>{{item.investment_name}}</label> ·

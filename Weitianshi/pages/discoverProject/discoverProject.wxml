@@ -5,34 +5,7 @@
 </view>
 <!--筛选和搜索  -->
 <template is='search' data='{{SearchInit}}'></template>
-<view id='searchModel2' class='searchList flex'>
-  <scroll-view class='scroll' scroll-x='true'>
-    <view class='search_industry flex'>
-      <block wx:for='{{SearchInit.industry}}' wx:key='{{SearchInit.industry}}'>
-        <view class='label flex' style='min-width:{{item.industry_name.length*24+40}}rpx' hidden='{{item.check==false}}' >
-          <view>{{item.industry_name}}</view>
-          <image src='/img/delete.png' data-id='{{item.industry_id}}' bindtap='deleteLabel'></image>
-        </view>
-      </block>
-    </view>
-    <view class='search_stage flex'>
-      <block wx:for='{{SearchInit.stage}}' wx:key='{{SearchInit.stage}}'>
-        <view hidden='{{item.check==false}}'>{{item.stage_name}}</view>
-      </block>
-    </view>
-    <view class='search_scale flex'>
-      <block wx:for='{{SearchInit.scale}}' wx:key='{{SearchInit.scale}}'>
-        <view hidden='{{item.check==false}}'>{{item.scale_money}}</view>
-      </block>
-    </view>
-    <view class='search_hotCity flex'>
-      <block wx:for='{{SearchInit.hotCity}}' wx:key='{{SearchInit.hotCity}}'>
-        <view hidden='{{item.check==false}}'>{{item.area_title}}</view>
-      </block>
-    </view>
-  </scroll-view>
-  <view class='allReset' bindtap='allReset'>清空</view>
-</view>
+<template is='searchResult' data='{{SearchInit}}'></template>
 <!--项目展示列表  -->
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:865rpx" bindchange="bindChange">
   <!--模态层  -->
