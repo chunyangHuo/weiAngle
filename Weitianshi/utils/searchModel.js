@@ -46,9 +46,11 @@ function reInitSearch(that, data) {
     throw Error('reInitSearch的第二个参数类型必须为对象');
     return
   }
-  for (let [key, value] of data) {
-    SearchInit[key] = value;
+  console.log(Object.keys(data))
+  for (let key in data) {
+    SearchInit[key] = data[key];
   }
+  console.log(SearchInit)
   that.setData({
     SearchInit: SearchInit
   })
