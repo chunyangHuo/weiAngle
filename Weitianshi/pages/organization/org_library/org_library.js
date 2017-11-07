@@ -22,7 +22,7 @@ Page({
     }).then(res => {
       wx.hideLoading()
       let investormentList = res.data.data;
-      let investment_list = investormentList.investment_list;
+      let investment_list = investormentList.investment_list.list;
       that.setData({
         investormentList: investormentList,
         investment_list: investment_list
@@ -42,23 +42,45 @@ Page({
   },
 
   onShow: function () {
-
+    this.setData({
+      requestCheck: true,
+      currentPage: 1,
+      page_end: false
+    })
   },
   // 上拉加载
   loadMore: function () {
     console.log("loadMore")
     let that = this;
-    let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
-    let currentTab = this.data.currentTab;
+    let investment_list = this.data.investment_list;
     var request = {
       url: url_common + '/api/investment/list',
       data: {
+        page: currentPage
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "investment_list")
+    app.loadMore2(that, request, res => {
+      let investment_list_new = res.data.data.investment_list.list
+      let page_end = res.data.data.investment_list.page_end;
+      if (investment_list) {
+        investment_list = investment_list.concat(investment_list_new)
+        currentPage++;
+        that.setData({
+          investment_list: investment_list,
+          page_end: page_end,
+          requestCheck: true
+        })
+        console.log(investment_list)
+      }
+      if (page_end == true) {
+        app.errorHide(that, '没有更多了', 3000)
+      }
+    })
+    console.log(investment_list)
   },
+
   //跳转机构详情
   institutionalDetails: function (e) {
     let id = e.currentTarget.dataset.id;
@@ -66,7 +88,7 @@ Page({
   },
 
   // --------------------------筛选搜索--------------------------------------------------
-  
+
   // 下拉框
   move(e) {
     let that = this;
@@ -138,7 +160,7 @@ Page({
   //机构详情跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
-    app.href('/pages/organization/org_detail/org_detail?id=' + id)
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
   },
 
   onShareAppMessage: function () {

@@ -1,4 +1,5 @@
 /*投资案例样式  */
+
 #invest {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
   padding-top: 42rpx;
@@ -150,7 +151,6 @@
 #investment .investGroupLeft {
   height: 104rpx;
   width: 104rpx;
-  background: blueviolet;
   margin-right: 24rpx;
 }
 
@@ -323,12 +323,17 @@
   background: #fafafa;
   border-radius: 4rpx;
   width: 510rpx;
-  height: 64rpx;
   font-size: 24rpx;
   color: #999;
-  line-height: 32rpx;
   text-align: left;
   padding: 20rpx 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: auto;
+  line-height: 46rpx;
 }
 
 #memberList .memberTitleLeave {
@@ -401,8 +406,9 @@
   background: #fff;
   padding: 32rpx;
 }
-#memberList1{
-   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
+
+#memberList1 {
+  /* padding: 42rpx 32rpx -2rpx 32rpx;  */
   padding-top: 42rpx;
   /* padding-left: 32rpx;
   padding-right: 32rpx; */
@@ -410,6 +416,7 @@
   margin: 0 auto;
   width: 92%;
 }
+
 #memberList1:last-child {
   border-bottom: 0;
 }
@@ -520,13 +527,18 @@
   border-radius: 4rpx;
   width: 88%;
   /* margin: 0 auto; */
-  height: 64rpx;
   font-size: 24rpx;
   color: #999;
-  line-height: 32rpx;
   text-align: left;
   padding: 20rpx 24rpx;
   margin-bottom: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: auto;
+  line-height: 46rpx;
 }
 
 /*投资机构  */

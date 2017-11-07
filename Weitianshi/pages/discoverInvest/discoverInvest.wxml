@@ -24,7 +24,7 @@
       <view class="outStyleBox">
         <view class="blockTitle">投资风格</view>
         <view class="blockIntro">*机器人Angel深度挖掘机构投资风格</view>
-        <view class="flex">
+        <view class="flex investmentListBox">
           <block wx:for="{{investormentList.style_list}}" wx:key="{{index}}">
             <view class="investStyleBlock">
               <view class="investStyleTitle">{{item.style_name}}</view>

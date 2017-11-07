@@ -383,11 +383,9 @@ App({
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)
   /* 初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页) */
   loadMore(that, request, str, dataStr) {
-
     let user_id = wx.getStorageSync("user_id");
     let dataSum = that.data[str];
     if (that.data.requestCheck) {
-      console.log(1111)
       if (that.data.page_end == false) {
         wx.showToast({
           title: 'loading...',

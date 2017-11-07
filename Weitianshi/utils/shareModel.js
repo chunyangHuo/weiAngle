@@ -242,5 +242,6 @@ export {
   activtyShare,
   topPlayerShare,
   warbandMemberShare,
+  projectListShare
 }
 
