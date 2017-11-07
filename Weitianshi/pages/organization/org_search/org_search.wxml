@@ -16,17 +16,19 @@
     <scroll-view style="height:100%;" scroll-y="true">
       <view class="outStyleBox" id="investment" wx:if="{{investment_list.length != 0}}">
         <view class="blockTitle">投资机构</view>
-        <template is="investment" data="{{investment_list}}"></template>
+        <template is="investment" data="{{investment_list,currentTab,index}}"></template>
+         <view class="more" wx:if="{{searchData.investment_list.length >= 6}}" bindtap="investment">更多</view> 
       </view>
       <view class="outStyleBox" id="memberList" wx:if="{{industry_list.length != 0}}">
         <view class="blockTitle">投资领域</view>
         <block wx:for="{{industry_list}}" wx:key="{{index}}">
-          <template is="industry" data="{{item}}"></template>
+          <template is="industry" data="{{item,currentTab,index}}"></template>
         </block>
+           <view class="classname" wx:if="{{searchData.industry_list.length >= 6}}" bindtap="toMember">更多</view>
       </view>
       <view class="outStyleBox" id="memberList" wx:if="{{memberList.length != 0}}">
         <view class="blockTitle">成员</view>
-        <template is="memberList" data="{{memberList}}"></template>
+        <template is="memberList" data="{{memberList,currentTab,index}}"></template>
       </view>
       <view class="hasNothing" wx:if="{{investment_list.length ==0 &&industry_list.length == 0 && memberList.length==0}}">暂无数据</view>
     </scroll-view>
@@ -38,7 +40,6 @@
         <template is="investment" data="{{investment_list}}"></template>
       </view>
       <view class="hasNothing" wx:if="{{investment_list.length ==0}}">暂无数据</view>
-
     </scroll-view>
   </swiper-item>
   <swiper-item data-current='2'>

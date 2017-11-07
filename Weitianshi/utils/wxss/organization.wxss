@@ -152,7 +152,6 @@
 #investment .investGroupLeft {
   height: 104rpx;
   width: 104rpx;
-  background: blueviolet;
   margin-right: 24rpx;
 }
 
@@ -334,9 +333,15 @@
   /* height: 64rpx; */
   font-size: 24rpx;
   color: #999;
-  line-height: 32rpx;
   text-align: left;
   padding: 20rpx 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: auto;
+  line-height: 46rpx;
 }
 
 #memberList .memberTitleLeave {
@@ -542,13 +547,20 @@
   background: #fafafa;
   border-radius: 4rpx;
   width: 88%;
-  /* margin: 0 auto; *//* height: 64rpx; */
+  /* margin: 0 auto; */
+  /* height: 64rpx; */
   font-size: 24rpx;
   color: #999;
-  line-height: 32rpx;
   text-align: left;
   padding: 20rpx 24rpx;
   margin-bottom: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: auto;
+  line-height: 46rpx;
 }
 
 /*投资机构  */

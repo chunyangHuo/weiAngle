@@ -1,15 +1,15 @@
 <import src="/pages/Template/Template.wxml" />
 <!--筛选和搜索  -->
- <template is='search' data='{{SearchInit,currentTab}}'></template> 
- <template is='searchResult' data='{{SearchInit}}'></template>
+<template is='search' data='{{SearchInit,currentTab}}'></template>
+<template is='searchResult' data='{{SearchInit}}'></template>
 <view class="topPic" bindtap="guideHelp">
-   <image src="{{imgUrls}}" class="topPic"></image> 
+  <image src="{{imgUrls}}" class="topPic"></image>
 </view>
 <!--投资机构  -->
-<scroll-view scroll-y="true" bindscrolltolower='loadMore' scroll-top="{{scroll}}" style="height:1254rpx"  >
+<scroll-view scroll-y="true" bindscrolltolower='loadMore' scroll-top="{{scroll}}" style="height:732rpx"  >
   <view class="outStyleBox" id="investment">
     <template is="investment" data="{{investment_list}}"></template>
-  </view> 
+  </view>
 </scroll-view>
 
 <!--错误提示-->
