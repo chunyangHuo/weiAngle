@@ -6,34 +6,17 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     longMore: false,
     listMore: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     this.setData({
       investment_id: options.investment_id,
     });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     let that = this;
     app.allPoint(that, 0);
@@ -47,11 +30,12 @@ Page({
   // 详情信息获取
   orgDetail() {
     var that = this;
+    let investment_id = this.data.investment_id;
 
     wx.request({
       url: url_common + '/api/investment/info',
       data: {
-
+        investment_id: investment_id
       },
       method: 'POST',
       success: function (res) {

@@ -243,7 +243,9 @@
   text-align: left;
   margin-bottom: 40rpx;
 }
-
+.investmentListBox{
+  flex-wrap: wrap;
+}
 .investStyleBlock {
   background: #fff;
   box-shadow: 0 0 12rpx 0 rgba(64, 88, 122, 0.10);
@@ -251,7 +253,7 @@
   width: 220rpx;
   height: 152rpx;
   margin-bottom: 16rpx;
-  margin-right: 12rpx;
+  margin-right: 9rpx;
 }
 
 .investStyleTitle {
