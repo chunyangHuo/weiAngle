@@ -95,7 +95,7 @@
     </view>
   </view>
   <!--基金管理方  -->
-  <view class="media1" wx:if="{{info.manage_fund_list}}">
+  <view class="media1" wx:if="{{info.manage_fund_list.length!=0}}">
     <view class="inMedia investBottom">
       <view class="industry investBottom flex">基金管理方</view>
       <block wx:for="{{info.manage_fund_list}}" wx:key="{{index}}" wx:if="{{index<2 ||industrialChangeMore == 5}}">
@@ -124,7 +124,7 @@
       <view class="case ">媒体</view>
       <view class="caseAll " bindtap='toMedia'>
         <view class="caseIn"> 全部</view>
-        <view class="caseIn caseLeft">({{media_list.media_total_num}})</view>
+        <view class="caseIn caseLeft">({{media_list.news_total_num}})</view>
       </view>
     </view>
     <block wx:for="{{media_list.list}}" wx:key="{{media_list.list}}">

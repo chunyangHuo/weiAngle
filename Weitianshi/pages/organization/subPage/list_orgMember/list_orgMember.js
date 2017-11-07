@@ -16,7 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      investment_id: options.investment_id,
+    });
   },
 
   /**
@@ -47,13 +49,15 @@ Page({
     let request = {
       url: url_common + '/api/investment/members',
       data: {
-        page: this.data.currentPage
+        page: this.data.currentPage,
+        investment_id: this.data.investment_id,
+         is_former:0
       },
     }
     app.loadMore2(that, request, res => {
       console.log("在职成员", res)
       let newPage = res.data.data;
-      let list = res.data.data.memberlist;
+      let list = res.data.data.member_list;
       let page_end = res.data.data.page_end;
       if (list) {
         let newProject = memberList.concat(list)

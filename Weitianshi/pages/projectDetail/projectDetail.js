@@ -1195,4 +1195,9 @@ Page({
   //     url: "/pages/remark/remarkList/remarkList",
   //   })
   // }
+  // 机构版买家图谱跳转
+  toMap: function () {
+    var that = this;
+    app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
+  }
 }) 

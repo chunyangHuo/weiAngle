@@ -16,7 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      investment_id: options.investment_id,
+    });
   },
 
   /**
@@ -47,14 +49,14 @@ Page({
     let request = {
       url: url_common + '/api/investment/medias',
       data: {
-        investment_id:1,
-        page: this.data.currentPage
+        page: this.data.currentPage,
+        investment_id: this.data.investment_id
       },
     }
     app.loadMore2(that, request, res => {
       console.log("媒体新闻", res)
       let newPage = res.data.data;
-      let list = res.data.data.media_list;
+      let list = res.data.data.news_list;
       let page_end = res.data.data.page_end;
       if (list) {
         let newProject = media_list.concat(list)

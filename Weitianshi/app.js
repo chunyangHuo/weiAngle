@@ -387,7 +387,7 @@ App({
     let user_id = wx.getStorageSync("user_id");
     let dataSum = that.data[str];
     if (that.data.requestCheck) {
-      console.log(1111)
+      console.log("loadMore1")
       if (that.data.page_end == false) {
         wx.showToast({
           title: 'loading...',
