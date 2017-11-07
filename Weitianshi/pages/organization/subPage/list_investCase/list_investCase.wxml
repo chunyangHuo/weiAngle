@@ -1,18 +1,20 @@
 <!--pages/organization/subPage/list_investCase/list_investCase.wxml-->
 <import src="/pages/Template/Template.wxml" />
-<view>
-  <view class="investImg">
+
+ <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+   <view class="investImg">
     <image src="{{newPage.investment_event_url}}"></image>
-  </view>
+  </view>  
   <!--循环投资案例  -->
-  <scroll-view wx:if="{{project_list.length != 0}}" style='heigt:90%;' scroll-y='true' bindscrolltolower='loadMore'>
+  <view>
     <view class="media">
       <block wx:for="{{project_list}}" wx:key="{{project_list}}">
         <template is='invest' data='{{item}}'></template>
       </block>
     </view>
-  </scroll-view>
+  </view>
+  
   <!--错误提示-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
-</view>
+</scroll-view> 

@@ -16,7 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      investment_id: options.investment_id,
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -48,7 +50,8 @@ Page({
     let request = {
       url: url_common + '/api/investment/events',
       data: {
-        page: this.data.currentPage
+        page: this.data.currentPage,
+        investment_id: this.data.investment_id
       },
     }
     app.loadMore2(that, request, res => {

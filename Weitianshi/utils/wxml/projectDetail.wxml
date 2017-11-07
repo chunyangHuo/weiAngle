@@ -146,6 +146,7 @@
       <image class="lock" src="/img/img-suo2@2x.png"></image>
       <image src="/img/img-bg@2x(2).png" class="lockBackground"> </image>
     </view>
+
   </view>
 </view>
 
@@ -183,7 +184,7 @@
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox">
+<view class=" flex floatBtn flexBox" hidden="{{currentTab==1}}" >
   <view class="collectBox" bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
@@ -193,7 +194,9 @@
   <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
   <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>
 </view>
-
+<view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}">
+     机构版买家图谱
+</view>
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">
     <image src="/img/icon-guanbi@2x.png" class="close"></image>

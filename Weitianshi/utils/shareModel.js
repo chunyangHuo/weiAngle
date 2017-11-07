@@ -65,11 +65,18 @@ function projectListShare() {
     path: '/pages/organization/org_library/org_library'
   }
 }
-
+// 机构详情分享
 function orgDetail(){
   return{
     title:'机构详情',
     path:'/pages/organization/org_detail/org_detail'
+  }
+}
+// 机构版买家图谱分享
+function match1() {
+  return {
+    title: '机构版买家图谱',
+    path: '/pages/organization/subPage/project_orgMatch/project_orgMatch'
   }
 }
 //个人店铺分享
@@ -229,6 +236,8 @@ function shareLog(path) {
 /* --------------------------------------------------------------------- */
 
 export {
+  match1,
+  orgDetail,
   myCardShare,
   discoverInvestShare,
   discoverProjectShare,
