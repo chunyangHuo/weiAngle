@@ -44,8 +44,8 @@
   left: 0;
   background: white;
   z-index: 9999;
-  padding-bottom: 48rpx;
   padding-top: 20rpx;
+  width: 100%;
 }
 
 #searchModel .dropTitle {
@@ -150,4 +150,43 @@
   font-size: 24rpx;
   color: #009eff;
   line-height: 112rpx;
+}
+
+
+
+/*--------------------------------联动版下拉框-----------------------------------------------------------  */
+#linkedDrop {
+  width: 100%
+}
+
+#linkedDrop scroll-view {
+  height: 100%;
+}
+
+#linkedDrop .frame_province {
+  width: 33.3%;
+  background: #f2f2f2;
+}
+
+#linkedDrop .frame_city {
+  width: 66.7%;
+}
+
+#linkedDrop .province, .city {
+  text-align: center;
+  justify-content: center;
+  color: #666;
+  font-size: 26rpx;
+  position: relative;
+}
+
+#linkedDrop .checkOn {
+  background: white;
+}
+#linkedDrop .gouhao{
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 50rpx;
+  top: 20rpx;
 }
