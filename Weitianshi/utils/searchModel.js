@@ -4,20 +4,22 @@ var url_common = app.globalData.url_common;
 let data = {
   firstTime: true,
   tab: [
-    { name: '领域', label: 'industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false },
-    { name: '轮次', label: "stage", itemId: 'stage_id', itemName: 'stage_name', longCheckBox: false },
-    { name: '金额', label: "scale", itemId: 'scale_id', itemName: 'scale_money', longCheckBox: true },
-    { name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false }
+    { type: 1, name: '领域', label: 'industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false },
+    { type: 1, name: '轮次', label: "stage", itemId: 'stage_id', itemName: 'stage_name', longCheckBox: false },
+    { type: 1, name: '金额', label: "scale", itemId: 'scale_id', itemName: 'scale_money', longCheckBox: true },
+    { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false }
   ],
-  currentIndex: 5,
-  industryArr: [],
-  stageArr: [],
-  scaleArr: [],
-  hotCityArr: [],
-  label_industryArr: [],
-  label_areaArr: [],
-  label_style: [],
-  label_type: [],
+  labelToId: {
+    'industry': 'industry_id',
+    'stage': 'stage_id',
+    'scale': 'scale_id',
+    'hotCity': 'area_id',
+    'label_industry': 'industry_id',
+    'label_area': 'area_id',
+    'label_style': 'style_id',
+    'label_type': 'type_id'
+  },
+  currentIndex: 99,
   searchData: {
     industry: [],
     stage: [],
@@ -29,6 +31,14 @@ let data = {
     label_type: [],
     search: "",
   },
+  industryArr: [],
+  stageArr: [],
+  scaleArr: [],
+  hotCityArr: [],
+  label_industryArr: [],
+  label_areaArr: [],
+  label_styleArr: [],
+  label_typeArr: [],
   industry: wx.getStorageSync('industry'),
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
@@ -60,8 +70,8 @@ function move(e, that) {
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
   let currentIndex = SearchInit.currentIndex;
+  // 清除未保存的选中标签
   this.initData(that);
-  //如果无industry之类没缓存获取各分类的信息并存入缓存
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
     that.setData({
@@ -69,7 +79,7 @@ function move(e, that) {
     })
     this.getOffset(that);
   } else {
-    SearchInit.currentIndex = 5;
+    SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
@@ -88,16 +98,16 @@ function getOffset(that) {
   }).exec()
 }
 // 初始化所有check值
-function initData(that, showLabel) {
+function initData(that) {
   let SearchInit = that.data.SearchInit;
   let tab = SearchInit.tab;
   tab.forEach(x => {
-    this.initItem(x.label, that)
+    this.initItem(x.label, that, SearchInit)
   })
 }
 // 初始化某项check值(辅助函数)
-function initItem(str, that) {
-  let SearchInit = that.data.SearchInit;
+function initItem(str, that, SearchInit) {
+  // let SearchInit = that.data.SearchInit;
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = SearchInit[itemStr];
@@ -105,34 +115,9 @@ function initItem(str, that) {
   let searchData = SearchInit.searchData;
   let itemIdStr = '';
   let tab = SearchInit.tab;
-  switch (itemStr) {
-    case 'industry':
-      itemIdStr = 'industry_id'
-      break;
-    case 'stage':
-      itemIdStr = 'stage_id'
-      break;
-    case 'scale':
-      itemIdStr = 'scale_id'
-      break;
-    case 'hotCity':
-      itemIdStr = 'area_id'
-      break;
-    case 'label_industry':
-      itemIdStr = 'industry_id'
-      break;
-    case 'label_area':
-      itemIdStr = 'area_id'
-      break;
-    case 'label_style':
-      itemIdStr = 'style_id'
-      break;
-    case 'label_type':
-      itemIdStr = 'type_id'
-      break;
-    default:
-      console.log('initItem()出了问题')
-  }
+
+  // console.log(str,item)
+  itemIdStr = SearchInit.labelToId[itemStr]
   itemArr = [];
   if (item) {
     item.forEach(x => {
@@ -143,52 +128,48 @@ function initItem(str, that) {
       }
     })
   }
-
-  tab.forEach(x => {
-    if (x.id == itemStr) {
-      if (itemArr.length > 0) {
-        x.arr = true;
-      } else {
-        x.arr = false;
-      }
-    }
-  })
+  SearchInit[itemStr] = item;
+  SearchInit[itemArrStr] = itemArr;
+  // console.log(SearchInit)
   that.setData({
     SearchInit: SearchInit,
   })
 }
+// 选择一级标签
+function firstLinkCheck(e, that) {
+  let SearchInit = that.data.SearchInit;
+  let label = e.currentTarget.dataset.label; // 联动标签在tab中的label名
+  let tabIndex = e.currentTarget.dataset.tabindex; //联动标签在tab中的index
+  let firstIndex = e.currentTarget.dataset.firstindex;  //点击的一级标签的index
+  let tab = SearchInit.tab;
+
+  //一级标签背景变色
+  SearchInit[label].forEach(x => {
+    x.check = false;
+  })
+  SearchInit[label][firstIndex].check = true;
+
+  tab[tabIndex].page = firstIndex;
+  that.setData({
+    SearchInit: SearchInit
+  })
+}
+// 联动标签选择全部
+function linkCheckAll(e, that) {
+  let SearchInit = that.data.SearchInit;
+  let label = e.currentTarget.dataset.label;
+  let firstLink = e.currentTarget.firstindex;
+  let page = e.currentTarget.dataset.page;
+  SearchInit[label][page].child.forEach(x => {
+    x.check = true;
+  })
+  that.setData({
+    SearchInit: SearchInit
+  })
+}
+
+
 // 标签选择
-// function tagsCheck(e, that) {
-//   let currentIndex = that.data.SearchInit.currentIndex;
-//   switch (currentIndex) {
-//     case 0:
-//       this.itemCheck(e, 'industry', 'industry_id', that);
-//       break;
-//     case 1:
-//       this.itemCheck(e, 'stage', 'stage_id', that);
-//       break;
-//     case 2:
-//       this.itemCheck(e, 'scale', 'scale_id', that);
-//       break;
-//     case 3:
-//       this.itemCheck(e, 'hotCity', 'area_id', that);
-//       break;
-//     case 4:
-//       this.itemCheck(e, 'label_industry', 'industry_id', that);
-//       break;
-//     case 5:
-//       this.itemCheck(e, 'label_area', 'area_id', that);
-//       break;
-//     case 6:
-//       this.itemCheck(e, 'label_style', 'style_id', that);
-//       break;
-//     case 7:
-//       this.itemCheck(e, 'label_type', 'type_id', that);
-//       break;
-//     default:
-//       console.log('tagCheck()出错了')
-//   }
-// }
 function tagsCheck(e, that) {
   let str = e.currentTarget.dataset.str;
   let itemIdStr = e.currentTarget.dataset.itemidstr;
@@ -199,7 +180,7 @@ function tagsCheck(e, that) {
   let itemArr = SearchInit[itemArrStr];
   let target = e.currentTarget.dataset.item;
   let index = e.currentTarget.dataset.index;
-  // console.log(item, itemArr, target, index)
+  console.log(SearchInit[itemStr])
   if (target.check == false) {
     if (itemArr.length < 5) {
       item[index].check = true;
@@ -222,33 +203,16 @@ function tagsCheck(e, that) {
 // 筛选重置
 function reset(that) {
   let currentIndex = that.data.SearchInit.currentIndex;
-  switch (currentIndex) {
-    case 0:
-      this.itemReset('industry', that)
-      break;
-    case 1:
-      this.itemReset('stage', that)
-      break;
-    case 2:
-      this.itemReset('scale', that)
-      break;
-    case 3:
-      this.itemReset('hotCity', that)
-      break;
-    default:
-      {
-        this.itemReset('industry', that);
-        this.itemReset('stage', that);
-        this.itemReset('scale', that);
-        this.itemReset('hotCity', that)
-      }
-  }
+  let SearchInit = that.data.SearchInit;
+  let str = SearchInit.tab[currentIndex].label;
+  this.itemReset(str, that)
 }
 function allReset(that) {
-  this.itemReset('industry', that);
-  this.itemReset('stage', that);
-  this.itemReset('scale', that);
-  this.itemReset('hotCity', that);
+  let SearchInit = that.data.SearchInit;
+  let tab = SearchInit.tab;
+  tab.forEach(x => {
+    this.itemReset(x.label, that)
+  })
 }
 function itemReset(str, that) {
   let SearchInit = that.data.SearchInit;
@@ -269,36 +233,30 @@ function itemReset(str, that) {
 // 筛选确定
 function searchCertain(that) {
   let SearchInit = that.data.SearchInit;
+  let tab = SearchInit.tab;
   let currentIndex = that.data.SearchInit.currentIndex;
   let searchData = that.data.SearchInit.searchData;
-  let newArr = [];
-  switch (currentIndex) {
-    case 0:
-      SearchInit.industryArr.forEach(x => {
-        newArr.push(x.industry_id)
+  // 区别是不是从展示列表进行删除的
+  if (currentIndex == 99) {
+    tab.forEach((x, index) => {
+      let newArr = [];
+      let label = x.label;
+      let itemArrStr = x.label + 'Arr';
+      let itemId = x.itemId;
+      SearchInit[itemArrStr].forEach(y => {
+        newArr.push(y[itemId])
       })
-      searchData.industry = newArr;
-      break;
-    case 1:
-      SearchInit.stageArr.forEach(x => {
-        newArr.push(x.stage_id)
-      })
-      searchData.stage = newArr;
-      break;
-    case 2:
-      SearchInit.scaleArr.forEach(x => {
-        newArr.push(x.scale_id)
-      })
-      searchData.scale = newArr;
-      break;
-    case 3:
-      SearchInit.hotCityArr.forEach(x => {
-        newArr.push(x.area_id)
-      })
-      searchData.hotCity = newArr;
-      break;
-    default:
-      console.log('searchCertain()出错了')
+      searchData[label] = newArr;
+    })
+  } else {
+    let newArr = [];
+    let label = tab[currentIndex].label;
+    let itemArrStr = tab[currentIndex].label + 'Arr';
+    let itemId = tab[currentIndex].itemId;
+    SearchInit[itemArrStr].forEach(x => {
+      newArr.push(x[itemId])
+    })
+    searchData[label] = newArr;
   }
   that.setData({
     SearchInit: SearchInit,
@@ -306,8 +264,12 @@ function searchCertain(that) {
     currentPage: 1,
     page_end: false
   })
-  console.log(that.data.SearchInit)
+  console.log(that.data.SearchInit.searchData)
 
+  SearchInit.currentIndex = 99;
+  that.setData({
+    SearchInit: SearchInit
+  })
   return searchData;
 
   //发送筛选请求
@@ -322,7 +284,7 @@ function searchCertain(that) {
       console.log(res)
       this.initData(that);
       let SerachInit = that.data.SearchInit;
-      SearchInit.currentInit = 5;
+      SearchInit.currentInit = 99;
       if (res.data.data.length == 0) {
         that.setData({
           SearchInit: SearchInit,
@@ -331,7 +293,7 @@ function searchCertain(that) {
         })
       } else {
         let SerachInit = that.data.SearchInit;
-        SearchInit.currentInit = 5;
+        SearchInit.currentInit = 99;
         that.setData({
           SearchInit: SearchInit,
           myProject: res.data.data
@@ -340,10 +302,18 @@ function searchCertain(that) {
     }
   });
 }
+// 展示标签删除
+function labelDelete(e, that) {
+  let SearchInit = that.data.SearchInit;
+  // console.log(SearchInit.label_type,SearchInit.label_typeArr,SearchInit.searchData)
+  this.tagsCheck(e, that);
+  this.searchCertain(that);
+  // console.log(SearchInit.label_type, SearchInit.label_typeArr, SearchInit.searchData)
+}
 // 点击modal层
 function modal(that) {
   let SearchInit = that.data.SearchInit;
-  SearchInit.currentIndex = 5;
+  SearchInit.currentIndex = 99;
   that.setData({
     SearchInit: SearchInit
   })
@@ -370,5 +340,8 @@ export {
   itemReset,
   searchCertain,
   modal,
-  searchSth
+  searchSth,
+  labelDelete,
+  firstLinkCheck,
+  linkCheckAll
 }

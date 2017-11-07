@@ -882,19 +882,20 @@
       <!--多选框  -->
       <view class='flex dropFlex'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
-          <template is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
-</block>
-</view>
-<!--重置确定  -->
-<view class='btnGroup flex' wx:if="{{SearchInit.currentIndex!=5}}">
-  <button bindtap='reset'>重置</button>
-  <button bindtap='searchCertain'>确定</button>
-</view>
-</view>
-</view>
+          <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
+          <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
+        </block>
+      </view>
+      <!--重置确定  -->
+      <view class='btnGroup flex' wx:if="{{SearchInit.currentIndex!=99}}">
+        <button bindtap='reset'>重置</button>
+        <button bindtap='searchCertain'>确定</button>
+      </view>
+    </view>
+  </view>
 </template>
 
-<!--筛选下拉框(单个)  -->
+<!--筛选下拉框(单个)  type1-->
 <template name='searchDropItem'>
   <block wx:for='{{SearchInit[label]}}' wx:for-item='item1' wx:for-index='index1' wx:key='item1[itemId]'>
     <view hidden='{{SearchInit.currentIndex!=index}}' class='checkbox {{item1.check==true?"checkOne":""}} {{longCheckBox==true?"longCheckBox":""}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
@@ -903,28 +904,55 @@
   </block>
 </template>
 
+<!--筛选下拉框(单个)  type2 -->
+<template name='searchDropItem2'>
+  <view id="linkedDrop" class="flex" hidden='{{SearchInit.currentIndex!=index}}'>
+    <!--一级标签  -->
+    <scroll-view scroll-y="true" class="frame_province">
+      <view>
+        <block wx:for="{{SearchInit[label]}}" wx:for-index='idx' wx:key="{{item[itemId]}}">
+          <view class="province" bindtap="firstLinkCheck" data-label='{{label}}' data-tabIndex='{{index}}' data-firstIndex="{{idx}}" data-id='{{item[itemId]}}' style="background:{{SearchInit[label][idx].check==1?'white':''}}">
+            {{item[itemName]}}
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <!--二级标签  -->
+    <scroll-view scroll-y="true" class="frame_city">
+      <view style='height:100%;'>
+        <view class="city" data-label='{{label}}' data-firstIndex='{{page}}' data-page='{{page}}' style="background:{{backgroundcity[idx2]==1?'#ccc':''}}" bindtap='linkCheckAll'>全部</view>
+        <block wx:for="{{SearchInit.label_industry[page].child}}" wx:for-item='item2' wx:for-index='idx2' wx:key="{{item2[itemId]}}">
+          <view class="city" bindtap="tagsCheck" data-firstIndex='{{page}}' data-secondIndex='{{idx2}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item2}}" data-index="{{idx2}}" wx:key="{{item2[itemId]}}" style="background:{{backgroundcity[idx2]==1?'#ccc':''}}">
+            {{page}} {{item2[itemName]}}
+            <image wx:if='{{item2.check == true}}' class='gouhao' src='/img/icon-gou@2x.png'></image>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</template>
+
 <!--筛选结果展示横列(全部)  -->
 <template name='searchResult'>
   <view id='searchModel2' class='searchList flex'>
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
-        <template is='searchResult_single' data='{{SearchInit,type:"industry",typeName:"industry_name",typeId:"industry_id"}}'></template>
-<template is='searchResult_single' data='{{SearchInit,type:"stage",typeName:"stage_name",typeId:"stage_id"}}'></template>
-<template is='searchResult_single' data='{{SearchInit,type:"scale",typeName:"scale_money",typeId:"scale_id"}}'></template>
-<template is='searchResult_single' data='{{SearchInit,type:"hotCity",typeName:"area_title",typeId:"area_id"}}'></template>
-</view>
-</scroll-view>
-<view class='allReset' bindtap='allReset'>清空</view>
-</view>
+        <block wx:for='{{SearchInit.tab}}' wx:key='{{item.itemId}}'>
+          <template is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId}}'></template>
+        </block>
+      </view>
+    </scroll-view>
+    <view class='allReset' bindtap='allReset'>清空</view>
+  </view>
 </template>
 
 <!--筛选结果展示横列(单个)  -->
 <template name='searchResult_single'>
   <view class='resultType flex'>
-    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}'>
-      <view class='label flex' style='min-width:{{item[typeName].length*24+40}}rpx' hidden='{{item.check==false}}'>
-        <view>{{item[typeName]}}</view>
-        <image src='/img/delete.png' data-str='{{type}}' data-itemIdStr='{{typeId}}'  data-item="{{item}}" data-index="{{index}}" bindtap='tagsCheck'></image>
+    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}' wx:for-item='item1' wx:for-index='index1'>
+      <view class='label flex' style='min-width:{{item1[typeName].length*24+40}}rpx' hidden='{{item1.check==false}}'>
+        <view>{{item1[typeName]}}</view>
+        <image src='/img/delete.png' data-str='{{type}}' data-itemIdStr='{{typeId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='labelDelete'></image>
       </view>
     </block>
   </view>
@@ -1213,7 +1241,7 @@
           <view class="memberTitleLeave" wx:if="{{item.is_former == 1}}">离职</view>
         </view>
         <view class="flex memberCompany" wx:if="{{item.investment_name || item.member_position}}">
-          <label>{{item.investment_name}}</label> 
+          <label>{{item.investment_name}}</label>
           <label wx:if="{{item.investment_name&&item.member_position}}">·</label>
           <label>{{item.member_position}}</label>
         </view>
@@ -1225,7 +1253,7 @@
 
 <!--详情中机构成员  -->
 <template name="memberList1">
-  <view id="memberList1" >
+  <view id="memberList1">
 
     <view class="memberInfo flex">
       <view class="memberInfoLeft">

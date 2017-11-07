@@ -78,6 +78,7 @@ App({
       }
     });
 
+    //非联动标签的check设置
     function dealLabel(variable, str) {
       variable.forEach(x => {
         x.check = false;
@@ -85,9 +86,10 @@ App({
       console.log(str, variable)
       wx.setStorageSync(str, variable)
     }
-
+    //联动标签的check设置
     function dealLabelChild(variable, str) {
       variable.forEach(x => {
+        x.check = false;
         x.child.forEach(y => {
           y.check = false;
         })
@@ -102,29 +104,29 @@ App({
       data: {}
     }).then(res => {
       let label_industry = res.data.data.industry_list;
-      dealLabelChild( label_industry, 'label_industry');
- 
+      dealLabelChild(label_industry, 'label_industry');
+
       this.httpPost({
-          url: url_common + '/api/investment/arealist',
+        url: url_common + '/api/investment/arealist',
+        data: {}
+      }).then(res => {
+        let label_area = res.data.data.area_list;
+        dealLabel(label_area, 'label_area');
+        this.httpPost({
+          url: url_common + '/api/investment/stylelist',
           data: {}
         }).then(res => {
-          let label_area = res.data.data.area_list;
-          dealLabel(label_area, 'label_area');
+          let label_style = res.data.data.style_list;
+          dealLabel(label_style, 'label_style')
           this.httpPost({
-            url: url_common + '/api/investment/stylelist',
+            url: url_common + '/api/investment/typelist',
             data: {}
           }).then(res => {
-            let label_style = res.data.data.style_list;
-            dealLabel(label_style, 'label_style')
-            this.httpPost({
-              url: url_common + '/api/investment/typelist',
-              data: {}
-            }).then(res => {
-              let label_type = res.data.data.type_list;
-              dealLabel(label_type, 'label_type')
-            })
+            let label_type = res.data.data.type_list;
+            dealLabel(label_type, 'label_type')
           })
         })
+      })
     })
   },
   onError(msg) {
