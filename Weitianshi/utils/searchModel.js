@@ -362,11 +362,11 @@ function detialItemSearch(label, itemId, that, callBack) {
       itemArr.push(x)
     }
   })
+  SearchInit.searchData = searchCertain(that);
   that.setData({
     SearchInit: SearchInit
   })
-  let searchData = searchCertain(that);
-  callBack(searchData);
+  callBack(SearchInit.searchData);
 }
 
 // 点击modal层
