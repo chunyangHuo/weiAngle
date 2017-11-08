@@ -38,7 +38,7 @@ Page({
         { type:2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page:'0'},
         { type: 1, name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
         { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
-        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false },
+        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: true },
       ],
     })
 

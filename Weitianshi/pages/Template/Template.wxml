@@ -924,7 +924,7 @@
         <block wx:for="{{SearchInit.label_industry[page].child}}" wx:for-item='item2' wx:for-index='idx2' wx:key="{{item2[itemId]}}">
           <!--page代表一级联动的index,idx2代表二级联动的index  -->
           <view class="city" bindtap="tagsCheck" data-firstIndex='{{page}}' data-secondIndex='{{idx2}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item2}}" data-index="{{idx2}}" wx:key="{{item2[itemId]}}" style="background:{{backgroundcity[idx2]==1?'#ccc':''}}">
-            {{page}} {{item2[itemName]}}
+            {{item2[itemName]}}
             <image wx:if='{{item2.check == true}}' class='gouhao' src='/img/icon-gou@2x.png'></image>
           </view>
         </block>
@@ -939,7 +939,7 @@
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.itemId}}'>
-          <template is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId,page:item.page}}'></template>
+          <template wx:if='{{item.type==1}}' is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId,page:item.page}}'></template>
         </block>
       </view>
     </scroll-view>

@@ -48,7 +48,7 @@ let data = {
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type')
 }
-
+// label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
     throw Error('labelToId的参数必须为字符串')
@@ -176,6 +176,7 @@ function linkCheckAll(e, that) {
   let label = e.currentTarget.dataset.label;
   let firstLink = e.currentTarget.firstindex;
   let page = e.currentTarget.dataset.page;
+  
   SearchInit[label][page].child.forEach(x => {
     x.check = true;
   })
@@ -201,6 +202,7 @@ function tagsCheck(e, that) {
   if (item[0].child) {
     let linkItem = item[firstIndex].child[secondIndex];
     if (linkItem.check == false) {
+      console.log(linkItem)
       linkItem.check = true;
       itemArr.push(linkItem)
     } else {
