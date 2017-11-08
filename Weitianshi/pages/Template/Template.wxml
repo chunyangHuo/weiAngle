@@ -922,6 +922,7 @@
       <view style='height:100%;'>
         <view class="city" data-label='{{label}}' data-firstIndex='{{page}}' data-page='{{page}}' style="background:{{backgroundcity[idx2]==1?'#ccc':''}}" bindtap='linkCheckAll'>全部</view>
         <block wx:for="{{SearchInit.label_industry[page].child}}" wx:for-item='item2' wx:for-index='idx2' wx:key="{{item2[itemId]}}">
+          <!--page代表一级联动的index,idx2代表二级联动的index  -->
           <view class="city" bindtap="tagsCheck" data-firstIndex='{{page}}' data-secondIndex='{{idx2}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item2}}" data-index="{{idx2}}" wx:key="{{item2[itemId]}}" style="background:{{backgroundcity[idx2]==1?'#ccc':''}}">
             {{page}} {{item2[itemName]}}
             <image wx:if='{{item2.check == true}}' class='gouhao' src='/img/icon-gou@2x.png'></image>
@@ -938,7 +939,7 @@
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.itemId}}'>
-          <template is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId}}'></template>
+          <template is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId,page:item.page}}'></template>
         </block>
       </view>
     </scroll-view>
@@ -952,7 +953,7 @@
     <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}' wx:for-item='item1' wx:for-index='index1'>
       <view class='label flex' style='min-width:{{item1[typeName].length*24+40}}rpx' hidden='{{item1.check==false}}'>
         <view>{{item1[typeName]}}</view>
-        <image src='/img/delete.png' data-str='{{type}}' data-itemIdStr='{{typeId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='labelDelete'></image>
+        <image src='/img/delete.png' data-firstIndex='{{page}}' data-secondIndex='{{index1}}' data-str='{{type}}' data-itemIdStr='{{typeId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='labelDelete'></image>
       </view>
     </block>
   </view>

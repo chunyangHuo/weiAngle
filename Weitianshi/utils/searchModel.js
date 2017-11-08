@@ -116,17 +116,29 @@ function initItem(str, that, SearchInit) {
   let itemIdStr = '';
   let tab = SearchInit.tab;
 
-  // console.log(str,item)
   itemIdStr = SearchInit.labelToId[itemStr]
   itemArr = [];
+  // 有联动关系的下拉表和无联动关系的下拉表
   if (item) {
-    item.forEach(x => {
-      x.check = false;
-      if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
-        x.check = true;
-        itemArr.push(x)
-      }
-    })
+    if(item[0].child){
+      item.forEach((x,index)=>{
+        x.child.forEach((y,index2)=>{
+          y.check =false;
+          if (searchData[itemStr].indexOf(y[itemIdStr]) != -1) {
+            y.check = true;
+            itemArr.push(y)
+          }
+        })
+      })
+    }else{
+      item.forEach(x => {
+        x.check = false;
+        if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
+          x.check = true;
+          itemArr.push(x)
+        }
+      })
+    }
   }
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
@@ -180,21 +192,41 @@ function tagsCheck(e, that) {
   let itemArr = SearchInit[itemArrStr];
   let target = e.currentTarget.dataset.item;
   let index = e.currentTarget.dataset.index;
-  console.log(SearchInit[itemStr])
-  if (target.check == false) {
-    if (itemArr.length < 5) {
-      item[index].check = true;
-      itemArr.push(target)
-    } else {
-      app.errorHide(that, '不能选择超过5个标签', 3000)
+  let firstIndex= e.currentTarget.dataset.firstindex;
+  let secondIndex= e.currentTarget.dataset.secondindex;
+
+  // 有联动关系的下拉表
+  if(item[0].child){
+    let linkItem=item[firstIndex].child[secondIndex];
+    if(linkItem.check == false){
+      linkItem.check=true;
+      itemArr.push(linkItem)
+    }else{
+      linkItem.check=false;
+      itemArr.forEach((x,index)=>{
+        if(linkItem[itemIdStr]==x[itemIdStr]){
+          itemArr.splice(index,1)
+        }
+      })
     }
-  } else {
-    item[index].check = false;
-    itemArr.forEach((y, index) => {
-      if (target[itemIdStr] == y[itemIdStr]) {
-        itemArr.splice(index, 1)
+    console.log(item, itemArr)
+  }else{
+  // 无联动关系的下拉表  
+    if (target.check == false) {
+      if (itemArr.length < 5) {
+        item[index].check = true;
+        itemArr.push(target)
+      } else {
+        app.errorHide(that, '不能选择超过5个标签', 3000)
       }
-    })
+    } else {
+      item[index].check = false;
+      itemArr.forEach((y, index) => {
+        if (target[itemIdStr] == y[itemIdStr]) {
+          itemArr.splice(index, 1)
+        }
+      })
+    }
   }
   that.setData({
     SearchInit: SearchInit
