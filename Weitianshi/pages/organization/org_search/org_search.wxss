@@ -67,6 +67,14 @@
   color: #999;
   line-height: 36rpx;
 }
-.swiper-box #memberList  {
+
+.swiper-box #memberList {
   text-align: left;
+}
+
+.more {
+  font-size: 24rpx;
+  color: #009eff;
+  line-height: 38rpx;
+  text-align: center;
 }

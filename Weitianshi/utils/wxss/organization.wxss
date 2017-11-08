@@ -286,6 +286,7 @@
   height: 104rpx;
   border-radius: 50%;
   margin-right: 24rpx;
+  line-height:104rpx;
 }
 
 #memberList .memberInfoLeft image {
