@@ -64,3 +64,5 @@
     </scroll-view>
   </swiper-item>
 </swiper>
+<!--错误提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
