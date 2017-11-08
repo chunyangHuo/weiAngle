@@ -41,6 +41,11 @@ Page({
         { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false },
       ],
     })
+
+    // 页面间跳转传值筛选
+    SearchModel.detialItemSearch(label,itemId,that,searchData=>{
+      console.log(searchData)
+    })
   },
 
   onShow: function () {

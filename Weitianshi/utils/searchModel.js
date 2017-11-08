@@ -65,7 +65,6 @@ function reInitSearch(that, data) {
   for (let key in data) {
     SearchInit[key] = data[key];
   }
-  console.log(SearchInit)
   that.setData({
     SearchInit: SearchInit
   })
@@ -305,7 +304,6 @@ function searchCertain(that) {
     currentPage: 1,
     page_end: false
   })
-  console.log(that.data.SearchInit.searchData)
 
   SearchInit.currentIndex = 99;
   that.setData({
@@ -352,22 +350,23 @@ function labelDelete(e, that) {
   // console.log(SearchInit.label_type, SearchInit.label_typeArr, SearchInit.searchData)
 }
 // 页面间跳转传值筛选
-function detialItemSearch(label, itemId, that) {
+function detialItemSearch(label, itemId, that, callBack) {
   let SearchInit = that.data.SearchInit;
   let itemIdStr = labelToId(label);
   let item = SearchInit[label];
   let itemStrArr = label + 'Arr';
   let itemArr = SearchInit[itemStrArr];
   item.forEach(x => {
-    if (x.itemIdStr == itemId) {
+    if (x[itemIdStr] == itemId) {
       x.check = true;
       itemArr.push(x)
     }
   })
   that.setData({
-    SearchInit:SearchInit
+    SearchInit: SearchInit
   })
-  searchCertain(that)
+  let searchData = searchCertain(that);
+  callBack(searchData);
 }
 
 // 点击modal层

@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 12,
 			"list": [
 				{
 					"id": 1,
@@ -90,16 +90,16 @@
 					"query": "id=e0qQB10v"
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "list_orgMember",
-					"pathName": "pages/organization/subPage/list_orgMember/list_orgMember",
-					"query": ""
+					"pathName": "pages/my/sharePage/sharePage",
+					"query": "followed_user_id=9W2eN6X0&&share_id=9W2eN6X0"
 				},
 				{
 					"id": 12,
 					"name": "投资机构",
 					"pathName": "pages/organization/org_library/org_library",
-					"query": ""
+					"query": "label=label_style&&itemId=5"
 				}
 			]
 		}
