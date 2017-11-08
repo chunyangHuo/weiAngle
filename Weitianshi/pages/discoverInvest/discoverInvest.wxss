@@ -175,7 +175,6 @@
 .bigTitle {
   height: 216px;
   width: 100%;
-  background: yellow;
   position: relative;
 }
 

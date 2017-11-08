@@ -11,6 +11,8 @@ Page({
     imgUrls: app.globalData.picUrl.invest_org
   },
   onLoad: function (options) {
+    let label = options.label;
+    let itemId = options.itemId;
     let that = this;
     wx.showLoading({
       title: 'loading',

@@ -14,6 +14,7 @@
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true">
       <view class="bigTitle">
+      <image src="/img/img-bg@2x.png" class="bigTitle"></image>
         <view class="searchSth" bindtap="allSearch">请输入机构名称，成员姓名，投资领域
           <view class="searchImageBox">
             <image src="/img/icon-sousuo@2x.png" class="searchImage"></image>
@@ -26,7 +27,7 @@
         <view class="blockIntro">*机器人Angel深度挖掘机构投资风格</view>
         <view class="flex investmentListBox">
           <block wx:for="{{investormentList.style_list}}" wx:key="{{index}}">
-            <view class="investStyleBlock">
+            <view class="investStyleBlock" data-style="{{item.style_id}}"  bindtap="toStyle">
               <view class="investStyleTitle">{{item.style_name}}</view>
               <view class="investStyleNum"><label>{{item.investment_num}}</label>个机构</view>
             </view>
