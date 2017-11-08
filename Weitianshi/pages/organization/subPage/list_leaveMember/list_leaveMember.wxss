@@ -10,3 +10,10 @@ page {
   height: auto;
   background: #fff;
 }
+.hasNothing {
+  margin-top: 410rpx;
+  font-size: 36rpx;
+  color: #999;
+  line-height: 36rpx;
+  text-align: center
+}

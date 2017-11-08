@@ -1130,7 +1130,7 @@
           <view class="investName1">{{item.project_name}}</view>
           <view class="investHot" wx:if="{{item.is_hot==1}}">Hot</view>
           <!-- <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}"> -->
-            <view class="investWheel investInduryone">多轮陪伴</view>
+            <view class="investWheel investInduryone">多伦陪伴</view>
             <!--{{item.style_name}}  -->
           <!-- </block> -->
 
@@ -1151,17 +1151,17 @@
         <view class="investDetail">
           <block wx:for="{{item.investment_list}}" wx:key="{{index}}" wx:for-item="investList">
             <!-- <view class="investInduryone" >{{item.investment_name}}、</view> -->
-            <view class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">
+            <label class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">
             <label> {{investList.investment_name}}</label>
             <label wx:if="{{investList.is_lead==0}}">【跟投】</label>
             <label wx:if="{{investList.is_lead==1}}">【领投】</label>
             <label>、</label>
-           </view>
-            <view class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">
+           </label>
+            <label class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">
            <label> {{investList.investment_name}}</label>
             <label wx:if="{{investList.is_lead==0}}">【跟投】</label>
             <label wx:if="{{investList.is_lead==1}}">【领投】</label>
-            </view>
+            </label>
           </block>
         </view>
       </view>
@@ -1300,11 +1300,11 @@
   <block wx:for="{{investment_list}}" wx:key="{{index}}">
     <view class="investGroupBlock flex" bindtap="institutionalDetails1" data-id="{{item.investment_id}}">
       <view class="invest1Left">
-        <view class="investGroupLeft">
+        <view  class="investGroupLeft" >
            <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
            <image src="/img/warband-logo.png" class="investGroupLeft"></image> 
         </view>
-        <view class="match1">匹配度</view>
+        <view class="match1"  class="{{item.industry_list.length!=0||item.style_list.length!=0 ? 'match1' : 'match2'}}">匹配度</view>
         <view class="match">{{item.match_rate}}%</view>
       </view>
       <view class="investGroupRight">
