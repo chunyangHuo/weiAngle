@@ -70,8 +70,13 @@
   margin-bottom: 32rpx;
   text-align: center;
 }
+
 #searchModel .longCheckBox {
   width: 208rpx;
+}
+
+#searchModel .btnGroup {
+  padding-bottom: 20rpx;
 }
 
 #searchModel .btnGroup button {
@@ -120,7 +125,7 @@
 
 #searchModel2 .scroll {
   width: 640rpx;
-  flex-wrap:nowrap;
+  flex-wrap: nowrap;
 }
 
 #searchModel2 .label {
@@ -152,11 +157,10 @@
   line-height: 112rpx;
 }
 
-
-
 /*--------------------------------联动版下拉框-----------------------------------------------------------  */
+
 #linkedDrop {
-  width: 100%
+  width: 100%;
 }
 
 #linkedDrop scroll-view {
@@ -183,7 +187,8 @@
 #linkedDrop .checkOn {
   background: white;
 }
-#linkedDrop .gouhao{
+
+#linkedDrop .gouhao {
   width: 32rpx;
   height: 32rpx;
   position: absolute;
