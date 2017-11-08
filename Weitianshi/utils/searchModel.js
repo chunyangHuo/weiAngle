@@ -49,6 +49,12 @@ let data = {
   label_type: wx.getStorageSync('label_type')
 }
 
+function labelToId(label) {
+  if (typeof label != 'string') {
+    throw Error('labelToId的参数必须为字符串')
+  }
+  return data.labelToId[label];
+}
 //更改搜索模块初始化设置
 function reInitSearch(that, data) {
   let SearchInit = that.data.SearchInit;
@@ -59,12 +65,10 @@ function reInitSearch(that, data) {
   for (let key in data) {
     SearchInit[key] = data[key];
   }
-  console.log(SearchInit)
   that.setData({
     SearchInit: SearchInit
   })
 }
-
 // 下拉框
 function move(e, that) {
   let SearchInit = that.data.SearchInit;
@@ -116,17 +120,29 @@ function initItem(str, that, SearchInit) {
   let itemIdStr = '';
   let tab = SearchInit.tab;
 
-  // console.log(str,item)
   itemIdStr = SearchInit.labelToId[itemStr]
   itemArr = [];
+  // 有联动关系的下拉表和无联动关系的下拉表
   if (item) {
-    item.forEach(x => {
-      x.check = false;
-      if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
-        x.check = true;
-        itemArr.push(x)
-      }
-    })
+    if (item[0].child) {
+      item.forEach((x, index) => {
+        x.child.forEach((y, index2) => {
+          y.check = false;
+          if (searchData[itemStr].indexOf(y[itemIdStr]) != -1) {
+            y.check = true;
+            itemArr.push(y)
+          }
+        })
+      })
+    } else {
+      item.forEach(x => {
+        x.check = false;
+        if (searchData[itemStr].indexOf(x[itemIdStr]) != -1) {
+          x.check = true;
+          itemArr.push(x)
+        }
+      })
+    }
   }
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
@@ -167,8 +183,6 @@ function linkCheckAll(e, that) {
     SearchInit: SearchInit
   })
 }
-
-
 // 标签选择
 function tagsCheck(e, that) {
   let str = e.currentTarget.dataset.str;
@@ -180,21 +194,40 @@ function tagsCheck(e, that) {
   let itemArr = SearchInit[itemArrStr];
   let target = e.currentTarget.dataset.item;
   let index = e.currentTarget.dataset.index;
-  console.log(SearchInit[itemStr])
-  if (target.check == false) {
-    if (itemArr.length < 5) {
-      item[index].check = true;
-      itemArr.push(target)
+  let firstIndex = e.currentTarget.dataset.firstindex;
+  let secondIndex = e.currentTarget.dataset.secondindex;
+
+  // 有联动关系的下拉表
+  if (item[0].child) {
+    let linkItem = item[firstIndex].child[secondIndex];
+    if (linkItem.check == false) {
+      linkItem.check = true;
+      itemArr.push(linkItem)
     } else {
-      app.errorHide(that, '不能选择超过5个标签', 3000)
+      linkItem.check = false;
+      itemArr.forEach((x, index) => {
+        if (linkItem[itemIdStr] == x[itemIdStr]) {
+          itemArr.splice(index, 1)
+        }
+      })
     }
   } else {
-    item[index].check = false;
-    itemArr.forEach((y, index) => {
-      if (target[itemIdStr] == y[itemIdStr]) {
-        itemArr.splice(index, 1)
+    // 无联动关系的下拉表  
+    if (target.check == false) {
+      if (itemArr.length < 5) {
+        item[index].check = true;
+        itemArr.push(target)
+      } else {
+        app.errorHide(that, '不能选择超过5个标签', 3000)
       }
-    })
+    } else {
+      item[index].check = false;
+      itemArr.forEach((y, index) => {
+        if (target[itemIdStr] == y[itemIdStr]) {
+          itemArr.splice(index, 1)
+        }
+      })
+    }
   }
   that.setData({
     SearchInit: SearchInit
@@ -224,6 +257,13 @@ function itemReset(str, that) {
   item.forEach(x => {
     x.check = false;
   })
+  if (item[0].child) {
+    item.forEach(x => {
+      x.child.forEach(y => {
+        y.check = false;
+      })
+    })
+  }
   SearchInit[itemArrStr] = [];
   searchData[itemStr] = [];
   that.setData({
@@ -264,7 +304,6 @@ function searchCertain(that) {
     currentPage: 1,
     page_end: false
   })
-  console.log(that.data.SearchInit.searchData)
 
   SearchInit.currentIndex = 99;
   that.setData({
@@ -310,6 +349,26 @@ function labelDelete(e, that) {
   this.searchCertain(that);
   // console.log(SearchInit.label_type, SearchInit.label_typeArr, SearchInit.searchData)
 }
+// 页面间跳转传值筛选
+function detialItemSearch(label, itemId, that, callBack) {
+  let SearchInit = that.data.SearchInit;
+  let itemIdStr = labelToId(label);
+  let item = SearchInit[label];
+  let itemStrArr = label + 'Arr';
+  let itemArr = SearchInit[itemStrArr];
+  item.forEach(x => {
+    if (x[itemIdStr] == itemId) {
+      x.check = true;
+      itemArr.push(x)
+    }
+  })
+  SearchInit.searchData = searchCertain(that);
+  that.setData({
+    SearchInit: SearchInit
+  })
+  callBack(SearchInit.searchData);
+}
+
 // 点击modal层
 function modal(that) {
   let SearchInit = that.data.SearchInit;
@@ -334,7 +393,6 @@ export {
   initData,
   initItem,
   tagsCheck,
-  // itemCheck,
   reset,
   allReset,
   itemReset,
@@ -343,5 +401,6 @@ export {
   searchSth,
   labelDelete,
   firstLinkCheck,
-  linkCheckAll
+  linkCheckAll,
+  detialItemSearch
 }

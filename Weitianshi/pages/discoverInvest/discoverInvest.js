@@ -530,7 +530,13 @@ Page({
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
-    
   },
+  //投资风格跳转
+  toStyle(e){
+    console.log(e)
+    let id = e.currentTarget.dataset.style;
+    console.log(id)
+    app.href('/pages/organization/org_library/org_library?label=label_style&&itemId='+id)
+  }
 })
 

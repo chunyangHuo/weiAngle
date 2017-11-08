@@ -49,4 +49,6 @@
     <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
     <view class="pushProjectAfter pushprojectm" bindtap="pushProjectTo">推送项目</view>
   </view>
+  <!--错误提示  -->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>

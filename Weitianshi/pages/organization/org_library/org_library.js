@@ -11,11 +11,29 @@ Page({
     imgUrls: app.globalData.picUrl.invest_org
   },
   onLoad: function (options) {
+    let label = options.label;
+    let itemId = options.itemId;
     let that = this;
     wx.showLoading({
       title: 'loading',
       mask: true,
     })
+
+    //更改搜索模块初始化设置
+    SearchModel.reInitSearch(that, {
+      tab: [
+        { type:2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page:'0'},
+        { type: 1, name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
+        { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
+        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false },
+      ],
+    })
+
+    // 页面间跳转传值筛选
+    SearchModel.detialItemSearch(label,itemId,that,searchData=>{
+      console.log(searchData)
+    })
+    
     app.httpPost({
       url: url_common + '/api/investment/list',
       data: {}
@@ -30,15 +48,6 @@ Page({
       wx.hideLoading();
     })
 
-    //更改搜索模块初始化设置
-    SearchModel.reInitSearch(that, {
-      tab: [
-        { type:2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page:'0'},
-        { type: 1, name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
-        { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
-        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false },
-      ],
-    })
   },
 
   onShow: function () {
