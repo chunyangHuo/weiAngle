@@ -1130,9 +1130,10 @@
         <view class="investName flex">
           <view class="investName1">{{item.project_name}}</view>
           <view class="investHot" wx:if="{{item.is_hot==1}}">Hot</view>
-          <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}">
-            <view class="investWheel investInduryone">{{item.style_name}}</view>
-          </block>
+          <!-- <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}"> -->
+            <view class="investWheel investInduryone">多轮陪伴</view>
+            <!--{{item.style_name}}  -->
+          <!-- </block> -->
 
         </view>
         <view class="investIndury">
@@ -1151,29 +1152,37 @@
         <view class="investDetail">
           <block wx:for="{{item.investment_list}}" wx:key="{{index}}" wx:for-item="investList">
             <!-- <view class="investInduryone" >{{item.investment_name}}、</view> -->
-            <view class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">{{investList.investment_name}}、</view>
-            <view class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">{{investList.investment_name}}</view>
+            <view class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">
+            <label> {{investList.investment_name}}</label>
+            <label wx:if="{{investList.is_lead==0}}">【跟投】</label>
+            <label wx:if="{{investList.is_lead==1}}">【领投】</label>
+            <label>、</label>
+           </view>
+            <view class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">
+           <label> {{investList.investment_name}}</label>
+            <label wx:if="{{investList.is_lead==0}}">【跟投】</label>
+            <label wx:if="{{investList.is_lead==1}}">【领投】</label>
+            </view>
           </block>
         </view>
       </view>
     </view>
     <!-- <view class="mediaLine"></view> -->
   </view>
-
 </template>
 
 <!--投资领域  -->
 <template name="industry">
-  <view id="industry">{{item.industry_name}}</view>
+  <view id="industry" style="display :{{currentTab ==0 && index >= 6?  'none' :'inline-block'}}">{{item.industry_name}}</view>
 </template>
 
 <!--投资机构  -->
 <template name="investment">
-  <block wx:for="{{investment_list.list}}" wx:key="{{index}}">
-    <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}">
+  <block wx:for="{{investment_list}}" wx:key="{{index}}">
+    <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}">
       <view class="investGroupLeft">
-        <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
-        <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
+        <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
+       <image src="/img/warband-logo.png" class="investGroupLeft" wx:if="{{!item.investment_logo}}"></image> 
       </view>
       <view class="investGroupRight">
         <view class="flex investTitleBlock">
@@ -1181,27 +1190,28 @@
           <view class="investNum">
             <label>{{item.investment_event_count}}</label>个投资案例</view>
         </view>
-        <view class="investIntro">{{item.investment_introduce}}</view>
-        <view class="flex">
+        <view class="investIntro" wx:if="{{item.investment_introduce}}">{{item.investment_introduce}}</view>
+       <view class="investIntro" wx:if="{{!item.investment_introduce}}"></view>
+        <view class="flex" wx:if="{{item.industry_list.length != 0}}">
           <label class="mainCase">主投</label>
           <view class="mainCaseContent">
-            <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:if="{{item.industry_list.length != 0}}" wx:for-item="industryList">
+            <block wx:for="{{item.industry_list}}" wx:key="{{index}}"  wx:for-item="industryList">
               <label wx:if="{{index <  item.industry_list.length-1}}">{{industryList.industry_name}}、</label>
               <label wx:if="{{index == item.industry_list.length-1}}">{{industryList.industry_name}}</label>
             </block>
           </view>
         </view>
-        <view class="flex">
+        <view class="flex" wx:if="{{item.style_list.length != 0}}">
           <label class="tapCase">标签</label>
           <view class="mainCaseContent">
-            <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:if="{{item.style_list.length != 0}}" wx:for-item="styleList">
+            <block wx:for="{{item.style_list}}" wx:key="{{index}}"  wx:for-item="styleList">
               <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label>
               <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label>
             </block>
           </view>
         </view>
-        <view class="projectListBlock">
-          <block wx:for="{{item.investment_events}}" wx:key="{{index}}" wx:if="{{item.investment_events.length != 0}}" wx:for-item="investment_eventsList">
+        <view class="projectListBlock"  wx:if="{{item.investment_events.length != 0}}">
+          <block wx:for="{{item.investment_events}}" wx:key="{{index}}" wx:for-item="investment_eventsList">
             <label wx:if="{{index < item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】、</label>
             <label wx:if="{{index == item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】</label>
           </block>
@@ -1214,14 +1224,16 @@
 <!--媒体新闻  -->
 <template name="media">
   <view id="mediaNew" class="inMedia ">
-    <view class="mediaTime flex">{{item.time}}</view>
+    <view class="mediaTime flex">{{item.news_date}}</view>
     <view class="mediaTitle">
-      {{item.content}}
+      {{item.news_title}}
     </view>
     <view class=" mediaType flex">
+    <view wx:if="{{item.industry_name}}">
       <view class="mediaTypeRight">{{item.industry_name}}</view>
       <view class="mediaTypeRight">|</view>
-      <view>{{item.ori_url}}</view>
+      </view>
+      <view class="newUrl">{{item.news_url}}</view>
     </view>
     <!-- <view class="mediaLine"></view> -->
   </view>
@@ -1230,10 +1242,10 @@
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList.list}}" wx:key="{{index}}">
-    <view class="memberInfo flex" data-memberid="{{item.member_id}}" bindtap="findMember">
+    <view class="memberInfo flex" data-memberid="{{item.member_id}}"  hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember">
       <view class="memberInfoLeft">
-        <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->
-        <!-- <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view> -->
+           <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"  class="memberInfoLeft"></image> 
+         <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view>   
       </view>
       <view class="memberInfoRight">
         <view class="flex memberInfoTop">
@@ -1258,8 +1270,8 @@
 
     <view class="memberInfo flex">
       <view class="memberInfoLeft">
-        <!-- <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image> -->
-        <!-- <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view> -->
+        <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"></image>
+          <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view>  
       </view>
       <view class="memberInfoRight">
         <view class="flex memberInfoTop">
@@ -1290,8 +1302,8 @@
     <view class="investGroupBlock flex" bindtap="institutionalDetails1" data-id="{{item.investment_id}}">
       <view class="invest1Left">
         <view class="investGroupLeft">
-          <!-- <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image> -->
-          <!-- <image src="/img/warband-logo.png" class="investGroupLeft"></image> -->
+           <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
+           <image src="/img/warband-logo.png" class="investGroupLeft"></image> 
         </view>
         <view class="match1">匹配度</view>
         <view class="match">{{item.match_rate}}%</view>
@@ -1299,11 +1311,11 @@
       <view class="investGroupRight">
         <view class="flex investTitleBlock">
           <view class="investTitle">{{item.investment_name}}</view>
-          <view class="investNum">
+          <view class="investNum" wx:if="{{item.investment_event_count}}">
             <label>{{item.investment_event_count}}</label>个投资案例</view>
         </view>
         <view class="investIntro">{{item.investment_introduce}}</view>
-        <view class="flex">
+        <view class="flex" wx:if="{{item.industry_list.length!=0}}">
           <label class="mainCase">主投</label>
           <view class="mainCaseContent">
             <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:if="{{item.industry_list.length != 0}}" wx:for-item="industryList">
@@ -1312,7 +1324,7 @@
             </block>
           </view>
         </view>
-        <view class="flex">
+        <view class="flex" wx:if="{{item.style_list.length!=0}}">
           <label class="tapCase">标签</label>
           <view class="mainCaseContent">
             <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:if="{{item.style_list.length != 0}}" wx:for-item="styleList">
@@ -1321,11 +1333,13 @@
             </block>
           </view>
         </view>
+        <view wx:if="{{item.investment_events.length != 0}}">
         <view class="projectListBlock">
-          <block wx:for="{{item.investment_events}}" wx:key="{{index}}" wx:if="{{item.investment_events.length != 0}}" wx:for-item="eventList">
+          <block wx:for="{{item.investment_events}}" wx:key="{{index}}"  wx:for-item="eventList">
             <label wx:if="{{index < item.investment_events.length-1}}">{{eventList.event_time}}【{{eventList.project_name}}】、</label>
             <label wx:if="{{index == item.investment_events.length-1}}">{{eventList.event_time}}【{{eventList.project_name}}】</label>
           </block>
+        </view>
         </view>
       </view>
     </view>

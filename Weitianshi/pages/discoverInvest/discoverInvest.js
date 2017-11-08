@@ -132,7 +132,7 @@ Page({
     }).then(res => {
       wx.hideLoading()
       let investormentList = res.data.data;
-      let investment_list = investormentList.investment_list;
+      let investment_list = investormentList.investment_list.list;
       that.setData({
         investormentList: investormentList,
         investment_list: investment_list
@@ -529,7 +529,7 @@ Page({
   //投资机构跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
-    app.href('/pages/organization/org_detail/org_detail?id=' + id)
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
     
   },
 })

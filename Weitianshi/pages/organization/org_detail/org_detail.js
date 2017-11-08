@@ -6,34 +6,17 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     longMore: false,
     listMore: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     this.setData({
       investment_id: options.investment_id,
     });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     let that = this;
     app.allPoint(that, 0);
@@ -47,11 +30,11 @@ Page({
   // 详情信息获取
   orgDetail() {
     var that = this;
-
     wx.request({
       url: url_common + '/api/investment/info',
       data: {
-
+        investment_id: this.data.investment_id
+        // investment_id: 2
       },
       method: 'POST',
       success: function (res) {
@@ -59,12 +42,14 @@ Page({
         let orgDetail = res.data.data;
         let info = res.data.data.info;
         let investment_events = res.data.data.investment_events;
-        let media_list = res.data.data.media_list;
+        let media_list = res.data.data.news_list;
         let member_list = res.data.data.member_list;
         let memberList = member_list.list;
         let leave_member_list = res.data.data.leave_member_list;
         let leaveList = leave_member_list.list;
+        let investId = info.investment_id;
         that.setData({
+          investId: investId,
           info: info,
           investment_events: investment_events,
           media_list: media_list,
@@ -108,19 +93,19 @@ Page({
   },
   // 投资案例跳转
   toCase: function () {
-    app.href('/pages/organization/subPage/list_investCase/list_investCase')
+    app.href('/pages/organization/subPage/list_investCase/list_investCase?investment_id=' + this.data.investId)
   },
   // 媒体跳转
   toMedia: function () {
-    app.href('/pages/organization/subPage/list_media/list_media')
+    app.href('/pages/organization/subPage/list_media/list_media?investment_id=' + this.data.investId)
   },
   // 在职跳转
   toMember: function () {
-    app.href('/pages/organization/subPage/list_orgMember/list_orgMember')
+    app.href('/pages/organization/subPage/list_orgMember/list_orgMember?investment_id=' + this.data.investId)
   },
   // 离职成员跳转
   toLeave: function () {
-    app.href('/pages/organization/subPage/list_leaveMember/list_leaveMember')
+    app.href('/pages/organization/subPage/list_leaveMember/list_leaveMember?investment_id=' + this.data.investId)
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -153,8 +138,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
+  // 分享当前页面
   onShareAppMessage: function () {
-    // let that = this;
-    return ShareModel.orgDetail();
+    let that = this;
+    return ShareModel.orgdetail(that);
   },
 })

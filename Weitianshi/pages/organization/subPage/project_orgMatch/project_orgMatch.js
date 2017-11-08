@@ -82,8 +82,7 @@ Page({
   // 跳转详情页
   institutionalDetails1: function (e) {
     let thisData = e.currentTarget.dataset;
-    console.log(thisData);
-    app.href('/pages/organization/org_detail/org_detail')
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + thisData.id)
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -117,6 +116,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  }
+    let that = this;
+    return ShareModel.match1(that);
+  },
 })
