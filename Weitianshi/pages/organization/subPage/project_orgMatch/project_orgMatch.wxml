@@ -5,9 +5,10 @@
 
   <view class="media12">
     <view class="matchIntro">{{newPage.pro_intro}}</view>
-    <view id="investment1">
+    <view id="investment1" wx:if="{{investment_list.length!=0}}">
       <template is='investment1' data='{{investment_list}}'></template>
     </view>
+    <view class="hasNothing" wx:if="{{investment_list.length ==0 }}">暂无数据</view>
   </view>
 
 

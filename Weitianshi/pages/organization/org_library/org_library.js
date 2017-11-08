@@ -18,19 +18,6 @@ Page({
       title: 'loading',
       mask: true,
     })
-    app.httpPost({
-      url: url_common + '/api/investment/list',
-      data: {}
-    }).then(res => {
-      wx.hideLoading()
-      let investormentList = res.data.data;
-      let investment_list = investormentList.investment_list.list;
-      that.setData({
-        investormentList: investormentList,
-        investment_list: investment_list
-      })
-      wx.hideLoading();
-    })
 
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
@@ -46,6 +33,21 @@ Page({
     SearchModel.detialItemSearch(label,itemId,that,searchData=>{
       console.log(searchData)
     })
+    
+    app.httpPost({
+      url: url_common + '/api/investment/list',
+      data: {}
+    }).then(res => {
+      wx.hideLoading()
+      let investormentList = res.data.data;
+      let investment_list = investormentList.investment_list.list;
+      that.setData({
+        investormentList: investormentList,
+        investment_list: investment_list
+      })
+      wx.hideLoading();
+    })
+
   },
 
   onShow: function () {

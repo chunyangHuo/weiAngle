@@ -73,34 +73,11 @@ Page({
     let current = e.currentTarget.dataset.current;
     switch (current) {
       case '1':
-        let that = this;
-        let currentPage = this.data.currentPage;
-        let investment_list = this.data.investment_list;
-        var request = {
-          url: url_common + '/api/investment/search',
-          data: {
-            page: currentPage
-          }
-        }
-        //调用通用加载函数
-        app.loadMore2(that, request, res => {
-          let investment_list_new = res.data.data.investment_list.list
-          let page_end = res.data.data.investment_list.page_end;
-          if (investment_list) {
-            investment_list = investment_list.concat(investment_list_new)
-            currentPage++;
-            that.setData({
-              investment_list: investment_list,
-              page_end: page_end,
-              requestCheck: true
-            })
-          }
-          if (page_end == true) {
-            app.errorHide(that, '没有更多了', 3000)
-          }
-        })
+        this.investmentList();
+        break;
       case '3':
-        this.memberList()
+        this.memberList();
+        break;
     }
   },
   // 滑动切换tab
@@ -216,11 +193,10 @@ Page({
             url: url_common + '/api/investment/search',
             data: {
               page: this.data.otherCurrentPage,
-              word : word
+            
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               var newPage = res.data.data.member_list.list;
               var page_end = res.data.data.member_list.page_end;
               for (var i = 0; i < newPage.length; i++) {
@@ -241,5 +217,32 @@ Page({
         }
       }
   },
-
+  investmentList(){
+    let that = this;
+    let currentPage = this.data.currentPage;
+    let investment_list = this.data.investment_list;
+    var request = {
+      url: url_common + '/api/investment/search',
+      data: {
+        page: currentPage
+      }
+    }
+    //调用通用加载函数
+    app.loadMore2(that, request, res => {
+      let investment_list_new = res.data.data.investment_list.list
+      let page_end = res.data.data.investment_list.page_end;
+      if (investment_list) {
+        investment_list = investment_list.concat(investment_list_new)
+        currentPage++;
+        that.setData({
+          investment_list: investment_list,
+          page_end: page_end,
+          requestCheck: true
+        })
+        if (page_end == true) {
+          app.errorHide(that, '没有更多了', 3000)
+        }
+      }
+    })
+  }
 })

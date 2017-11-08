@@ -33,8 +33,8 @@ Page({
     wx.request({
       url: url_common + '/api/investment/info',
       data: {
-        investment_id: this.data.investment_id
-        // investment_id: 2
+        // investment_id: this.data.investment_id
+        investment_id: 2
       },
       method: 'POST',
       success: function (res) {
@@ -43,12 +43,14 @@ Page({
         let info = res.data.data.info;
         let investment_events = res.data.data.investment_events;
         let media_list = res.data.data.news_list;
+        let media_list1 = res.data.data.news_list.list;
         let member_list = res.data.data.member_list;
         let memberList = member_list.list;
         let leave_member_list = res.data.data.leave_member_list;
         let leaveList = leave_member_list.list;
         let investId = info.investment_id;
         that.setData({
+          media_list1: media_list1,
           investId: investId,
           info: info,
           investment_events: investment_events,
@@ -61,6 +63,7 @@ Page({
         wx.setNavigationBarTitle({
           title: info.investment_name
         })
+        if (info.investment_introduce){
         if (info.investment_introduce.length > 88) {
           that.setData({
             longMore: true
@@ -69,6 +72,7 @@ Page({
           that.setData({
             longMore: false
           })
+        }
         }
       }
     })
