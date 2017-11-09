@@ -881,10 +881,10 @@
     <view class='dropDown withAnimate'>
       <!--多选框  -->
       <view class='flex dropFlex' scroll-y='true'>
-          <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
-            <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
-            <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
-          </block>
+        <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
+          <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
+          <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
+        </block>
       </view>
       <!--重置确定  -->
       <view class='btnGroup flex' wx:if="{{SearchInit.currentIndex!=99}}">
@@ -939,7 +939,7 @@
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.itemId}}'>
-          <template wx:if='{{item.type==1}}' is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId,page:item.page}}'></template>
+          <template is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId,page:item.page}}'></template>
         </block>
       </view>
     </scroll-view>
@@ -949,7 +949,19 @@
 
 <!--筛选结果展示横列(单个)  -->
 <template name='searchResult_single'>
-  <view class='resultType flex'>
+  <!--有联动关系  -->
+  <view class='resultType flex' wx:if='{{SearchInit[type][0].child}}'>
+    <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}' wx:for-item='item1' wx:for-index='index1'>
+      <block wx:for='{{item1.child}}' wx:key='{{index2}}' wx:for-item='item2' wx:for-index='index2'>
+        <view class='label flex' style='min-width:{{item2[typeName].length*24+40}}rpx' wx:if='{{item2.check==true}}'>
+          <view>{{item2[typeName]}}</view>
+          <image src='/img/delete.png' data-firstIndex='{{index1}}' data-secondIndex='{{index2}}' data-str='{{type}}' data-itemIdStr='{{typeId}}' data-item="{{item2}}" data-index="{{index2}}" bindtap='labelDelete'></image>
+        </view>
+      </block>
+    </block>
+  </view>
+  <!--无联动关系  -->
+  <view class='resultType flex' wx:else>
     <block wx:for='{{SearchInit[type]}}' wx:key='{{SearchInit[type]}}' wx:for-item='item1' wx:for-index='index1'>
       <view class='label flex' style='min-width:{{item1[typeName].length*24+40}}rpx' hidden='{{item1.check==false}}'>
         <view>{{item1[typeName]}}</view>
@@ -1242,7 +1254,7 @@
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList.list}}" wx:key="{{index}}">
-    <view class="memberInfo flex" data-memberid="{{item.member_id}}"  hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
+    <view class="memberInfo flex" data-memberid="{{item.member_id}}" hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="memberInfoLeft">
         <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}" class="memberInfoLeft"></image>
         <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view>
