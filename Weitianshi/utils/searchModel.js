@@ -176,7 +176,7 @@ function linkCheckAll(e, that) {
   let label = e.currentTarget.dataset.label;
   let firstLink = e.currentTarget.firstindex;
   let page = e.currentTarget.dataset.page;
-  
+
   SearchInit[label][page].child.forEach(x => {
     x.check = true;
   })
@@ -359,12 +359,25 @@ function detialItemSearch(label, itemId, that, callBack) {
   let item = SearchInit[label];
   let itemStrArr = label + 'Arr';
   let itemArr = SearchInit[itemStrArr];
-  item.forEach(x => {
-    if (x[itemIdStr] == itemId) {
-      x.check = true;
-      itemArr.push(x)
-    }
-  })
+  //判断是否是有联动关系 
+  if (item.child) {
+    item.forEach(x => {
+      x.child.forEach(y => {
+        if (y[itemIdStr] == itemId) {
+          y.check = true;
+          itemArr.push(y)
+        }
+      })
+    })
+  } else {
+    item.forEach(x => {
+      if (x[itemIdStr] == itemId) {
+        x.check = true;
+        itemArr.push(x)
+      }
+    })
+  }
+
   SearchInit.searchData = searchCertain(that);
   that.setData({
     SearchInit: SearchInit
