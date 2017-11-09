@@ -1185,7 +1185,7 @@
 
 <!--投资领域  -->
 <template name="industry">
-  <view id="industry" style="display :{{currentTab ==0 && index >= 6?  'none' :'inline-block'}}">{{item.industry_name}}</view>
+  <view id="industry" style="display :{{currentTab ==0 && index >= 6?  'none' :'inline-block'}}" data-industryid="{{item.industry_id}}" bindtap="toIndustry">{{item.industry_name}}</view>
 </template>
 
 <!--投资机构  -->

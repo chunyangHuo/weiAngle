@@ -191,8 +191,8 @@
   height: 40rpx;
   width: 40rpx;
   position: absolute;
-  top: 22rpx;
-  right: 37rpx;
+  top: 19rpx;
+  right: 39rpx;
 }
 
 .swiper-box .bigTitle .searchSth {
@@ -201,7 +201,6 @@
 
 .searchSth {
   background: #fff;
-  border: 1rpx solid rgba(64, 88, 122, 0.30);
   border-radius: 4rpx;
   width: 596rpx;
   height: 18rpx;
@@ -242,9 +241,11 @@
   text-align: left;
   margin-bottom: 40rpx;
 }
-.investmentListBox{
+
+.investmentListBox {
   flex-wrap: wrap;
 }
+
 .investStyleBlock {
   background: #fff;
   box-shadow: 0 0 12rpx 0 rgba(64, 88, 122, 0.10);
@@ -267,6 +268,7 @@
   font-size: 22rpx;
   color: #40587a;
   line-height: 25rpx;
+  font-weight: bold;
 }
 
 .swiper-box-other .outStyleBox view {
@@ -275,6 +277,13 @@
 
 .swiper-box-other .outStyleBox .investStyleBlock view {
   text-align: center;
+}
+
+.investStyleWord {
+  color: #999;
+  font-weight: lighter;
+  font-size: 22rpx;
+  line-height: 25rpx;
 }
 
 /*热门领域  */
@@ -289,6 +298,8 @@
 .industryTitle {
   margin-right: 40rpx;
   margin-bottom: 32rpx;
+  white-space: nowrap;
+  color:#666;
 }
 
 .industryTitle:first-child {
