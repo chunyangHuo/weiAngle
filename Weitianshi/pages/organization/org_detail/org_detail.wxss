@@ -11,7 +11,7 @@ page {
   height: auto;
   background: #fff;
   margin-top: 37.44rpx;
-  box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10);
+  /* box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10); */
 }
 
 .inMedia {
@@ -19,11 +19,12 @@ page {
   padding-top: 42rpx;
   padding-left: 32rpx;
   padding-right: 32rpx;
+  border-radius: 4rpx;
 }
 
 .mediaLine {
-  margin-top: 30rpx;
-  border-bottom: 1px solid #e6e6e6;
+  margin-top: 20rpx;
+  border-bottom: 1rpx solid #e6e6e6;
   margin-bottom: 35rpx;
 }
 
@@ -40,7 +41,7 @@ page {
   font-size: 16px;
   color: #333;
   vertical-align: middle;
-  padding-top: 30rpx;
+  padding-top: 60rpx;
 }
 
 .detailLogo1 {
@@ -70,7 +71,7 @@ page {
 
 .detailRight {
   margin-right: 30rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 32rpx;
 }
 
 .detailColor {
@@ -108,9 +109,11 @@ page {
 }
 
 .investBottom {
-  padding-bottom: 20rpx;
+  padding-bottom: 40rpx;
 }
-
+.investBottom1{
+  padding-bottom: 32rpx;
+}
 .investIntroduce {
   font-size: 14px;
   color: #666;

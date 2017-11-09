@@ -39,7 +39,7 @@
   </view>
   <!--机构介绍  -->
   <view class="media1" wx:if="{{info.investment_introduce}}">
-    <view class="inMedia investBottom">
+    <view class="inMedia investBottom1">
       <view class="investStrategy investBottom">机构介绍</view>
       <view class="{{checkedArr.ischecked1?'investIntroduce':'investIntroduceAfter'}}">{{info.investment_introduce}}</view>
       <label class="more" bindtap="allPoint1" wx:if="{{checkedArr.ischecked1 == true && longMore==true }}">更多</label>

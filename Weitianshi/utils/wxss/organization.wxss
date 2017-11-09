@@ -5,7 +5,7 @@
   padding-top: 42rpx;
   /* padding-left: 32rpx;
   padding-right: 32rpx; */
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.5px solid #e6e6e6;
   margin: 0 auto;
   width: 92%;
 }
@@ -371,7 +371,7 @@
   padding-top: 42rpx;
   /* padding-left: 32rpx;
   padding-right: 32rpx; */
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.5px solid #e6e6e6;
   margin: 0 auto;
   width: 92%;
 }
@@ -432,10 +432,10 @@
 
 #memberList1 {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
-  padding-top: 42rpx;
+  padding-top: 40rpx;
   /* padding-left: 32rpx;
   padding-right: 32rpx; */
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.5px solid #e6e6e6;
   margin: 0 auto;
   width: 92%;
 }
@@ -505,12 +505,12 @@
 #memberList1  .memberInfo {
   border-bottom: 1rpx solid #e6e6e6;
   padding-bottom: 40rpx;
-  padding-top: 40rpx;
+  /* padding-top: 40rpx; */
 }
 
 #memberList1  .memberInfo:last-child {
   border: 0;
-  padding-bottom: 0;
+  /* padding-bottom: 0; */
 }
 
 #memberList1  .memberInfoLeft {
@@ -523,6 +523,7 @@
 
 #memberList1 .memberInfoTop {
   margin-bottom: 24rpx;
+  margin-top: 10rpx;
 }
 
 #memberList1  .memberName {
@@ -570,12 +571,12 @@
   line-height: 46rpx;
 }
 
-/*投资机构  */
+/*投资机构（买家图谱）  */
 
 #investment1 .investGroupBlock {
   /* padding-bottom: 40rpx; */
   padding-top: 40rpx;
-  border-bottom: 1rpx solid #e6e6e6;
+  border-bottom: 0.5px solid #e6e6e6;
 }
 
 #investment1 .investGroupBlock:last-child {

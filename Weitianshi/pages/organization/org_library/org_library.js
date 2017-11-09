@@ -30,10 +30,11 @@ Page({
     })
 
     // 页面间跳转传值筛选
-    SearchModel.detialItemSearch(label,itemId,that,searchData=>{
-      console.log(searchData)
-    })
-    
+    if(label){
+      SearchModel.detialItemSearch(label, itemId, that, searchData => {
+        console.log(searchData)
+      })
+    }
     app.httpPost({
       url: url_common + '/api/investment/list',
       data: {}

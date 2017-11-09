@@ -1,7 +1,7 @@
 /*tab切换页  */
 
 .swiper-tab {
-  width: 74%;
+  width: 70%;
   line-height: 80rpx;
   background: #40587a;
   z-index: 999;
