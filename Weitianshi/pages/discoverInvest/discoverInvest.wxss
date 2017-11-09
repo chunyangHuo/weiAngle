@@ -155,9 +155,6 @@
   width: 90%;
 }
 
-.btnGroup {
-  height: 50rpx;
-}
 
 .cardBottom {
   border-top: 2rpx solid #e6e6e6;

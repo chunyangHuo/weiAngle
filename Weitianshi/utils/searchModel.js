@@ -46,7 +46,7 @@ let data = {
   label_industry: wx.getStorageSync('label_industry'),
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
-  label_type: wx.getStorageSync('label_type')
+  label_type: wx.getStorageSync('label_type'),
 }
 // label=>itemIdStr
 function labelToId(label) {
@@ -74,20 +74,26 @@ function move(e, that) {
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
   let currentIndex = SearchInit.currentIndex;
+  app.globalData.a = new Date();
+  console.log("000", app.globalData.a)
   // 清除未保存的选中标签
+  // SearchInit=Object.assign({},data)
+  // console.log(SearchInit)
+  // console.log(new Date())
   this.initData(that);
+  console.log(111, new Date())
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
     that.setData({
       SearchInit: SearchInit
     })
-    this.getOffset(that);
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
   }
+  console.log(new Date())
 }
 // 获取dropDown
 function getOffset(that) {
@@ -103,15 +109,17 @@ function getOffset(that) {
 }
 // 初始化所有check值
 function initData(that) {
+  console.log(222, new Date())
   let SearchInit = that.data.SearchInit;
   let tab = SearchInit.tab;
   tab.forEach(x => {
     this.initItem(x.label, that, SearchInit)
   })
+  console.log(333, new Date())
 }
 // 初始化某项check值(辅助函数)
 function initItem(str, that, SearchInit) {
-  // let SearchInit = that.data.SearchInit;
+  console.log(str + '1', new Date())
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = SearchInit[itemStr];
@@ -127,6 +135,13 @@ function initItem(str, that, SearchInit) {
     if (item[0].child) {
       item.forEach((x, index) => {
         x.child.forEach((y, index2) => {
+          // SearchInit.time=new Date()-app.globalData.a;
+          // that.setData({
+          //   SearchInit:SearchInit
+          // })
+          // console.log(666, new Date() - app.globalData.a)
+          console.log(new Date())
+          console.log(app.globalData.a)
           y.check = false;
           if (searchData[itemStr].indexOf(y[itemIdStr]) != -1) {
             y.check = true;
@@ -150,6 +165,7 @@ function initItem(str, that, SearchInit) {
   that.setData({
     SearchInit: SearchInit,
   })
+  console.log(str + '2', new Date())
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -166,9 +182,11 @@ function firstLinkCheck(e, that) {
   SearchInit[label][firstIndex].check = true;
 
   tab[tabIndex].page = firstIndex;
+  console.log(new Date())
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(new Date())
 }
 // 联动标签选择全部
 function linkCheckAll(e, that) {
@@ -360,7 +378,7 @@ function detialItemSearch(label, itemId, that, callBack) {
   let itemStrArr = label + 'Arr';
   let itemArr = SearchInit[itemStrArr];
   //判断是否是有联动关系 
-  if (item.child) {
+  if (item[0].child) {
     item.forEach(x => {
       x.child.forEach(y => {
         if (y[itemIdStr] == itemId) {
@@ -382,6 +400,7 @@ function detialItemSearch(label, itemId, that, callBack) {
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(SearchInit.searchData)
   callBack(SearchInit.searchData);
 }
 
@@ -401,6 +420,7 @@ function searchSth(that, str) {
   })
 }
 
+
 export {
   data,
   reInitSearch,
@@ -418,5 +438,5 @@ export {
   labelDelete,
   firstLinkCheck,
   linkCheckAll,
-  detialItemSearch
+  detialItemSearch,
 }

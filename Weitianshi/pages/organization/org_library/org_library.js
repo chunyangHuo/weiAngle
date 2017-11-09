@@ -8,7 +8,7 @@ Page({
   data: {
     //筛选搜索
     SearchInit: SearchModel.data,
-    imgUrls: app.globalData.picUrl.invest_org
+    imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {
     console.log(options)
@@ -156,6 +156,7 @@ Page({
   linkCheckAll(e){
     SearchModel.linkCheckAll(e,this);
   },
+
 
   // -----------------------------------------------------------------------------------------
   //跳转帮助

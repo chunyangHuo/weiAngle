@@ -158,7 +158,7 @@ Page({
           console.log('投资人列表', res.data.data)
           wx.hideLoading();
           let investorList = res.data.data;
-          SearchInit.currentIndex = 5;
+          SearchInit.currentIndex = 99;
           that.setData({
             investorList: investorList,
             SearchInit: SearchInit
@@ -184,7 +184,7 @@ Page({
           console.log('FA列表', res.data.data)
           wx.hideLoading();
           let faList = res.data.data;
-          SearchInit.currentIndex = 5;
+          SearchInit.currentIndex = 99;
           that.setData({
             faList: faList,
             SearchInit: SearchInit
@@ -235,7 +235,7 @@ Page({
           if (res.data.status_code == '2000000') {
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
-            SearchInit.currentIndex = 5;
+            SearchInit.currentIndex = 99;
             that.setData({
               myList: myList,
               page_end: page_end,
