@@ -413,11 +413,16 @@ function modal(that) {
   })
 }
 //搜索
-function searchSth(that, str) {
+function searchSth(that, str, callBack) {
   let user_id = that.data.user_id;
-  wx.navigateTo({
-    url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
-  })
+  if (!callBack) {
+    wx.navigateTo({
+      url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
+    })
+  } else {
+    callBack()
+  }
+
 }
 
 
