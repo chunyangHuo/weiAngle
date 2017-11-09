@@ -311,6 +311,7 @@ function searchCertain(that) {
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(searchData)
   return searchData;
 
   //发送筛选请求

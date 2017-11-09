@@ -30,9 +30,11 @@ Page({
     })
 
     // 页面间跳转传值筛选
-    SearchModel.detialItemSearch(label,itemId,that,searchData=>{
-      console.log(searchData)
-    })
+    if(label){
+      SearchModel.detialItemSearch(label, itemId, that, searchData => {
+        console.log(searchData)
+      })
+    }
     
     app.httpPost({
       url: url_common + '/api/investment/list',
@@ -108,10 +110,6 @@ Page({
   tagsCheck(e) {
     SearchModel.tagsCheck(e, this)
   },
-  // 展示项删除
-  labelDelete(e){
-    SearchModel.labelDelete(e,this)
-  },
   // 筛选重置
   reset() {
     SearchModel.reset(this)
@@ -142,6 +140,10 @@ Page({
     let str;
     str = this.data.currentTab == 0 ? "selected" : "newest"
     SearchModel.searchSth(that, str)
+  },
+  // 展示项删除
+  labelDelete(e) {
+    SearchModel.labelDelete(e, this)
   },
   // 一级联动选择
   firstLinkCheck(e){
