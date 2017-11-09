@@ -23,6 +23,9 @@ Page({
       app.globalData.picUrl.banner_4,
       app.globalData.picUrl.banner_5,
     ],
+    imgUrls1:
+    app.globalData.picUrl.page_discoverProject,
+    
   },
   onLoad(options) {
     console.log(this.data)

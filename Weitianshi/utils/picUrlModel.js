@@ -16,10 +16,11 @@ const picUrl = {
   banner_jump3: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/click_jump_3.jpg",
   banner_jump4: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/click_jump_4.jpg",
   banner_jump5: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/click_jump_5.jpg",
-  band_identity:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-bangding%402x.jpg",
-  push_success:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-tuisong%402x.jpg",
-  project_success:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-chuangjian%402x.jpg",
-  invest_org:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-qianzaitouzizhe.jpg",
+  band_identity: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-bangding%402x.jpg",
+  push_success: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-tuisong%402x.jpg",
+  project_success: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-chuangjian%402x.jpg",
+  invest_org: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-qianzaitouzizhe.jpg",
+  page_discoverProject: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/xiangmu%402x.jpg",
 }
 
 export {
