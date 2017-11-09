@@ -3,7 +3,7 @@
 <!--筛选和搜索  -->
 <template is='search' data='{{SearchInit,currentTab}}'></template>
 <template is='searchResult' data='{{SearchInit}}'></template>
-<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+<scroll-view style='heigt:10000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
   <view class="investImg" wx:if="{{newPage.investment_event_url}}">
     <image src="{{newPage.investment_event_url}}"></image>
   </view>

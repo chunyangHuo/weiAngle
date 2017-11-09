@@ -22,5 +22,6 @@ page {
   font-size: 36rpx;
   color: #999;
   line-height: 36rpx;
-  text-align: center
+  text-align: center;
+  height: 800rpx;
 }

@@ -57,7 +57,7 @@
 					"id": 5,
 					"name": "project_orgMatch",
 					"pathName": "pages/organization/subPage/project_orgMatch/project_orgMatch",
-					"query": "project_id=EypO7pKQ&&page=1"
+					"query": ""
 				},
 				{
 					"id": -1,
@@ -92,8 +92,8 @@
 				{
 					"id": 11,
 					"name": "list_orgMember",
-					"pathName": "pages/my/sharePage/sharePage",
-					"query": "followed_user_id=9W2eN6X0&&share_id=9W2eN6X0"
+					"pathName": "pages/organization/subPage/list_orgMember/list_orgMember",
+					"query": ""
 				},
 				{
 					"id": 12,
