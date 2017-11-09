@@ -31,7 +31,6 @@
   background: #fff;
   line-height: 80rpx;
   z-index: 999;
-  margin-bottom: 32rpx;
 }
 
 .swiper-tab-list {

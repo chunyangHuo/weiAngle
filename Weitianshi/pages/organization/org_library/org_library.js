@@ -36,22 +36,7 @@ Page({
         console.log(searchData)
       })
     }
-    app.httpPost({
-      url: url_common + '/api/investment/list',
-      data: {
-        filter: this.data.SearchInit.searchData
-      }
-    }).then(res => {
-      wx.hideLoading()
-      let investormentList = res.data.data;
-      let investment_list = investormentList.investment_list.list;
-      that.setData({
-        investormentList: investormentList,
-        investment_list: investment_list
-      })
-      wx.hideLoading();
-    })
-
+this.applyList();
   },
 
   onShow: function () {
@@ -131,6 +116,7 @@ Page({
     this.setData({
       searchInit: SearchInit
     })
+    this.applyList()
   },
   // 点击modal层
   modal() {
@@ -142,7 +128,11 @@ Page({
     let that = this;
     let str;
     str = this.data.currentTab == 0 ? "selected" : "newest"
-    SearchModel.searchSth(that, str)
+    SearchModel.searchSth(that, str,x=>{
+      app.href(
+        "/pages/organization/org_search/org_search"
+      )
+    })
   },
   // 展示项删除
   labelDelete(e) {
@@ -165,10 +155,31 @@ Page({
   //机构详情跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
+
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
   },
 
   onShareAppMessage: function () {
     return ShareModel.projectListShare();
   },
+  applyList(){
+    let that = this;
+    app.httpPost({
+      url: url_common + '/api/investment/list',
+      data: {
+        filter: this.data.SearchInit.searchData
+      }
+    }).then(res => {
+      console.log(res)
+      wx.hideLoading()
+      let investormentList = res.data.data;
+      let investment_list = investormentList.investment_list.list;
+      that.setData({
+        investormentList: investormentList,
+        investment_list: investment_list
+      })
+      wx.hideLoading();
+    })
+
+  }
 })

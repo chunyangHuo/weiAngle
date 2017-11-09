@@ -61,6 +61,7 @@ Page({
 
   // 点击tab切换
   swichNav: function (e) {
+    console.log(e)
     let that = this;
     let current = e.target.dataset.current;
     that.setData({
@@ -83,7 +84,9 @@ Page({
   // 滑动切换tab
   bindChange: function (e) {
     let that = this;
-    let current = e.detail.current;
+    that.setData({
+      currentTab: e.detail.current
+    })
     app.initPage(that);
   },
   //搜索事件
