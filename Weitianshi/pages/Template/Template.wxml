@@ -870,7 +870,7 @@
   <view id='searchModel' class="screen flex" wx:if="{{currentTab != 0}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
-      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
+      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' bindtap='move'>
         {{item.name}}
         <image class='withAnimate {{SearchInit.currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
       </view>
@@ -883,16 +883,16 @@
       <view class='flex dropFlex' scroll-y='true'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
           <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
-<template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
-</block>
-</view>
-<!--重置确定  -->
-<view class='btnGroup flex' wx:if="{{SearchInit.currentIndex!=99}}">
-  <button bindtap='reset'>重置</button>
-  <button bindtap='searchCertain'>确定</button>
-</view>
-</view>
-</view>
+          <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
+        </block>
+      </view>
+      <!--重置确定  -->
+      <view class='btnGroup flex' wx:if="{{SearchInit.currentIndex!=99}}">
+        <button bindtap='reset'>重置</button>
+        <button bindtap='searchCertain'>确定</button>
+      </view>
+    </view>
+  </view>
 </template>
 
 <!--筛选下拉框(单个)  type1-->
@@ -940,11 +940,11 @@
       <view class='flex'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.itemId}}'>
           <template is='searchResult_single' data='{{SearchInit,type:item.label,typeName:item.itemName,typeId:item.itemId,page:item.page}}'></template>
-</block>
-</view>
-</scroll-view>
-<view class='allReset' bindtap='allReset'>清空</view>
-</view>
+        </block>
+      </view>
+    </scroll-view>
+    <view class='allReset' bindtap='allReset'>清空</view>
+  </view>
 </template>
 
 <!--筛选结果展示横列(单个)  -->
@@ -1217,11 +1217,11 @@
           <label class="tapCase">标签</label>
           <view class="mainCaseContent">
             <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:for-item="styleList">
-            <label >{{styleList.style_name}}、</label> 
+              <label>{{styleList.style_name}}、</label>
               <!-- <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label> -->
               <!-- <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label> -->
             </block>
-             <block wx:for="{{item.type_list}}" wx:key="{{index}}" wx:for-item="typeList">
+            <block wx:for="{{item.type_list}}" wx:key="{{index}}" wx:for-item="typeList">
               <label wx:if="{{index <  item.type_list.length-1}}">{{typeList.type_name}}、</label>
               <label wx:if="{{index == item.type_list.length-1}}">{{typeList.type_name}}</label>
             </block>
@@ -1232,7 +1232,7 @@
             <label wx:if="{{index < item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】、</label>
             <label wx:if="{{index == item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】</label>
           </block>
-          
+
         </view>
       </view>
     </view>
@@ -1241,7 +1241,7 @@
 
 <!--媒体新闻  -->
 <template name="media">
-  <view id="mediaNew" >
+  <view id="mediaNew">
     <view class="mediaTime flex">{{item.news_date}}</view>
     <view class="mediaTitle">
       {{item.news_title}}

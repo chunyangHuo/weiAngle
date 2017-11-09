@@ -1,6 +1,7 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
 //searchData
+let label_industry = wx.getStorageSync('label_industry');
 let data = {
   firstTime: true,
   tab: [
@@ -43,7 +44,7 @@ let data = {
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  label_industry: wx.getStorageSync('label_industry'),
+  label_industry: label_industry || SearchModel.label_industry,
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
@@ -73,15 +74,14 @@ function reInitSearch(that, data) {
 function move(e, that) {
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
+  let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
   app.globalData.a = new Date();
-  console.log("000", app.globalData.a)
   // 清除未保存的选中标签
-  // SearchInit=Object.assign({},data)
-  // console.log(SearchInit)
-  // console.log(new Date())
-  this.initData(that);
-  console.log(111, new Date())
+  // SearchInit=Object.assign({},that.data.SearchInit)
+  console.log(SearchInit.label_industry)
+
+  this.initItem(label, that, SearchInit)
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
     that.setData({
@@ -93,7 +93,6 @@ function move(e, that) {
       SearchInit: SearchInit
     })
   }
-  console.log(new Date())
 }
 // 获取dropDown
 function getOffset(that) {
@@ -109,17 +108,14 @@ function getOffset(that) {
 }
 // 初始化所有check值
 function initData(that) {
-  console.log(222, new Date())
   let SearchInit = that.data.SearchInit;
   let tab = SearchInit.tab;
   tab.forEach(x => {
     this.initItem(x.label, that, SearchInit)
   })
-  console.log(333, new Date())
 }
 // 初始化某项check值(辅助函数)
 function initItem(str, that, SearchInit) {
-  console.log(str + '1', new Date())
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = SearchInit[itemStr];
@@ -135,13 +131,6 @@ function initItem(str, that, SearchInit) {
     if (item[0].child) {
       item.forEach((x, index) => {
         x.child.forEach((y, index2) => {
-          // SearchInit.time=new Date()-app.globalData.a;
-          // that.setData({
-          //   SearchInit:SearchInit
-          // })
-          // console.log(666, new Date() - app.globalData.a)
-          console.log(new Date())
-          console.log(app.globalData.a)
           y.check = false;
           if (searchData[itemStr].indexOf(y[itemIdStr]) != -1) {
             y.check = true;
@@ -161,11 +150,9 @@ function initItem(str, that, SearchInit) {
   }
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
-  // console.log(SearchInit)
   that.setData({
     SearchInit: SearchInit,
   })
-  console.log(str + '2', new Date())
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -182,11 +169,9 @@ function firstLinkCheck(e, that) {
   SearchInit[label][firstIndex].check = true;
 
   tab[tabIndex].page = firstIndex;
-  console.log(new Date())
   that.setData({
     SearchInit: SearchInit
   })
-  console.log(new Date())
 }
 // 联动标签选择全部
 function linkCheckAll(e, that) {
@@ -219,9 +204,11 @@ function tagsCheck(e, that) {
   // 有联动关系的下拉表
   if (item[0].child) {
     let linkItem = item[firstIndex].child[secondIndex];
+    console.log(linkItem)
     if (linkItem.check == false) {
-      console.log(linkItem)
       linkItem.check = true;
+      linkItem.firstIndex = firstIndex;
+      linkItem.secondIndex = secondIndex;
       itemArr.push(linkItem)
     } else {
       linkItem.check = false;
