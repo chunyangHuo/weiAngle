@@ -13,6 +13,7 @@ Page({
       { name: '金额', check: false, arr: false, id: "scale" },
       { name: '地区', check: false, arr: false, id: "hotCity" }
     ],
+    banner_personShop: app.globalData.picUrl.banner_personShop,
     currentIndex: 5,
     industryArr: [],
     stageArr: [],

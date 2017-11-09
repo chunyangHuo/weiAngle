@@ -296,7 +296,7 @@ Page({
     } else {
       console.log('searchCertain()出错了')
     }
-    SearchInit.currentIndex = 5;
+    SearchInit.currentIndex = 99;
     this.setData({
       SearchInit: SearchInit
     })
