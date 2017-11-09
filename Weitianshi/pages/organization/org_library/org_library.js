@@ -11,6 +11,7 @@ Page({
     imgUrls: app.globalData.picUrl.invest_org
   },
   onLoad: function (options) {
+    console.log(options)
     let label = options.label;
     let itemId = options.itemId;
     let that = this;
@@ -38,7 +39,9 @@ Page({
     
     app.httpPost({
       url: url_common + '/api/investment/list',
-      data: {}
+      data: {
+        filter: this.data.SearchInit.searchData
+      }
     }).then(res => {
       wx.hideLoading()
       let investormentList = res.data.data;
@@ -63,12 +66,13 @@ Page({
   loadMore: function () {
     console.log("loadMore")
     let that = this;
-    let currentPage = this.data.currentPage;
     let investment_list = this.data.investment_list;
+    let currentPage = this.data.currentPage;
     var request = {
       url: url_common + '/api/investment/list',
       data: {
-        page: currentPage
+        page: this.data.currentPage,
+        filter : this.data.SearchInit.searchData
       }
     }
     //调用通用加载函数

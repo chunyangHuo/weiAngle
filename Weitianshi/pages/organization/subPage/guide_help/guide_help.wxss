@@ -13,6 +13,7 @@
   padding-bottom: 40rpx;
   text-align: center;
   border-bottom: 1rpx solid #e6e6e6;
+  font-weight:bold;
 }
 
 .title {
@@ -44,6 +45,7 @@
   color: #666;
   line-height: 40rpx;
   text-align: left;
+  margin-bottom:8rpx;
 }
 
 .contentBox {
@@ -63,4 +65,5 @@
   color: #999;
   line-height: 34rpx;
   text-align: center;
+  margin-bottom:20rpx;
 }

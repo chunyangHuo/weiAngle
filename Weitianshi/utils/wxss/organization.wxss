@@ -208,7 +208,7 @@
 #investment .mainCaseContent {
   font-size: 24rpx;
   color: #666;
-  line-height: 36rpx;
+  line-height: 33rpx;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -229,8 +229,8 @@
   background: #fafafa;
   border-radius: 4rpx;
   height: auto;
-  line-height: 45rpx;
-  padding: 18rpx;
+  line-height: 40rpx;
+  padding: 14rpx 24rpx;
   font-size: 24rpx;
   color: #40587a;
   text-align: left;
@@ -241,7 +241,7 @@
 }
 
 #investment .tapCase {
-  border: 1rpx solid #bcf1d3;
+  border: 2rpx solid #bcf1d3;
   border-radius: 4rpx;
   width: 56rpx;
   height: 28rpx;
