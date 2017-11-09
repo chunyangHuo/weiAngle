@@ -447,6 +447,18 @@ Page({
     }
     SearchModel.searchSth(that, str)
   },
+  // 展示项删除
+  labelDelete(e) {
+    SearchModel.labelDelete(e, this)
+  },
+  // 一级联动选择
+  firstLinkCheck(e) {
+    SearchModel.firstLinkCheck(e, this);
+  },
+  // 联动选择全部
+  linkCheckAll(e) {
+    SearchModel.linkCheckAll(e, this);
+  },
 
   //---------------------------我的人脉--------------------------------------------------------------
   // 一键拨号
