@@ -524,7 +524,7 @@ App({
     }
   },
   //展开
-  allPoint: function (that, i, n = 7) {
+  allPoint(that, i, n = 7) {
     if (i == 0) {
       let checkedArr = {};
       for (let x = 0; x < n; x++) {
