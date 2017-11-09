@@ -23,6 +23,9 @@ Page({
       app.globalData.picUrl.banner_4,
       app.globalData.picUrl.banner_5,
     ],
+    imgUrls1:
+    app.globalData.picUrl.page_discoverProject,
+    
   },
   onLoad(options) {
     console.log(this.data)
@@ -296,7 +299,7 @@ Page({
     } else {
       console.log('searchCertain()出错了')
     }
-    SearchInit.currentIndex = 5;
+    SearchInit.currentIndex = 99;
     this.setData({
       SearchInit: SearchInit
     })

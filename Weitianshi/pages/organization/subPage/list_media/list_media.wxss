@@ -57,10 +57,12 @@ page {
 .mediaLine {
   border-bottom: 1px solid #e6e6e6;
 }
+
 .hasNothing {
   margin-top: 410rpx;
   font-size: 36rpx;
   color: #999;
-  line-height: 36rpx;
-  text-align: center
+  line-height: 20rpx;
+  text-align: center;
+  height: 800rpx;
 }

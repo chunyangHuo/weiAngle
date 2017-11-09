@@ -1,12 +1,21 @@
 /*tab切换页  */
 
 .swiper-tab {
-  width: 64%;
+  width: 74%;
   line-height: 80rpx;
   background: #40587a;
   z-index: 999;
 }
 
+.xiangmu {
+  width: 100%;
+  height: 1992rpx;
+}
+.xiangmu1{
+  width: 100%;
+  height: 50rpx;
+  background: #cccccc;
+}
 .swiper-tab-list {
   display: inline-block;
   width: 20%;
@@ -19,7 +28,7 @@
 }
 
 .swiper-tab {
-  padding-left: 36%;
+  padding-left: 30%;
 }
 
 .on {
@@ -187,8 +196,8 @@
 .searchLine {
   margin-bottom: 72rpx;
   height: 2rpx;
-  margin-left:32rpx;
+  margin-left: 32rpx;
   margin-right: 32rpx;
-  border-bottom:2rpx dashed #999;
+  border-bottom: 2rpx dashed #999;
   width: 90%;
 }

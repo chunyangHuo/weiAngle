@@ -58,6 +58,7 @@
 
 #searchModel .dropFlex {
   flex-wrap: wrap;
+  max-height: 840rpx;
 }
 
 #searchModel .checkbox {

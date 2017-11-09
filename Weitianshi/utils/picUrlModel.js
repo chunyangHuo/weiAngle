@@ -20,6 +20,9 @@ const picUrl = {
   push_success:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-tuisong%402x.jpg",
   project_success:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-chuangjian%402x.jpg",
   invest_org:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-qianzaitouzizhe.jpg",
+  banner_personShop:'https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-bg.jpg',
+  banner_organization:'https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/img-bg%402x.jpg',
+  page_discoverProject:'https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/xiangmu%402x.jpg'
 }
 
 export {
