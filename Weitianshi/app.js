@@ -53,6 +53,7 @@ App({
       url: url_common + '/api/category/getProjectCategory',
       method: 'POST',
       success: function (res) {
+        // console.log('getProjectCategory',res)
         let thisData = res.data.data;
         thisData.area.forEach((x) => { x.check = false })
         thisData.industry.forEach((x) => { x.check = false })
@@ -104,10 +105,7 @@ App({
       data: {}
     }).then(res => {
       let label_industry = res.data.data.industry_list;
-      console.log(label_industry)
-
       dealLabelChild(label_industry, 'label_industry');
-
       this.httpPost({
         url: url_common + '/api/investment/arealist',
         data: {}

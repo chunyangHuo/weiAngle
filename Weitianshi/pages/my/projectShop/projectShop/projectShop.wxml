@@ -53,7 +53,7 @@
   </view>
   <!--图片  -->
   <view class="shopBanner" bindtap="toPersonDetail">
-    <image src="/img/img-bg.jpg" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
+    <image src="{{banner_personShop}}" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
     <image src="{{userInfo.shop_banner}}" class="bgPic" wx:if="{{userInfo.shop_banner}}"></image>
     <view class='modal picModal'></view>
   </view>

@@ -13,6 +13,7 @@ Page({
     winHeight: 0,
     currentTab: 0,
     slectProject: '',
+    banner_organization: app.globalData.picUrl.banner_organization,
     // 筛选搜索
     SearchInit: SearchModel.data,
     activtyBanner: app.globalData.picUrl.activtyBanner,
