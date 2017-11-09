@@ -34,7 +34,6 @@ Page({
       url: url_common + '/api/investment/info',
       data: {
         investment_id: this.data.investment_id
-        // investment_id: 2
       },
       method: 'POST',
       success: function (res) {
