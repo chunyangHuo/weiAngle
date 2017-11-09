@@ -9,6 +9,11 @@ Page({
   data: {
     longMore: false,
     listMore: false,
+    aisChecked3: true,
+    aisChecked4: true,
+    textBeyond3: false,
+    textBeyond4: false,
+
   },
 
   onLoad: function (options) {
@@ -62,16 +67,45 @@ Page({
         wx.setNavigationBarTitle({
           title: info.investment_name
         })
-        if (info.investment_introduce){
-        if (info.investment_introduce.length > 88) {
-          that.setData({
-            longMore: true
-          })
-        } else {
-          that.setData({
-            longMore: false
-          })
+        // 机构介绍
+        if (info.investment_introduce) {
+          if (info.investment_introduce.length > 88) {
+            that.setData({
+              longMore: true
+            })
+          } else {
+            that.setData({
+              longMore: false
+            })
+          }
         }
+        // 领域
+        if (info.industry_list.length != 0) {
+          if (info.industry_list.length > 7) {
+            that.setData({
+              textBeyond3: true,
+              aisChecked3: true,
+            })
+          } else {
+            that.setData({
+              textBeyond3: false,
+              aisChecked3: false,
+            })
+          }
+        }
+        // 轮次
+        if (info.stage_list.length != 0) {
+          if (info.stage_list.length > 10) {
+            that.setData({
+              textBeyond4: true,
+              aisChecked4: true,
+            })
+          } else {
+            that.setData({
+              textBeyond4: false,
+              aisChecked4: false,
+            })
+          }
         }
       }
     })
@@ -94,6 +128,35 @@ Page({
       })
     }
   },
+  // 领域，轮次中的展开和收起
+  allBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    if (check == 3) {
+      this.setData({
+        aisChecked3: false
+      })
+    } else if (check == 4) {
+      this.setData({
+        aisChecked4: false
+      })
+    }
+
+  },
+  noBrightPoint: function (e) {
+    let check = e.currentTarget.dataset.check;
+    console.log(check)
+    if (check == 3) {
+      this.setData({
+        aisChecked3: true
+      })
+    } else if (check == 4) {
+      this.setData({
+        aisChecked4: true
+      })
+    }
+
+  },
+
   // 投资案例跳转
   toCase: function () {
     app.href('/pages/organization/subPage/list_investCase/list_investCase?investment_id=' + this.data.investId)
