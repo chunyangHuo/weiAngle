@@ -2,11 +2,15 @@
 
 .page {
   background: #fff;
+  height:100%;
 }
-
+.scrollStyle{
+  height:1334rpx;
+    background: #fff;
+}
 .outStyleBox {
-  margin-bottom: 32rpx;
-  background: #fff;
+height: 1334rpx;
+
   padding: 32rpx;
 }
 

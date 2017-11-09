@@ -1179,7 +1179,7 @@
 <!--投资机构  -->
 <template name="investment">
   <block wx:for="{{investment_list}}" wx:key="{{index}}">
-    <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}">
+    <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="investGroupLeft">
         <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
        <image src="/img/warband-logo.png" class="investGroupLeft" wx:if="{{!item.investment_logo}}"></image> 
@@ -1242,7 +1242,7 @@
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList.list}}" wx:key="{{index}}">
-    <view class="memberInfo flex" data-memberid="{{item.member_id}}"  hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember">
+    <view class="memberInfo flex" data-memberid="{{item.member_id}}"  hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="memberInfoLeft">
            <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}"  class="memberInfoLeft"></image> 
          <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view>   
