@@ -1235,7 +1235,7 @@
 
 <!--媒体新闻  -->
 <template name="media">
-  <view id="mediaNew" class="inMedia ">
+  <view id="mediaNew" >
     <view class="mediaTime flex">{{item.news_date}}</view>
     <view class="mediaTitle">
       {{item.news_title}}

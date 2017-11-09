@@ -35,7 +35,6 @@ Page({
         console.log(searchData)
       })
     }
-    
     app.httpPost({
       url: url_common + '/api/investment/list',
       data: {}
