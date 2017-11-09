@@ -99,7 +99,7 @@
 					"id": 12,
 					"name": "投资机构",
 					"pathName": "pages/organization/org_library/org_library",
-					"query": "label=label_style&&itemId=5"
+					"query": ""
 				}
 			]
 		}
