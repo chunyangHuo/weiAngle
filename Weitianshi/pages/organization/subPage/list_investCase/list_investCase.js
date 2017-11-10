@@ -11,6 +11,7 @@ Page({
    */
   data: {
     SearchInit: SearchModel.data,
+    
   },
 
   /**
@@ -73,8 +74,8 @@ Page({
       let list = res.data.data.project_list;
       let page_end = res.data.data.page_end;
       if (list) {
-        let newProject = project_list.concat(list)
         currentPage++;
+        let newProject = project_list.concat(list)
         that.setData({
           newPage: newPage,
           project_list: newProject,
@@ -124,6 +125,9 @@ Page({
     SearchInit.searchData = searchData;
     this.setData({
       searchInit: SearchInit
+    })
+    that.setData({
+      currentPage: 0,
     })
     this.loadMore();
     console.log(this.data.SearchInit.searchData)
