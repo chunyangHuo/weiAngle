@@ -8,9 +8,10 @@ Page({
   data: {
     //筛选搜索
     SearchInit: SearchModel.data,
-    imgUrls: app.globalData.picUrl.invest_org
+    imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {
+    console.log(options)
     let label = options.label;
     let itemId = options.itemId;
     let that = this;
@@ -35,20 +36,7 @@ Page({
         console.log(searchData)
       })
     }
-    app.httpPost({
-      url: url_common + '/api/investment/list',
-      data: {}
-    }).then(res => {
-      wx.hideLoading()
-      let investormentList = res.data.data;
-      let investment_list = investormentList.investment_list.list;
-      that.setData({
-        investormentList: investormentList,
-        investment_list: investment_list
-      })
-      wx.hideLoading();
-    })
-
+this.applyList();
   },
 
   onShow: function () {
@@ -62,12 +50,13 @@ Page({
   loadMore: function () {
     console.log("loadMore")
     let that = this;
-    let currentPage = this.data.currentPage;
     let investment_list = this.data.investment_list;
+    let currentPage = this.data.currentPage;
     var request = {
       url: url_common + '/api/investment/list',
       data: {
-        page: currentPage
+        page: this.data.currentPage,
+        filter : this.data.SearchInit.searchData
       }
     }
     //调用通用加载函数
@@ -127,6 +116,7 @@ Page({
     this.setData({
       searchInit: SearchInit
     })
+    this.applyList()
   },
   // 点击modal层
   modal() {
@@ -138,7 +128,11 @@ Page({
     let that = this;
     let str;
     str = this.data.currentTab == 0 ? "selected" : "newest"
-    SearchModel.searchSth(that, str)
+    SearchModel.searchSth(that, str,x=>{
+      app.href(
+        "/pages/organization/org_search/org_search"
+      )
+    })
   },
   // 展示项删除
   labelDelete(e) {
@@ -153,6 +147,7 @@ Page({
     SearchModel.linkCheckAll(e,this);
   },
 
+
   // -----------------------------------------------------------------------------------------
   //跳转帮助
   guideHelp() {
@@ -161,10 +156,31 @@ Page({
   //机构详情跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
+
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
   },
 
   onShareAppMessage: function () {
     return ShareModel.projectListShare();
   },
+  applyList(){
+    let that = this;
+    app.httpPost({
+      url: url_common + '/api/investment/list',
+      data: {
+        filter: this.data.SearchInit.searchData
+      }
+    }).then(res => {
+      console.log(res)
+      wx.hideLoading()
+      let investormentList = res.data.data;
+      let investment_list = investormentList.investment_list.list;
+      that.setData({
+        investormentList: investormentList,
+        investment_list: investment_list
+      })
+      wx.hideLoading();
+    })
+
+  }
 })

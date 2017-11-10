@@ -870,7 +870,7 @@
   <view id='searchModel' class="screen flex" wx:if="{{currentTab != 0}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
-      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
+      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' bindtap='move'>
         {{item.name}}
         <image class='withAnimate {{SearchInit.currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
       </view>
@@ -1171,7 +1171,7 @@
 
 <!--投资领域  -->
 <template name="industry">
-  <view id="industry" style="display :{{currentTab ==0 && index >= 6?  'none' :'inline-block'}}">{{item.industry_name}}</view>
+  <view id="industry" style="display :{{currentTab ==0 && index >= 6?  'none' :'inline-block'}}" data-industryid="{{item.industry_id}}" bindtap="toIndustry">{{item.industry_name}}</view>
 </template>
 
 <!--投资机构  -->
@@ -1203,8 +1203,13 @@
           <label class="tapCase">标签</label>
           <view class="mainCaseContent">
             <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:for-item="styleList">
-              <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label>
-              <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label>
+              <label>{{styleList.style_name}}、</label>
+              <!-- <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label> -->
+              <!-- <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label> -->
+            </block>
+            <block wx:for="{{item.type_list}}" wx:key="{{index}}" wx:for-item="typeList">
+              <label wx:if="{{index <  item.type_list.length-1}}">{{typeList.type_name}}、</label>
+              <label wx:if="{{index == item.type_list.length-1}}">{{typeList.type_name}}</label>
             </block>
           </view>
         </view>
@@ -1213,6 +1218,7 @@
             <label wx:if="{{index < item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】、</label>
             <label wx:if="{{index == item.investment_events.length-1}}">{{investment_eventsList.event_time}}【{{investment_eventsList.project_name}}】</label>
           </block>
+
         </view>
       </view>
     </view>
@@ -1221,7 +1227,7 @@
 
 <!--媒体新闻  -->
 <template name="media">
-  <view id="mediaNew" >
+  <view id="mediaNew">
     <view class="mediaTime flex">{{item.news_date}}</view>
     <view class="mediaTitle">
       {{item.news_title}}
@@ -1240,7 +1246,7 @@
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList.list}}" wx:key="{{index}}">
-    <view class="memberInfo flex" data-memberid="{{item.member_id}}"  hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
+    <view class="memberInfo flex" data-memberid="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="memberInfoLeft">
         <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}" class="memberInfoLeft"></image>
         <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view>

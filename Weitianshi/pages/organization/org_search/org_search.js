@@ -61,6 +61,7 @@ Page({
 
   // 点击tab切换
   swichNav: function (e) {
+    console.log(e)
     let that = this;
     let current = e.target.dataset.current;
     that.setData({
@@ -83,7 +84,9 @@ Page({
   // 滑动切换tab
   bindChange: function (e) {
     let that = this;
-    let current = e.detail.current;
+    that.setData({
+      currentTab: e.detail.current
+    })
     app.initPage(that);
   },
   //搜索事件
@@ -113,7 +116,7 @@ Page({
           investment_list: investment_list,
           memberList: memberList,
           industry_list: industry_list,
-          word : str
+          word: str
         })
         wx.hideLoading();
       })
@@ -173,58 +176,57 @@ Page({
   memberList: function () {
     let that = this;
     let memberList = this.data.memberList;
-    if(this.data.word){
-      let word = this.data.word
-      console.log(word)
-    }
+    let word = this.data.word;
     if (that.data.requestCheckBoolean) {
-        if (that.data.page_endBoolean == false) {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          that.data.push_page++;
-          that.setData({
-            otherCurrentPage: this.data.push_page,
-            requestCheckBoolean: false
-          });
-          //请求加载数据
-          wx.request({
-            url: url_common + '/api/investment/search',
-            data: {
-              page: this.data.otherCurrentPage,
-            
-            },
-            method: 'POST',
-            success: function (res) {
-              var newPage = res.data.data.member_list.list;
-              var page_end = res.data.data.member_list.page_end;
-              for (var i = 0; i < newPage.length; i++) {
-                memberList.list.push(newPage[i])
-              }
-              that.setData({
-                memberList: memberList,
-                page_endBoolean: page_end,
-                requestCheckBoolean: true
-              })
+      if (that.data.page_endBoolean == false) {
+        wx.showToast({
+          title: 'loading...',
+          icon: 'loading'
+        })
+        that.data.push_page++;
+        that.setData({
+          otherCurrentPage: this.data.push_page,
+          requestCheckBoolean: false
+        });
+        //请求加载数据
+        wx.request({
+          url: url_common + '/api/investment/search',
+          data: {
+            page: this.data.otherCurrentPage,
+            word: word
+          },
+          method: 'POST',
+          success: function (res) {
+            var newPage = res.data.data.member_list.list;
+            var page_end = res.data.data.member_list.page_end;
+            for (var i = 0; i < newPage.length; i++) {
+              memberList.list.push(newPage[i])
             }
-          })
-        } else {
-          app.errorHide(that, "没有更多了", that, 3000)
-          that.setData({
-            requestCheckBoolean: true
-          });
-        }
+            that.setData({
+              memberList: memberList,
+              page_endBoolean: page_end,
+              requestCheckBoolean: true
+            })
+          }
+        })
+      } else {
+        app.errorHide(that, "没有更多了", that, 3000)
+        that.setData({
+          requestCheckBoolean: true
+        });
       }
+    }
   },
-  investmentList(){
+  investmentList() {
     let that = this;
     let currentPage = this.data.currentPage;
     let investment_list = this.data.investment_list;
+    let word = this.data.word;
     var request = {
       url: url_common + '/api/investment/search',
       data: {
-        page: currentPage
+        page: currentPage,
+        word: word
       }
     }
     //调用通用加载函数
@@ -244,5 +246,10 @@ Page({
         }
       }
     })
+  },
+  //领域跳转
+  toIndustry(e) {
+    let id = e.currentTarget.dataset.industryid;
+    app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   }
 })

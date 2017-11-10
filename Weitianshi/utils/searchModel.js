@@ -1,6 +1,7 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
 //searchData
+let label_industry = wx.getStorageSync('label_industry');
 let data = {
   firstTime: true,
   tab: [
@@ -43,10 +44,10 @@ let data = {
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  label_industry: wx.getStorageSync('label_industry'),
+  label_industry: label_industry || SearchModel.label_industry,
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
-  label_type: wx.getStorageSync('label_type')
+  label_type: wx.getStorageSync('label_type'),
 }
 // label=>itemIdStr
 function labelToId(label) {
@@ -73,15 +74,19 @@ function reInitSearch(that, data) {
 function move(e, that) {
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
+  let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
+  app.globalData.a = new Date();
   // 清除未保存的选中标签
-  this.initData(that);
+  // SearchInit=Object.assign({},that.data.SearchInit)
+  console.log(SearchInit.label_industry)
+
+  this.initItem(label, that, SearchInit)
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
     that.setData({
       SearchInit: SearchInit
     })
-    this.getOffset(that);
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
@@ -111,7 +116,6 @@ function initData(that) {
 }
 // 初始化某项check值(辅助函数)
 function initItem(str, that, SearchInit) {
-  // let SearchInit = that.data.SearchInit;
   let itemStr = str;
   let itemArrStr = str + 'Arr';
   let item = SearchInit[itemStr];
@@ -146,7 +150,6 @@ function initItem(str, that, SearchInit) {
   }
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
-  // console.log(SearchInit)
   that.setData({
     SearchInit: SearchInit,
   })
@@ -201,9 +204,11 @@ function tagsCheck(e, that) {
   // 有联动关系的下拉表
   if (item[0].child) {
     let linkItem = item[firstIndex].child[secondIndex];
+    console.log(linkItem)
     if (linkItem.check == false) {
-      console.log(linkItem)
       linkItem.check = true;
+      linkItem.firstIndex = firstIndex;
+      linkItem.secondIndex = secondIndex;
       itemArr.push(linkItem)
     } else {
       linkItem.check = false;
@@ -360,7 +365,7 @@ function detialItemSearch(label, itemId, that, callBack) {
   let itemStrArr = label + 'Arr';
   let itemArr = SearchInit[itemStrArr];
   //判断是否是有联动关系 
-  if (item.child) {
+  if (item[0].child) {
     item.forEach(x => {
       x.child.forEach(y => {
         if (y[itemIdStr] == itemId) {
@@ -382,6 +387,7 @@ function detialItemSearch(label, itemId, that, callBack) {
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(SearchInit.searchData)
   callBack(SearchInit.searchData);
 }
 
@@ -394,12 +400,18 @@ function modal(that) {
   })
 }
 //搜索
-function searchSth(that, str) {
+function searchSth(that, str, callBack) {
   let user_id = that.data.user_id;
-  wx.navigateTo({
-    url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
-  })
+  if (!callBack) {
+    wx.navigateTo({
+      url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
+    })
+  } else {
+    callBack()
+  }
+
 }
+
 
 export {
   data,
@@ -418,5 +430,5 @@ export {
   labelDelete,
   firstLinkCheck,
   linkCheckAll,
-  detialItemSearch
+  detialItemSearch,
 }
