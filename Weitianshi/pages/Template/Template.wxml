@@ -1137,7 +1137,7 @@
     <view class="flex investW">
       <view class="investLogo">
         <view class="investLogo1">
-          <image src="{{item.project_logo}}" wx:if="{{item.project_logo}}"></image>
+          <image src="{{item.project_logo}}" wx:if="{{item.project_logo}}" mode="aspectFit"></image>
           <image src="/img/warband-logo.png" wx:if="{{item.project_logo==''}}"></image>
         </view>
       </view>
@@ -1194,7 +1194,7 @@
   <block wx:for="{{investment_list}}" wx:key="{{index}}">
     <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="investGroupLeft">
-        <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
+        <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}" mode="aspectFit"></image>
         <image src="/img/warband-logo.png" class="investGroupLeft" wx:if="{{!item.investment_logo}}"></image>
       </view>
       <view class="investGroupRight">

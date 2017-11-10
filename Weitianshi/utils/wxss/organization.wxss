@@ -171,6 +171,10 @@
   color: #333;
   line-height: 32rpx;
   text-align: left;
+  width: 360rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #investment .investNum {
@@ -297,7 +301,7 @@
   height: 104rpx;
   border-radius: 50%;
   margin-right: 24rpx;
-  line-height:104rpx;
+  line-height: 104rpx;
 }
 
 #memberList .memberInfoLeft image {
@@ -524,7 +528,7 @@
   border-radius: 100%;
   margin-right: 24rpx;
   text-align: center;
-  line-height:100rpx;
+  line-height: 100rpx;
 }
 
 #memberList1 .memberInfoTop {
@@ -605,11 +609,12 @@
   margin-right: 24rpx;
   display: inline-block;
 }
+
 #investment1 .match {
   font-size: 20px;
   color: #fc703e;
   text-align: left;
-   margin-bottom: 10rpx;
+  margin-bottom: 10rpx;
 }
 
 #investment1 .match1 {
@@ -619,6 +624,7 @@
   text-align: left;
   margin-top: 85%;
 }
+
 #investment1 .match2 {
   margin-bottom: 10rpx;
   font-size: 10px;
@@ -626,6 +632,7 @@
   text-align: left;
   margin-top: 15%;
 }
+
 #investment1 .investTitle {
   font-size: 30rpx;
   color: #333;
