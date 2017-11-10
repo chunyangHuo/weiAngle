@@ -47,7 +47,7 @@ let data = {
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  label_industry: label_industry || SearchModel.label_industry,
+  label_industry: label_industry || wx.getStorageSync('label_industry'),
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
