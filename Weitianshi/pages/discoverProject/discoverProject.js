@@ -11,6 +11,7 @@ Page({
     winHeight: 0,
     currentTab: 0,
     slectProject: '',
+    hidden:true,
     //筛选搜索
     SearchInit: SearchModel.data,
     //banner
@@ -36,7 +37,15 @@ Page({
     }
     let that = this;
     let user_id = this.data.user_id;
-
+    if (this.data.currentTab == 2) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -66,6 +75,15 @@ Page({
     if (this.data.currentTab === current) {
       this.tabChange(current)
     }
+    if (this.data.currentTab == 2) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   // 滑动切换tab
   bindChange: function (e) {
@@ -75,6 +93,15 @@ Page({
     this.allReset();
     that.setData({ currentTab: e.detail.current });
     this.tabChange(current);
+    if (this.data.currentTab == 2) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {

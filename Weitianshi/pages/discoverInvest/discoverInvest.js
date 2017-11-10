@@ -8,6 +8,7 @@ Page({
     investorList: [],
     faList: [],
     myContacts: [],
+    hidden:true,
     //选项卡
     winWidth: 0,
     winHeight: 0,
@@ -22,6 +23,15 @@ Page({
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
+      })
+    }
+    if (this.data.currentTab == 0) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
       })
     }
   },
@@ -80,6 +90,15 @@ Page({
     if (this.data.currentTab === current) {
       this.tabChange(current)
     }
+    if (this.data.currentTab == 0) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   // 滑动切换tab
   bindChange: function (e) {
@@ -89,6 +108,15 @@ Page({
     this.allReset();
     that.setData({ currentTab: e.detail.current });
     this.tabChange(current);
+    if (this.data.currentTab == 0) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   // tab页面切换数据调用(辅助函数)
   tabChange(current) {
