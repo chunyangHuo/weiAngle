@@ -13,7 +13,8 @@ Page({
     blue: -1,
     count: "",
     modalBox: 0,
-    IdentificationShow: 1
+    IdentificationShow: 1,
+    shareModal: app.globalData.picUrl.share_modal,
   },
   onLoad: function (options) {
     if (options) {

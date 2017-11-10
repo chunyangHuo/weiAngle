@@ -17,7 +17,7 @@
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true">
       <view style="height:32rpx;width:100%;"></view>
-      <view  wx:if="{{investment_list.length !=0 &&industry_list.length != 0 && memberList.list.length != 0}}">
+      <view wx:if="{{investment_list.length !=0 ||industry_list.length != 0 || memberList.list.length != 0}}">
         <view class="outStyleBox" id="investment" wx:if="{{investment_list.length != 0}}">
           <view class="blockTitle">投资机构</view>
           <template is="investment" data="{{investment_list,currentTab,index}}"></template>
