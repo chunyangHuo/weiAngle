@@ -524,7 +524,7 @@ textarea {
 .t-modal {
   position: absolute;
   left: 0;
-  top: 80rpx;
+  top: 160rpx;
   width: 100%;
   height: 1174rpx;
   background: black;

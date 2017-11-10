@@ -8,7 +8,9 @@ Page({
   data: {
     currentTab: 0,
     investment_list: [],
-    memberList: [],
+    memberList: {
+      list:[]
+    },
     industry_list: []
   },
   onLoad: function (options) {
@@ -109,10 +111,12 @@ Page({
         }
       }).then(res => {
         wx.hideLoading()
+        let searchData = res.data.data;
         let investment_list = res.data.data.investment_list.list;
         let memberList = res.data.data.member_list;
         let industry_list = res.data.data.industry_list;
         that.setData({
+          searchData :searchData,
           investment_list: investment_list,
           memberList: memberList,
           industry_list: industry_list,
@@ -143,7 +147,7 @@ Page({
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + investment_id)
   },
   //跳转投资领域
-  toIndustry() {
+  toIndustryList() {
     let that = this;
     let searchData = this.data.searchData;
     let industry_list = searchData.industry_list;

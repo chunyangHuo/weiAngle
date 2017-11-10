@@ -123,7 +123,6 @@ Page({
     let current = this.data.currentTab;
     let SearchInit = this.data.SearchInit;
     let searchData = SearchModel.searchCertain(that);
-    console.log(searchData);
     SearchInit.searchData = searchData;
     this.setData({
       searchInit: SearchInit
@@ -132,7 +131,6 @@ Page({
       currentPage: 0,
     })
     this.investList();
-    console.log(this.data.SearchInit.searchData)
   },
   // 点击modal层
   modal() {
