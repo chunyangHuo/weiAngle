@@ -18,7 +18,8 @@ let data = {
     'label_industry': 'industry_id',
     'label_area': 'area_id',
     'label_style': 'style_id',
-    'label_type': 'type_id'
+    'label_type': 'type_id',
+    'label_time': 'time_id'
   },
   currentIndex: 99,
   searchData: {
@@ -30,6 +31,7 @@ let data = {
     label_area: [],
     label_style: [],
     label_type: [],
+    label_time: [],
     search: "",
   },
   industryArr: [],
@@ -40,6 +42,7 @@ let data = {
   label_areaArr: [],
   label_styleArr: [],
   label_typeArr: [],
+  label_timeArr: [],
   industry: wx.getStorageSync('industry'),
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
@@ -48,6 +51,7 @@ let data = {
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
+  label_time: [{ time_id: 0, time_name: '近一年', check: false }, { time_id: 1, time_name: '近三年', check: false }, { time_id: 2, time_name: '全部', check: false }]
 }
 // label=>itemIdStr
 function labelToId(label) {
@@ -79,8 +83,6 @@ function move(e, that) {
   app.globalData.a = new Date();
   // 清除未保存的选中标签
   // SearchInit=Object.assign({},that.data.SearchInit)
-  console.log(SearchInit.label_industry)
-
   this.initItem(label, that, SearchInit)
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
@@ -179,13 +181,16 @@ function linkCheckAll(e, that) {
   let label = e.currentTarget.dataset.label;
   let firstLink = e.currentTarget.firstindex;
   let page = e.currentTarget.dataset.page;
+  let itemArr = SearchInit[label + 'Arr'];
 
   SearchInit[label][page].child.forEach(x => {
     x.check = true;
+    itemArr.push(x)
   })
   that.setData({
     SearchInit: SearchInit
   })
+
 }
 // 标签选择
 function tagsCheck(e, that) {
@@ -221,11 +226,21 @@ function tagsCheck(e, that) {
   } else {
     // 无联动关系的下拉表  
     if (target.check == false) {
-      if (itemArr.length < 5) {
+      if (str == "label_time") {
+        item.forEach(x => {
+          x.check = false;
+        })
         item[index].check = true;
-        itemArr.push(target)
+        itemArr = [];
+        itemArr.push(target);
+        console.log(item[index],itemArr)
       } else {
-        app.errorHide(that, '不能选择超过5个标签', 3000)
+        if (itemArr.length < 5) {
+          item[index].check = true;
+          itemArr.push(target)
+        } else {
+          app.errorHide(that, '不能选择超过5个标签', 3000)
+        }
       }
     } else {
       item[index].check = false;
@@ -317,6 +332,7 @@ function searchCertain(that) {
     SearchInit: SearchInit
   })
   console.log(searchData)
+  
   return searchData;
 
   //发送筛选请求

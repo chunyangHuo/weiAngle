@@ -912,7 +912,7 @@
     <scroll-view scroll-y="true" class="frame_province">
       <view>
         <block wx:for="{{SearchInit[label]}}" wx:for-index='idx' wx:key="{{item[itemId]}}">
-          <view class="province" bindtap="firstLinkCheck" data-label='{{label}}' data-tabIndex='{{index}}' data-firstIndex="{{idx}}" data-id='{{item[itemId]}}' style="background:{{SearchInit[label][idx].check==1?'white':''}}">
+          <view class="province" bindtap="firstLinkCheck" data-label='{{label}}' data-tabIndex='{{index}}' data-firstIndex="{{idx}}" data-id='{{item[itemId]}}' style="background:{{SearchInit[label][idx].check==true?'white':''}}">
             {{item[itemName]}}
           </view>
         </block>

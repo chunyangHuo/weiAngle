@@ -30,7 +30,8 @@ Page({
     show_detail: true,
     show_company: true,
     oneKeyRearch: true,
-    message: ""
+    message: "",
+    projectBack: app.globalData.picUrl.project_detail_backgroud,
   },
   onLoad: function (options) {
     var that = this;

@@ -29,7 +29,8 @@ Page({
     currentTab: 0,//选项卡
     show_detail: false,
     show_company: false,
-    message: ""
+    message: "",
+    projectBack: app.globalData.picUrl.project_detail_backgroud,
   },
   onLoad: function (options) {
     var that = this;

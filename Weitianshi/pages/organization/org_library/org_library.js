@@ -11,7 +11,6 @@ Page({
     imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {
-    console.log(options)
     let label = options.label;
     let itemId = options.itemId;
     let that = this;
@@ -24,19 +23,19 @@ Page({
     SearchModel.reInitSearch(that, {
       tab: [
         { type:2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page:'0'},
-        { type: 1, name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
+        { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },n
         { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
         { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: true },
       ],
     })
 
     // 页面间跳转传值筛选
-    if(label){
+    if (label) {
       SearchModel.detialItemSearch(label, itemId, that, searchData => {
         console.log(searchData)
       })
     }
-this.applyList();
+    this.applyList();
   },
 
   onShow: function () {
@@ -56,7 +55,7 @@ this.applyList();
       url: url_common + '/api/investment/list',
       data: {
         page: this.data.currentPage,
-        filter : this.data.SearchInit.searchData
+        filter: this.data.SearchInit.searchData
       }
     }
     //调用通用加载函数
@@ -128,7 +127,7 @@ this.applyList();
     let that = this;
     let str;
     str = this.data.currentTab == 0 ? "selected" : "newest"
-    SearchModel.searchSth(that, str,x=>{
+    SearchModel.searchSth(that, str, x => {
       app.href(
         "/pages/organization/org_search/org_search"
       )
@@ -139,12 +138,12 @@ this.applyList();
     SearchModel.labelDelete(e, this)
   },
   // 一级联动选择
-  firstLinkCheck(e){
-    SearchModel.firstLinkCheck(e,this);
+  firstLinkCheck(e) {
+    SearchModel.firstLinkCheck(e, this);
   },
   // 联动选择全部
-  linkCheckAll(e){
-    SearchModel.linkCheckAll(e,this);
+  linkCheckAll(e) {
+    SearchModel.linkCheckAll(e, this);
   },
 
 
@@ -163,24 +162,42 @@ this.applyList();
   onShareAppMessage: function () {
     return ShareModel.projectListShare();
   },
-  applyList(){
+  applyList() {
     let that = this;
-    app.httpPost({
+    wx.request({
       url: url_common + '/api/investment/list',
+      method:"POST",
       data: {
         filter: this.data.SearchInit.searchData
+      },
+      success:function(res){
+        console.log(res)
+        wx.hideLoading()
+        let investormentList = res.data.data;
+        let investment_list = investormentList.investment_list.list;
+        that.setData({
+          investormentList: investormentList,
+          investment_list: investment_list
+        })
+        wx.hideLoading();
       }
-    }).then(res => {
-      console.log(res)
-      wx.hideLoading()
-      let investormentList = res.data.data;
-      let investment_list = investormentList.investment_list.list;
-      that.setData({
-        investormentList: investormentList,
-        investment_list: investment_list
-      })
-      wx.hideLoading();
     })
+    // app.httpPost({
+    //   url: url_common + '/api/investment/list',
+    //   data: {
+    //     filter: this.data.SearchInit.searchData
+    //   }
+    // }).then(res => {
+    //   console.log(res)
+    //   wx.hideLoading()
+    //   let investormentList = res.data.data;
+    //   let investment_list = investormentList.investment_list.list;
+    //   that.setData({
+    //     investormentList: investormentList,
+    //     investment_list: investment_list
+    //   })
+    //   wx.hideLoading();
+    // })
 
   }
 })

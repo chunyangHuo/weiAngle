@@ -1,8 +1,8 @@
 <!--pages/organization/subPage/list_investCase/list_investCase.wxml-->
 <import src="/pages/Template/Template.wxml" />
 <!--筛选和搜索  -->
-<template is='search' data='{{SearchInit,currentTab,searchIcon:0}}'></template>
-<template is='searchResult' data='{{SearchInit}}'></template>
+<template is='search' data='{{SearchInit,currentTab}}'></template>
+<!-- <template is='searchResult' data='{{SearchInit}}'></template> -->
 <scroll-view scroll-top="{{scroll}}" scroll-y="true" style="height:1032rpx" bindscrolltolower='loadMore'>
   <view class="investImg" wx:if="{{newPage.investment_event_url}}">
     <image src="{{newPage.investment_event_url}}"></image>
