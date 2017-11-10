@@ -316,18 +316,6 @@ Page({
     str = this.data.currentTab == 0 ? "selected" : "newest"
     SearchModel.searchSth(that, str)
   },
-  // 展示项删除
-  labelDelete(e) {
-    SearchModel.labelDelete(e, this)
-  },
-  // 一级联动选择
-  firstLinkCheck(e) {
-    SearchModel.firstLinkCheck(e, this);
-  },
-  // 联动选择全部
-  linkCheckAll(e) {
-    SearchModel.linkCheckAll(e, this);
-  },
 
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面

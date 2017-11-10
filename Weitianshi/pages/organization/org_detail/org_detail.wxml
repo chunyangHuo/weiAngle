@@ -51,7 +51,7 @@
     <view class="inMedia investBottom">
       <view class="scale" wx:if="{{info.investment_capital_scale}}">
         <view class="scaleTitle investBottom">管理资本规模</view>
-        <view class="scaleDetail">
+        <view class="scaleDetail scaleDetail1">
           {{info.investment_capital_scale}}
         </view>
       </view>

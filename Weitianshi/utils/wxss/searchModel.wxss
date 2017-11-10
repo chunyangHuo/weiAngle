@@ -44,7 +44,7 @@
   left: 0;
   background: white;
   z-index: 9999;
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
   width: 100%;
 }
 

@@ -862,6 +862,7 @@
   </view>
 </template>
 
+
 <!-------------------------------筛选-------------------------------------------------  -->
 
 <!--筛选和搜索  -->
@@ -1143,7 +1144,7 @@
           <view class="investName1">{{item.project_name}}</view>
           <view class="investHot" wx:if="{{item.is_hot==1}}">Hot</view>
           <!-- <block wx:for="{{item.style_list}}" wx:key="{{item.style_list}}"> -->
-          <view class="investWheel investInduryone">多伦陪伴</view>
+          <view class="investWheel investInduryone" wx:if="{{item.more_than==1}}">多轮陪伴</view>
           <!--{{item.style_name}}  -->
           <!-- </block> -->
 
@@ -1166,14 +1167,12 @@
             <!-- <view class="investInduryone" >{{item.investment_name}}、</view> -->
             <label class="investInduryone" wx:if="{{index <  item.investment_list.length-1}}">
               <label> {{investList.investment_name}}</label>
-              <label wx:if="{{investList.is_lead==0}}">【跟投】</label>
-              <label wx:if="{{investList.is_lead==1}}">【领投】</label>
+              <label wx:if="{{investList.is_load}}">【{{investList.is_load}}】</label>
               <label>、</label>
             </label>
             <label class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">
               <label> {{investList.investment_name}}</label>
-              <label wx:if="{{investList.is_lead==0}}">【跟投】</label>
-              <label wx:if="{{investList.is_lead==1}}">【领投】</label>
+               <label  wx:if="{{investList.is_load}}">【{{investList.is_load}}】</label>
             </label>
           </block>
         </view>

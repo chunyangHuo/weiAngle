@@ -535,7 +535,7 @@ page {
   left: 0;
   background: white;
   z-index: 999;
-  padding-bottom: 12rpx;
+   padding-bottom: 12rpx; 
 }
 
 .dropTitle {
