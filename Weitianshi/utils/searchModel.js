@@ -231,9 +231,7 @@ function tagsCheck(e, that) {
           x.check = false;
         })
         item[index].check = true;
-        itemArr = [];
-        itemArr.push(target);
-        console.log(item[index],itemArr)
+        itemArr[0]=target;
       } else {
         if (itemArr.length < 5) {
           item[index].check = true;
@@ -254,6 +252,7 @@ function tagsCheck(e, that) {
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(SearchInit)
 }
 // 筛选重置
 function reset(that) {
@@ -332,7 +331,7 @@ function searchCertain(that) {
     SearchInit: SearchInit
   })
   console.log(searchData)
-  
+
   return searchData;
 
   //发送筛选请求

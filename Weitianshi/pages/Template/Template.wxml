@@ -893,6 +893,8 @@
         <button bindtap='searchCertain'>确定</button>
       </view>
     </view>
+    <!--模态层  -->
+    <view class='t-modal' wx:if='{{SearchInit.currentIndex!=99}}' bindtap='modal'></view>
   </view>
 </template>
 
@@ -1172,7 +1174,7 @@
             </label>
             <label class="investInduryone" wx:if="{{index == item.investment_list.length-1}}">
               <label> {{investList.investment_name}}</label>
-               <label  wx:if="{{investList.is_load}}">【{{investList.is_load}}】</label>
+              <label wx:if="{{investList.is_load}}">【{{investList.is_load}}】</label>
             </label>
           </block>
         </view>

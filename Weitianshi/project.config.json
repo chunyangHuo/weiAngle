@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 12,
 			"list": [
 				{
 					"id": 1,
@@ -102,10 +102,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 13,
 					"name": "投资案例",
 					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
-					"query": ""
+					"query": "investment_id=97"
 				}
 			]
 		}

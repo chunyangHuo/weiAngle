@@ -197,3 +197,6 @@
   right: 50rpx;
   top: 20rpx;
 }
+.searchModal{
+  
+}
