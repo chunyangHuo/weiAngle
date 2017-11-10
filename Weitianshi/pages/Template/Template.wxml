@@ -877,7 +877,7 @@
       </view>
     </block>
     <!--搜索  -->
-    <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
+    <icon type="search" size="15" class="search_icon" catchtap="searchSth" wx:if="{{currentIcon!=0}}"></icon>
     <!--下拉框  -->
     <view class='dropDown withAnimate'>
       <!--多选框  -->
@@ -1322,7 +1322,7 @@
       <view class="invest1Left">
         <view class="investGroupLeft">
           <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
-          <image src="/img/warband-logo.png" class="investGroupLeft"></image>
+          <image src="/img/warband-logo.png"  wx:if="{{item.investment_logo==''}}" class="investGroupLeft"></image>
         </view>
         <view class="match1" class="{{item.industry_list.length!=0||item.style_list.length!=0 ? 'match1' : 'match2'}}">匹配度</view>
         <view class="match">{{item.match_rate}}%</view>

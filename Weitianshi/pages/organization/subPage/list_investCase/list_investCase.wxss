@@ -18,7 +18,7 @@ page {
   color: #999;
   line-height: 20rpx;
   text-align: center;
-  height: 400rpx;
+  height:500rpx;
 }
 .media {
   width: 100%;
