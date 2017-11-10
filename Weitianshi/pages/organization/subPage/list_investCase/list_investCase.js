@@ -26,9 +26,9 @@ Page({
     SearchModel.reInitSearch(that, {
       tab: [
         { type: 2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page: '0' },
-        { type: 1, name: '地区', label: "label_area", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
+        { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
         { type: 1, name: '轮次', label: "stage", itemId: 'stage_id', itemName: 'stage_name', longCheckBox: false },
-        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: false },
+        { type: 1, name: '时间', label: "label_time", itemId: 'time_id', itemName: 'time_name', longCheckBox: false },
       ],
     })
   },
