@@ -126,7 +126,7 @@ page {
 .investImg {
   width: 100%;
   height: 327rpx;
-  margin-top: 15rpx;
+  margin-top: 40rpx;
 }
 
 .investImg image {
