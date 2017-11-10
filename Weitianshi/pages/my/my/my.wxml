@@ -31,7 +31,7 @@
   </view>
 </scroll-view>
 <view class="showModal" hidden="{{modal==0}}" bindtap="hideModal">
-  <image src="/img/img-share@3x.png"></image>
+  <image src="{{shareModal}}"></image>
 </view>
 
 <!--税号-->

@@ -209,6 +209,7 @@ function tagsCheck(e, that) {
   // 有联动关系的下拉表
   if (item[0].child) {
     let linkItem = item[firstIndex].child[secondIndex];
+    console.log(linkItem)
     if (linkItem.check == false) {
       linkItem.check = true;
       linkItem.firstIndex = firstIndex;

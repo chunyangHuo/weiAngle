@@ -170,7 +170,7 @@
 /*tab==0  */
 
 .bigTitle {
-  height: 216px;
+  height: 280rpx;
   width: 100%;
   position: relative;
 }
@@ -202,7 +202,7 @@
   width: 596rpx;
   height: 18rpx;
   position: absolute;
-  top: 294rpx;
+  top: 162rpx;
   left: 62rpx;
   font-size: 24rpx;
   color: #999;
