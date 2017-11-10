@@ -11,6 +11,8 @@
   <view class="outStyleBox" id="investment">
     <template is="investment" data="{{investment_list}}"></template>
   </view>
+  <!--暂无内容  -->
+      <view class="hasNothing" wx:if="{{investment_list.length ==0}}">暂无数据</view>
 </scroll-view>
 
 <!--错误提示-->
