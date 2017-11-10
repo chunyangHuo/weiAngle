@@ -14,6 +14,7 @@
         <template is='invest' data='{{item}}'></template>
       </block>
     </view>
+    <view class="hasNothing" wx:if="{{project_list.length ==0 }}">暂无数据</view>
   </view>
 
   <!--错误提示-->

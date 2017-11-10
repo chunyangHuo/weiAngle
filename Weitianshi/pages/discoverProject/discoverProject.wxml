@@ -12,7 +12,7 @@
   <swiper-item data-current='0'>
     <!--筛选和搜索  -->
 <template is='search' data='{{SearchInit}}'></template>
-<template is='searchResult' data='{{SearchInit}}'></template>
+<!-- <template is='searchResult' data='{{SearchInit}}'></template> -->
     <!--项目展示  -->
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
       <!--banner轮播  -->
@@ -37,7 +37,7 @@
   <swiper-item data-current='1'>
     <!--筛选和搜索  -->
 <template is='search' data='{{SearchInit}}'></template>
-<template is='searchResult' data='{{SearchInit}}'></template>
+<!-- <template is='searchResult' data='{{SearchInit}}'></template> -->
     <!--项目展示  -->
     <scroll-view scroll-y="true" bindscrolltolower="loadMore2">
       <template is="selectProject" data="{{list:financingNeed,type:2,timeShow:true}}"></template>

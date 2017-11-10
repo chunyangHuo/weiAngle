@@ -11,7 +11,7 @@ page {
   height: auto;
   background: #fff;
   margin-top: 37.44rpx;
-  /* box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10); */
+   box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10); 
 }
 
 .media1 {
@@ -20,12 +20,12 @@ page {
   height: auto;
   background: #fff;
   margin-top: 37.44rpx;
-  /* box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10); */
+   /* box-shadow: 0 2px 4px 0 rgba(64, 88, 122, 0.10);  */
 }
 
 .inMedia {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
-  padding-top: 42rpx;
+  padding-top: 32rpx;
   padding-left: 32rpx;
   padding-right: 32rpx;
   border-radius: 2px;
@@ -92,10 +92,12 @@ page {
   text-align: center;
   line-height: 56rpx;
 }
-
+.scaleDetail1{
+  margin-bottom: 72rpx!important;
+}
 .detailRight {
   margin-right: 30rpx;
-  margin-bottom: 32rpx;
+  margin-bottom: 42rpx;
 }
 
 .detailColor {

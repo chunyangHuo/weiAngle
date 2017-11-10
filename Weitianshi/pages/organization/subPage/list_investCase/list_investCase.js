@@ -11,17 +11,18 @@ Page({
    */
   data: {
     SearchInit: SearchModel.data,
-    
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that=this;
+    let that = this;
     this.setData({
       investment_id: options.investment_id,
     });
+    console.log(this.data.investment_id);
 
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
@@ -52,9 +53,10 @@ Page({
       project_list: []
     })
     // app.initPage(that);
-    this.loadMore();
+    this.investList();
 
   },
+ 
   //加载更多
   loadMore() {
     let that = this;
@@ -129,7 +131,7 @@ Page({
     that.setData({
       currentPage: 0,
     })
-    this.loadMore();
+    this.investList();
     console.log(this.data.SearchInit.searchData)
   },
   // 点击modal层
@@ -151,5 +153,35 @@ Page({
   // 联动选择全部
   linkCheckAll(e) {
     SearchModel.linkCheckAll(e, this);
+  },
+  investList() {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    wx.request({
+      url: url_common + '/api/investment/events',
+      method: "POST",
+      data: {
+        filter: this.data.SearchInit.searchData,
+        investment_id: this.data.investment_id,
+      },
+      success: function (res) {
+        wx.hideLoading()
+        let newPage = res.data.data;
+        let list = res.data.data.project_list;
+        let page_end = res.data.data.page_end;
+        that.setData({
+          newPage: newPage,
+          project_list: list,
+          page_end: page_end,
+        })
+        wx.hideLoading()
+        if (page_end == true) {
+          app.errorHide(that, '没有更多了', 3000)
+        }
+      }
+    })
   },
 })
