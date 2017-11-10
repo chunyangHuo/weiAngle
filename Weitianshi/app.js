@@ -95,6 +95,7 @@ App({
           y.check = false;
         })
       })
+      variable[0].check=true;
       console.log(str, variable)
       wx.setStorageSync(str, variable)
     }

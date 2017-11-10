@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <!--筛选和搜索  -->
 <template is='search' data='{{SearchInit,currentTab}}'></template>
-<template is='searchResult' data='{{SearchInit}}'></template>
+<!-- <template is='searchResult' data='{{SearchInit}}'></template> -->
 
 <!--投资机构  -->
 <scroll-view scroll-y="true" bindscrolltolower='loadMore' scroll-top="{{scroll}}" style="height:1100rpx"  >

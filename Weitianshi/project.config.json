@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": -1,
 			"list": [
 				{
 					"id": 1,
@@ -99,6 +99,12 @@
 					"id": 12,
 					"name": "投资机构",
 					"pathName": "pages/organization/org_library/org_library",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "投资案例",
+					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
 					"query": ""
 				}
 			]
