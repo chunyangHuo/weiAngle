@@ -275,21 +275,23 @@ function itemReset(str, that) {
   let item = SearchInit[itemStr];
   let itemArr = SearchInit[itemArrStr];
   let searchData = SearchInit.searchData;
-  item.forEach(x => {
-    x.check = false;
-  })
-  if (item[0].child) {
+  if(typeof item =='arry'){
     item.forEach(x => {
-      x.child.forEach(y => {
-        y.check = false;
+      x.check = false;
+    })
+    if (item[0].child) {
+      item.forEach(x => {
+        x.child.forEach(y => {
+          y.check = false;
+        })
       })
+    }
+    SearchInit[itemArrStr] = [];
+    searchData[itemStr] = [];
+    that.setData({
+      SearchInit: SearchInit
     })
   }
-  SearchInit[itemArrStr] = [];
-  searchData[itemStr] = [];
-  that.setData({
-    SearchInit: SearchInit
-  })
 }
 // 筛选确定
 function searchCertain(that) {
