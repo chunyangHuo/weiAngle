@@ -12,7 +12,7 @@
     <view class="industryTitle">媒体热度</view>
   </view>
     <block wx:for="{{industry_list}}" wx:key="{{index}}">
-      <view class="industryContentBlock flex">
+      <view class="industryContentBlock flex"  data-id="{{item.industry_id}}" bindtap="toIndustrySearch" >
         <view class="industryContentTitle">{{item.industry_name}}</view>
         <view class="industryContent">{{item.investment_num}}</view>
         <view class="industryContent">{{item.event_num}}</view>

@@ -50,7 +50,7 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
-      <view class="Identification" wx:if="{{IdentificationShow==1}}">
+      <view class="Identification" wx:if="{{IdentificationShow == 1&& playTime == 0}}">
         <view catchtap="searchIdentification">查税号</view>
       </view>
       <view class="user_edit" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">

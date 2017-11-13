@@ -548,8 +548,13 @@ Page({
   toStyle(e){
     console.log(e)
     let id = e.currentTarget.dataset.style;
-    console.log(id)
     app.href('/pages/organization/org_library/org_library?label=label_style&&itemId='+id)
+  },
+  //热门领域跳转搜索
+  toIndustrySearch(e){
+    console.log(e)
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   }
 })
 
