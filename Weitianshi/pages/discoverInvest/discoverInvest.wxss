@@ -301,7 +301,7 @@
 }
 
 .industryTitle:first-child {
-  margin-right: 298rpx;
+  margin-right: 258rpx;
 }
 
 .industryTitle:last-child {
@@ -321,7 +321,7 @@
 }
 
 .industryContentTitle {
-  width: 342rpx;
+  width: 304rpx;
 }
 
 .industryContent {
@@ -330,7 +330,7 @@
 }
 
 .industryContent:last-child {
-  width: 88rpx;
+  width: 120rpx;
 }
 
 .allThing {

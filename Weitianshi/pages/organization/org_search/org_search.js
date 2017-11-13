@@ -9,14 +9,11 @@ Page({
     currentTab: 0,
     investment_list: [],
     memberList: {
-      list:[]
+      list: []
     },
     industry_list: []
   },
   onLoad: function (options) {
-
-  },
-  onShow: function () {
     let that = this;
     let timer = this.data.timer;
     let currentTab = this.data.currentTab;
@@ -49,7 +46,11 @@ Page({
       })
     }, 1500)
     this.setData({
-      timer: timer,
+      timer: timer
+    })
+  },
+  onShow: function () {
+    this.setData({
       requestCheck: true,
       requestCheckBoolean: true,
       currentPage: 1,
@@ -58,7 +59,6 @@ Page({
       page_endBoolean: false,
       push_page: 1
     })
-
   },
 
   // 点击tab切换
@@ -116,7 +116,7 @@ Page({
         let memberList = res.data.data.member_list;
         let industry_list = res.data.data.industry_list;
         that.setData({
-          searchData :searchData,
+          searchData: searchData,
           investment_list: investment_list,
           memberList: memberList,
           industry_list: industry_list,
