@@ -63,9 +63,6 @@ Page({
     })
     app.initPage(that);
     this.allReset();
-    if (this.data.currentTab === current) {
-      this.tabChange(current)
-    }
   },
   // 滑动切换tab
   bindChange: function (e) {
@@ -73,18 +70,8 @@ Page({
     var current = e.detail.current;
     app.initPage(that);
     this.allReset();
+    console.log(that.data)
     that.setData({ currentTab: e.detail.current });
-    this.tabChange(current);
-  },
-  // tab页面切换数据调用(辅助函数)
-  tabChange(current) {
-    /* if (current === 0) {
-      //请求精选项目列表
-      this.selectProject();
-    } else if (current === 1) {
-      //请求最新项目列表
-      this.newestProject();
-    } */
   },
   // 轮播图跳转
   bannerLink(e) {

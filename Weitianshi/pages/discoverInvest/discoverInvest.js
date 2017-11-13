@@ -77,9 +77,6 @@ Page({
     })
     app.initPage(that);
     this.allReset();
-    if (this.data.currentTab === current) {
-      this.tabChange(current)
-    }
   },
   // 滑动切换tab
   bindChange: function (e) {
@@ -88,20 +85,6 @@ Page({
     app.initPage(that);
     this.allReset();
     that.setData({ currentTab: e.detail.current });
-    this.tabChange(current);
-  },
-  // tab页面切换数据调用(辅助函数)
-  tabChange(current) {
-    /*  if (current === 0) {
-       //请求投资人列表
-       this.investorList();
-     } else if (current === 1) {
-       //请求FA列表
-       this.faList();
-     } else if (current === 2) {
-       //请求我的人脉列表
-       this.myList();
-     } */
   },
   //下拉刷新
   onPullDownRefresh() {
