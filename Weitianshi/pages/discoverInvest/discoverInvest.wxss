@@ -155,7 +155,6 @@
   width: 90%;
 }
 
-
 .cardBottom {
   border-top: 2rpx solid #e6e6e6;
   padding-top: 30rpx;
@@ -297,7 +296,7 @@
   margin-right: 40rpx;
   margin-bottom: 32rpx;
   white-space: nowrap;
-  color:#666;
+  color: #666;
 }
 
 .industryTitle:first-child {
@@ -326,7 +325,7 @@
 
 .industryContent {
   width: 128rpx;
-  color:#666;
+  color: #666;
 }
 
 .industryContent:last-child {
@@ -368,4 +367,9 @@
 .high {
   height: 88rpx;
   width: 100%;
+}
+
+.industryNum {
+  width: 80rpx;
+  margin-right: 5rpx;
 }

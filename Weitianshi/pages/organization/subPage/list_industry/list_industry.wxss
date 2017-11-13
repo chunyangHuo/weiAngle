@@ -108,6 +108,6 @@
   margin: 0 4rpx 0 12rpx;
 }
 .industryNum{
-width: 50rpx;
+width: 80rpx;
 margin-right: 5rpx;
 }
