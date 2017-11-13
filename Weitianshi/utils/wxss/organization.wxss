@@ -171,6 +171,10 @@
   color: #333;
   line-height: 32rpx;
   text-align: left;
+  width: 360rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #investment .investNum {

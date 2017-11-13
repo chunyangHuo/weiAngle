@@ -5,7 +5,7 @@
   <view class='blueTop'>
     <view class='publicButton flex' bindtap='publicBtn'>
       <image src='/img/icon-fabu@2x.png'></image>
-     <view class="publicButtonTitle"> 发布融资项目</view>
+      <view class="publicButtonTitle"> 发布融资项目</view>
     </view>
   </view>
   <!--展示内容  -->
@@ -42,7 +42,7 @@
             <view class='publish' wx:else>私密</view>
           </view>
         </view>
-        <!--卡片底部  -->
+        <!-- 卡片底部  -->
         <view class="ProjectDetailInfo flex">
           <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{item.project_id}}">
             <view class="viewTimeAll screenPersonColor project-sentimentm">
@@ -71,9 +71,23 @@
       <view class="hasNothing">暂无数据，发布融资项目，可匹配投资人</view>
       <image src="{{imgUrls}}"></image>
     </view>
+
   </scroll-view>
+  <!--电脑上传扫一扫  -->
+  <view class="modalBox"  hidden="{{modalBox==0}}">
+    <view class="classname" bindtap="closeModal">
+      <image src="/img/icon-guanbi@2x.png" class="close"></image>
+    </view>
+    <view class="contactModalBox">
+      <image src="/img/img-saoyisao@2x.png" class="aPic"></image>
+      <view class="modalTitle">电脑打开,点击扫一扫</view>
+      <view class="modalTips">www.weitianshi.cn/qr</view>
+      <view class="btn" bindtap="createProjectPc">扫一扫</view>
+    </view>
+  </view>
   <!--创建项目引导  -->
   <template is='createProject'></template>
+
   <!--错误提示  -->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>

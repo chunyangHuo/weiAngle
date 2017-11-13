@@ -5,7 +5,8 @@ var url_common = app.globalData.url_common;
 import * as CreateProject from '../../utils/createProjectBottom'
 Page({
   data: {
-    imgUrls: app.globalData.picUrl.page_matchInvestorEmpty
+    imgUrls: app.globalData.picUrl.page_matchInvestorEmpty,
+    modalBox: 0,
   },
   onShow() {
     let that = this;
@@ -145,4 +146,16 @@ Page({
   createProjectPc() {
     CreateProject.createProjectPc();
   },
+  //去电脑上传
+  toPc: function () {
+    this.setData({
+      modalBox: 1
+    })
+  },
+  //关闭模态框
+  closeModal: function () {
+    this.setData({
+      modalBox: 0
+    })
+  }
 })
