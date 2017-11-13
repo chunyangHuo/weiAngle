@@ -89,6 +89,8 @@ Page({
     this.allReset();
     if (this.data.currentTab === current) {
       this.tabChange(current)
+    }else{
+      return false;
     }
     if (this.data.currentTab == 0) {
       this.setData({
@@ -105,9 +107,9 @@ Page({
     let that = this;
     let current = e.detail.current;
     app.initPage(that);
-    this.allReset();
     that.setData({ currentTab: e.detail.current });
-    this.tabChange(currenallResett);
+    this.allReset();
+    // this.tabChange(currenallResett);
     if (this.data.currentTab == 0) {
       this.setData({
         hidden: false

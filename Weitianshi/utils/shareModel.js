@@ -69,14 +69,15 @@ function projectListShare() {
 function orgDetail(){
   return{
     title:'机构详情',
-    path:'/pages/organization/org_detail/org_detail'
+    path: '/pages/organization/org_detail/org_detail'
   }
 }
 // 机构版买家图谱分享
 function match1() {
+  let project_id = that.data.project_id;
   return {
     title: '机构版买家图谱',
-    path: '/pages/organization/subPage/project_orgMatch/project_orgMatch'
+    path: '/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + project_id
   }
 }
 //个人店铺分享
