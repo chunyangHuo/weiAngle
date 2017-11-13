@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <!--筛选和搜索  -->
-<template is='search' data='{{SearchInit,currentTab}}'></template>
+<template is='search' data='{{SearchInit,currentTab,hidden:true}}'></template>
 <!-- <template is='searchResult' data='{{SearchInit}}'></template> -->
 
 <!--投资机构  -->
