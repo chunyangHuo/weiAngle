@@ -12,6 +12,47 @@
 	"appid": "wxdf2eba3b79b83110",
 	"projectname": "%E5%BE%AE%E5%A4%A9%E4%BD%BF",
 	"condition": {
+		"weapp": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "oneKeyResearch",
+					"pathName": "pages/oneKeyResearch/oneKeyResearch",
+					"query": "id=Np8k7VWR"
+				},
+				{
+					"id": 1,
+					"name": "FAIndustryAllianceRegister",
+					"pathName": "pages/FAIndustryAlliance/FAIndustryAllianceRegister/FAIndustryAllianceRegister",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "验证码",
+					"pathName": "pages/register/personInfo/personInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "browseMe",
+					"pathName": "pages/message/browseMe/browseMe",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "beAddedContacts",
+					"pathName": "pages/message/beAddedContacts/beAddedContacts",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "分享后的我的项目 ",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=e0qQB10v&&share_id=mr93M3KW"
+				}
+			]
+		},
 		"search": {
 			"current": -1,
 			"list": []

@@ -107,7 +107,7 @@ Page({
     app.initPage(that);
     this.allReset();
     that.setData({ currentTab: e.detail.current });
-    this.tabChange(current);
+    this.tabChange(currenallResett);
     if (this.data.currentTab == 0) {
       this.setData({
         hidden: false
