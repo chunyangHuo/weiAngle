@@ -125,6 +125,7 @@ App({
           }).then(res => {
             let label_type = res.data.data.type_list;
             dealLabel(label_type, 'label_type')
+            wx.setStorageSync('label_time', [{ time_id: 0, time_name: '近一年', check: false }, { time_id: 1, time_name: '近三年', check: false }, { time_id: 2, time_name: '全部', check: false }])
           })
         })
       })
@@ -763,11 +764,11 @@ App({
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
+    url: "https://wx.weitianshi.cn",
+    url_common: "https://wx.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    url: "https://wx.dev.weitianshi.cn",
-    url_common: "https://wx.dev.weitianshi.cn"
+    // url: "https://wx.dev.weitianshi.cn",
+    // url_common: "https://wx.dev.weitianshi.cn"
   },
 });

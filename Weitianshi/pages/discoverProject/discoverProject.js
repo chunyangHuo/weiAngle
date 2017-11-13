@@ -7,7 +7,7 @@ import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
     //选项卡
-    winWidth: 0,
+    winWidth: 0, 
     winHeight: 0,
     currentTab: 0,
     slectProject: '',
@@ -24,18 +24,17 @@ Page({
       app.globalData.picUrl.banner_4,
       app.globalData.picUrl.banner_5,
     ],
-    imgUrls1:
-    app.globalData.picUrl.page_discoverProject,
-    
+    imgUrls1:app.globalData.picUrl.page_discoverProject,
   },
   onLoad(options) {
-    console.log(this.data)
+    let that = this;
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
       })
     }
-    let that = this;
+
+    // 控制筛选项的显示和隐藏
     let user_id = this.data.user_id;
     if (this.data.currentTab == 2) {
       this.setData({
@@ -44,6 +43,18 @@ Page({
     } else {
       this.setData({
         hidden: true
+      })
+    }
+
+    // 筛选的初始缓存
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
+    if (SearchInit.industry.length < 1) {
+      tab.forEach(x => {
+        SearchInit[x.label] = wx.getStorageSync(x.label)
+      })
+      that.setData({
+        SearchInit: SearchInit
       })
     }
     //初始化数据
@@ -61,7 +72,7 @@ Page({
       });
       that.selectProject();
       that.newestProject();
-    })
+    })  
   },
   // 点击tab切换
   swichNav: function (e) {
@@ -269,16 +280,6 @@ Page({
   // 下拉框
   move(e) {
     let that = this;
-    let SearchInit = this.data.SearchInit;
-    if (SearchInit.industry.length < 1) {
-      SearchInit.industry = wx.getStorageSync('industry');
-      SearchInit.stage = wx.getStorageSync('stage');
-      SearchInit.scale = wx.getStorageSync('scale');
-      SearchInit.hotCity = wx.getStorageSync('hotCity');
-      this.setData({
-        SearchInit: SearchInit
-      })
-    }
     SearchModel.move(e, that)
   },
   // 标签选择

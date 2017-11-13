@@ -25,6 +25,7 @@ Page({
         currentTab: options.currentTab
       })
     }
+    // 筛选项的显示和隐藏控制
     if (this.data.currentTab == 0) {
       this.setData({
         hidden: false
@@ -32,6 +33,18 @@ Page({
     } else {
       this.setData({
         hidden: true
+      })
+    }
+    // 筛选的初始缓存
+    let that = this;
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
+    if (SearchInit.industry.length < 1) {
+      tab.forEach(x => {
+        SearchInit[x.label] = wx.getStorageSync(x.label)
+      })
+      that.setData({
+        SearchInit: SearchInit
       })
     }
   },

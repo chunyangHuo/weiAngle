@@ -19,15 +19,27 @@ Page({
       mask: true,
     })
 
+
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
       tab: [
-        { type:2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page:'0'},
+        { type: 2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page: '0' },
         { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
         { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
         { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: true },
       ],
     })
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
+    if (SearchInit.industry.length < 1) {
+      tab.forEach(x => {
+        SearchInit[x.label] = wx.getStorageSync(x.label)
+      })
+      that.setData({
+        SearchInit: SearchInit
+      })
+    }
+
 
     // 页面间跳转传值筛选
     if (label) {
@@ -166,11 +178,11 @@ Page({
     let that = this;
     wx.request({
       url: url_common + '/api/investment/list',
-      method:"POST",
+      method: "POST",
       data: {
         filter: this.data.SearchInit.searchData
       },
-      success:function(res){
+      success: function (res) {
         console.log(res)
         wx.hideLoading()
         let investormentList = res.data.data;

@@ -33,6 +33,16 @@ Page({
         { type: 1, name: '时间', label: "label_time", itemId: 'time_id', itemName: 'time_name', longCheckBox: false },
       ],
     })
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
+    if (SearchInit.industry.length < 1) {
+      tab.forEach(x => {
+        SearchInit[x.label] = wx.getStorageSync(x.label)
+      })
+      that.setData({
+        SearchInit: SearchInit
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

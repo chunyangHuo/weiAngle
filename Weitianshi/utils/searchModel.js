@@ -1,5 +1,6 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
+import * as request from './httpModel';
 //searchData
 let label_industry = wx.getStorageSync('label_industry');
 let data = {
@@ -51,8 +52,9 @@ let data = {
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
-  label_time: [{ time_id: 0, time_name: '近一年', check: false }, { time_id: 1, time_name: '近三年', check: false }, { time_id: 2, time_name: '全部', check: false }]
+  label_time: wx.getStorageSync('label_time')
 }
+
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -80,7 +82,7 @@ function move(e, that) {
   let index = e.currentTarget.dataset.index;
   let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
-  app.globalData.a = new Date();
+
   // 清除未保存的选中标签
   // SearchInit=Object.assign({},that.data.SearchInit)
   this.initItem(label, that, SearchInit)
@@ -231,7 +233,7 @@ function tagsCheck(e, that) {
           x.check = false;
         })
         item[index].check = true;
-        itemArr[0]=target;
+        itemArr[0] = target;
       } else {
         if (itemArr.length < 5) {
           item[index].check = true;
@@ -275,23 +277,21 @@ function itemReset(str, that) {
   let item = SearchInit[itemStr];
   let itemArr = SearchInit[itemArrStr];
   let searchData = SearchInit.searchData;
-  if(typeof item =='arry'){
+  item.forEach(x => {
+    x.check = false;
+  })
+  if (item[0].child) {
     item.forEach(x => {
-      x.check = false;
-    })
-    if (item[0].child) {
-      item.forEach(x => {
-        x.child.forEach(y => {
-          y.check = false;
-        })
+      x.child.forEach(y => {
+        y.check = false;
       })
-    }
-    SearchInit[itemArrStr] = [];
-    searchData[itemStr] = [];
-    that.setData({
-      SearchInit: SearchInit
     })
   }
+  SearchInit[itemArrStr] = [];
+  searchData[itemStr] = [];
+  that.setData({
+    SearchInit: SearchInit
+  })
 }
 // 筛选确定
 function searchCertain(that) {
