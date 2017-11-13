@@ -8,6 +8,7 @@ Page({
     investorList: [],
     faList: [],
     myContacts: [],
+    hidden: true,
     //选项卡
     winWidth: 0,
     winHeight: 0,
@@ -22,6 +23,15 @@ Page({
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
+      })
+    }
+    if (this.data.currentTab == 0) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
       })
     }
   },
@@ -77,14 +87,33 @@ Page({
     })
     app.initPage(that);
     this.allReset();
+    if (this.data.currentTab == 0) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   // 滑动切换tab
   bindChange: function (e) {
     let that = this;
     let current = e.detail.current;
     app.initPage(that);
-    this.allReset();
     that.setData({ currentTab: e.detail.current });
+    this.allReset();
+    // this.tabChange(currenallResett);
+    if (this.data.currentTab == 0) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   //下拉刷新
   onPullDownRefresh() {
@@ -528,11 +557,16 @@ Page({
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
   },
   //投资风格跳转
-  toStyle(e){
+  toStyle(e) {
     console.log(e)
     let id = e.currentTarget.dataset.style;
-    console.log(id)
-    app.href('/pages/organization/org_library/org_library?label=label_style&&itemId='+id)
+    app.href('/pages/organization/org_library/org_library?label=label_style&&itemId=' + id)
+  },
+  //热门领域跳转搜索
+  toIndustrySearch(e) {
+    console.log(e)
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   }
 })
 

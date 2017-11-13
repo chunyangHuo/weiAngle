@@ -133,11 +133,6 @@ Page({
             group_id: group_id
           })
         }
-      } else {
-        that.setData({
-          yesData: false,
-          group_id: group_id
-        })
       }
     })
     let setPrivacy=wx.getStorageSync('setPrivacy');

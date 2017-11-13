@@ -50,7 +50,7 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
-      <view class="Identification" wx:if="{{IdentificationShow==1}}">
+      <view class="Identification" wx:if="{{IdentificationShow == 1&& playTime == 0}}">
         <view catchtap="searchIdentification">查税号</view>
       </view>
       <view class="user_edit" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
@@ -868,7 +868,7 @@
 <!--筛选和搜索  -->
 <template name='search'>
   <!--筛选和搜索  -->
-  <view id='searchModel' class="screen flex" wx:if="{{currentTab != 0}}">
+  <view id='searchModel' class="screen flex" wx:if="{{hidden}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
       <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' bindtap='move'>
@@ -1137,7 +1137,7 @@
     <view class="flex investW">
       <view class="investLogo">
         <view class="investLogo1">
-          <image src="{{item.project_logo}}" wx:if="{{item.project_logo}}"></image>
+          <image src="{{item.project_logo}}" wx:if="{{item.project_logo}}" mode="aspectFit"></image>
           <image src="/img/warband-logo.png" wx:if="{{item.project_logo==''}}"></image>
         </view>
       </view>
@@ -1194,7 +1194,7 @@
   <block wx:for="{{investment_list}}" wx:key="{{index}}">
     <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="investGroupLeft">
-        <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
+        <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}" mode="aspectFit"></image>
         <image src="/img/warband-logo.png" class="investGroupLeft" wx:if="{{!item.investment_logo}}"></image>
       </view>
       <view class="investGroupRight">
@@ -1322,7 +1322,7 @@
       <view class="invest1Left">
         <view class="investGroupLeft">
           <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}"></image>
-          <image src="/img/warband-logo.png"  wx:if="{{item.investment_logo==''}}" class="investGroupLeft"></image>
+          <image src="/img/warband-logo.png" wx:if="{{item.investment_logo==''}}" class="investGroupLeft"></image>
         </view>
         <view class="match1" class="{{item.industry_list.length!=0||item.style_list.length!=0 ? 'match1' : 'match2'}}">匹配度</view>
         <view class="match">{{item.match_rate}}%</view>
@@ -1346,9 +1346,14 @@
         <view class="flex" wx:if="{{item.style_list.length!=0}}">
           <label class="tapCase">标签</label>
           <view class="mainCaseContent">
-            <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:if="{{item.style_list.length != 0}}" wx:for-item="styleList">
-              <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label>
-              <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label>
+             <block wx:for="{{item.style_list}}" wx:key="{{index}}" wx:for-item="styleList">
+              <label>{{styleList.style_name}}、</label>
+              <!-- <label wx:if="{{index <  item.style_list.length-1}}">{{styleList.style_name}}、</label> -->
+              <!-- <label wx:if="{{index == item.style_list.length-1}}">{{styleList.style_name}}</label> -->
+            </block>
+            <block wx:for="{{item.type_list}}" wx:key="{{index}}" wx:for-item="typeList">
+              <label wx:if="{{index <  item.type_list.length-1}}">{{typeList.type_name}}、</label>
+              <label wx:if="{{index == item.type_list.length-1}}">{{typeList.type_name}}</label>
             </block>
           </view>
         </view>
