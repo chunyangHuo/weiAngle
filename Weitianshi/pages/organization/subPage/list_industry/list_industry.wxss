@@ -45,7 +45,7 @@
 }
 
 .industryTitle:first-child {
-  margin-right: 298rpx;
+  margin-right: 258rpx;
 }
 
 .industryTitle:last-child {
@@ -65,7 +65,7 @@
 }
 
 .industryContentTitle {
-  width: 342rpx;
+  width: 304rpx;
 }
 
 .industryContent {
@@ -73,7 +73,7 @@
 }
 
 .industryContent:last-child {
-  width: 88rpx;
+  width: 120rpx;
 }
 
 .allThing {
@@ -106,4 +106,8 @@
   height: 6rpx;
   padding-top: 12rpx;
   margin: 0 4rpx 0 12rpx;
+}
+.industryNum{
+width: 50rpx;
+margin-right: 5rpx;
 }
