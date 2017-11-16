@@ -280,9 +280,7 @@ Page({
         url: '/pages/my/myNew/myNew',
       })
     } else {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
   },
   // 上拉加载
@@ -400,15 +398,11 @@ Page({
   },
   //找项目投资人
   matchInvestor() {
-    wx.navigateTo({
-      url: '/pages/matchInvestor/matchInvestor'
-    })
+    app.href('/pages/matchInvestor/matchInvestor')
   },
   //活动详情
   goTo: function () {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/activtyDetail/activtyDetail',
-    })
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
   // ------------------------------------筛选搜索-------------------------------------
   // 下拉框
@@ -510,9 +504,7 @@ Page({
           if (complete == 1) {
             //如果信息完整就可以显示去认证
             if (status == 0) {
-              wx.navigateTo({
-                url: '/pages/my/identity/indentity/indentity'
-              })
+              app.href('/pages/my/identity/indentity/indentity')
             } else if (status == 3) {
               wx.showModal({
                 title: '友情提示',
@@ -529,9 +521,7 @@ Page({
                     method: 'POST',
                     success: function (res) {
                       let group_id = res.data.group.group_id;
-                      wx.navigateTo({
-                        url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
-                      })
+                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
                     }
                   })
                 }
@@ -539,15 +529,11 @@ Page({
             }
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       },
     });

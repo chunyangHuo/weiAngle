@@ -89,13 +89,9 @@ Page({
           let isUpdate = res.data.is_update;
           var authenticate_id = res.data.authenticate_id;
           if (old_group_id != group_id) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
-            })
+            app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate)
           } else if (old_group_id == group_id) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
-            })
+            app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate)
           }
         }
       })
@@ -110,9 +106,7 @@ Page({
         success: function (res) {
           let authenticate_id = res.data.authenticate_id;
           let isUpdate = res.data.is_update;
-          wx.navigateTo({
-            url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
-          })
+          app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate)
         }
       })
     }

@@ -113,9 +113,7 @@ Page({
   // 轮播图跳转
   bannerLink(e) {
     let index = e.currentTarget.dataset.index + 1;
-    wx.navigateTo({
-      url: '/pages/activtyPage/activtyPage/activtyPage?index=' + index,
-    })
+    app.href('/pages/activtyPage/activtyPage/activtyPage?index=' + index)
   },
   // 下拉刷新
   onPullDownRefresh() {
@@ -227,13 +225,9 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
         }
       }
     })
@@ -272,9 +266,7 @@ Page({
   },
   // 人脉大赛
   competitor: function () {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/activtyDetail/activtyDetail'
-    })
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
   // --------------------------筛选搜索--------------------------------------------------
   // 下拉框

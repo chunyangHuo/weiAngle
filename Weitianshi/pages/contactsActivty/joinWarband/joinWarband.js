@@ -232,9 +232,7 @@ Page({
   },
   //创建战队
   createWarband() {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/createWarband/createWarband',
-    })
+    app.href('/pages/contactsActivty/createWarband/createWarband')
   },
   //保存
   save() {

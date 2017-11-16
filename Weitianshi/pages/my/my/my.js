@@ -91,67 +91,48 @@ Page({
   //编辑名片
   cardEdit: function () {
     if (!this.data.options) {
-      wx.navigateTo({
-        url: '/pages/my/cardEdit/cardEdit',
-      })
+      app.href('/pages/my/cardEdit/cardEdit')
     }
   },
   // 人气
   popularity: function () {
-    wx.navigateTo({
-      url: '/pages/message/browseMe/browseMe'
-    })
+    app.href('/pages/message/browseMe/browseMe')
   },
   // 加我为人脉
   attention: function () {
-    wx.navigateTo({
-      url: '/pages/message/beAddedContacts/beAddedContacts'
-    })
+    app.href('/pages/message/beAddedContacts/beAddedContacts')
   },
   pushTo: function () {
-    wx.navigateTo({
-      url: '/pages/message/potentialProject/potentialProject'
-    })
+    app.href('/pages/message/potentialProject/potentialProject')
   },
   //寻找案源
   findProjectEdit: function () {
+    app.href('/pages/match/match/investDemand/investDemand?current=' + 1)
     if (!this.data.options) {
-      wx.navigateTo({
-        url: '/pages/match/match/investDemand/investDemand?current=' + 1,
-      })
     }
   },
   //资源对接
   resourceEnchangeEdit: function () {
     if (!this.data.options) {
-      wx.navigateTo({
-        url: '/pages/match/match/resourceDemand/resourceDemand?current=' + 1,
-      })
+      app.href('/pages/match/match/resourceDemand/resourceDemand?current=' + 1)
     }
   },
   //项目融资
   projectFinance: function () {
     if (!this.data.options) {
-      wx.navigateTo({
-        url: '/pages/my/projectShop/projectShop/projectShop',
-      })
+      app.href('/pages/my/projectShop/projectShop/projectShop')
     }
   },
   //融资项目详情
   financingDetail: function (e) {
     var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index
-    wx.navigateTo({
-      url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0,
-    })
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0)
   },
   //投资案例
   investCase: function () {
-    console.log(1111)
     if (!this.data.options) {
-      wx.navigateTo({
-        url: '/pages/my/investCase/investCase'
-      })
+      app.href('/pages/my/investCase/investCase')
     }
   },
   //交换名片
@@ -174,9 +155,7 @@ Page({
         title: "友情提示",
         content: "交换名片之前,请先完善自己的名片",
         success: function () {
-          wx.navigateTo({
-            url: '/pages/my/cardEdit/cardEdit',
-          })
+          app.href('/pages/my/cardEdit/cardEdit')
         }
       })
     }
@@ -192,9 +171,7 @@ Page({
   shareSth: function (e) {
     var QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
-    wx.navigateTo({
-      url: '/pages/my/qrCode/qrCode',
-    })
+    app.href('/pages/my/qrCode/qrCode')
   },
   //分享页面
   onShareAppMessage: function () {
@@ -249,18 +226,14 @@ Page({
   },
   //完善公司信息
   writeInformation: function () {
-    wx.navigateTo({
-      url: '/pages/my/cardEdit/cardEdit',
-    })
+    app.href('/pages/my/cardEdit/cardEdit')
     this.setData({
       modalBox: 0
     })
   },
   //确定或稍后再试
   laterOn: function () {
-    wx.navigateTo({
-      url: '/pages/my/my/my',
-    })
+    app.href('/pages/my/my/my',)
     this.setData({
       modalBox: 0
     })
@@ -299,9 +272,7 @@ Page({
           if (complete == 1) {
             //如果信息完整就可以显示去认证
             if (status == 0) {
-              wx.navigateTo({
-                url: '/pages/my/identity/indentity/indentity',
-              })
+              app.href('/pages/my/identity/indentity/indentity')
             } else if (status == 3) {
               wx.request({
                 url: url_common + '/api/user/getUserGroupByStatus',
@@ -313,29 +284,21 @@ Page({
                   let user_id = wx.getStorageSync('user_id');
                   let authenticate_id = res.data.authenticate_id;
                   let group_id = res.data.group_id;
-                  wx.navigateTo({
-                    url: '/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id,
-                  })
+                  app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
                 }
               })
             }
           } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       }
     })
   },
   //人脉大赛
   competitor: function () {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/activtyDetail/activtyDetail'
-    })
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   }
 });

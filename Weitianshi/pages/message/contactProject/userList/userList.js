@@ -33,9 +33,9 @@ Page({
         let projectList = res.data.data.projects;
         console.log(projectList)
         that.setData({
-          count:count,
-          projectList : projectList,
-          list : list
+          count: count,
+          projectList: projectList,
+          list: list
         })
       }
     })
@@ -46,7 +46,7 @@ Page({
     })
   },
   //跳转项目详情
-  projectDetail:function(e){
+  projectDetail: function (e) {
     console.log(e)
     let project_id = e.currentTarget.dataset.project;
     console.log(project_id)
@@ -62,23 +62,19 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
         }
       }
     })
   },
   //下拉加载
-  loadMore:function(){
+  loadMore: function () {
     var that = this;
     let user_id = wx.getStorageSync('user_id');//获取我的user_id
     var currentPage = this.data.currentPage;
-    let  projectList = this.data.projectList;
+    let projectList = this.data.projectList;
     let list = this.data.list;
     var request = {
       url: url_common + '/api/project/myMeet',
@@ -88,8 +84,8 @@ Page({
       }
     }
     //调用通用加载函数
-     app.loadMore2(that, request, res => {
-       let rank = res.data.data.projects;
+    app.loadMore2(that, request, res => {
+      let rank = res.data.data.projects;
       let page_end = res.data.data.page_end;
       if (rank) {
         let newRank_list = projectList.concat(rank)

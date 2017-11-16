@@ -231,33 +231,25 @@ Page({
   // 跳转人物详情
   userDetail(e) {
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //点击我的项目详情
   detail: function (e) {
     var thisData = e.currentTarget.dataset;
     var index = thisData.index;
-    wx.navigateTo({
-      url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
-    })
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index)
   },
   //点击融资项目匹配出来的投资人
   investorDetial(e) {
     var thisData = e.currentTarget.dataset;
     var index = thisData.index;
-    wx.navigateTo({
-      url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
-    })
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1)
   },
   //点击项目投资详情
   yourDetail: function (e) {
     var thisData = e.currentTarget.dataset;
     var index = thisData.index;
-    wx.navigateTo({
-      url: '/pages/projectDetail/projectDetail?id=' + thisData.id
-    })
+    app.href('/pages/projectDetail/projectDetail?id=' + thisData.id)
   },
   // 项目融资触底刷新
   myPublicProject: function () {
@@ -445,13 +437,9 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + id)
         }
       }
     })
@@ -463,8 +451,6 @@ Page({
   //点击跳转到用户详情
   personDetail: function (e) {
     var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
 });

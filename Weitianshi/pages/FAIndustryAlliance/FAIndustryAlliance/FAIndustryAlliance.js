@@ -6,9 +6,9 @@ Page({
   data: {
     array: ['否', '是'],
     upLoadSuccess: false,
-    personCode:true,
-    personTime:60,
-    codeColor:true,
+    personCode: true,
+    personTime: 60,
+    codeColor: true,
   },
   onLoad: function (option) {
     let that = this;
@@ -159,38 +159,24 @@ Page({
     let writeWeChat = this.data.user_info.user_wechat;
     let writeDescrible = this.data.user_info.user_intro;
     if (type == 0) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?name=' + writeNameValue + '&&type=0',
-      })
+      app.href('/pages/form/personInfo/personInfo?name=' + writeNameValue + '&&type=0')
     } else if (type == 2) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?brand=' + writeBrand + '&&type=2',
-      })
+      app.href('/pages/form/personInfo/personInfo?brand=' + writeBrand + '&&type=2')
     }
     else if (type == 3) {
       // 跳转公司模糊搜索
-      wx.navigateTo({
-        url: '/pages/search/search1/search1?company=' + writeCompany + '&&type=3'
-      })
+      app.href('/pages/search/search1/search1?company=' + writeCompany + '&&type=3')
     }
     else if (type == 4) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?career=' + writeCareer + '&&type=4',
-      })
+      app.href('/pages/form/personInfo/personInfo?career=' + writeCareer + '&&type=4')
     }
     else if (type == 5) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?email=' + writeEmail + '&&type=5',
-      })
+      app.href(' /pages / form / personInfo / personInfo ? email = ' + writeEmail + ' && type=5')
     }
     else if (type == 6) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?writeWeChat=' + writeWeChat + '&&type=6',
-      })
+      app.href(' /pages/form/personInfo/personInfo?writeWeChat=' + writeWeChat + '&&type=6')
     } else if (type == 7) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?writeDescrible=' + writeDescrible + '&&type=7',
-      })
+      app.href('/pages/form/personInfo/personInfo?writeDescrible=' + writeDescrible + '&&type=7')
     }
   },
   // 上传名片
@@ -235,27 +221,19 @@ Page({
   },
   // 跳转投资领域
   toIndustry: function () {
-    wx.navigateTo({
-      url: '/pages/form/industry/industry?current=1',
-    })
+    app.href('/pages/form/industry/industry?current=1')
   },
   // 跳转投资轮次
   toScale: function () {
-    wx.navigateTo({
-      url: '/pages/form/scale/scale',
-    })
+    app.href('/pages/form/scale/scale')
   },
   // 跳转投资金额
   toStage: function () {
-    wx.navigateTo({
-      url: '/pages/form/stage/stage',
-    })
+    app.href('/pages/form/stage/stage')
   },
   // 跳转投资地区
   toArea1: function () {
-    wx.navigateTo({
-      url: '/pages/form/area2/area2',
-    })
+    app.href('/pages/form/area2/area2')
   },
   // 申请加入FA行业联盟
   bindFAService: function (e) {
@@ -336,9 +314,7 @@ Page({
         success: function (res) {
           let statusCode = res.data.status_code;
           if (statusCode == 2000000) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification,
-            })
+            app.href('/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification)
           }
         }
       })
@@ -436,42 +412,42 @@ Page({
       name[i].checked = false;
     }
   },
-// 新用户获取验证码
+  // 新用户获取验证码
   Code: function (e) {
     let check = e.currentTarget.dataset.check;
-      this.setData({
-        personCode: false
-      });
-      var personTime=60;
-     var timer = setInterval(() => {
-        if (personTime > 1) {
+    this.setData({
+      personCode: false
+    });
+    var personTime = 60;
+    var timer = setInterval(() => {
+      if (personTime > 1) {
         this.setData({
-          personTime:personTime--,
+          personTime: personTime--,
         });
-        }else{
-          this.setData({
-            personCode: true,
-            personTime: 60
-          });
-        }
-      }, 1000)
-     var stop=setTimeout(() => {
-       clearInterval(timer);
+      } else {
         this.setData({
           personCode: true,
-          personTime:60,
+          personTime: 60
         });
-      }, 60000)
-   
+      }
+    }, 1000)
+    var stop = setTimeout(() => {
+      clearInterval(timer);
+      this.setData({
+        personCode: true,
+        personTime: 60,
+      });
+    }, 60000)
+
   },
   // input获取焦点时停止倒计时
-  personNo:function(e){
+  personNo: function (e) {
     console.log(1);
     var that = this;
     clearTimeout(stop),
-    that.setData({
-    //  codeColor:false,
-    personCode: false,
-    });
+      that.setData({
+        //  codeColor:false,
+        personCode: false,
+      });
   }
 })

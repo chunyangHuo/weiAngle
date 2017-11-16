@@ -122,15 +122,10 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + id)
         }
-
       },
     })
 
@@ -143,16 +138,11 @@ Page({
     var user_id = this.data.user;
     // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
     if (id == user_id) {
-      wx.navigateTo({
-        url: '/pages/my/my/my'
-      })
+      app.href('/pages/my/my/my')
     } else {
       // 如果当前用户id与点击id不一致,进入用户详情页面
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
-
   },
 
   // 融资需求触底刷新

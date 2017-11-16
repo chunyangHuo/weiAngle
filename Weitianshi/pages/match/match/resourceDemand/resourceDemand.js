@@ -202,16 +202,14 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-            wx.setStorageSync("resource_desc", describe);
+          wx.setStorageSync("resource_desc", describe);
         },
         fail: function (res) {
           console.log(res)
         }
       })
       if (current == 1) {
-        wx.navigateTo({
-          url: '/pages/my/my/my',
-        })
+        app.href('/pages/my/my/my')
       } else {
         wx.navigateBack({//页面返回
           delta: 1 // 回退前 delta(默认为1) 页面
