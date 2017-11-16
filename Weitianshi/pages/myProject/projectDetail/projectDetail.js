@@ -637,17 +637,13 @@ Page({
   //进入投资人用户详情
   detail(e) {
     let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //维护项目
   maintainProject() {
     let id = this.data.id;
     let user_id = this.data.user_id;
-    wx.navigateTo({
-      url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
-    })
+    app.href('/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id)
   },
   //分享当前页面
   onShareAppMessage: function () {
@@ -732,18 +728,14 @@ Page({
   // 浏览
   viewProject: function (e) {
     let project_id = this.data.id;
-    wx.navigateTo({
-      url: '/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id,
-    })
+    app.href('/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id)
   },
   // 完善公司信息
   writeCompanyName: function () {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let companyName = that.data.pro_company_name;
-    wx.navigateTo({
-      url: '/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id,
-    })
+    app.href('/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id)
     that.setData({
       nothing: 1
     })
@@ -1027,23 +1019,17 @@ Page({
   //项目详情页面,申请查看跳转列表
   applyPerson: function (e) {
     let proid = e.target.dataset.proid;
-    wx.navigateTo({
-      url: '/pages/message/applyPerson/applyPerson?id=' + proid,
-    })
+    app.href('/pages/message/applyPerson/applyPerson?id=' + proid)
   },
   //私密设置
   initPrivacy: function () {
     let project = this.data.id;
-    wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy?project=' + project,
-    })
+    app.href('/pages/myProject/initPrivacy/initPrivacy?project=' + project)
   },
   //约谈
   hasMeeting: function () {
     let project_id = this.data.id;
-    wx.navigateTo({
-      url: '/pages/message/contactProject/projectList/projectList?id=' + project_id,
-    })
+    app.href('/pages/message/contactProject/projectList/projectList?id=' + project_id)
   },
   //推送项目
   pushProject: function (e) {
@@ -1093,9 +1079,7 @@ Page({
             method: 'POST',
             success: function (res) {
               if (res.data.status_code = 2000000) {
-                wx.navigateTo({
-                  url: '/pages/my/projectShop/projectShop/projectShop',
-                })
+                app.href('/pages/my/projectShop/projectShop/projectShop')
               } else {
                 console.log(res.data.errMsg)
               }

@@ -320,9 +320,7 @@ Page({
                 method: 'POST',
                 success: function (res) {
                   if (res.data.status_code == 2000000) {
-                    wx.navigateTo({
-                      url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
-                    })
+                    app.href('/pages/scanCode/bpScanSuccess/bpScanSuccess')
                     that.setData({
                       modalBox: 0
                     })
@@ -361,9 +359,7 @@ Page({
   },
   //私密性设置
   initPrivacy: function () {
-    wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy'
-    })
+    app.href('/pages/myProject/initPrivacy/initPrivacy')
   },
   //点击发布
   public: function () {
@@ -473,9 +469,7 @@ Page({
           wx.setStorageSync('enchangeId', []);
           wx.setStorageSync('pro_goodness', "");
           wx.removeStorageSync('setPrivacy');
-          wx.navigateTo({
-            url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type,
-          })
+          app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
         } else {
           app.errorHide(that, res.data.error_msg, 3000)
         }
@@ -544,9 +538,7 @@ Page({
           method: 'POST',
           success: function (res) {
             if (res.data.status_code == 2000000) {
-              wx.navigateTo({
-                url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
-              })
+              app.href('/pages/scanCode/bpScanSuccess/bpScanSuccess')
               that.setData({
                 modalBox: 0
               })

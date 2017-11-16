@@ -81,9 +81,7 @@ Page({
   },
   //进入个人详情
   userInfo: function () {
-    wx.navigateTo({
-      url: "/pages/userDetail/networkDetail/networkDetail"
-    })
+    app.href("/pages/userDetail/networkDetail/networkDetail")
   },
   // 好友直接拨打电话
   telephone: function (e) {
@@ -181,9 +179,10 @@ Page({
               success: function (res) {
                 wx.setStorageSync('followed_user_id', followed_user_id)
                 if (res.confirm == true) {
-                  wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo'
-                  })
+                  // wx.navigateTo({
+                  //   url: '/pages/register/companyInfo/companyInfo'
+                  // })
+                  app.href('/pages/register/companyInfo/companyInfo')
                 }
               }
             })
@@ -196,9 +195,7 @@ Page({
             success: function (res) {
               wx.setStorageSync('followed_user_id', followed_user_id)
               if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '/pages/register/personInfo/personInfo'
-                })
+                app.href('/pages/register/personInfo/personInfo')
               }
             }
           })
@@ -210,9 +207,8 @@ Page({
   shareSth: function (e) {
     var QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
-    wx.navigateTo({
-      url: '/pages/my/qrCode/qrCode',
-    })
+    app.href('/pages/my/qrCode/qrCode')
+
   },
   //分享页面
   onShareAppMessage: function () {
@@ -222,16 +218,12 @@ Page({
   //项目融资
   projectFinance: function () {
     var followed_user_id = this.data.user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + followed_user_id,
-    })
+    app.href('/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + followed_user_id)
   },
   //融资项目详情
   financingDetail: function (e) {
     var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/projectDetail/projectDetail?id=' + id,
-    })
+    app.href('/pages/projectDetail/projectDetail?id=' + id)
   },
   // 推送项目
   pushProjectTo: function () {

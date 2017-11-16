@@ -75,7 +75,7 @@
 					"id": 8,
 					"name": "org_detail",
 					"pathName": "pages/organization/org_detail/org_detail",
-					"query": "investment_id=1080"
+					"query": "investment_id=4"
 				},
 				{
 					"id": -1,

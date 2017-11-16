@@ -63,9 +63,7 @@ Page({
 
     // 创建项目
     createProject: function () {
-        wx.navigateTo({
-            url: '/pages/myProject/publishProject/publishProject',
-        })
+        app.href('/pages/myProject/publishProject/publishProject')
     },
     //点击选中标签
     checkboxChange(e) {
@@ -147,9 +145,7 @@ Page({
                         //     duration: 2000
                         // })
                         setTimeout(function () {
-                            wx.navigateTo({
-                              url: '/pages/myProject/pushToSuccess/pushToSuccess',
-                            })
+                            app.href('/pages/myProject/pushToSuccess/pushToSuccess')
                         }, 1000)
                     } else if (statusCode == 490001) {
                         app.errorHide(that, "没有选择任何项目", 1000)
