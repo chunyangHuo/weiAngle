@@ -93,9 +93,7 @@ Page({
     console.log(e)
     var id = e.currentTarget.dataset.id;
     app.console(id)
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //推送项目
   pushProject:function(e){

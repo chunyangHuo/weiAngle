@@ -177,24 +177,17 @@ Page({
   allPerson: function (e) {
     let team_id = e.currentTarget.dataset.id;
     let team_name = e.currentTarget.dataset.name;
-    wx.navigateTo({
-      url: '/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id,
-    })
+    app.href('/pages/contactsActivty/warbandMember/warbandMember?team_id=' + team_id)
   },
   //跳转用户详情
   goTo: function (e) {
     let id = e.currentTarget.dataset.applyid;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
-      wx.navigateTo({
-        url: '/pages/my/my/my',
-      })
+      app.href('/pages/my/my/my')
     } else {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
-
   },
   //添加人脉
   addPerson: function (e) {

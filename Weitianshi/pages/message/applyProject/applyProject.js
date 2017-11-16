@@ -229,13 +229,9 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + id)
         }
       }
     })
@@ -243,9 +239,7 @@ Page({
   //点击跳转到用户详情
   personDetail: function (e) {
     var id = e.currentTarget.dataset.project;
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   // 点击同意或者拒绝
   btn: function (e) {

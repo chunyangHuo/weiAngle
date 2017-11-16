@@ -99,13 +99,9 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
         }
       }
     })
@@ -130,18 +126,12 @@ Page({
         if (res.data.status_code == 2000000) {
           var complete = res.data.is_complete;
           if (complete == 1) {
-            wx.navigateTo({
-              url: '/pages/myProject/publishProject/publishProject'
-            })
+            app.href('/pages/myProject/publishProject/publishProject')
           } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       },
     });
@@ -189,9 +179,7 @@ Page({
                     confirmColor: "#333333",
                     success: function (res) {
                       if (res.confirm) {
-                        wx.navigateTo({
-                          url: '/pages/my/identity/indentity/indentity'
-                        })
+                        app.href('/pages/my/identity/indentity/indentity')
                       } else if (res.cancel) {
                       }
                     }
@@ -324,32 +312,24 @@ Page({
                     confirmText: "重新认证",
                     showCancel: false,
                     success: function (res) {
-                      wx.navigateTo({
-                        url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
-                      })
+                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
                     }
                   })
                 }
               }
             })
           } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       },
     });
   },
   //人脉大赛
   competitor: function () {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/activtyDetail/activtyDetail'
-    })
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
 
 
@@ -603,8 +583,6 @@ Page({
   //搜索
   searchSth: function () {
     let user_id = this.data.user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
-    })
+    app.href('/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id)
   },
 })

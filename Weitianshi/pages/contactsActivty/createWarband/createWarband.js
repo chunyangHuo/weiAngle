@@ -15,14 +15,10 @@ Page({
         let team_name = this.data.team_name;
         let team_founder = this.data.team_founder;
         if (type == 2) {
-            wx.navigateTo({
-                url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&team_name=' + team_name,
-            })
+          app.href('/pages/contactsActivty/createInfo/createInfo?type=' + type + '&team_name=' + team_name)
         }
         else if (type == 3) {
-            wx.navigateTo({
-                url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&team_founder=' + team_founder,
-            })
+          app.href('/pages/contactsActivty/createInfo/createInfo?type=' + type + '&team_founder=' + team_founder)
         }
     },
     // 战队logo上传
@@ -119,9 +115,7 @@ Page({
                                         console.log(res)
                                     }
                                 })
-                                wx.navigateTo({
-                                    url: '/pages/contactsActivty/activtyRegister/activtyRegister'
-                                })
+                                app.href('/pages/contactsActivty/activtyRegister/activtyRegister')
                             } else if (res.cancel) {
                                 console.log('用户点击取消')
                             }
@@ -136,9 +130,7 @@ Page({
                         confirmColor: "#333333",
                         success: function (res) {
                             if (res.confirm) {
-                                wx.navigateTo({
-                                    url: '/pages/contactsActivty/activtyRegister/activtyRegister'
-                                })
+                              app.href('/pages/contactsActivty/activtyRegister/activtyRegister')
                             } else if (res.cancel) {
                                 console.log('用户点击取消')
                             }

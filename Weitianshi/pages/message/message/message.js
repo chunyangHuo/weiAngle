@@ -96,9 +96,7 @@ Page({
 
   // 跳转到人脉申请页面
   beAddedContacts: function () {
-    wx.navigateTo({
-      url: '/pages/message/beAddedContacts/beAddedContacts',
-    })
+    app.href('/pages/message/beAddedContacts/beAddedContacts')
   },
 
   // 身份认证跳转
@@ -118,31 +116,19 @@ Page({
           if (complete == 1) {
             //如果信息完整就可以显示去认证
             if (status == 0) {
-              wx.navigateTo({
-                url: '/pages/my/identity/indentity/indentity',
-              })
+              app.href('/pages/my/identity/indentity/indentity')
             } else if (status == 1) {
-              wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
-              })
+              app.href('/pages/my/identity/identityResult/identityResult?type=' + 1)
             } else if (status == 2) {
-              wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
-              })
+              app.href('/pages/my/identity/identityResult/identityResult?type=' + 2)
             } else if (status == 3) {
-              wx.navigateTo({
-                url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
-              })
+              app.href('/pages/my/identity/identityResult/identityResult?type=' + 3)
             }
           } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       },
     });
@@ -152,13 +138,9 @@ Page({
     let type = e.currentTarget.dataset.type;
     let group_id = this.data.group_id;
     if (group_id) {
-      wx.navigateTo({
-        url: '/pages/message/applyProject/applyProject?type=' + type + '&&group_id=' + group_id,
-      })
+      app.href('/pages/message/applyProject/applyProject?type=' + type + '&&group_id=' + group_id)
     } else {
-      wx.navigateTo({
-        url: '/pages/message/applyProject/applyProject?type=' + type,
-      })
+      app.href('/pages/message/applyProject/applyProject?type=' + type)
     }
   },
   // 项目推送
@@ -166,19 +148,13 @@ Page({
     let type = e.currentTarget.dataset.type;
     let group_id = this.data.group_id;
     if (group_id) {
-      wx.navigateTo({
-        url: '/pages/message/pushProject/pushProject?type=' + type + '&&group_id=' + group_id,
-      })
+      app.href('/pages/message/pushProject/pushProject?type=' + type + '&&group_id=' + group_id)
     } else {
-      wx.navigateTo({
-        url: '/pages/message/pushProject/pushProject?type=' + type,
-      })
+      app.href('/pages/message/pushProject/pushProject?type=' + type)
     }
   },
   //测试一键尽调
   testOneKey() {
-    wx.navigateTo({
-      url: '/pages/oneKeyResearch/oneKeyResearch?id=RpAQ5jpx',
-    })
+    app.href('/pages/oneKeyResearch/oneKeyResearch?id=RpAQ5jpx')
   }
 })

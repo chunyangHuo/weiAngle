@@ -12,10 +12,10 @@ Page({
     let that = this;
     this.getMyProject();
     app.initPage(that);
-    app.loginPage((user_id)=>{
-      if(user_id == 0){
+    app.loginPage((user_id) => {
+      if (user_id == 0) {
         that.setData({
-          noUserId : true
+          noUserId: true
         })
       }
     });
@@ -70,38 +70,28 @@ Page({
   //一键推送
   goToMatchInvestor(e) {
     let id = e.currentTarget.dataset.proId;
-    wx.navigateTo({
-      url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1
-    })
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1)
   },
   // 浏览
   viewProject: function (e) {
     let project_id = e.currentTarget.dataset.proid;
-    wx.navigateTo({
-      url: '/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id,
-    })
+    app.href('/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id)
   },
   //申请查看
   applyPerson: function (e) {
     console.log(e)
     let proid = e.currentTarget.dataset.proid;
-    wx.navigateTo({
-      url: '/pages/message/applyPerson/applyPerson?id=' + proid,
-    })
+    app.href('/pages/message/applyPerson/applyPerson?id=' + proid)
   },
   //约谈
   hasMeeting: function (e) {
     let projectId = e.currentTarget.dataset.proid;
-    wx.navigateTo({
-      url: '/pages/message/contactProject/projectList/projectList?id=' + projectId,
-    })
+    app.href('/pages/message/contactProject/projectList/projectList?id=' + projectId)
   },
   //项目详情
   projectDetail(e) {
     let pro_id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/myProject/projectDetail/projectDetail?id=' + pro_id,
-    })
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + pro_id)
   },
   //加载更多
   loadMore() {
