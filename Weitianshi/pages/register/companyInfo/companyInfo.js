@@ -211,9 +211,7 @@ Page({
                 })
               }
             } else {
-              wx.navigateTo({
-                url: '/pages/register/bindSuccess/bindSuccess?type=' + type,
-              })
+              app.href('/pages/register/bindSuccess/bindSuccess?type=' + type)
             }
           } else {
             var error_msg = res.data.error_msg;

@@ -95,7 +95,7 @@ Page({
         }
         // 轮次
         if (info.stage_list.length != 0) {
-          if (info.stage_list.length > 10) {
+          if (info.stage_list.length > 12) {
             that.setData({
               textBeyond4: true,
               aisChecked4: true,

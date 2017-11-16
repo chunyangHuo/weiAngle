@@ -175,13 +175,9 @@ Page({
                 wx.setStorageSync('user_id', res.data.user_id);
                 app.globalData.user_id = res.data.user_id;
                 if (type) {
-                  wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + '&&type=' + type,
-                  });
+                  app.href('/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + '&&type=' + type)
                 } else {
-                  wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
-                  });
+                  app.href('/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email)
                 }
               } else {
                 app.errorHide(that, res.data.error_msg, 3000)
@@ -199,7 +195,7 @@ Page({
     let iv = e.detail.iv;
     let that = this;
     let name = that.data.name;
-    let code=that.data.code;
+    let code = that.data.code;
     wx.request({
       url: 'https://www.weitianshi.cn/api/wx/returnWxOauthMobile',
       data: {
@@ -211,10 +207,8 @@ Page({
       success(res) {
         console.log(res)
         let telephone = res.data.user_mobile;
+        app.href('/pages/register/bindPhone/bindPhone?name=' + name + '&&telephone=' + telephone)
 
-        wx.navigateTo({
-          url: '/pages/register/bindPhone/bindPhone?name=' + name + '&&telephone=' + telephone,
-        })
       }
     })
   }

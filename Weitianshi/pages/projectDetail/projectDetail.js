@@ -61,10 +61,10 @@ Page({
             wx.redirectTo({
               url: '/pages/myProject/projectDetail/projectDetail?id=' + id,
             })
-          }else{
-           that.setData({
-             other:false
-           })
+          } else {
+            that.setData({
+              other: false
+            })
           }
         });
       }
@@ -178,7 +178,7 @@ Page({
           for (let i = 0; i < pro_goodness.length; i++) {
             arr.push(pro_goodness[i].goodness_desc.length)
           }
-          console.log(Math.max(arr),Math.max.apply(null,arr),arr)
+          console.log(Math.max(arr), Math.max.apply(null, arr), arr)
           if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond0: true,
@@ -640,9 +640,7 @@ Page({
   // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   // 项目详情-里程碑 展开收起
   moreInfo: function (e) {
@@ -911,14 +909,10 @@ Page({
               modalBox: 1
             })
           } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       },
     });
@@ -1061,9 +1055,7 @@ Page({
           if (complete == 1) {
             //如果信息完整就可以显示去认证
             if (status == 0) {
-              wx.navigateTo({
-                url: '/pages/my/identity/indentity/indentity'
-              })
+              app.href('/pages/my/identity/indentity/indentity')
             } else if (status == 3) {
               wx.showModal({
                 title: '友情提示',
@@ -1080,9 +1072,7 @@ Page({
                     method: 'POST',
                     success: function (res) {
                       let group_id = res.data.group.group_id;
-                      wx.navigateTo({
-                        url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
-                      })
+                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
                     }
                   })
                 }
@@ -1090,15 +1080,11 @@ Page({
             }
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       },
     });
@@ -1126,13 +1112,9 @@ Page({
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (id != user_id) {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     } else if (id == user_id) {
-      wx.navigateTo({
-        url: '/pages/my/my/my'
-      })
+      app.href('/pages/my/my/my')
     }
   },
   // 一键尽调页面展开

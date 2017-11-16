@@ -236,9 +236,7 @@ Page({
   },
   // 选择领域
   industry: function () {
-    wx.navigateTo({
-      url: '/pages/form/industry/industry?current=' + 2
-    })
+    app.href('/pages/form/industry/industry?current=' + 2)
   },
   //是否独家的效果实现
   tipsOn: function (e) {
@@ -264,9 +262,7 @@ Page({
     var cityNum = this.data.cityNum;//二级地区
     var provinceNum = wx.getStorageSync("m_provinceNum");
     var cityNum = wx.getStorageSync('m_cityNum')
-    wx.navigateTo({
-      url: '/pages/form/area1/area1?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum
-    })
+    app.href('/pages/form/area1/area1?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum)
   },
   //关闭模态框
   closeModal: function () {
@@ -388,9 +384,7 @@ Page({
                 success: function (res) {
                   console.log(res)
                   if (res.data.status_code == 2000000) {
-                    wx.navigateTo({
-                      url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
-                    })
+                    app.href('/pages/scanCode/bpScanSuccess/bpScanSuccess')
                   }
                 }
               })
@@ -456,9 +450,7 @@ Page({
           method: 'POST',
           success: function (res) {
             if (res.data.status_code == 2000000) {
-              wx.navigateTo({
-                url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
-              })
+              app.href('/pages/scanCode/bpScanSuccess/bpScanSuccess')
               that.setData({
                 modalBox: 0
               })
@@ -472,9 +464,7 @@ Page({
   //私密性设置
   initPrivacy: function () {
     let project = this.data.pro_id;
-    wx.navigateTo({
-      url: '/pages/myProject/initPrivacy/initPrivacy?project=' + project,
-    })
+    app.href('/pages/myProject/initPrivacy/initPrivacy?project=' + project)
   },
   //点击发布
   public: function () {
