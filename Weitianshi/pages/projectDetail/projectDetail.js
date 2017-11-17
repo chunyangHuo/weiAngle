@@ -639,6 +639,11 @@ Page({
   // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id;
+    let pages=getCurrentPages();
+    console.log(getCurrentPages())
+    console.log(pages.length)
+    pages.splice(0, 1)
+    console.log(pages)
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   // 项目详情-里程碑 展开收起
