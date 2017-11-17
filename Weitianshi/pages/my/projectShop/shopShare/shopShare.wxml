@@ -1,0 +1,13 @@
+<view class="outside">
+  <view class="box">
+    <view class="shopTitle">张三的项目店铺,最多显示两行内容</view>
+    <view class="qrCode"></view>
+    <view class="tips"> 长按或微信扫码查看更多</view>
+  </view>
+</view>
+  <view class="aboutNetwork flex">
+    <view bindtap="shareFriend">
+    <button open-type="share" id="shareFriend">分享给朋友</button>
+    </view>
+    <view bindtap="savePic" class="savePic">保存二维码图片</view>
+  </view>

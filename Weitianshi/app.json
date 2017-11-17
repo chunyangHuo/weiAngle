@@ -50,6 +50,7 @@
     "pages/my/projectShop/projectShop/projectShop",
     "pages/my/projectShop/projectSearch/projectSearch",
     "pages/my/projectShop/shopEdit/shopEdit",
+    "pages/my/projectShop/shopShare/shopShare",
     "pages/my/qrCode/qrCode",
     "pages/my/identity/indentity/indentity",
     "pages/my/identity/identityEdit/identityEdit",
