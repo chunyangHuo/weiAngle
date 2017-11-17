@@ -1,5 +1,3 @@
-let rqj = require('../../Template/Template.js');
-let wxCharts = require('../../../utils/importServer/wxcharts.js');
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;

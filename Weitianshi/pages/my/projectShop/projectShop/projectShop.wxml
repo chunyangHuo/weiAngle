@@ -1,5 +1,14 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+  <view class='scrollFrame flex' >
+    <scroll-view class='scroll flex' scroll-x='true'>
+      <view class='flex'>
+        <block wx:for='{{game}}' wx:key='{{item.key}}'>
+          <view class='item'>{{item.name}}</view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
   <!--筛选和搜索  -->
   <view class="	screen flex">
     <!--筛选  -->
