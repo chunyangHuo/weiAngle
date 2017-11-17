@@ -572,3 +572,19 @@ page {
 .moreProject{
   padding-left:70rpx;
 }
+
+/*----------------------game---------------------------------------  */
+.scrollFrame{
+  width: 100%;
+  overflow-x: scroll;
+}
+.scroll{
+  width: 759rpx;
+  overflow-x: scroll;
+}
+.item{
+  width: 100rpx;
+  height: 100rpx;
+  background: red;
+  margin-right: 20rpx;
+}

@@ -13,6 +13,17 @@ Page({
       { name: '金额', check: false, arr: false, id: "scale" },
       { name: '地区', check: false, arr: false, id: "hotCity" }
     ],
+    game: [
+      { name: 'game1', id: 1 },
+      { name: 'game2', id: 2 },
+      { name: 'game3', id: 3 },
+      { name: 'game4', id: 4 },
+      { name: 'game5', id: 5 },
+      { name: 'game6', id: 6 },
+      { name: 'game7', id: 7 },
+      { name: 'game8', id: 8 },
+      { name: 'game9', id: 9 },
+    ],
     banner_personShop: app.globalData.picUrl.banner_personShop,
     currentIndex: 5,
     industryArr: [],

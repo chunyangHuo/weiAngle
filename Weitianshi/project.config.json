@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 14,
 			"list": [
 				{
 					"id": 1,
@@ -106,6 +106,12 @@
 					"name": "投资案例",
 					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
 					"query": "investment_id=1080"
+				},
+				{
+					"id": -1,
+					"name": "高晨璇的店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": "followed_user_id=RrZkOke0"
 				}
 			]
 		}

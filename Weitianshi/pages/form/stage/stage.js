@@ -1,8 +1,6 @@
-var rqj = require('../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-var save = true;//是否删除缓存
 Page({
   data: {
     payStage: [],
@@ -84,7 +82,6 @@ Page({
 
   //点击确定
   certain: function () {
-    save = true;
     var that = this;
     var id = this.data.id;
     var payStage = this.data.payStage;
@@ -123,6 +120,5 @@ Page({
         delta: 1 // 回退前 delta(默认为1) 页面
       })
     }
-    save = !save;
   }
 });

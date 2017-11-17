@@ -1,7 +1,6 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-var rqj = require('../../Template/Template.js');
 Page({
     data: {
         industryData: [],
