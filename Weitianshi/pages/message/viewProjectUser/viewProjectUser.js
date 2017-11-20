@@ -1,5 +1,3 @@
-// pages/message/viewProjectUser/viewProjectUser.js
-var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -128,9 +126,7 @@ Page({
   // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //下拉加载
   loadMore: function () {

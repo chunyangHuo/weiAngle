@@ -1,5 +1,3 @@
-// pages/message/contactProject/projectList/projectList.js
-var rqj = require('../../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -93,9 +91,7 @@ Page({
     console.log(e)
     var id = e.currentTarget.dataset.id;
     app.console(id)
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //推送项目
   pushProject:function(e){

@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -47,16 +46,11 @@ Page({
   detail: function (e) {
     var index = e.currentTarget.dataset.index;
     let case_id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../investCaseEdit/investCaseEdit?index=' + index + '&&case_id='+case_id,
-    })
+    app.href('../investCaseEdit/investCaseEdit?index=' + index + '&&case_id=' + case_id)
   },
 
   // 按钮一号
   buttonOne: function () {
-    console.log(5555)
-    wx.navigateTo({
-      url: '/pages/my/investCaseEdit/investCaseEdit',
-    })
+    app.href('/pages/my/investCaseEdit/investCaseEdit')
   }
 })

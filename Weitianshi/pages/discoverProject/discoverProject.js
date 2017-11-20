@@ -7,11 +7,11 @@ import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
     //选项卡
-    winWidth: 0, 
+    winWidth: 0,
     winHeight: 0,
     currentTab: 0,
     slectProject: '',
-    hidden:true,
+    hidden: true,
     //筛选搜索
     SearchInit: SearchModel.data,
     //banner
@@ -24,7 +24,7 @@ Page({
       app.globalData.picUrl.banner_4,
       app.globalData.picUrl.banner_5,
     ],
-    imgUrls1:app.globalData.picUrl.page_discoverProject,
+    imgUrls1: app.globalData.picUrl.page_discoverProject,
   },
   onLoad(options) {
     let that = this;
@@ -46,17 +46,46 @@ Page({
       })
     }
 
-    // 筛选的初始缓存
-    let SearchInit = that.data.SearchInit;
-    let tab = SearchInit.tab;
-    if (SearchInit.industry.length < 1) {
-      tab.forEach(x => {
-        SearchInit[x.label] = wx.getStorageSync(x.label)
-      })
-      that.setData({
-        SearchInit: SearchInit
-      })
-    }
+    // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
+    //获取筛选项所需的信息并存入缓存
+    wx.request({
+      url: url_common + '/api/category/getProjectCategory',
+      method: 'POST',
+      success: function (res) {
+        // console.log('getProjectCategory',res)
+        let thisData = res.data.data;
+        thisData.area.forEach((x) => { x.check = false })
+        thisData.industry.forEach((x) => { x.check = false })
+        thisData.scale.forEach((x) => { x.check = false })
+        thisData.stage.forEach((x) => { x.check = false })
+        wx.setStorageSync("industry", thisData.industry)
+        wx.setStorageSync("scale", thisData.scale)
+        wx.setStorageSync("stage", thisData.stage)
+      },
+    })
+    wx.request({
+      url: url_common + '/api/category/getHotCity',
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        let hotCity = res.data.data;
+        hotCity.forEach((x) => {
+          x.check = false;
+        })
+        wx.setStorageSync('hotCity', hotCity)
+        // 筛选的初始缓存
+        let SearchInit = that.data.SearchInit;
+        SearchInit.industry = wx.getStorageSync('industry');
+        SearchInit.stage = wx.getStorageSync('stage');
+        SearchInit.scale = wx.getStorageSync('scale');
+        SearchInit.hotCity = wx.getStorageSync('hotCity');
+        that.setData({
+          SearchInit: SearchInit
+        })
+      }
+    });
+
+  
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -72,7 +101,7 @@ Page({
       });
       that.selectProject();
       that.newestProject();
-    })  
+    })
   },
   // 点击tab切换
   swichNav: function (e) {
@@ -113,9 +142,7 @@ Page({
   // 轮播图跳转
   bannerLink(e) {
     let index = e.currentTarget.dataset.index + 1;
-    wx.navigateTo({
-      url: '/pages/activtyPage/activtyPage/activtyPage?index=' + index,
-    })
+    app.href('/pages/activtyPage/activtyPage/activtyPage?index=' + index)
   },
   // 下拉刷新
   onPullDownRefresh() {
@@ -171,10 +198,10 @@ Page({
         user_id: this.data.user_id,
         filter: this.data.SearchInit.searchData
       }
-    },that).then(res => {
+    }, that).then(res => {
       wx.hideLoading()
       var slectProject = res.data.data;
-      console.log('精选',slectProject)
+      console.log('精选', slectProject)
       that.setData({
         slectProject: slectProject,
       })
@@ -227,13 +254,9 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
         }
       }
     })
@@ -272,9 +295,7 @@ Page({
   },
   // 人脉大赛
   competitor: function () {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/activtyDetail/activtyDetail'
-    })
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
   // --------------------------筛选搜索--------------------------------------------------
   // 下拉框

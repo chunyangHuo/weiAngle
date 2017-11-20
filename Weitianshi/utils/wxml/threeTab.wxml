@@ -302,6 +302,8 @@
               </view>
             </view> -->
           </view>
+          <!--项目打分  -->
+          <view class="projectScore"  bindtap="projectRemark">项目打分</view>
           <view style="height:36rpx;"></view>
         </view>
       </scroll-view>

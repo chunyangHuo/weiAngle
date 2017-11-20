@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -39,7 +38,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log('myInfo',res)
+            console.log('myInfo', res)
             wx.hideLoading()
             var user = res.data.data.user;
             var count = res.data.data.count;
@@ -47,7 +46,7 @@ Page({
             var resource = res.data.data.resource_info;
             var project_info = res.data.data.project_info;
             var user_name = res.data.data.user.user_real_name;
-            let user_company_name= res.data.data.user.user_company_name;
+            let user_company_name = res.data.data.user.user_company_name;
             // wx.setNavigationBarTitle({
             //   title: user_name + "的投资名片",
             // })
@@ -57,7 +56,7 @@ Page({
               resource: resource,
               project_info: project_info,
               count: count,
-              user_company_name : user_company_name
+              user_company_name: user_company_name
             })
           },
           fail: function (res) {
@@ -92,33 +91,23 @@ Page({
   },
   //进入我的名片
   toMyCard: function () {
-    wx.navigateTo({
-      url: '/pages/my/my/my',
-    })
+    app.href('/pages/my/my/my')
   },
   //人气
   popularity: function () {
-    wx.navigateTo({
-      url: '/pages/message/browseMe/browseMe'
-    })
+    app.href('/pages/message/browseMe/browseMe')
   },
   //头像编辑
   avatarEdit() {
-    wx.navigateTo({
-      url: '/pages/my/cardEdit/cardEdit',
-    })
+    app.href('/pages/my/cardEdit/cardEdit')
   },
   //加我为人脉
   attention: function () {
-    wx.navigateTo({
-      url: '/pages/message/beAddedContacts/beAddedContacts'
-    })
+    app.href('/pages/message/beAddedContacts/beAddedContacts')
   },
   //潜在项目
   pushTo: function () {
-    wx.navigateTo({
-      url: '/pages/message/potentialProject/potentialProject'
-    })
+    app.href('/pages/message/potentialProject/potentialProject')
   },
   //身份验证
   identity: function (e) {
@@ -137,52 +126,31 @@ Page({
           // if (complete == 1) {
           //   //如果信息完整就可以显示去认证
           if (status == 0) {
-            wx.navigateTo({
-              url: '/pages/my/identity/indentity/indentity',
-            })
+            app.href('/pages/my/identity/indentity/indentity')
           } else if (status == 1) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
-            })
+            app.href('/pages/my/identity/identityResult/identityResult?type=' + 1)
           } else if (status == 2) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
-            })
+            app.href('/pages/my/identity/identityResult/identityResult?type=' + 2)
           } else if (status == 3) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
-            })
+            app.href('/pages/my/identity/identityResult/identityResult?type=' + 3)
           }
         } else if (complete == 0) {
-          wx.navigateTo({
-            url: '/pages/register/companyInfo/companyInfo?type=1'
-          })
+          app.href('/pages/register/companyInfo/companyInfo?type=1')
         }
-        // } else {
-        //   wx.navigateTo({
-        //     url: '/pages/register/personInfo/personInfo?type=2'
-        //   })
-        // }
       },
     });
   },
   //项目店铺
   projectShop: function () {
-    wx.navigateTo({
-      url: '/pages/my/projectShop/projectShop/projectShop',
-    })
+    app.href('/pages/my/projectShop/projectShop/projectShop')
   },
   //约谈的项目
   contactProject: function () {
-    wx.navigateTo({
-      url: '/pages/message/contactProject/userList/userList',
-    })
+    app.href('/pages/message/contactProject/userList/userList')
   },
   //收藏的项目
   collectProject: function () {
-    // wx.navigateTo({
-    //   url: '/pages/message/collectProject/collectProject',
-    // })
+    // app.href('/pages/message/collectProject/collectProject')
     let that = this;
     app.errorHide(that, "收藏项目近期开放", 3000);
   },
@@ -233,9 +201,7 @@ Page({
   },
   //完善公司信息
   writeInformation: function () {
-    wx.navigateTo({
-      url: '/pages/my/cardEdit/cardEdit',
-    })
+    app.href('/pages/my/cardEdit/cardEdit')
     this.setData({
       modalBox: 0
     })
@@ -277,8 +243,6 @@ Page({
   shareSth: function (e) {
     var QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
-    wx.navigateTo({
-      url: '/pages/my/qrCode/qrCode',
-    })
+    app.href('/pages/my/qrCode/qrCode')
   },
 })

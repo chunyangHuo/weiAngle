@@ -1,4 +1,3 @@
-var rqj = require('../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -76,6 +75,9 @@ Page({
       success: function (res) {
         let brandList = res.data.data.brand;
         let project = res.data.data;
+        that.setData({
+          competition_id: res.data.data.competition_id,
+        })
         console.log(user_id, id, is_share)
         console.log(res)
         if (project.pro_BP) {
@@ -303,9 +305,9 @@ Page({
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
-          let time='';
-          if(com_time){
-              time = app.changeTime(com_time);
+          let time = '';
+          if (com_time) {
+            time = app.changeTime(com_time);
           }
           if (projectInfoList.length != 0) {
             projectInfoList.forEach((x, index) => {
@@ -1067,5 +1069,16 @@ Page({
   toMap: function () {
     var that = this;
     app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
+  },
+  // 项目评分
+  projectRemark: function () {
+    let user = this.data.user_id;
+    let project_id = this.data.id;
+    let competition = this.data.competition_id;
+    console.log(this.data.id, this.data.user_id, this.data.competition_id);
+
+    app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
+
+
   }
 }) 

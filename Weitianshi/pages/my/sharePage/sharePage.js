@@ -1,4 +1,3 @@
-let rqj = require('../../Template/Template.js');
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
@@ -125,15 +124,11 @@ Page({
               })
             } else if (complete == 0) {
               wx.setStorageSync('followed_user_id', followed_user_id)
-              wx.navigateTo({
-                url: '/pages/register/companyInfo/companyInfo'
-              })
+              app.href('/pages/register/companyInfo/companyInfo')
             }
           } else {
             wx.setStorageSync('followed_user_id', followed_user_id)
-            wx.navigateTo({
-              url: '/pages/register/personInfo/personInfo'
-            })
+            app.href('/pages/register/personInfo/personInfo')
           }
         },
       });
@@ -214,15 +209,11 @@ Page({
               })
             } else if (complete == 0) {
               //如果有user_id但信息不全则跳companyInfo页面
-              wx.navigateTo({
-                url: '/pages/register/companyInfo/companyInfo'
-              })
+              app.href('/pages/register/companyInfo/companyInfo')
             }
           } else {
             //如果没有user_id则跳personInfo
-            wx.navigateTo({
-              url: '/pages/register/personInfo/personInfo'
-            })
+            app.href('/pages/register/personInfo/personInfo')
           }
         },
       });
@@ -237,9 +228,7 @@ Page({
   shareSth: function (e) {
     let QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
-    wx.navigateTo({
-      url: '/pages/my/qrCode/qrCode',
-    })
+    app.href('/pages/my/qrCode/qrCode')
   },
   //分享页面部分
   onShareAppMessage: function () {
@@ -249,16 +238,12 @@ Page({
   //项目融资
   projectFinance: function () {
     let followed_user_id = this.data.followed_user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id,
-    })
+    app.href('/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id)
   },
   //融资项目详情
   financingDetail: function (e) {
     let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/projectDetail/projectDetail?id=' + id,
-    })
+    app.href('/pages/projectDetail/projectDetail?id=' + id)
   },
   //跳转到我的人脉
   toContactsMy: function () {
@@ -270,7 +255,7 @@ Page({
   toContacts: function () {
     //走正常申请流程
     let user_id = this.data.user_id;//我的id,查看者的id
-    let followed_user_id = this.data.followed_user_id; 
+    let followed_user_id = this.data.followed_user_id;
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
       data: {
@@ -281,18 +266,14 @@ Page({
         if (res.data.status_code == 2000000) {
           let complete = res.data.is_complete;
           if (complete == 1) {
-          
+
           } else if (complete == 0) {
             wx.setStorageSync('followed_user_id', followed_user_id)
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo'
-            })
+            app.href('/pages/register/companyInfo/companyInfo')
           }
         } else {
           wx.setStorageSync('followed_user_id', followed_user_id)
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo'
-          })
+          app.href('/pages/register/personInfo/personInfo')
         }
       },
     });
@@ -316,18 +297,12 @@ Page({
           let complete = res.data.is_complete;
           if (complete == 1) {
             //如果信息完整就正常申请添加人脉
-            wx.navigateTo({
-              url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id,
-            })
+            app.href('/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id)
           } else if (complete == 0) {
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo'
-            })
+            app.href('/pages/register/companyInfo/companyInfo')
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo'
-          })
+          app.href('/pages/register/personInfo/personInfo')
         }
       },
     });

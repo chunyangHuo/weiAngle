@@ -1,4 +1,3 @@
-let rqj = require('../../Template/Template.js')
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
@@ -107,15 +106,10 @@ Page({
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
-      wx.navigateTo({
-        url: '/pages/my/my/my',
-      })
+      app.href('/pages/my/my/my')
     } else {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
-
   },
   //添加人脉
   addPerson: function (e) {
@@ -179,15 +173,11 @@ Page({
             }
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       }
     })
@@ -240,15 +230,11 @@ Page({
             })
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       }
     })

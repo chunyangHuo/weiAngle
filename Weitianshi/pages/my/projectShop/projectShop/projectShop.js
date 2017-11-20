@@ -13,6 +13,17 @@ Page({
       { name: '金额', check: false, arr: false, id: "scale" },
       { name: '地区', check: false, arr: false, id: "hotCity" }
     ],
+    game: [
+      { name: 'game1', id: 1 },
+      { name: 'game2', id: 2 },
+      { name: 'game3', id: 3 },
+      { name: 'game4', id: 4 },
+      { name: 'game5', id: 5 },
+      { name: 'game6', id: 6 },
+      { name: 'game7', id: 7 },
+      { name: 'game8', id: 8 },
+      { name: 'game9', id: 9 },
+    ],
     banner_personShop: app.globalData.picUrl.banner_personShop,
     currentIndex: 5,
     industryArr: [],
@@ -399,9 +410,7 @@ Page({
   // 搜索
   searchSth: function () {
     let user_id = this.data.user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
-    })
+    app.href('/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id)
   },
   // 上拉加载
   loadMore() {
@@ -445,13 +454,9 @@ Page({
     let followed_user_id = this.followed_user_id;
     // followed_user_id 存在:他人的店铺详情;不存在:自己的店铺详情
     if (followed_user_id) {
-      wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id
-      })
+      app.href('/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id)
     } else {
-      wx.navigateTo({
-        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
-      })
+      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index)
     }
   },
   // 新增项目
@@ -461,9 +466,7 @@ Page({
   // 店铺装修
   decorate: function () {
     let user_id = this.data.userInfo.user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/shopEdit/shopEdit?user_id=' + user_id
-    })
+    app.href('/pages/my/projectShop/shopEdit/shopEdit?user_id=' + user_id)
   },
   // 选中项目
   clickProject: function (e) {
@@ -529,9 +532,7 @@ Page({
     let user_id = this.data.user_id;
     let currentUser = wx.getStorageSync('user_id');
     if (user_id != currentUser) {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + user_id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + user_id)
     }
   },
   //身份验证
@@ -558,17 +559,17 @@ Page({
             }
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       }
     })
+  },
+  //分享店铺
+  toShareShop(){
+    app.href("/pages/my/projectShop/shopShare/shopShare")
   }
 })

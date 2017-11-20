@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -22,7 +21,7 @@ Page({
         data: {
           user_id: user_id,
           type_id: 2,
-          page:1
+          page: 1
         },
         method: 'POST',
         success: function (res) {
@@ -120,9 +119,7 @@ Page({
   // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-    })
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //我的名片
   myCard: function () {
@@ -145,9 +142,7 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '/pages/my/my/my',
-                })
+                app.href('/pages/my/my/my')
               }
             }
           })
@@ -157,9 +152,7 @@ Page({
             content: "交换名片之前,请先完善自己的名片",
             success: function (res) {
               if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '/pages/my/cardEdit/cardEdit',
-                })
+                app.href('/pages/my/cardEdit/cardEdit')
               }
             }
           })
@@ -184,18 +177,18 @@ Page({
     })
   },
   // 加载更多
-  loadMore(){
-    let that=this;
+  loadMore() {
+    let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
-    let request={
+    let request = {
       url: url_common + '/api/message/cardMessage',
       data: {
         user_id: user_id,
         type_id: 2,
-        page:currentPage
+        page: currentPage
       },
     }
-    app.loadMore(that, request,"contacts")
+    app.loadMore(that, request, "contacts")
   },
 }) 

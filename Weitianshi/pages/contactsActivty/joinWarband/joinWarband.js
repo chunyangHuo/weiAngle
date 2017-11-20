@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -232,9 +231,7 @@ Page({
   },
   //创建战队
   createWarband() {
-    wx.navigateTo({
-      url: '/pages/contactsActivty/createWarband/createWarband',
-    })
+    app.href('/pages/contactsActivty/createWarband/createWarband')
   },
   //保存
   save() {

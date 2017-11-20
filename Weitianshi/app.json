@@ -50,6 +50,7 @@
     "pages/my/projectShop/projectShop/projectShop",
     "pages/my/projectShop/projectSearch/projectSearch",
     "pages/my/projectShop/shopEdit/shopEdit",
+    "pages/my/projectShop/shopShare/shopShare",
     "pages/my/qrCode/qrCode",
     "pages/my/identity/indentity/indentity",
     "pages/my/identity/identityEdit/identityEdit",
@@ -79,7 +80,7 @@
     "pages/organization/subPage/list_leaveMember/list_leaveMember",
     "pages/organization/subPage/list_media/list_media",
     "pages/organization/subPage/guide_help/guide_help",
-    "pages/projectScale/projectEvaluation"
+    "pages/projectScale/projectEvaluation/projectEvaluation"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

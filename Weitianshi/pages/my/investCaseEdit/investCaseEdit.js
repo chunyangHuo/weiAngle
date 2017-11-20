@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -190,9 +189,7 @@ Page({
     this.setData({
       case_city: e.detail.value
     })
-    wx.navigateTo({
-      url: '/pages/form/area1/area1?current=' + 2
-    })
+    app.href('/pages/form/area1/area1?current=' + 2)
   },
   //保存
   buttonOne: function () {
