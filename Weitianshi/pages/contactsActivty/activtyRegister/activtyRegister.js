@@ -1,4 +1,3 @@
-var rqj = require('../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -58,24 +57,16 @@ Page({
         let user_brand = this.data.user_info.user_brand;
         let user_company_career = this.data.user_info.user_company_career;
         if (type == 4) {
-            wx.navigateTo({
-                url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_real_name=' + user_real_name,
-            })
+          app.href('/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_real_name=' + user_real_name)
         }
         else if (type == 5) {
-            wx.navigateTo({
-                url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_company_name=' + user_company_name,
-            })
+          app.href('/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_company_name=' + user_company_name)
         }
         else if (type == 6) {
-            wx.navigateTo({
-                url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_brand=' + user_brand,
-            })
+          app.href('/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_brand=' + user_brand)
         }
         else if (type == 7) {
-            wx.navigateTo({
-                url: '/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_company_career=' + user_company_career,
-            })
+          app.href('/pages/contactsActivty/createInfo/createInfo?type=' + type + '&user_company_career=' + user_company_career)
         }
     },
     //提交

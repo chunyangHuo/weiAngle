@@ -1,4 +1,3 @@
-var rqj = require('../../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -113,8 +112,6 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let authenticate_id = this.data.authenticate_id;
     let group_id = this.data.group_id;
-    wx.navigateTo({
-      url: '/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id,
-    })
+    app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
   }
 })

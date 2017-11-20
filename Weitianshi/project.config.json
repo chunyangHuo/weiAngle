@@ -109,9 +109,9 @@
 				},
 				{
 					"id": 14,
-					"name": "项目评价",
-					"pathName": "pages/projectScale/projectEvaluation",
-					"query": ""
+					"name": "环境经济的店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": "followed_user_id=PpPLGJZp"
 				}
 			]
 		}

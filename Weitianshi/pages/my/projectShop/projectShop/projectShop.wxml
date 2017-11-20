@@ -1,5 +1,17 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+  <view class='scrollFrame flex'>
+    <scroll-view class='scroll flex' scroll-x='true'>
+      <view class='flex'>
+        <block wx:for='{{node_list}}' wx:key='{{item.schedule_id}}'>
+          <view class='item {{node_list[index].is_select == 1 ? "itemhover" : ""}}' data-id='{{item.schedule_id}}' data-index='{{index}}' bindtap='scheduleCheck'>
+            <view class='itemName'>{{item.schedule_name}}</view>
+            <view class='itemNum'>{{item.node_count}}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
   <!--筛选和搜索  -->
   <view class="	screen flex">
     <!--筛选  -->
@@ -56,22 +68,23 @@
     <image src="{{banner_personShop}}" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
     <image src="{{userInfo.shop_banner}}" class="bgPic" wx:if="{{userInfo.shop_banner}}"></image>
     <view class='modal picModal'></view>
-  </view>
-  <view class="userInfo zIndex99">
-    <view class="flex online">
-      <view class="userName">{{userInfo.user_real_name}}</view>
-      <view class="userPosition">{{userInfo.user_company_career}}</view>
-      <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
-        <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-        <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
+    <view class="userInfo zIndex99">
+      <view class="flex online">
+        <view class="userName">{{userInfo.user_real_name}}</view>
+        <view class="userPosition">{{userInfo.user_company_career}}</view>
+        <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
+          <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+          <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
+        </view>
+        <view>
+          <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}" bindtap='toPersonDetail'></image>
+          <view wx:if="{{userInfo.user_avatar_text}}" class="user_text noPic" bindtap='toPersonDetail'>{{userInfo.user_avatar_text}}</view>
+        </view>
       </view>
-      <view>
-        <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}" bindtap='toPersonDetail'></image>
-        <view wx:if="{{userInfo.user_avatar_text}}" class="user_text noPic" bindtap='toPersonDetail'>{{userInfo.user_avatar_text}}</view>
-      </view>
+      <view class="userCompany">{{userInfo.user_company_name}}</view>
     </view>
-    <view class="userCompany">{{userInfo.user_company_name}}</view>
   </view>
+
   <!--店铺描述  -->
   <view class="shopDesBox" wx:if="{{userInfo.user_intro}}">
     <view class="shopDes">店铺描述</view>
@@ -127,6 +140,8 @@
     </view>
     <view bindtap="editDetail" class="newProject">新增项目</view>
   </view>
+  <!--分享  -->
+  <view class="shareSth" catchtap="toShareShop">分享店铺</view>
 
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

@@ -24,6 +24,7 @@ Page({
       stage: [],
       scale: [],
       hotCity: [],
+      schedule: [],
     },
     myPublicProject_page: 1,
     myPublicCheck: true,
@@ -71,12 +72,23 @@ Page({
       this.getUserInfo();
       // 打上check属性
       this.initData();
+      app.httpPost({
+        url: url_common + '/api/project/getNodeCount',
+        data: {
+          user_id: followed_user_id
+        }
+      }, that).then(res => {
+        let node_list = res.data.data.node_list;
+        console.log(node_list)
+        that.setData({
+          node_list: node_list
+        })
+      })
     });
 
 
   },
   onShow: function () {
-    console.log(111)
     if (!this.data.firstTime) {
       console.log('onShow', this.data.user_id)
       this.setData({
@@ -363,12 +375,37 @@ Page({
       currentPage: 1,
       page_end: false
     })
-    //发送筛选请求
+    // 发送筛选请求
+    this.requestPost();
+  },
+
+  // 评分阶段筛选
+  scheduleCheck(e) {
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    let node_list = this.data.node_list;
+    let searchData = this.data.searchData;
+    searchData.schedule = [];
+    node_list.forEach(x => {
+      x.is_select = 0;
+    })
+    node_list[index].is_select = 1;
+    searchData.schedule.push(node_list[index].schedule_id)
+    this.setData({
+      node_list: node_list,
+      searchData: searchData
+    })
+    // 发送筛选请求
+    this.requestPost();
+  },
+  // 发送筛选请求
+  requestPost(searchData) {
+    let that = this;
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
         user_id: this.data.user_id,
-        filter: searchData
+        filter: this.data.searchData
       },
       method: 'POST',
       success: function (res) {
@@ -399,9 +436,7 @@ Page({
   // 搜索
   searchSth: function () {
     let user_id = this.data.user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id,
-    })
+    app.href('/pages/my/projectShop/projectSearch/projectSearch?user_id=' + user_id)
   },
   // 上拉加载
   loadMore() {
@@ -445,13 +480,9 @@ Page({
     let followed_user_id = this.followed_user_id;
     // followed_user_id 存在:他人的店铺详情;不存在:自己的店铺详情
     if (followed_user_id) {
-      wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id
-      })
+      app.href('/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id)
     } else {
-      wx.navigateTo({
-        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
-      })
+      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index)
     }
   },
   // 新增项目
@@ -461,9 +492,7 @@ Page({
   // 店铺装修
   decorate: function () {
     let user_id = this.data.userInfo.user_id;
-    wx.navigateTo({
-      url: '/pages/my/projectShop/shopEdit/shopEdit?user_id=' + user_id
-    })
+    app.href('/pages/my/projectShop/shopEdit/shopEdit?user_id=' + user_id)
   },
   // 选中项目
   clickProject: function (e) {
@@ -529,9 +558,7 @@ Page({
     let user_id = this.data.user_id;
     let currentUser = wx.getStorageSync('user_id');
     if (user_id != currentUser) {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + user_id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + user_id)
     }
   },
   //身份验证
@@ -558,17 +585,17 @@ Page({
             }
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       }
     })
+  },
+  //分享店铺
+  toShareShop() {
+    app.href("/pages/my/projectShop/shopShare/shopShare")
   }
 })

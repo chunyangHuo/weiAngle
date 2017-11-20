@@ -100,13 +100,9 @@ Page({
     console.log(user_id)
     console.log(currentUser)
     if (user_id == currentUser) {
-      wx.navigateTo({
-        url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
-      })
+      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0)
     } else if (user_id != currentUser){
-      wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?id=' + id,
-      })
+      app.href('/pages/projectDetail/projectDetail?id=' + id)
     }
   },
   // 选中项目

@@ -1,4 +1,3 @@
-let rqj = require('../../Template/Template.js')
 let app = getApp()
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
@@ -53,15 +52,11 @@ Page({
             })
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
-            wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo?type=1'
-            })
+            app.href('/pages/register/companyInfo/companyInfo?type=1')
           }
         } else {
           wx.removeStorageSync('followed_user_id')
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo?type=2'
-          })
+          app.href('/pages/register/personInfo/personInfo?type=2')
         }
       }
     })
