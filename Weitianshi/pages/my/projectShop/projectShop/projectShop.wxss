@@ -395,7 +395,7 @@ page {
 
 .dropDown {
   position: absolute;
-  top: 80rpx;
+  top: 160rpx;
   left: 0;
   background: white;
   z-index: 999;
@@ -603,8 +603,18 @@ page {
   overflow-x: scroll;
 }
 .item{
-  width: 100rpx;
-  height: 100rpx;
-  background: red;
-  margin-right: 20rpx;
+  width:160rpx;
+  height: 112rpx;
+  background: white;
+  margin-right: 32rpx;
+  border-radius: 8rpx;
+}
+.item .itemName{
+
+}
+.item .itemNum{
+  
+}
+.itemhover{
+  background:#e6e6e6;
 }

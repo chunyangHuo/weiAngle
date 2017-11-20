@@ -1,10 +1,13 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
-  <view class='scrollFrame flex' >
+  <view class='scrollFrame flex'>
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
         <block wx:for='{{game}}' wx:key='{{item.key}}'>
-          <view class='item'>{{item.name}}</view>
+          <view class='item'>
+            <view class='itemName'>{{item.name}}</view>
+            <view class='itemNum'>{{item.number}}</view>
+          </view>
         </block>
       </view>
     </scroll-view>
@@ -136,7 +139,7 @@
     </view>
     <view bindtap="editDetail" class="newProject">新增项目</view>
   </view>
-<!--分享  -->
+  <!--分享  -->
   <view class="shareSth" catchtap="toShareShop">分享店铺</view>
 
   <!--错误提示-->
