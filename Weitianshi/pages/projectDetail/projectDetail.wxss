@@ -1400,7 +1400,7 @@ button::after {
   color: #fff;
   letter-spacing: 0;
   line-height: 66rpx;
-  text-align: left;
+  text-align: center;
   right: 0;
   border-radius: 35rpx 0 0 35rpx;
 }

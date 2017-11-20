@@ -5,7 +5,9 @@ page {
 #myDetail {
   height: 100%;
 }
-
+#myDetail .projectScore{
+  color:#fff;
+}
 /* scroll-view {
   height: 96%;
 } */

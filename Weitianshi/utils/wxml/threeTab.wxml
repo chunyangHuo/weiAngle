@@ -266,7 +266,6 @@
               <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfo !=4 &&project.pro_develop.length >2}}" data-id="{{4}}">展开</view>
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
-            <view class="projectScore">项目打分</view>
             <!--FA签约-->
             <!-- <view class="signFA" wx:if="{{project.pro_FA}}">
               <view class="signFABox flex">
@@ -303,7 +302,8 @@
               </view>
             </view> -->
           </view>
-
+          <!--项目打分  -->
+          <view class="projectScore"  bindtap="projectRemark">项目打分</view>
           <view style="height:36rpx;"></view>
         </view>
       </scroll-view>

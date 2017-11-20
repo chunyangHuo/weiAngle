@@ -4,6 +4,7 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
+    competition_id: "",
     firstName: "代",
     id: "",
     page: 0,
@@ -152,6 +153,9 @@ Page({
       success: function (res) {
         let brandList = res.data.data.brand;
         let project = res.data.data;
+        that.setData({
+          competition_id: res.data.data.competition_id,
+        })
         console.log(user_id, id, is_share)
         console.log(res)
         if (project.pro_BP) {
@@ -639,7 +643,7 @@ Page({
   // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id;
-    let pages=getCurrentPages();
+    let pages = getCurrentPages();
     console.log(getCurrentPages())
     console.log(pages.length)
     pages.splice(0, 1)
@@ -1186,5 +1190,16 @@ Page({
   toMap: function () {
     var that = this;
     app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
+  },
+  // 项目评分
+  projectRemark: function () {
+    let user = this.data.user_id;
+    let project_id = this.data.id;
+    let competition = this.data.competition_id;
+    console.log(this.data.id, this.data.user_id, this.data.competition_id);
+
+    app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
+
+
   }
 }) 
