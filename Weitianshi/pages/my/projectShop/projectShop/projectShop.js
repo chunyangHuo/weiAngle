@@ -595,7 +595,8 @@ Page({
     })
   },
   //分享店铺
-  toShareShop() {
-    app.href("/pages/my/projectShop/shopShare/shopShare")
+  toShareShop(){
+    let user_id  = this.data.user_id;
+    app.href("/pages/my/projectShop/shopShare/shopShare?user_id="+user_id)
   }
 })
