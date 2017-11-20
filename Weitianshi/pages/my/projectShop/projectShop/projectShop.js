@@ -567,5 +567,9 @@ Page({
         }
       }
     })
+  },
+  //分享店铺
+  toShareShop(){
+    app.href("/pages/my/projectShop/shopShare/shopShare")
   }
 })

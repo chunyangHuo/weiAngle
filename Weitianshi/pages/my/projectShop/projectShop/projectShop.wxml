@@ -136,6 +136,8 @@
     </view>
     <view bindtap="editDetail" class="newProject">新增项目</view>
   </view>
+<!--分享  -->
+  <view class="shareSth" catchtap="toShareShop">分享店铺</view>
 
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
