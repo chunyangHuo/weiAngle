@@ -937,7 +937,7 @@
 </template>
 
 <!--筛选结果展示横列(全部)  -->
-<template name='searchResult'>
+<template name='searchResult'> 
   <view id='searchModel2' class='searchList flex'>
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>

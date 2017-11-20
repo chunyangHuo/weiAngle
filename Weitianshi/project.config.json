@@ -108,10 +108,10 @@
 					"query": "investment_id=1080"
 				},
 				{
-					"id": -1,
-					"name": "高晨璇的店铺",
+					"id": 14,
+					"name": "环境经济的店铺",
 					"pathName": "pages/my/projectShop/projectShop/projectShop",
-					"query": "followed_user_id=RrZkOke0"
+					"query": "followed_user_id=PpPLGJZp"
 				}
 			]
 		}

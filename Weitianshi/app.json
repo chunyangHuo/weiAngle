@@ -2,11 +2,8 @@
   "pages": [
     "pages/discoverProject/discoverProject",
     "pages/discoverInvest/discoverInvest",
-    "pages/match/selectProject/selectProject",
-    "pages/match/match/match/match",
     "pages/my/my/my",
     "pages/matchInvestor/matchInvestor",
-    "pages/match/match/resourceDemand/resourceDemand",
     "pages/form/area1/area1",
     "pages/form/area2/area2",
     "pages/form/industry/industry",
@@ -27,13 +24,8 @@
     "pages/message/applyPerson/applyPerson",
     "pages/message/contactProject/projectList/projectList",
     "pages/message/contactProject/userList/userList",
-    "pages/message/collectProject/collectProject",
     "pages/search/search1/search1",
-    "pages/search/search2/search2",
     "pages/search/search3/search3",
-    "pages/search/filter4/filter4",
-    "pages/match/match/investDemand/investDemand",
-    "pages/match/needMarket/needMarket",
     "pages/userDetail/networkDetail/networkDetail",
     "pages/projectDetail/projectDetail",
     "pages/myProject/editProject/editProject",
@@ -79,7 +71,8 @@
     "pages/organization/subPage/list_orgMember/list_orgMember",
     "pages/organization/subPage/list_leaveMember/list_leaveMember",
     "pages/organization/subPage/list_media/list_media",
-    "pages/organization/subPage/guide_help/guide_help"
+    "pages/organization/subPage/guide_help/guide_help",
+    "pages/projectScale/projectEvaluation"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
