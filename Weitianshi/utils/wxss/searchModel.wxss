@@ -127,7 +127,7 @@
 #searchModel2 .scroll {
   width: 640rpx;
   flex-wrap: nowrap;
-  /* overflow: hidden; */
+  overflow-x: scroll;
 }
 
 #searchModel2 .label {
