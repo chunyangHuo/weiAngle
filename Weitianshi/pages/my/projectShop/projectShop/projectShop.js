@@ -75,10 +75,20 @@ Page({
       app.httpPost({
         url: url_common + '/api/project/getNodeCount',
         data: {
-          user_id: followed_user_id
+          user_id: user_id
         }
       }, that).then(res => {
         let node_list = res.data.data.node_list;
+        
+        if(node_list){
+          that.setData({
+            hasCompetitor : true
+          })
+        }else{
+          that.setData({
+            hasCompetitor : false
+          })
+        }
         console.log(node_list)
         that.setData({
           node_list: node_list
