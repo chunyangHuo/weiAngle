@@ -404,6 +404,7 @@ page {
 
 .dropDownMore {
   position: absolute;
+  top: 80rpx;
   left: 0;
   background: white;
   z-index: 999;
