@@ -688,7 +688,7 @@ App({
         OperationModel[func]();
         break;
       case 1:
-        OperationModel[func](parameter);
+        OperationModel[func](parameter[0]);
         break;
       default:
         OperationModel[func](...parameter);
