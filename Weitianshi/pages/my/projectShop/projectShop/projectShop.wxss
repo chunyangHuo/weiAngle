@@ -402,6 +402,15 @@ page {
   padding-bottom: 12rpx;
 }
 
+.dropDownMore {
+  position: absolute;
+  top: 80rpx;
+  left: 0;
+  background: white;
+  z-index: 999;
+  padding-bottom: 12rpx;
+}
+
 .dropTitle {
   color: #333;
   font-size: 28rpx;
@@ -595,10 +604,11 @@ page {
 
 /*----------------------game---------------------------------------  */
 .scrollFrame{
-  width: 95%;
+  width: 100%;
   overflow-x: scroll;
-  margin-bottom: 32rpx;
-  margin-top: 32rpx;
+  padding-bottom: 32rpx;
+  padding-top: 32rpx;
+  background: #ffffff;
 }
 .scroll{
   width: 759rpx;
@@ -612,6 +622,7 @@ page {
   margin-left: 32rpx;
   border-radius: 8rpx;
   text-align: center;
+  border: 1rpx solid #e6e6e6;
 }
 .item .itemName{
   font-size: 26rpx;
