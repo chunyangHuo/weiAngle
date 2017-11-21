@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
-  <view class='scrollFrame flex'>
+  <view class='scrollFrame flex' wx:if="{{hasCompetitor == true}}">
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
         <block wx:for='{{node_list}}' wx:key='{{item.schedule_id}}'>
@@ -24,7 +24,7 @@
     <!--搜索  -->
     <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
     <!--下拉框  -->
-    <view class='dropDown withAnimate'>
+    <view class="withAnimate {{hasCompetitor == true ? 'dropDown':'dropDownMore'}}">
       <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
       <view class='dropTitle' wx:if='{{currentIndex==1}}'>融资轮次</view>
       <view class='dropTitle' wx:if='{{currentIndex==2}}'>期望融资</view>
