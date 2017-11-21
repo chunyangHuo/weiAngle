@@ -40,12 +40,59 @@ Page({
   onShow: function () {
     let that = this;
     this.content();
+    this.history();
+    
     // let totalNum1 = Number(that.data.totalNum1);
     // totalNum1 = 0 + parseInt(that.data.sliderValue);
     // that.setData({
     //   totalNum1: totalNum1
     // })
 
+  },
+  // 获取历史评分
+  history() {
+    let that = this;
+    wx.request({
+      url: url_common + '/api/project/getHistoryScore',
+      method: "POST",
+      data: {
+        user_id: that.data.user_id,
+        project_id: that.data.project_id,
+        // user_id: 'MWM6Gq7p',
+        // project_id: 'mr9R4m09',
+
+      },
+      success: function (res) {
+        console.log('历史', res);
+        let score_list1 = res.data.data.score_list;
+        let remark=res.data.data.remark;
+        let slider;
+        if (res.data.data.invest_score==0){
+          let slider = 6;
+          that.setData({
+            slider:6
+          })
+        }else{
+          let slider = res.data.data.invest_score;
+          that.setData({
+            slider:slider
+          })
+        }
+        let total = res.data.data.total_score;
+        let score=that.data.score;
+        for (let i = 0; i < score_list1.length;i++){
+          score[i] = score_list1[i].index_score;
+        }           
+          that.setData({
+            score_list1: score_list1,
+            score: score,
+            introduce: remark,
+            sliderValue:that.data.slider,
+            slivalue: that.data.slider,
+            totalNum1:total
+          })   
+      }
+    })
   },
   // 获取内容
   content() {
@@ -57,7 +104,7 @@ Page({
         user_id: that.data.user_id,
         project_id: that.data.project_id,
         competition_id: that.data.competition_id,
-        // user_id: 'bpjqN9DW',
+        // user_id: 'MWM6Gq7p',
         // project_id: 'mr9R4m09',
         // competition_id: 8,
       },
@@ -66,6 +113,7 @@ Page({
         let score_list1 = res.data.data.list;
         let competition_name = res.data.data.competition_name;
         that.setData({
+          aa:aa,
           score_list1: score_list1,
           competition_name: competition_name
         })
@@ -114,15 +162,15 @@ Page({
     for (let i = 0; i < score.length; i++) {
       if (score[i] != '') {
         totalNum1 += parseInt(score[i]);
-      } 
+      }
       // if(score[i]==''){
       //   score[i]=0;
       //   totalNum1 += parseFloat(score[i])
       // }
-  
+
     }
 
-    if (totalNum1 == 0 ) {
+    if (totalNum1 == 0) {
       totalNum1 = '--';
     }
     that.setData({
@@ -141,11 +189,10 @@ Page({
     let score_list1 = that.data.score_list1;
     let jsonArry = [];
     for (let i = 0; i < score.length; i++) {
-     
       if (score[i] == '') {
         score[i] = 0;
       }
-      if (score[i]==''){
+      if (score[i] == '') {
         app.errorHide(that, "请打分", 1500);
         that.setData({
           score_list: []
@@ -162,21 +209,24 @@ Page({
       } else if (that.data.leaveMessage.length > 500) {
         app.errorHide(that, "不能超过500个数字", 1000)
         return
-      }else{
+      } else {
         jsonArry.push([score[i], score_list1[i].index_id]);
         score_list.push({
           index_score: jsonArry[i][0],
           index_id: jsonArry[i][1]
         })
-      }  
+      }
     }
     that.setData({
       score_list: score_list
     })
-    if (that.data.score_list.length==0){
-      app.errorHide(that, "请打分", 1500);
-      return
-    }
+      if (score_list1.length != 0) {
+        if (that.data.score_list.length == 0) {
+          app.errorHide(that, "请打分", 1500);
+          return
+        }
+      }
+ 
     wx.request({
       url: url_common + '/api/project/saveScore',
       method: "POST",
@@ -189,10 +239,12 @@ Page({
         score_list: that.data.score_list
       },
       success: function (res) {
-        app.errorHide(that, "提交成功", 3000)
-        wx.navigateBack({
-          delta: 1 // 回退前 delta(默认为1) 页面
-        })
+        if (res.data.status_code == 2000000){
+          app.errorHide(that, "提交成功", 3000)
+          wx.navigateBack({
+            delta: 1 // 回退前 delta(默认为1) 页面
+          })
+        }
       },
       fail: function () {
         app.errorHide(that, "提交失败", 3000)
