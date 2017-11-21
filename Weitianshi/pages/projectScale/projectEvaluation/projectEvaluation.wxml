@@ -13,7 +13,7 @@
     <view class="sliderMin">1</view>
     <view class="sliderLeft"></view>
     <view class="body-view">
-      <slider bindchange="sliderchange" value='6' max="10" min='1' activeColor="#40587a" backgroundColor="#cccccc" step="1" />
+      <slider bindchange="sliderchange" value='{{slivalue}}' max="10" min='1' activeColor="#40587a" backgroundColor="#cccccc" step="1" />
     </view>
     <view class="sliderRight"></view>
     <view class="sliderMax">10</view>
