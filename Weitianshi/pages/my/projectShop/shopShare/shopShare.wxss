@@ -49,7 +49,7 @@
 }
 
 #shareFriend {
-  padding-right: 116rpx;
+  padding-right: 115rpx;
   padding-left: 120rpx;
   border-radius: 0;
   line-height: 88rpx;

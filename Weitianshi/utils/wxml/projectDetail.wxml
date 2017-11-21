@@ -139,8 +139,6 @@
         </view>
       </view>
     </view>
-       <!--项目打分  -->
-          <view class="projectScore"  bindtap="projectRemark">项目打分</view>
     <!--三个tab页  -->
     <include src='/utils/wxml/threeTab.wxml' />
     <!--申请查看未能过-->
