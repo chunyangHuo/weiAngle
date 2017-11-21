@@ -2,8 +2,10 @@
 
 .box {
   margin: 90rpx;
-  padding: 54rpx 48rpx 0 48rpx;
+  padding-top: 54rpx;
   background: white;
+  border-radius:8rpx;
+  box-shadow:0 0 12rpx 0 rgba(64,88,122,0.10);
 }
 
 .shopTitle {
@@ -16,6 +18,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  padding:0 48rpx;
 }
 
 .qrCode {
@@ -28,6 +31,7 @@
   color: #666;
   line-height: 28rpx;
   text-align: center;
+  border-top: 1rpx dashed #e6e6e6;
 }
 
 /*按鈕  */
@@ -66,6 +70,6 @@ button::after{
 
 .QR_pic {
   width: 288rpx;
-  height: 288rpx;
-  margin: 62rpx 94rpx 116rpx 94rpx;
+  height: 328rpx;
+  margin: 62rpx 94rpx 116rpx 142rpx;
 }
