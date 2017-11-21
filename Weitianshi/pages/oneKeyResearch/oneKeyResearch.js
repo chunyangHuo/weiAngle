@@ -29,6 +29,7 @@ Page({
     show_detail: true,
     show_company: true,
     oneKeyRearch: true,
+    score: true,
     message: "",
     projectBack: app.globalData.picUrl.project_detail_backgroud,
   },
@@ -50,7 +51,26 @@ Page({
 
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
     that.showStatus(that, id, "", 0);
-
+    // 判斷項目是不是自己的
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        let ownerId = res.data.user_id;
+        app.loginPage(function (user_id) {
+          if (ownerId === user_id) {
+            score: false
+          } else {
+            that.setData({
+              score: true
+            })
+          }
+        });
+      }
+    })
   },
   /* -----------------------数据获取------------------------------------------- */
 
@@ -1075,10 +1095,9 @@ Page({
     let user = this.data.user_id;
     let project_id = this.data.id;
     let competition = this.data.competition_id;
-    console.log(this.data.id, this.data.user_id, this.data.competition_id);
-
-    app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
-
+    app.operationModel('checkUserInfo', res => {
+      app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
+    })
 
   }
 }) 

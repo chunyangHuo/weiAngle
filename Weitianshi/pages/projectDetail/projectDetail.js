@@ -4,6 +4,7 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
+    score: true,
     competition_id: "",
     firstName: "代",
     id: "",
@@ -1196,10 +1197,9 @@ Page({
     let user = this.data.user_id;
     let project_id = this.data.id;
     let competition = this.data.competition_id;
-    console.log(this.data.id, this.data.user_id, this.data.competition_id);
-
-    app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
-
+    app.operationModel('checkUserInfo', res=>{
+      app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
+    })
 
   }
 }) 
