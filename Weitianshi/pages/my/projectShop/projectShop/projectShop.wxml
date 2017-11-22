@@ -6,7 +6,7 @@
         <block wx:for='{{node_list}}' wx:key='{{item.schedule_id}}'>
           <view class='item {{node_list[index].is_select == 1 ? "itemhover" : ""}}' data-id='{{item.schedule_id}}' data-index='{{index}}' bindtap='scheduleCheck'>
             <view class='itemName'>{{item.schedule_name}}</view>
-            <view class='itemNum'>{{item.node_count}}</view>
+            <view class='itemNum'>{{item.node_count}}个项目</view>
           </view>
         </block>
       </view>
