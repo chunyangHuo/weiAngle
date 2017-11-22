@@ -377,6 +377,7 @@ Page({
   // 评分阶段筛选
   scheduleCheck(e) {
     let id = e.currentTarget.dataset.id;
+    console.log(this.data.page_end)
     let index = e.currentTarget.dataset.index;
     let node_list = this.data.node_list;
     let searchData = this.data.searchData;
@@ -388,7 +389,8 @@ Page({
     searchData.schedule.push(node_list[index].schedule_id)
     this.setData({
       node_list: node_list,
-      searchData: searchData
+      searchData: searchData,
+
     })
     // 发送筛选请求
     this.requestPost();
@@ -396,6 +398,7 @@ Page({
   // 发送筛选请求
   requestPost(searchData) {
     let that = this;
+    let  page_end = this.data.page_end
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -406,6 +409,7 @@ Page({
       success: function (res) {
         console.log(res)
         that.initData();
+        app.initPage(that)
         if (res.data.data.length == 0) {
           that.setData({
             currentIndex: 5,
@@ -415,11 +419,12 @@ Page({
         } else {
           that.setData({
             currentIndex: 5,
-            myProject: res.data.data
+            myProject: res.data.data,
           })
         }
       }
     });
+    console.log(this.data.page_end)
   },
   // 点击modal层
   modal() {
@@ -451,6 +456,7 @@ Page({
       console.log(res)
       let newPage = res.data.data;
       let page_end = res.data.page_end;
+      console.log(page_end)
       if (myProject) {
         myProject = myProject.concat(newPage)
         currentPage++;
@@ -461,10 +467,11 @@ Page({
           currentPage: currentPage
         })
       }
+      if (page_end == true) {
+        app.errorHide(that, '没有更多了', 3000)
+      }
     });
-    if (page_end == true) {
-      app.errorHide(that, '没有更多了', 3000)
-    }
+
   },
   // 项目详情
   detail: function (e) {
