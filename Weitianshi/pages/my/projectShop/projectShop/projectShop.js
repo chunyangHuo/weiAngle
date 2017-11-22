@@ -88,7 +88,6 @@ Page({
             hasCompetitor : false
           })
         }
-        console.log(node_list)
         that.setData({
           node_list: node_list
         })
