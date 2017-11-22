@@ -60,7 +60,7 @@
       <view class="brightPoint " wx:if="{{project.pro_goodness.length!=0}}">
         <view class="brightPointBox flex">
           <image src="/img/img-star.png" class="titlePic"></image>
-          <view class="title star">项目亮点</view>
+          <view class="title star">投资亮点</view>
         </view>
         <view class="{{isChecked0?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}">
           <block wx:for="{{project.pro_goodness}}" wx:for-item="goodness" wx:key="{{index}}">
