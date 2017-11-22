@@ -1,0 +1,68 @@
+<import src="/pages/Template/Template.wxml"></import>
+<view id="myProject">
+  <view class="card">
+    <view class="text">投资领域*</view>
+    <navigator url="/pages/form/industry/industry?current=1" id="domain">
+      <view class="slect flex">
+      <view  wx:if="{{domainValue.length == 0}}">选择领域</view>
+        <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
+        <image class="downArrow" src="/img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+
+ <!-- <template is="input_jump" data="{{...industryCard}}" ></template> -->
+
+  <view class="card">
+    <view class="text">投资阶段*</view>
+    <navigator url="/pages/form/stage/stage" id="payStage">
+      <view class="slect flex">
+      <view  wx:if="{{payStage.length == 0}}">选择阶段</view>
+        <view class="{{payStage =='选择阶段' ? '':'checkOn'}}">{{payStage}}</view>
+        <image class="downArrow" src="/img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="card">
+    <view class="text">投资金额*</view>
+    <navigator url="/pages/form/scale/scale" id="payMoney">
+      <view class="slect flex">
+      <view wx:if="{{payMoney.length == 0}}">选择金额</view>
+        <view class="{{payMoney =='选择金额' ? '':'checkOn'}}">{{payMoney}}</view>
+        <image class="downArrow" src="/img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="card">
+    <view class="text">投资地区*</view>
+    <navigator url="/pages/form/area2/area2" id="payArea">
+      <view class="slect flex">
+      <view wx:if="{{payArea.length == 0}}">选择城市</view>
+        <view class="{{payArea == '选择城市' ? '':'checkOn'}}">{{payArea}}</view>
+        <image class="downArrow" src="/img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+  
+  <view class="card">
+    <view class="text">具体描述(非必填)</view>
+    <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc;' bindinput="bindTextAreaBlur" maxlength="60" value="{{describe}}"/>
+  </view>
+
+  <button class="nextBtn publish-investment-confirm" bindtap="public">发布</button>
+
+  <!--错语提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+  <!--加载更多-->
+  <view class="weui-loadmore" wx:if="{{loading=='1'}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</view>
+<!-- <template is="loadMore" data="{{loading:1}}"></template> -->
+
+
+  

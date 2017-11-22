@@ -3,6 +3,8 @@
     "pages/discoverProject/discoverProject",
     "pages/discoverInvest/discoverInvest",
     "pages/my/my/my",
+    "pages/match/match/investDemand/investDemand",
+    "pages/match/match/resourceDemand/resourceDemand",
     "pages/matchInvestor/matchInvestor",
     "pages/form/area1/area1",
     "pages/form/area2/area2",
