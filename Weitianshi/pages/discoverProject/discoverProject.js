@@ -19,7 +19,6 @@ Page({
     modalBox: 0,
     imgUrls: [
       app.globalData.picUrl.banner_1,
-      app.globalData.picUrl.banner_2,
       app.globalData.picUrl.banner_3,
       app.globalData.picUrl.banner_4,
       app.globalData.picUrl.banner_5,
