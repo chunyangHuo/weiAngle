@@ -303,7 +303,7 @@
             </view> -->
           </view>
           <!--项目打分  -->
-          <view class="projectScore" wx:if="{{score}}"  bindtap="projectRemark">项目打分</view>
+          <view class="projectScore" wx:if="{{score}}"  bindtap="projectRemark">项目评价</view>
           <view style="height:36rpx;"></view>
         </view>
       </scroll-view>

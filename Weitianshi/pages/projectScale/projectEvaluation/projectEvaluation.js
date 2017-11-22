@@ -15,24 +15,18 @@ Page({
     leaveMessage: '',
     title: '智慧赛事',
     totalNum1: '--',
-    // totalNum2: '',//中间相加值
     score: [],
     investScore: 6,
     score_list: [],
     score_list1: [],
   },
-
-  /**
-   * 生命周期函数--监听页面加载user_id=OrwRjRjp&project_id=90knK6r4
-   */
   onLoad: function (options) {
-    // let that=this;
     this.setData({
       project_id: options.project_id,
       user_id: options.user_id,
       competition_id: options.competition_id
     });
-    console.log(options, this.data.user_id, this.data.competition_id);
+    // console.log(options, this.data.user_id, this.data.competition_id);
   },
   /**
  * 生命周期函数--监听页面显示
@@ -41,58 +35,7 @@ Page({
     let that = this;
     this.content();
     this.history();
-    
-    // let totalNum1 = Number(that.data.totalNum1);
-    // totalNum1 = 0 + parseInt(that.data.sliderValue);
-    // that.setData({
-    //   totalNum1: totalNum1
-    // })
-
-  },
-  // 获取历史评分
-  history() {
-    let that = this;
-    wx.request({
-      url: url_common + '/api/project/getHistoryScore',
-      method: "POST",
-      data: {
-        user_id: that.data.user_id,
-        project_id: that.data.project_id,
-        // user_id: 'MWM6Gq7p',
-        // project_id: 'mr9R4m09',
-
-      },
-      success: function (res) {
-        console.log('历史', res);
-        let score_list1 = res.data.data.score_list;
-        let remark=res.data.data.remark;
-        let slider;
-        if (res.data.data.invest_score==0){
-          let slider = 6;
-          that.setData({
-            slider:6
-          })
-        }else{
-          let slider = res.data.data.invest_score;
-          that.setData({
-            slider:slider
-          })
-        }
-        let total = res.data.data.total_score;
-        let score=that.data.score;
-        for (let i = 0; i < score_list1.length;i++){
-          score[i] = score_list1[i].index_score;
-        }           
-          that.setData({
-            score_list1: score_list1,
-            score: score,
-            introduce: remark,
-            sliderValue:that.data.slider,
-            slivalue: that.data.slider,
-            totalNum1:total
-          })   
-      }
-    })
+    console.log(that.data.score_list1.length);
   },
   // 获取内容
   content() {
@@ -111,10 +54,64 @@ Page({
       success: function (res) {
         console.log(res);
         let score_list1 = res.data.data.list;
+        // 历史消息接口没有这个最大值字段 需要人为添加到数组
+        let maxScore=[] ;
+        for (let i = 0; i < score_list1.length; i++) {
+          maxScore.push(score_list1[i].max_score);
+        }
         let competition_name = res.data.data.competition_name;
         that.setData({
           score_list1: score_list1,
+          maxScore: maxScore,
           competition_name: competition_name
+        })
+        // console.log(maxScore);
+      }
+    })
+  },
+  // 获取历史评分
+  history() {
+    let that = this;
+    wx.request({
+      url: url_common + '/api/project/getHistoryScore',
+      method: "POST",
+      data: {
+        user_id: that.data.user_id,
+        project_id: that.data.project_id,
+        // user_id: 'MWM6Gq7p',
+        // project_id: 'mr9R4m09',
+
+      },
+      success: function (res) {
+        console.log('历史', res);
+        let score_list1 = res.data.data.score_list;
+        let remark = res.data.data.remark;
+        let slider;
+        let total = res.data.data.total_score;
+        let score = that.data.score;
+        for (let i = 0; i < score_list1.length; i++) {
+          score[i] = score_list1[i].index_score;
+          score_list1[i].max_score = that.data.maxScore[i];
+        }
+        // 滑块设置初始值
+        if (res.data.data.invest_score == 0) {
+          let slider = 6;
+          that.setData({
+            slider: 6
+          })
+        } else {
+          let slider = res.data.data.invest_score;
+          that.setData({
+            slider: slider
+          })
+        }
+        that.setData({
+          score_list1: score_list1,
+          score: score,
+          introduce: remark,
+          sliderValue: that.data.slider,
+          slivalue: that.data.slider,
+          totalNum1: total
         })
       }
     })
@@ -122,15 +119,9 @@ Page({
   // 滑块滑动
   sliderchange(e) {
     let that = this;
-    // that.data.sliderValue = 0;
     that.setData({
       sliderValue: e.detail.value
     })
-    // let totalNum1 = 0;
-    // totalNum1 = that.data.totalNum2 + parseInt(that.data.sliderValue);
-    // that.setData({
-    //   totalNum1: parseFloat(totalNum1)
-    // })
   },
   // 描述
   leaveMessage: function (e) {
@@ -154,7 +145,6 @@ Page({
     for (let i = 0; i < that.data.score_list1.length; i++) {
       score[i] = score[i] ? score[i] : '';
     }
-    // console.log(that.data.score);
     let id = e.currentTarget.dataset.id;
     score[id] = e.detail.value;
     let totalNum1 = 0;
@@ -162,23 +152,14 @@ Page({
       if (score[i] != '') {
         totalNum1 += parseInt(score[i]);
       }
-      // if(score[i]==''){
-      //   score[i]=0;
-      //   totalNum1 += parseFloat(score[i])
-      // }
-
     }
-
     if (totalNum1 == 0) {
       totalNum1 = '--';
     }
     that.setData({
-      // totalNum2: parseFloat(totalNum1),
       score: score,
-      // totalNum1: parseFloat(totalNum1) + that.data.sliderValue,
       totalNum1: totalNum1
     })
-    // console.log(that.data.score_list);
     console.log(that.data.score, that.data.totalNum1);
   },
   submit: function () {
@@ -219,13 +200,12 @@ Page({
     that.setData({
       score_list: score_list
     })
-      if (score_list1.length != 0) {
-        if (that.data.score_list.length == 0) {
-          app.errorHide(that, "请打分", 1500);
-          return
-        }
+    if (score_list1.length != 0) {
+      if (that.data.score_list.length == 0) {
+        app.errorHide(that, "请打分", 1500);
+        return
       }
- 
+    }
     wx.request({
       url: url_common + '/api/project/saveScore',
       method: "POST",
@@ -238,11 +218,13 @@ Page({
         score_list: that.data.score_list
       },
       success: function (res) {
-        if (res.data.status_code == 2000000){
-          app.errorHide(that, "提交成功", 3000)
-          wx.navigateBack({
-            delta: 1 // 回退前 delta(默认为1) 页面
-          })
+        if (res.data.status_code == 2000000) {
+          app.errorHide(that, "提交成功", 3000);
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1 // 回退前 delta(默认为1) 页面
+            })
+          }, 2000)
         }
       },
       fail: function () {

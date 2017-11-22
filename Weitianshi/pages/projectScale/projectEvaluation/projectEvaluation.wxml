@@ -22,7 +22,7 @@
 </view>
 <!--其余评分  -->
 <view class="scoreItem" wx:if="{{score_list1.length!=0}}">
-  <view class="scoreTitle">评分项———{{competition_name}}</view>
+  <view class="scoreTitle" >评分项———{{competition_name}}</view>
   <view class="scoreLine"></view>
   <block wx:for="{{score_list1}}" wx:key="{{index}}">
     <view class="scoreItem1 flex">

@@ -141,7 +141,7 @@
     </view>
     <!--三个tab页  -->
     <include src='/utils/wxml/threeTab.wxml' />
-   <view class="projectScore" wx:if="{{score==true&&show_detail != 1}}"  bindtap="projectRemark">项目打分</view>
+   <view class="projectScore" wx:if="{{score==true&&show_detail != 1}}"  bindtap="projectRemark">项目评价</view>
     <!--申请查看未能过-->
     <view class="lockStyle" wx:if="{{show_detail != 1}}">
       <image class="lock" src="/img/img-suo2@2x.png"></image>
