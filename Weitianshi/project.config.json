@@ -118,6 +118,12 @@
 					"name": "他人项目详情",
 					"pathName": "pages/projectDetail/projectDetail",
 					"query": "user_id=OrwRjRjp&project_id=90knK6r4"
+				},
+				{
+					"id": -1,
+					"name": "环境经济的店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": ""
 				}
 			]
 		}
