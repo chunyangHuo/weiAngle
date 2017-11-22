@@ -113,7 +113,6 @@ Page({
         let score_list1 = res.data.data.list;
         let competition_name = res.data.data.competition_name;
         that.setData({
-          aa:aa,
           score_list1: score_list1,
           competition_name: competition_name
         })
