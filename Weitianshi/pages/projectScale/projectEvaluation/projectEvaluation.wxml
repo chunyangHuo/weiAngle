@@ -13,12 +13,12 @@
     <view class="sliderMin">1</view>
     <view class="sliderLeft"></view>
     <view class="body-view">
-      <slider bindchange="sliderchange" value='6' max="10" min='1' activeColor="#40587a" backgroundColor="#cccccc" step="1" />
+      <slider bindchange="sliderchange" value='{{slivalue}}' max="10" min='1' activeColor="#40587a" backgroundColor="#cccccc" step="1" />
     </view>
     <view class="sliderRight"></view>
     <view class="sliderMax">10</view>
   </view>
-  <textarea id="textContent" bindinput="leaveMessage" maxlength="500" placeholder="您对项目的评价描述" />
+  <textarea id="textContent" bindinput="leaveMessage" value="{{introduce}}" maxlength="500" placeholder="您对项目的评价描述" />
 </view>
 <!--其余评分  -->
 <view class="scoreItem" wx:if="{{score_list1.length!=0}}">
@@ -30,13 +30,13 @@
         <view class="scoreItem1Left1">
         <label>{{item.index_name}}</label>
         <label>：</label>
-        <label>{{item.index_score}}</label>
+        <label>{{item.max_score}}</label>
         <label>分</label>
         </view>
         <view class="scoreItem1Left2">{{item.index_desc}}</view>
       </view>
       <view class="scoreItem1Right">
-        <input type="number" bindinput='totalNum'  value='{{score[index]}}' data-id='{{index}}'></input>
+        <input type="number" bindinput='totalNum' placeholder='0'  value='{{score[index]}}' data-id='{{index}}'></input>
       </view>
     </view>
   </block>

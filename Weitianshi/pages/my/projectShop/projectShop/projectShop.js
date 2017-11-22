@@ -75,11 +75,10 @@ Page({
       app.httpPost({
         url: url_common + '/api/project/getNodeCount',
         data: {
-          user_id: user_id
+          user_id: this.data.user_id
         }
       }, that).then(res => {
         let node_list = res.data.data.node_list;
-        
         if(node_list){
           that.setData({
             hasCompetitor : true
@@ -182,24 +181,11 @@ Page({
       this.setData({
         currentIndex: index
       })
-      this.getOffset();
     } else {
       this.setData({
         currentIndex: 5
       })
     }
-  },
-  // 获取dropDown
-  getOffset() {
-    let query = wx.createSelectorQuery();
-    query.select('.dropDown').fields({
-      dataset: true,
-      size: true,
-    }, function (res) {
-      res.dataset    // 节点的dataset
-      res.width      // 节点的宽度
-      res.height     // 节点的高度
-    }).exec()
   },
   // 初始化check值(辅助函数)
   initData() {
@@ -477,7 +463,7 @@ Page({
         })
       }
     });
-    if (page_end = true) {
+    if (page_end == true) {
       app.errorHide(that, '没有更多了', 3000)
     }
   },
