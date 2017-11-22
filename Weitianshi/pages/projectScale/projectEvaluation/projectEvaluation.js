@@ -33,9 +33,7 @@ Page({
  */
   onShow: function () {
     let that = this;
-    this.content();
     this.history();
-    console.log(that.data.score_list1.length);
   },
   // 获取内容
   content() {
@@ -52,17 +50,23 @@ Page({
         // competition_id: 8,
       },
       success: function (res) {
-        console.log(res);
+        console.log('input填写',res);
         let score_list1 = res.data.data.list;
         // 历史消息接口没有这个最大值字段 需要人为添加到数组
-        let maxScore=[] ;
+        let maxScore=[] ;//最大值
+        let historyDesc=[];//描述
+        let historyName=[];//名称
         for (let i = 0; i < score_list1.length; i++) {
-          maxScore.push(score_list1[i].max_score);
+          // maxScore.push(score_list1[i].max_score);
+          // historyDesc.push(score_list1[i].index_desc);
+          // historyName.push(score_list1[i].index_name);
         }
         let competition_name = res.data.data.competition_name;
         that.setData({
           score_list1: score_list1,
-          maxScore: maxScore,
+          // maxScore: maxScore,
+          // historyDesc:historyDesc,
+          // historyName: historyName,
           competition_name: competition_name
         })
         // console.log(maxScore);
@@ -78,20 +82,23 @@ Page({
       data: {
         user_id: that.data.user_id,
         project_id: that.data.project_id,
+        competition_id: that.data.competition_id,
         // user_id: 'MWM6Gq7p',
         // project_id: 'mr9R4m09',
-
       },
       success: function (res) {
         console.log('历史', res);
         let score_list1 = res.data.data.score_list;
         let remark = res.data.data.remark;
+        let competition_name = res.data.data.competition_name;
         let slider;
         let total = res.data.data.total_score;
         let score = that.data.score;
         for (let i = 0; i < score_list1.length; i++) {
           score[i] = score_list1[i].index_score;
-          score_list1[i].max_score = that.data.maxScore[i];
+          // score_list1[i].max_score = that.data.maxScore[i];
+          // score_list1[i].index_desc = that.data.historyDesc[i];
+          // score_list1[i].index_name = that.data.historyName[i];
         }
         // 滑块设置初始值
         if (res.data.data.invest_score == 0) {
@@ -108,11 +115,21 @@ Page({
         that.setData({
           score_list1: score_list1,
           score: score,
+          competition_name: competition_name,
           introduce: remark,
           sliderValue: that.data.slider,
           slivalue: that.data.slider,
           totalNum1: total
         })
+        if(that.data.totalNum1==0){
+          that.setData({
+            totalNum1:'--'
+          })
+        }
+        // 先判断有没有评分 如果返回列表为空说明没有评分那么运行评分内容
+        if (res.data.data.score_list.length == 0 && res.data.data.invest_score==0){
+          that.content();
+        }
       }
     })
   },
