@@ -1177,7 +1177,7 @@ page {
 }
 
 #projectBox .brightUnfold {
-  height: 550rpx;
+  height: 520rpx;
   text-align: left;
   /* margin-bottom: 20rpx; */
   overflow: hidden;

@@ -1,6 +1,6 @@
 <view class="outside">
   <view class="box">
-    <view class="shopTitle">{{userInfo.user_intro}}</view>
+    <view class="shopTitle">{{userInfo.shop_name}}</view>
     <view class="qrCode">
                 <image class="QR_pic" src="{{access_token}}"></image>
     </view>
