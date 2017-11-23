@@ -19,6 +19,7 @@ Page({
   },
   onShow: function () {
     let user_id = this.data.user_id;
+    console.log(user_id)
    let  share_id = this.data.share_id;
    let  that = this;
     this.getUserInfo();
@@ -26,7 +27,7 @@ Page({
         url: url + '/api/wx/getCardQr',
         data: {
           'user_id': user_id,
-          'path': '/pages/my/projectShop/shopShare/shopShare?user_id=' + user_id + "&&share_id=" + share_id,
+          'path': '/pages/my/projectShop/projectShop/projectShop?followed_user_id=' + user_id + "&&share_id=" + share_id,
           'width': 430,
           "type" : 2
         },
@@ -48,7 +49,6 @@ Page({
   },
   //保存小程序码
   savePic: function () {
-    console.log(4555)
     let filePath = wx.getStorageSync('access_token');
     wx.getImageInfo({
       src: filePath,
