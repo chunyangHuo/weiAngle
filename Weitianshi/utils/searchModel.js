@@ -16,7 +16,7 @@ let data = {
     'stage': 'stage_id',
     'scale': 'scale_id',
     'hotCity': 'area_id',
-    'label_industry': 'industry_id',
+    'label_industry': 'industry_id', 
     'label_area': 'area_id',
     'label_style': 'style_id',
     'label_type': 'type_id',
@@ -48,13 +48,14 @@ let data = {
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  label_industry: label_industry || wx.getStorageSync('label_industry'),
+  // label_industry: label_industry || wx.getStorageSync('label_industry'),
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
-
+let data2 = Object.assign({}, data);
+data2.label_industry = label_industry || wx.getStorageSync('label_industry');
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -254,9 +255,8 @@ function tagsCheck(e, that) {
   that.setData({
     SearchInit: SearchInit
   })
-  console.log(SearchInit)
 }
-// 筛选重置
+// 筛选重置 
 function reset(that) {
   let currentIndex = that.data.SearchInit.currentIndex;
   let SearchInit = that.data.SearchInit;
@@ -265,12 +265,18 @@ function reset(that) {
 }
 function allReset(that) {
   let SearchInit = that.data.SearchInit;
-  let tab = SearchInit.tab;
-  tab.forEach(x => {
-    this.itemReset(x.label, that)
+  // let tab = SearchInit.tab;
+  // tab.forEach(x => {
+  //   this.itemReset(x.label, that)
+  // })
+  let _newSearchInit = Object.assign({}, data)
+  _newSearchInit.tab = SearchInit.tab;
+  that.setData({
+    SearchInit: _newSearchInit
   })
 }
 function itemReset(str, that) {
+  let time1 = new Date().getTime();
   let SearchInit = that.data.SearchInit;
   let itemStr = str;
   let itemArrStr = str + 'Arr';
@@ -289,9 +295,11 @@ function itemReset(str, that) {
   }
   SearchInit[itemArrStr] = [];
   searchData[itemStr] = [];
+  console.log(1, new Date().getTime() - time1)
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(2, new Date().getTime() - time1)
 }
 // 筛选确定
 function searchCertain(that) {
@@ -332,8 +340,6 @@ function searchCertain(that) {
   that.setData({
     SearchInit: SearchInit
   })
-  console.log(searchData)
-
   return searchData;
 
   //发送筛选请求
@@ -432,6 +438,7 @@ function searchSth(that, str, callBack) {
 
 export {
   data,
+  data2,
   reInitSearch,
   move,
   getOffset,

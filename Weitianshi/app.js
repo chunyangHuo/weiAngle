@@ -84,7 +84,7 @@ App({
       variable.forEach(x => {
         x.check = false;
       })
-      console.log(str, variable)
+      // console.log(str, variable)
       wx.setStorageSync(str, variable)
     }
     //联动标签的check设置
@@ -96,7 +96,7 @@ App({
         })
       })
       variable[0].check=true;
-      console.log(str, variable)
+      // console.log(str, variable)
       wx.setStorageSync(str, variable)
     }
 
@@ -509,14 +509,6 @@ App({
     }
   },
 
-  //消除筛选的四个缓存(以实现人脉切到其他tab页再切回来数据初始化)
-  contactsCacheClear() {
-    wx.removeStorageSync('contactsIndustry');
-    wx.removeStorageSync('contactsStage');
-    wx.setStorageSync("industryFilter", '');
-    wx.setStorageSync("stageFilter", '');
-  },
-
   //重新封装console.log
   console(x) {
     if (this.globalData.url == 'https://wx.weitianshi.cn') {
@@ -757,7 +749,6 @@ App({
       url: url,
     })
   },
-
 
   //初始本地缓存
   globalData: {

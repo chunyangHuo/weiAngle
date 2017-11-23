@@ -27,14 +27,72 @@ Page({
   },
   onLoad(options) {
     let that = this;
+    let user_id = this.data.user_id;
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
       })
     }
+    this.noSearch();
 
-    // 控制筛选项的显示和隐藏
-    let user_id = this.data.user_id;
+    // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
+    // 无缓存用户searchModel预处理
+    if (that.data.SearchInit.industry) {
+      //获取筛选项所需的信息并存入缓存
+      wx.request({
+        url: url_common + '/api/category/getProjectCategory',
+        method: 'POST',
+        success: function (res) {
+          // console.log('getProjectCategory',res)
+          let thisData = res.data.data;
+          thisData.area.forEach((x) => { x.check = false })
+          thisData.industry.forEach((x) => { x.check = false })
+          thisData.scale.forEach((x) => { x.check = false })
+          thisData.stage.forEach((x) => { x.check = false })
+          wx.setStorageSync("industry", thisData.industry)
+          wx.setStorageSync("scale", thisData.scale)
+          wx.setStorageSync("stage", thisData.stage)
+        },
+      })
+      wx.request({
+        url: url_common + '/api/category/getHotCity',
+        data: {},
+        method: 'POST',
+        success: function (res) {
+          let hotCity = res.data.data;
+          hotCity.forEach((x) => {
+            x.check = false;
+          })
+          wx.setStorageSync('hotCity', hotCity)
+          // 筛选的初始缓存
+          let SearchInit = that.data.SearchInit;
+          SearchInit.industry = wx.getStorageSync('industry');
+          SearchInit.stage = wx.getStorageSync('stage');
+          SearchInit.scale = wx.getStorageSync('scale');
+          SearchInit.hotCity = wx.getStorageSync('hotCity');
+          that.setData({
+            SearchInit: SearchInit
+          })
+        }
+      });
+    }
+
+    //初始化数据
+    app.initPage(that)
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    //请求精选项目数据
+    app.loginPage(function (user_id) {
+      that.setData({
+        user_id: user_id
+      });
+      that.selectProject();
+    })
+  },
+  // 不显示项目库的筛选项(辅助函数)
+  noSearch() {
     if (this.data.currentTab == 2) {
       this.setData({
         hidden: false
@@ -44,63 +102,6 @@ Page({
         hidden: true
       })
     }
-
-    // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
-    //获取筛选项所需的信息并存入缓存
-    wx.request({
-      url: url_common + '/api/category/getProjectCategory',
-      method: 'POST',
-      success: function (res) {
-        // console.log('getProjectCategory',res)
-        let thisData = res.data.data;
-        thisData.area.forEach((x) => { x.check = false })
-        thisData.industry.forEach((x) => { x.check = false })
-        thisData.scale.forEach((x) => { x.check = false })
-        thisData.stage.forEach((x) => { x.check = false })
-        wx.setStorageSync("industry", thisData.industry)
-        wx.setStorageSync("scale", thisData.scale)
-        wx.setStorageSync("stage", thisData.stage)
-      },
-    })
-    wx.request({
-      url: url_common + '/api/category/getHotCity',
-      data: {},
-      method: 'POST',
-      success: function (res) {
-        let hotCity = res.data.data;
-        hotCity.forEach((x) => {
-          x.check = false;
-        })
-        wx.setStorageSync('hotCity', hotCity)
-        // 筛选的初始缓存
-        let SearchInit = that.data.SearchInit;
-        SearchInit.industry = wx.getStorageSync('industry');
-        SearchInit.stage = wx.getStorageSync('stage');
-        SearchInit.scale = wx.getStorageSync('scale');
-        SearchInit.hotCity = wx.getStorageSync('hotCity');
-        that.setData({
-          SearchInit: SearchInit
-        })
-      }
-    });
-
-  
-    //初始化数据
-    app.initPage(that)
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
-    //消除人脉筛选缓存(非contacts都需要)
-    app.contactsCacheClear();
-    //请求精选项目数据
-    app.loginPage(function (user_id) {
-      that.setData({
-        user_id: user_id
-      });
-      that.selectProject();
-      that.newestProject();
-    })
   },
   // 点击tab切换
   swichNav: function (e) {
@@ -109,33 +110,28 @@ Page({
     that.setData({
       currentTab: e.target.dataset.current
     })
-    app.initPage(that);
-    this.allReset();
-    if (this.data.currentTab == 2) {
-      this.setData({
-        hidden: false
-      })
-    } else {
-      this.setData({
-        hidden: true
-      })
-    }
   },
   // 滑动切换tab
   bindChange: function (e) {
-    var that = this;
-    var current = e.detail.current;
+    let that = this;
+    let current = e.detail.current;
+    let SearchInit = that.data.SearchInit;
+    let searchData = SearchInit.searchData;
+    let searchLength = searchData.industry.length + searchData.stage.length + searchData.scale.length + searchData.hotCity.length;
     app.initPage(that);
-    this.allReset();
     that.setData({ currentTab: e.detail.current });
-    if (this.data.currentTab == 2) {
-      this.setData({
-        hidden: false
-      })
-    } else {
-      this.setData({
-        hidden: true
-      })
+    this.noSearch();
+    if (current == 0) {
+      if (!that.data.slectProject || searchLength != 0) {
+        console.log(that.data.slectProject, searchLength != 0)
+        this.allReset();
+        this.selectProject();
+      }
+    } else if (current == 1) {
+      if (!that.data.financingNeed || searchLength != 0) {
+        this.allReset();
+        this.newestProject();
+      }
     }
   },
   // 轮播图跳转
@@ -157,10 +153,12 @@ Page({
   // 请求最新tab页面项目数据(辅助函数)
   newestProject() {
     let that = this;
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
+    if (!that.data.financingNeed) {
+      wx.showLoading({
+        title: 'loading',
+        mask: true,
+      })
+    }
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
@@ -171,10 +169,6 @@ Page({
       success: function (res) {
         var financingNeed = res.data.data;
         console.log('最新', financingNeed)
-        // financingNeed.forEach(x => {
-        //   x.pro_time = x.pro_time.substr(5, 11);
-        //   console.log(x.pro_time)
-        // })
         that.setData({
           financingNeed: financingNeed,
         })
@@ -187,10 +181,12 @@ Page({
   // 请求精选tab页面数据(辅助函数)
   selectProject() {
     let that = this;
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
+    if (!that.data.slectProject) {
+      wx.showLoading({
+        title: 'loading',
+        mask: true,
+      })
+    }
     app.httpPost({
       url: url_common + '/api/project/getSelectedProjectList',
       data: {
@@ -204,7 +200,6 @@ Page({
       that.setData({
         slectProject: slectProject,
       })
-      wx.hideLoading();
     })
   },
   // 上拉加载

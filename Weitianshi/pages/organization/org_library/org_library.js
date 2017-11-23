@@ -7,7 +7,7 @@ import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     //筛选搜索
-    SearchInit: SearchModel.data,
+    SearchInit: SearchModel.data2,
     imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {
