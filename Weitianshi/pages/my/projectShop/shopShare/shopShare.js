@@ -4,14 +4,9 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/shareModel';
 Page({
-
-  data: {
-
-  },
-
   onLoad: function (options) {
     let user_id = options.user_id;
-    let share_id = wx.getStorageSync('user_id'); 
+    let share_id = wx.getStorageSync('user_id');
     this.setData({
       user_id: user_id,
       share_id: share_id
@@ -45,7 +40,6 @@ Page({
           console.log(res)
         }
       })
-
   },
   //保存小程序码
   savePic: function () {
@@ -120,11 +114,11 @@ Page({
         })
         if (!shop_name) {
           wx.setNavigationBarTitle({
-            title: user_name + '的店铺'
+            title: user_name + '的店铺的二维码'
           })
         } else {
           wx.setNavigationBarTitle({
-            title: shop_name
+            title: shop_name + '的二维码'
           })
         }
       }
