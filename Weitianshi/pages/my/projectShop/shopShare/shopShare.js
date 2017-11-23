@@ -117,7 +117,7 @@ Page({
           })
         } else {
           wx.setNavigationBarTitle({
-            title: shop_name
+            title: shop_name + '的二维码'
           })
         }
       }

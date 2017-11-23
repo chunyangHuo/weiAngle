@@ -38,7 +38,6 @@ Page({
     var id = options.id;//当前被查看用户的项目id
     var share_id = options.share_id;
     var page = this.data.page;
-    var user_id = '';
     var view_id = '';
     var user_id = wx.getStorageSync('user_id');
     that.setData({
@@ -82,7 +81,7 @@ Page({
         that.setData({
           user_id: user_id,
         })
-        that.showStatus(that, id, "share", options.share_id);
+        that.showStatus(that, id, "share", share_id);
       })
     }
   },
