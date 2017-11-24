@@ -1387,15 +1387,17 @@ button::after {
 }
 
 /*项目打分  */
-
-.projectScore {
-  position: fixed;
+#myDetail{
+  position: relative
+}
+#myDetail .projectScore {
+  position: absolute;
   background: #fc703e;
   border: 0 solid #e0e6ed;
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.20);
   width: 166rpx;
   height: 66rpx;
-  top: 368rpx;
+  top:800rpx;
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;
@@ -1404,14 +1406,17 @@ button::after {
   right: 0;
   border-radius: 35rpx 0 0 35rpx;
 }
-.projectScore1 {
-  position: fixed;
+#threeTab{
+  position: relative
+}
+#threeTab .projectScore{
+   position: absolute;
   background: #fc703e;
   border: 0 solid #e0e6ed;
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.20);
   width: 166rpx;
   height: 66rpx;
-  bottom: 268rpx;
+  top:300rpx;
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;
