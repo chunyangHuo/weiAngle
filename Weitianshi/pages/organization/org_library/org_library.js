@@ -7,7 +7,9 @@ import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     //筛选搜索
-    SearchInit: SearchModel.data2,
+    SearchInit: SearchModel.data,
+    label_industry: SearchModel.label_industry,
+    linkDataShow: SearchModel.linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {
@@ -18,7 +20,7 @@ Page({
       title: 'loading',
       mask: true,
     })
-
+    console.log(this.data.label_industry.label_industry)
 
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
@@ -39,7 +41,6 @@ Page({
         SearchInit: SearchInit
       })
     }
-
 
     // 页面间跳转传值筛选
     if (label) {

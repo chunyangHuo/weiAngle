@@ -2,7 +2,6 @@ var app = getApp();
 var url_common = app.globalData.url_common;
 import * as request from './httpModel';
 //searchData
-let label_industry = wx.getStorageSync('label_industry');
 let data = {
   firstTime: true,
   tab: [
@@ -39,7 +38,7 @@ let data = {
   stageArr: [],
   scaleArr: [],
   hotCityArr: [],
-  label_industryArr: [],
+  // label_industryArr: [],
   label_areaArr: [],
   label_styleArr: [],
   label_typeArr: [],
@@ -54,8 +53,23 @@ let data = {
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
-let data2 = Object.assign({}, data);
-data2.label_industry = wx.getStorageSync('label_industry');
+let label_industry = {
+  label_industry: wx.getStorageSync('label_industry'),
+  label_industryArr: [],
+}
+let linkDataShow ={
+  shwoData:'',
+  selectData:''
+}
+// 将label_industry分组
+function initGroup(){
+  let originalData = wx.getStorageSync('label_industry');
+  originalData.forEach(x=>{
+    label_industry[x.industry_name] = x
+  }) 
+}
+initGroup()
+console.log(label_industry)
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -163,7 +177,7 @@ function initItem(str, that, SearchInit) {
   that.setData({
     SearchInit: SearchInit,
   })
-  console.log('setDate_SearchInit2',new Date().getTime() - time1)
+  console.log('setDate_SearchInit2', new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -446,7 +460,8 @@ function searchSth(that, str, callBack) {
 
 export {
   data,
-  data2,
+  label_industry,
+  linkDataShow,
   reInitSearch,
   move,
   getOffset,

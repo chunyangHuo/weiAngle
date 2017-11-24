@@ -871,7 +871,7 @@
   <view id='searchModel' class="screen flex" wx:if="{{hidden}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
-      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' bindtap='move'>
+      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' data-type='{{item.type}}' bindtap='move'>
         {{item.name}}
         <image class='withAnimate {{SearchInit.currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
       </view>
@@ -884,7 +884,7 @@
       <view class='flex dropFlex' scroll-y='true'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
           <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
-          <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
+          <template wx:if='{{item.type==2}}' is='searchDropItem3' data='{{label_industry,SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
         </block>
       </view>
       <!--重置确定  -->
@@ -934,6 +934,10 @@
       </view>
     </scroll-view>
   </view>
+</template>
+
+<template name='searchDropItem3'>
+  1111
 </template>
 
 <!--筛选结果展示横列(全部)  -->
