@@ -1,4 +1,4 @@
-<view id="personInfo">
+<view id="personInfo" wx:if='{{isShow == 0}}'>
   <form>
     <view class="flex title">手机号是投资人/项目方联系您的重要线索</view>
     <view id="name" class="flex">
@@ -7,7 +7,7 @@
     <view id="telephone" class="flex">
       <input class='telephoneText' placeholder="手机号" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telphone}}" />
       <span class='or'>或</span>
-      <button open-type='getPhoneNumber' class="WXbind" bindgetphonenumber="getPhoneNumber" loading="{{loading=='1'}}" >微信授权绑定</button>
+      <button open-type='getPhoneNumber' class="WXbind" bindgetphonenumber="getPhoneNumber" loading="{{loading=='1'}}">微信授权绑定</button>
     </view>
     <view id="checkCode" class="flex">
       <input placeholder="验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" />
@@ -17,6 +17,21 @@
       <button form-type="submit" class="nextBtn complete-phone-binding" bindtap="nextPage" loading="{{loading=='1'}}">下一步</button>
     </view>
   </form>
+
+  <!--错误提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</view>
+<view id="bindPhone" wx:else>
+  <view id="name" class="flex" style="margin-top:78px;">
+    <input placeholder="您的姓名" maxlength="40" value="{{name}}" bindblur="stripscript" />
+  </view>
+  <view id="telephone" class="flex">
+    <input placeholder="手机号" disabled="true" value="{{telephone}}" />
+  </view>
+  <view>
+    <button class="nextBtn1" bindtap="goBack" loading="{{loading=='1'}}">其他手机绑定</button>
+    <button class="nextBtn1" bindtap="nextPage1" loading="{{loading=='1'}}">下一步</button>
+  </view>
 
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

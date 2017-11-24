@@ -62,8 +62,3 @@ input {
 .nextBtn:first-child{
     margin-right: 46rpx;
 }
-
-
-.error{
-  bottom:346rpx;
-}
