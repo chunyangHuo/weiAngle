@@ -16,7 +16,7 @@ let data = {
     'stage': 'stage_id',
     'scale': 'scale_id',
     'hotCity': 'area_id',
-    'label_industry': 'industry_id', 
+    'label_industry': 'industry_id',
     'label_area': 'area_id',
     'label_style': 'style_id',
     'label_type': 'type_id',
@@ -55,7 +55,7 @@ let data = {
   label_time: wx.getStorageSync('label_time')
 }
 let data2 = Object.assign({}, data);
-data2.label_industry = label_industry || wx.getStorageSync('label_industry');
+data2.label_industry = wx.getStorageSync('label_industry');
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -79,25 +79,28 @@ function reInitSearch(that, data) {
 }
 // 下拉框
 function move(e, that) {
+  let time1 = new Date().getTime();
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
   let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
-
   // 清除未保存的选中标签
   // SearchInit=Object.assign({},that.data.SearchInit)
   this.initItem(label, that, SearchInit)
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
+    let time1 = new Date().getTime();
     that.setData({
       SearchInit: SearchInit
     })
+    console.log('setData_SearchInit', new Date().getTime() - time1)
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
   }
+  console.log('下拉框完成', new Date().getTime() - time1)
 }
 // 获取dropDown
 function getOffset(that) {
@@ -155,9 +158,12 @@ function initItem(str, that, SearchInit) {
   }
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
+
+  let time1 = new Date().getTime();
   that.setData({
     SearchInit: SearchInit,
   })
+  console.log('setDate_SearchInit2',new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -197,6 +203,7 @@ function linkCheckAll(e, that) {
 }
 // 标签选择
 function tagsCheck(e, that) {
+  let time1 = new Date().getTime();
   let str = e.currentTarget.dataset.str;
   let itemIdStr = e.currentTarget.dataset.itemidstr;
   let SearchInit = that.data.SearchInit;
@@ -255,6 +262,7 @@ function tagsCheck(e, that) {
   that.setData({
     SearchInit: SearchInit
   })
+  console.log('选择标签', new Date().getTime() - time1)
 }
 // 筛选重置 
 function reset(that) {

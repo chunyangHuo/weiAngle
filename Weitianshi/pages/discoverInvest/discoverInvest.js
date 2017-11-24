@@ -87,7 +87,6 @@ Page({
   },
   // 点击tab切换
   swichNav: function (e) {
-    let current = e.target.dataset.current;
     this.setData({
       currentTab: e.target.dataset.current
     })
@@ -99,35 +98,70 @@ Page({
     let searchData = that.data.SearchInit.searchData;
     let searchLength = searchData.industry.length + searchData.stage.length + searchData.scale.length + searchData.hotCity.length;
     app.initPage(that);
-    that.setData({ currentTab: e.detail.current });
     this.noSearch();
+    this.allReset();
+    that.setData({ currentTab: e.detail.current });
+    // 如果切换前tab页进行过筛选则重置大部分tab页数据
+    if (searchLength != 0) {
+      switch (current) {
+        case 0: {
+          that.setData({
+            investorList: that.data.investorList2,
+            faList: that.data.faList2,
+            myList: that.data.myList2,
+            page_end: false
+          })
+          break;
+        }
+        case 1: {
+          that.setData({
+            faList: that.data.faList2,
+            myList: that.data.myList2,
+            page_end: false
+          })
+          break;
+        }
+        case 2: {
+          that.setData({
+            investorList: that.data.investorList2,
+            myList: that.data.myList2,
+            page_end: false
+          })
+          break;
+        }
+        case 3: {
+          that.setData({
+            investorList: that.data.investorList2,
+            faList: that.data.faList2,
+          })
+          break;
+        }
+      }
+    } 
+    // 如果当前tab页无数据则请求接口
     switch (current) {
       case 0: {
         break;
       }
       case 1: {
-        if (!that.data.investorList || searchLength != 0) {
-          this.allReset();
+        if (!that.data.investorList) {
           this.investorList();
         }
         break;
       }
       case 2: {
-        if (!that.data.faList || searchLength != 0) {
-          this.allReset();
+        if (!that.data.faList) {
           this.faList();
         }
         break;
       }
       case 3: {
-        if (!that.data.myList || searchLength != 0) {
-          this.allReset();
+        if (!that.data.myList) {
           this.myList();
         }
         break;
       }
     }
-
   },
   //下拉刷新
   onPullDownRefresh() {
@@ -189,6 +223,12 @@ Page({
           wx.hideLoading();
           let investorList = res.data.data;
           SearchInit.currentIndex = 99;
+          // 存入无筛选项的投资人列表以备他用
+          if (!that.data.investorList) {
+            that.setData({
+              investorList2: investorList
+            })
+          }
           that.setData({
             investorList: investorList,
             SearchInit: SearchInit
@@ -222,6 +262,12 @@ Page({
           wx.hideLoading();
           let faList = res.data.data;
           SearchInit.currentIndex = 99;
+          // 存入无筛选项的FA列表以备他用
+          if (!that.data.faList) {
+            that.setData({
+              faList2: faList
+            })
+          }
           that.setData({
             faList: faList,
             SearchInit: SearchInit
@@ -276,6 +322,12 @@ Page({
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
             SearchInit.currentIndex = 99;
+            // 存入无筛选项的我的人脉列表以备他用
+            if (!that.data.myList) {
+              that.setData({
+                myList2: myList
+              })
+            }
             that.setData({
               myList: myList,
               page_end: page_end,

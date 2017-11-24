@@ -115,23 +115,28 @@ Page({
   bindChange: function (e) {
     let that = this;
     let current = e.detail.current;
-    let SearchInit = that.data.SearchInit;
-    let searchData = SearchInit.searchData;
+    let searchData = that.data.SearchInit.searchData;
     let searchLength = searchData.industry.length + searchData.stage.length + searchData.scale.length + searchData.hotCity.length;
     app.initPage(that);
     that.setData({ currentTab: e.detail.current });
     this.noSearch();
+    this.allReset();
+    // 进入tab页时该tab页无数据则请求接口
     if (current == 0) {
-      if (!that.data.slectProject || searchLength != 0) {
-        console.log(that.data.slectProject, searchLength != 0)
-        this.allReset();
+      if (!that.data.slectProject) {
         this.selectProject();
       }
     } else if (current == 1) {
-      if (!that.data.financingNeed || searchLength != 0) {
-        this.allReset();
+      if (!that.data.financingNeed) {
         this.newestProject();
       }
+    }
+    // 如果当前tab使用过筛选功能,则重置所有tab页数据
+    if (searchLength != 0) {
+      that.setData({
+        financingNeed: that.data.financingNeed2,
+        slectProject: that.data.slectProject2
+      })
     }
   },
   // 轮播图跳转
@@ -168,7 +173,13 @@ Page({
       method: 'POST',
       success: function (res) {
         var financingNeed = res.data.data;
-        console.log('最新', financingNeed)
+        console.log('最新', financingNeed);
+        // 将无筛选条件的最新列表存入变量以备使用
+        if (!that.data.financingNeed) {
+          that.setData({
+            financingNeed2: financingNeed
+          })
+        }
         that.setData({
           financingNeed: financingNeed,
         })
@@ -197,6 +208,12 @@ Page({
       wx.hideLoading()
       var slectProject = res.data.data;
       console.log('精选', slectProject)
+      // 将无筛选条件的精选列表存入变量以备使用
+      if (!that.data.financingNeed) {
+        that.setData({
+          slectedProject2: slectProject
+        })
+      }
       that.setData({
         slectProject: slectProject,
       })

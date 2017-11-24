@@ -19,7 +19,7 @@ App({
       wx.login({
         success: function (login) {
           let code = login.code;
-          if (code) {
+          if (code) { 
             let path = options.path;
             let shareTicket = options.shareTicket;
             //获取群ID
@@ -95,8 +95,8 @@ App({
           y.check = false;
         })
       })
-      variable[0].check=true;
-      // console.log(str, variable)
+      variable[0].check = true;
+      console.log(str, variable)
       wx.setStorageSync(str, variable)
     }
 
