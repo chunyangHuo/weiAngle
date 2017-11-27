@@ -53,7 +53,7 @@ let data = {
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
-let label_industry = {}
+let label_industry = []
 let linkDataShow = {
   selectData: [],
   firstStair: [],
@@ -62,16 +62,16 @@ let linkDataShow = {
 // 将label_industry分组
 function initGroup() {
   let originalData = wx.getStorageSync('label_industry');
-  originalData.forEach(x => {
-    label_industry[x.industry_name] = x,
-      linkDataShow.firstStair.push({
-        industry_id: x.industry_id,
-        industry_name: x.industry_name,
-        check: false
-      })
+  originalData.forEach((x, index) => {
+    label_industry.push(x)
+    linkDataShow.firstStair.push({
+      industry_id: x.industry_id,
+      industry_name: x.industry_name,
+      check: false
+    })
   })
   linkDataShow.firstStair[0].check = true;
-  linkDataShow.secondStair = label_industry['VR/AR'].child;
+  linkDataShow.secondStair = label_industry[0].child;
 }
 initGroup()
 console.log(label_industry)
@@ -464,23 +464,44 @@ function searchSth(that, str, callBack) {
 
 // ---------------------联动操作---------------------------------------------
 // 联动一级菜单
-function linkFirstStair(e,that){
-  // let 
+function linkFirstStair(e, that) {
+  let label_industry = that.data.label_industry;
+  let linkDataShow = that.data.linkDataShow;
+  let firstStair = linkDataShow.firstStair;
+  let secondStair = linkDataShow.secondStair;
+  let selectData = that.data.linkDataShow.selectData;
+  let index = e.currentTarget.dataset.index;
+  // 改变一级菜单样式
+  firstStair.forEach(x => {
+    x.check = false
+  })
+  firstStair[index].check = true;
+  // 更改二级菜单取值
+  that.data.linkDataShow.secondStair = label_industry[index].child
+  // 给二级菜单挂上勾号
+  that.data.linkDataShow.secondStair.forEach((x, index) => {
+    if (selectData.includes(x.industry_id)) {
+        x.check = true
+    }
+  })
+  that.setData({
+    linkDataShow: linkDataShow
+  })
 }
 // 联动二级菜单 
-function linkSecondStair(e,that){
+function linkSecondStair(e, that) {
 
 }
 // 联动二级菜单全部
-function linkCheckAll(e,that){
+function linkCheckAll(e, that) {
 
 }
 // 联动重置
-function linkReset(){
+function linkReset() {
 
 }
 // 联动确定
-function linkSearchCertain(){
+function linkSearchCertain() {
 
 }
 

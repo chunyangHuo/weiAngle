@@ -943,7 +943,7 @@
     <scroll-view scroll-y="true" class="frame_province">
       <view>
         <block wx:for="{{linkDataShow.firstStair}}" wx:for-index='idx' wx:key="{{item[itemId]}}">
-          <view class="province" style="background:{{item.check==true?'white':''}}" bindtap="linkFirstStair">
+          <view class="province" style="background:{{item.check==true?'white':''}}" data-index='{{idx}}' bindtap="linkFirstStair">
             {{item[itemName]}}
           </view>
         </block>
