@@ -28,15 +28,7 @@ Page({
         currentTab: options.currentTab
       })
     }
-    // 筛选的初始缓存
-    if (!that.data.SearchInit.industry) {
-      tab.forEach(x => {
-        SearchInit[x.label] = wx.getStorageSync(x.label)
-      })
-      that.setData({
-        SearchInit: SearchInit
-      })
-    }
+
     this.noSearch();
     app.initPage(that)
     wx.showLoading({

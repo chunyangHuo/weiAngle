@@ -56,6 +56,46 @@ let data = {
 }
 let data2 = Object.assign({}, data);
 data2.label_industry = wx.getStorageSync('label_industry');
+// 无缓存状态下获取缓存
+function getCache() {
+  if (!wx.getStorageSync('industry')) {
+    wx.request({
+      url: url_common + '/api/category/getProjectCategory',
+      method: 'POST',
+      success: function (res) {
+        // console.log('getProjectCategory',res)
+        let thisData = res.data.data;
+        thisData.area.forEach((x) => { x.check = false })
+        thisData.industry.forEach((x) => { x.check = false })
+        thisData.scale.forEach((x) => { x.check = false })
+        thisData.stage.forEach((x) => { x.check = false })
+        wx.setStorageSync("industry", thisData.industry)
+        wx.setStorageSync("scale", thisData.scale)
+        wx.setStorageSync("stage", thisData.stage)
+        // data.industry = thisData.industry;
+        data.industry = wx.getStorageSync('industry');
+        data.stage = thisData.stage;
+        data.scale = thisData.scale;
+      },
+    })
+    wx.request({
+      url: url_common + '/api/category/getHotCity',
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        let hotCity = res.data.data;
+        hotCity.forEach((x) => {
+          x.check = false;
+        })
+        wx.setStorageSync('hotCity', hotCity)
+        // 筛选的初始缓存
+
+        data.hotCity = hotCity;
+      }
+    });
+  }
+}
+getCache();
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -163,7 +203,7 @@ function initItem(str, that, SearchInit) {
   that.setData({
     SearchInit: SearchInit,
   })
-  console.log('setDate_SearchInit2',new Date().getTime() - time1)
+  console.log('setDate_SearchInit2', new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -274,14 +314,14 @@ function reset(that) {
 function allReset(that) {
   let SearchInit = that.data.SearchInit;
   let tab = SearchInit.tab;
-  tab.forEach(x => {
-    this.itemReset(x.label, that)
-  })
-  // let _newSearchInit = Object.assign({}, data)
-  // _newSearchInit.tab = SearchInit.tab;
-  // that.setData({
-  //   SearchInit: _newSearchInit
+  // tab.forEach(x => {
+  //   this.itemReset(x.label, that)
   // })
+  let _newSearchInit = Object.assign({}, data)
+  _newSearchInit.tab = SearchInit.tab;
+  that.setData({
+    SearchInit: _newSearchInit
+  })
 }
 function itemReset(str, that) {
   let time1 = new Date().getTime();
