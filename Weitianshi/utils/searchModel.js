@@ -481,7 +481,7 @@ function linkFirstStair(e, that) {
   // 给二级菜单挂上勾号
   that.data.linkDataShow.secondStair.forEach((x, index) => {
     if (selectData.includes(x.industry_id)) {
-        x.check = true
+      x.check = true
     }
   })
   that.setData({
@@ -490,6 +490,10 @@ function linkFirstStair(e, that) {
 }
 // 联动二级菜单 
 function linkSecondStair(e, that) {
+  let id = e.currentTarget.dataset.id;
+  let linkDataShow = that.data.linkDataShow;
+  let selectData = linkDataShow.selectData;
+  console.log(id)
 
 }
 // 联动二级菜单全部
