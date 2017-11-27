@@ -273,15 +273,15 @@ function reset(that) {
 }
 function allReset(that) {
   let SearchInit = that.data.SearchInit;
-  // let tab = SearchInit.tab;
-  // tab.forEach(x => {
-  //   this.itemReset(x.label, that)
-  // })
-  let _newSearchInit = Object.assign({}, data)
-  _newSearchInit.tab = SearchInit.tab;
-  that.setData({
-    SearchInit: _newSearchInit
+  let tab = SearchInit.tab;
+  tab.forEach(x => {
+    this.itemReset(x.label, that)
   })
+  // let _newSearchInit = Object.assign({}, data)
+  // _newSearchInit.tab = SearchInit.tab;
+  // that.setData({
+  //   SearchInit: _newSearchInit
+  // })
 }
 function itemReset(str, that) {
   let time1 = new Date().getTime();
