@@ -37,8 +37,6 @@ Page({
     status: 0
   },
   onShow: function () {
-    //消除人脉缓存
-    app.contactsCacheClear();
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var messageList = this.data.messageList;

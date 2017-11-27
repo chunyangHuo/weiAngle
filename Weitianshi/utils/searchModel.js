@@ -48,13 +48,54 @@ let data = {
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  label_industry: label_industry || wx.getStorageSync('label_industry'),
+  // label_industry: label_industry || wx.getStorageSync('label_industry'),
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
+let data2 = Object.assign({}, data);
+data2.label_industry = wx.getStorageSync('label_industry');
+// 无缓存状态下获取缓存
+function getCache() {
+  if (!wx.getStorageSync('industry')) {
+    wx.request({
+      url: url_common + '/api/category/getProjectCategory',
+      method: 'POST',
+      success: function (res) {
+        // console.log('getProjectCategory',res)
+        let thisData = res.data.data;
+        thisData.area.forEach((x) => { x.check = false })
+        thisData.industry.forEach((x) => { x.check = false })
+        thisData.scale.forEach((x) => { x.check = false })
+        thisData.stage.forEach((x) => { x.check = false })
+        wx.setStorageSync("industry", thisData.industry)
+        wx.setStorageSync("scale", thisData.scale)
+        wx.setStorageSync("stage", thisData.stage)
+        // data.industry = thisData.industry;
+        data.industry = wx.getStorageSync('industry');
+        data.stage = thisData.stage;
+        data.scale = thisData.scale;
+      },
+    })
+    wx.request({
+      url: url_common + '/api/category/getHotCity',
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        let hotCity = res.data.data;
+        hotCity.forEach((x) => {
+          x.check = false;
+        })
+        wx.setStorageSync('hotCity', hotCity)
+        // 筛选的初始缓存
 
+        data.hotCity = hotCity;
+      }
+    });
+  }
+}
+getCache();
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -78,25 +119,28 @@ function reInitSearch(that, data) {
 }
 // 下拉框
 function move(e, that) {
+  let time1 = new Date().getTime();
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
   let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
-
   // 清除未保存的选中标签
   // SearchInit=Object.assign({},that.data.SearchInit)
   this.initItem(label, that, SearchInit)
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
+    let time1 = new Date().getTime();
     that.setData({
       SearchInit: SearchInit
     })
+    console.log('setData_SearchInit', new Date().getTime() - time1)
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
   }
+  console.log('下拉框完成', new Date().getTime() - time1)
 }
 // 获取dropDown
 function getOffset(that) {
@@ -154,9 +198,12 @@ function initItem(str, that, SearchInit) {
   }
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
+
+  let time1 = new Date().getTime();
   that.setData({
     SearchInit: SearchInit,
   })
+  console.log('setDate_SearchInit2', new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -196,6 +243,7 @@ function linkCheckAll(e, that) {
 }
 // 标签选择
 function tagsCheck(e, that) {
+  let time1 = new Date().getTime();
   let str = e.currentTarget.dataset.str;
   let itemIdStr = e.currentTarget.dataset.itemidstr;
   let SearchInit = that.data.SearchInit;
@@ -254,9 +302,9 @@ function tagsCheck(e, that) {
   that.setData({
     SearchInit: SearchInit
   })
-  console.log(SearchInit)
+  console.log('选择标签', new Date().getTime() - time1)
 }
-// 筛选重置
+// 筛选重置 
 function reset(that) {
   let currentIndex = that.data.SearchInit.currentIndex;
   let SearchInit = that.data.SearchInit;
@@ -266,11 +314,17 @@ function reset(that) {
 function allReset(that) {
   let SearchInit = that.data.SearchInit;
   let tab = SearchInit.tab;
-  tab.forEach(x => {
-    this.itemReset(x.label, that)
+  // tab.forEach(x => {
+  //   this.itemReset(x.label, that)
+  // })
+  let _newSearchInit = Object.assign({}, data)
+  _newSearchInit.tab = SearchInit.tab;
+  that.setData({
+    SearchInit: _newSearchInit
   })
 }
 function itemReset(str, that) {
+  let time1 = new Date().getTime();
   let SearchInit = that.data.SearchInit;
   let itemStr = str;
   let itemArrStr = str + 'Arr';
@@ -289,9 +343,11 @@ function itemReset(str, that) {
   }
   SearchInit[itemArrStr] = [];
   searchData[itemStr] = [];
+  console.log(1, new Date().getTime() - time1)
   that.setData({
     SearchInit: SearchInit
   })
+  console.log(2, new Date().getTime() - time1)
 }
 // 筛选确定
 function searchCertain(that) {
@@ -332,8 +388,6 @@ function searchCertain(that) {
   that.setData({
     SearchInit: SearchInit
   })
-  console.log(searchData)
-
   return searchData;
 
   //发送筛选请求
@@ -432,6 +486,7 @@ function searchSth(that, str, callBack) {
 
 export {
   data,
+  data2,
   reInitSearch,
   move,
   getOffset,

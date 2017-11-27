@@ -879,16 +879,20 @@ Page({
                       method: 'POST',
                       success: function (res) {
                         console.log(res)
-                      }
+                      },
                     })
                   }
                 })
+              },
+              fail() {
+                wx.hideLoading();
+                app.errorHide(that, '预览文件过大,请发送到邮箱查看', 3000)
               }
             })
           }
         },
         fail: function (res) {
-          console.log(res.errMsg)
+          app.errorHide(that, res.errMsg, 3000)
         }
       })
     } else {
@@ -943,6 +947,7 @@ Page({
         message: message
       })
     } else {
+      wx.hideLoading();
       app.errorHide(that, "不能超过500个数字", 1000)
     }
   },
@@ -1196,7 +1201,7 @@ Page({
     let user = this.data.user_id;
     let project_id = this.data.id;
     let competition = this.data.competition_id;
-    app.operationModel('checkUserInfo', res=>{
+    app.operationModel('checkUserInfo', res => {
       app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
     })
 

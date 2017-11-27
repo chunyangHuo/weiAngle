@@ -5,9 +5,9 @@ import * as SearchModel from '../../utils/searchModel';
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
-    investorList: [],
-    faList: [],
-    myContacts: [],
+    investorList: '',
+    faList: '',
+    myContacts: '',
     hidden: true,
     //选项卡
     winWidth: 0,
@@ -20,49 +20,27 @@ Page({
     activtyBanner: app.globalData.picUrl.activtyBanner,
   },
   onLoad(options) {
+    let that = this;
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
       })
     }
-    // 筛选项的显示和隐藏控制
-    if (this.data.currentTab == 0) {
-      this.setData({
-        hidden: false
-      })
-    } else {
-      this.setData({
-        hidden: true
-      })
-    }
-    // 筛选的初始缓存
-    let that = this;
-    let SearchInit = that.data.SearchInit;
-    let tab = SearchInit.tab;
-    if (SearchInit.industry.length < 1) {
-      tab.forEach(x => {
-        SearchInit[x.label] = wx.getStorageSync(x.label)
-      })
-      that.setData({
-        SearchInit: SearchInit
-      })
-    }
-  },
-  onShow: function () {
-    let that = this;
-    //初始化数据
+
+    this.noSearch();
     app.initPage(that)
     wx.showLoading({
       title: 'loading',
       mask: true,
     })
-    //消除人脉筛选缓存(非contacts都需要)
-    app.contactsCacheClear();
     //请求精选项目数据
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id
       });
+      // 身份认证状态获取
       wx.request({
         url: url_common + '/api/user/getUserGroupByStatus',
         data: {
@@ -70,7 +48,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
+          console.log('身份状态获取', res)
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -85,21 +63,10 @@ Page({
         }
       })
       that.investment();
-      that.investorList();
-      that.faList();
-      that.myList();
     })
-
   },
-  // 点击tab切换
-  swichNav: function (e) {
-    let that = this;
-    let current = e.target.dataset.current;
-    that.setData({
-      currentTab: e.target.dataset.current
-    })
-    app.initPage(that);
-    this.allReset();
+  // 控制投资机构不显示筛选项(辅助函数)
+  noSearch() {
     if (this.data.currentTab == 0) {
       this.setData({
         hidden: false
@@ -110,22 +77,82 @@ Page({
       })
     }
   },
+  // 点击tab切换
+  swichNav: function (e) {
+    this.setData({
+      currentTab: e.target.dataset.current
+    })
+  },
   // 滑动切换tab
   bindChange: function (e) {
     let that = this;
     let current = e.detail.current;
+    let searchData = that.data.SearchInit.searchData;
+    let searchLength = searchData.industry.length + searchData.stage.length + searchData.scale.length + searchData.hotCity.length;
     app.initPage(that);
-    that.setData({ currentTab: e.detail.current });
+    this.noSearch();
     this.allReset();
-    // this.tabChange(currenallResett);
-    if (this.data.currentTab == 0) {
-      this.setData({
-        hidden: false
-      })
-    } else {
-      this.setData({
-        hidden: true
-      })
+    that.setData({ currentTab: e.detail.current });
+    // 如果切换前tab页进行过筛选则重置大部分tab页数据
+    if (searchLength != 0) {
+      switch (current) {
+        case 0: {
+          that.setData({
+            investorList: that.data.investorList2,
+            faList: that.data.faList2,
+            myList: that.data.myList2,
+            page_end: false
+          })
+          break;
+        }
+        case 1: {
+          that.setData({
+            faList: that.data.faList2,
+            myList: that.data.myList2,
+            page_end: false
+          })
+          break;
+        }
+        case 2: {
+          that.setData({
+            investorList: that.data.investorList2,
+            myList: that.data.myList2,
+            page_end: false
+          })
+          break;
+        }
+        case 3: {
+          that.setData({
+            investorList: that.data.investorList2,
+            faList: that.data.faList2,
+          })
+          break;
+        }
+      }
+    }
+    // 如果当前tab页无数据则请求接口
+    switch (current) {
+      case 0: {
+        break;
+      }
+      case 1: {
+        if (!that.data.investorList) {
+          this.investorList();
+        }
+        break;
+      }
+      case 2: {
+        if (!that.data.faList) {
+          this.faList();
+        }
+        break;
+      }
+      case 3: {
+        if (!that.data.myList) {
+          this.myList();
+        }
+        break;
+      }
     }
   },
   //下拉刷新
@@ -170,6 +197,10 @@ Page({
   investorList() {
     let that = this;
     let SearchInit = this.data.SearchInit;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     wx.request({
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
@@ -184,11 +215,20 @@ Page({
           wx.hideLoading();
           let investorList = res.data.data;
           SearchInit.currentIndex = 99;
+          // 存入无筛选项的投资人列表以备他用
+          if (!that.data.investorList) {
+            that.setData({
+              investorList2: investorList
+            })
+          }
           that.setData({
             investorList: investorList,
             SearchInit: SearchInit
           })
         }
+      },
+      complete() {
+        wx.hideLoading()
       }
     });
   },
@@ -196,6 +236,10 @@ Page({
   faList() {
     let that = this;
     let SearchInit = this.data.SearchInit;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
     wx.request({
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
@@ -210,11 +254,20 @@ Page({
           wx.hideLoading();
           let faList = res.data.data;
           SearchInit.currentIndex = 99;
+          // 存入无筛选项的FA列表以备他用
+          if (!that.data.faList) {
+            that.setData({
+              faList2: faList
+            })
+          }
           that.setData({
             faList: faList,
             SearchInit: SearchInit
           })
         }
+      },
+      complete() {
+        wx.hideLoading();
       }
     });
   },
@@ -261,6 +314,12 @@ Page({
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
             SearchInit.currentIndex = 99;
+            // 存入无筛选项的我的人脉列表以备他用
+            if (!that.data.myList) {
+              that.setData({
+                myList2: myList
+              })
+            }
             that.setData({
               myList: myList,
               page_end: page_end,
@@ -401,7 +460,7 @@ Page({
     app.href('/pages/matchInvestor/matchInvestor')
   },
   //活动详情
-  goTo: function () {
+  goTo() {
     app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
   // ------------------------------------筛选搜索-------------------------------------

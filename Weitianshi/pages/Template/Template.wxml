@@ -1152,7 +1152,7 @@
 
         </view>
         <view class="investIndury">
-          <block wx:for="{{item.industry_list}}" wx:for-item="industryList">
+          <block wx:for="{{item.industry_list}}" wx:key='{{industryList.industry_name}}' wx:for-item="industryList">
             <view>{{industryList.industry_name}}</view>
             <!-- <view wx:if="{{item.industry_list.length==1}}">
               <view class="investInduryone" wx:if="index==1">{{industryList.industry_name}}</view>

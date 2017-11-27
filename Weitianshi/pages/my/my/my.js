@@ -23,8 +23,6 @@ Page({
     }
   },
   onShow: function () {
-    //消除人脉缓存
-    app.contactsCacheClear();
     var that = this
     app.loginPage(function (user_id) {
       that.setData({
