@@ -28,10 +28,8 @@ Page({
         currentTab: options.currentTab
       })
     }
-    this.noSearch();
-    app.initPage(that)
     // 筛选的初始缓存
-    if (SearchInit.industry.length < 1) {
+    if (!that.data.SearchInit.industry) {
       tab.forEach(x => {
         SearchInit[x.label] = wx.getStorageSync(x.label)
       })
@@ -39,6 +37,8 @@ Page({
         SearchInit: SearchInit
       })
     }
+    this.noSearch();
+    app.initPage(that)
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -137,7 +137,7 @@ Page({
           break;
         }
       }
-    } 
+    }
     // 如果当前tab页无数据则请求接口
     switch (current) {
       case 0: {

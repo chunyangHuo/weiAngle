@@ -783,6 +783,10 @@ Page({
                     })
                   }
                 })
+              },
+              fail() {
+                wx.hideLoading();
+                app.errorHide(that, '预览文件过大,请发送到邮箱查看', 3000)
               }
             })
           }

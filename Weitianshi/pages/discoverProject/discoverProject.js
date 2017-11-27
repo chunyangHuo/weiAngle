@@ -37,7 +37,7 @@ Page({
 
     // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
     // 无缓存用户searchModel预处理
-    if (that.data.SearchInit.industry) {
+    if (!that.data.SearchInit.industry) {
       //获取筛选项所需的信息并存入缓存
       wx.request({
         url: url_common + '/api/category/getProjectCategory',
