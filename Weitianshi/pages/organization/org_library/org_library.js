@@ -20,7 +20,6 @@ Page({
       title: 'loading',
       mask: true,
     })
-    console.log(this.data.label_industry.label_industry)
 
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
@@ -151,8 +150,16 @@ Page({
     SearchModel.labelDelete(e, this)
   },
   // 一级联动选择
-  firstLinkCheck(e) {
+  /* firstLinkCheck(e) {
     SearchModel.firstLinkCheck(e, this);
+  }, */
+  // 一级联动选择
+  linkFirstStair(e){
+    SearchModel.linkFirstStair(e,this)
+  },
+  // 二级联动选择
+  linkSecondStair(e){
+    SearchModel.linkSecondStair(e,this)
   },
   // 联动选择全部
   linkCheckAll(e) {

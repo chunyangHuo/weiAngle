@@ -124,6 +124,12 @@
 					"name": "环境经济的店铺",
 					"pathName": "pages/my/projectShop/projectShop/projectShop",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "融合VR技术",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=dW4GnA0q"
 				}
 			]
 		}

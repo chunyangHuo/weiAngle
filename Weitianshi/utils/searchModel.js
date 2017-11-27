@@ -53,23 +53,29 @@ let data = {
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
-let label_industry = {
-  label_industry: wx.getStorageSync('label_industry'),
-  label_industryArr: [],
-}
-let linkDataShow ={
-  shwoData:'',
-  selectData:''
+let label_industry = {}
+let linkDataShow = {
+  selectData: [],
+  firstStair: [],
+  secondStair: '',
 }
 // 将label_industry分组
-function initGroup(){
+function initGroup() {
   let originalData = wx.getStorageSync('label_industry');
-  originalData.forEach(x=>{
-    label_industry[x.industry_name] = x
-  }) 
+  originalData.forEach(x => {
+    label_industry[x.industry_name] = x,
+      linkDataShow.firstStair.push({
+        industry_id: x.industry_id,
+        industry_name: x.industry_name,
+        check: false
+      })
+  })
+  linkDataShow.firstStair[0].check = true;
+  linkDataShow.secondStair = label_industry['VR/AR'].child;
 }
 initGroup()
 console.log(label_industry)
+console.log(linkDataShow)
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -107,14 +113,14 @@ function move(e, that) {
     that.setData({
       SearchInit: SearchInit
     })
-    console.log('setData_SearchInit', new Date().getTime() - time1)
+    // console.log('setData_SearchInit', new Date().getTime() - time1)
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
   }
-  console.log('下拉框完成', new Date().getTime() - time1)
+  // console.log('下拉框完成', new Date().getTime() - time1)
 }
 // 获取dropDown
 function getOffset(that) {
@@ -177,7 +183,7 @@ function initItem(str, that, SearchInit) {
   that.setData({
     SearchInit: SearchInit,
   })
-  console.log('setDate_SearchInit2', new Date().getTime() - time1)
+  // console.log('setDate_SearchInit2', new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -435,7 +441,6 @@ function detialItemSearch(label, itemId, that, callBack) {
   console.log(SearchInit.searchData)
   callBack(SearchInit.searchData);
 }
-
 // 点击modal层
 function modal(that) {
   let SearchInit = that.data.SearchInit;
@@ -454,6 +459,28 @@ function searchSth(that, str, callBack) {
   } else {
     callBack()
   }
+
+}
+
+// ---------------------联动操作---------------------------------------------
+// 联动一级菜单
+function linkFirstStair(e,that){
+  // let 
+}
+// 联动二级菜单 
+function linkSecondStair(e,that){
+
+}
+// 联动二级菜单全部
+function linkCheckAll(e,that){
+
+}
+// 联动重置
+function linkReset(){
+
+}
+// 联动确定
+function linkSearchCertain(){
 
 }
 
@@ -478,4 +505,6 @@ export {
   firstLinkCheck,
   linkCheckAll,
   detialItemSearch,
-}
+  linkFirstStair,
+  linkSecondStair,
+} 
