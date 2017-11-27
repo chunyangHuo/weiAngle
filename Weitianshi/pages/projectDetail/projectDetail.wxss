@@ -1387,15 +1387,14 @@ button::after {
 }
 
 /*项目打分  */
-
-.projectScore {
+ .projectScore {
   position: fixed;
   background: #fc703e;
   border: 0 solid #e0e6ed;
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.20);
   width: 166rpx;
   height: 66rpx;
-  bottom: 168rpx;
+  top:700rpx;
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;

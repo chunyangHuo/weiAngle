@@ -159,7 +159,7 @@ Page({
         var error_text = that.data.error_text;
         var checkCode = that.data.checkCode;
         var code = res.code;
-        var open_session = app.globalData.open_session;
+        var open_session = wx.getStorageSync('open_session');
         if (!name) {
           app.errorHide(that, '姓名不能为空', 3000)
         } else if (!telephone) {
@@ -221,7 +221,6 @@ Page({
         var error = that.data.error;
         var error_text = that.data.error_text;
         var open_session = wx.getStorageSync('open_session')
-        console.log(open_session)
         if (!name) {
           app.errorHide(that, '姓名不能为空', 3000)
         } else if (!telephone) {
