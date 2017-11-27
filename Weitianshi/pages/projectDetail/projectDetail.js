@@ -888,7 +888,7 @@ Page({
           }
         },
         fail: function (res) {
-          console.log(res.errMsg)
+          app.errorHide(that,'预览文件过大,请发送到邮箱查看',3000)
         }
       })
     } else {
@@ -943,6 +943,7 @@ Page({
         message: message
       })
     } else {
+      wx.hideLoading();
       app.errorHide(that, "不能超过500个数字", 1000)
     }
   },
