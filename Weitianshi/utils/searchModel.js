@@ -74,6 +74,7 @@ function initGroup() {
   linkDataShow.secondStair = label_industry[0].child;
 }
 initGroup()
+let newLinkDataShow = linkDataShow;
 console.log(label_industry)
 console.log(linkDataShow)
 // label=>itemIdStr
@@ -105,8 +106,12 @@ function move(e, that) {
   let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
   // 清除未保存的选中标签
-  // SearchInit=Object.assign({},that.data.SearchInit)
-  this.initItem(label, that, SearchInit)
+  if (label == 'label_industry') {
+    that.data.linkDataShow = newLinkDataShow;
+  } else {
+    this.initItem(label, that, SearchInit)
+  }
+
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
     let time1 = new Date().getTime();
@@ -289,7 +294,12 @@ function reset(that) {
   let currentIndex = that.data.SearchInit.currentIndex;
   let SearchInit = that.data.SearchInit;
   let str = SearchInit.tab[currentIndex].label;
-  this.itemReset(str, that)
+  // 区别处理label_industry和其他
+  if (str == 'label_industry') {
+    linkReset(that)
+  } else {
+    this.itemReset(str, that)
+  }
 }
 function allReset(that) {
   let SearchInit = that.data.SearchInit;
@@ -335,7 +345,7 @@ function searchCertain(that) {
   let tab = SearchInit.tab;
   let currentIndex = that.data.SearchInit.currentIndex;
   let searchData = that.data.SearchInit.searchData;
-  // 区别是不是从展示列表进行删除的
+  // 区别是不是从展示列表进行删除的  99:从展示列表调用 非99:正常调用
   if (currentIndex == 99) {
     tab.forEach((x, index) => {
       let newArr = [];
@@ -352,10 +362,15 @@ function searchCertain(that) {
     let label = tab[currentIndex].label;
     let itemArrStr = tab[currentIndex].label + 'Arr';
     let itemId = tab[currentIndex].itemId;
-    SearchInit[itemArrStr].forEach(x => {
-      newArr.push(x[itemId])
-    })
-    searchData[label] = newArr;
+    // 区别处理label_industry和其他
+    if (label == 'label_industry') {
+      linkSearchCertain(that)
+    } else {
+      SearchInit[itemArrStr].forEach(x => {
+        newArr.push(x[itemId])
+      })
+      searchData[label] = newArr;
+    }
   }
   that.setData({
     SearchInit: SearchInit,
@@ -471,6 +486,8 @@ function linkFirstStair(e, that) {
   let secondStair = linkDataShow.secondStair;
   let selectData = that.data.linkDataShow.selectData;
   let index = e.currentTarget.dataset.index;
+  // console.log(selectData)
+  // console.log(linkDataShow)
   // 改变一级菜单样式
   firstStair.forEach(x => {
     x.check = false
@@ -479,10 +496,15 @@ function linkFirstStair(e, that) {
   // 更改二级菜单取值
   that.data.linkDataShow.secondStair = label_industry[index].child
   // 给二级菜单挂上勾号
+  that.data.linkDataShow.secondStair.forEach(x => {
+    x.check = false;
+  })
   that.data.linkDataShow.secondStair.forEach((x, index) => {
-    if (selectData.includes(x.industry_id)) {
-      x.check = true
-    }
+    selectData.forEach(y => {
+      if (y.industry_id == x.industry_id) {
+        x.check = true;
+      }
+    })
   })
   that.setData({
     linkDataShow: linkDataShow
@@ -495,10 +517,21 @@ function linkSecondStair(e, that) {
   let linkDataShow = that.data.linkDataShow;
   let secondStair = linkDataShow.secondStair;
   let selectData = linkDataShow.selectData;
+  // 对selectData进行处理
+  if (secondStair[index].check == false) {
+    selectData.push(secondStair[index])
+  } else {
+    selectData.forEach((x, idx) => {
+      if (x.industry_id == secondStair[index].industry_id) {
+        selectData.splice(idx, 1)
+      }
+    })
+  }
   secondStair[index].check = !secondStair[index].check;
   that.setData({
     linkDataShow: linkDataShow
   })
+  // console.log(selectData)
 }
 // 联动二级菜单全部
 function linkCheckAll(e, that) {
@@ -526,14 +559,33 @@ function linkCheckAll(e, that) {
   })
 }
 // 联动重置
-function linkReset() {
-
+function linkReset(that) {
+  let linkDataShow = that.data.linkDataShow;
+  let secondStair = linkDataShow.secondStair;
+  let selectData = linkDataShow.secondStair;
+  let SearchInit = that.data.SearchInit;
+  let searchData = SearchInit.searchData;
+  // 清空secondStair,selectData,searchData
+  linkDataShow = newLinkDataShow;
+  searchData.label_industry = []
+  that.setData({
+    SearchInit: SearchInit,
+    linkDataShow: linkDataShow
+  })
 }
 // 联动确定
-function linkSearchCertain() {
-
+function linkSearchCertain(that) {
+  let linkDataShow = that.data.linkDataShow;
+  let SearchInit = that.data.SearchInit;
+  let industry = [];
+  linkDataShow.selectData.forEach(x => {
+    industry.push(x.industry_id)
+  })
+  SearchInit.searchData.industry = industry;
+  that.setData({
+    SearchInit: SearchInit
+  })
 }
-
 
 export {
   data,

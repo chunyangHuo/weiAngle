@@ -122,7 +122,7 @@
     <!-- <view style="height:32rpx;" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}"></view> -->
   </view>
 </template>
-
+ 
 <!--My寻找案源-->
 <template name="InvestInfo">
   <view class="user_invest_info publish-investmentm" bindtap="findProjectEdit">
