@@ -49,7 +49,7 @@ Page({
                 wx.setStorageSync('industry', thisData.industry);//投资领域
                 wx.setStorageSync('y_scale', thisData.scale);//投资金额
                 wx.setStorageSync('y_stage', thisData.stage);//投资阶段
-    
+                console.log(thisData)
                 //期望融资
                 var scale = wx.getStorageSync('y_scale');
                 var console_expect = wx.getStorageSync('y_console_expect');
@@ -79,6 +79,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(1111111,res)
                 if (res.data.data != '') {
                     //获取已存有的投资领域,投资阶段,投资金额,投資地区
                     var thisData = res.data.data;

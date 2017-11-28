@@ -9,7 +9,7 @@ App({
     let url_common = this.globalData.url_common;
 
     /* //打开调试模式
-    wx.setEnableDebug({
+    wx.setEnableDebug({ 
       enableDebug: true,
     }) */
 
@@ -19,7 +19,7 @@ App({
       wx.login({
         success: function (login) {
           let code = login.code;
-          if (code) { 
+          if (code) {
             let path = options.path;
             let shareTicket = options.shareTicket;
             //获取群ID
@@ -53,31 +53,35 @@ App({
       url: url_common + '/api/category/getProjectCategory',
       method: 'POST',
       success: function (res) {
-        // console.log('getProjectCategory',res)
         let thisData = res.data.data;
         thisData.area.forEach((x) => { x.check = false })
         thisData.industry.forEach((x) => { x.check = false })
         thisData.scale.forEach((x) => { x.check = false })
         thisData.stage.forEach((x) => { x.check = false })
+        thisData.area.forEach((x) => { x.check = false})
+        thisData.hotCity.forEach((x) =>{ x.check = false})
         wx.setStorageSync("industry", thisData.industry)
         wx.setStorageSync("scale", thisData.scale)
         wx.setStorageSync("stage", thisData.stage)
+        wx.setStorageSync('area', thisData.area)
+        wx.setStorageSync('hotCity', thisData.hotCity)
+        console.log(thisData)
       },
     })
 
     //获取热门城市并存入缓存
-    wx.request({
-      url: url_common + '/api/category/getHotCity',
-      data: {},
-      method: 'POST',
-      success: function (res) {
-        let hotCity = res.data.data;
-        hotCity.forEach((x) => {
-          x.check = false;
-        })
-        wx.setStorageSync('hotCity', hotCity)
-      }
-    });
+    // wx.request({
+    //   url: url_common + '/api/category/getHotCity',
+    //   data: {},
+    //   method: 'POST',
+    //   success: function (res) {
+    //     let hotCity = res.data.data;
+    //     hotCity.forEach((x) => {
+    //       x.check = false;
+    //     })
+    //     wx.setStorageSync('hotCity', hotCity)
+    //   }
+    // });
 
     //非联动标签的check设置
     function dealLabel(variable, str) {

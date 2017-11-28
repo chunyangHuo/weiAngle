@@ -49,22 +49,13 @@ Page({
           thisData.industry.forEach((x) => { x.check = false })
           thisData.scale.forEach((x) => { x.check = false })
           thisData.stage.forEach((x) => { x.check = false })
+          thisData.area.forEach((x) => { x.check = false })
+          thisData.hotCity.forEach((x) => { x.check = false })
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
-        },
-      })
-      wx.request({
-        url: url_common + '/api/category/getHotCity',
-        data: {},
-        method: 'POST',
-        success: function (res) {
-          let hotCity = res.data.data;
-          hotCity.forEach((x) => {
-            x.check = false;
-          })
-          wx.setStorageSync('hotCity', hotCity)
-          // 筛选的初始缓存
+          wx.setStorageSync('area', thisData.area)
+          wx.setStorageSync('hotCity', thisData.hotCity)
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');
           SearchInit.stage = wx.getStorageSync('stage');
@@ -74,7 +65,7 @@ Page({
             SearchInit: SearchInit
           })
         }
-      });
+      })
     }
 
     //初始化数据

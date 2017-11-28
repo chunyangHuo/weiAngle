@@ -63,36 +63,24 @@ function getCache() {
       url: url_common + '/api/category/getProjectCategory',
       method: 'POST',
       success: function (res) {
-        // console.log('getProjectCategory',res)
         let thisData = res.data.data;
         thisData.area.forEach((x) => { x.check = false })
         thisData.industry.forEach((x) => { x.check = false })
         thisData.scale.forEach((x) => { x.check = false })
         thisData.stage.forEach((x) => { x.check = false })
+        thisData.area.forEach((x) => { x.check = false })
+        thisData.hotCity.forEach((x) => { x.check = false })
         wx.setStorageSync("industry", thisData.industry)
         wx.setStorageSync("scale", thisData.scale)
         wx.setStorageSync("stage", thisData.stage)
-        // data.industry = thisData.industry;
-        data.industry = wx.getStorageSync('industry');
+        wx.setStorageSync('area', thisData.area)
+        wx.setStorageSync('hotCity', thisData.hotCity)
+        data.industry = thisData.industry;
         data.stage = thisData.stage;
         data.scale = thisData.scale;
-      },
-    })
-    wx.request({
-      url: url_common + '/api/category/getHotCity',
-      data: {},
-      method: 'POST',
-      success: function (res) {
-        let hotCity = res.data.data;
-        hotCity.forEach((x) => {
-          x.check = false;
-        })
-        wx.setStorageSync('hotCity', hotCity)
-        // 筛选的初始缓存
-
-        data.hotCity = hotCity;
+        data.hotCity = thisData.hotCity
       }
-    });
+    })
   }
 }
 getCache();
