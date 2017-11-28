@@ -49,7 +49,7 @@ Page({
     }
     this.applyList();
   },
-
+ 
   onShow: function () {
     this.setData({
       requestCheck: true,

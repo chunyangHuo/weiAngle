@@ -955,7 +955,7 @@
         <view class="city" style="background:{{backgroundcity[idx2]==1?'#ccc':''}}" bindtap='linkCheckAll'>全部</view>
         <block wx:for="{{linkDataShow.secondStair}}" wx:for-item='item2' wx:for-index='idx2' wx:key="{{item2[itemId]}}">
           <!--page代表一级联动的index,idx2代表二级联动的index  -->
-          <view class="city" wx:key="{{item2.industry_id}}" style="background:{{item2.check == true?'#ccc':''}}" data-id='{{item2.industry_id}}' bindtap="linkSecondStair">
+          <view class="city" wx:key="{{item2.industry_id}}" style="background:{{item2.check == true?'#ccc':''}}" data-id='{{item2.industry_id}}' data-index='{{idx2}}' bindtap="linkSecondStair">
             {{item2[itemName]}}
             <image wx:if='{{item2.check == true}}' class='gouhao' src='/img/icon-gou@2x.png'></image>
           </view>
@@ -1002,7 +1002,7 @@
     </block>
   </view>
 </template>
-
+ 
 <!--------------------------------------------------------------------------------  -->
 <!--精选项目卡片 -->
 <template name="selectProject">

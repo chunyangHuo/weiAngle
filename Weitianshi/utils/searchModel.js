@@ -491,14 +491,39 @@ function linkFirstStair(e, that) {
 // 联动二级菜单 
 function linkSecondStair(e, that) {
   let id = e.currentTarget.dataset.id;
+  let index = e.currentTarget.dataset.index;
   let linkDataShow = that.data.linkDataShow;
+  let secondStair = linkDataShow.secondStair;
   let selectData = linkDataShow.selectData;
-  console.log(id)
-
+  secondStair[index].check = !secondStair[index].check;
+  that.setData({
+    linkDataShow: linkDataShow
+  })
 }
 // 联动二级菜单全部
 function linkCheckAll(e, that) {
-
+  let linkDataShow = that.data.linkDataShow;
+  let secondStair = linkDataShow.secondStair;
+  // 检查是否已经全选了
+  function isCheckedAll() {
+    for (let x of secondStair) {
+      if (x.check == false) return false
+    }
+    return true
+  }
+  // 进行或者取消全选
+  if (isCheckedAll()) {
+    secondStair.forEach(x => {
+      x.check = false
+    })
+  } else {
+    secondStair.forEach(x => {
+      x.check = true
+    })
+  }
+  that.setData({
+    linkDataShow: linkDataShow
+  })
 }
 // 联动重置
 function linkReset() {
