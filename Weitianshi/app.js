@@ -66,7 +66,7 @@ App({
         wx.setStorageSync('area', thisData.area)
         wx.setStorageSync('hotCity', thisData.hotCity)
         wx.setStorageSync("tran_industry",'')
-        wx.setStorageSync("tran_scale", '')
+        wx.setStorageSync("tran_scale", thisData.scale)
         wx.setStorageSync("tran_stage", '')
         wx.setStorageSync('tran_area', '')
         wx.setStorageSync('tran_hotCity', '')
