@@ -108,19 +108,19 @@ function move(e, that) {
 
   // 清除未保存的选中标签
   if (label == 'label_industry') {
-    // linkDataShow = Object.assign({}, _linkDataShow);
+    linkDataShow = Object.assign({}, _linkDataShow);
+    linkDataShow.secondStair.forEach(x => {
+      x.check = false;
+    })
     linkDataShow.selectData = SearchInit.searchData.label_industry;
-    console.log('linkDataShow', linkDataShow)
-    console.log('_LinkDataShow', _linkDataShow)
-    console.log('_label_industry', _label_industry)
     // 给二级菜单挂上勾号
-    // linkDataShow.secondStair.forEach((x, index) => {
-    //   linkDataShow.selectData.forEach(y => {
-    //     if (y == x.industry_id) {
-    //       x.check = true;
-    //     }
-    //   })
-    // })
+    linkDataShow.secondStair.forEach((x, index) => {
+      linkDataShow.selectData.forEach(y => {
+        if (y == x.industry_id) {
+          x.check = true;
+        }
+      })
+    })
     that.setData({
       linkDataShow: linkDataShow
     })
@@ -502,9 +502,9 @@ function linkFirstStair(e, that) {
   let secondStair = linkDataShow.secondStair;
   let selectData = that.data.linkDataShow.selectData;
   let index = e.currentTarget.dataset.index;
-  // console.log(selectData)
-  // console.log(linkDataShow)
-  console.log("_label_industry", _label_industry)
+  // console.log("selectData",selectData)
+  // console.log("linkDataShow",linkDataShow)
+  // console.log("_label_industry", _label_industry)
   // 改变一级菜单样式
   firstStair.forEach(x => {
     x.check = false
@@ -548,12 +548,12 @@ function linkSecondStair(e, that) {
   that.setData({
     linkDataShow: linkDataShow
   })
-  console.log('_label_industry', _label_industry)
 }
 // 联动二级菜单全部
 function linkCheckAll(e, that) {
   let linkDataShow = that.data.linkDataShow;
   let secondStair = linkDataShow.secondStair;
+  let selectData = linkDataShow.selectData;
   // 检查是否已经全选了
   function isCheckedAll() {
     for (let x of secondStair) {
@@ -566,9 +566,19 @@ function linkCheckAll(e, that) {
     secondStair.forEach(x => {
       x.check = false
     })
+    // 遍历数组删除有坑
+    let idArray = []
+    secondStair.forEach(x => {
+      idArray.push(x.industry_id)
+    })
+    let difference = selectData.concat(idArray).filter(x => !idArray.includes(x))
+    linkDataShow.selectData = difference;
   } else {
     secondStair.forEach(x => {
-      x.check = true
+      x.check = true;
+      if (selectData.includes(x.industry_id) == false) {
+        selectData.push(x.industry_id)
+      }
     })
   }
   that.setData({
@@ -582,10 +592,11 @@ function linkReset(that) {
   let selectData = linkDataShow.secondStair;
   let SearchInit = that.data.SearchInit;
   let searchData = SearchInit.searchData;
-  // console.log("linkDataShow", linkDataShow)
-  // console.log('_linkDataShow', _linkDataShow)
   // 清空secondStair,selectData,searchData
   linkDataShow = Object.assign({}, _linkDataShow);
+  linkDataShow.secondStair.forEach(x => {
+    x.check = false;
+  })
   searchData.label_industry = []
   that.setData({
     SearchInit: SearchInit,
@@ -604,9 +615,6 @@ function linkSearchCertain(that) {
   that.setData({
     SearchInit: SearchInit
   })
-  console.log("linkDataShow", linkDataShow)
-  console.log('_linkDataShow', _linkDataShow)
-  console.log(_label_industry)
 }
 
 export {
