@@ -2,7 +2,7 @@ var app = getApp()
 var url = app.globalData.url
 var url_common = app.globalData.url_common;
 var save = true;
-Page({
+Page({ 
     data: {
         describe: "",
         domainValue: "选择领域",
