@@ -8,8 +8,8 @@ Page({
   data: {
     //筛选搜索
     SearchInit: SearchModel.data,
-    label_industry: SearchModel.label_industry,
-    linkDataShow: SearchModel.linkDataShow,
+    label_industry: SearchModel._label_industry,
+    linkDataShow: SearchModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {

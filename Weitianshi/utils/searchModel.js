@@ -53,8 +53,8 @@ let data = {
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
-let label_industry = []
-let linkDataShow = {
+let _label_industry = []
+let _linkDataShow = {
   selectData: [],
   firstStair: [],
   secondStair: '',
@@ -63,20 +63,19 @@ let linkDataShow = {
 function initGroup() {
   let originalData = wx.getStorageSync('label_industry');
   originalData.forEach((x, index) => {
-    label_industry.push(x)
-    linkDataShow.firstStair.push({
+    _label_industry.push(x)
+    _linkDataShow.firstStair.push({
       industry_id: x.industry_id,
       industry_name: x.industry_name,
       check: false
     })
   })
-  linkDataShow.firstStair[0].check = true;
-  linkDataShow.secondStair = label_industry[0].child;
+  _linkDataShow.firstStair[0].check = true;
+  _linkDataShow.secondStair = _label_industry[0].child;
 }
 initGroup()
-let newLinkDataShow = linkDataShow;
-console.log(label_industry)
-console.log(linkDataShow)
+// console.log('_label_industry',_label_industry)
+// console.log('_linkDataShow',_linkDataShow)
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -105,9 +104,26 @@ function move(e, that) {
   let index = e.currentTarget.dataset.index;
   let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
+  let linkDataShow = that.data.linkDataShow;
+
   // 清除未保存的选中标签
   if (label == 'label_industry') {
-    that.data.linkDataShow = newLinkDataShow;
+    // linkDataShow = Object.assign({}, _linkDataShow);
+    linkDataShow.selectData = SearchInit.searchData.label_industry;
+    console.log('linkDataShow', linkDataShow)
+    console.log('_LinkDataShow', _linkDataShow)
+    console.log('_label_industry', _label_industry)
+    // 给二级菜单挂上勾号
+    // linkDataShow.secondStair.forEach((x, index) => {
+    //   linkDataShow.selectData.forEach(y => {
+    //     if (y == x.industry_id) {
+    //       x.check = true;
+    //     }
+    //   })
+    // })
+    that.setData({
+      linkDataShow: linkDataShow
+    })
   } else {
     this.initItem(label, that, SearchInit)
   }
@@ -488,6 +504,7 @@ function linkFirstStair(e, that) {
   let index = e.currentTarget.dataset.index;
   // console.log(selectData)
   // console.log(linkDataShow)
+  console.log("_label_industry", _label_industry)
   // 改变一级菜单样式
   firstStair.forEach(x => {
     x.check = false
@@ -501,7 +518,7 @@ function linkFirstStair(e, that) {
   })
   that.data.linkDataShow.secondStair.forEach((x, index) => {
     selectData.forEach(y => {
-      if (y.industry_id == x.industry_id) {
+      if (y == x.industry_id) {
         x.check = true;
       }
     })
@@ -519,10 +536,10 @@ function linkSecondStair(e, that) {
   let selectData = linkDataShow.selectData;
   // 对selectData进行处理
   if (secondStair[index].check == false) {
-    selectData.push(secondStair[index])
+    selectData.push(secondStair[index].industry_id)
   } else {
     selectData.forEach((x, idx) => {
-      if (x.industry_id == secondStair[index].industry_id) {
+      if (x == secondStair[index].industry_id) {
         selectData.splice(idx, 1)
       }
     })
@@ -531,7 +548,7 @@ function linkSecondStair(e, that) {
   that.setData({
     linkDataShow: linkDataShow
   })
-  // console.log(selectData)
+  console.log('_label_industry', _label_industry)
 }
 // 联动二级菜单全部
 function linkCheckAll(e, that) {
@@ -565,8 +582,10 @@ function linkReset(that) {
   let selectData = linkDataShow.secondStair;
   let SearchInit = that.data.SearchInit;
   let searchData = SearchInit.searchData;
+  // console.log("linkDataShow", linkDataShow)
+  // console.log('_linkDataShow', _linkDataShow)
   // 清空secondStair,selectData,searchData
-  linkDataShow = newLinkDataShow;
+  linkDataShow = Object.assign({}, _linkDataShow);
   searchData.label_industry = []
   that.setData({
     SearchInit: SearchInit,
@@ -579,18 +598,21 @@ function linkSearchCertain(that) {
   let SearchInit = that.data.SearchInit;
   let industry = [];
   linkDataShow.selectData.forEach(x => {
-    industry.push(x.industry_id)
+    industry.push(x)
   })
-  SearchInit.searchData.industry = industry;
+  SearchInit.searchData.label_industry = industry;
   that.setData({
     SearchInit: SearchInit
   })
+  console.log("linkDataShow", linkDataShow)
+  console.log('_linkDataShow', _linkDataShow)
+  console.log(_label_industry)
 }
 
 export {
   data,
-  label_industry,
-  linkDataShow,
+  _label_industry,
+  _linkDataShow,
   reInitSearch,
   move,
   getOffset,
