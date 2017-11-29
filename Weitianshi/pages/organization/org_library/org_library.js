@@ -37,7 +37,7 @@ Page({
         SearchInit[x.label] = wx.getStorageSync(x.label)
       })
       that.setData({
-        SearchInit: SearchInit
+        SearchInit: SearchInit 
       })
     }
 

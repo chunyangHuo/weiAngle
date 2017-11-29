@@ -361,6 +361,7 @@ function searchCertain(that) {
   let tab = SearchInit.tab;
   let currentIndex = that.data.SearchInit.currentIndex;
   let searchData = that.data.SearchInit.searchData;
+  let linkDataShow = that.data.linkDataShow;
   // 区别是不是从展示列表进行删除的  99:从展示列表调用 非99:正常调用
   if (currentIndex == 99) {
     tab.forEach((x, index) => {
@@ -368,10 +369,14 @@ function searchCertain(that) {
       let label = x.label;
       let itemArrStr = x.label + 'Arr';
       let itemId = x.itemId;
-      SearchInit[itemArrStr].forEach(y => {
-        newArr.push(y[itemId])
-      })
-      searchData[label] = newArr;
+      if (label == "label_industry") {
+        searchData.label_industry = linkDataShow.selectData;
+      } else {
+        SearchInit[itemArrStr].forEach(y => {
+          newArr.push(y[itemId])
+        })
+        searchData[label] = newArr;
+      }
     })
   } else {
     let newArr = [];
@@ -446,28 +451,34 @@ function detialItemSearch(label, itemId, that, callBack) {
   let item = SearchInit[label];
   let itemStrArr = label + 'Arr';
   let itemArr = SearchInit[itemStrArr];
-  //判断是否是有联动关系 
-  if (item[0].child) {
-    item.forEach(x => {
-      x.child.forEach(y => {
-        if (y[itemIdStr] == itemId) {
-          y.check = true;
-          itemArr.push(y)
+  let linkDataShow = that.data.linkDataShow;
+  if (label == 'label_industry') {
+    linkDataShow.selectData.push(itemId)
+  } else {
+    //判断是否是有联动关系 
+    if (item[0].child) {
+      item.forEach(x => {
+        x.child.forEach(y => {
+          if (y[itemIdStr] == itemId) {
+            y.check = true;
+            itemArr.push(y)
+          }
+        })
+      })
+    } else {
+      item.forEach(x => {
+        if (x[itemIdStr] == itemId) {
+          x.check = true;
+          itemArr.push(x)
         }
       })
-    })
-  } else {
-    item.forEach(x => {
-      if (x[itemIdStr] == itemId) {
-        x.check = true;
-        itemArr.push(x)
-      }
-    })
+    }
   }
 
   SearchInit.searchData = searchCertain(that);
   that.setData({
-    SearchInit: SearchInit
+    SearchInit: SearchInit,
+    linkDataShow: linkDataShow
   })
   console.log(SearchInit.searchData)
   callBack(SearchInit.searchData);
