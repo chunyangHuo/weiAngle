@@ -188,7 +188,7 @@ Page({
         let size = res.tempFiles[0].size;
         if (size <= 1048576) {
           wx.uploadFile({
-            url: url_common + '/api/user/uploadCard', //仅为示例，非真实的接口地址
+            url: url_common + '/api/user/uploadCard',
             filePath: tempFilePaths[0],
             name: 'file',
             formData: {

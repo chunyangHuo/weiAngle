@@ -141,10 +141,10 @@
 <!---------------------------------------------------------------------------->
 <!--我的人脉  -->
 <template name='myContacts'>
-  <view bindtap="goTo">
+  <!-- <view bindtap="goTo">
     <image src="{{activtyBanner}}" class="contactsPic"></image>
-  </view>
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore"  style='height:70%'>
+  </view> -->
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore"  style='height:90%'>
     <view class="aBox"></view>
     <block wx:for="{{myList}}" wx:key="{{item.user_id}}">
      <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">

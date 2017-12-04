@@ -6,7 +6,7 @@ import * as httpModel from '../../../../utils/httpModel';
 import * as SearchModel from '../../../../utils/searchModel';
 Page({
   data: {
-    SearchInit: SearchModel.data2,
+    SearchInit: SearchModel.data,
 
   },
   onLoad: function (options) {

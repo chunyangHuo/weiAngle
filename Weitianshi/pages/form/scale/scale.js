@@ -38,7 +38,7 @@ Page({
     let that = this;
     let scale = this.data.scale
     let tranArr = this.data.tran_scale;
-    let item = app.checkMore(e, scale, tranArr,that);
+    let item = app.checkMore(e, scale, tranArr, that);
     this.setData({
       scale: item.item,
       tran_scale: item.tran_scale
@@ -74,26 +74,13 @@ Page({
       }, 1500)
     } else {
       // 传值给myProject
-      // if (checked == "") {
-      //   wx.setStorageSync('y_payMoney', "选择金额");
-      //   wx.setStorageSync('y_payMoneyId', '');
-      //   wx.setStorageSync('paymoneyenchangeValue', checked)
-      //   wx.setStorageSync('paymoneyenchangeId', index)
-      //   wx.setStorageSync('paymoneyenchangeCheck', enchangeCheck)
-      // } else {
-      //   wx.setStorageSync('y_payMoney', checked);
-      //   wx.setStorageSync('y_payMoneyId', index);
-      //   wx.setStorageSync('paymoneyenchangeValue', checked)
-      //   wx.setStorageSync('paymoneyenchangeId', index)
-      //   wx.setStorageSync('paymoneyenchangeCheck', enchangeCheck)
-      // }
-      if(tran_scale.length == 0){
+      if (tran_scale.length == 0) {
         wx.setStorageSync("tran_scale", "")
 
-      }else{
+      } else {
         wx.setStorageSync("tran_scale", tran_scale)
       }
-     
+
       wx.navigateBack({
         delta: 1 // 回退前 delta(默认为1) 页面
       })

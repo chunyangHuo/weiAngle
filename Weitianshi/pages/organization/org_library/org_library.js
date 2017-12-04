@@ -7,7 +7,9 @@ import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     //筛选搜索
-    SearchInit: SearchModel.data2,
+    SearchInit: SearchModel.data,
+    label_industry: SearchModel._label_industry,
+    linkDataShow: SearchModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
   },
   onLoad: function (options) {
@@ -18,7 +20,6 @@ Page({
       title: 'loading',
       mask: true,
     })
-
 
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
@@ -36,10 +37,9 @@ Page({
         SearchInit[x.label] = wx.getStorageSync(x.label)
       })
       that.setData({
-        SearchInit: SearchInit
+        SearchInit: SearchInit 
       })
     }
-
 
     // 页面间跳转传值筛选
     if (label) {
@@ -49,7 +49,7 @@ Page({
     }
     this.applyList();
   },
-
+ 
   onShow: function () {
     this.setData({
       requestCheck: true,
@@ -150,8 +150,16 @@ Page({
     SearchModel.labelDelete(e, this)
   },
   // 一级联动选择
-  firstLinkCheck(e) {
+  /* firstLinkCheck(e) {
     SearchModel.firstLinkCheck(e, this);
+  }, */
+  // 一级联动选择
+  linkFirstStair(e){
+    SearchModel.linkFirstStair(e,this)
+  },
+  // 二级联动选择
+  linkSecondStair(e){
+    SearchModel.linkSecondStair(e,this)
   },
   // 联动选择全部
   linkCheckAll(e) {

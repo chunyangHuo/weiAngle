@@ -1,6 +1,6 @@
 <!--发布投资需求和资源需求的按钮-->
 <template name="publish">
-  <view wx:if="{{hasPublic==0}}"> 
+  <view wx:if="{{hasPublic==0}}">
     <view class="publish publish2 publish_find_project publish-investmentm" bindtap="{{jumpProject}}">
       <view>{{text.text1}}</view>
       <view class="weui-media-box__desc">{{text.text2}}</view>
@@ -871,7 +871,7 @@
   <view id='searchModel' class="screen flex" wx:if="{{hidden}}">
     <!--筛选  -->
     <block wx:for='{{SearchInit.tab}}' wx:key='index'>
-      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' bindtap='move'>
+      <view class='tabIndex {{SearchInit.currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' data-label='{{item.label}}' data-type='{{item.type}}' bindtap='move'>
         {{item.name}}
         <image class='withAnimate {{SearchInit.currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
       </view>
@@ -884,7 +884,7 @@
       <view class='flex dropFlex' scroll-y='true'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
           <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
-          <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
+          <template wx:if='{{item.type==2}}' is='searchDropItem3' data='{{linkDataShow,SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
         </block>
       </view>
       <!--重置确定  -->
@@ -936,8 +936,37 @@
   </view>
 </template>
 
+<!--筛选下拉框(单个)  type3 -->
+<template name='searchDropItem3'>
+  <view id="linkedDrop" class="flex" hidden='{{SearchInit.currentIndex != index}}'>
+    <!--一级标签  -->
+    <scroll-view scroll-y="true" class="frame_province">
+      <view>
+        <block wx:for="{{linkDataShow.firstStair}}" wx:for-index='idx' wx:key="{{item[itemId]}}">
+          <view class="province" style="background:{{item.check==true?'white':''}}" data-index='{{idx}}' bindtap="linkFirstStair">
+            {{item[itemName]}}
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <!--二级标签  -->
+    <scroll-view scroll-y="true" class="frame_city">
+      <view style='height:100%;'>
+        <view class="city" style="background:{{backgroundcity[idx2]==1?'#ccc':''}}" bindtap='linkCheckAll'>全部</view>
+        <block wx:for="{{linkDataShow.secondStair}}" wx:for-item='item2' wx:for-index='idx2' wx:key="{{item2[itemId]}}">
+          <!--page代表一级联动的index,idx2代表二级联动的index  -->
+          <view class="city" wx:key="{{item2.industry_id}}" style="background:{{item2.check == true?'#ccc':''}}" data-id='{{item2.industry_id}}' data-index='{{idx2}}' bindtap="linkSecondStair">
+            {{item2[itemName]}}
+            <image wx:if='{{item2.check == true}}' class='gouhao' src='/img/icon-gou@2x.png'></image>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</template>
+
 <!--筛选结果展示横列(全部)  -->
-<template name='searchResult'> 
+<template name='searchResult'>
   <view id='searchModel2' class='searchList flex'>
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
@@ -1019,6 +1048,7 @@
           <view class="t-interest flex">
             <view class="t-appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
             <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" catchtap="matchApply">申请查看</view>
+            <!-- <button  class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}">申请查看</button> -->
             <view class="t-refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
             <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
             <view wx:if="{{item.relationship_button == 5}}"></view>
