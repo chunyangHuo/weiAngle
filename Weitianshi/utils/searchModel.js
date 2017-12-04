@@ -1,8 +1,7 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
-import * as request from './httpModel';
+import * as CacheModel from './cacheModel';
 //searchData
-let label_industry = wx.getStorageSync('label_industry');
 let data = {
   firstTime: true,
   tab: [
@@ -39,7 +38,7 @@ let data = {
   stageArr: [],
   scaleArr: [],
   hotCityArr: [],
-  label_industryArr: [],
+  // label_industryArr: [],
   label_areaArr: [],
   label_styleArr: [],
   label_typeArr: [],
@@ -54,36 +53,32 @@ let data = {
   label_type: wx.getStorageSync('label_type'),
   label_time: wx.getStorageSync('label_time')
 }
-let data2 = Object.assign({}, data);
-data2.label_industry = wx.getStorageSync('label_industry');
-// 无缓存状态下获取缓存
-function getCache() {
-  if (!wx.getStorageSync('industry')) {
-    wx.request({
-      url: url_common + '/api/category/getProjectCategory',
-      method: 'POST',
-      success: function (res) {
-        let thisData = res.data.data;
-        thisData.area.forEach((x) => { x.check = false })
-        thisData.industry.forEach((x) => { x.check = false })
-        thisData.scale.forEach((x) => { x.check = false })
-        thisData.stage.forEach((x) => { x.check = false })
-        thisData.area.forEach((x) => { x.check = false })
-        thisData.hotCity.forEach((x) => { x.check = false })
-        wx.setStorageSync("industry", thisData.industry)
-        wx.setStorageSync("scale", thisData.scale)
-        wx.setStorageSync("stage", thisData.stage)
-        wx.setStorageSync('area', thisData.area)
-        wx.setStorageSync('hotCity', thisData.hotCity)
-        data.industry = thisData.industry;
-        data.stage = thisData.stage;
-        data.scale = thisData.scale;
-        data.hotCity = thisData.hotCity
-      }
-    })
-  }
+let _label_industry = []
+let _linkDataShow = {
+  selectData: [],
+  firstStair: [],
+  secondStair: '',
 }
-getCache();
+
+// 将label_industry分组
+function initGroup() {
+  let originalData = wx.getStorageSync('label_industry');
+  originalData.forEach((x, index) => {
+    _label_industry.push(x)
+    _linkDataShow.firstStair.push({
+      industry_id: x.industry_id,
+      industry_name: x.industry_name,
+      check: false
+    })
+  })
+  _linkDataShow.firstStair[0].check = true;
+  _linkDataShow.secondStair = _label_industry[0].child;
+}
+initGroup()
+
+// console.log('_label_industry',_label_industry)
+// console.log('_linkDataShow',_linkDataShow)
+
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -112,23 +107,44 @@ function move(e, that) {
   let index = e.currentTarget.dataset.index;
   let label = e.currentTarget.dataset.label;
   let currentIndex = SearchInit.currentIndex;
+  let linkDataShow = that.data.linkDataShow;
+
   // 清除未保存的选中标签
-  // SearchInit=Object.assign({},that.data.SearchInit)
-  this.initItem(label, that, SearchInit)
+  if (label == 'label_industry') {
+    linkDataShow = Object.assign({}, _linkDataShow);
+    linkDataShow.secondStair.forEach(x => {
+      x.check = false;
+    })
+    linkDataShow.selectData = SearchInit.searchData.label_industry;
+    // 给二级菜单挂上勾号
+    linkDataShow.secondStair.forEach((x, index) => {
+      linkDataShow.selectData.forEach(y => {
+        if (y == x.industry_id) {
+          x.check = true;
+        }
+      })
+    })
+    that.setData({
+      linkDataShow: linkDataShow
+    })
+  } else {
+    this.initItem(label, that, SearchInit)
+  }
+
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
     let time1 = new Date().getTime();
     that.setData({
       SearchInit: SearchInit
     })
-    console.log('setData_SearchInit', new Date().getTime() - time1)
+    // console.log('setData_SearchInit', new Date().getTime() - time1)
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
   }
-  console.log('下拉框完成', new Date().getTime() - time1)
+  // console.log('下拉框完成', new Date().getTime() - time1)
 }
 // 获取dropDown
 function getOffset(that) {
@@ -191,7 +207,8 @@ function initItem(str, that, SearchInit) {
   that.setData({
     SearchInit: SearchInit,
   })
-  console.log('setDate_SearchInit2', new Date().getTime() - time1)
+
+  // console.log('setDate_SearchInit2', new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -297,7 +314,12 @@ function reset(that) {
   let currentIndex = that.data.SearchInit.currentIndex;
   let SearchInit = that.data.SearchInit;
   let str = SearchInit.tab[currentIndex].label;
-  this.itemReset(str, that)
+  // 区别处理label_industry和其他
+  if (str == 'label_industry') {
+    linkReset(that)
+  } else {
+    this.itemReset(str, that)
+  }
 }
 function allReset(that) {
   let SearchInit = that.data.SearchInit;
@@ -343,27 +365,37 @@ function searchCertain(that) {
   let tab = SearchInit.tab;
   let currentIndex = that.data.SearchInit.currentIndex;
   let searchData = that.data.SearchInit.searchData;
-  // 区别是不是从展示列表进行删除的
+  let linkDataShow = that.data.linkDataShow;
+  // 区别是不是从展示列表进行删除的  99:从展示列表调用 非99:正常调用
   if (currentIndex == 99) {
     tab.forEach((x, index) => {
       let newArr = [];
       let label = x.label;
       let itemArrStr = x.label + 'Arr';
       let itemId = x.itemId;
-      SearchInit[itemArrStr].forEach(y => {
-        newArr.push(y[itemId])
-      })
-      searchData[label] = newArr;
+      if (label == "label_industry") {
+        searchData.label_industry = linkDataShow.selectData;
+      } else {
+        SearchInit[itemArrStr].forEach(y => {
+          newArr.push(y[itemId])
+        })
+        searchData[label] = newArr;
+      }
     })
   } else {
     let newArr = [];
     let label = tab[currentIndex].label;
     let itemArrStr = tab[currentIndex].label + 'Arr';
     let itemId = tab[currentIndex].itemId;
-    SearchInit[itemArrStr].forEach(x => {
-      newArr.push(x[itemId])
-    })
-    searchData[label] = newArr;
+    // 区别处理label_industry和其他
+    if (label == 'label_industry') {
+      linkSearchCertain(that)
+    } else {
+      SearchInit[itemArrStr].forEach(x => {
+        newArr.push(x[itemId])
+      })
+      searchData[label] = newArr;
+    }
   }
   that.setData({
     SearchInit: SearchInit,
@@ -423,33 +455,38 @@ function detialItemSearch(label, itemId, that, callBack) {
   let item = SearchInit[label];
   let itemStrArr = label + 'Arr';
   let itemArr = SearchInit[itemStrArr];
-  //判断是否是有联动关系 
-  if (item[0].child) {
-    item.forEach(x => {
-      x.child.forEach(y => {
-        if (y[itemIdStr] == itemId) {
-          y.check = true;
-          itemArr.push(y)
+  let linkDataShow = that.data.linkDataShow;
+  if (label == 'label_industry') {
+    linkDataShow.selectData.push(itemId)
+  } else {
+    //判断是否是有联动关系 
+    if (item[0].child) {
+      item.forEach(x => {
+        x.child.forEach(y => {
+          if (y[itemIdStr] == itemId) {
+            y.check = true;
+            itemArr.push(y)
+          }
+        })
+      })
+    } else {
+      item.forEach(x => {
+        if (x[itemIdStr] == itemId) {
+          x.check = true;
+          itemArr.push(x)
         }
       })
-    })
-  } else {
-    item.forEach(x => {
-      if (x[itemIdStr] == itemId) {
-        x.check = true;
-        itemArr.push(x)
-      }
-    })
+    }
   }
 
   SearchInit.searchData = searchCertain(that);
   that.setData({
-    SearchInit: SearchInit
+    SearchInit: SearchInit,
+    linkDataShow: linkDataShow
   })
   console.log(SearchInit.searchData)
   callBack(SearchInit.searchData);
 }
-
 // 点击modal层
 function modal(that) {
   let SearchInit = that.data.SearchInit;
@@ -471,10 +508,134 @@ function searchSth(that, str, callBack) {
 
 }
 
+// ---------------------联动操作---------------------------------------------
+// 联动一级菜单
+function linkFirstStair(e, that) {
+  let label_industry = that.data.label_industry;
+  let linkDataShow = that.data.linkDataShow;
+  let firstStair = linkDataShow.firstStair;
+  let secondStair = linkDataShow.secondStair;
+  let selectData = that.data.linkDataShow.selectData;
+  let index = e.currentTarget.dataset.index;
+  // console.log("selectData",selectData)
+  // console.log("linkDataShow",linkDataShow)
+  // console.log("_label_industry", _label_industry)
+  // 改变一级菜单样式
+  firstStair.forEach(x => {
+    x.check = false
+  })
+  firstStair[index].check = true;
+  // 更改二级菜单取值
+  that.data.linkDataShow.secondStair = label_industry[index].child
+  // 给二级菜单挂上勾号
+  that.data.linkDataShow.secondStair.forEach(x => {
+    x.check = false;
+  })
+  that.data.linkDataShow.secondStair.forEach((x, index) => {
+    selectData.forEach(y => {
+      if (y == x.industry_id) {
+        x.check = true;
+      }
+    })
+  })
+  that.setData({
+    linkDataShow: linkDataShow
+  })
+}
+// 联动二级菜单 
+function linkSecondStair(e, that) {
+  let id = e.currentTarget.dataset.id;
+  let index = e.currentTarget.dataset.index;
+  let linkDataShow = that.data.linkDataShow;
+  let secondStair = linkDataShow.secondStair;
+  let selectData = linkDataShow.selectData;
+  // 对selectData进行处理
+  if (secondStair[index].check == false) {
+    selectData.push(secondStair[index].industry_id)
+  } else {
+    selectData.forEach((x, idx) => {
+      if (x == secondStair[index].industry_id) {
+        selectData.splice(idx, 1)
+      }
+    })
+  }
+  secondStair[index].check = !secondStair[index].check;
+  that.setData({
+    linkDataShow: linkDataShow
+  })
+}
+// 联动二级菜单全部
+function linkCheckAll(e, that) {
+  let linkDataShow = that.data.linkDataShow;
+  let secondStair = linkDataShow.secondStair;
+  let selectData = linkDataShow.selectData;
+  // 检查是否已经全选了
+  function isCheckedAll() {
+    for (let x of secondStair) {
+      if (x.check == false) return false
+    }
+    return true
+  }
+  // 进行或者取消全选
+  if (isCheckedAll()) {
+    secondStair.forEach(x => {
+      x.check = false
+    })
+    // 遍历数组删除有坑
+    let idArray = []
+    secondStair.forEach(x => {
+      idArray.push(x.industry_id)
+    })
+    let difference = selectData.concat(idArray).filter(x => !idArray.includes(x))
+    linkDataShow.selectData = difference;
+  } else {
+    secondStair.forEach(x => {
+      x.check = true;
+      if (selectData.includes(x.industry_id) == false) {
+        selectData.push(x.industry_id)
+      }
+    })
+  }
+  that.setData({
+    linkDataShow: linkDataShow
+  })
+}
+// 联动重置
+function linkReset(that) {
+  let linkDataShow = that.data.linkDataShow;
+  let secondStair = linkDataShow.secondStair;
+  let selectData = linkDataShow.secondStair;
+  let SearchInit = that.data.SearchInit;
+  let searchData = SearchInit.searchData;
+  // 清空secondStair,selectData,searchData
+  linkDataShow = Object.assign({}, _linkDataShow);
+  linkDataShow.secondStair.forEach(x => {
+    x.check = false;
+  })
+  searchData.label_industry = []
+  that.setData({
+    SearchInit: SearchInit,
+    linkDataShow: linkDataShow
+  })
+}
+// 联动确定
+function linkSearchCertain(that) {
+  let linkDataShow = that.data.linkDataShow;
+  let SearchInit = that.data.SearchInit;
+  let industry = [];
+  linkDataShow.selectData.forEach(x => {
+    industry.push(x)
+  })
+  SearchInit.searchData.label_industry = industry;
+  that.setData({
+    SearchInit: SearchInit
+  })
+}
 
 export {
   data,
-  data2,
+  _label_industry,
+  _linkDataShow,
   reInitSearch,
   move,
   getOffset,
@@ -491,4 +652,6 @@ export {
   firstLinkCheck,
   linkCheckAll,
   detialItemSearch,
-}
+  linkFirstStair,
+  linkSecondStair,
+} 
