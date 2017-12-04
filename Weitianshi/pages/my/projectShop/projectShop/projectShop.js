@@ -267,11 +267,13 @@ Page({
     let item = this.data[itemStr];
     let itemArr = this.data[itemArrStr];
     let target = e.currentTarget.dataset.item;
-    let index = e.currentTarget.dataset.index;
+    let index = e.currentTarget.dataset.index;//获取当前点击的项的 index
     if (target.check == false) {
+      //判断当前选中项是未选中的状态,如果是未选中的状态,则进入下面的判断
       if (itemArr.length < 5) {
-        item[index].check = true;
-        itemArr.push(target)
+        item[index].check = true;//当前点击项的check值更改为true
+        itemArr.push(target)// 将当前选中的这项,添加到 itemArr中
+        console.log(itemArr)
       } else {
         app.errorHide(that, '不能选择超过5个标签', 3000)
       }

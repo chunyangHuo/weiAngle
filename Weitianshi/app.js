@@ -58,16 +58,16 @@ App({
         thisData.industry.forEach((x) => { x.check = false })
         thisData.scale.forEach((x) => { x.check = false })
         thisData.stage.forEach((x) => { x.check = false })
-        thisData.area.forEach((x) => { x.check = false})
-        thisData.hotCity.forEach((x) =>{ x.check = false})
+        thisData.area.forEach((x) => { x.check = false })
+        thisData.hotCity.forEach((x) => { x.check = false })
         wx.setStorageSync("industry", thisData.industry)
         wx.setStorageSync("scale", thisData.scale)
         wx.setStorageSync("stage", thisData.stage)
         wx.setStorageSync('area', thisData.area)
         wx.setStorageSync('hotCity', thisData.hotCity)
-        wx.setStorageSync("tran_industry",'')
-        wx.setStorageSync("tran_scale", thisData.scale)
-        wx.setStorageSync("tran_stage", thisData.stage)
+        wx.setStorageSync("tran_industry", '')
+        wx.setStorageSync("tran_scale", "")
+        wx.setStorageSync("tran_stage", '')
         wx.setStorageSync('tran_area', '')
         wx.setStorageSync('tran_hotCity', '')
         console.log(thisData)
@@ -759,16 +759,43 @@ App({
     })
   },
 
+  //多选
+  checkMore(e, item, itemArr,that) {
+
+    let target = e.currentTarget.dataset.item;
+    let index = e.currentTarget.dataset.index;//获取当前点击的项的 index
+    if (target.check == false) {
+      //判断当前选中项是未选中的状态,如果是未选中的状态,则进入下面的判断
+      if (itemArr.length < 5) {
+        item[index].check = true;//当前点击项的check值更改为true
+        itemArr.push(target)// 将当前选中的这项,添加到 itemArr中
+      } else {
+        this.errorHide(that, '不能选择超过5个标签', 3000)
+      }
+    } else {
+      item[index].check = false;
+      itemArr.forEach((y, index) => {
+        if (target.scale_id == y.scale_id) {
+          itemArr.splice(index, 1)
+        }
+      })
+    }
+    return {
+      item: item,
+      tran_scale: itemArr,
+    }
+  },
+
   //初始本地缓存
   globalData: {
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',
-    url: "https://wx.weitianshi.cn",
-    url_common: "https://wx.weitianshi.cn"
+    // url: "https://wx.weitianshi.cn",
+    // url_common: "https://wx.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 });

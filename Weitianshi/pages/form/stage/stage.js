@@ -9,16 +9,22 @@ Page({
     error_text: "",
   },
   onLoad: function () {
-    let stage = wx.getStorageSync('stage');
-    let tran_stage = wx.getStorageSync('tran_stage');
-    tran_stage.forEach(x=>{
-      x.check = true
-    })
-    console.log("stage", stage)
-    console.log('tran_stage', stage)
-    this.setData({
-      
-    })
+    var that = this;
+    var payStage = wx.getStorageSync('stage');
+    for (var i = 0; i < payStage.length; i++) {
+      payStage[i].checked = false;
+    }
+    wx.setStorageSync('payStage', payStage)
+    var enchangeCheck = wx.getStorageSync('payenchangeCheck') || [];
+    var enchangeValue = wx.getStorageSync('payenchangeValue') || [];
+    var enchangeId = wx.getStorageSync('payenchangeId') || [];
+    that.setData({
+      payStage: payStage,
+      enchangeCheck: enchangeCheck,
+      enchangeValue: enchangeValue,
+      enchangeId: enchangeId,
+      index: enchangeId
+    });
   },
 
   //下拉刷新
