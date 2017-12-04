@@ -23,7 +23,7 @@ Page({
       industryTags.tagsData = wx.getStorageSync("industryCurrent0") || wx.getStorageSync("industry");
     } else if (current == 1) {
       let industryCurrent1 = wx.getStorageSync('industryCurrent1');
-      let newIndustry = app.industryDeal(industryCurrent1)
+      let newIndustry = app.industryDeal(industryCurrent1);//处理获取到的industryCurrent1的数值,
       // industryTags.tagsData = newIndustry || wx.getStorageSync("industry");
       if (newIndustry == '') {
         industryTags.tagsData = wx.getStorageSync("industry");
@@ -64,11 +64,13 @@ Page({
     let that = this;
     let returnIndustry = []
     this.data.industryTags.tagsData.forEach((x) => {
+      //遍历当前的industryTags的值,如果其中有被打上,check标签为true的,这checkNum++且,添加到一个数组中
       if (x.check == true) {
         checkNum++;
         returnIndustry.push(x)
       }
     })
+    console.log(this.data.industryTags.tagsData)
     if (checkNum != 0) {
       if (current == 0) {
         wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
@@ -78,12 +80,13 @@ Page({
         wx.setStorageSync("industryCurrent2", this.data.industryTags.tagsData);
       } else if (current == 3) {
         wx.setStorageSync("industryCurrent3", this.data.industryTags.tagsData);
+
       }
       wx.navigateBack({
         delta: 1,
       })
     } else {
-    app.errorHide(that, "至少选择一项领域标签", 1500)
+    app.errorHidide(that, "至少选择一项领域标签", 1500)
     }
   },
 });
