@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 17,
 			"list": [
 				{
 					"id": 1,
@@ -123,6 +123,12 @@
 					"id": -1,
 					"name": "环境经济的店铺",
 					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "投资需求",
+					"pathName": "pages/match/match/investDemand/investDemand",
 					"query": ""
 				}
 			]

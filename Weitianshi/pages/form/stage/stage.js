@@ -18,7 +18,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    var payStage = wx.getStorageSync('y_stage');
+    var payStage = wx.getStorageSync('stage');
     for (var i = 0; i < payStage.length; i++) {
       payStage[i].checked = false;
     }
