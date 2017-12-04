@@ -2,7 +2,7 @@ import * as request from './utils/httpModel';
 import * as OperationModel from './utils/operationModel';
 import { picUrl } from './utils/picUrlModel';
 //app.js
-App({
+App({ 
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
     let url = this.globalData.url;

@@ -1,6 +1,6 @@
 <!--发布投资需求和资源需求的按钮-->
 <template name="publish">
-  <view wx:if="{{hasPublic==0}}">
+  <view wx:if="{{hasPublic==0}}"> 
     <view class="publish publish2 publish_find_project publish-investmentm" bindtap="{{jumpProject}}">
       <view>{{text.text1}}</view>
       <view class="weui-media-box__desc">{{text.text2}}</view>

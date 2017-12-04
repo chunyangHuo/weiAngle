@@ -3,18 +3,10 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    payStage: [],
-    checked: [],
-    index: [],
-    id: [],
+    stage: '',
+    tran_stage: '',
     error: "0",
     error_text: "",
-    enchange: [],//接口给的标签
-    checked: [],//已经选中的标签的值
-    checkedId: [],//已经选中标签的id
-    enchangeCheck: [],
-    enchangeValue: [],
-    enchangeId: []
   },
   onLoad: function () {
     var that = this;
