@@ -1,6 +1,6 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
-import * as request from './httpModel';
+import * as CacheModel from './cacheModel';
 //searchData
 let data = {
   firstTime: true,
@@ -60,35 +60,9 @@ let _linkDataShow = {
   secondStair: '',
 }
 
-// 无缓存状态下获取缓存
-function getCache() {
-  wx.request({
-    url: url_common + '/api/category/getProjectCategory',
-    method: 'POST',
-    success: function (res) {
-      // console.log('getProjectCategory',res)
-      let thisData = res.data.data;
-      thisData.area.forEach((x) => { x.check = false })
-      thisData.industry.forEach((x) => { x.check = false })
-      thisData.scale.forEach((x) => { x.check = false })
-      thisData.stage.forEach((x) => { x.check = false })
-      wx.setStorageSync("industry", thisData.industry)
-      wx.setStorageSync("scale", thisData.scale)
-      wx.setStorageSync("stage", thisData.stage)
-      wx.setStorageSync('hotCity', thisData.hotCity)
-      data.industry = thisData.industry;
-      data.stage = thisData.stage;
-      data.scale = thisData.scale;
-      data.hotCity = thisData.hotCity;
-      initGroup()
-    },
-  })
-}
-getCache();
-
 // 将label_industry分组
 function initGroup() {
-  let originalData = wx.getStorageSync('label_industry') || thisData.scale;
+  let originalData = wx.getStorageSync('label_industry');
   originalData.forEach((x, index) => {
     _label_industry.push(x)
     _linkDataShow.firstStair.push({
@@ -100,7 +74,7 @@ function initGroup() {
   _linkDataShow.firstStair[0].check = true;
   _linkDataShow.secondStair = _label_industry[0].child;
 }
-
+initGroup()
 
 // console.log('_label_industry',_label_industry)
 // console.log('_linkDataShow',_linkDataShow)
