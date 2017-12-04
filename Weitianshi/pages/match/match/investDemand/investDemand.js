@@ -49,6 +49,7 @@ Page({
                 wx.setStorageSync('industry', thisData.industry);//投资领域
                 wx.setStorageSync('y_scale', thisData.scale);//投资金额
                 wx.setStorageSync('y_stage', thisData.stage);//投资阶段
+                console.log(thisData)
     
                 //期望融资
                 var scale = wx.getStorageSync('y_scale');

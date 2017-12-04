@@ -861,10 +861,11 @@ Page({
               title: 'loading',
               mask: true,
             })
+            console.log(BPath)
             wx.downloadFile({
               url: BPath,
               success: function (res) {
-                var filePath = res.tempFilePath
+                var filePath = res.tempFilePath;
                 wx.openDocument({
                   filePath: filePath,
                   success: function (res) {
