@@ -9,24 +9,27 @@ Page({
   onLoad: function (option) {
     let that = this;
 
-    //请求各种标签列表项
-    wx.request({
-      url: app.globalData.url_common + '/api/category/getProjectCategory',
-      method: 'POST',
-      success: function (res) {
-        var thisData = res.data.data;
-        //添加false
-        that.for(thisData.area);
-        that.for(thisData.industry);
-        that.for(thisData.scale);
-        that.for(thisData.stage);
+    // //请求各种标签列表项
+    // wx.request({
+    //   url: app.globalData.url_common + '/api/category/getProjectCategory',
+    //   method: 'POST',
+    //   success: function (res) {
+    //     var thisData = res.data.data;
+    //     console.log(thisData)
+    //     let tran_area = thisData.area;
+    //     console.log(tran_area)
+    //     // //添加false
+    //     // that.for(thisData.area);
+    //     // that.for(thisData.industry);
+    //     // that.for(thisData.scale);
+    //     // that.for(thisData.stage);
 
-        wx.setStorageSync('y_area', thisData.area);//地区
-        wx.setStorageSync('industry', thisData.industry);//投资领域
-        wx.setStorageSync('y_scale', thisData.scale);//投资金额
-        wx.setStorageSync('y_stage', thisData.stage);//投资阶段
-      }
-    })
+    //     // wx.setStorageSync('y_area', thisData.area);//地区
+    //     // wx.setStorageSync('industry', thisData.industry);//投资领域
+    //     // wx.setStorageSync('y_scale', thisData.scale);//投资金额
+    //     // wx.setStorageSync('y_stage', thisData.stage);//投资阶段
+    //   }
+    // })
 
     //用来判断是否是重新认证
     let recertification = option.isUpdate;
@@ -89,6 +92,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           let user_info = res.data.user_info;
           let invest_info = res.data.invest_info;
           that.dealTags(that, invest_info);
@@ -108,10 +112,12 @@ Page({
     let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
     let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
     let stageValue = wx.getStorageSync('payenchangeValue') || [];
-    let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
+    // let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
     let scaleId = wx.getStorageSync('paymoneyenchangeId') || [];
     let stageId = wx.getStorageSync('y_payStageId') || [];
-    let areaId = wx.getStorageSync('payareaenchangeId') || [];
+    // let areaId = wx.getStorageSync('payareaenchangeId') || [];
+    let areaValue = wx.getStorageSync('tran_area') || [];
+    console.log(areaValue)
     let industryId = [];
     industryCurrent1.forEach(x => {
       industryId.push(x.industry_id)
@@ -125,15 +131,15 @@ Page({
     stageValue.forEach(x => {
       newStage.push({ stage_name: x })
     })
-    areaValue.forEach(x => {
-      newArea.push({ area_title: x })
-    })
+    // areaValue.forEach(x => {
+    //   newArea.push({ area_title: x })
+    // })
     //如果是由更改表单某一项内容后返回该页面的话
     if (invest_info) {
       invest_info.invest_industry = industryCurrent1;
       invest_info.invest_scale = newScale;
       invest_info.invest_stage = newStage;
-      invest_info.invest_area = newArea;
+      invest_info.invest_area = areaValue;
       this.setData({
         invest_info: invest_info,
         industryId: industryId,

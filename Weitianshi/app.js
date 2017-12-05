@@ -669,13 +669,15 @@ App({
   },
 
   //多选
-  checkMore(e, item, itemArr,that) {
+  checkMore(e, item, itemArr,that , itemName) {
 
     let target = e.currentTarget.dataset.item;
+    console.log("target",target)
     let index = e.currentTarget.dataset.index;//获取当前点击的项的 index
     if (target.check == false) {
       //判断当前选中项是未选中的状态,如果是未选中的状态,则进入下面的判断
       if (itemArr.length < 5) {
+        console.log(itemArr)
         item[index].check = true;//当前点击项的check值更改为true
         itemArr.push(target)// 将当前选中的这项,添加到 itemArr中
       } else {
@@ -684,14 +686,14 @@ App({
     } else {
       item[index].check = false;
       itemArr.forEach((y, index) => {
-        if (target.scale_id == y.scale_id) {
+        if (target[itemName] == y[itemName]) {
           itemArr.splice(index, 1)
         }
       })
     }
     return {
       item: item,
-      tran_scale: itemArr,
+      tran_arr: itemArr,
     }
   },
 
