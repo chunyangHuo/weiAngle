@@ -124,6 +124,12 @@
 					"name": "环境经济的店铺",
 					"pathName": "pages/my/projectShop/projectShop/projectShop",
 					"query": ""
+				},
+				{
+					"id": 17,
+					"name": "Search3",
+					"pathName": "pages/search/search3/search3",
+					"query": "user_id=Np38mX9r&entrance=faList"
 				}
 			]
 		}

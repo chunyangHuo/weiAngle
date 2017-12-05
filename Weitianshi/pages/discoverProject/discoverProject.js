@@ -1,9 +1,9 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
 import * as SearchModel from '../../utils/searchModel';
 import * as CreateProject from '../../utils/createProjectBottom';
 import * as ShareModel from '../../utils/shareModel';
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
   data: {
     //选项卡

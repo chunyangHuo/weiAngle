@@ -6,7 +6,7 @@ App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
     let url = this.globalData.url;
-    let url_common = this.globalData.url_common;
+    let url_common = this.globalData.url_common; 
 
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
@@ -14,7 +14,7 @@ App({
       wx.login({
         success: function (login) {
           let code = login.code;
-          if (code) { 
+          if (code) {
             let path = options.path;
             let shareTicket = options.shareTicket;
             //获取群ID
@@ -226,6 +226,53 @@ App({
       },
     });
   },
+  // 检查用户信息,信息完整刚进行回调
+  checkUserInfo(callBack) {
+    let user_id = wx.getStorageSync('user_id');
+    wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            if (callBack) {
+              callBack(res)
+            }
+          } else if (complete == 0) {
+            wx.showModal({
+              title: "提示",
+              content: "请先绑定个人信息",
+              success: function (res) {
+                if (res.confirm == true) {
+                  wx.navigateTo({
+                    url: '/pages/register/companyInfo/companyInfo'
+                  })
+                }
+              }
+            })
+          }
+        } else {
+          wx.showModal({
+            title: "提示",
+            content: "请先绑定个人信息",
+            success: function (res) {
+              if (res.confirm == true) {
+                wx.navigateTo({
+                  url: '/pages/register/personInfo/personInfo'
+                })
+              }
+            }
+          })
+        }
+        console.log('checkUserInfo', res);
+      }
+    })
+  },
 
   //industry多选标签数据预处理
   industryDeal(data) {
@@ -264,7 +311,7 @@ App({
     }
     console.log(dataCard.value, dataCard.id)
   },
- 
+
   //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
   tagsCheck(that, e, tags, str) {
     let target = e.currentTarget.dataset;
@@ -316,14 +363,16 @@ App({
           method: 'POST',
           success: function (res) {
             let newPage = res.data.data;
+            let page_end = res.data.page_end;
             if (dataStr && typeof dataStr == "string") {
               newPage = res.data[dataStr];
             }
             console.log(request.data.page, newPage);
-            let page_end = res.data.page_end;
-            for (let i = 0; i < newPage.length; i++) {
-              dataSum.push(newPage[i])
-            }
+         
+            // for (let i = 0; i < newPage.length; i++) {
+            //   dataSum.push(newPage[i])
+            // }
+            dataSum = dataSum.concat(newPage)
             that.setData({
               [str]: dataSum,
               page_end: page_end,
@@ -671,4 +720,4 @@ App({
     url: "https://wx.dev.weitianshi.cn",
     url_common: "https://wx.dev.weitianshi.cn"
   },
-});
+}); 
