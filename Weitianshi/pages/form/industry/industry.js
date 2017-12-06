@@ -72,6 +72,7 @@ Page({
         returnIndustry.push(x)
       }
     })
+    console.log(this.data.industryTags.tagsData)
     if (checkNum != 0) {
       if (current == 0) {
         wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
