@@ -46,8 +46,8 @@
         <view wx:if="{{tran_area == ''}}">选择城市</view>
         <view class="checkOn" wx:else="{{tran_area != ''}}">
           <block wx:for="{{tran_area}}" wx:key="{{index}}">{{item.area_title}},</block>
-          <image class="downArrow" src="/img/downArrow.png"></image>
         </view>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
