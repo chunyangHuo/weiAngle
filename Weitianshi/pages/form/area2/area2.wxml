@@ -1,9 +1,9 @@
 <view id="doMain">
   <view class="title">*最多可选择5个</view>
   <view class="context flex">
-    <block wx:for="{{payArea}}" wx:key="{{item.area_id}}">
+    <block wx:for="{{area}}" wx:key="{{item.area_id}}">
       <label class="tips">
-        <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.area_id}}" data-index="{{index}}" data-value='{{item.area_title}}' data-check="false" bindtap="checkboxChange">
+        <view class="{{item.check ==true?'checkedOne':''}}" id="{{item.area_id}}" data-index="{{index}}" data-item="{{item}}"  bindtap="checkboxChange">
           {{item.area_title}}</view>
       </label>
     </block>

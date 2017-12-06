@@ -3,15 +3,10 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    payMoney: [],
-    checked: [],
     index: [],
     id: [],
     error: "0",
     error_text: "",
-    enchangeCheck: [],
-    enchangeValue: [],
-    enchangeId: [],
     tran_scale: [],
     scale_id: ""
   },
@@ -38,10 +33,12 @@ Page({
     let that = this;
     let scale = this.data.scale
     let tranArr = this.data.tran_scale;
-    let item = app.checkMore(e, scale, tranArr,that);
+    let item = app.checkMore(e, scale, tranArr, that,"scale_id");
+    console.log(item)
+    console.log(tranArr)
     this.setData({
       scale: item.item,
-      tran_scale: item.tran_scale
+      tran_scale: item.tran_arr
     })
   },
   //下拉刷新
@@ -52,51 +49,17 @@ Page({
   //点击确定
   certain: function () {
     var that = this;
-    var checked = this.data.checked;
-    var id = this.data.id;
     var index = this.data.index;
     let tran_scale = this.data.tran_scale;
-
-    that.setData({
-      error: "0"
-    });
-
-    if (tran_scale.length > 5) {
-      that.setData({
-        error: "1",
-        error_text: "至多选择五个标签"
-      });
-      var time = setTimeout(function () {
-        var that = this;
-        that.setData({
-          error: "0"
-        })
-      }, 1500)
+    // 传值给myProject
+    if (tran_scale.length == 0) {
+      wx.setStorageSync("tran_scale", "")
     } else {
-      // 传值给myProject
-      // if (checked == "") {
-      //   wx.setStorageSync('y_payMoney', "选择金额");
-      //   wx.setStorageSync('y_payMoneyId', '');
-      //   wx.setStorageSync('paymoneyenchangeValue', checked)
-      //   wx.setStorageSync('paymoneyenchangeId', index)
-      //   wx.setStorageSync('paymoneyenchangeCheck', enchangeCheck)
-      // } else {
-      //   wx.setStorageSync('y_payMoney', checked);
-      //   wx.setStorageSync('y_payMoneyId', index);
-      //   wx.setStorageSync('paymoneyenchangeValue', checked)
-      //   wx.setStorageSync('paymoneyenchangeId', index)
-      //   wx.setStorageSync('paymoneyenchangeCheck', enchangeCheck)
-      // }
-      if(tran_scale.length == 0){
-        wx.setStorageSync("tran_scale", "")
-
-      }else{
-        wx.setStorageSync("tran_scale", tran_scale)
-      }
-     
-      wx.navigateBack({
-        delta: 1 // 回退前 delta(默认为1) 页面
-      })
+      wx.setStorageSync("tran_scale", tran_scale)
     }
+    wx.navigateBack({
+      delta: 1 // 回退前 delta(默认为1) 页面
+    })
   }
+
 });

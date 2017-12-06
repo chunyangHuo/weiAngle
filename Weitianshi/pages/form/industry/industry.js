@@ -16,7 +16,7 @@ Page({
     var options = options;
     var current = options.current;
     var industryTags = this.data.industryTags;
-
+    let identity = options.identity;
     // 0:发布融资项目  1:发布投资需求或者身份认证编辑 2:维护我的项目 3:发布投资案例
     //设置模版数据
     if (current == 0) {
@@ -38,6 +38,7 @@ Page({
     that.setData({
       current: current,
       industryTags: industryTags,
+      identity: identity
     })
   },
 
@@ -63,6 +64,7 @@ Page({
     let checkNum = 0;
     let that = this;
     let returnIndustry = []
+    let identity = that.data.identity;
     this.data.industryTags.tagsData.forEach((x) => {
       //遍历当前的industryTags的值,如果其中有被打上,check标签为true的,这checkNum++且,添加到一个数组中
       if (x.check == true) {
@@ -85,8 +87,13 @@ Page({
       wx.navigateBack({
         delta: 1,
       })
+    } else if(current == 1 && identity == 1){
+      wx.setStorageSync("industryCurrent1", '');
+      wx.navigateBack({
+        delta: 1,
+      })
     } else {
-    app.errorHidide(that, "至少选择一项领域标签", 1500)
+      app.errorHidide(that, "至少选择一项领域标签", 1500)
     }
   },
 });
