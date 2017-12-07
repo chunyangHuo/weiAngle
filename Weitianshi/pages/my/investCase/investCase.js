@@ -20,15 +20,13 @@ Page({
       wx.request({
         url: url_common + '/api/user/getUserAllInfo',
         data: {
-          share_id:0,
+          share_id: 0,
           user_id: user_id,
-          view_id:user_id
+          view_id: user_id
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           var invest_case = res.data.invest_case;
-          console.log(invest_case)
           wx.setStorageSync('invest_case', invest_case)
           that.setData({
             invest_case: invest_case,

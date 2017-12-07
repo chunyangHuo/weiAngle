@@ -810,12 +810,18 @@ Page({
               url: BPath,
               success: function (res) {
                 var filePath = res.tempFilePath
+                console.log(res)
                 wx.openDocument({
                   filePath: filePath,
                   success: function (res) {
+                    console.log(res)
                     wx.hideLoading();
                     console.log('打开文档成功')
-                  }
+                  },
+                  fail: function (res) {
+                    console.log('fail')
+                    console.log(res)
+                  },
                 })
               }
             })

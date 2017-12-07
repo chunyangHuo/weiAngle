@@ -282,8 +282,8 @@
 
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
-  <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}'>
+  <view class="weui-panel__bd" style="background:white;margin:16px" >
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}' bindtap='detail'>
       <view class="title" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
         <block wx:for="{{myProject.pro_industry||myProject.industry}}" wx:for-item="sort" wx:key="*this">

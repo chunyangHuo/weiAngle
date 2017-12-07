@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 21,
 			"list": [
 				{
 					"id": 1,
@@ -148,6 +148,12 @@
 					"name": "认证资料",
 					"pathName": "pages/my/identity/identityEdit/identityEdit",
 					"query": "group_id=18&authenticate_id=7899&isUpdate=0"
+				},
+				{
+					"id": 21,
+					"name": "成功案例",
+					"pathName": "pages/my/investCaseEdit/investCaseEdit",
+					"query": "index=0&case_id=415"
 				}
 			]
 		}
