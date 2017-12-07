@@ -1394,7 +1394,7 @@ button::after {
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.20);
   width: 166rpx;
   height: 66rpx;
-  top:700rpx;
+  top:910rpx;
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;

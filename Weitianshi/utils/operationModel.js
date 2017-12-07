@@ -47,7 +47,7 @@ function checkUserInfo(callBack) {
     }
   })
 }
-
+ 
 //项目查看申请
 function projectApply(pro_id, callBack) {
   let app = getApp();
