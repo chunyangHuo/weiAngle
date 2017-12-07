@@ -211,6 +211,7 @@ Page({
     var that = this;
     var theData = that.data;
     var y_describe = theData.y_describe;
+    var user_id = wx.getStorageSync('user_id');
     var industryValue = this.data.industryCard.value;
     var industryId = this.data.industryCard.id;
     var payStage = this.data.tran_stage;
@@ -231,12 +232,9 @@ Page({
     }
     if (payArea != "") {
       payArea.forEach((x) => {
-
         payAreaId.push(x.area_id)
       })
     }
-
-    var user_id = wx.getStorageSync('user_id');
     if (industryValue !== "选择领域" && payMoney != "" && payArea !== "" && payStage !== "") {
       wx.request({
         url: url + '/api/investor/updateOrCreateInvestor',
@@ -252,9 +250,9 @@ Page({
         success: function (res) {
           if (res.data.status_code == 2000000) {
             wx.removeStorageSync("industryCurrent1")
-            wx.removeStorageSync("investor_scale")
-            wx.removeStorageSync("investor_stage")
-            wx.removeStorageSync("investor_area")
+            wx.removeStorageSync("tran_scale")
+            wx.removeStorageSync("tran_stage")
+            wx.removeStorageSync("tran_area")
             wx.setStorageSync('investor_id', res.data.investor_id)
             var current = that.data.current;
             if (current == 1) {

@@ -8,11 +8,10 @@
 
   <!--项目领域-->
   <template is="input_jump" data="{{...industryCard}}"></template>
-
   <view class="card">
     <view class="text">项目轮次*</view>
-    <picker class="card_case" bindchange="case_stage" value="{{case_stage_id}}" range="{{stage}}">
-      {{case_stage_name||stage[stage_index]}}
+    <picker class="card_case" bindchange="case_stage" value="{{case_stage_id}}"  range="{{stage}}">
+      {{case_stage_name}}
     </picker>
   </view>
   <view class="card">
