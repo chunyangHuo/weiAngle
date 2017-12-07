@@ -210,7 +210,11 @@ Page({
                 })
               }
             } else {
-              app.href('/pages/register/bindSuccess/bindSuccess?type=' + type)
+              if(type){
+                app.href('/pages/register/bindSuccess/bindSuccess?type=' + type)
+              }else{
+                app.href('/pages/register/bindSuccess/bindSuccess?type=' + 0)
+              }
             }
           } else {
             var error_msg = res.data.error_msg;
