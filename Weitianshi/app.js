@@ -3,7 +3,7 @@ import * as OperationModel from './utils/operationModel';
 import * as CacheModel from './utils/cacheModel.js';
 import { picUrl } from './utils/picUrlModel';
 //app.js
-App({ 
+App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
     let url = this.globalData.url;
@@ -272,34 +272,6 @@ App({
       dataCard.css = ""
     }
     console.log(dataCard.value, dataCard.id)
-  },
- 
-  //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
-  tagsCheck(that, e, tags, str) {
-    let target = e.currentTarget.dataset;
-    let tagsData = tags.tagsData;
-    let checkObject = [];
-    tagsData[target.index].check = !tagsData[target.index].check;
-    let checkedNum = 0
-    tagsData.forEach((x) => {
-      if (x.check == true) {
-        checkedNum++
-      }
-    })
-    if (checkedNum >= 6) {
-      tagsData[target.index].check = !tagsData[target.index].check;
-      this.errorHide(that, "最多可选择五项", 1000)
-    } else {
-      that.setData({
-        [str]: tags
-      })
-    }
-    tagsData.forEach((x) => {
-      if (x.check == true) {
-        checkObject.push(x)
-      }
-    })
-    return checkObject
   },
 
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)
@@ -669,15 +641,12 @@ App({
   },
 
   //多选
-  checkMore(e, item, itemArr,that , itemName) {
-
+  checkMore(e, item, itemArr, that, itemName) {
     let target = e.currentTarget.dataset.item;
-    console.log("target",target)
     let index = e.currentTarget.dataset.index;//获取当前点击的项的 index
     if (target.check == false) {
       //判断当前选中项是未选中的状态,如果是未选中的状态,则进入下面的判断
       if (itemArr.length < 5) {
-        console.log(itemArr)
         item[index].check = true;//当前点击项的check值更改为true
         itemArr.push(target)// 将当前选中的这项,添加到 itemArr中
       } else {

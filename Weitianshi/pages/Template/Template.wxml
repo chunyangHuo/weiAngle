@@ -454,16 +454,6 @@
   </view>
 </template>
 
-<!--多选标签模块-->
-<template name="tags">
-  <block wx:for="{{tagsData}}" wx:key="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}">
-    <label class="tips">
-      <view class="{{item.check==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}' bindtap="{{bindEvent}}">
-        {{item.industry_name||item.stage_name||item.scale_money||item.area_title}}</view>
-    </label>
-  </block>
-</template>
-
 <!--input_jump-->
 <template name="input_jump">
   <view class="card">
