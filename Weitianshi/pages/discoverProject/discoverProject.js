@@ -35,7 +35,6 @@ Page({
       })
     }
     this.noSearch();
-    console.log(this.data.insideColor);
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -211,31 +210,27 @@ Page({
   },
   // 项目详情
   projectDetail: function (e) {
-    this.setData({
-      insideColor:false
-    })
-    console.log(0)
-    // var project_id = e.currentTarget.dataset.project;
+    var project_id = e.currentTarget.dataset.project;
     // 判斷項目是不是自己的
-    // wx.request({
-    //   url: url + '/api/project/projectIsMine',
-    //   data: {
-    //     project_id: project_id
-    //   },
-    //   method: 'POST',
-    //   success: function (res) {
-    //     var that = this;
-    //     var userId = res.data.user_id;
-    //     var user = wx.getStorageSync('user_id');
-    //     if (userId == user) {
-    //         app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        if (userId == user) {
+            app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
          
-    //     } else {
-    //         app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+        } else {
+            app.href('/pages/projectDetail/projectDetail?id=' + project_id)
         
-    //     }
-    //   }
-    // })
+        }
+      }
+    })
 
   },
   // 分享当前页面
