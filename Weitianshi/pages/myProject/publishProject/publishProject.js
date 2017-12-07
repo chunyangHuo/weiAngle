@@ -228,7 +228,7 @@ Page({
           method: 'POST',
           success: function (res) {
             if (res.data.status_code == 2000000) {
-              // app.href('/pages/scanCode/bpScanSuccess/bpScanSuccess')
+              app.href('/pages/myProject/bpScanSuccess/bpScanSuccess')
               that.setData({
                 modalBox: 0
               })

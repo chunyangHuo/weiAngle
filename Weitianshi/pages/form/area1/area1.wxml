@@ -2,15 +2,15 @@
   <scroll-view scroll-y="true" class="frame_province">
     <view>
       <block wx:for="{{province}}" wx:for-index='idx' wx:key="{{item.area_id}}">
-        <view class="province" bindtap="province" data-index="{{idx}}" data-id='{{item.area_id}}' style="background:{{backgrond[idx]==1?'white':''}}">{{item.area_title}}</view>
+        <view class="province {{item.check == true ? 'checkOn':''}}" bindtap="province" data-index="{{idx}}" data-id='{{item.area_id}}'>{{item.area_title}}</view>
       </block>
     </view>
   </scroll-view>
   <scroll-view scroll-y="true" class="frame_city">
     <view>
-      <block wx:for="{{city}}" wx:for-index='idx' wx:key="{{item.area_id}}">
-        <view class="city" bindtap="city" data-index='{{idx}}' data-id='{{item.area_id}}' wx:key="{{item.area_id}}" style="background:{{backgroundcity[idx]==1?'#ccc':''}}">{{item.area_title}}</view>
+      <block wx:for="{{city {{item.check == true ? 'checkOn':''}}}}" wx:for-index='idx' wx:key="{{item.area_id}}">
+        <view class="city" bindtap="city" data-index='{{idx}}' data-id='{{item.area_id}}' wx:key="{{item.area_id}}">{{item.area_title}}</view>
       </block>
-    </view>
+    </view> 
   </scroll-view>
 </view>

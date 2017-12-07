@@ -7,91 +7,54 @@ Page({
     city: [],
     background: [],
     belongArea: '',
-    console_province: ''
+    console_province: '',
   },
   onLoad: function (options) {
-    var that = this;
-    var provinceNumFirst = wx.getStorageSync('provinceNum') || [];
-    var cityNumFirst = wx.getStorageSync('cityNum') || [];
-    var current = options.current;
-    var provinceNum = parseInt(options.provinceNum) || parseInt(provinceNumFirst)//初始地区
-    var cityNum = parseInt(options.cityNum) || parseInt(cityNumFirst);//市
-    that.setData({
-      current: current
-    });
-    var provinceArr = [];
-    var cityArr = [];
-    var index = 0;
-    var cityindex = 0
     // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例
+    let that = this;
+    // 获取数据并标定check
+    this.areaDeal();
+  },
+  areaDeal() {
+    let that = this;
+    let tran_area = wx.getStorageSync('tran_area');
+    let provinceNum = tran_area[0];
+    let cityNum = tran_area[1];
+    let province = wx.getStorageSync('area');
+    // 省
+    province.forEach(x => {
+      if (x.area_id == provinceNum) {
+        x.check == false;
+      }
+    })
+    // 市
     wx.request({
       url: app.globalData.url_common + '/api/category/getArea',
       data: {
-        pid: 0
+        pid: provinceNum
       },
       method: 'POST',
       success: function (res) {
-        var province = res.data.data;
-        for (var i = 0; i < province.length; i++) {
-          provinceArr.push(province[i].area_id)
-        }
-        index = provinceArr.indexOf(provinceNum)
-        var backgrond = [];
-        backgrond[index] = 1;
+        let city = res.data.data;
+        city.forEach(x => {
+          x.check = false;
+          if (x.area_id == cityNum) {
+            x.check == true;
+          }
+        })
         that.setData({
           province: province,
-          backgrond: backgrond,
-          provinceNum: provinceNum
+          city: city
         })
-
-        wx.request({
-          url: app.globalData.url_common + '/api/category/getArea',
-          data: {
-            pid: provinceNum//请求获取省的id
-          },
-          method: 'POST',
-          success: function (res) {
-            var city = res.data.data;
-            for (var i = 0; i < city.length; i++) {
-              cityArr.push(city[i].area_id)
-            }
-            cityindex = cityArr.indexOf(cityNum)
-            var backgroundcity = [];
-
-            backgroundcity[cityindex] = 1;
-
-            if (cityindex == -1) {
-              city = ""
-            }
-
-            console.log(backgroundcity, city);
-            that.setData({
-              city: city,
-              backgroundcity: backgroundcity
-            })
-            console.log(backgroundcity);
-          }
-        });
-      },
-    })
-
+      }
+    });
   },
   province: function (e) {
     var that = this;
-    var background = [];
     var index = e.target.dataset.index;
     var id = e.target.dataset.id;
     var province = this.data.province;
-    var backgroundcity = this.data.backgroundcity;
-    var console_province = this.data.console_province;
-    background[index] = 1;
-    that.setData({
-      backgrond: background,
-      belongArea: province[index],
-      console_province: province[index].area_title,
-      provinceNum: province[index].area_id,
-      backgroundcity: []
-    });
+  
     wx.request({
       url: app.globalData.url_common + '/api/category/getArea',
       data: {
