@@ -17,6 +17,7 @@ Page({
     //banner
     bannerIndex: 0,
     modalBox: 0,
+    insideColor:true,
     imgUrls: [
       app.globalData.picUrl.banner_1,
       app.globalData.picUrl.banner_3,
@@ -34,7 +35,7 @@ Page({
       })
     }
     this.noSearch();
-
+    console.log(this.data.insideColor);
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -210,25 +211,32 @@ Page({
   },
   // 项目详情
   projectDetail: function (e) {
-    var project_id = e.currentTarget.dataset.project;
-    // 判斷項目是不是自己的
-    wx.request({
-      url: url + '/api/project/projectIsMine',
-      data: {
-        project_id: project_id
-      },
-      method: 'POST',
-      success: function (res) {
-        var that = this;
-        var userId = res.data.user_id;
-        var user = wx.getStorageSync('user_id');
-        if (userId == user) {
-          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
-        } else {
-          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
-        }
-      }
+    this.setData({
+      insideColor:false
     })
+    console.log(0)
+    // var project_id = e.currentTarget.dataset.project;
+    // 判斷項目是不是自己的
+    // wx.request({
+    //   url: url + '/api/project/projectIsMine',
+    //   data: {
+    //     project_id: project_id
+    //   },
+    //   method: 'POST',
+    //   success: function (res) {
+    //     var that = this;
+    //     var userId = res.data.user_id;
+    //     var user = wx.getStorageSync('user_id');
+    //     if (userId == user) {
+    //         app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+         
+    //     } else {
+    //         app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+        
+    //     }
+    //   }
+    // })
+
   },
   // 分享当前页面
   onShareAppMessage: function () {
