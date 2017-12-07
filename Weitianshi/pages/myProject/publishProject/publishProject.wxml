@@ -1,7 +1,4 @@
 <import src="/pages/Template/Template.wxml" />
-<!--<view class="title">
-  您的项目会推送给匹配的投资人,去电脑上创建更方面
-</view>-->
 <template is="pointPC">去电脑上创建项目更方便</template>
 <view id="myProject">
   <view class="card">
@@ -16,30 +13,21 @@
     <view class="text">项目介绍*</view>
     <input placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
   </view>
-  <!--<view class="card">
-    <view class="text">所属领域*</view>
-    <navigator url="/pages/form/industry/industry?current=0" id="domain">
-      <view class="slect flex">
-        <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
-        <image class="downArrow" src="/img/downArrow.png"></image>
-      </view>
-    </navigator>
-  </view>-->
   <template is="input_jump" data="{{...industryCard}}"></template>
   <view class="card">
     <view class="text">项目阶段*</view>
     <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
       <view class="slect flex">
-        <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name}}</view>
+        <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "选择阶段"}} </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
   </view>
   <view class="card">
     <view class="text">期望融资*</view>
-    <picker id="expect" bindchange="expect" value="{{expect_index}}" range="{{expect_arry}}">
+    <picker id="expect" bindchange="scale" value="{{scale_index}}" range="{{scale_arry}}">
       <view class="slect flex">
-        <view class="{{expect_index ==0 ? '' : 'checkOn'}}">{{expect[expect_index].scale_money}}</view>
+        <view class="{{scale_index ==0 ? '' : 'checkOn'}}">{{scale[scale_index].scale_money || "选择金额"}} </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
@@ -65,18 +53,6 @@
     <view class="text">项目亮点*</view>
     <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" />
   </view>
-  <!--<view class="card">
-  <view class="text">投后股份(%)</view>
-  <input  />
-  </view>-->
-  <!--上传BP-->
-  <!-- <view class="bp flex">
-    <view>项目计划书</view>
-    <view class="bpBtn bp-uploadm" bindtap="upLoad">去PC上传</view>
-  </view> -->
-  <!-- <button class="nextBtn publish-project-confirm" bindtap="public">
-    发布
-  </button> -->
 
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -94,7 +70,6 @@
       <view class="flex">
         <view class="projectContent">去电脑上传</view>
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-        <!-- <view class="personListContentAfter"></view> -->
       </view>
     </view>
   </view>
@@ -149,10 +124,8 @@
   <view class="answer">A：微天使平台将协助您寻找最合适的投资机构，并与合作伙伴共同协助推进您的项目融资。（业务同学会通过您在平台留下的联系方式与您沟通具体合作方式）
   </view>
 </view>
-<!-- <button class="nextBtn" bindtap="public">
-    维护项目
-  </button> -->
 <view class="highBox"></view>
+<!--保存  -->
 <template is="buttonOne" data="{{text:'保存',btnName:'public'}}"></template>
 
 <view class="modalBox" hidden="{{modalBox==0}}">

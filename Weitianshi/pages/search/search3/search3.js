@@ -147,7 +147,7 @@ Page({
     }
   },
   //上拉加载
-  loadMore: function () { 
+  loadMore: function () {
     let entrance = this.data.entrance;
     let that = this;
     let user_id = wx.getStorageSync('user_id');
@@ -164,6 +164,7 @@ Page({
           }
         }
         app.loadMore(that, request, "financingNeed")
+        break;
       case 'selected':
         request = {
           url: url_common + '/api/project/getSelectedProjectList',
@@ -175,10 +176,11 @@ Page({
         }
         //调用通用加载函数
         app.loadMore(that, request, "slectProject")
+        break;
       case 'investorList':
         {
           request = {
-            url: url_common + '/api/investor/searchInvestor',
+            url: url_common + '/api/user/searchUser',
             data: {
               user_id: user_id,
               page: this.data.currentPage,
@@ -192,7 +194,7 @@ Page({
       case 'faList':
         {
           request = {
-            url: url_common + '/api/investor/searchInvestor',
+            url: url_common + '/api/user/searchUser',
             data: {
               user_id: user_id,
               search: search,
@@ -206,15 +208,15 @@ Page({
       case 'myList':
         {
           request = {
-            url: url_common + '/api/investor/searchInvestor',
+            url: url_common + '/api/user/searchUser',
             data: {
               user_id: user_id,
               search: search,
-              page: this.data.currentPage,
+              page: that.data.currentPage,
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "financingNeed")
+          app.loadMore(that, request,'myList')
         }
         break;
     }
@@ -353,7 +355,7 @@ Page({
       })
     })
   },
-  // 投资人
+  // 投资人(弃用)
   investorList() {
     let that = this;
     let SearchInit = this.data.SearchInit;
@@ -377,7 +379,7 @@ Page({
       }
     });
   },
-  // FA
+  // FA(弃用)
   faList() {
     let that = this;
     let SearchInit = this.data.SearchInit;
@@ -401,7 +403,7 @@ Page({
       }
     });
   },
-  // 我的人脉
+  // 我的人脉(弃用)
   myList() {
     let user_id = this.data.user_id;
     let that = this;
@@ -490,7 +492,7 @@ Page({
               wx.hideLoading();
               var myList = res.data.data;//所有的用户
               var page_end = res.data.page_end;
-              console.log(myList)
+              console.log("myList", myList)
               that.setData({
                 myList: myList,
                 page_end: page_end,

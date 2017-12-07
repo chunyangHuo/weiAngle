@@ -33,7 +33,7 @@
       <template is='cardBottom1' data='{{item,user_id}}'></template>
     </view>
   </block>
-</scroll-view>
+</scroll-view> 
 
 
 
