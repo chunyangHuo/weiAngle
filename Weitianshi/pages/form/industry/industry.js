@@ -13,6 +13,13 @@ Page({
     let identity = options.identity;
     let industry = wx.getStorageSync('industry');
     let tran_industry = wx.getStorageSync('tran_industry') || [];
+    industry.forEach((x, index) => {
+      tran_industry.forEach(y => {
+        if (x.industry_id == y.industry_id) {
+          x.check = true;
+        }
+      })
+    })
     that.setData({
       industry: industry,
       tran_industry: tran_industry

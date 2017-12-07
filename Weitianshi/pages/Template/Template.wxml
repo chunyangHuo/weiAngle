@@ -459,7 +459,7 @@
   <view class="card">
     <view class="text">{{text}}</view>
     <navigator url="{{url}}">
-      <view class="slect flex">
+      <view class="slect flex"> 
         <view class="{{css}}">{{value}}</view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>

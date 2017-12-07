@@ -324,3 +324,6 @@ margin-top: 72rpx;
 .newBox{
   color:#333
 }
+.slect .black{
+  color: black;
+}
