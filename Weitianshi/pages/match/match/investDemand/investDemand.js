@@ -44,7 +44,7 @@ Page({
         let tran_industry = thisData.industry_tag;
         let tran_scale = thisData.scale_tag;
         let tran_stage = thisData.stage_tag;
-        let tran_area = thisData.area_tag;
+        let tran_hotCity = thisData.area_tag;
         if (res.data.data != '') {
           //获取已存有的投资领域,投资阶段,投资金额,投資地区
           var industry = wx.getStorageSync('industry')//项目领域总数                   
@@ -53,7 +53,7 @@ Page({
             tran_industry: tran_industry,
             tran_stage: tran_stage,
             tran_scale: tran_scale,
-            tran_area: tran_area,
+            tran_hotCity: tran_hotCity,
             describe: y_describe
           })
           //投资领域
@@ -63,7 +63,7 @@ Page({
           // //投资金额
           wx.setStorageSync("tran_scale", tran_scale)
           // //投资地区
-          wx.setStorageSync("tran_area", tran_area)
+          wx.setStorageSync("tran_hotCity", tran_hotCity)
           // 具体描述
           wx.setStorageSync('y_describe', y_describe)
         }
@@ -75,14 +75,14 @@ Page({
     var that = this;
     var y_describe = wx.getStorageSync('y_describe');
     var tran_industry = wx.getStorageSync('tran_industry');
-    var tran_area = wx.getStorageSync('tran_area');
+    var tran_hotCity = wx.getStorageSync('tran_hotCity');
     var tran_stage = wx.getStorageSync('tran_stage');
     var tran_scale = wx.getStorageSync('tran_scale');
     that.setData({
       tran_industry: tran_industry,
       y_describe: y_describe,
       tran_scale: tran_scale,
-      tran_area: tran_area,
+      tran_hotCity: tran_hotCity,
       tran_stage: tran_stage
     })
   },
@@ -129,7 +129,7 @@ Page({
     var industryValue = this.data.tran_industry;
     var payStage = this.data.tran_stage;
     var payMoney = this.data.tran_scale;
-    var payArea = this.data.tran_area;
+    var payArea = this.data.tran_hotCity;
     let industryId = [];
     let payMoneyId = [];
     let payStageId = [];
@@ -171,7 +171,7 @@ Page({
             wx.removeStorageSync("tran_industry")
             wx.removeStorageSync("tran_scale")
             wx.removeStorageSync("tran_stage")
-            wx.removeStorageSync("tran_area")
+            wx.removeStorageSync("tran_hotCity")
             wx.setStorageSync('investor_id', res.data.investor_id)
             var current = that.data.current;
             if (current == 1) {
