@@ -41,48 +41,23 @@ Page({
       method: 'POST',
       success: function (res) {
         var thisData = res.data.data;
+        let tran_industry = thisData.industry_tag;
         let tran_scale = thisData.scale_tag;
         let tran_stage = thisData.stage_tag;
         let tran_area = thisData.area_tag;
         if (res.data.data != '') {
           //获取已存有的投资领域,投资阶段,投资金额,投資地区
-
           var industry = wx.getStorageSync('industry')//项目领域总数                   
           var y_describe = thisData.investor_desc;
-          // var describle = wx.getStorageSync('investor_desc')//具体描述
-
-          // =========================投资领域==========================//
-          var y_domainValue = [];
-          var y_domainId = [];
-          var y_domainAllchecked = [];
-          var y_domainAllcheckedid = [];
-          for (var i = 0; i < industry.length; i++) {
-            y_domainAllchecked.push(industry[i].checked);
-            y_domainAllcheckedid.push(industry[i].industry_id)
-          }
-          var domain = thisData.industry_tag;
-          for (var i = 0; i < domain.length; i++) {
-            y_domainValue.push(domain[i].industry_name)
-            y_domainId.push(domain[i].industry_id)
-            var index = y_domainAllcheckedid.indexOf(domain[i].industry_id)
-            if (index != -1) {
-              y_domainAllchecked[index] = true;
-            }
-          };
           that.setData({
+            tran_industry: tran_industry,
             tran_stage: tran_stage,
             tran_scale: tran_scale,
-            tran_area: tran_area
+            tran_area: tran_area,
+            describe: y_describe
           })
-          //初始化
-          wx.setStorageSync('y_describe', y_describe)
-          wx.setStorageSync('y_domainValue', y_domainValue)
-          wx.setStorageSync('y_domainId', y_domainId)
-
           //投资领域
-          wx.setStorageSync('enchangeValue', y_domainValue);
-          wx.setStorageSync('enchangeId', y_domainId);
-          wx.setStorageSync('enchangeCheck', y_domainAllchecked);
+          wx.setStorageSync('tran_industry', tran_industry);
           // //投资阶段
           wx.setStorageSync('tran_stage', tran_stage);
           // //投资金额
@@ -91,37 +66,6 @@ Page({
           wx.setStorageSync("tran_area", tran_area)
           // 具体描述
           wx.setStorageSync('y_describe', y_describe)
-          that.setData({
-            domainValue: y_domainValue,
-            domainId: y_domainId,
-            describe: y_describe
-          })
-        }
-      },
-    })
-    // -------------------------项目领域处理部份---------------------------------
-    let industryCard = this.data.industryCard;
-
-    //检查是否发布过投资信息
-    wx.request({
-      url: url + '/api/investor/checkInvestorInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.data != '') {
-          //所选领域部分的数据处理
-          var industry = res.data.data.industry_tag;
-          wx.setStorageSync('industryCurrent1', industry)
-          industryCard.value = [];
-          industry.forEach((x) => {
-            industryCard.value.push(x.industry_name);
-            industryCard.id.push(x.industry_id);
-          })
-          that.setData({
-            industryCard: industryCard,
-          })
         }
       },
     })
@@ -129,48 +73,18 @@ Page({
   //页面显示
   onShow: function () {
     var that = this;
-    //填入所属领域,项目介绍,所在地区
-    var domainValueName = wx.getStorageSync('industryCurrent1');
-    var domainValue = [];
-    if (domainValueName.length == 0) {
-      domainValue = "选择领域"
-    } else {
-      domainValueName.forEach((x) => {
-        domainValue.push(x.industry_name)
-      })
-    }
-
-    var domainId = wx.getStorageSync('y_domainId');
     var y_describe = wx.getStorageSync('y_describe');
+    var tran_industry = wx.getStorageSync('tran_industry');
     var tran_area = wx.getStorageSync('tran_area');
     var tran_stage = wx.getStorageSync('tran_stage');
     var tran_scale = wx.getStorageSync('tran_scale');
     that.setData({
-      domainValue: domainValue,
-      domainId: domainId,
+      tran_industry: tran_industry,
       y_describe: y_describe,
       tran_scale: tran_scale,
       tran_area: tran_area,
       tran_stage: tran_stage
     })
-    // -------------------------项目领域处理部份---------------------------------
-    let industryCard = this.data.industryCard;
-    let industryCurrent1 = wx.getStorageSync("industryCurrent1");
-    if (industryCurrent1) {
-      industryCard.value = [];
-      industryCard.id = [];
-      industryCurrent1.forEach((x) => {
-        // if (x.check == true) {
-        industryCard.value.push(x.industry_name);
-        industryCard.id.push(x.industry_id);
-        // }
-        wx.setStorageSync("industryCurrent1", industryCurrent1)
-      })
-
-      this.setData({
-        industryCard: industryCard
-      })
-    }
   },
   //给所有添加checked属性
   for: function (name) {
@@ -212,14 +126,19 @@ Page({
     var theData = that.data;
     var y_describe = theData.y_describe;
     var user_id = wx.getStorageSync('user_id');
-    var industryValue = this.data.industryCard.value;
-    var industryId = this.data.industryCard.id;
+    var industryValue = this.data.tran_industry;
     var payStage = this.data.tran_stage;
     var payMoney = this.data.tran_scale;
     var payArea = this.data.tran_area;
+    let industryId = [];
     let payMoneyId = [];
     let payStageId = [];
     let payAreaId = [];
+    if (industryValue != "") {
+      industryValue.forEach((x) => {
+        industryId.push(x.industry_id)
+      })
+    }
     if (payStage != "") {
       payStage.forEach((x) => {
         payStageId.push(x.stage_id)
@@ -235,7 +154,7 @@ Page({
         payAreaId.push(x.area_id)
       })
     }
-    if (industryValue !== "选择领域" && payMoney != "" && payArea !== "" && payStage !== "") {
+    if (industryValue !== "" && payMoney != "" && payArea !== "" && payStage !== "") {
       wx.request({
         url: url + '/api/investor/updateOrCreateInvestor',
         data: {
@@ -249,7 +168,7 @@ Page({
         method: 'POST',
         success: function (res) {
           if (res.data.status_code == 2000000) {
-            wx.removeStorageSync("industryCurrent1")
+            wx.removeStorageSync("tran_industry")
             wx.removeStorageSync("tran_scale")
             wx.removeStorageSync("tran_stage")
             wx.removeStorageSync("tran_area")
