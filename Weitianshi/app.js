@@ -12,7 +12,7 @@ App({
     if (options.shareTicket) {
       //获取code
       wx.login({
-        success: function (login) {
+        success: function (login) { 
           let code = login.code;
           if (code) {
             let path = options.path;
@@ -231,7 +231,7 @@ App({
     let user_id = wx.getStorageSync('user_id');
     wx.getStorageSync('user_id');
     wx.request({
-      url: url_common + '/api/user/checkUserInfo',
+      url: this.globalData.url_common + '/api/user/checkUserInfo',
       data: {
         user_id: user_id
       },
@@ -250,7 +250,7 @@ App({
               success: function (res) {
                 if (res.confirm == true) {
                   wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo'
+                    url: '/pages/register/companyInfo/companyInfo?type = '+ 2
                   })
                 }
               }
@@ -263,7 +263,7 @@ App({
             success: function (res) {
               if (res.confirm == true) {
                 wx.navigateTo({
-                  url: '/pages/register/personInfo/personInfo'
+                  url: '/pages/register/personInfo/personInfo?type =' + 1
                 })
               }
             }

@@ -24,7 +24,7 @@ function checkUserInfo(callBack) {
             success: function (res) {
               if (res.confirm == true) {
                 wx.navigateTo({
-                  url: '/pages/register/companyInfo/companyInfo'
+                  url: '/pages/register/companyInfo/companyInfo?type = ' + 3
                 })
               }
             }
@@ -37,7 +37,7 @@ function checkUserInfo(callBack) {
           success: function (res) {
             if (res.confirm == true) {
               wx.navigateTo({
-                url: '/pages/register/personInfo/personInfo'
+                url: '/pages/register/personInfo/personInfo?type = ' + 2
               })
             }
           }
@@ -47,7 +47,7 @@ function checkUserInfo(callBack) {
     }
   })
 }
- 
+
 //项目查看申请
 function projectApply(pro_id, callBack) {
   let app = getApp();
@@ -175,7 +175,7 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
   })
   let user_id = wx.getStorageSync('user_id');
   checkUserInfo(x => {
-    getPushProjectTimes(that,pushRequest())
+    getPushProjectTimes(that, pushRequest())
     // 实现推送
     function pushRequest() {
       wx.request({
@@ -215,7 +215,7 @@ function projectPush(that, pushTo_user_id) {
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
   checkUserInfo(x => {
-    getPushProjectTimes(that,res => {
+    getPushProjectTimes(that, res => {
       wx.navigateTo({
         url: '/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id,
       })
@@ -268,7 +268,7 @@ function contactsAddDirect(added_user_id, callBack) {
 }
 
 //获取用户当日推送次数(辅助函数)
-function getPushProjectTimes(that,callBack) {
+function getPushProjectTimes(that, callBack) {
   let user_id = wx.getStorageSync('user_id');
   let app = getApp();
   let url_common = app.globalData.url_common;
