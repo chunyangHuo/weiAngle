@@ -1533,7 +1533,7 @@ page {
   height: 344rpx;
   padding-top: 48rpx;
   margin-left: 90rpx;
-  margin-top: 45%;
+  margin-top: 30%;
 }
 
 .modal {

@@ -17,6 +17,7 @@ Page({
     //banner
     bannerIndex: 0,
     modalBox: 0,
+    insideColor:true,
     imgUrls: [
       app.globalData.picUrl.banner_1,
       app.globalData.picUrl.banner_3,
@@ -34,7 +35,6 @@ Page({
       })
     }
     this.noSearch();
-
     //初始化数据
     app.initPage(that)
     wx.showLoading({
@@ -223,12 +223,15 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+            app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+         
         } else {
-          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+            app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+        
         }
       }
     })
+
   },
   // 分享当前页面
   onShareAppMessage: function () {

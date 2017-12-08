@@ -98,11 +98,11 @@
                 <view class="title">项目介绍</view>
               </view>
               <view class="contentAll">
-                <view class="titleRightBP send-bpm" bindtap="businessBook">查看BP
+                <view class="titleRightBP send-bpm" bindtap="businessBook">发送BP
                   <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                 </view>
                 <view>
-                  <view class="titleRightBP send-bpm" bindtap="businessBook" wx:if="{{project.pro_BP.length != 0}}">查看BP
+                  <view class="titleRightBP send-bpm" bindtap="businessBook" wx:if="{{project.pro_BP.length != 0}}">发送BP
                     <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
                   </view>
                   <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
