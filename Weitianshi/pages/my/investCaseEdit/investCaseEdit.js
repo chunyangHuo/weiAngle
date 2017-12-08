@@ -17,6 +17,10 @@ Page({
       css: "",
       value: ["选择领域"],
       id: []
+    },
+    belongArea:{
+      area_title :'',
+      area_id: ''
     }
   },
   onLoad: function (options) {
@@ -30,6 +34,8 @@ Page({
     var timeNow = yearNow + '-' + month + '-' + day;
     var that = this;
     var industry = wx.getStorageSync("industry");
+    let stageId = [];
+    let  stage_arr = [];
     wx.request({
       url: app.globalData.url_common + '/api/category/getProjectCategory',
       method: 'POST',
@@ -58,11 +64,14 @@ Page({
   },
   onShow: function () {
     var case_index = this.data.case_index;
-    var belongArea = wx.getStorageSync('addcase_belongArea');
-    if (belongArea) {
-      belongArea.area_title = belongArea.belongArea;
+    var tran_area = wx.getStorageSync('tran_area');
+    let belongArea = this.data.belongArea;
+    if (tran_area.length != 0) {
+      belongArea.area_title = tran_area[1].area_title;
+      belongArea.area_id = tran_area[1].area_id
       this.setData({
-        belongArea: belongArea
+        belongArea: belongArea,
+        tran_area: tran_area
       })
     }
 
@@ -140,9 +149,9 @@ Page({
     let case_stage_index = this.data.case_stage_index;
     var case_money = this.data.case_money;
     var case_time = this.data.case_time;
-    var belongArea = this.data.belongArea
-    var case_province = belongArea.provinceNum || belongArea.pid;
-    var case_city = belongArea.cityNum || belongArea.area_id;
+    var tran_area = this.data.tran_area
+    var case_province = tran_area[0].area_id;
+    var case_city = tran_area[1].area_id;
     let case_stage_id = "";
     let stage = this.data.stage;
     stage.forEach((x, index) => {
@@ -151,19 +160,18 @@ Page({
       }
     })
     console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
-    console.log(user_id, case_name, industry, case_industry, stageId, case_money, case_time, case_province, case_city, belongArea)
+    console.log(user_id, case_name, industry, case_industry, case_stage_id, case_money, case_time, case_province, case_city, tran_area)
     if (case_name == '') {
       app.errorHide(that, "项目名称不能为空", 1500)
     } else if (case_industry.length < 1) {
       app.errorHide(that, "领域不能为空", 1500)
-    } else if (stageId == 0) {
+    } else if (case_stage_id == 0) {
       app.errorHide(that, "轮次不能为空", 1500)
     } else if (case_money.length < 1) {
       app.errorHide(that, "投资金额不能为空", 1500)
     } else if (case_time == '请选择') {
       app.errorHide(that, "交易时间不能为空", 1500)
-    } else if (belongArea.length < 1) {
-      // case_city == [] || case_province == undefined
+    } else if (tran_area.length < 1) {
       app.errorHide(that, "地区不能为空", 1500)
     } else {
       if (case_index) {
@@ -184,6 +192,7 @@ Page({
           success: function (res) {
             if (res.data.status_code == 2000000) {
               wx.removeStorageSync("tran_industry")
+              wx.removeStorageSync("tran_area")
               wx.navigateBack({
                 delta: 1,
               })
@@ -213,6 +222,7 @@ Page({
           success: function (res) {
             if (res.data.status_code == 2000000) {
               wx.removeStorageSync("tran_industry")
+              wx.removeStorageSync("tran_area")
               wx.navigateBack({
                 delta: 1,
               })
@@ -252,6 +262,9 @@ Page({
           let invest_case = res.data.data;
           let tran_industry = invest_case.case_industry;
           let industryCard = that.data.industryCard;
+          let tran_area = [];
+          tran_area[0] = { area_id: invest_case.case_province, area_title: "" }
+          tran_area[1] = { area_id: invest_case.has_one_city.area_id, area_title: invest_case.has_one_city.area_title }
           //----------------------------项目领域进行处理----------------------
           if (tran_industry) {
             industryCard.value = [];
@@ -262,6 +275,7 @@ Page({
             })
           }
           wx.setStorageSync('tran_industry', tran_industry)
+          wx.setStorageSync('tran_area', tran_area)
           // 处理轮次,让轮次的id对应上index下标
           let stage = that.data.stage;
           stage.forEach((x, index) => {
@@ -281,6 +295,7 @@ Page({
             // case_city: invest_case.case_city,
             belongArea: invest_case.has_one_city
           })
+          console.log(invest_case.has_one_city)
         },
         fail: function (res) {
           console.log(res)
