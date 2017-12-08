@@ -19,11 +19,11 @@ Page({
     var that = this;
     let area = wx.getStorageSync("hotCity");
     console.log(area)
-    let tran_area = [];
-    if (wx.getStorageSync("tran_area").length != 0) {
-      tran_area = wx.getStorageSync("tran_area");
+    let tran_hotCity = [];
+    if (wx.getStorageSync("tran_hotCity").length != 0) {
+      tran_hotCity = wx.getStorageSync("tran_hotCity");
       area.forEach((y) => {
-        tran_area.forEach((x) => {
+        tran_hotCity.forEach((x) => {
           if (x.area_id == y.area_id) {
             y.check = true;
           }
@@ -32,7 +32,7 @@ Page({
     }
     that.setData({
       area: area,
-      tran_area: tran_area
+      tran_hotCity: tran_hotCity
     });
   },
   onShow: function () {
@@ -46,11 +46,11 @@ Page({
   checkboxChange: function (e) {
     let that = this;
     let area = this.data.area
-    let tranArr = this.data.tran_area;
+    let tranArr = this.data.tran_hotCity;
     let item = app.checkMore(e, area, tranArr, that, "area_id");
     this.setData({
       area: item.item,
-      tran_area: item.tran_arr
+      tran_hotCity: item.tran_arr
     })
   },
 
@@ -58,12 +58,12 @@ Page({
   certain: function () {
     var that = this;
     var index = this.data.index;
-    let tran_area = this.data.tran_area;
+    let tran_hotCity = this.data.tran_hotCity;
     // 传值给myProject
-    if (tran_area.length == 0) {
-      wx.setStorageSync("tran_area", "")
+    if (tran_hotCity.length == 0) {
+      wx.setStorageSync("tran_hotCity", "")
     } else {
-      wx.setStorageSync("tran_area", tran_area)
+      wx.setStorageSync("tran_hotCity", tran_hotCity)
     }
     wx.navigateBack({
       delta: 1 // 回退前 delta(默认为1) 页面

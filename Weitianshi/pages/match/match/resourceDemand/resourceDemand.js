@@ -192,7 +192,7 @@ Page({
     var current = this.data.current;
     if (targetValue != '' || enchangeValue != '') {
       wx.request({
-        url: url + '/api/resource/insertResource',
+        url: url + '/api/resource/updateOrCreateResource',
         data: {
           user_id: user_id,
           res_give: enchangeId,
