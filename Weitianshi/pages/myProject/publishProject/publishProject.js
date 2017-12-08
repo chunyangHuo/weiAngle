@@ -66,6 +66,7 @@ Page({
     // 项目领域取值
     this.tranIndustryDeal();
     this.tranAreaDeal();
+    this.privacyData();
   },
   //picker数据预处理
   pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
@@ -85,7 +86,6 @@ Page({
   //tran_industry取值处理
   tranIndustryDeal() {
     let tran_industry = wx.getStorageSync('tran_industry');
-    console.log(tran_industry)
     let industryCard = this.data.industryCard;
     if (tran_industry.length != 0) {
       industryCard.value = [];
@@ -114,6 +114,24 @@ Page({
         area_title: area_title,
         provinceNum: tran_area[0].area_id,
         cityNum: tran_area[1].area_id
+      })
+    }
+  },
+  //私密性取值
+  privacyData(){
+    let setPrivacy = wx.getStorageSync('setPrivacy');
+    console.log(setPrivacy)
+    if (setPrivacy) {
+      this.setData({
+        open_status: setPrivacy.open_status,
+        power_share_status: setPrivacy.power_share_status,
+        power_investor_status: setPrivacy.power_investor_status,
+        company_open_status: setPrivacy.company_open_status,
+        white_company: setPrivacy.white_company,
+        white_user: setPrivacy.white_user,
+        black_company: setPrivacy.black_company,
+        black_user: setPrivacy.black_user,
+        subscribe: setPrivacy.subscribe
       })
     }
   },
@@ -199,11 +217,33 @@ Page({
       service_yun: e.detail.value
     })
   },
-  //私密性设置
+  //私密性跳转
   initPrivacy: function () {
     app.href('/pages/myProject/initPrivacy/initPrivacy')
   },
-  //完整度
+  //私密性处理(辅助函数)
+  privacyDeal() {
+    let subscribe = this.data.subscribe;
+    Number(subscribe.white_company)
+    Number(subscribe.white_user)
+    this.setData({
+      subscribe: subscribe
+    })
+    this.totalScore(this.data.projectName)
+    this.totalScore(this.data.pro_company_name)
+    this.totalScore(this.data.pro_finance_stock_after)
+    this.totalScore(this.data.service_yun)
+    this.totalScore(this.data.service_fa)
+    this.totalScore(this.data.service_ps_bp)
+    return {
+      open_status: this.data.open_status,
+      power_share_status: this.data.power_share_status,
+      power_investor_status: this.data.power_investor_status,
+      company_open_status: this.data.company_open_status,
+    }
+
+  },
+  //完整度(辅助函数)
   totalScore: function (name) {
     let pro_total_score = this.data.pro_total_score;
     if (name) {
@@ -245,6 +285,10 @@ Page({
           method: 'POST',
           success: function (res) {
             if (res.data.status_code == 2000000) {
+              //清除数据
+              wx.setStorageSync('tran_industry', []);
+              wx.setStorageSync('tran_area', []);
+              wx.removeStorageSync('setPrivacy');
               app.href('/pages/myProject/bpScanSuccess/bpScanSuccess')
               that.setData({
                 modalBox: 0
@@ -257,105 +301,92 @@ Page({
   },
   //点击发布
   public: function () {
-    var that = this;
+    let that = this;
     let type = this.data.type;
-    var theData = that.data;
-    let pro_company_name = this.data.companyName;
-    let pro_name = this.data.projectName;
-    let pro_finance_stock_after = this.data.pro_finance_stock_after;
-    var describe = this.data.describe;
-    var pro_goodness = this.data.pro_goodness;
-    var industryValue = this.data.industryCard.value;
-    var industryId = this.data.industryCard.id;
-    var provinceNum = this.data.provinceNum;
-    var cityNum = this.data.cityNum;
-    var console_stage = this.data.stage[this.data.stage_index].stage_id;
-    var console_expect = this.data.scale[this.data.scale_index].scale_id;
-    var tips = this.data.tips_index;
-    var user_id = wx.getStorageSync('user_id');
-    let service_ps_bp = Number(this.data.service_ps_bp);
-    let service_fa = Number(this.data.service_fa);
-    let service_yun = Number(this.data.service_yun);
-    // ===========================私密性设置=====================
-    let subscribe = this.data.subscribe;
-    Number(subscribe.white_company)
-    Number(subscribe.white_user)
-    this.setData({
-      subscribe: subscribe
-    })
-    this.totalScore(pro_name)
-    this.totalScore(pro_company_name)
-    this.totalScore(pro_finance_stock_after)
-    this.totalScore(service_yun)
-    this.totalScore(service_fa)
-    this.totalScore(service_ps_bp)
-    let open_status = this.data.open_status;
-    let power_share_status = this.data.power_share_status;
-    let power_investor_status = this.data.power_investor_status;
-    let company_open_status = this.data.company_open_status;
-    let pro_total_score = this.data.pro_total_score;
-    if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
-      // 投后股份项数值限定
-      function checkNumber(data) {
-        var reg = /^\d+\.[0-9]{2}/;
-        if (reg.test(data)) {
-          return true;
-        }
-        return false;
+    let theData = this.data;
+    let privacy = this.privacyDeal();
+    // --------------------表单的各项值-------------------------------------
+    let describe = that.data.describe;
+    let industry = that.data.industryCard.id;
+    let pro_finance_stage = that.data.stage[that.data.stage_index].stage_id;
+    let pro_finance_scale = that.data.scale[that.data.scale_index].scale_id;
+    let pro_area_province = that.data.provinceNum;
+    let pro_area_city = that.data.cityNum;
+    let is_exclusive = that.data.tips_index;
+    let pro_goodness = that.data.pro_goodness;
+    let pro_finance_stock_after = that.data.pro_finance_stock_after;
+
+
+    //处理下投后股份数据类型 
+    if (isNaN(pro_finance_stock_after)) {
+    } else {
+      pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
+    }
+    if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
+      if (pro_finance_stock_after < 0) {
+        app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
+      } else if (pro_finance_stock_after > 100) {
+        app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
+      } else if (typeof pro_finance_stock_after != 'number') {
+        console.log(pro_finance_stock_after)
+        app.errorHide(that, '投后股份项应该为数字', 3000);
       }
-      //处理下投后股份数据类型 
-      if (isNaN(pro_finance_stock_after)) {
-      } else {
-        pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
-      }
-      if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
-        if (pro_finance_stock_after < 0) {
-          app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
-        } else if (pro_finance_stock_after > 100) {
-          app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
-        } else if (typeof pro_finance_stock_after != 'number') {
-          console.log(pro_finance_stock_after)
-          app.errorHide(that, '投后股份项应该为数字', 3000);
-        }
-        return;
-      }
+      return;
+    }
+
+    // 表单检验和发送表单
+    if (describe == '') {
+      app.errorHide(that, '请填写项目介绍', 3000)
+    } else if (industry.length == 0) {
+      app.errorHide(that, '请选择项目领域', 3000)
+    } else if (!pro_finance_stage) {
+      app.errorHide(that, '请选择项目阶段', 3000)
+    } else if (!pro_finance_scale) {
+      app.errorHide(that, '请选择期望融资', 3000)
+    } else if (pro_area_city == '') {
+      app.errorHide(that, '请选择所在地区', 3000)
+    } else if (is_exclusive == 4) {
+      app.errorHide(that, '请选择是否独家', 3000)
+    } else if (pro_goodness == '') {
+      app.errorHide(that, '请填写项目亮点', 3000)
+    } else {
       app.httpPost({
         url: url_common + '/api/project/createProject',
         data: {
-          user_id: user_id,
+          user_id: wx.getStorageSync('user_id'),
           pro_intro: describe,
-          industry: industryId,
-          pro_finance_stage: console_stage,
-          pro_finance_scale: console_expect,
-          pro_area_province: provinceNum,
-          pro_area_city: cityNum,
-          is_exclusive: tips,
+          industry: industry,
+          pro_finance_stage: pro_finance_stage,
+          pro_finance_scale: pro_finance_scale,
+          pro_area_province: pro_area_province,
+          pro_area_city: pro_area_city,
+          is_exclusive: is_exclusive,
           pro_goodness: pro_goodness,
-          pro_company_name: pro_company_name,
-          pro_name: pro_name,
           pro_finance_stock_after: pro_finance_stock_after,
-          service_ps_bp: service_ps_bp,
-          service_fa: service_fa,
-          service_yun: service_yun,
-          open_status: open_status,
-          power_share_status: power_share_status,
-          power_investor_status: power_investor_status,
-          company_open_status: Number(!company_open_status),
-          subscribe: subscribe,
-          pro_total_score: pro_total_score
+          pro_company_name: that.data.companyName,
+          pro_name: that.data.projectName,
+          service_ps_bp: that.data.service_ps_bp,
+          service_fa: that.data.service_fa,
+          service_yun: that.data.service_yun,
+          subscribe: that.data.subscribe,
+          pro_total_score: that.data.pro_total_score,
+          open_status: privacy.open_status,
+          power_share_status: privacy.power_share_status,
+          power_investor_status: privacy.power_investor_status,
+          company_open_status: Number(!privacy.company_open_status),
         },
       }).then(res => {
-        console.log(res)
+        console.log('res', res)
         if (res.data.status_code == 2000000) {
           //数据清空
-          wx.setStorageSync('tran_industry', [])
+          wx.setStorageSync('tran_industry', []);
+          wx.setStorageSync('tran_area', []);
+          wx.removeStorageSync('setPrivacy');
           app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
         } else {
           app.errorHide(that, res.data.error_msg, 3000)
         }
       })
-    } else {
-      app.errorHide(that, "请完整填写信息", 1500)
     }
   },
 });

@@ -89,6 +89,9 @@ Page({
     let cityNum = city[index].area_id;
     let tran_area = wx.getStorageSync('tran_area');
     tran_area[1] = city[index];
+    if(!tran_area[0]){
+      tran_area[0] = { area_id: 1, area_title: "北京"}
+    }
     wx.setStorageSync('tran_area', tran_area)
     city.forEach((x, idx) => {
       x.check = false;
