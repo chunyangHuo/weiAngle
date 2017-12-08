@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabled:false,
     slivalue: 6,
     sliderValue: 6,
     leaveMessage: '',
@@ -254,9 +255,8 @@ Page({
     //     app.errorHide(that, "请打分", 1500);
     //     return
     // }
-    wx.request({
+    app.httpPost({
       url: url_common + '/api/project/saveScore',
-      method: "POST",
       data: {
         user_id: that.data.user_id,
         project_id: that.data.project_id,
@@ -265,20 +265,22 @@ Page({
         remark: that.data.leaveMessage,
         score_list: that.data.score_list
       },
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          app.errorHide(that, "提交成功", 3000);
-          setTimeout(function () {
-            wx.navigateBack({
-              delta: 1 // 回退前 delta(默认为1) 页面
-            })
-          }, 2000)
-        }
-      },
-      fail: function () {
-        app.errorHide(that, "提交失败", 3000)
+    }, app.refreshButton(that)).then(res => {
+      if (res.data.status_code == 2000000) {
+        app.errorHide(that, "提交成功", 3000);
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1 // 回退前 delta(默认为1) 页面
+          })
+        }, 2000)
       }
     })
+    .catch(err=>{
+      app.errorHide(that, "提交失败", 3000)
+    })
+
+
+
   },
 
 })

@@ -45,4 +45,4 @@
     <input class="inputBox"  bindinput="blackUser" maxlength="500" value="{{black_user}}" placeholder="请输入"/>
 </view>
 <view class="highBox"></view>
-<template is="buttonOne" data="{{text:'保存',btnName:'saveInitPrivacy'}}"></template>
+<template is="buttonOne" data="{{text:'保存',btnName:'saveInitPrivacy',disabled}}"></template>

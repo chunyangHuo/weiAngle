@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    disabled:false,
     case_time: "请选择",
     industry: "请选择",
     stage: ["请选择"],
@@ -226,7 +227,7 @@ Page({
       app.errorHide(that, "地区不能为空", 1500)
     } else {
       if (case_index) {
-        wx.request({
+        app.httpPost({
           url: url_common + '/api/user/editUserProjectCase',
           data: {
             case_id: case_id,
@@ -239,25 +240,19 @@ Page({
             case_province: case_province,
             case_city: case_city
           },
-          method: 'POST',
-          success: function (res) {
-            console.log(res)
-            if (res.data.status_code == 2000000) {
-              wx.removeStorageSync("industryCurrent3")
-              wx.navigateBack({
-                delta: 1,
-              })
-            } else {
-              app.errorHide(that, res.data.error_msg, 3000)
-            }
-          },
-          fail: function (res) {
-            console.log(res)
-          },
+        }, app.refreshButton(that)).then(res => {
+          console.log(res)
+          if (res.data.status_code == 2000000) {
+            wx.removeStorageSync("industryCurrent3")
+            wx.navigateBack({
+              delta: 1,
+            })
+          } else {
+            app.errorHide(that, res.data.error_msg, 3000)
+          }
         })
-
       } else {
-        wx.request({
+        app.httpPost({
           url: url_common + '/api/user/createUserProjectCase',
           data: {
             user_id: user_id,
@@ -269,21 +264,17 @@ Page({
             case_province: case_province,
             case_city: case_city
           },
-          method: 'POST',
-          success: function (res) {
-            if (res.data.status_code == 2000000) {
-              wx.removeStorageSync("industryCurrent3")
-              wx.navigateBack({
-                delta: 1,
-              })
-            } else {
-              app.errorHide(that, res.data.error_msg, 3000)
-            }
-          },
-          fail: function (res) {
-            console.log(res)
-          },
+        }, app.refreshButton(that)).then(res => {
+          if (res.data.status_code == 2000000) {
+            wx.removeStorageSync("industryCurrent3")
+            wx.navigateBack({
+              delta: 1,
+            })
+          } else {
+            app.errorHide(that, res.data.error_msg, 3000)
+          }
         })
+
       }
     }
 

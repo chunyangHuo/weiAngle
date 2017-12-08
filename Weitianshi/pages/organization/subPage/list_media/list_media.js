@@ -58,6 +58,11 @@ Page({
       let newPage = res.data.data;
       let list = res.data.data.news_list;
       let page_end = res.data.data.page_end;
+      list.forEach(x => {
+        let httpstr = this.cusstr(x.news_url, "/", 3);
+        let str = x.news_url.indexOf('//');
+        x.news_url = httpstr.substring(str, httpstr.length).substr(2);
+      })
       if (list) {
         let newProject = media_list.concat(list)
         currentPage++;
@@ -73,38 +78,18 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // url字符串截取
+  cusstr(str, findStr, num) {
+    var idx = str.indexOf(findStr);
+    var count = 1;
+    while (idx >= 0 && count < num) {
+      idx = str.indexOf(findStr, idx + 1);
+      count++;
+    }
+    if (idx < 0) {
+      return '';
+    }
+    return str.substring(0, idx);
   }
+
 })

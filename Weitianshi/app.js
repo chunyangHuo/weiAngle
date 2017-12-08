@@ -618,7 +618,6 @@ App({
   httpPost(data, that) {
     return httpModel.httpPost(data, that)
   },
-
   //用户操作模块(util/operationModel)
   operationModel() {
     let func = arguments[0];
@@ -696,7 +695,17 @@ App({
       return;
     }
   },
-
+  // 保存按钮之后点击问题
+  refreshButton(that) {
+    that.setData({
+      disabled: true
+    })
+    setTimeout(function () {
+      that.setData({
+        disabled: false
+      })
+    }, 2000)
+  },
   //页栈超出处理
   href(url) {
     let pages = getCurrentPages();
@@ -713,11 +722,11 @@ App({
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',
-    url: "https://wx.weitianshi.cn",
-    url_common: "https://wx.weitianshi.cn"
+    // url: "https://wx.weitianshi.cn",
+    // url_common: "https://wx.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 }); 

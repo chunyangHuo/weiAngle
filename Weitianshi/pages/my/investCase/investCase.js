@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    disabled:false,
     buttonOne: {
       text: "添加案例"
     }

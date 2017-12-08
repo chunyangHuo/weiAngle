@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    disabled: false,//保存按钮是否禁用
     describe: "",
     industryValue: "选择领域",
     belongArea: "",
@@ -562,7 +563,8 @@ Page({
     let service_fa = Number(that.data.service_fa);
     let service_yun = Number(that.data.service_yun);
     let service_ps_bp = Number(that.data.service_ps_bp);
-    wx.request({
+
+    app.httpPost({
       url: url_common + '/api/project/updateProject',
       data: {
         user_id: user_id,
@@ -582,27 +584,25 @@ Page({
         service_ps_bp: service_ps_bp,
         pro_finance_stock_after: pro_finance_stock_after
       },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        wx.removeStorageSync("industryCurrent2");
-        if (res.data.status_code == 2000000) {
-          if (upLoad == 1) {
-            wx.navigateBack({//页面返回
-              delta: 2 // 回退前 delta(默认为1) 页面
-            })
-          }
-        } else {
-          wx.showToast({
-            title: res.error_msg
+    }, app.refreshButton(that)).then(res => {
+      console.log(res)
+      wx.removeStorageSync("industryCurrent2");
+      if (res.data.status_code == 2000000) {
+        if (upLoad == 1) {
+          wx.navigateBack({//页面返回
+            delta: 2 // 回退前 delta(默认为1) 页面
           })
         }
-      },
-      fail: function () {
+      } else {
         wx.showToast({
-          title: "维护项目失败"
+          title: res.error_msg
         })
-      },
+      }
+    })
+    .catch(err=>{
+      wx.showToast({
+        title: "维护项目失败"
+      })
     })
   }
 });

@@ -127,7 +127,7 @@
     维护项目
   </button> -->
 <view class="highBox"></view>
-<template is="buttonOne" data="{{text:'维护项目',btnName:'public'}}"></template>
+<template is="buttonOne" data="{{text:'维护项目',btnName:'public',disabled}}"></template>
 
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">

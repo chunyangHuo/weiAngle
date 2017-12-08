@@ -14,6 +14,6 @@
 <view style="height:98rpx;"></view>
 <!-- 按钮一号 -->   
 <!-- <template is="buttonOne" data="{{...buttonOne}}"></template> -->
- <template is="buttonOne" data="{{text:'添加案例',btnName:'buttonOne'}}"></template>
+ <template is="buttonOne" data="{{text:'添加案例',btnName:'buttonOne',disabled}}"></template>
 
 

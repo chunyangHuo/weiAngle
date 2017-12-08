@@ -50,6 +50,12 @@ Page({
         let leave_member_list = res.data.data.leave_member_list;
         let leaveList = leave_member_list.list;
         let investId = info.investment_id;
+        // 获取指定url
+        media_list1.forEach(x => {
+          let httpstr = that.cusstr(x.news_url, "/", 3);
+          let str = x.news_url.indexOf('//');
+          x.news_url = httpstr.substring(str, httpstr.length).substr(2);
+        })
         that.setData({
           media_list1: media_list1,
           investId: investId,
@@ -153,7 +159,19 @@ Page({
     }
 
   },
-
+  // 媒体新闻url字符串截取
+  cusstr(str, findStr, num) {
+    var idx = str.indexOf(findStr);
+    var count = 1;
+    while (idx >= 0 && count < num) {
+      idx = str.indexOf(findStr, idx + 1);
+      count++;
+    }
+    if (idx < 0) {
+      return '';
+    }
+    return str.substring(0, idx);
+  },
   // 投资案例跳转
   toCase: function () {
     app.href('/pages/organization/subPage/list_investCase/list_investCase?investment_id=' + this.data.investId)

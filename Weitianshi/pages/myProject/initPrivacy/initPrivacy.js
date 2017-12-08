@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    disabled:false,
     open_status: 1,
     power_share_status: 1,
     power_investor_status: 1,
@@ -158,7 +159,7 @@ Page({
     wx.setStorageSync('setPrivacy', setPrivacy)
     // 保存私密性
     if (project_id) {
-      wx.request({
+      app.httpPost({
         url: url_common + '/api/project/set',
         data: {
           project_id: project_id,
@@ -171,18 +172,17 @@ Page({
           black_company: black_company,
           black_user: black_user
         },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status_code == 2000000) {
-            wx.removeStorageSync('setPrivacy');
-            wx.navigateBack({
-              delta: 1,
-            })
-          } else {
-            app.errorHide(that, res.data.error_msg, 3000)
-          }
+      }, app.refreshButton(that)).then(res => {
+        if (res.data.status_code == 2000000) {
+          wx.removeStorageSync('setPrivacy');
+          wx.navigateBack({
+            delta: 1,
+          })
+        } else {
+          app.errorHide(that, res.data.error_msg, 3000)
         }
       })
+
     } else {
       wx.navigateBack({
         delta: 1,
