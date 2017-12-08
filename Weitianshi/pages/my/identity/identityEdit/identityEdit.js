@@ -70,10 +70,11 @@ Page({
         success: function (res) {
           let user_info = res.data.user_info;
           let invest_info = res.data.invest_info;
+          console.log(invest_info)
           wx.setStorageSync("tran_scale", invest_info.invest_scale)
           wx.setStorageSync("tran_stage", invest_info.invest_stage)
           wx.setStorageSync("tran_area", invest_info.invest_area)
-          wx.setStorageSync("industryCurrent1", invest_info.invest_industry)
+          wx.setStorageSync("tran_industry", invest_info.invest_industry)
           that.setData({
             user_info: user_info,
             invest_info: invest_info,
@@ -86,20 +87,23 @@ Page({
   onShow: function () {
     //更改某一项表单值后返回表单页面数据更新
     let invest_info = this.data.invest_info;
+    console.log(invest_info)
     let user_info = this.data.user_info;
-    let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
+    let tran_industry = wx.getStorageSync('tran_industry') || [];
     let tran_scale = wx.getStorageSync('tran_scale') || [];
     let tran_stage = wx.getStorageSync('tran_stage') || [];
     let tran_area = wx.getStorageSync('tran_area') || [];
     let newScale = [];
     let newStage = [];
     let newArea = [];
+    let newIndustry = [];
     let areaId = [];
     let scaleId = [];
     let stageId = [];
     let industryId = [];
-    industryCurrent1.forEach(x => {
-      industryId.push(x.industry_id)
+    tran_industry.forEach(x => {
+      newIndustry.push({ industry_name: x.industry_name })
+      industryId.push({ industry_id: x.industry_id })
     })
     // 将scale_id 和scale_money 单独放入一个数组中,以便展示和保存
     tran_scale.forEach(x => {
@@ -116,7 +120,7 @@ Page({
     })
     //如果是由更改表单某一项内容后返回该页面的话
     if (invest_info) {
-      invest_info.invest_industry = industryCurrent1;
+      invest_info.invest_industry = newIndustry;
       invest_info.invest_scale = newScale;
       invest_info.invest_stage = newStage;
       invest_info.invest_area = newArea;
@@ -294,7 +298,7 @@ Page({
           wx.removeStorageSync("tran_area")
           wx.removeStorageSync("tran_stage")
           wx.removeStorageSync("tran_scale")
-          wx.removeStorageSync("industryCurrent1")
+          wx.removeStorageSync("tran_industry")
           let statusCode = res.data.status_code;
           if (statusCode == 2000000) {
             app.href('/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification)
