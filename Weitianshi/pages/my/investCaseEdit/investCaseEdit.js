@@ -20,7 +20,6 @@ Page({
     }
   },
   onLoad: function (options) {
-    console.log(options)
     //获取当前时间,以备picker使用
     var d = new Date();
     var yearBefore = d.getFullYear() - 20;
@@ -37,7 +36,6 @@ Page({
       success: function (res) {
         var stage = res.data.data.stage;
         var stage_arr = [];
-        var stageId = [];
         stage.unshift({
           stage_id: 0,
           stage_name: "请选择"
@@ -57,7 +55,6 @@ Page({
         that.getInfo(options)
       },
     })
-
   },
   onShow: function () {
     var case_index = this.data.case_index;
@@ -154,12 +151,12 @@ Page({
       }
     })
     console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
-    console.log(user_id, case_name, industry, case_industry, case_stage_id, case_money, case_time, case_province, case_city, belongArea)
+    console.log(user_id, case_name, industry, case_industry, stageId, case_money, case_time, case_province, case_city, belongArea)
     if (case_name == '') {
       app.errorHide(that, "项目名称不能为空", 1500)
     } else if (case_industry.length < 1) {
       app.errorHide(that, "领域不能为空", 1500)
-    } else if (case_stage_id == 0) {
+    } else if (stageId == 0) {
       app.errorHide(that, "轮次不能为空", 1500)
     } else if (case_money.length < 1) {
       app.errorHide(that, "投资金额不能为空", 1500)
