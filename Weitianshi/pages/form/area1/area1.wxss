@@ -30,3 +30,7 @@ scroll-view {
 .checkOn {
   background: white;
 }
+
+.checkOn2 {
+  background: #f2f2f2;
+}

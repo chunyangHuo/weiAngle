@@ -4,7 +4,9 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     describe: "",
-    belongArea: "选择城市",
+    area_title: "选择城市",
+    provinceNum: '',
+    cityNum: '',
     // ---------------------picker----------------------
     stage: [],
     stage_index: 0,
@@ -20,7 +22,6 @@ Page({
     console_tips: "",
     loading: '0',
     pro_goodness: "",
-    modalBox: 0,
     service_fa: 0,
     service_yun: 0,
     service_ps_bp: 0,
@@ -41,7 +42,8 @@ Page({
       white_user: 0,
       black_company: '',
       black_user: ''
-    }
+    },
+    modalBox: 0,
   },
   onLoad: function (options) {
     let that = this;
@@ -63,6 +65,7 @@ Page({
   onShow: function () {
     // 项目领域取值
     this.tranIndustryDeal();
+    this.tranAreaDeal();
   },
   //picker数据预处理
   pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
@@ -101,6 +104,18 @@ Page({
     this.setData({
       industryCard: industryCard
     })
+  },
+  //tran_area取值处理
+  tranAreaDeal() {
+    let tran_area = wx.getStorageSync('tran_area');
+    if (tran_area.length != 0) {
+      let area_title = tran_area[0].area_title + '-' + tran_area[1].area_title;
+      this.setData({
+        area_title: area_title,
+        provinceNum: tran_area[0].area_id,
+        cityNum: tran_area[1].area_id
+      })
+    }
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -211,18 +226,20 @@ Page({
             project_id: that.data.pro_id,
             credential: res.result,//二维码扫描信息
             pro_data: {
-              "pro_intro": that.data.describe,
-              "industry": that.data.industryCard.id,
-              "pro_finance_stage": that.data.stage[that.data.stage_index].stage_id,
-              "pro_finance_scale": that.data.scale[that.data.scale_index].scale_id,
-              "is_exclusive": that.data.tips_index,
-              "pro_goodness": that.data.pro_goodness,
-              "pro_company_name": that.data.companyName,
-              "pro_name": that.data.projectName,
-              "pro_finance_stock_after": that.data.pro_finance_stock_after,
-              "service_fa": that.data.service_fa,
-              "service_yun": that.data.service_yun,
-              "service_ps_bp": that.data.service_ps_bp
+              pro_intro: that.data.describe,
+              industry: that.data.industryCard.id,
+              pro_finance_stage: that.data.stage[that.data.stage_index].stage_id,
+              pro_finance_scale: that.data.scale[that.data.scale_index].scale_id,
+              pro_area_province: that.data.provinceNum,
+              pro_area_city: that.data.cityNum,
+              is_exclusive: that.data.tips_index,
+              pro_goodness: that.data.pro_goodness,
+              pro_company_name: that.data.companyName,
+              pro_name: that.data.projectName,
+              pro_finance_stock_after: that.data.pro_finance_stock_after,
+              service_fa: that.data.service_fa,
+              service_yun: that.data.service_yun,
+              service_ps_bp: that.data.service_ps_bp
             }
           },
           method: 'POST',

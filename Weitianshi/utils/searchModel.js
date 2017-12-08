@@ -78,7 +78,7 @@ function getCache() {
       wx.setStorageSync("scale", thisData.scale)
       wx.setStorageSync("stage", thisData.stage)
       wx.setStorageSync("hotCity", thisData.hotCity)
-      wx.setStorageSync('tran_area', [1,2])
+      wx.setStorageSync('tran_area', [])
       wx.setStorageSync('tran_industry', [])
       wx.setStorageSync('tran_scale', [])
       wx.setStorageSync('tran_stage', [])
