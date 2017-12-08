@@ -1,9 +1,9 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
 import * as SearchModel from '../../utils/searchModel';
 import * as CreateProject from '../../utils/createProjectBottom';
 import * as ShareModel from '../../utils/shareModel';
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
   data: {
     //选项卡
@@ -34,39 +34,6 @@ Page({
       })
     }
     this.noSearch();
-
-    // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
-    // 无缓存用户searchModel预处理
-    if (!that.data.SearchInit.industry) {
-      //获取筛选项所需的信息并存入缓存
-      wx.request({
-        url: url_common + '/api/category/getProjectCategory',
-        method: 'POST',
-        success: function (res) {
-          // console.log('getProjectCategory',res)
-          let thisData = res.data.data;
-          thisData.area.forEach((x) => { x.check = false })
-          thisData.industry.forEach((x) => { x.check = false })
-          thisData.scale.forEach((x) => { x.check = false })
-          thisData.stage.forEach((x) => { x.check = false })
-          thisData.area.forEach((x) => { x.check = false })
-          thisData.hotCity.forEach((x) => { x.check = false })
-          wx.setStorageSync("industry", thisData.industry)
-          wx.setStorageSync("scale", thisData.scale)
-          wx.setStorageSync("stage", thisData.stage)
-          wx.setStorageSync('area', thisData.area)
-          wx.setStorageSync('hotCity', thisData.hotCity)
-          let SearchInit = that.data.SearchInit;
-          SearchInit.industry = wx.getStorageSync('industry');
-          SearchInit.stage = wx.getStorageSync('stage');
-          SearchInit.scale = wx.getStorageSync('scale');
-          SearchInit.hotCity = wx.getStorageSync('hotCity');
-          that.setData({
-            SearchInit: SearchInit
-          })
-        }
-      })
-    }
 
     //初始化数据
     app.initPage(that)

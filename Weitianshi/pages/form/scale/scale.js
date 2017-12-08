@@ -34,8 +34,6 @@ Page({
     let scale = this.data.scale
     let tranArr = this.data.tran_scale;
     let item = app.checkMore(e, scale, tranArr, that,"scale_id");
-    console.log(item)
-    console.log(tranArr)
     this.setData({
       scale: item.item,
       tran_scale: item.tran_arr
@@ -49,7 +47,6 @@ Page({
   //点击确定
   certain: function () {
     var that = this;
-    var index = this.data.index;
     let tran_scale = this.data.tran_scale;
     // 传值给myProject
     if (tran_scale.length == 0) {

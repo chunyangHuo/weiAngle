@@ -2,8 +2,13 @@
 <view id="doMain">
   <view class="title">*最多可选择5个</view>
   <view class="context flex">
-       <template is="tags" data="{{...industryTags}}"></template>
-    </view>
+    <block wx:for="{{industry}}" wx:key="{{item.industry_id}}">
+      <label class="tips">
+        <view class="{{item.check == true ?'checkedOne':''}}" id="{{item.industry_id}}" data-index="{{index}}" data-item="{{item}}" bindtap="checkboxChange">
+          {{item.industry_name}}</view>
+      </label>
+    </block>
+  </view>
   <button class="nextBtn" bindtap="certain">
     确定
   </button>

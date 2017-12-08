@@ -76,13 +76,11 @@ export function http(data, that) {
           if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
             return resolve(res)
           } else {
-            throw Error(res.data.error_msg)
             if(that){
               app.errorHide(that,res.data.error_msg, 3000)
             }
           }
         } else {
-          throw Error('请求接口失败')
           if(that){
              app.errorHide(that, '请求接口失败', 3000)
           }

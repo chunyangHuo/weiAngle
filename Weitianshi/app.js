@@ -1,18 +1,12 @@
 import * as httpModel from './utils/httpModel';
 import * as OperationModel from './utils/operationModel';
-import * as CacheModel from './utils/cacheModel.js';
 import { picUrl } from './utils/picUrlModel';
 //app.js
-App({ 
+App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
     let url = this.globalData.url;
-    let url_common = this.globalData.url_common;
-
-    /* //打开调试模式
-    wx.setEnableDebug({ 
-      enableDebug: true,
-    }) */
+    let url_common = this.globalData.url_common; 
 
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
@@ -48,9 +42,6 @@ App({
         }
       })
     }
-  },
-  onError(msg) {
-    console.log(msg)
   },
 
   //进入页面判断是否有open_session
@@ -235,6 +226,53 @@ App({
       },
     });
   },
+  // 检查用户信息,信息完整刚进行回调
+  checkUserInfo(callBack) {
+    let user_id = wx.getStorageSync('user_id');
+    wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            if (callBack) {
+              callBack(res)
+            }
+          } else if (complete == 0) {
+            wx.showModal({
+              title: "提示",
+              content: "请先绑定个人信息",
+              success: function (res) {
+                if (res.confirm == true) {
+                  wx.navigateTo({
+                    url: '/pages/register/companyInfo/companyInfo'
+                  })
+                }
+              }
+            })
+          }
+        } else {
+          wx.showModal({
+            title: "提示",
+            content: "请先绑定个人信息",
+            success: function (res) {
+              if (res.confirm == true) {
+                wx.navigateTo({
+                  url: '/pages/register/personInfo/personInfo'
+                })
+              }
+            }
+          })
+        }
+        console.log('checkUserInfo', res);
+      }
+    })
+  },
 
   //industry多选标签数据预处理
   industryDeal(data) {
@@ -273,34 +311,6 @@ App({
     }
     console.log(dataCard.value, dataCard.id)
   },
- 
-  //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
-  tagsCheck(that, e, tags, str) {
-    let target = e.currentTarget.dataset;
-    let tagsData = tags.tagsData;
-    let checkObject = [];
-    tagsData[target.index].check = !tagsData[target.index].check;
-    let checkedNum = 0
-    tagsData.forEach((x) => {
-      if (x.check == true) {
-        checkedNum++
-      }
-    })
-    if (checkedNum >= 6) {
-      tagsData[target.index].check = !tagsData[target.index].check;
-      this.errorHide(that, "最多可选择五项", 1000)
-    } else {
-      that.setData({
-        [str]: tags
-      })
-    }
-    tagsData.forEach((x) => {
-      if (x.check == true) {
-        checkObject.push(x)
-      }
-    })
-    return checkObject
-  },
 
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)
   /* 初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页) */
@@ -325,14 +335,16 @@ App({
           method: 'POST',
           success: function (res) {
             let newPage = res.data.data;
+            let page_end = res.data.page_end;
             if (dataStr && typeof dataStr == "string") {
               newPage = res.data[dataStr];
             }
             console.log(request.data.page, newPage);
-            let page_end = res.data.page_end;
-            for (let i = 0; i < newPage.length; i++) {
-              dataSum.push(newPage[i])
-            }
+         
+            // for (let i = 0; i < newPage.length; i++) {
+            //   dataSum.push(newPage[i])
+            // }
+            dataSum = dataSum.concat(newPage)
             that.setData({
               [str]: dataSum,
               page_end: page_end,
@@ -669,15 +681,12 @@ App({
   },
 
   //多选
-  checkMore(e, item, itemArr,that , itemName) {
-
+  checkMore(e, item, itemArr, that, itemName) {
     let target = e.currentTarget.dataset.item;
-    console.log("target",target)
     let index = e.currentTarget.dataset.index;//获取当前点击的项的 index
     if (target.check == false) {
       //判断当前选中项是未选中的状态,如果是未选中的状态,则进入下面的判断
       if (itemArr.length < 5) {
-        console.log(itemArr)
         item[index].check = true;//当前点击项的check值更改为true
         itemArr.push(target)// 将当前选中的这项,添加到 itemArr中
       } else {
@@ -709,4 +718,4 @@ App({
     url: "https://wx.dev.weitianshi.cn",
     url_common: "https://wx.dev.weitianshi.cn"
   },
-});
+}); 
