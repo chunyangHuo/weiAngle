@@ -6,7 +6,7 @@ Page({
     case_time: "请选择",
     industry: "请选择",
     stage: ["请选择"],
-    stage_index: 0,
+    case_stage_index: 0,
     buttonOne: {
       text: "保存"
     },
@@ -19,7 +19,6 @@ Page({
     }
   },
   onLoad: function (options) {
-    console.log(options)
     //获取当前时间,以备picker使用
     let case_id = options.case_id;
     var d = new Date();
@@ -36,87 +35,30 @@ Page({
       method: 'POST',
       success: function (res) {
         var stage = res.data.data.stage;
-        console.log(stage)
         var stage_arr = [];
-        var stageId = [];
         stage.unshift({
           stage_id: 0,
           stage_name: "请选择"
         });
-        
-        for (var i = 0; i < stage.length; i++) {
-          stage_arr.push(stage[i].stage_name);
-          stageId.push(stage[i].stage_id)
-        }
-        stage = stage_arr;
-    
+
+        stage.forEach((x) => {
+          stage_arr.push(x.stage_name);
+        })
+        // 维护案例的情况下
+        // 通过是否有Index传值进来来区别新建案例还是维护案例,index存在是編輯案例
+        let index = options;
+        that.getInfo(index)
+        // stage = stage_arr;
         that.setData({
           timeNow: timeNow,
           timeBefore: timeBefore,
           stage: stage,
-          stageId: stageId,
+          stage_arr: stage_arr
         })
       },
     })
-    // 维护案例的情况下
-    // 通过是否有Index传值进来来区别新建案例还是维护案例,index存在是編輯案例
-    if (options.index) {
-      var case_index = options.index;
-      let industryCard = this.data.industryCard;
-      let that = this;
-      var user_id = wx.getStorageSync('user_id');
-      wx.request({
-        url: url_common + '/api/user/getOneUserProjectCase',
-        data: {
-          user_id: user_id,
-          case_id: case_id
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-          let invest_case = res.data.data;
-          let industry = invest_case.case_industry;
-          var industry_arr = [];
-          var industryId = [];
-          var industryCurrent3 = wx.getStorageSync("industry");
-          //----------------------------项目领域进行处理----------------------
-          if (industry) {
-            industry.forEach((x) => {
-              industry_arr.push(x.industry_name);
-              industryId.push(x.industry_id)
-            })
-          }
-          industryCurrent3.forEach((x) => {
-            if (industry_arr.indexOf(x.industry_name) != -1) {
-              x.check = true;
-            }
-          })
-          industryCard.value = industry_arr;
-          industryCard.id = industryId;
-          wx.setStorageSync("industryCurrent3", industryCurrent3)
-          console.log(invest_case)
-          that.setData({
-            case_name: invest_case.case_name,
-            industryCard: industryCard,
-            case_stage: invest_case.case_stage,
-            case_stage_id: invest_case.case_stage.stage_id,
-            case_stage_name: invest_case.case_stage.stage_name,
-            case_money: invest_case.case_money,
-            case_time: invest_case.case_deal_time,
-            // case_city: invest_case.case_city,
-            belongArea: invest_case.has_one_city
-            // case_province: invest_case.case_province
-          })
-        },
-        fail: function (res) {
-          console.log(res)
-        },
-      })
-      this.setData({
-        case_index: case_index,
-        case_id: case_id
-      })
-    }
+
+
   },
   onShow: function () {
     var case_index = this.data.case_index;
@@ -165,13 +107,21 @@ Page({
   //项目阶段
   case_stage: function (e) {
     var stage_index = e.detail.value;
-    console.log(stage_index)
-    var stage = this.data.stage;
-    this.setData({
+    let stage = this.data.stage;
+    let stageId = '';
+    let  that = this;
+    stage.forEach((x, index) => {
+      if (stage_index == index) {
+        stageId = x.stage_id
+        that.setData({
+          stageId: stageId
+        })
+      }
+    })
+    that.setData({
       case_stage: stage[stage_index],
-      case_stage_name: stage[stage_index],
-      case_stage_id :stage_index
-    })  
+      case_stage_index: stage_index
+    })
 
   },
   //项目金额
@@ -204,24 +154,19 @@ Page({
     var case_name = this.data.case_name;
     var industry = this.data.industryCard.value;
     var case_industry = this.data.industryCard.id;
-    var stageId = this.data.stageId;
-    var stage_index = this.data.stage_index;
-    let case_stage_id = this.data.case_stage_id;
-    console.log(case_stage_id)
-    // var case_stage = this.data.case_stage || case_stage_id;
-    // console.log(case_stage)
+    var case_stage_id = this.data.stageId;
     var case_money = this.data.case_money;
     var case_time = this.data.case_time;
     var belongArea = this.data.belongArea
     var case_province = belongArea.provinceNum || belongArea.pid;
     var case_city = belongArea.cityNum || belongArea.area_id;
     console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
-    console.log(user_id, case_name, industry, case_industry, case_stage_id, case_money, case_time, case_province, case_city, belongArea)
+    console.log(user_id, case_name, industry, case_industry, stageId, case_money, case_time, case_province, case_city, belongArea)
     if (case_name == '') {
       app.errorHide(that, "项目名称不能为空", 1500)
     } else if (case_industry.length < 1) {
       app.errorHide(that, "领域不能为空", 1500)
-    } else if (case_stage_id == 0) {
+    } else if (stageId == 0) {
       app.errorHide(that, "轮次不能为空", 1500)
     } else if (case_money.length < 1) {
       app.errorHide(that, "投资金额不能为空", 1500)
@@ -270,7 +215,7 @@ Page({
             user_id: user_id,
             case_name: case_name,
             case_industry: case_industry,
-            case_stage: case_stage,
+            case_stage: case_stage_id,
             case_money: case_money,
             case_deal_time: case_time,
             case_province: case_province,
@@ -298,5 +243,70 @@ Page({
   onUnload: function () {
     wx.setStorageSync('provinceNum', [])
     wx.setStorageSync('cityNum', [])
+  },
+  getInfo: function (index) {
+    if (index.index) {
+      var case_index = index.index;
+      let case_id = index.case_id;
+      let industryCard = this.data.industryCard;
+      let that = this;
+      var user_id = wx.getStorageSync('user_id');
+      wx.request({
+        url: url_common + '/api/user/getOneUserProjectCase',
+        data: {
+          user_id: user_id,
+          case_id: case_id
+        },
+        method: 'POST',
+        success: function (res) {
+          let invest_case = res.data.data;
+          let industry = invest_case.case_industry;
+          var industry_arr = [];
+          var industryId = [];
+          var industryCurrent3 = wx.getStorageSync("industry");
+          //----------------------------项目领域进行处理----------------------
+          if (industry) {
+            industry.forEach((x) => {
+              industry_arr.push(x.industry_name);
+              industryId.push(x.industry_id)
+            })
+          }
+          industryCurrent3.forEach((x) => {
+            if (industry_arr.indexOf(x.industry_name) != -1) {
+              x.check = true;
+            }
+          })
+          industryCard.value = industry_arr;
+          industryCard.id = industryId;
+          wx.setStorageSync("industryCurrent3", industryCurrent3)
+          let stage = that.data.stage;
+          console.log(stage)
+          stage.forEach((x, index) => {
+            if (x.stage_id == invest_case.case_stage.stage_id) {
+              that.setData({
+                case_stage_index: index,
+              })
+            }
+          })
+          that.setData({
+            case_name: invest_case.case_name,
+            industryCard: industryCard,
+            case_stage: invest_case.case_stage,
+            case_money: invest_case.case_money,
+            case_time: invest_case.case_deal_time,
+            // case_city: invest_case.case_city,
+            belongArea: invest_case.has_one_city
+            // case_province: invest_case.case_province
+          })
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+      this.setData({
+        case_index: case_index,
+        case_id: case_id
+      })
+    }
   }
 })
