@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    disabled: false,//保存按钮是否禁用
     describe: "",
     belongArea: "选择城市",
     stage: [],
@@ -134,7 +135,7 @@ Page({
         }
       }
     })
-    let setPrivacy=wx.getStorageSync('setPrivacy');
+    let setPrivacy = wx.getStorageSync('setPrivacy');
     console.log(setPrivacy)
     if (setPrivacy) {
       that.setData({
@@ -451,7 +452,7 @@ Page({
           subscribe: subscribe,
           pro_total_score: pro_total_score
         },
-      }).then(res => {
+      }, app.refreshButton(that)).then(res => {
         console.log(res)
         if (res.data.status_code == 2000000) {
           //数据清空
@@ -548,4 +549,5 @@ Page({
       },
     })
   },
+
 });
