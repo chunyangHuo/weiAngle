@@ -9,7 +9,6 @@ Page({
   onLoad: function (options) {
     // 0:发布融资项目  1:发布投资需求或者身份认证编辑 2:维护我的项目 3:发布投资案例
     let that = this;
-    let current = options.current;
     let identity = options.identity;
     let industry = wx.getStorageSync('industry');
     let tran_industry = wx.getStorageSync('tran_industry') || [];

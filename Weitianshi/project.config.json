@@ -91,9 +91,9 @@
 				},
 				{
 					"id": 11,
-					"name": "list_orgMember",
-					"pathName": "pages/organization/subPage/list_orgMember/list_orgMember",
-					"query": ""
+					"name": "编辑项目",
+					"pathName": "pages/myProject/publishProject/publishProject",
+					"query": "pro_id=Er6Ona04"
 				},
 				{
 					"id": 12,

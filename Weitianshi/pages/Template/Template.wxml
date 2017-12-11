@@ -455,7 +455,7 @@
 </template>
 
 <!--input_jump-->
-<template name="input_jump">
+<template name="input_jump"> 
   <view class="card">
     <view class="text">{{text}}</view>
     <navigator url="{{url}}">

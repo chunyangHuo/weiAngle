@@ -17,9 +17,6 @@ Page({
     // ---------------------picker----------------------
     tips: ["其他", "独家签约", "非独家"],
     tips_index: 4, //独家效果
-    console_stage: "",
-    console_expect: "",
-    console_tips: "",
     loading: '0',
     pro_goodness: "",
     service_fa: 0,
@@ -32,6 +29,7 @@ Page({
       value: ["选择领域"],
       id: []
     },
+    pro_total_score: 14.4,
     pro_finance_stock_after: 0,
     open_status: 1,
     power_share_status: 1,
@@ -44,32 +42,31 @@ Page({
       black_user: ''
     },
     modalBox: 0,
+    buttonText: '保存',
   },
   onLoad: function (options) {
     let that = this;
-    let type = options.type;
-    let pro_total_score = 14.4;
+    let editProId = options.pro_id;
+    let edit = options.edit;
     let stage = wx.getStorageSync('stage');
     let scale = wx.getStorageSync('scale');
     let stage_arry = [];
     let scale_arry = [];
     // picker 初始数据预处理
-    this.pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
-    this.pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
-    that.setData({
-      type: type,
-      pro_total_score: pro_total_score,
-    })
+    this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
+    this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
+    // 如果是编辑项目入口
+    if (editProId) { this._editProject(editProId); }
   },
   //页面显示
   onShow: function () {
     // 项目领域取值
-    this.tranIndustryDeal();
-    this.tranAreaDeal();
-    this.privacyData();
+    this._tranIndustryDeal();
+    this._tranAreaDeal();
+    this._privacyData();
   },
   //picker数据预处理
-  pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
+  _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
     if (string_itemArr == 'stage_arry') {
       item.unshift({ stage_name: '选择阶段' })
     } else {
@@ -84,7 +81,7 @@ Page({
     })
   },
   //tran_industry取值处理
-  tranIndustryDeal() {
+  _tranIndustryDeal() {
     let tran_industry = wx.getStorageSync('tran_industry');
     let industryCard = this.data.industryCard;
     if (tran_industry.length != 0) {
@@ -106,19 +103,18 @@ Page({
     })
   },
   //tran_area取值处理
-  tranAreaDeal() {
+  _tranAreaDeal() {
     let tran_area = wx.getStorageSync('tran_area');
     if (tran_area.length != 0) {
-      let area_title = tran_area[0].area_title + '-' + tran_area[1].area_title;
       this.setData({
-        area_title: area_title,
+        area_title: tran_area[1].area_title,
         provinceNum: tran_area[0].area_id,
         cityNum: tran_area[1].area_id
       })
     }
   },
   //私密性取值
-  privacyData(){
+  _privacyData() {
     let setPrivacy = wx.getStorageSync('setPrivacy');
     console.log(setPrivacy)
     if (setPrivacy) {
@@ -132,6 +128,81 @@ Page({
         black_company: setPrivacy.black_company,
         black_user: setPrivacy.black_user,
         subscribe: setPrivacy.subscribe
+      })
+    }
+  },
+  // 编辑项目入口,数据获取
+  _editProject(editProId) {
+    let that = this;
+    wx.request({
+      url: url_common + '/api/project/getProjectEditInfo',
+      data: {
+        user_id: wx.getStorageSync('user_id'),
+        project_id: editProId
+      },
+      method: 'POST',
+      success: function (res) {
+        let projectEditInfo = res.data.data;
+        console.log('projectEditInfo', res.data.data)
+        // 编辑-industry处理
+        let industryCard = that.data.industryCard;
+        industryCard.value = _industryDeal(projectEditInfo.pro_industry).industryValue;
+        industryCard.id = _industryDeal(projectEditInfo.pro_industry).industryId;
+        industryCard.css = 'black';
+        wx.setStorageSync('tran_industry', projectEditInfo.pro_industry)
+        // 编辑-stage和scale处理
+        _editPickerDeal(that, projectEditInfo.pro_stage, projectEditInfo.pro_scale)
+        // 编辑-area处理
+        let editArea = projectEditInfo.pro_area;
+        wx.setStorageSync('tran_area', [{ area_id: editArea.pid, area_title: '' }, { area_id: editArea.area_id, area_title: editArea.area_title }])
+        that.setData({
+          pro_id: editProId,
+          projectName: projectEditInfo.pro_name,
+          companyName: projectEditInfo.pro_company_name,
+          describe: projectEditInfo.pro_intro,
+          industryCard: industryCard,
+          area_title: editArea.area_title,
+          provinceNum: editArea.pid,
+          cityNum: editArea.area_id,
+          tips_index: projectEditInfo.is_exclusive,
+          pro_goodness: projectEditInfo.pro_goodness,
+          pro_finance_stock_after: projectEditInfo.pro_finance_stock_after,
+          service_fa: projectEditInfo.service_fa,
+          service_ps_bp: projectEditInfo.service_ps_bp,
+          service_yun: projectEditInfo.service_yun,
+          buttonText: '维护项目'
+        })
+      }
+    })
+    // 编辑-industry处理
+    let _industryDeal = (pro_industry) => {
+      let industryValue = [];
+      let industryId = [];
+      pro_industry.forEach(x => {
+        industryValue.push(x.industry_name);
+        industryId.push(x.industry_id);
+      })
+      return {
+        industryValue, industryId
+      }
+    }
+    // 编辑-stage和scale处理
+    function _editPickerDeal(that, pro_stage, pro_scale) {
+      let stage = that.data.stage;
+      let scale = that.data.scale;
+      stage.forEach((x, index) => {
+        if (x.stage_id == pro_stage.stage_id) {
+          that.setData({
+            stage_index: index
+          })
+        }
+      })
+      scale.forEach((x, index) => {
+        if (x.scale_id == pro_scale.scale_id) {
+          that.setData({
+            scale_index: index
+          })
+        }
       })
     }
   },
@@ -219,7 +290,12 @@ Page({
   },
   //私密性跳转
   initPrivacy: function () {
-    app.href('/pages/myProject/initPrivacy/initPrivacy')
+    let project = this.data.pro_id;
+    if (project) {
+      app.href('/pages/myProject/initPrivacy/initPrivacy?project=' + project)
+    } else {
+      app.href('/pages/myProject/initPrivacy/initPrivacy')
+    }
   },
   //私密性处理(辅助函数)
   privacyDeal() {
@@ -255,21 +331,26 @@ Page({
   },
   //到电脑
   upLoadPc: function () {
-    var that = this;
+    let that = this;
+    let privacy = this.privacyDeal();
+    let type = 'create'
+    if (that.data.pro_id) {
+      type = 'update'
+    }
     wx.scanCode({
       success: function (res) {
         wx.request({
           url: app.globalData.url_common + '/api/auth/writeUserInfo',
           data: {
-            type: 'create',
+            type: type,
             user_id: wx.getStorageSync('user_id'),
             project_id: that.data.pro_id,
             credential: res.result,//二维码扫描信息
             pro_data: {
               pro_intro: that.data.describe,
               industry: that.data.industryCard.id,
-              pro_finance_stage: that.data.stage[that.data.stage_index].stage_id,
-              pro_finance_scale: that.data.scale[that.data.scale_index].scale_id,
+              pro_finance_stage: that.data.stage[that.data.stage_index].stage_id || '',
+              pro_finance_scale: that.data.scale[that.data.scale_index].scale_id || '',
               pro_area_province: that.data.provinceNum,
               pro_area_city: that.data.cityNum,
               is_exclusive: that.data.tips_index,
@@ -279,7 +360,13 @@ Page({
               pro_finance_stock_after: that.data.pro_finance_stock_after,
               service_fa: that.data.service_fa,
               service_yun: that.data.service_yun,
-              service_ps_bp: that.data.service_ps_bp
+              service_ps_bp: that.data.service_ps_bp,
+              subscribe: that.data.subscribe,
+              pro_total_score: that.data.pro_total_score,
+              open_status: privacy.open_status,
+              power_share_status: privacy.power_share_status,
+              power_investor_status: privacy.power_investor_status,
+              company_open_status: Number(!privacy.company_open_status),
             }
           },
           method: 'POST',
@@ -350,10 +437,15 @@ Page({
     } else if (pro_goodness == '') {
       app.errorHide(that, '请填写项目亮点', 3000)
     } else {
+      let httpUrl = '/api/project/createProject';
+      if (that.data.pro_id) {
+        httpUrl = '/api/project/updateProject';
+      }
       app.httpPost({
-        url: url_common + '/api/project/createProject',
+        url: url_common + httpUrl,
         data: {
           user_id: wx.getStorageSync('user_id'),
+          project_id:that.data.pro_id || '',
           pro_intro: describe,
           industry: industry,
           pro_finance_stage: pro_finance_stage,

@@ -35,7 +35,7 @@
   <view class="card">
     <view class="text">所在地区*</view>
     <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
-      <view id="belongArea" class="slect flex" bindtap="belongArea">
+      <view id="belongArea" class="slect flex">
         <view class="{{area_title =='选择城市' ? '':'checkOn'}}">{{area_title}}</view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
@@ -77,7 +77,7 @@
     <view class="projectBoxContent flex">
       <view class="projectTitle">投后股份（%）</view>
       <view class="flex">
-        <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" />
+        <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value='{{pro_finance_stock_after}}' />
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
         <!-- <view class="personListContentAfter"></view> -->
       </view>
@@ -126,7 +126,7 @@
 </view>
 <view class="highBox"></view>
 <!--保存  -->
-<template is="buttonOne" data="{{text:'保存',btnName:'public'}}"></template>
+<template is="buttonOne" data="{{text:buttonText,btnName:'public'}}"></template>
 
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">

@@ -123,9 +123,6 @@
   <view class="answer">A：微天使平台会结合您的融资需求推荐最适合的FA，帮助您打磨 商业计划，梳理BP，引荐投资机构。（业务同学会通过您在平台 留下的联系方式与您沟通具体融资需求）
   </view>
 </view>
-<!-- <button class="nextBtn" bindtap="public">
-    维护项目
-  </button> -->
 <view class="highBox"></view>
 <template is="buttonOne" data="{{text:'维护项目',btnName:'public'}}"></template>
 
