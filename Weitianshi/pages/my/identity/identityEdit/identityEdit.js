@@ -8,26 +8,6 @@ Page({
   },
   onLoad: function (option) {
     let that = this;
-
-    //请求各种标签列表项
-    wx.request({
-      url: app.globalData.url_common + '/api/category/getProjectCategory',
-      method: 'POST',
-      success: function (res) {
-        var thisData = res.data.data;
-        //添加false
-        that.for(thisData.area);
-        that.for(thisData.industry);
-        that.for(thisData.scale);
-        that.for(thisData.stage);
-
-        wx.setStorageSync('y_area', thisData.area);//地区
-        wx.setStorageSync('industry', thisData.industry);//投资领域
-        wx.setStorageSync('y_scale', thisData.scale);//投资金额
-        wx.setStorageSync('y_stage', thisData.stage);//投资阶段
-      }
-    })
-
     //用来判断是否是重新认证
     let recertification = option.isUpdate;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
@@ -67,7 +47,6 @@ Page({
             success: function (res) {
               let user_info = res.data.user_info;
               let invest_info = res.data.invest_info;
-              that.dealTags(that, invest_info);
               that.setData({
                 user_info: user_info,
                 invest_info: invest_info,
@@ -91,7 +70,11 @@ Page({
         success: function (res) {
           let user_info = res.data.user_info;
           let invest_info = res.data.invest_info;
-          that.dealTags(that, invest_info);
+          console.log(invest_info)
+          wx.setStorageSync("tran_scale", invest_info.invest_scale)
+          wx.setStorageSync("tran_stage", invest_info.invest_stage)
+          wx.setStorageSync("tran_area", invest_info.invest_area)
+          wx.setStorageSync("tran_industry", invest_info.invest_industry)
           that.setData({
             user_info: user_info,
             invest_info: invest_info,
@@ -104,33 +87,40 @@ Page({
   onShow: function () {
     //更改某一项表单值后返回表单页面数据更新
     let invest_info = this.data.invest_info;
+    console.log(invest_info)
     let user_info = this.data.user_info;
-    let industryCurrent1 = wx.getStorageSync('industryCurrent1') || [];
-    let scaleValue = wx.getStorageSync('paymoneyenchangeValue') || [];
-    let stageValue = wx.getStorageSync('payenchangeValue') || [];
-    let areaValue = wx.getStorageSync('payareaenchangeValue') || [];
-    let scaleId = wx.getStorageSync('paymoneyenchangeId') || [];
-    let stageId = wx.getStorageSync('y_payStageId') || [];
-    let areaId = wx.getStorageSync('payareaenchangeId') || [];
-    let industryId = [];
-    industryCurrent1.forEach(x => {
-      industryId.push(x.industry_id)
-    })
+    let tran_industry = wx.getStorageSync('tran_industry') || [];
+    let tran_scale = wx.getStorageSync('tran_scale') || [];
+    let tran_stage = wx.getStorageSync('tran_stage') || [];
+    let tran_area = wx.getStorageSync('tran_area') || [];
     let newScale = [];
     let newStage = [];
     let newArea = [];
-    scaleValue.forEach(x => {
-      newScale.push({ scale_money: x })
+    let newIndustry = [];
+    let areaId = [];
+    let scaleId = [];
+    let stageId = [];
+    let industryId = [];
+    tran_industry.forEach(x => {
+      newIndustry.push({ industry_name: x.industry_name })
+      industryId.push({ industry_id: x.industry_id })
     })
-    stageValue.forEach(x => {
-      newStage.push({ stage_name: x })
+    // 将scale_id 和scale_money 单独放入一个数组中,以便展示和保存
+    tran_scale.forEach(x => {
+      newScale.push({ scale_money: x.scale_money })
+      scaleId.push({ scale_id: x.scale_id })
     })
-    areaValue.forEach(x => {
-      newArea.push({ area_title: x })
+    tran_stage.forEach(x => {
+      newStage.push({ stage_name: x.stage_name })
+      stageId.push({ stage_id: x.stage_id })
+    })
+    tran_area.forEach(x => {
+      newArea.push({ area_title: x.area_title })
+      areaId.push({ area_id: x.area_id })
     })
     //如果是由更改表单某一项内容后返回该页面的话
     if (invest_info) {
-      invest_info.invest_industry = industryCurrent1;
+      invest_info.invest_industry = newIndustry;
       invest_info.invest_scale = newScale;
       invest_info.invest_stage = newStage;
       invest_info.invest_area = newArea;
@@ -217,7 +207,7 @@ Page({
   },
   // 跳转投资领域
   toIndustry: function () {
-    app.href('/pages/form/industry/industry?current=1')
+    app.href('/pages/form/industry/industry?current=1&identity=1')
   },
   // 跳转投资轮次
   toScale: function () {
@@ -279,9 +269,6 @@ Page({
     let is_saas = this.data.is_saas;
     let is_FA_part = this.data.is_FA_part;
     let industry = this.data.industry;
-    let area = this.data.area;
-    let stage = this.data.stage;
-    let scale = this.data.scale;
     let recertification = this.data.recertification;
     if (iden_name != '' && iden_company_name != '' && iden_company_career != '') {
       wx.request({
@@ -308,6 +295,10 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          wx.removeStorageSync("tran_area")
+          wx.removeStorageSync("tran_stage")
+          wx.removeStorageSync("tran_scale")
+          wx.removeStorageSync("tran_industry")
           let statusCode = res.data.status_code;
           if (statusCode == 2000000) {
             app.href('/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification)
@@ -324,88 +315,5 @@ Page({
       }
     }
   },
-  //多选标签预处理
-  dealTags(that, invest_info) {
-    let scale = wx.getStorageSync('scale') || []
-    let stage = wx.getStorageSync('stage') || []
-    let hotCity = wx.getStorageSync('hotCity') || []
-    //scale
-    let paymoneyenchangeCheck = [];
-    let paymoneyenchangeValue = [];
-    let paymoneyenchangeId = [];
-    scale.forEach((x, index) => {
-      paymoneyenchangeCheck[index] = false;
-      if (invest_info.invest_scale) {
-        invest_info.invest_scale.forEach(y => {
-          if (x.scale_money === y.scale_money) {
-            paymoneyenchangeCheck[index] = true;
-            paymoneyenchangeValue.push(x.scale_money);
-            paymoneyenchangeId.push(x.scale_id)
-          }
-        })
-      }
-    })
-    //stage
-    let payenchangeCheck = [];
-    let payenchangeValue = [];
-    let payenchangeId = [];
-    stage.forEach((x, index) => {
-      payenchangeCheck[index] = false;
-      if (invest_info.invest_stage) {
-        invest_info.invest_stage.forEach(y => {
-          if (x.stage_name === y.stage_name) {
-            payenchangeCheck[index] = true;
-            payenchangeValue.push(x.stage_name);
-            payenchangeId.push(x.stage_id)
-          }
-        })
-      }
-    })
-    //hotCity
-    let payareaenchangeCheck = [];
-    let payareaenchangeValue = [];
-    let payareaenchangeId = [];
-    hotCity.forEach((x, index) => {
-      payareaenchangeCheck[index] = false;
-      if (invest_info.invest_area) {
-        invest_info.invest_area.forEach(y => {
-          if (x.area_title === y.area_title) {
-            payareaenchangeCheck[index] = true;
-            payareaenchangeValue.push(x.area_title);
-            payareaenchangeId.push(x.area_id)
-          }
-        })
-      }
-    })
-    //industry
-    let industryId = [];
-    if (invest_info.invest_industry) {
-      invest_info.invest_industry.forEach(x => {
-        industryId.push(x.industry_id)
-      })
-    }
-    that.setData({
-      industryId: industryId,
-      areaId: payareaenchangeId,
-      stageId: payenchangeId,
-      scaleId: paymoneyenchangeId
-    })
 
-    wx.setStorageSync('industryCurrent1', invest_info.invest_industry)
-    wx.setStorageSync('paymoneyenchangeCheck', paymoneyenchangeCheck)
-    wx.setStorageSync('paymoneyenchangeValue', paymoneyenchangeValue)
-    wx.setStorageSync('paymoneyenchangeId', paymoneyenchangeId)
-    wx.setStorageSync('payenchangeCheck', payenchangeCheck)
-    wx.setStorageSync('payenchangeValue', payenchangeValue)
-    wx.setStorageSync('payenchangeId', payenchangeId)
-    wx.setStorageSync('payareaenchangeCheck', payareaenchangeCheck)
-    wx.setStorageSync('payareaenchangeValue', payareaenchangeValue)
-    wx.setStorageSync('payareaenchangeId', payareaenchangeId)
-  },
-  //给所有添加checked属性
-  for: function (name) {
-    for (var i = 0; i < name.length; i++) {
-      name[i].checked = false;
-    }
-  },
 })

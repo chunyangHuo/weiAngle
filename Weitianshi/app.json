@@ -36,6 +36,7 @@
     "pages/myProject/initPrivacy/initPrivacy",
     "pages/myProject/pushToSuccess/pushToSuccess",
     "pages/myProject/publishSuccess/publishSuccess",
+    "pages/myProject/bpScanSuccess/bpScanSuccess",
     "pages/my/investCase/investCase",
     "pages/my/sharePage/sharePage",
     "pages/my/investCaseEdit/investCaseEdit",

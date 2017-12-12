@@ -1,5 +1,5 @@
 <!--发布投资需求和资源需求的按钮-->
-<template name="publish"> 
+<template name="publish">
   <view wx:if="{{hasPublic==0}}">
     <view class="publish publish2 publish_find_project publish-investmentm" bindtap="{{jumpProject}}">
       <view>{{text.text1}}</view>
@@ -122,7 +122,7 @@
     <!-- <view style="height:32rpx;" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}"></view> -->
   </view>
 </template>
- 
+
 <!--My寻找案源-->
 <template name="InvestInfo">
   <view class="user_invest_info publish-investmentm" bindtap="findProjectEdit">
@@ -282,8 +282,8 @@
 
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
-  <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}'>
+  <view class="weui-panel__bd" style="background:white;margin:16px" >
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}' bindtap='detail'>
       <view class="title" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
         <block wx:for="{{myProject.pro_industry||myProject.industry}}" wx:for-item="sort" wx:key="*this">
@@ -380,7 +380,7 @@
 
 <!--精选项目卡片&&投资项目卡片-->
 <template name="selectedCard">
-  <view class="selectProjectDetail"> 
+  <view class="selectProjectDetail">
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.project_id}}' data-index="{{index}}" bindtap="yourDetail">
         <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
@@ -454,22 +454,12 @@
   </view>
 </template>
 
-<!--多选标签模块-->
-<template name="tags">
-  <block wx:for="{{tagsData}}" wx:key="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}">
-    <label class="tips">
-      <view class="{{item.check==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}' bindtap="{{bindEvent}}">
-        {{item.industry_name||item.stage_name||item.scale_money||item.area_title}}</view>
-    </label>
-  </block>
-</template>
-
 <!--input_jump-->
-<template name="input_jump">
+<template name="input_jump"> 
   <view class="card">
     <view class="text">{{text}}</view>
     <navigator url="{{url}}">
-      <view class="slect flex">
+      <view class="slect flex"> 
         <view class="{{css}}">{{value}}</view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
@@ -938,7 +928,7 @@
 
 <!--筛选下拉框(单个)  type3 -->
 <template name='searchDropItem3'>
-   <view id="linkedDrop" class="flex" hidden='{{SearchInit.currentIndex != index}}'>
+  <view id="linkedDrop" class="flex" hidden='{{SearchInit.currentIndex != index}}'>
     <!--一级标签  -->
     <scroll-view scroll-y="true" class="frame_province">
       <view>
@@ -966,7 +956,7 @@
 </template>
 
 <!--筛选结果展示横列(全部)  -->
-<template name='searchResult'> 
+<template name='searchResult'>
   <view id='searchModel2' class='searchList flex'>
     <scroll-view class='scroll flex' scroll-x='true'>
       <view class='flex'>
@@ -1002,7 +992,7 @@
     </block>
   </view>
 </template>
- 
+
 <!--------------------------------------------------------------------------------  -->
 <!--精选项目卡片 -->
 <template name="selectProject">
@@ -1047,7 +1037,7 @@
           <view class="t-seeNum">{{item.view_count}}人看过项目</view>
           <view class="t-interest flex">
             <view class="t-appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
-             <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" catchtap="matchApply">申请查看</view> 
+            <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" catchtap="matchApply">申请查看</view>
             <!-- <button  class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}">申请查看</button> -->
             <view class="t-refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
             <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
@@ -1404,4 +1394,4 @@
       </view>
     </view>
   </block>
-</template> 
+</template>

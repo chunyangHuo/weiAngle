@@ -45,14 +45,6 @@ function createProjectPc(){
           type: 'create',
           credential: credential,
           user_id: user_id,
-          // pro_data: {
-          //   "pro_intro": pro_intro,
-          //   "industry": industry,
-          //   "pro_finance_stage": pro_finance_stage,
-          //   "pro_finance_scale": pro_finance_scale,
-          //   "is_exclusive": is_exclusive,
-          //   "pro_goodness": pro_goodness
-          // }
         },
         method: 'POST',
         success: function (res) {

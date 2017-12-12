@@ -8,9 +8,9 @@ Page({
     industryValue: "选择领域",
     belongArea: "",
     stage_index: 0,
-    stageValue: [],
+    stageValue: [], 
     stageId: [],
-    scale_index: 0,
+    scale_index: 0, 
     scaleValue: [],
     tips: ["其他", "独家签约", "非独家"],
     tipsIndex: 4,
@@ -151,7 +151,7 @@ Page({
     var that = this;
     //身份信息
     var user_id = wx.getStorageSync('user_id');
-    app.identity(user_id, res => {
+    app.identity(user_id, res => { 
       console.log(res)
       if (res.data.status != 0) {
         let group_id = res.data.group.group_id;
@@ -220,28 +220,23 @@ Page({
   },
   //文本框输入
   bindTextAreaBlur: function (e) {
-    var that = this;
-    wx.setStorageSync('describe', e.detail.value);
-    that.setData({
+    this.setData({
       describe: e.detail.value
     })
   },
   // 项目亮点
   slectInput: function (e) {
-    var that = this;
-    wx.setStorageSync("pro_goodness", e.detail.value);
-    that.setData({
+    this.setData({
       pro_goodness: e.detail.value
     })
   },
   // 选择领域
   industry: function () {
-    app.href('/pages/form/industry/industry?current=' + 2)
+    app.href('/pages/form/industry/industry')
   },
   //是否独家的效果实现
   tipsOn: function (e) {
-    var that = this;
-    that.setData({
+    this.setData({
       tipsIndex: e.target.dataset.tipsIndex
     })
   },
@@ -259,10 +254,8 @@ Page({
   },
   belongArea: function (e) {
     var provinceNum = this.data.provinceNum;//初始地区
-    var cityNum = this.data.cityNum;//二级地区
-    var provinceNum = wx.getStorageSync("m_provinceNum");
-    var cityNum = wx.getStorageSync('m_cityNum')
-    app.href('/pages/form/area1/area1?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum)
+    var cityNum = this.data.cityNum;//二级地区)
+    app.href('/pages/form/area1/area1')
   },
   //关闭模态框
   closeModal: function () {
@@ -278,47 +271,38 @@ Page({
   },
   //项目名称
   projectName: function (e) {
-    let pro_name = e.detail.value;
-    let that = this;
-    that.setData({
-      pro_name: pro_name
+    this.setData({
+      pro_name: e.detail.value
     })
   },
   //公司名称
   companyName: function (e) {
-    let pro_company_name = e.detail.value;
-    let that = this;
-    that.setData({
-      pro_company_name: pro_company_name
+    this.setData({
+      pro_company_name: e.detail.value
     })
   },
   //需要Bp美化
   switchChange1: function (e) {
-    let service_ps_bp = e.detail.value;
     this.setData({
-      service_ps_bp: service_ps_bp
+      service_ps_bp: e.detail.value
     })
   },
   //投后股份
   projectFinance: function (e) {
-    let pro_finance_stock_after = e.detail.value;
-    let that = this;
-    that.setData({
-      pro_finance_stock_after: pro_finance_stock_after
+    this.setData({
+      pro_finance_stock_after: e.detail.value
     })
   },
   //需要融资股份(FA)服务
   switchChange2: function (e) {
-    let service_fa = e.detail.value;
     this.setData({
-      service_fa: service_fa
+      service_fa: e.detail.value
     })
   },
   //是否需要云投行服务
   switchChange3: function (e) {
-    let service_yun = e.detail.value;
     this.setData({
-      service_yun: service_yun
+      service_yun: e.detail.value
     })
   },
   //上传BP
@@ -540,7 +524,7 @@ Page({
     }
   },
 
-  //更新项目
+  //更新项目(辅助函数)
   updata(that) {
     var user_id = wx.getStorageSync('user_id');
     var pro_id = that.data.pro_id;

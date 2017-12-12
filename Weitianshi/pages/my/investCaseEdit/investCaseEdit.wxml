@@ -8,11 +8,10 @@
 
   <!--项目领域-->
   <template is="input_jump" data="{{...industryCard}}"></template>
-
   <view class="card">
     <view class="text">项目轮次*</view>
-    <picker class="card_case" bindchange="case_stage" value="{{case_stage_id}}" range="{{stage}}">
-      {{case_stage_name||stage[stage_index]}}
+    <picker class="card_case" bindchange="case_stage" value="{{case_stage_index}}"  range="{{stage_arr}}">
+       {{stage_arr[case_stage_index]}} 
     </picker>
   </view>
   <view class="card">
@@ -27,7 +26,7 @@
   </view>
   <view class="card">
     <view class="text">投资地区*</view>
-    <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.area_title||"请选择"}}</view>
+    <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.area_title||"请选择地区"}}</view>
   </view>
 </view>
 <view style="height:118rpx;"></view>

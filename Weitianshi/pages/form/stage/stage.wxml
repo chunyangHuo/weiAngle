@@ -10,9 +10,9 @@
     </block>
   </view>-->
       <view class="context flex">
-        <block wx:for="{{payStage}}" wx:key="{{item.stage_id}}">
+        <block wx:for="{{stage}}" wx:key="{{item.stage_id}}">
           <label class="tips">
-            <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.stage_id}}" data-index="{{index}}" data-value='{{item.stage_name}}' data-check="false" bindtap="checkboxChange">
+            <view class="{{item.check ==true?'checkedOne':''}}" id="{{item.stage_id}}" data-index="{{index}}" data-item="{{item}}" bindtap="checkboxChange">
               {{item.stage_name}}</view>
           </label>
         </block>
@@ -22,5 +22,5 @@
   </button>
 
   <!--错误提示-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+  <view class="error" wx:if="{{error == '1'}}">{{error_text}}</view>
 </view>

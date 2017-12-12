@@ -13,6 +13,7 @@ function getCache() {
       thisData.industry.forEach((x) => { x.check = false })
       thisData.scale.forEach((x) => { x.check = false })
       thisData.stage.forEach((x) => { x.check = false })
+      thisData.hotCity.forEach((x) => { x.check = false })
       wx.setStorageSync("industry", thisData.industry)
       wx.setStorageSync("scale", thisData.scale)
       wx.setStorageSync("stage", thisData.stage)

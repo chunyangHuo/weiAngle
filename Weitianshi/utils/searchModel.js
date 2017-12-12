@@ -72,10 +72,17 @@ function getCache() {
       thisData.industry.forEach((x) => { x.check = false })
       thisData.scale.forEach((x) => { x.check = false })
       thisData.stage.forEach((x) => { x.check = false })
+      thisData.hotCity.forEach(x => x.check = false)
+      wx.setStorageSync("area", thisData.area)
       wx.setStorageSync("industry", thisData.industry)
       wx.setStorageSync("scale", thisData.scale)
       wx.setStorageSync("stage", thisData.stage)
-      wx.setStorageSync('hotCity', thisData.hotCity)
+      wx.setStorageSync("hotCity", thisData.hotCity)
+      wx.setStorageSync('tran_area', [])
+      wx.setStorageSync('tran_industry', [])
+      wx.setStorageSync('tran_scale', [])
+      wx.setStorageSync('tran_stage', [])
+      wx.setStorageSync('tran_hotCity', [])
       data.industry = thisData.industry;
       data.stage = thisData.stage;
       data.scale = thisData.scale;
