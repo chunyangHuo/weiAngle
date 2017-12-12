@@ -36,7 +36,7 @@
     <view class="text">所在地区*</view>
     <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
       <view id="belongArea" class="slect flex" bindtap="belongArea">
-        <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
+        <view class="{{area_title =='选择城市' ? '':'checkOn'}}">{{area_title}}</view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>

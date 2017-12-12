@@ -4,15 +4,14 @@
     <view class="text">投资领域*</view>
     <navigator url="/pages/form/industry/industry?current=1" id="domain">
       <view class="slect flex">
-        <view wx:if="{{domainValue.length == 0}}">选择领域</view>
-        <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
+        <view wx:if="{{tran_industry == ''}}">选择领域</view>
+        <view  class="checkOn" wx:else="{{tran_industry != ''}}">
+          <block wx:for="{{tran_industry}}" wx:key="{{index}}">{{item.industry_name}},</block>
+        </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
-
-  <!-- <template is="input_jump" data="{{...industryCard}}" ></template> -->
-
   <view class="card">
     <view class="text">投资阶段*</view>
     <navigator url="/pages/form/stage/stage" id="payStage">
@@ -43,9 +42,9 @@
     <view class="text">投资地区*</view>
     <navigator url="/pages/form/area2/area2" id="payArea">
       <view class="slect flex">
-        <view wx:if="{{tran_area == ''}}">选择城市</view>
-        <view class="checkOn" wx:else="{{tran_area != ''}}">
-          <block wx:for="{{tran_area}}" wx:key="{{index}}">{{item.area_title}},</block>
+        <view wx:if="{{tran_hotCity == ''}}">选择城市</view>
+        <view class="checkOn" wx:else="{{tran_hotCity != ''}}">
+          <block wx:for="{{tran_hotCity}}" wx:key="{{index}}">{{item.area_title}},</block>
         </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
