@@ -60,7 +60,7 @@ Page({
   //公司项的特殊符号过滤和值的双向绑定
   company: function (e) {
     var that = this;
-    var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+    var pattern = new RegExp("[`~!@#$^&*=|{}':;',\\[\\].<>/?~！@#￥……&*——|{}【】‘；：”“'。，、？]");
     var rs = "";
     var company = e.detail.value;
     for (var i = 0; i < company.length; i++) {
