@@ -201,7 +201,6 @@ Page({
             case_province: case_province,
             case_city: case_city
           },
-<<<<<<< HEAD
         }, app.refreshButton(that)).then(res => {
           console.log(res)
           if (res.data.status_code == 2000000) {
@@ -212,23 +211,7 @@ Page({
           } else {
             app.errorHide(that, res.data.error_msg, 3000)
           }
-=======
-          method: 'POST',
-          success: function (res) {
-            if (res.data.status_code == 2000000) {
-              wx.removeStorageSync("tran_industry")
-              wx.removeStorageSync("tran_area")
-              wx.navigateBack({
-                delta: 1,
-              })
-            } else {
-              app.errorHide(that, res.data.error_msg, 3000)
-            }
-          },
-          fail: function (res) {
-            console.log(res)
-          },
->>>>>>> improveSearch
+
         })
       } else {
         app.httpPost({
@@ -243,7 +226,6 @@ Page({
             case_province: case_province,
             case_city: case_city
           },
-<<<<<<< HEAD
         }, app.refreshButton(that)).then(res => {
           if (res.data.status_code == 2000000) {
             wx.removeStorageSync("industryCurrent3")
@@ -253,23 +235,6 @@ Page({
           } else {
             app.errorHide(that, res.data.error_msg, 3000)
           }
-=======
-          method: 'POST',
-          success: function (res) {
-            if (res.data.status_code == 2000000) {
-              wx.removeStorageSync("tran_industry")
-              wx.removeStorageSync("tran_area")
-              wx.navigateBack({
-                delta: 1,
-              })
-            } else {
-              app.errorHide(that, res.data.error_msg, 3000)
-            }
-          },
-          fail: function (res) {
-            console.log(res)
-          },
->>>>>>> improveSearch
         })
 
       }
