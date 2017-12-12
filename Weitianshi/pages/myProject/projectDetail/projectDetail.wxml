@@ -33,21 +33,21 @@
             <view class="classname">佣金收讫</view>
           </view> -->
         </view>
-        <view class="ProjectDetailInfo flex">
-          <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}">
+        <view class="flex">
+          <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}" hover-class='t-hoverColor'>
             <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
             <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
               <label>{{count.view_times_all}}</label>
             </view>
           </view>
-          <view class="flex sceenPerson" catchtap="applyPerson">
+          <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor'>
             <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">申请查看：
               <label>{{count.apply_times_all}}</label>
             </view>
           </view>
           <!-- <view class="investPerson">-</view> -->
-          <view class="flex sceenPerson" catchtap="hasMeeting">
+          <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor'>
             <view class="applyProjectNew" wx:if="{{project.count.meet_times_new != 0}}">+{{count.meet_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">约谈：
               <label>{{count.meet_times_all}}</label>

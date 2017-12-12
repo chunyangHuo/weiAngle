@@ -1,12 +1,15 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="title">
-  今日剩余推送<label>{{pushTimes.remain_times}}</label>次(1个项目推给1个投资人计为1次)
+  今日剩余推送
+  <label>{{pushTimes.remain_times}}</label>次(1个项目推给1个投资人计为1次)
 </view>
 <view class="s_frame">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <block wx:for="{{dataList}}" wx:key="{{index}}">
       <view class="outBox {{item.check==true?'checkedOne':''}}" bindtap="checkboxChange" data-id="{{item.project_id}}" data-index="{{index}}">
-        <view class="matching">匹配度：<label class="matchingNum">{{dataList[index].match_weight}}%</label></view>
+        <view class="matching">匹配度：
+          <label class="matchingNum">{{dataList[index].match_weight}}%</label>
+        </view>
         <view class="projectInfoBox">
           <view class="classname">
             <view class="flex">
@@ -34,7 +37,7 @@
     <view class="hasNone" wx:if="{{dataList.length == 0}}">
       <image src="/img/img-kong@2x.png" class="iconStyle"></image>
       <view class="none">暂无项目</view>
-      <view class="createProject" bindtap="createProject">创建项目</view>
+      <view class="createProject" bindtap="createProject" hover-class='t-other-button-hover'>创建项目</view>
     </view>
     <view style="height:54rpx;"></view>
   </scroll-view>
@@ -43,6 +46,8 @@
 <!-- <view class="floatBtn flex pushPro" bindtap="pushTo">
   <view class="pushProjectAfter">推送</view>
 </view> -->
-<button disabled="{{clicked}}" class="floatBtn flex pushPro" bindtap="pushTo"><label class="pushProjectAfter">推送</label></button>
+<button disabled="{{clicked}}" class="floatBtn flex pushPro" bindtap="pushTo" hover-class='t-other-button-hover'>
+  <label class="pushProjectAfter">推送</label>
+</button>
 <!-- 错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

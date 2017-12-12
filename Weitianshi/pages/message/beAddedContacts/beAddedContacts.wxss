@@ -342,3 +342,8 @@ page {
   margin-bottom: 38rpx;
   /* margin-top:344rpx; */
 }
+.line{
+  height:8rpx;
+  width:1rpx;
+  color:color;
+}

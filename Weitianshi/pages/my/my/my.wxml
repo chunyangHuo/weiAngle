@@ -49,16 +49,16 @@
       <view class="companyTitle">税号</view>
       <text class="IdentificationNumber">{{tax_member}}</text>
       <view class="modalBtn flex">
-        <view class="modalYes" bindtap="copyNum">复制税号</view>
-        <view class="modalYes" bindtap="laterOn">确定</view>
+        <view class="modalYes" bindtap="copyNum" hover-class="t-hoverColor">复制税号</view>
+        <view class="modalYes" bindtap="laterOn" hover-class="t-hoverColor">确定</view>
       </view>
     </view>
     <view class="IdentificationNumCompany" wx:if="{{modalStyle == 1}}">
       <view class="informationText">暂未查询到税号</view>
       <view class="informationText">请先完善公司全称或稍后再试</view>
       <view class="informationBtn flex">
-        <view class="informationYes" catchtap="writeInformation">去完善</view>
-        <view class="informationYes" catchtap="laterOn">稍后再试</view>
+        <view class="informationYes" catchtap="writeInformation" hover-class="t-hoverColor">去完善</view>
+        <view class="informationYes" catchtap="laterOn" hover-class="t-hoverColor">稍后再试</view>
       </view>
     </view>
   </view>
