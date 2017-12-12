@@ -10,10 +10,10 @@
       <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
       <block wx:for="{{pushToList}}" wx:key="{{index}}">
         <view wx:if="{{item.handle_status != 2}}">
-          <view class="outBox">
+          <view class="outBox" data-project="{{item.project_id}}" catchtap="projectDetail">
             <view class="redPoint" wx:if="{{item.message_status == 0}}"></view>
-            <view class="insideBox">
-              <view data-project="{{item.project_id}}" catchtap="projectDetail">
+            <view class="insideBox" hover-class='t-hoverColor'>
+              <view>
                 <view class="flex">
                   <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
                   <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
