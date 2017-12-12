@@ -80,8 +80,6 @@ Page({
       [string_item]: item,
       [string_itemArr]: itemArr
     })
-<<<<<<< HEAD
-=======
   },
   //tran_industry取值处理
   _tranIndustryDeal() {
@@ -118,7 +116,6 @@ Page({
   },
   //私密性取值
   _privacyData() {
->>>>>>> improveSearch
     let setPrivacy = wx.getStorageSync('setPrivacy');
     console.log(setPrivacy)
     if (setPrivacy) {
