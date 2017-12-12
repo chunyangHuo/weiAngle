@@ -16,7 +16,6 @@ Page({
       title: 'loading',
       mask: true,
     })
-    console.log(111)
     var that = this;
     // 初始化下拉加载相关参数
     app.initPage(that);
@@ -33,11 +32,8 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
-          console.log(1221)
           wx.hideLoading()
           var contacts = res.data.list.users;
-          console.log(contacts)
           var count = res.data.list.count;
           that.setData({
             contacts: contacts,

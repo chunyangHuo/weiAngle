@@ -15,4 +15,4 @@
   <view class="prompt">示例：从事投资行业6年，曾任XX资本财务总监。主导完成投资项目12个，已完成退出项目4个，投资案例包括：二维火，毒舌电影，小蓝单车等。</view>
 </view>
 <view style="height:88rpx"></view>
-<view class="floatBtn flex pushPro" bindtap="save">保存</view>
+<view class="floatBtn flex pushPro" bindtap="save" hover-class="t-other-button-hover">保存</view>

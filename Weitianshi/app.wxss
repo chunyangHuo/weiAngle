@@ -1176,10 +1176,17 @@ textarea {
 
 .t-other-button-hover {
   background: #2b405e !important;
-  color:#fff;
+  color: #fff;
 }
 
 .button[disabled][type="default"], wx-button[disabled]:not([type]) {
   background: #2b405e;
   color: #fff;
 }
+
+/*hover  */
+
+.t-hoverColor {
+  background: #f2f3f4 !important;
+}
+

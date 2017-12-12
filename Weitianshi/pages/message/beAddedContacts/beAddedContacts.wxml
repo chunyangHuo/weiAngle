@@ -17,7 +17,7 @@
   <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower='loadMore'>
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{contacts}}">
-        <view class='investorCard'>
+        <view class='investorCard' hover-class='t-hoverColor'>
           <!-- <template is='InvestorCard' data='{{item}}'></template> -->
           <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
             <view class="t-applyMyProject t-contacts-detailm">
@@ -59,7 +59,7 @@
           </view>
           <!-- <template is='cardBottom1' data='{{item,user_id}}'></template> -->
           <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-            <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' bindtap='projectPush'>
+            <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' bindtap='projectPush' hover-class='t-hoverColor'>
               <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
               <span>推送项目</span>
             </view>

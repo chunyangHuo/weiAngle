@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <!-- <template is="topBlock"></template> -->
-<view class="user_info flex user-infom" bindtap="toMyCard">
+<view class="user_info flex user-infom" bindtap="toMyCard" hover-class="t-hoverColor">
   <view class="user_left">
     <view class="flex">
       <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
@@ -67,7 +67,7 @@
 </view>
 <!--人气-->
 <view class="user_down flex">
-  <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity">
+  <view hover-class="t-hoverColor" class="user_popularity user_tips contacts-sentimentm" bindtap="popularity" >
     <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
     <label class="popularityNum" wx:if="{{count.user_view_new}}">+{{count.user_view_new}}</label>
     <label class="popularityNum" wx:if="{{count.user_view_new==0}}"></label>
@@ -75,7 +75,7 @@
     <view class="popularity-people">人气</view>
   </view>
   <!--加我为人脉-->
-  <view class="user_attention user_tips contacts-requestm" bindtap="attention">
+  <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class="t-hoverColor">
     <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
     <label class="attentionNum" wx:if="{{count.user_followed_new}}">+{{count.user_followed_new}}</label>
     <label class="popularityNum" wx:if="{{count.user_followed_new==0}}"></label>
@@ -84,7 +84,7 @@
     <view class="attention-people">加我为人脉</view>
   </view>
   <!--潜在项目-->
-  <view class="user_potential user_tips potential-projectm" bindtap="pushTo">
+  <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class="t-hoverColor">
     <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
     <label class="potentialNum" wx:if="{{count.project_push_new}}">+{{count.project_push_new}}</label>
     <label class="popularityNum" wx:if="{{count.project_push_new==0}}"></label>
@@ -94,7 +94,7 @@
 </view>
 <!--模块内容  -->
 <view class="outSideBox">
-  <view class="flex blockInfo" bindtap="identity">
+  <view class="flex blockInfo" bindtap="identity" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/icon-shenfenrenzheng@2x.png" class="blockPic"></image>
       <view class="blockTitle">身份认证</view>
@@ -104,7 +104,7 @@
     <view class="identifyContent on" wx:if="{{status == 1}}">审核中</view>
     <view class="identifyContent" wx:if="{{status == 2}}">{{user.authentication[0].group_title}}</view>
   </view>
-  <view class="blockInfo flex" bindtap="projectShop">
+  <view class="blockInfo flex" bindtap="projectShop" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/Shape@2x.png" class="blockPic"></image>
       <view class="blockTitle">项目店铺</view>
@@ -117,7 +117,7 @@
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
-  <view class="blockInfo flex" bindtap="contactProject">
+  <view class="blockInfo flex" bindtap="contactProject" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/icon-yuetandexiangmu@2x.png" class="blockPic"></image>
       <view class="blockTitle">约谈的项目</view>
@@ -127,7 +127,7 @@
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
-  <view class="blockInfo flex" bindtap="collectProject">
+  <view class="blockInfo flex" bindtap="collectProject" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
       <view class="blockTitle">收藏的项目</view>
@@ -156,16 +156,16 @@
       <view class="companyTitle">税号</view>
       <text class="IdentificationNumber">{{tax_member}}</text>
       <view class="modalBtn flex">
-        <view class="modalYes" bindtap="copyNum">复制税号</view>
-        <view class="modalYes" bindtap="laterOn">确定</view>
+        <view class="modalYes" bindtap="copyNum" hover-class="t-hoverColor">复制税号</view>
+        <view class="modalYes" bindtap="laterOn" hover-class="t-hoverColor">确定</view>
       </view>
     </view>
     <view class="IdentificationNumCompany" wx:if="{{modalStyle == 1}}">
       <view class="informationText">暂未查询到税号</view>
       <view class="informationText">请先完善公司全称或稍后再试</view>
       <view class="informationBtn flex">
-        <view class="informationYes" catchtap="writeInformation">去完善</view>
-        <view class="informationYes" catchtap="laterOn">稍后再试</view>
+        <view class="informationYes" catchtap="writeInformation" hover-class="t-hoverColor">去完善</view>
+        <view class="informationYes" catchtap="laterOn" hover-class="t-hoverColor">稍后再试</view>
       </view>
     </view>
   </view>
