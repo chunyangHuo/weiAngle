@@ -469,7 +469,7 @@ Page({
           power_investor_status: privacy.power_investor_status,
           company_open_status: Number(!privacy.company_open_status),
         },
-      }).then(res => {
+      }, app.refreshButton(that)).then(res => {
         console.log('res', res)
         if (res.data.status_code == 2000000) {
           //数据清空
