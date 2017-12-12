@@ -19,8 +19,8 @@ Page({
       value: ["选择领域"],
       id: []
     },
-    belongArea:{
-      area_title :'',
+    belongArea: {
+      area_title: '',
       area_id: ''
     }
   },
@@ -34,9 +34,8 @@ Page({
     var timeBefore = yearBefore + '-' + month + '-' + day;
     var timeNow = yearNow + '-' + month + '-' + day;
     var that = this;
-    var industry = wx.getStorageSync("industry");
     let stageId = [];
-    let  stage_arr = [];
+    let stage_arr = [];
     wx.request({
       url: app.globalData.url_common + '/api/category/getProjectCategory',
       method: 'POST',
@@ -89,7 +88,7 @@ Page({
         industryCard.value.push(x.industry_name)
         industryCard.id.push(x.industry_id)
       })
-    } else if (tran_industry.length == 0){
+    } else if (tran_industry.length == 0) {
       industryCard.value = "选择领域";
       industryCard.id = [];
     }
@@ -121,9 +120,15 @@ Page({
   case_money: function (e) {
     var that = this;
     var case_money = e.detail.value;
-    that.setData({
-      case_money: case_money
-    })
+    let reg = /^[1-9]\d*$/;
+    if (reg.test(case_money)) {
+      that.setData({
+        case_money: case_money
+      })
+    } else {
+      app.errorHide(that, "请输入数字", 1500)
+    }
+
   },
   //项目时间
   case_time: function (e) {
@@ -150,9 +155,16 @@ Page({
     let case_stage_index = this.data.case_stage_index;
     var case_money = this.data.case_money;
     var case_time = this.data.case_time;
-    var tran_area = this.data.tran_area
-    var case_province = tran_area[0].area_id;
-    var case_city = tran_area[1].area_id;
+    var tran_area = this.data.tran_area;
+    let belongArea = this.data.belongArea;
+    if (tran_area) {
+      var case_province = tran_area[0].area_id;
+      var case_city = tran_area[1].area_id;
+    } else {
+      var case_province = this.data.belongArea.pid;
+      var case_city = this.data.belongArea.area_id;
+    }
+
     let case_stage_id = "";
     let stage = this.data.stage;
     stage.forEach((x, index) => {
@@ -172,7 +184,7 @@ Page({
       app.errorHide(that, "投资金额不能为空", 1500)
     } else if (case_time == '请选择') {
       app.errorHide(that, "交易时间不能为空", 1500)
-    } else if (tran_area.length < 1) {
+    } else if (!case_city) {
       app.errorHide(that, "地区不能为空", 1500)
     } else {
       if (case_index) {
@@ -321,7 +333,6 @@ Page({
             // case_city: invest_case.case_city,
             belongArea: invest_case.has_one_city
           })
-          console.log(invest_case.has_one_city)
         },
         fail: function (res) {
           console.log(res)
