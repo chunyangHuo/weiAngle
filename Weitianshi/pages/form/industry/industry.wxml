@@ -4,7 +4,7 @@
   <view class="context flex">
        <template is="tags" data="{{...industryTags}}"></template>
     </view>
-  <button class="nextBtn" bindtap="certain">
+  <button class="nextBtn"  hover-class="t-other-button-hover" bindtap="certain">
     确定
   </button>
 

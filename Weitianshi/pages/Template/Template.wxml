@@ -437,7 +437,7 @@
 <!--按钮一号-->
 <template name="buttonOne">
   <view class="floatBtn buttonOne" bindtap="{{btnName}}">
-    <button disabled="{{disabled}}">{{text}}</button>
+    <button disabled="{{disabled}}" hover-class="t-other-button-hover">{{text}}</button>
   </view>
 </template>
 
