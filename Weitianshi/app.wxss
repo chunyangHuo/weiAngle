@@ -813,11 +813,11 @@ textarea {
 
 .t-applyMyProject {
   padding: 32rpx;
-  background: white;
+  /* background: white; */
 }
 
 .t-outsideBox {
-  margin: 0 30rpx 0 30rpx;
+  margin: 0;
   position: relative;
 }
 
@@ -1043,20 +1043,24 @@ textarea {
   text-align: left;
 }
 
+.t-color {
+  background: white;
+}
+
 /*---------------------------------卡片底部--推送项目和加人脉----------------------------------- */
 
 .t-cardBottom {
   border-top: 2rpx solid #e6e6e6;
-  padding-top: 30rpx;
-  padding-bottom: 30rpx;
-  margin: 0 30rpx 22rpx 30rpx;
+  margin: 0 0 22rpx 0;
   font-size: 28rpx;
   color: #40587a;
-  background: white;
+  /* background: white; */
 }
 
 .t-cardBottomItem {
   width: 50%;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
   text-align: center;
   vertical-align: middle;
   justify-content: center;
@@ -1172,14 +1176,23 @@ textarea {
   width: 5rpx;
   height: 35rpx;
   background: #f2f2f2;
+  margin-top: 15px;
 }
 
 .t-other-button-hover {
   background: #2b405e !important;
-  color:#fff;
+  color: #fff;
 }
 
 .button[disabled][type="default"], wx-button[disabled]:not([type]) {
   background: #2b405e;
   color: #fff;
+}
+
+.t-hoverColor {
+  background: #f2f3f4 !important;
+}
+.t-investorColor{
+  background: #fff;
+  margin: 0 30rpx 0 30rpx;
 }

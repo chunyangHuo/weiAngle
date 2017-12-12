@@ -282,7 +282,7 @@
 
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
-  <view class="weui-panel__bd" style="background:white;margin:16px" >
+  <view class="weui-panel__bd" style="background:white;margin:16px">
     <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}' bindtap='detail'>
       <view class="title" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
@@ -455,11 +455,11 @@
 </template>
 
 <!--input_jump-->
-<template name="input_jump"> 
+<template name="input_jump">
   <view class="card">
     <view class="text">{{text}}</view>
     <navigator url="{{url}}">
-      <view class="slect flex"> 
+      <view class="slect flex">
         <view class="{{css}}">{{value}}</view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
@@ -544,7 +544,7 @@
   <block wx:for="{{list}}" wx:key="{{index}}">
     <view class="outBox">
       <view class="redPoint" wx:if="{{type != 2}}" wx:if="{{item.message_status ==0 }}"></view>
-      <view class="insideBox project-detailm">
+      <view class="insideBox project-detailm" hover-class="t-hoverColor">
         <view data-project="{{item.project_id}}" catchtap="projectDetail">
           <view class="flex">
             <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
@@ -879,8 +879,8 @@
       </view>
       <!--重置确定  -->
       <view class='btnGroup flex' wx:if="{{SearchInit.currentIndex!=99}}">
-        <button bindtap='reset'>重置</button>
-        <button bindtap='searchCertain'>确定</button>
+        <button hover-class='t-hoverColor' bindtap='reset'>重置</button>
+        <button hover-class='t-other-button-hover' bindtap='searchCertain'>确定</button>
       </view>
     </view>
     <!--模态层  -->
@@ -999,7 +999,7 @@
   <block wx:for="{{list}}" wx:key="{{index}}">
     <view class="t-outBox" wx:if="{{item.handle_status != 2 }}">
       <view class="t-redPoint" wx:if="{{type != 2}}" wx:if="{{item.message_status ==0 }}"></view>
-      <view class="t-insideBox t-project-detailm">
+      <view class="t-insideBox t-project-detailm" hover-class="t-hoverColor">
         <view data-project="{{item.project_id}}" catchtap="projectDetail">
           <view class="flex">
             <view class="t-describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
@@ -1037,7 +1037,7 @@
           <view class="t-seeNum">{{item.view_count}}人看过项目</view>
           <view class="t-interest flex">
             <view class="t-appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
-            <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" catchtap="matchApply">申请查看</view>
+            <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
             <!-- <button  class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}">申请查看</button> -->
             <view class="t-refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
             <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
@@ -1099,7 +1099,7 @@
 <!--卡片底部----推送项目和加人脉  -->
 <template name='cardBottom1'>
   <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-    <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' catchtap='projectPush'>
+    <view class='t-cardBottomItem flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>推送项目</span>
     </view>
@@ -1108,7 +1108,7 @@
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
     </view> -->
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' catchtap='contactsAdd'>
+    <view class='t-cardBottomItem flex'  wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' catchtap='contactsAdd'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
       <view>加人脉</view>
     </view>
@@ -1218,7 +1218,7 @@
 <!--投资机构  -->
 <template name="investment">
   <block wx:for="{{investment_list}}" wx:key="{{index}}">
-    <view class="investGroupBlock flex" bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
+    <view class="investGroupBlock flex" hover-class='t-hoverColor' bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="investGroupLeft">
         <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}" mode="aspectFit"></image>
         <image src="/img/warband-logo.png" class="investGroupLeft" wx:if="{{!item.investment_logo}}"></image>
@@ -1287,7 +1287,7 @@
 <!--机构成员  -->
 <template name="memberList">
   <block wx:for="{{memberList.list}}" wx:key="{{index}}">
-    <view class="memberInfo flex" data-memberid="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
+    <view class="memberInfo flex" hover-class='t-hoverColor' data-memberid="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" bindtap="findMember" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
       <view class="memberInfoLeft">
         <image src="{{item.member_avatar_url}}" wx:if="{{item.member_avatar_url}}" class="memberInfoLeft"></image>
         <view class="memberInfoLeft" wx:if="{{item.member_avatar_text}}">{{item.member_avatar_text}}</view>
