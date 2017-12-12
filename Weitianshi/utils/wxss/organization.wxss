@@ -287,7 +287,7 @@
 #memberList  .memberInfo {
   border-bottom: 1rpx solid #e6e6e6;
   padding-bottom: 40rpx;
-  margin-top: 40rpx;
+  padding-top: 40rpx;
 }
 
 #memberList  .memberInfo:last-child {

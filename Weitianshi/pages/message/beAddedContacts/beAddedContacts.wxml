@@ -17,76 +17,78 @@
   <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower='loadMore'>
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{contacts}}">
-        <view class='investorCard' hover-class='t-hoverColor'>
-          <!-- <template is='InvestorCard' data='{{item}}'></template> -->
-          <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
-            <view class="t-applyMyProject t-contacts-detailm">
-              <view class="t-introduceBox flex">
-                <view class="t-userName">{{item.user_real_name}}</view>
-                <view class="t-userPosition">{{item.user_company_career}}</view>
-                <view class="t-userPart flex" wx:if="{{item.user_groups[0].group_title}}">
-                  <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
-                  <view class="t-userPart1">{{item.user_groups[0].group_title}}</view>
+        <view class='investorCard'>
+          <view class="t-investorColor" hover-class='t-hoverColor'>
+            <!-- <template is='InvestorCard' data='{{item}}'></template> -->
+            <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
+              <view class="t-applyMyProject t-contacts-detailm">
+                <view class="t-introduceBox flex">
+                  <view class="t-userName">{{item.user_real_name}}</view>
+                  <view class="t-userPosition">{{item.user_company_career}}</view>
+                  <view class="t-userPart flex" wx:if="{{item.user_groups[0].group_title}}">
+                    <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
+                    <view class="t-userPart1">{{item.user_groups[0].group_title}}</view>
+                  </view>
+                  <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+                  <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
                 </view>
-                <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-                <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
-              </view>
-              <view class="t-userCompany">{{item.user_company_name}}</view>
-              <view class="t-record">{{item.active_status}}</view>
-              <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_industry !=''}}">
-                <view class="t-roundGroupTitle">投资领域：</view>
-                <view class="t-roundGroupContent">
-                  <block wx:for="{{item.user_invest_industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
-                    <label wx:if="{{index < item.user_invest_industry.length-1}}">
-                      {{industryItem.industry_name}}、
-                    </label>
-                    <label wx:if="{{index ==  item.user_invest_industry.length-1}}">
-                      {{industryItem.industry_name}}
-                    </label>
-                  </block>
+                <view class="t-userCompany">{{item.user_company_name}}</view>
+                <view class="t-record">{{item.active_status}}</view>
+                <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_industry !=''}}">
+                  <view class="t-roundGroupTitle">投资领域：</view>
+                  <view class="t-roundGroupContent">
+                    <block wx:for="{{item.user_invest_industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
+                      <label wx:if="{{index < item.user_invest_industry.length-1}}">
+                        {{industryItem.industry_name}}、
+                      </label>
+                      <label wx:if="{{index ==  item.user_invest_industry.length-1}}">
+                        {{industryItem.industry_name}}
+                      </label>
+                    </block>
+                  </view>
                 </view>
-              </view>
-              <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_stage.length != 0}}">
-                <view class="t-roundGroupTitle">投资轮次：</view>
-                <view class="t-roundGroupContent">
-                  <block wx:for="{{item.user_invest_stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
-                    <label wx:if="{{index < item.user_invest_stage.length-1}}">{{stageItem.stage_name}}、</label>
-                    <label wx:if="{{index ==item.user_invest_stage.length-1}}">{{stageItem.stage_name}}</label>
-                  </block>
+                <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_stage.length != 0}}">
+                  <view class="t-roundGroupTitle">投资轮次：</view>
+                  <view class="t-roundGroupContent">
+                    <block wx:for="{{item.user_invest_stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
+                      <label wx:if="{{index < item.user_invest_stage.length-1}}">{{stageItem.stage_name}}、</label>
+                      <label wx:if="{{index ==item.user_invest_stage.length-1}}">{{stageItem.stage_name}}</label>
+                    </block>
+                  </view>
                 </view>
               </view>
             </view>
-          </view>
-          <!-- <template is='cardBottom1' data='{{item,user_id}}'></template> -->
-          <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-            <view class='t-cardBottomItem flex' data-id='{{item.user_id}}' bindtap='projectPush' hover-class='t-hoverColor'>
-              <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
-              <span>推送项目</span>
-            </view>
-            <!-- <view class='t-cardBottomItem flex'>
+            <!-- <template is='cardBottom1' data='{{item,user_id}}'></template> -->
+            <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
+              <view class='t-cardBottomItem flex'  hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' bindtap='projectPush'>
+                <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
+                <span>推送项目</span>
+              </view>
+              <!-- <view class='t-cardBottomItem flex'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
       <span>已推送</span>
     </view> -->
-            <view class="line"></view>
-            <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' bindtap='contactsAdd'>
-              <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-              <view>加人脉</view>
-            </view>
-            <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==1}}'>
-              <image class='t-itemPic' src='/img/icon-huweirenmai@2x.png'></image>
-              <view style='color:#999;'>已为人脉</view>
-            </view>
-            <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==2}}'>
-              <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
-              <view style='color:#999;'>待验证</view>
-            </view>
-            <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' bindtap='contactsAddDirect'>
-              <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-              <view>加人脉</view>
-            </view>
+              <view class="t-line"></view>
+              <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' data-id='{{item.user_id}}' bindtap='contactsAdd'>
+                <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
+                <view>加人脉</view>
+              </view>
+              <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==1}}'>
+                <image class='t-itemPic' src='/img/icon-huweirenmai@2x.png'></image>
+                <view style='color:#999;'>已为人脉</view>
+              </view>
+              <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==2}}'>
+                <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
+                <view style='color:#999;'>待验证</view>
+              </view>
+              <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' bindtap='contactsAddDirect'>
+                <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
+                <view>加人脉</view>
+              </view>
 
+            </view>
+            <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
           </view>
-          <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
         </view>
       </block>
       <!-- 

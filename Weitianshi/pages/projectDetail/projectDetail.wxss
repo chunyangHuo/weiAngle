@@ -1256,7 +1256,7 @@ button::after {
   text-align: center;
   width: 37.5%;
   background: #40587a;
-  margin: 30rpx 0;
+  padding: 30rpx 0; 
   border-right: 1rpx solid #e6e6e6;
 }
 

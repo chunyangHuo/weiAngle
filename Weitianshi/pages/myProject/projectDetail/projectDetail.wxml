@@ -69,7 +69,7 @@
   <view class="collectBox" bindtap="deleteProject">
     <image src="/img/icon-shanchu@2x.png" class="collectPic"></image>
   </view>
-  <view class="flex btn1" bindtap="maintainProject">
+  <view class="flex btn1"  bindtap="maintainProject">
     <image src="/img/icon-wanzhengdu@2x.png" class="btnPic"></image>
     <view class="contactProject">完整度：{{project.pro_total_score}}%</view>
   </view>
