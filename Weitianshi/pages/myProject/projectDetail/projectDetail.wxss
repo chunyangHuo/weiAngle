@@ -260,7 +260,7 @@ page {
   color: #ccc;
   width: 33%;
   height: 20rpx;
-  line-height: 20rpx;
+  line-height: 70rpx;
   text-align: center;
   border-right: 1rpx solid #ccc;
   position: relative;

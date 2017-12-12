@@ -16,13 +16,13 @@
   <view class="	screen flex">
     <!--筛选  -->
     <block wx:for='{{tab}}' wx:key='index'>
-      <view class='tabIndex {{currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move'>
+      <view class='tabIndex {{currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move' hover-class='t-hoverColor'>
         {{item.name}}
         <image class='withAnimate {{currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
       </view>
     </block>
     <!--搜索  -->
-    <icon type="search" size="15" class="search_icon" catchtap="searchSth"></icon>
+    <icon type="search" size="15" class="search_icon" catchtap="searchSth" hover-class='t-hoverColor'></icon>
     <!--下拉框  -->
     <view class="withAnimate {{hasCompetitor == true ? 'dropDown':'dropDownMore'}}">
       <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
@@ -97,8 +97,8 @@
   <view wx:if="{{myProject.length !=0}}">
     <block wx:for="{{myProject}}" wx:key="{{index}}">
       <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
-        <view class="insideBox">
-          <view data-id="{{item.project_id}}" bindtap="detail">
+        <view class="insideBox"data-id="{{item.project_id}}" bindtap="detail" hover-class='t-hoverColor'>
+          <view>
             <view class="flex">
               <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
               <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
@@ -135,10 +135,10 @@
 
   <view class="highBox"></view>
   <view class="aboutNetwork flex" wx:if="{{otherPerson == false}}">
-    <view bindtap="decorate">
+    <view bindtap="decorate" hover-class="t-other-button-hover">
       <label class="shop">店铺装修</label>
     </view>
-    <view bindtap="editDetail" class="newProject">新增项目</view>
+    <view bindtap="editDetail" class="newProject" hover-class="t-other-button-hover">新增项目</view>
   </view>
   <!--分享  -->
   <view class="shareSth" catchtap="toShareShop">分享店铺</view>

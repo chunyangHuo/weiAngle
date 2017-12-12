@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 21,
 			"list": [
 				{
 					"id": 1,
@@ -148,6 +148,30 @@
 					"name": "成功案例",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
 					"query": "index=0&case_id=415"
+				},
+				{
+					"id": -1,
+					"name": "我的投资名片",
+					"pathName": "pages/my/myNew/myNew",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=OrwmJ6Wl&index=undefined"
+				},
+				{
+					"id": -1,
+					"name": "加我为人脉",
+					"pathName": "pages/message/beAddedContacts/beAddedContacts",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": ""
 				}
 			]
 		}
