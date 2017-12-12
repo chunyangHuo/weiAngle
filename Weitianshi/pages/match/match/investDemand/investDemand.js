@@ -175,8 +175,8 @@ Page({
             wx.setStorageSync('investor_id', res.data.investor_id)
             var current = that.data.current;
             if (current == 1) {
-              wx.redirectTo({
-                url: "/pages/my/my/my"
+              wx.navigateBack({
+                delta: 1
               })
             } else {
               wx.switchTab({
@@ -232,20 +232,10 @@ Page({
   onUnload: function () {
     // 页面关闭
     if (save) {
-      wx.setStorageSync('enchangeValue', []);
-      wx.setStorageSync('enchangeId', []);
-      wx.setStorageSync('enchangeCheck', [])
-      wx.setStorageSync('payenchangeValue', [])
-      wx.setStorageSync('payenchangeId', [])
-      wx.setStorageSync('payenchangeCheck', [])
-      wx.setStorageSync('paymoneychangeValue', [])
-      wx.setStorageSync('paymoneychangeId', [])
-      wx.setStorageSync('paymoneyenchangeCheck', [])
-      wx.setStorageSync('payareachangeValue', [])
-      wx.setStorageSync('payareachangeId', [])
-      wx.setStorageSync('payareaenchangeCheck', [])
-      wx.setStorageSync('domainValue', []);
-      wx.setStorageSync('domainId', '');
+      wx.setStorageSync('tran_industry', []);
+      wx.setStorageSync('tran_scale', []);
+      wx.setStorageSync('tran_stage', [])
+      wx.setStorageSync('tran_hotCity', [])
     }
   }
 });

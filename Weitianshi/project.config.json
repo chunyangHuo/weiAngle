@@ -126,7 +126,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "创建项目",
 					"pathName": "pages/myProject/publishProject/publishProject",
 					"query": ""
@@ -150,10 +150,16 @@
 					"query": "group_id=18&authenticate_id=7899&isUpdate=0"
 				},
 				{
-					"id": 21,
+					"id": -1,
 					"name": "成功案例",
-					"pathName": "pages/my/investCaseEdit/investCaseEdit",
-					"query": "index=0&case_id=415"
+					"pathName": "pages/my/investCase/investCase",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "项目推送",
+					"pathName": "pages/message/pushProject/pushProject",
+					"query": "type=7&num=1"
 				}
 			]
 		}
