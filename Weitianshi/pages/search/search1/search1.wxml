@@ -16,6 +16,6 @@
   <view class="hasNo" wx:if="{{company.length  == 0}}">暂无结果，可点击保存</view>
 </scroll-view>
 <view class="emptyBox"></view>
-<view class="saveCompanyName" bindtap="save">保存</view>
+<view class="saveCompanyName" hover-class='t-other-button-hover' bindtap="save">保存</view>
 <!--没有更多-->
 <view class="error" wx:if="{{error==1}}">{{error_text}}</view>

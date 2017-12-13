@@ -53,7 +53,7 @@
     </view>
 </view>
 <view class="addFriend flex">
-    <button open-type="share" id="share">分享给朋友</button>
+    <button open-type="share" hover-class='t-other-button-hover' id="share">分享给朋友</button>
     <label class="long"></label>
-    <button type="button" id="QR_save" bindtap="savePic">保存二维码图片</button>
+    <button type="button" id="QR_save" hover-class='t-other-button-hover' bindtap="savePic">保存二维码图片</button>
 </view>

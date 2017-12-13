@@ -20,7 +20,7 @@
     <!--交换名片-->
     <view class="changeCard flex" wx:if="{{!options}}">
       <view>交换名片,搭建我的人脉库</view>
-      <button bindtap="cardChange">去交换</button>
+      <button bindtap="cardChange" hover-class='t-other-button-hover'>去交换</button>
     </view>
 
     <!--我的人脉和加入人脉-->

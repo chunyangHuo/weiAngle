@@ -47,9 +47,12 @@ page {
 .itemCard {
   background: white;
   margin-bottom: 24rpx;
-  padding: 36rpx 22rpx;
+  padding: 36rpx 0rpx 0 0rpx;
 }
-
+.inPadding{
+   padding-left:22rpx;
+   padding-right: 22rpx;  
+}
 .cardTop {
   font-size: 24rpx;
   color: #666;
@@ -175,10 +178,10 @@ height:81px; */
 
 .ProjectDetailInfo {
   /* border-top: 1rpx solid #ccc; */
-  background: #fff;
+  /* background: #fff; */
   width: 100%;
-  height: 28rpx;
-  padding-top: 38rpx;
+  /* height: 28rpx; */
+  /* padding-top: 38rpx; */
   color: #ccc;
 }
 
@@ -190,7 +193,7 @@ height:81px; */
   font-size: 18rpx;
 }
 
-.sceenPerson, .applyPerson, .investPerson {
+ .applyPerson, .investPerson {
   font-size: 22rpx;
   color: #ccc;
   width: 33%;
@@ -202,7 +205,20 @@ height:81px; */
   justify-content: center;
   align-items: center;
 }
-
+.sceenPerson{
+  font-size: 22rpx;
+  color: #fff;
+  width: 33%;
+  height: 20rpx;
+  line-height: 20rpx;
+  text-align: center;
+  /* border-right: 1rpx solid #ccc; */
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding-top: 38rpx;
+  padding-bottom: 36rpx
+}
 .sceenPerson:last-child {
   border: none;
 }
