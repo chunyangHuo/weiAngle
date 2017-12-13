@@ -71,12 +71,14 @@
       </view>
 
       <!--投资机构  -->
-      <view class="outStyleBox" id="investment">
+      <view class="outStyleBox1" id="investment">
+      <view class="outPadding">
         <view class="flex title">
           <view class="blockTitle">投资机构</view>
           <view class="allThing" bindtap="toGoInvestment">全部
             <label>（{{investormentList.investment_list.investment_total_num}}）</label>
           </view>
+        </view>
         </view>
         <template is="investment" data="{{investment_list}}"></template>
       </view>
