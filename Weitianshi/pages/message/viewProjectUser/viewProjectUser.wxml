@@ -16,44 +16,46 @@
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
-        <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
-          <view class="t-applyMyProject t-contacts-detailm">
-            <view class="t-introduceBox flex">
-              <view class="t-userName">{{item.user_real_name}}</view>
-              <view class="t-userPosition">{{item.user_company_career}}</view>
-              <view class="t-userPart flex" wx:if="{{item.user_groups[0].group_title}}">
-                <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
-                <view class="t-userPart1">{{item.user_groups[0].group_title}}</view>
+        <view class="t-investorColor" hover-class='t-hoverColor'>
+          <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
+            <view class="t-applyMyProject t-contacts-detailm">
+              <view class="t-introduceBox flex">
+                <view class="t-userName">{{item.user_real_name}}</view>
+                <view class="t-userPosition">{{item.user_company_career}}</view>
+                <view class="t-userPart flex" wx:if="{{item.user_groups[0].group_title}}">
+                  <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
+                  <view class="t-userPart1">{{item.user_groups[0].group_title}}</view>
+                </view>
+                <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+                <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
               </view>
-              <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-              <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
-            </view>
-            <view class="t-userCompany">{{item.user_company_name}}</view>
-            <view class="t-record">{{item.active_status}}</view>
-            <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_industry.length != 0}}">
-              <view class="t-roundGroupTitle">投资领域：</view>
-              <view class="t-roundGroupContent">
-                <block wx:for="{{item.user_invest_industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
-                  <label wx:if="{{index < item.user_invest_industry.length-1}}">
-              {{industryItem.industry_name}}、
-            </label>
-                  <label wx:if="{{index ==  item.user_invest_industry.length-1}}">
-              {{industryItem.industry_name}}
-            </label>
-                </block>
+              <view class="t-userCompany">{{item.user_company_name}}</view>
+              <view class="t-record">{{item.active_status}}</view>
+              <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_industry.length != 0}}">
+                <view class="t-roundGroupTitle">投资领域：</view>
+                <view class="t-roundGroupContent">
+                  <block wx:for="{{item.user_invest_industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
+                    <label wx:if="{{index < item.user_invest_industry.length-1}}">
+                      {{industryItem.industry_name}}、
+                    </label>
+                    <label wx:if="{{index ==  item.user_invest_industry.length-1}}">
+                      {{industryItem.industry_name}}
+                    </label>
+                  </block>
+                </view>
+              </view>
+              <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_stage.length != 0}}">
+                <view class="t-roundGroupTitle">投资轮次：</view>
+                <view class="t-roundGroupContent">
+                  <block wx:for="{{item.user_invest_stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
+                    <label wx:if="{{index < item.user_invest_stage.length-1}}">{{stageItem.stage_name}}、</label>
+                    <label wx:if="{{index ==item.user_invest_stage.length-1}}">{{stageItem.stage_name}}</label>
+                  </block>
+                </view>
               </view>
             </view>
-            <view class="t-roundGroupPush flex" wx:if="{{item.user_invest_stage.length != 0}}">
-              <view class="t-roundGroupTitle">投资轮次：</view>
-              <view class="t-roundGroupContent">
-                <block wx:for="{{item.user_invest_stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
-                  <label wx:if="{{index < item.user_invest_stage.length-1}}">{{stageItem.stage_name}}、</label>
-                  <label wx:if="{{index ==item.user_invest_stage.length-1}}">{{stageItem.stage_name}}</label>
-                </block>
-              </view>
-            </view>
+            <template is='cardBottom1' data='{{item,user_id}}'></template>
           </view>
-          <template is='cardBottom1' data='{{item,user_id}}'></template>
         </view>
       </block>
     </view>
