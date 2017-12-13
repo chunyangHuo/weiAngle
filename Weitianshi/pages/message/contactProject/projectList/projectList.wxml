@@ -27,7 +27,7 @@
   <view class="outSideBox">
     <template is="allNumber" data="{{count:count,text:'约谈您的项目'}}"></template>
     <block wx:for="{{metList}}" wx:key="{{metList}}">
-      <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="personDetail">
+      <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="personDetail" hover-class='hoverBack'>
         <view class="t-redPoint" wx:if="{{item.status == 0}}"></view>
         <view class="t-applyMyProject t-contacts-detailm">
           <view class="t-introduceBox flex">
@@ -48,8 +48,8 @@
               <block wx:for="{{item.industry_tag}}" wx:key="{{item.industry_tag.index}}" wx:for-item='industry'>
                 <label class="t-noLight" wx:if="{{index < item.industry_tag.length-1}}"> {{industry.industry_name}}、 </label>
                 <label class="t-noLight" wx:if="{{index ==  item.industry_tag.length-1}}">
-               {{industry.industry_name}}
-              </label>
+                  {{industry.industry_name}}
+                </label>
               </block>
             </view>
           </view>
@@ -66,21 +66,24 @@
             <view class="t-describe" wx:if="{{item.investor_desc != null}}">{{item.investor_desc}}</view>
           </view>
         </view>
+        <view class="aline"></view>
         <view class="btnBox">
           <view class="insideBox flex">
-            <view class="flex pushProject" catchtap="pushProject" data-id="{{item.user_id}}" wx:if="{{item.push_status == 0}}">
+            <view class="flex pushProject" catchtap="pushProject" data-id="{{item.user_id}}" wx:if="{{item.push_status == 0}}" hover-class='hoverBack' hover-stop-propagation="true">
               <image src="/img/icon-tuisongxiangmu@2x.png" class="btnPic"></image>
               <view class="pushContent">推送项目</view>
             </view>
-            <view class="flex" wx:if="{{item.push_status == 1}}">
+            <view class='t-line'></view>
+            <view class="flex btnContented" wx:if="{{item.push_status == 1}}">
               <image src="/img/icon-yituisong@2x.png" class="btnPic"></image>
-              <view class="btnContented">已推送</view>
+              <view>已推送</view>
             </view>
-            <view class="flex addPerson" wx:if="{{item.follow_status == 0 }}" catchtap="contactsAdd"  data-id="{{item.user_id}}">
+            <view class='t-line'></view>
+            <view class="flex addPerson" wx:if="{{item.follow_status == 0 }}" catchtap="contactsAdd" data-id="{{item.user_id}}" hover-class='hoverBack' hover-stop-propagation="true">
               <image src="/img/icon-jiarenmai@2x.png" class="btnPic btnPic2"></image>
               <view class="classname">加人脉</view>
             </view>
-            <view class="flex addPerson" wx:if="{{ item.follow_status == 3}}" catchtap="contactsAddDirect" data-id="{{item.user_id}}">
+            <view class="flex addPerson" wx:if="{{ item.follow_status == 3}}" catchtap="contactsAddDirect" data-id="{{item.user_id}}" hover-class='hoverBack' hover-stop-propagation="true">
               <image src="/img/icon-jiarenmai@2x.png" class="btnPic btnPic2"></image>
               <view class="classname">加人脉</view>
             </view>

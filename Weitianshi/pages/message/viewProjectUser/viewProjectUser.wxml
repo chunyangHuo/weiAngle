@@ -54,6 +54,7 @@
                 </view>
               </view>
             </view>
+            <view class='aline'></view>
             <template is='cardBottom1' data='{{item,user_id}}'></template>
           </view>
         </view>

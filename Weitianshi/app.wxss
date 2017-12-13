@@ -1180,3 +1180,7 @@ textarea {
    /* background: #f2f3f4 !important; */
     background: inherit!important
 }
+.t-aLine {
+  border-top: 1rpx solid #e6e6e6;
+  margin: 0 32rpx;
+}

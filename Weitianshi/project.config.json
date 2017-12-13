@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 22,
 			"list": [
 				{
 					"id": 1,
@@ -154,6 +154,12 @@
 					"name": "浏览项目的人",
 					"pathName": "pages/message/viewProjectUser/viewProjectUser",
 					"query": "project_id=PpPk2ZWR"
+				},
+				{
+					"id": 22,
+					"name": "约谈",
+					"pathName": "pages/message/contactProject/projectList/projectList",
+					"query": "id=xpE8b5Wq"
 				}
 			]
 		}
