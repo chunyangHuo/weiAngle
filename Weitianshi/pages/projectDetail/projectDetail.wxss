@@ -423,9 +423,11 @@ scroll-view {
 }
 
 .otherInfo {
-  border-top: 1rpx solid #e6e6e6;
+  /* border-top: 1rpx solid #e6e6e6; */
   height: 94rpx;
   position: relative;
+  background: white;
+  padding:0 32rpx;
 }
 
 .userCareer {
@@ -639,7 +641,7 @@ button::after {
 .contactPersonBox {
   position: absolute;
   top: 40rpx;
-  right: 2rpx;
+  right: 32rpx;
 }
 
 /*认证细腻  */
@@ -655,16 +657,6 @@ button::after {
 }
 
 .toAccreditation {
-  /* font-size: 24rpx;
-  color: #fff;
-  line-height: 52rpx;
-  text-align: center;
-  background: #40587a;
-  border-radius: 4rpx;
-  width: 136rpx;
-  height: 52rpx;
-  margin-top:18rpx;
-  margin-right:32rpx; */
   font-size: 24rpx;
   color: #fff;
   line-height: 52rpx;
@@ -783,43 +775,6 @@ button::after {
 .star {
   margin-bottom: 26rpx;
 }
-
-/* #projectBox .brightContent {
-  /* height: 72rpx; 
-  font-size: 26rpx;
-  color: #666;
-  line-height: 39rpx;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: -o-ellipsis-lastline;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-#projectBox .brightContentAfter {
-  height: auto;
-  font-size: 26rpx;
-  color: #666;
-  line-height: 39rpx;
-  text-align: left;
-} */
-
-/* 
-#projectBox  .pro_sort {
-  font-size: 20rpx;
-  color: #40587a;
-  border-radius: 98rpx;
-  border: 1rpx solid #40587a;
-  text-align: center;
-  height: 44rpx;
-  width: auto;
-  line-height: 44rpx;
-  padding: 0 16rpx;
-  margin-right: 24rpx;
-  flex-wrap: norap;
-} */
 
 #projectBox  .pro_sort {
   font-size: 20rpx;
@@ -1402,4 +1357,10 @@ button::after {
   text-align: center;
   right: 0;
   border-radius: 35rpx 0 0 35rpx;
+}
+.aline{
+  margin:0 32rpx;
+  width:90%;
+  height:2rpx;
+  background: #e6e6e6;
 }

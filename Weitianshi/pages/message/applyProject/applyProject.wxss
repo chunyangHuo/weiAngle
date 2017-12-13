@@ -228,7 +228,6 @@ page {
 
 .applyMyProject {
   padding: 32rpx;
-  background: white;
 }
 
 .outsideBox {

@@ -171,11 +171,9 @@ page {
 }
 
 .myShop {
-  margin-top: 28rpx;
-  border-right: 1rpx solid #fff;
-  padding-right: 48rpx;
-  padding-left: 48rpx;
-  height: 60rpx;
+  width: 29%;
+  text-align: center;
+  background: #40587a;
 }
 
 .empty {
@@ -575,12 +573,16 @@ page {
 }
 
 .newProject {
-  padding-right: 122rpx;
-  padding-left: 122rpx;
+  /* padding-right: 122rpx;
+  padding-left: 122rpx; */
+  width: 50%;
+  text-align: center;
 }
 
 .moreProject {
-  padding-left: 70rpx;
+  text-align: center;
+  width: 41.86%;
+  background: #40587a;
 }
 
 /*分享  */
@@ -603,19 +605,22 @@ page {
 }
 
 /*----------------------game---------------------------------------  */
-.scrollFrame{
+
+.scrollFrame {
   width: 100%;
   overflow-x: scroll;
   padding-bottom: 32rpx;
   padding-top: 32rpx;
-  background: #ffffff;
+  background: #fff;
 }
-.scroll{
+
+.scroll {
   width: 759rpx;
   overflow-x: scroll;
 }
-.item{
-  width:160rpx;
+
+.item {
+  width: 160rpx;
   min-width: 160rpx;
   height: 112rpx;
   background: white;
@@ -624,19 +629,23 @@ page {
   text-align: center;
   border: 1rpx solid #e6e6e6;
 }
-.item .itemName{
+
+.item .itemName {
   font-size: 26rpx;
   color: #333;
   margin-bottom: 16rpx;
   margin-top: 24rpx;
 }
-.item .itemNum{
+
+.item .itemNum {
   font-size: 22rpx;
   color: #999;
 }
-.itemhover{
-  background:#e6e6e6;
+
+.itemhover {
+  background: #e6e6e6;
 }
-.t-modal{
+
+.t-modal {
   top: 175rpx;
 }

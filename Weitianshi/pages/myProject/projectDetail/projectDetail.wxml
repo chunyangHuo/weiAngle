@@ -33,31 +33,34 @@
             <view class="classname">佣金收讫</view>
           </view> -->
         </view>
-        <view class="flex">
-          <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}" hover-class='t-hoverColor'>
-            <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
-              <label>{{count.view_times_all}}</label>
-            </view>
+      </view>
+      <view class="aline"></view>
+      <view class="flex bottomBox">
+        <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}" hover-class='t-hoverColor'>
+          <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
+          <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
+            <label>{{count.view_times_all}}</label>
           </view>
-          <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor'>
-            <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">申请查看：
-              <label>{{count.apply_times_all}}</label>
-            </view>
+        </view>
+        <view class="t-line"></view>
+        <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor'>
+          <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
+          <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">申请查看：
+            <label>{{count.apply_times_all}}</label>
           </view>
-          <!-- <view class="investPerson">-</view> -->
-          <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor'>
-            <view class="applyProjectNew" wx:if="{{project.count.meet_times_new != 0}}">+{{count.meet_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">约谈：
-              <label>{{count.meet_times_all}}</label>
-            </view>
+        </view>
+        <view class="t-line"></view>
+        <!-- <view class="investPerson">-</view> -->
+        <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor'>
+          <view class="applyProjectNew" wx:if="{{project.count.meet_times_new != 0}}">+{{count.meet_times_new}}</view>
+          <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">约谈：
+            <label>{{count.meet_times_all}}</label>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <include src='/utils/wxml/threeTab.wxml'/>
+  <include src='/utils/wxml/threeTab.wxml' />
 </view>
 
 <!--下面的浮动按钮-->
@@ -66,20 +69,21 @@
 </view> -->
 <!-- <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}"> -->
 <view class=" flex floatBtn flexBox" hidden="{{currentTab==1 }}">
-  <view class="collectBox" bindtap="deleteProject">
+  <view class="collectBox" bindtap="deleteProject" hover-class='t-hoverColor'>
     <image src="/img/icon-shanchu@2x.png" class="collectPic"></image>
   </view>
-  <view class="flex btn1"  bindtap="maintainProject">
+  <view class="flex btn1" bindtap="maintainProject" hover-class='t-other-button-hover'>
     <image src="/img/icon-wanzhengdu@2x.png" class="btnPic"></image>
     <view class="contactProject">完整度：{{project.pro_total_score}}%</view>
   </view>
-  <view class="flex btn2" bindtap="initPrivacy">
+  <view class="t-line"></view>
+  <view class="flex btn2" bindtap="initPrivacy" hover-class='t-other-button-hover'>
     <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>
     <view class="businessBook">私密性设置</view>
   </view>
 </view>
-<view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}">
-     机构版买家图谱
+<view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}" hover-class='t-other-button-hover'>
+  机构版买家图谱
 </view>
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">

@@ -1,11 +1,11 @@
 <view class="classname">
-  <view class="visitCard flex" bindtap="scanIDcard">
+  <view class="visitCard flex" bindtap="scanIDcard" hover-class='t-hoverColor'>
     <view class="visitCardMessage">名片</view>
     <image src="/img/icon-mingpian-n@2x.png" class="pushIdCard" wx:if="{{upLoadSuccess == false}}"></image>
     <image src="/img/icon-mingpian-s@2x.png" class="pushIdCard" wx:if="{{upLoadSuccess == true}}"></image>
   </view>
   <view class="personList">
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userNameContent flex" bindtap="writeNewThing" data-type="{{0}}">
         <view class="personListTile">姓名*</view>
         <view class="flex">
@@ -15,7 +15,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userPhoneContent flex" bindtap="writeNewThing" data-type="{{1}}">
         <view class="personListTile">手机*</view>
         <view class="flex">
@@ -25,7 +25,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userBrandContent flex" bindtap="writeNewThing" data-type="{{2}}">
         <view class="personListTile">品牌</view>
         <view class="flex">
@@ -35,7 +35,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userCompanyContent flex" bindtap="writeNewThing" data-type="{{3}}">
         <view class="personListTile">公司*</view>
         <view class="flex">
@@ -45,7 +45,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userPositionContent flex" bindtap="writeNewThing" data-type="{{4}}">
         <view class="personListTile">职位*</view>
         <view class="flex">
@@ -55,7 +55,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userEmailContent flex" bindtap="writeNewThing" data-type="{{5}}">
         <view class="personListTile">邮箱</view>
         <view class="flex">
@@ -65,7 +65,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userEmailContent flex" bindtap="writeNewThing" data-type="{{6}}">
         <view class="personListTile">微信</view>
         <view class="flex">
@@ -75,7 +75,7 @@
         </view>
       </view>
     </view>
-    <view class="userBox">
+    <view class="userBox" hover-class='t-hoverColor'>
       <view class="userDescribeContent flex" bindtap="writeNewThing" data-type="{{7}}">
         <view class="personListTile">个人描述</view>
         <view class="flex">
@@ -88,7 +88,7 @@
   </view>
   <view class="point">选填（建议填写，完善的信息有助于精准对接）</view>
   <view class="investList">
-    <view class="investBox" bindtap="toIndustry">
+    <view class="investBox" bindtap="toIndustry" hover-class='t-hoverColor'>
       <view class="investContent flex">
         <view class="investListTile">投资领域</view>
         <view class="flex overMore">
@@ -103,7 +103,7 @@
         </view>
       </view>
     </view>
-    <view class="investBox" bindtap="toStage">
+    <view class="investBox" bindtap="toStage" hover-class='t-hoverColor'>
       <view class="investContent flex">
         <view class="investListTile">投资轮次</view>
         <view class="flex overMore">
@@ -118,7 +118,7 @@
         </view>
       </view>
     </view>
-    <view class="investBox" bindtap="toScale">
+    <view class="investBox" bindtap="toScale" hover-class='t-hoverColor'>
       <view class="investContent flex">
         <view class="investListTile">投资金额</view>
         <view class="flex">
@@ -133,7 +133,7 @@
         </view>
       </view>
     </view>
-    <view class="investBox" bindtap="toArea1">
+    <view class="investBox" bindtap="toArea1" hover-class='t-hoverColor'>
       <view class="userDescribeContent flex">
         <view class="investListTile">投资地区</view>
         <view class="flex overMore">

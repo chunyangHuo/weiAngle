@@ -73,7 +73,7 @@
       </view>
     </view>
   </view>
-  <view class="userBox">
+  <view class="userBox"  hover-class='t-hoverColor'>
     <view class="projectBoxContent flex">
       <view class="projectTitle">投后股份（%）</view>
       <view class="flex">
@@ -83,7 +83,7 @@
       </view>
     </view>
   </view>
-  <view class="userBox">
+  <view class="userBox" hover-class='t-hoverColor'>
     <view class="projectBoxContent flex noBorder" bindtap="initPrivacy">
       <view class="projectTitle">私密性设置</view>
       <view class="flex">

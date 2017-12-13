@@ -135,9 +135,10 @@
 
   <view class="highBox"></view>
   <view class="aboutNetwork flex" wx:if="{{otherPerson == false}}">
-    <view bindtap="decorate" hover-class="t-other-button-hover">
-      <label class="shop">店铺装修</label>
+    <view bindtap="decorate" hover-class="t-other-button-hover"  class="newProject">
+    店铺装修
     </view>
+    <view class="t-line"></view>
     <view bindtap="editDetail" class="newProject" hover-class="t-other-button-hover">新增项目</view>
   </view>
   <!--分享  -->
@@ -146,13 +147,11 @@
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
   <view class="aboutNetwork flex" wx:if="{{otherPerson == true}}">
-    <view bindtap="toMyShop">
-      <label class="myShop">我的店铺</label>
-    </view>
-    <view bindtap="pushProject">
-      <label class="myShop">推送项目</label>
-    </view>
-    <view bindtap="moreProject" class="moreProject">更多精选项目</view>
+    <view bindtap="toMyShop"  class="myShop" hover-class="t-other-button-hover">我的店铺</view>
+    <view class='t-line'></view>
+    <view bindtap="pushProject"  class="myShop" hover-class="t-other-button-hover">推送项目</view>
+     <view class='t-line'></view>
+    <view bindtap="moreProject" class="moreProject" hover-class="t-other-button-hover">更多精选项目</view>
   </view>
   <!--模态层  -->
   <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>

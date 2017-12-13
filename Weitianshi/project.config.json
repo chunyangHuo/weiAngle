@@ -126,16 +126,28 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "加我为人脉",
-					"pathName": "pages/message/beAddedContacts/beAddedContacts",
-					"query": ""
-				},
-				{
 					"id": 22,
 					"name": "项目推送",
 					"pathName": "pages/message/pushProject/pushProject",
 					"query": "type=7&num=1"
+				},
+				{
+					"id": 18,
+					"name": "项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=QWNn5OW1&index=0"
+				},
+				{
+					"id": -1,
+					"name": "我的项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=OrwmJ6Wl&index=undefined"
+				},
+				{
+					"id": -1,
+					"name": "他人詳情",
+					"pathName": "pages/userDetail/networkDetail/networkDetail",
+					"query": "id=8W1ERK4W"
 				}
 			]
 		}
