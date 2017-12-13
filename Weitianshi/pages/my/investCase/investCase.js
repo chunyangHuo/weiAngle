@@ -6,7 +6,8 @@ Page({
     disabled:false,
     buttonOne: {
       text: "添加案例"
-    }
+    },
+    buttonOneText:'添加案例'
   },
   onShow: function () {
     var that = this;

@@ -5,12 +5,8 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    disabled:false,
+    disabled: false,
     slivalue: 6,
     sliderValue: 6,
     leaveMessage: '',
@@ -22,6 +18,7 @@ Page({
     investScore: 6,
     score_list: [],
     score_list1: [],
+    buttonOneText: '提交'
   },
   onLoad: function (options) {
     this.setData({
@@ -31,14 +28,11 @@ Page({
     });
     // console.log(options, this.data.user_id, this.data.competition_id);
   },
-  /**
- * 生命周期函数--监听页面显示
- */
   onShow: function () {
     let that = this;
     this.history();
-   
-    
+
+
   },
   // 获取内容
   content() {
@@ -60,10 +54,10 @@ Page({
         // 历史消息接口没有这个最大值字段 需要人为添加到数组
         let view_id = [];
         let viewId = [];//暂存
-        let maxScore=[];
-        let historyDesc=[];
-        let historyName=[];
-        let name=[];
+        let maxScore = [];
+        let historyDesc = [];
+        let historyName = [];
+        let name = [];
         for (let i = 0; i < score_list1.length; i++) {
 
           viewId.push(score_list1[i].index_id);
@@ -73,16 +67,16 @@ Page({
             view_id.push(viewId[i]);
           }
         }
-    
+
         let competition_name = res.data.data.competition_name;
         that.setData({
           score_list1: score_list1,
           maxScore: maxScore,
-          historyDesc:historyDesc,
+          historyDesc: historyDesc,
           historyName: historyName,
           view_id: view_id,
           competition_name: competition_name,
-          name:name
+          name: name
         })
 
       }
@@ -113,7 +107,7 @@ Page({
         let history_id = [];
 
 
-        let score_list1 = Object.assign(list1,that.data.name);
+        let score_list1 = Object.assign(list1, that.data.name);
         console.log(score_list1);
         for (let i = 0; i < score_list1.length; i++) {
           score[i] = score_list1[i].index_score;
@@ -198,7 +192,7 @@ Page({
     })
     console.log(that.data.score, that.data.totalNum1);
   },
-  //tijao
+  // 提交
   submit: function () {
     let that = this;
     let score = that.data.score;
@@ -238,10 +232,9 @@ Page({
     that.setData({
       score_list: score_list
     })
-    console.log('score_list',score_list);
-    console.log('score_list1',score_list1);
-    // 
-    if (score_list.length < score_list1.length){
+    console.log('score_list', score_list);
+    console.log('score_list1', score_list1);
+    if (score_list.length < score_list1.length) {
       app.errorHide(that, "请打分", 1500);
       return
     }
@@ -255,6 +248,8 @@ Page({
     //     app.errorHide(that, "请打分", 1500);
     //     return
     // }
+    // 提交中过渡态()
+    app.disableButton(that);
     app.httpPost({
       url: url_common + '/api/project/saveScore',
       data: {
@@ -265,7 +260,7 @@ Page({
         remark: that.data.leaveMessage,
         score_list: that.data.score_list
       },
-    }, app.refreshButton(that)).then(res => {
+    }, that).then(res => {
       if (res.data.status_code == 2000000) {
         app.errorHide(that, "提交成功", 3000);
         setTimeout(function () {
@@ -274,13 +269,8 @@ Page({
           })
         }, 2000)
       }
-    })
-    .catch(err=>{
+    }).catch(err => {
       app.errorHide(that, "提交失败", 3000)
     })
-
-
-
   },
-
 })

@@ -29,7 +29,6 @@
     "pages/search/search3/search3",
     "pages/userDetail/networkDetail/networkDetail",
     "pages/projectDetail/projectDetail",
-    "pages/myProject/editProject/editProject",
     "pages/myProject/projectDetail/projectDetail",
     "pages/myProject/publishProject/publishProject",
     "pages/myProject/pushTo/pushTo",

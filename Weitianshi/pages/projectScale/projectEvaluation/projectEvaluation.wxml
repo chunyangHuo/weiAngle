@@ -47,6 +47,6 @@
    </view>
 </view>
 <view class="scoreWhite"></view>
-<template is="buttonOne" data="{{text:'提交',btnName:'submit',disabled}}"></template>
+<template is="buttonOne" data="{{text:buttonOneText,btnName:'submit',disabled}}"></template>
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
