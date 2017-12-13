@@ -24,20 +24,21 @@
             <view class="projectDetailLine" wx:if="{{project.pro_stage!=''}}">{{project.pro_stage.stage_name}}</view>
             <view class="projectDetailLine" wx:if="{{project.pro_area != ''}}">{{project.pro_area.area_title}}</view>
           </view>
-          <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}">
-            <view class="weui-cell__hd">
-              <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
-              <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
-            </view>
-            <view class="weui-cell__bd contacts-detailm">
-              <view class="flex userInfo" style="align-items: baseline;">
-                <view class="userName">{{user.user_name}}</view>
-                <view class="userCareer">{{user.user_career}}</view>
-                <view class="userCompany">{{user.user_company}}</view>
-                <view class="contactPersonBox flex">
-                  <view class="contactPerson">联系Ta</view>
-                  <image src="/img/icon-jiantou.png" class="userIcon"></image>
-                </view>
+        </view>
+        <view class="aline"></view>
+        <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}" hover-class='t-hoverColor'>
+          <view class="weui-cell__hd">
+            <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
+            <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
+          </view>
+          <view class="weui-cell__bd contacts-detailm">
+            <view class="flex userInfo" style="align-items: baseline;">
+              <view class="userName">{{user.user_name}}</view>
+              <view class="userCareer">{{user.user_career}}</view>
+              <view class="userCompany">{{user.user_company}}</view>
+              <view class="contactPersonBox flex">
+                <view class="contactPerson">联系Ta</view>
+                <image src="/img/icon-jiantou.png" class="userIcon"></image>
               </view>
             </view>
           </view>
@@ -141,7 +142,7 @@
     </view>
     <!--三个tab页  -->
     <include src='/utils/wxml/threeTab.wxml' />
-    <view class="projectScore" wx:if="{{score==true&&show_detail != 1}}"  bindtap="projectRemark">项目评价</view> 
+    <view class="projectScore" wx:if="{{score==true&&show_detail != 1}}" bindtap="projectRemark">项目评价</view>
     <!--申请查看未能过-->
     <view class="lockStyle" wx:if="{{show_detail != 1}}">
       <image class="lock" src="/img/img-suo2@2x.png"></image>
@@ -185,7 +186,7 @@
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox" hidden="{{currentTab==1}}" >
+<view class=" flex floatBtn flexBox" hidden="{{currentTab==1}}">
   <view class="collectBox" hover-class='t-hoverColor' bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
@@ -196,7 +197,7 @@
   <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>
 </view>
 <view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}">
-     机构版买家图谱
+  机构版买家图谱
 </view>
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">
@@ -206,9 +207,8 @@
     <view class="modalTitle">联系项目方</view>
     <textarea class="modalContent" placeholder="请简要描述您的意向约谈时间,方式" bindinput="contentProject" />
     <view class="modalTips">微天使将为您联系项目方并安排约谈或添加FA哥微信：weitianshicn</view>
-    <view class="btn" hover-class='t-other-button-hover'  bindtap="yesBtn">确定</view>
+    <view class="btn" hover-class='t-other-button-hover' bindtap="yesBtn">确定</view>
   </view>
 </view>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-

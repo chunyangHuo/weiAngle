@@ -53,10 +53,10 @@
 /*推送项目  */
 
 .addPerson {
-  background: #2b405e;
   border: 0;
   width: 100%;
   height: 98rpx;
+  background: #40587a;
 }
 
 .pushProjectTo, .addPersonBtn {
@@ -67,14 +67,17 @@
 }
 
 .addPersonBox, .pushProjectBox {
-  margin: 30rpx 0;
+  padding: 30rpx 0;
   white-space: nowrap;
-  margin-left: 110rpx;
+  padding-left: 110rpx;
 }
-
+.addPersonBox{
+  background: #40587a;
+  padding-right: 134rpx;
+}
 .pushProjectBox {
   padding-right: 110rpx;
-  border-right: 1rpx solid white;
+  background: #40587a;
 }
 
 .iconStyle {
@@ -96,5 +99,5 @@
   font-size: 30rpx;
   line-height: 30rpx;
   text-align: center;
-  color:#ffffff;
+  color: #fff;
 }

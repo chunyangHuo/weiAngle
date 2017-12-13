@@ -228,7 +228,6 @@ page {
 
 .applyMyProject {
   padding: 32rpx;
-  background: white;
 }
 
 .outsideBox {
@@ -337,14 +336,13 @@ page {
 }
 
 .agreeBox {
-  padding-left: 94rpx;
+  padding: 28rpx 122rpx 30rpx 94rpx;
+  background: white;
 }
 
 .refuseBox {
-  padding-left: 88rpx;
-  padding-right: 122rpx;
-  /* width: 50%; */
-  border-right: 1rpx solid #e6e6e6;
+  background: white;
+  padding: 28rpx 134rpx 30rpx 88rpx;
 }
 
 .iconStyle {
@@ -460,10 +458,8 @@ page {
 
 .bottomTab {
   /* border-top: 1rpx solid #e6e6e6; */
-  padding-top: 28rpx;
-  padding-bottom: 30rpx;
-  background: white;
   border-radius: 4rpx;
+  background:white;
 }
 
 .user_apply {

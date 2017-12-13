@@ -5,9 +5,11 @@ page {
 #myDetail {
   height: 100%;
 }
-#myDetail .projectScore{
-  color:#fff;
+
+#myDetail .projectScore {
+  color: #fff;
 }
+
 /* scroll-view {
   height: 96%;
 } */
@@ -17,9 +19,9 @@ page {
 .jigou {
   font-size: 28rpx;
   color: #fff;
-  justify-content:center;
- /* line-height: 82rpx; */
- align-items:center;
+  justify-content: center;
+  /* line-height: 82rpx; */
+  align-items: center;
 }
 
 .noMessage {
@@ -196,6 +198,7 @@ page {
   padding: 32rpx;
   height: auto;
   position: relative;
+  padding-bottom: 0;
 }
 
 .describle {
@@ -258,11 +261,8 @@ page {
 .sceenPerson, .applyPerson, .investPerson {
   font-size: 22rpx;
   color: #ccc;
-  width: 33%;
-  height: 20rpx;
-  line-height: 70rpx;
+  width: 33.33%;
   text-align: center;
-  border-right: 1rpx solid #ccc;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -285,8 +285,8 @@ page {
   color: #f44c4c;
   line-height: 18rpx;
   position: absolute;
-  left: 136rpx;
-  top: -16rpx;
+  left: 190rpx;
+  top: 12rpx;
   text-align: center;
 }
 
@@ -295,8 +295,8 @@ page {
   color: #f44c4c;
   line-height: 18rpx;
   position: absolute;
-  left: 170rpx;
-  top: -16rpx;
+  left: 190rpx;
+  top: 12rpx;
   text-align: center;
 }
 
@@ -1659,11 +1659,13 @@ page {
 .btn1 {
   padding-left: 36rpx;
   width: 33.5%;
+  background: #40587a;
 }
 
 .btn2 {
   width: 30.5%;
   padding-left: 45rpx;
+  background: #40587a;
 }
 
 #productBox {
@@ -1750,16 +1752,10 @@ page {
   letter-spacing: 0;
   line-height: 28rpx;
   text-align: center;
-  background: #40587a;
   padding: 30rpx 0;
   padding-right: 36rpx;
-  border-right: 1rpx solid #e6e6e6;
   white-space: nowrap;
 }
-
-/* .contactProject {
-  padding-right: 30rpx;
-} */
 
 .businessBook {
   border: none;
@@ -2040,4 +2036,18 @@ page {
 
 .investBox view {
   text-align: left;
+}
+
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
+}
+.t-line{
+  width: 2rpx;
+}
+.bottomBox{
+  height:88rpx;
+  line-height: 88rpx;
 }
