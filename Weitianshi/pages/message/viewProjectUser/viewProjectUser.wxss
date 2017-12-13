@@ -326,7 +326,7 @@ page {
   color: #999;
 }
 
-.t-cardBottom {
+/* .t-cardBottom {
   border-top: 2rpx solid #e6e6e6;
   padding-top: 30rpx;
   padding-bottom: 30rpx;
@@ -335,5 +335,5 @@ page {
   color: #40587a;
   background: white;
   margin-bottom:24rpx;
-}
+} */
 

@@ -20,18 +20,6 @@
     <template is="resourceInfo" data="{{resource:resource}}"></template>
 
     <template is="forButton"></template>
-
-    <!--我的人脉和加入人脉-->
-    <!--button——type =  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉-->
-    <!--<view class="aboutNetwork flex" wx:if="{{button_type == 0||button_type==3}}">
-    <view bindtap="addNetwork">加人脉</view>
-  </view> 
-  <view class="aboutNetwork flex" wx:if="{{button_type == 4}}">
-    <view bindtap="addNetwork">加人脉</view>
-  </view>
-  <view class="floatBtn flex waitPerson" wx:if="{{button_type==2}}">
-    <button class="waitPersonBtn" style="background: #f2f2f2;color:#cccccc;">待验证</button>
-  </view>-->
   </view>
   <view class="flex sharePageButton floatBtn">
     <view class="myContacts  my-contactsm" bindtap="toContacts" wx:if="{{complete != 1}}">创建我的名片</view>

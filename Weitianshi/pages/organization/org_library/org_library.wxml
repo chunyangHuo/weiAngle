@@ -8,7 +8,7 @@
 <view class="topPic" bindtap="guideHelp">
   <image src="{{imgUrls}}" class="topPic"></image>
 </view>
-  <view class="outStyleBox" id="investment">
+  <view class="outStyleBox1" id="investment">
     <template is="investment" data="{{investment_list}}"></template>
   </view>
   <!--暂无内容  -->

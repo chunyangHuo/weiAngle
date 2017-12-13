@@ -150,15 +150,18 @@
 /*投资机构  */
 
 #investment .investGroupBlock {
-  padding-bottom: 40rpx;
-  padding-top: 40rpx;
+   padding-bottom: 40rpx;
+  padding-top: 40rpx; 
+  padding: 32rpx 32rpx 0 32rpx;
+}
+#investment .investGroupBlock .investGroupBlock1{
+  padding-bottom: 32rpx;
   border-bottom: 1rpx solid #e6e6e6;
 }
-
-#investment .investGroupBlock:last-child {
+ #investment .investGroupBlock:last-child .investGroupBlock1 {
   border-bottom: 0;
-  padding-bottom: 0;
-}
+  /* padding-bottom: 0; */
+ }  
 
 #investment .investGroupLeft {
   height: 104rpx;
@@ -282,17 +285,18 @@
   line-height: 33rpx;
   text-align: left;
   margin-bottom: 40rpx;
-}
-
+} 
 #memberList  .memberInfo {
-  border-bottom: 1rpx solid #e6e6e6;
   padding-bottom: 40rpx;
   padding-top: 40rpx;
+  padding: 32rpx 32rpx 0 32rpx;
 }
-
-#memberList  .memberInfo:last-child {
+#memberList  .memberInfo  .memberInfo1{
+ padding-bottom: 32rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+#memberList  .memberInfo:last-child  .memberInfo1 {
   border: 0;
-  padding-bottom: 0;
 }
 
 #memberList  .memberInfoLeft {
@@ -723,4 +727,19 @@
   color: #10ad57;
   text-align: center;
   margin-right: 13rpx;
+}
+.outStyleBox {
+  margin-bottom: 32rpx;
+  background: #fff;
+  padding: 32rpx;
+}
+.outStyleBox1 {
+  margin-bottom: 32rpx;
+  background: #fff;
+}
+.outPadding{
+  padding: 32rpx 32rpx 0 32rpx;
+}
+.outStyleBox:last-child {
+  margin-bottom: 0;
 }
