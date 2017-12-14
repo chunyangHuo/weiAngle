@@ -188,7 +188,7 @@ height:81px; */
 .ProjectDetailInfo .viewTimeNew {
   position: absolute;
   color: #f44c4c;
-  top: -12rpx;
+  top: 12rpx;
   right: 25rpx;
   font-size: 18rpx;
 }

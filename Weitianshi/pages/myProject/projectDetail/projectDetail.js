@@ -802,13 +802,14 @@ Page({
               }
             })
           } else if (res.tapIndex == 0) {
-            wx.showLoading({
-              title: 'loading',
-              mask: true,
-            })
+            // wx.showLoading({
+            //   title: 'loading',
+            //   mask: true,
+            // })
             wx.downloadFile({
               url: BPath,
               success: function (res) {
+                console.log(res)
                 var filePath = res.tempFilePath
                 console.log(res)
                 wx.openDocument({

@@ -202,7 +202,6 @@ page {
   padding: 0 32rpx;
   height: 116rpx;
   width: 92%;
-  border-bottom: 1rpx solid #e6e6e6;
   justify-content: space-between;
   align-items: flex-end;
   line-height: 116rpx;
@@ -450,3 +449,9 @@ page {
   margin-left: 112rpx;
 }
 
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
+}

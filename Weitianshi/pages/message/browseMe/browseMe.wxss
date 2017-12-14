@@ -53,7 +53,7 @@ page {
 }
 
 .s_frame {
-  height: 1052rpx;
+  height: 1142rpx;
   position: static;
 }
 
@@ -324,4 +324,10 @@ page {
   padding-bottom: 20rpx;
   text-align: right;
   color: #999999;
+}
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
 }

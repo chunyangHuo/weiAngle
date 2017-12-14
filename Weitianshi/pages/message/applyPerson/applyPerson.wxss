@@ -1,10 +1,12 @@
 /* pages/message/applyPerson/applyPerson.wxss */
+
 .empty {
   padding-top: 0;
-  margin-top:344rpx;
+  margin-top: 344rpx;
   width: 252rpx;
   height: 190rpx;
 }
+
 page {
   height: 100%;
 }
@@ -13,6 +15,7 @@ page {
   height: 1200rpx;
   position: static;
 }
+
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -227,8 +230,9 @@ page {
   width: 670rpx;
   padding-left: 16rpx;
 }
-.introduce{
-   background: #f3f4f8;
+
+.introduce {
+  background: #f3f4f8;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;
   color: #666;
@@ -241,6 +245,7 @@ page {
   width: 670rpx;
   padding-left: 16rpx;
 }
+
 .applyMyProject .userPosition {
   font-size: 28rpx;
   color: #666;
@@ -402,7 +407,6 @@ page {
 }
 
 .bottomTabAfter {
-  border-top: 1rpx solid #e6e6e6;
   padding-top: 28rpx;
   background: white;
   padding-bottom: 30rpx;
@@ -414,6 +418,7 @@ page {
   padding-bottom: 30rpx;
   background: white;
 }
+
 .user_text {
   background: #f2f2f2;
   line-height: 104rpx;
@@ -426,15 +431,19 @@ page {
   right: 32rpx;
   top: 32rpx;
 }
-.investmentGroupContent, .roundGroupContent{
+
+.investmentGroupContent, .roundGroupContent {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .hide {
   display: none;
 }
+
 /*重新申请  */
+
 .toAccreditation {
   font-size: 24rpx;
   color: #fff;
@@ -447,5 +456,12 @@ page {
   /* margin-top: 18rpx; */
   position: absolute;
   right: 0;
-  top:20rpx;
+  top: 20rpx;
+}
+
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
 }

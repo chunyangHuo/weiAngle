@@ -40,7 +40,7 @@
 
  
   <!--发布项目-->
-  <button class="nextBtn publish-resources-confirm" bindtap="publish">
+  <button class="nextBtn publish-resources-confirm" bindtap="publish" hover-class='t-other-button-hover'>
     发布
   </button>
    <!--错语提示-->
