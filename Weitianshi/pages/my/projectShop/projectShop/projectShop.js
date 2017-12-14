@@ -68,10 +68,12 @@ Page({
           user_id: user_id
         })
       }
-      this.getProjectInfo();
+      this.requestPost();
+      // this.getProjectInfo();
       this.getUserInfo();
       // 打上check属性
       this.initData();
+      // 获取审核列表
       app.httpPost({
         url: url_common + '/api/project/getNodeCount',
         data: {
@@ -104,7 +106,6 @@ Page({
         currentPage: 1,
         page_end: false
       })
-      this.getProjectInfo();
       this.getUserInfo();
     }
   },
@@ -377,7 +378,6 @@ Page({
   // 评分阶段筛选
   scheduleCheck(e) {
     let id = e.currentTarget.dataset.id;
-    console.log(this.data.page_end)
     let index = e.currentTarget.dataset.index;
     let node_list = this.data.node_list;
     let searchData = this.data.searchData;
@@ -407,24 +407,29 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
+        console.log('getMyProjectList',res);
         that.initData();
-        app.initPage(that)
+        wx.hideLoading();
         if (res.data.data.length == 0) {
           that.setData({
             currentIndex: 5,
             myProject: res.data.data,
-            notHave: 0
+            notHave: 0,
+            requestCheck: true,
+            currentPage: 1,
+            page_end: false
           })
         } else {
           that.setData({
             currentIndex: 5,
             myProject: res.data.data,
+            requestCheck: true,
+            currentPage: 1,
+            page_end: false
           })
         }
       }
     });
-    console.log(this.data.page_end)
   },
   // 点击modal层
   modal() {
@@ -478,8 +483,8 @@ Page({
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
     let index = thisData.index;
-    let user_id = wx.getStorageSync('user_id');
-    let followed_user_id = this.followed_user_id;
+    let user_id = this.data.user_id
+    let followed_user_id = this.data.followed_user_id;
     // followed_user_id 存在:他人的店铺详情;不存在:自己的店铺详情
     if (followed_user_id) {
       app.href('/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id)
@@ -499,7 +504,7 @@ Page({
   // 选中项目
   clickProject: function (e) {
     let that = this;
-    let user_id = wx.getStorageSync('user_id');
+    let user_id = this.data.user_id;
     let myProject = this.data.myProject;
     let project_id = e.currentTarget.dataset.id;
     let is_top = e.currentTarget.dataset.top;

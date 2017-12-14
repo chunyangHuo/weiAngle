@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 17,
 			"list": [
 				{
 					"id": 1,
@@ -124,6 +124,12 @@
 					"name": "Search3",
 					"pathName": "pages/search/search3/search3",
 					"query": "user_id=Np38mX9r&entrance=faList"
+				},
+				{
+					"id": -1,
+					"name": "狄肖伟项目店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": "followed_user_id=9W2eN6X0"
 				}
 			]
 		}
