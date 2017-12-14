@@ -68,7 +68,6 @@ Page({
           user_id: user_id
         })
       }
-      this.requestPost();
       // this.getProjectInfo();
       this.getUserInfo();
       // 打上check属性
@@ -81,22 +80,29 @@ Page({
         }
       }, that).then(res => {
         let node_list = res.data.data.node_list;
-        if(node_list){
+        let searchData = that.data.searchData;
+        if (node_list) {
           that.setData({
-            hasCompetitor : true
+            hasCompetitor: true
           })
-        }else{
+          node_list.forEach(x => {
+            if (x.is_select == 1) {
+              console.log(1)
+              searchData.schedule = [x.schedule_id]
+            }
+          })
+        } else {
           that.setData({
-            hasCompetitor : false
+            hasCompetitor: false
           })
         }
         that.setData({
-          node_list: node_list
+          node_list: node_list,
+          searchData: searchData
         })
+        that.requestPost();
       })
     });
-
-
   },
   onShow: function () {
     if (!this.data.firstTime) {
@@ -106,7 +112,7 @@ Page({
         currentPage: 1,
         page_end: false
       })
-      this.getUserInfo();
+      this.requestPost();
     }
   },
   //获取项目详情
@@ -396,9 +402,9 @@ Page({
     this.requestPost();
   },
   // 发送筛选请求
-  requestPost(searchData) {
+  requestPost() {
     let that = this;
-    let  page_end = this.data.page_end
+    let page_end = this.data.page_end
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -407,7 +413,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('getMyProjectList',res);
+        console.log('getMyProjectList', res);
         that.initData();
         wx.hideLoading();
         if (res.data.data.length == 0) {
@@ -602,8 +608,8 @@ Page({
     })
   },
   //分享店铺
-  toShareShop(){
-    let user_id  = this.data.user_id;
-    app.href("/pages/my/projectShop/shopShare/shopShare?user_id="+user_id)
+  toShareShop() {
+    let user_id = this.data.user_id;
+    app.href("/pages/my/projectShop/shopShare/shopShare?user_id=" + user_id)
   }
 })
