@@ -340,7 +340,7 @@
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
   <view class="flex pc-guidem">
-    <view class="pointToPC" bindtap="toPc">
+    <view class="pointToPC" hover-class='t-createColor' bindtap="toPc">
       <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
       去电脑上创建项目更方便
       <label class="pointPcToNet">></label>

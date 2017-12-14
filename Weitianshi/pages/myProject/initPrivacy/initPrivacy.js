@@ -172,7 +172,7 @@ Page({
           black_company: black_company,
           black_user: black_user
         },
-      }, app.refreshButton(that)).then(res => {
+      }, that).then(res => {
         if (res.data.status_code == 2000000) {
           wx.removeStorageSync('setPrivacy');
           wx.navigateBack({

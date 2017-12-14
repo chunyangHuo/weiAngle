@@ -96,7 +96,6 @@ Page({
       industryCard: industryCard
     })
   },
-
   //项目名称
   case_name: function (e) {
     var that = this;
@@ -105,7 +104,6 @@ Page({
       case_name: case_name
     })
   },
-
   //项目阶段
   case_stage: function (e) {
     var stage_index = e.detail.value;
@@ -201,7 +199,7 @@ Page({
             case_province: case_province,
             case_city: case_city
           },
-        }, app.refreshButton(that)).then(res => {
+        }, that).then(res => {
           console.log(res)
           if (res.data.status_code == 2000000) {
             wx.removeStorageSync("industryCurrent3")
@@ -226,7 +224,7 @@ Page({
             case_province: case_province,
             case_city: case_city
           },
-        }, app.refreshButton(that)).then(res => {
+        }, that).then(res => {
           if (res.data.status_code == 2000000) {
             wx.removeStorageSync("industryCurrent3")
             wx.navigateBack({

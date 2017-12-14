@@ -6,13 +6,13 @@ App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
     let url = this.globalData.url;
-    let url_common = this.globalData.url_common; 
+    let url_common = this.globalData.url_common;
 
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
       //获取code
       wx.login({
-        success: function (login) { 
+        success: function (login) {
           let code = login.code;
           if (code) {
             let path = options.path;
@@ -250,7 +250,7 @@ App({
               success: function (res) {
                 if (res.confirm == true) {
                   wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo?type = '+ 2
+                    url: '/pages/register/companyInfo/companyInfo?type = ' + 2
                   })
                 }
               }
@@ -340,7 +340,7 @@ App({
               newPage = res.data[dataStr];
             }
             console.log(request.data.page, newPage);
-         
+
             // for (let i = 0; i < newPage.length; i++) {
             //   dataSum.push(newPage[i])
             // }
@@ -667,17 +667,18 @@ App({
       return;
     }
   },
-  // 保存按钮之后点击问题
-  refreshButton(that) {
+  //保存按钮之后置灰,改方案,加loading
+  disableButton(that) {
     that.setData({
-      disabled: true
+      disabled: true,
+      buttonOneText: '提交中'
     })
-    setTimeout(function () {
-      that.setData({
-        disabled: false
-      })
-    }, 2000)
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
   },
+
   //页栈超出处理
   href(url) {
     let pages = getCurrentPages();
@@ -688,7 +689,6 @@ App({
       url: url,
     })
   },
-
   //多选
   checkMore(e, item, itemArr, that, itemName) {
     let target = e.currentTarget.dataset.item;

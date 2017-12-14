@@ -1212,6 +1212,7 @@ button::after {
   width: 37.5%;
   background: #40587a;
   padding: 30rpx 0; 
+   border-right: 1rpx solid #e6e6e6; 
 }
 
 .businessBook {
