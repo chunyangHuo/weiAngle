@@ -3,7 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    disabled:false,
+    disabled: false,
     case_time: "请选择",
     industry: "请选择",
     stage: ["请选择"],
@@ -118,15 +118,9 @@ Page({
   case_money: function (e) {
     var that = this;
     var case_money = e.detail.value;
-    let reg = /^[1-9]\d*$/;
-    if (reg.test(case_money)) {
-      that.setData({
-        case_money: case_money
-      })
-    } else {
-      app.errorHide(that, "请输入数字", 1500)
-    }
-
+    that.setData({
+      case_money: case_money
+    })
   },
   //项目时间
   case_time: function (e) {
@@ -155,6 +149,15 @@ Page({
     var case_time = this.data.case_time;
     var tran_area = this.data.tran_area;
     let belongArea = this.data.belongArea;
+    let reg = /^[1-9]\d*$/;
+    // if ()) {
+    //   that.setData({
+    //     case_money: case_money
+    //   })
+    // } else {
+     
+    // }
+    console.log(case_money)
     if (tran_area) {
       var case_province = tran_area[0].area_id;
       var case_city = tran_area[1].area_id;
@@ -172,18 +175,20 @@ Page({
     })
     console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
     console.log(user_id, case_name, industry, case_industry, case_stage_id, case_money, case_time, case_province, case_city, tran_area)
-    if (case_name == '') {
+    if (case_name == undefined) {
       app.errorHide(that, "项目名称不能为空", 1500)
     } else if (case_industry.length < 1) {
       app.errorHide(that, "领域不能为空", 1500)
     } else if (case_stage_id == 0) {
       app.errorHide(that, "轮次不能为空", 1500)
-    } else if (case_money.length < 1) {
+    } else if (case_money == undefined ||case_money == "") {
       app.errorHide(that, "投资金额不能为空", 1500)
     } else if (case_time == '请选择') {
       app.errorHide(that, "交易时间不能为空", 1500)
     } else if (!case_city) {
       app.errorHide(that, "地区不能为空", 1500)
+    } else if (!reg.test(case_money)){
+      app.errorHide(that, "请输入数字", 1500)
     } else {
       if (case_index) {
         app.httpPost({

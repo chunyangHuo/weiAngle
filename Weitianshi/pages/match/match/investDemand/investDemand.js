@@ -155,7 +155,8 @@ Page({
       })
     }
     if (industryValue !== "" && payMoney != "" && payArea !== "" && payStage !== "") {
-      wx.request({
+      // 防反复提交表单处理
+      let submitData = {
         url: url + '/api/investor/updateOrCreateInvestor',
         data: {
           user_id: user_id,
@@ -164,40 +165,26 @@ Page({
           investor_scale: payMoneyId,
           investor_area: payAreaId,
           investor_desc: y_describe
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status_code == 2000000) {
-            wx.removeStorageSync("tran_industry")
-            wx.removeStorageSync("tran_scale")
-            wx.removeStorageSync("tran_stage")
-            wx.removeStorageSync("tran_hotCity")
-            wx.setStorageSync('investor_id', res.data.investor_id)
-            var current = that.data.current;
-            if (current == 1) {
-              wx.navigateBack({
-                delta: 1
-              })
-            } else {
-              wx.switchTab({
-                url: '/pages/discoverProject/discoverProject'
-              });
-            }
-
-          } else {
-            that.setData({
-              error: "1",
-              error_text: res.data.error_msg
-            })
-            setTimeout(
-              function () {
-                that.setData({
-                  error: "0"
-                })
-              }
-              , 2000)
-          }
-        },
+        }
+      }
+      app.buttonSubmit(that, submitData, res => {
+        wx.removeStorageSync("tran_industry")
+        wx.removeStorageSync("tran_scale")
+        wx.removeStorageSync("tran_stage")
+        wx.removeStorageSync("tran_hotCity")
+        console.log(5555)
+        wx.setStorageSync('investor_id', res.data.investor_id)
+        console.log(333)
+        var current = that.data.current;
+        if (current == 1) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          wx.switchTab({
+            url: '/pages/discoverProject/discoverProject'
+          });
+        }
       })
     } else {
       that.setData({

@@ -34,6 +34,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         wx.hideLoading();
         let myProject = res.data.data;
         // 拼接industryArry和otherTag用于展示
@@ -50,8 +51,14 @@ Page({
                 }
               })
             }
-            if (x.pro_finance_stock_after == 0.00) x.pro_finance_stock_after = 0;
-            x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after + '%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
+            console.log(x.pro_scale)
+            if (x.pro_finance_stock_after == 0.00 && x.pro_scale!="" &&x.pro_stage !="" &&x.pro_area 
+            != ""){
+              x.pro_finance_stock_after = 0;
+              x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after + '%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
+            }else if(x.pro_scale == ""){
+console.log("不存在")
+            }
           })
         }
         console.log('项目列表', myProject)

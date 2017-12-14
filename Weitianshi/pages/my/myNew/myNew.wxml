@@ -20,7 +20,8 @@
     <view class="user_company" wx:if="{{!user.user_company_name}}">公司：暂无编辑</view>
     <view class="user_mobile" wx:if="{{user.user_brand}}">品牌：{{user.user_brand}}</view>
     <view class="user_mobile" wx:if="{{!user.user_brand}}">品牌：暂无编辑</view>
-    <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：<label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
+    <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
+      <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
     </view>
     <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机：暂无编辑</view>
     <view class="user_email flex" wx:if="{{user.user_email}}">
@@ -67,7 +68,7 @@
 </view>
 <!--人气-->
 <view class="user_down flex">
-  <view hover-class="t-hoverColor" class="user_popularity user_tips contacts-sentimentm" bindtap="popularity" >
+  <view hover-class="t-hoverColor" class="user_popularity user_tips contacts-sentimentm" bindtap="popularity">
     <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
     <label class="popularityNum" wx:if="{{count.user_view_new}}">+{{count.user_view_new}}</label>
     <label class="popularityNum" wx:if="{{count.user_view_new==0}}"></label>
@@ -104,6 +105,7 @@
     <view class="identifyContent on" wx:if="{{status == 1}}">审核中</view>
     <view class="identifyContent" wx:if="{{status == 2}}">{{user.authentication[0].group_title}}</view>
   </view>
+  <view class="aline"></view>
   <view class="blockInfo flex" bindtap="projectShop" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/Shape@2x.png" class="blockPic"></image>
@@ -117,6 +119,7 @@
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
+  <view class="aline"></view>
   <view class="blockInfo flex" bindtap="contactProject" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/icon-yuetandexiangmu@2x.png" class="blockPic"></image>
@@ -127,6 +130,7 @@
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
+  <view class="aline"></view>
   <view class="blockInfo flex" bindtap="collectProject" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>

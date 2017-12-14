@@ -443,9 +443,8 @@ Page({
       if (that.data.pro_id) {
         httpUrl = '/api/project/updateProject';
       }
-      // 提交中过渡态处理
-      app.disableButton(that)
-      app.httpPost({
+      // 防反复提交处理
+      let submitData = {
         url: url_common + httpUrl,
         data: {
           user_id: wx.getStorageSync('user_id'),
@@ -471,38 +470,20 @@ Page({
           power_investor_status: privacy.power_investor_status,
           company_open_status: Number(!privacy.company_open_status),
         },
-      }, that).then(res => {
-        console.log('res', res)
-        if (res.data.status_code == 2000000) {
-          //数据清空
-          wx.setStorageSync('tran_industry', []);
-          wx.setStorageSync('tran_area', []);
-          wx.removeStorageSync('setPrivacy');
-          // 提交中过渡态处理
-          setTimeout(x => {
-            app.errorHide(that,'表单提交成功',1000)
-            app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
-            that.setData({
-              disabled: false,
-              buttonOneText: '保存'
-            })
-          }, 1000)
-        } else {
-          app.errorHide(that, res.data.error_msg, 3000)
-          // 提交中过渡态处理
-          wx.hideLoading();
+      }
+      app.buttonSubmit(that, submitData, res => {
+        //数据清空
+        wx.setStorageSync('tran_industry', []);
+        wx.setStorageSync('tran_area', []);
+        wx.removeStorageSync('setPrivacy');
+        // 提交中过渡态处理
+        setTimeout(x => {
+          app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
           that.setData({
             disabled: false,
             buttonOneText: '保存'
           })
-        }
-      }).catch(res => {
-        // 提交中过渡态处理
-        wx.hideLoading();
-        that.setData({
-          disabled: false,
-          buttonOneText: '保存'
-        })
+        }, 1000)
       })
     }
   },
