@@ -59,8 +59,9 @@
               </view>
             </view>
             <!-- <template is='cardBottom1' data='{{item,user_id}}'></template> -->
+            <view class="t-alineHeight"></view>
             <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-              <view class='t-cardBottomItem flex'  hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' bindtap='projectPush'>
+              <view class='t-cardBottomItem flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' bindtap='projectPush'>
                 <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
                 <span>推送项目</span>
               </view>
@@ -85,7 +86,6 @@
                 <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
                 <view>加人脉</view>
               </view>
-
             </view>
             <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
           </view>

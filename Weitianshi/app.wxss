@@ -1050,11 +1050,9 @@ textarea {
 /*---------------------------------卡片底部--推送项目和加人脉----------------------------------- */
 
 .t-cardBottom {
-  border-top: 2rpx solid #e6e6e6;
   margin: 0 0 22rpx 0;
   font-size: 28rpx;
   color: #40587a;
-  /* background: white; */
 }
 
 .t-cardBottomItem {
@@ -1187,4 +1185,12 @@ textarea {
 .t-hoverColor .projectDetal{
    background: inherit!important
 }
-
+.user_down  .t-color{
+  background: #E0E0E0;
+}
+.t-alineHeight{
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
+}

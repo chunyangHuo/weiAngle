@@ -195,7 +195,7 @@
   <view class="businessBook" catchtap="businessBook" hover-class='t-other-button-hover' wx:if="{{button_type == 1}}">商业计划书</view>
   <view class="businessBook1" wx:if="{{button_type == 0}}">申请中</view>
   <view class="businessBook project-applicationm" hover-class='t-other-button-hover' bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
-  <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view>
+  <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class='t-other-button-hover'>重新申请</view>
 </view>
 <view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}">
   机构版买家图谱

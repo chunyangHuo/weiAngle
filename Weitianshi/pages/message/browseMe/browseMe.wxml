@@ -15,7 +15,6 @@
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <view class="contacts">
-
       <block wx:for="{{contacts}}" wx:key="{{contacts}}">
         <view class='investorCard'>
           <view class="t-investorColor" hover-class='t-hoverColor'>
@@ -58,7 +57,7 @@
                 </view>
               </view>
             </view>
-            <!-- <template is='cardBottom1' data='{{item,user_id}}'></template> -->
+            <view class="aline"></view>
             <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
               <view class='t-cardBottomItem flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' bindtap='projectPush'>
                 <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>

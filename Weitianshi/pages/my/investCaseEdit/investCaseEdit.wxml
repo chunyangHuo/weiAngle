@@ -18,7 +18,7 @@
     <view class="text">投资金额(万元)*</view>
     <input class="" id="case_money" placeholder="请输入" value="{{case_money}}" bindblur="case_money" maxlength="9" type="number" />
   </view>
-  <view class="card">
+  <view class="card"> 
     <view class="text">交易时间*</view>
     <picker class="card_case" mode="date" value="{{case_time}}" start="{{timeBefore}}" end="{{timeNow}}" bindchange="case_time">
       {{case_time}}

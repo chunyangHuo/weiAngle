@@ -289,7 +289,7 @@
 .btnPic {
   height: 28rpx;
   width: 28rpx;
-  margin-left: 62rpx;
+  margin-left:90rpx;
   margin-right: 16rpx;
   margin-top: 27rpx;
 }

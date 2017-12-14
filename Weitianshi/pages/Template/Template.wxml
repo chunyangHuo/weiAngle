@@ -67,7 +67,7 @@
 
   <!--人气-->
   <view class="user_down flex">
-    <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity">
+    <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity" hover-class='t-color'>
       <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
       <label class="popularityNum" wx:if="{{count.user_view_new && show ==1}}">+{{count.user_view_new}}</label>
       <label class="popularityNum" wx:if="{{count.user_view_new==0 || show ==0}}"></label>
@@ -75,7 +75,7 @@
       <view class="popularity-people">人气</view>
     </view>
     <!--加我为人脉-->
-    <view class="user_attention user_tips contacts-requestm" bindtap="attention">
+    <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class='t-color'>
       <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
       <label class="attentionNum" wx:if="{{count.user_followed_new && show ==1}}">+{{count.user_followed_new}}</label>
       <label class="popularityNum" wx:if="{{count.user_followed_new==0 || show ==0}}"></label>
@@ -84,7 +84,7 @@
       <view class="attention-people">{{text}}</view>
     </view>
     <!--潜在项目-->
-    <view class="user_potential user_tips potential-projectm" bindtap="pushTo">
+    <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class='t-color'>
       <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
       <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
       <label class="popularityNum" wx:if="{{count.project_push_new==0 || show ==0}}"></label>
@@ -267,7 +267,7 @@
 
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
-  <view class="weui-panel__bd" style="background:white;margin:16px">
+  <view class="weui-panel__bd" style="background:white;margin:16px" hover-class='t-hoverColor'>
     <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.project_id}}' data-index="{{index}}" data-id='{{myProject.case_id}}' bindtap='detail'>
       <view class="title" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
@@ -596,6 +596,7 @@
             </view>
           </view>
           <!--申请查看我的样式  -->
+          <view class="aline"></view>
           <view wx:if="{{type == 0}}">
             <view class="bottomTab flex" wx:if="{{item.handle_status == 0}}">
               <view class="flex refuseBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{2}}">
