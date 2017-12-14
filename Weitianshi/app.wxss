@@ -1157,10 +1157,10 @@ textarea {
   color: #fff;
 }
 
-.button[disabled][type="default"], wx-button[disabled]:not([type]) {
+/* .button[disabled][type="default"], wx-button[disabled]:not([type]) {
   background: #2b405e;
   color: #fff;
-}
+} */
 
 .t-hoverColor {
   background: #f2f3f4 !important;
@@ -1170,7 +1170,7 @@ textarea {
   margin: 0 30rpx 0 30rpx;
 }
 .t-createColor{
-  background: #F3E2D6;
+  background: #F3E2D6!important;
 }
 .t-hoverColor .projectListBlock{
    /* background: #f2f3f4 !important; */
@@ -1179,4 +1179,7 @@ textarea {
 .t-hoverColor .memberDes{
    /* background: #f2f3f4 !important; */
     background: inherit!important
+}
+.t-hoverColor .projectDetal{
+   background: inherit!important
 }
