@@ -53,13 +53,17 @@
 
 .t-applyMyProject {
   padding: 32rpx;
-  background: #fafafa;
   padding-bottom: 0;
 }
 
 .t-outsideBox {
   margin: 0 30rpx 22rpx 30rpx;
   position: relative;
+  background: #fafafa;
+}
+
+.hoverBack {
+   background: #E0E0E0; 
 }
 
 #t-introduce {
@@ -287,6 +291,7 @@
   width: 28rpx;
   margin-left: 62rpx;
   margin-right: 16rpx;
+  margin-top: 27rpx;
 }
 
 .btnPic2 {
@@ -296,22 +301,17 @@
 .pushProject, .addPerson {
   font-size: 28rpx;
   color: #40587a;
-}
-
-.btnBox {
-  background: #fafafa;
+  width: 50%;
+  text-align: center;
 }
 
 .pushContent {
   padding-right: 92rpx;
-  border-right: 1rpx solid #e6e6e6;
 }
 
 .insideBox {
-  height: 26rpx;
-  margin: 0 32rpx;
-  padding: 32rpx 0;
-  border-top: 1rpx solid #e6e6e6;
+  height: 86rpx;
+  line-height: 86rpx;
 }
 
 #time {
@@ -352,8 +352,18 @@
 .btnContented {
   font-size: 28rpx;
   color: #ccc;
-  line-height: 28rpx;
-  text-align: left;
-  padding-right: 119rpx;
-  border-right: 1rpx solid #e6e6e6;
+  text-align: center;
+  width: 50%;
+}
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
+}
+.t-line {
+  width: 2rpx;
+  height: 35rpx;
+  background: #f2f2f2;
+  margin-top: 15px;
 }

@@ -1,7 +1,7 @@
 /*tab切换页  */
 
 .swiper-tab {
-  width: 72%;
+  width: 100%;
   line-height: 80rpx;
   background: #40587a;
   z-index: 999;
@@ -18,17 +18,13 @@
 }
 .swiper-tab-list {
   display: inline-block;
-  width: 20%;
+  width:33.33%;
   font-size: 30rpx;
   color: #999;
   line-height: 62rpx;
   text-align: center;
   border: none;
   /* margin-left:30%; */
-}
-
-.swiper-tab {
-  padding-left: 28%;
 }
 
 .on {

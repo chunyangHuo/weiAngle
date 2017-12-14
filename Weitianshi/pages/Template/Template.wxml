@@ -473,7 +473,7 @@
       <!--名片内容  -->
       <view class="outsideBox" data-project="{{item.user.user_id}}" catchtap="personDetail">
         <view class="redPoint" wx:if="{{item.message_status == 0}}"></view>
-        <view class="classname">
+        <view class="allContent" hover-class='t-hoverColor'>
           <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
           <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
           <view class="applyMyProject">
@@ -512,12 +512,12 @@
           <!--申请查看我的样式  -->
           <view wx:if="{{type == 0}}">
             <view class="bottomTab flex" wx:if="{{item.handle_status == 0}}">
-              <view class="flex refuseBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{2}}" hover-class='t-hoverColor'>
+              <view class="flex refuseBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{2}}" hover-class='t-hoverColor' hover-stop-propagation="true">
                 <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
                 <view class="refuseBtn rejectm">拒绝</view>
               </view>
               <view class="t-line"></view>
-              <view class="flex agreeBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{1}}" hover-class='t-hoverColor'>
+              <view class="flex agreeBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{1}}" hover-class='t-hoverColor'hover-stop-propagation="true">
                 <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
                 <view class="agreeBtn agreem">同意查看</view>
               </view>

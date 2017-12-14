@@ -448,18 +448,16 @@ page {
 .noLight {
   color: #999;
 }
-
+.allContent{
+  background:white;
+}
 .bottomTabAfter {
-  /* border-top: 1rpx solid #e6e6e6; */
   padding-top: 28rpx;
-  background: white;
   padding-bottom: 30rpx;
 }
 
 .bottomTab {
-  /* border-top: 1rpx solid #e6e6e6; */
   border-radius: 4rpx;
-  background:white;
 }
 
 .user_apply {
