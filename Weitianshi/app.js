@@ -680,6 +680,7 @@ App({
   },
   //保存按钮后防连续点击处理
   buttonSubmit(that,submitData,callBack){
+    this.disableButton(that);
     this.httpPost(submitData, that).then(res => {
       console.log('res', res)
       if (res.data.status_code == 2000000) {
