@@ -445,7 +445,66 @@ Page({
       }
       // 提交中过渡态处理
       app.disableButton(that)
-      app.httpPost({
+      // app.httpPost({
+      //   url: url_common + httpUrl,
+      //   data: {
+      //     user_id: wx.getStorageSync('user_id'),
+      //     project_id: that.data.pro_id || '',
+      //     pro_intro: describe,
+      //     industry: industry,
+      //     pro_finance_stage: pro_finance_stage,
+      //     pro_finance_scale: pro_finance_scale,
+      //     pro_area_province: pro_area_province,
+      //     pro_area_city: pro_area_city,
+      //     is_exclusive: is_exclusive,
+      //     pro_goodness: pro_goodness,
+      //     pro_finance_stock_after: pro_finance_stock_after,
+      //     pro_company_name: that.data.companyName,
+      //     pro_name: that.data.projectName,
+      //     service_ps_bp: that.data.service_ps_bp,
+      //     service_fa: that.data.service_fa,
+      //     service_yun: that.data.service_yun,
+      //     subscribe: that.data.subscribe,
+      //     pro_total_score: that.data.pro_total_score,
+      //     open_status: privacy.open_status,
+      //     power_share_status: privacy.power_share_status,
+      //     power_investor_status: privacy.power_investor_status,
+      //     company_open_status: Number(!privacy.company_open_status),
+      //   },
+      // }, that).then(res => {
+      //   console.log('res', res)
+      //   if (res.data.status_code == 2000000) {
+      //     //数据清空
+      //     wx.setStorageSync('tran_industry', []);
+      //     wx.setStorageSync('tran_area', []);
+      //     wx.removeStorageSync('setPrivacy');
+      //     // 提交中过渡态处理
+      //     setTimeout(x => {
+      //       app.errorHide(that,'表单提交成功',1000)
+      //       app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
+      //       that.setData({
+      //         disabled: false,
+      //         buttonOneText: '保存'
+      //       })
+      //     }, 1000)
+      //   } else {
+      //     app.errorHide(that, res.data.error_msg, 3000)
+      //     // 提交中过渡态处理
+      //     wx.hideLoading();
+      //     that.setData({
+      //       disabled: false,
+      //       buttonOneText: '保存'
+      //     })
+      //   }
+      // }).catch(res => {
+      //   // 提交中过渡态处理
+      //   wx.hideLoading();
+      //   that.setData({
+      //     disabled: false,
+      //     buttonOneText: '保存'
+      //   })
+      // })
+      let submitData = {
         url: url_common + httpUrl,
         data: {
           user_id: wx.getStorageSync('user_id'),
@@ -471,38 +530,21 @@ Page({
           power_investor_status: privacy.power_investor_status,
           company_open_status: Number(!privacy.company_open_status),
         },
-      }, that).then(res => {
-        console.log('res', res)
-        if (res.data.status_code == 2000000) {
-          //数据清空
-          wx.setStorageSync('tran_industry', []);
-          wx.setStorageSync('tran_area', []);
-          wx.removeStorageSync('setPrivacy');
-          // 提交中过渡态处理
-          setTimeout(x => {
-            app.errorHide(that,'表单提交成功',1000)
-            app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
-            that.setData({
-              disabled: false,
-              buttonOneText: '保存'
-            })
-          }, 1000)
-        } else {
-          app.errorHide(that, res.data.error_msg, 3000)
-          // 提交中过渡态处理
-          wx.hideLoading();
+      }
+      app.buttonSubmit(that, submitData, res => {
+        //数据清空
+        wx.setStorageSync('tran_industry', []);
+        wx.setStorageSync('tran_area', []);
+        wx.removeStorageSync('setPrivacy');
+        app.errorHide(that, '表单提交成功', 1000)
+        // 提交中过渡态处理
+        setTimeout(x => {
+          app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
           that.setData({
             disabled: false,
             buttonOneText: '保存'
           })
-        }
-      }).catch(res => {
-        // 提交中过渡态处理
-        wx.hideLoading();
-        that.setData({
-          disabled: false,
-          buttonOneText: '保存'
-        })
+        }, 1000)
       })
     }
   },

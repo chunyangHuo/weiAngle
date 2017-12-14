@@ -678,6 +678,31 @@ App({
       mask: true,
     })
   },
+  //保存按钮后防连续点击处理
+  buttonSubmit(that,submitData,callBack){
+    this.httpPost(submitData, that).then(res => {
+      console.log('res', res)
+      if (res.data.status_code == 2000000) {
+        wx.hideLoading();
+        callBack();
+      } else {
+        this.errorHide(that, res.data.error_msg, 3000)
+        // 提交中过渡态处理
+        wx.hideLoading();
+        that.setData({
+          disabled: false,
+          buttonOneText: '保存'
+        })
+      }
+    }).catch(res => {
+      // 提交中过渡态处理
+      wx.hideLoading();
+      that.setData({
+        disabled: false,
+        buttonOneText: '保存'
+      })
+    })
+  },
 
   //页栈超出处理
   href(url) {
