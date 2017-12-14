@@ -8,7 +8,7 @@
             <view class='itemName'>{{item.schedule_name}}</view>
             <view class='itemNum'>{{item.node_count}}个项目</view>
           </view>
-        </block>
+        </block> 
       </view>
     </scroll-view>
   </view>
