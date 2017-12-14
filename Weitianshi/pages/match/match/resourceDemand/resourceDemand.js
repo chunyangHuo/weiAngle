@@ -207,13 +207,15 @@ Page({
           console.log(res)
         }
       })
-      if (current == 1) {
-        app.href('/pages/my/my/my')
-      } else {
+      // if (current == 1) {
+      //   wx.navigateBack({//页面返回
+      //     delta: 1 // 回退前 delta(默认为1) 页面
+      //   })
+      // } else {
         wx.navigateBack({//页面返回
           delta: 1 // 回退前 delta(默认为1) 页面
         })
-      }
+      // }
     } else if (targetValue == '' || enchangeValue != '') {
       app.errorHide(that, "不能都为空", 1500)
     }
