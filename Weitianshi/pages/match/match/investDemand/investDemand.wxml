@@ -5,8 +5,11 @@
     <navigator url="/pages/form/industry/industry?current=1" id="domain">
       <view class="slect flex">
         <view wx:if="{{tran_industry == ''}}">选择领域</view>
-        <view  class="checkOn" wx:else="{{tran_industry != ''}}">
-          <block wx:for="{{tran_industry}}" wx:key="{{index}}">{{item.industry_name}},</block>
+        <view class="checkOn" wx:else="{{tran_industry != ''}}">
+          <block wx:for="{{tran_industry}}" wx:key="{{index}}">
+            <label wx:if="{{index < tran_industry.length-1}}">{{item.industry_name}}、</label>
+            <label wx:if="{{index == tran_industry.length-1}}">{{item.industry_name}}</label>
+          </block>
         </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
@@ -18,7 +21,10 @@
       <view class="slect flex">
         <view wx:if="{{tran_stage == ''}}">选择阶段</view>
         <view class="checkOn" wx:else="{{tran_scale != ''}}">
-          <block wx:for="{{tran_stage}}" wx:key="{{index}}">{{item.stage_name}},</block>
+          <block wx:for="{{tran_stage}}" wx:key="{{index}}">
+            <label wx:if="{{index < tran_stage.length-1}}">{{item.stage_name}}、</label>
+            <label wx:if="{{index == tran_stage.length-1}}">{{item.stage_name}}</label>
+          </block>
         </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
@@ -31,7 +37,10 @@
       <view class="slect flex">
         <view wx:if="{{tran_scale== '' }}">选择金额</view>
         <view class="checkOn" wx:else="{{tran_scale != ''}}">
-          <block wx:for="{{tran_scale}}" wx:key="{{index}}">{{item.scale_money}},</block>
+          <block wx:for="{{tran_scale}}" wx:key="{{index}}">
+            <label wx:if="{{index < tran_scale.length-1}}">{{item.scale_money}}、</label>
+            <label wx:if="{{index == tran_scale.length-1}}">{{item.scale_money}}</label>
+          </block>
         </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
@@ -44,7 +53,10 @@
       <view class="slect flex">
         <view wx:if="{{tran_hotCity == ''}}">选择城市</view>
         <view class="checkOn" wx:else="{{tran_hotCity != ''}}">
-          <block wx:for="{{tran_hotCity}}" wx:key="{{index}}">{{item.area_title}},</block>
+          <block wx:for="{{tran_hotCity}}" wx:key="{{index}}">
+            <label wx:if="{{index < tran_hotCity.length-1}}">{{item.area_title}}、</label>
+            <label wx:if="{{index == tran_hotCity.length-1}}">{{item.area_title}}</label>
+          </block>
         </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>

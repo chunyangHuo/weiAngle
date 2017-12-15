@@ -66,12 +66,6 @@
 					"query": "pro_id=Er6Ona04"
 				},
 				{
-					"id": 12,
-					"name": "投资机构",
-					"pathName": "pages/organization/org_library/org_library",
-					"query": ""
-				},
-				{
 					"id": 13,
 					"name": "投资案例",
 					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
@@ -81,12 +75,6 @@
 					"id": 14,
 					"name": "项目评价",
 					"pathName": "pages/projectScale/projectEvaluation/projectEvaluation",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "环境经济的店铺",
-					"pathName": "pages/my/projectShop/projectShop/projectShop",
 					"query": ""
 				},
 				{
