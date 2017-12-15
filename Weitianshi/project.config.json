@@ -178,6 +178,12 @@
 					"name": "编辑案例添加",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
 					"query": "index=2&case_id=481"
+				},
+				{
+					"id": -1,
+					"name": "找投资人",
+					"pathName": "pages/matchInvestor/matchInvestor",
+					"query": ""
 				}
 			]
 		}
