@@ -15,25 +15,34 @@
   <!--投资人列表  -->
   <block wx:for="{{investorList}}" wx:key="{{investorList}}" wx:if='{{investorList}}'>
     <view class='investorCard'>
-      <template is='InvestorCard' data='{{item}}'></template>
-      <template is='cardBottom1' data='{{item,user_id}}'></template>
+      <view class="t-investorColor" hover-class='t-hoverColor'>
+        <template is='InvestorCard' data='{{item}}'></template>
+        <view class='t-alineHeight'></view>
+        <template is='cardBottom1' data='{{item,user_id}}'></template>
+      </view>
     </view>
   </block>
   <!--fa列表  -->
   <block wx:for="{{faList}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
     <view class='investorCard'>
-      <template is='InvestorCard' data='{{item}}'></template>
-      <template is='cardBottom1' data='{{item,user_id}}'></template>
+      <view class="t-investorColor" hover-class='t-hoverColor'>
+        <template is='InvestorCard' data='{{item}}'></template>
+        <view class='t-alineHeight'></view>
+        <template is='cardBottom1' data='{{item,user_id}}'></template>
+      </view>
     </view>
   </block>
   <!--我的人脉列表  -->
   <block wx:for="{{myList}}" wx:key="{{item.user_id}}" wx:if='{{myList}}'>
     <view class='investorCard'>
+     <view class="t-investorColor" hover-class='t-hoverColor'>
       <template is='InvestorCard' data='{{item}}'></template>
+       <view class='t-alineHeight'></view>
       <template is='cardBottom1' data='{{item,user_id}}'></template>
+      </view>
     </view>
   </block>
-</scroll-view> 
+</scroll-view>
 
 
 
