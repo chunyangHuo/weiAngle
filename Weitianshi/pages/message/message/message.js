@@ -90,12 +90,10 @@ Page({
       })
     }
   },
-
   // 跳转到人脉申请页面
   beAddedContacts: function () {
     app.href('/pages/message/beAddedContacts/beAddedContacts')
   },
-
   // 身份认证跳转
   toIdentity: function (e) {
     let status = this.data.status;
@@ -134,11 +132,13 @@ Page({
   projectApply: function (e) {
     let type = e.currentTarget.dataset.type;
     let group_id = this.data.group_id;
-    if (group_id) {
-      app.href('/pages/message/applyProject/applyProject?type=' + type + '&&group_id=' + group_id)
-    } else {
-      app.href('/pages/message/applyProject/applyProject?type=' + type)
-    }
+    app.delayDeal(x=>{
+      if (group_id) {
+        app.href('/pages/message/applyProject/applyProject?type=' + type + '&&group_id=' + group_id)
+      } else {
+        app.href('/pages/message/applyProject/applyProject?type=' + type)
+      }
+    })
   },
   // 项目推送
   projectPush: function (e) {

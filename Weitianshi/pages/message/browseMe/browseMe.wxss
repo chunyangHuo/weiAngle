@@ -95,10 +95,10 @@ page {
 /*用户信息*/
 
 .card {
-  background: white;
-  width: 100%;
-  padding: 32rpx 38rpx 0 0;
-}
+   background: white;
+   width: 100%;
+   padding: 32rpx 38rpx 0 0;
+ }
 
 .user_info {
   margin-bottom: 20rpx;

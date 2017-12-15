@@ -667,6 +667,7 @@ App({
       return;
     }
   },
+
   //保存按钮之后置灰,改方案,加loading
   disableButton(that) {
     that.setData({
@@ -678,7 +679,8 @@ App({
       mask: true,
     })
   },
-  //保存按钮后防连续点击处理
+
+  //表单按钮后防连续点击处理
   buttonSubmit(that, submitData, buttonOneText, callBack) {
     this.disableButton(that);
     this.httpPost(submitData, that).then(res => {
@@ -710,6 +712,20 @@ App({
       })
     })
   },
+
+  //非表单提交按钮防连续点击处理
+  delayDeal(callBack){
+    console.log(this.globalData.delay_time)
+    if(this.globalData.delay_time == 0){
+      this.globalData.delay_time ==1000;
+      console.log(this.globalData.delay_time)
+      setTimeout(x=>{
+        this.globalData.delay_time == 0
+      },1000)
+      callBack()
+    }
+  },
+
   //页栈超出处理
   href(url) {
     let pages = getCurrentPages();
@@ -720,6 +736,7 @@ App({
       url: url,
     })
   },
+
   //多选
   checkMore(e, item, itemArr, that, itemName) {
     let target = e.currentTarget.dataset.item;
@@ -745,6 +762,7 @@ App({
       tran_arr: itemArr,
     }
   },
+
   //unLoad时消空tran_缓存
   initTran() {
     wx.setStorageSync('tran_industry', []);
@@ -760,6 +778,7 @@ App({
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',
+    delay_time:0,
     // url: "https://wx.weitianshi.cn",
     // url_common: "https://wx.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
