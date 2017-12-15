@@ -51,11 +51,50 @@ Page({
                 }
               })
             }
-            console.log(x.pro_scale)
-            if (x.pro_finance_stock_after == 0.00 ){
+
+            let money = x.pro_scale.scale_money + '、';
+            let stage = x.pro_stage.stage_name + '、';
+            let area = x.pro_area.area_title;
+            let stockAfter;//定义投后指数
+            if (x.pro_finance_stock_after == 0.00) {
               x.pro_finance_stock_after = 0;
-              x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after + '%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
+            } else {
+              x.pro_finance_stock_after = x.pro_finance_stock_after;
+            }//投后指数为空处理
+            let after = x.pro_finance_stock_after + '%、';
+            let after1 = x.pro_finance_stock_after + '%'
+            if (x.pro_area == '' && x.pro_stage == '') {
+              stockAfter = after1
+            } else {
+              stockAfter = after;
+            }//判断投后指数是不是最后一项（显示样式问题）
+            if (x.pro_scale == '') {
+              x.pro_scale = {};
+              x.pro_scale.scale_money = " ";
+              money = '';
             }
+            else {
+              money = x.pro_scale.scale_money + '、';
+            }//投资金额为空判断
+            if (x.pro_stage == '') {
+              x.pro_stage = {};
+              x.pro_stage.stage_name = " ";
+              stage = '';
+            }
+            else {
+              stage = x.pro_stage.stage_name + '、';
+            }//投资轮次为空判断
+            if (x.pro_area == '') {
+              x.pro_area = {};
+              x.pro_area.area_title = " ";
+              area = '';
+            }
+            else {
+              area = x.pro_area.area_title;
+            }//投资地区为空判断
+                 
+            x.otherTag = money + stockAfter + stage + area
+          
           })
         }
         console.log('项目列表', myProject)

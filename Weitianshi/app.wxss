@@ -1194,3 +1194,9 @@ textarea {
   height: 2rpx;
   background: #e6e6e6;
 }
+.t-white{
+  background: #fff!important;
+}
+.t-color{
+  color: #008DE5!important;
+}
