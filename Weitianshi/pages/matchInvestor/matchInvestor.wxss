@@ -232,8 +232,8 @@ height:81px; */
   color: #f44c4c;
   line-height: 18rpx;
   position: absolute;
-  left: 170rpx;
-  top: -16rpx;
+  left: 185rpx;
+  top: 12rpx;
   text-align: center;
 }
 

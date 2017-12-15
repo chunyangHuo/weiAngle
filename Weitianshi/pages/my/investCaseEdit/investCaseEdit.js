@@ -151,7 +151,6 @@ Page({
     var tran_area = this.data.tran_area;
     let belongArea = this.data.belongArea;
     let reg = /^[1-9]\d*$/;
-    console.log(case_money)
     if (tran_area) {
       var case_province = tran_area[0].area_id;
       var case_city = tran_area[1].area_id;
@@ -182,7 +181,7 @@ Page({
     } else if (!case_city) {
       app.errorHide(that, "地区不能为空", 1500)
     } else if (!reg.test(case_money)){
-      app.errorHide(that, "请输入数字", 1500)
+      app.errorHide(that, "请输入整数", 1500)
     } else {
       if (case_index) {
         app.httpPost({
@@ -208,7 +207,6 @@ Page({
           } else {
             app.errorHide(that, res.data.error_msg, 3000)
           }
-
         })
       } else {
         app.httpPost({
@@ -237,6 +235,13 @@ Page({
       }
     }
 
+  },
+  onUnload: function () {
+    wx.setStorageSync('tran_industry', []);
+    wx.setStorageSync('tran_scale', []);
+    wx.setStorageSync('tran_stage', [])
+    wx.setStorageSync('tran_area',[])
+    wx.setStorageSync('tran_hotCity', [])
   },
   // 获取项目信息() 
   getInfo: function (options) {

@@ -487,4 +487,11 @@ Page({
       })
     }
   },
+  onUnload: function () {
+    wx.setStorageSync('tran_industry', []);
+    wx.setStorageSync('tran_scale', []);
+    wx.setStorageSync('tran_stage', [])
+    wx.setStorageSync('tran_area', [])
+    wx.setStorageSync('tran_hotCity', [])
+  },
 });
