@@ -22,7 +22,8 @@ Page({
       css: "checkOn",
       value: ["选择领域"],
       id: []
-    }
+    },
+    buttonOneText:'发布'
   },
   onLoad: function (options) {
     var user_id = wx.getStorageSync('user_id');
@@ -134,6 +135,7 @@ Page({
     let payMoneyId = [];
     let payStageId = [];
     let payAreaId = [];
+    // 根据接口转化数据格式
     if (industryValue != "") {
       industryValue.forEach((x) => {
         industryId.push(x.industry_id)
@@ -154,6 +156,8 @@ Page({
         payAreaId.push(x.area_id)
       })
     }
+
+
     if (industryValue !== "" && payMoney != "" && payArea !== "" && payStage !== "") {
       // 防反复提交表单处理
       let submitData = {
@@ -167,24 +171,24 @@ Page({
           investor_desc: y_describe
         }
       }
-      app.buttonSubmit(that, submitData, res => {
+      app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         wx.removeStorageSync("tran_industry")
         wx.removeStorageSync("tran_scale")
         wx.removeStorageSync("tran_stage")
         wx.removeStorageSync("tran_hotCity")
-        console.log(5555)
-        wx.setStorageSync('investor_id', res.data.investor_id)
-        console.log(333)
-        var current = that.data.current;
-        if (current == 1) {
-          wx.navigateBack({
-            delta: 1
-          })
-        } else {
-          wx.switchTab({
-            url: '/pages/discoverProject/discoverProject'
-          });
-        }
+        let current = that.data.current;
+        app.errorHide(that, '投资需求提交成功', 1000)
+        setTimeout(x => {
+          if (current == 1) {
+            wx.navigateBack({
+              delta: 1
+            })
+          } else {
+            wx.switchTab({
+              url: '/pages/discoverProject/discoverProject'
+            });
+          }
+        }, 1000)
       })
     } else {
       that.setData({
@@ -195,7 +199,6 @@ Page({
           error: "0"
         });
       }, 1500);
-
       if (industryId == 0) {
         that.setData({
           error_text: "领域不能为空"

@@ -43,7 +43,7 @@ Page({
       black_user: ''
     },
     modalBox: 0,
-    buttonText: '保存',
+    buttonOneText: '保存',
   },
   onLoad: function (options) {
     let that = this;
@@ -171,7 +171,7 @@ Page({
           service_fa: projectEditInfo.service_fa,
           service_ps_bp: projectEditInfo.service_ps_bp,
           service_yun: projectEditInfo.service_yun,
-          buttonText: '维护项目'
+          buttonOneText: '维护项目'
         })
       }
     })
@@ -439,9 +439,12 @@ Page({
     } else if (pro_goodness == '') {
       app.errorHide(that, '请填写项目亮点', 3000)
     } else {
+      // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
+      let successText = '成功创建融资项目';
       if (that.data.pro_id) {
         httpUrl = '/api/project/updateProject';
+        successText = '维护项目成功'
       }
       // 防反复提交处理
       let submitData = {
@@ -471,18 +474,15 @@ Page({
           company_open_status: Number(!privacy.company_open_status),
         },
       }
-      app.buttonSubmit(that, submitData, res => {
+      app.buttonSubmit(that, submitData,that.data.buttonOneText,res => {
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
         wx.removeStorageSync('setPrivacy');
+        app.errorHide(that,successText,1000)
         // 提交中过渡态处理
         setTimeout(x => {
           app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
-          that.setData({
-            disabled: false,
-            buttonOneText: '保存'
-          })
         }, 1000)
       })
     }

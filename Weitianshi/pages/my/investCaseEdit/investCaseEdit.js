@@ -22,7 +22,8 @@ Page({
     belongArea: {
       area_title: '',
       area_id: ''
-    }
+    },
+    buttonOneText:'保存'
   },
   onLoad: function (options) {
     //获取当前时间,以备picker使用
@@ -242,6 +243,7 @@ Page({
     wx.setStorageSync('tran_area',[])
     wx.setStorageSync('tran_hotCity', [])
   },
+  // 获取项目信息() 
   getInfo: function (options) {
     let case_id = options.case_id;
     // 维护案例的情况下
@@ -306,4 +308,4 @@ Page({
       })
     }
   }
-})
+}) 

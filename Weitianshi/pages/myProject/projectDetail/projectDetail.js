@@ -50,11 +50,11 @@ Page({
       currentTab: options.currentTab,
       shareType: options.type
     });
-    console.log(this.data.id);
+    console.log('pro_id',this.data.id);
   },
   onShow: function () {
     let share_id = this.data.share_id;
-    console.log(share_id);
+    console.log('share_id',share_id);
     //返回上一页时启动onShow;
     let pages = getCurrentPages();
     let pre = pages[pages.length - 2];
@@ -165,7 +165,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
+        console.log('projectDetail',res)
         let brandList = res.data.data.brand;
         let project = res.data.data;
         let user = res.data.user;

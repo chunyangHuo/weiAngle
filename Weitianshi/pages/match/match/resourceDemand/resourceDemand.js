@@ -89,12 +89,10 @@ Page({
     })
 
   },
-
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   },
-
   //传值部份可提供资源
   checkboxChange: function (e) {
     var that = this;
@@ -169,7 +167,6 @@ Page({
       describe: describe
     })
   },
-
   //可提供资源自定义添加
   offerAdd: function () {
     wx.showModal({
@@ -177,7 +174,6 @@ Page({
       content: "<input type='text' placehold='helloWorld'/>"
     })
   },
-
   //点击确定
   publish: function () {
     var that = this;
@@ -207,17 +203,11 @@ Page({
           console.log(res)
         }
       })
-      // if (current == 1) {
-      //   wx.navigateBack({//页面返回
-      //     delta: 1 // 回退前 delta(默认为1) 页面
-      //   })
-      // } else {
-        wx.navigateBack({//页面返回
-          delta: 1 // 回退前 delta(默认为1) 页面
-        })
-      // }
-    } else if (targetValue == '' || enchangeValue != '') {
-      app.errorHide(that, "不能都为空", 1500)
+      wx.navigateBack({
+        delta: 1
+      })
+    } else {
+      app.errorHide(that, "可提供资源和在需求资源不能同时为空", 1500)
     }
   }
 });
