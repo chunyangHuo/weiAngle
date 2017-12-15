@@ -679,19 +679,19 @@ App({
     })
   },
   //保存按钮后防连续点击处理
-  buttonSubmit(that, submitData,buttonOneText,callBack){
+  buttonSubmit(that, submitData, buttonOneText, callBack) {
     this.disableButton(that);
     this.httpPost(submitData, that).then(res => {
       console.log('res', res)
       if (res.data.status_code == 2000000) {
         wx.hideLoading();
         callBack();
-        setTimeout(x=>{
+        setTimeout(x => {
           that.setData({
             disabled: false,
             buttonOneText: buttonOneText
           })
-        },1000)
+        }, 1000)
       } else {
         this.errorHide(that, res.data.error_msg, 3000)
         // 提交中过渡态处理
@@ -710,7 +710,6 @@ App({
       })
     })
   },
-
   //页栈超出处理
   href(url) {
     let pages = getCurrentPages();
@@ -746,6 +745,15 @@ App({
       tran_arr: itemArr,
     }
   },
+  //unLoad时消空tran_缓存
+  initTran() {
+    wx.setStorageSync('tran_industry', []);
+    wx.setStorageSync('tran_scale', []);
+    wx.setStorageSync('tran_stage', [])
+    wx.setStorageSync('tran_area', [])
+    wx.setStorageSync('tran_hotCity', [])
+  },
+
 
   //初始本地缓存
   globalData: {

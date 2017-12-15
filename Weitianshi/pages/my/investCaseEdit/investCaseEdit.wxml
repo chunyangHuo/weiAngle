@@ -31,6 +31,7 @@
 </view>
 <view style="height:118rpx;"></view>
 
+<!--保存  -->
 <template is="buttonOne" data="{{text:buttonOneText,btnName:'buttonOne',disabled}}"></template>
 
 <!--错语提示-->

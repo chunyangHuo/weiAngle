@@ -220,12 +220,6 @@ Page({
   },
 
   onUnload: function () {
-    // 页面关闭
-    if (save) {
-      wx.setStorageSync('tran_industry', []);
-      wx.setStorageSync('tran_scale', []);
-      wx.setStorageSync('tran_stage', [])
-      wx.setStorageSync('tran_hotCity', [])
-    }
+    app.initTran()
   }
 });

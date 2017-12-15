@@ -4,7 +4,8 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     array: ['否', '是'],
-    upLoadSuccess: false
+    upLoadSuccess: false,
+    buttonOneText: '提交'
   },
   onLoad: function (option) {
     let that = this;
@@ -253,6 +254,7 @@ Page({
   },
   // 提交保存跳转
   submit: function () {
+    let that = this;
     let user_id = wx.getStorageSync('user_id');
     let authenticate_id = this.data.authenticate_id;
     let group_id = this.data.group_id;
@@ -270,8 +272,14 @@ Page({
     let is_FA_part = this.data.is_FA_part;
     let industry = this.data.industry;
     let recertification = this.data.recertification;
-    if (iden_name != '' && iden_company_name != '' && iden_company_career != '') {
-      wx.request({
+    if (iden_name == '') {
+      app.errorHide(that, "姓名不能为空", 1500)
+    } else if (iden_company_name == '') {
+      app.errorHide(that, "公司不能为空", 1500)
+    } else if (iden_company_career == '') {
+      app.errorHide(that, "职位不能为空", 1500)
+    } else {
+      let submitData = {
         url: url_common + '/api/user/saveUserAuthentication',
         data: {
           user_id: user_id,
@@ -292,34 +300,21 @@ Page({
           area: this.data.areaId,
           stage: this.data.stageId,
           scale: this.data.scaleId
-        },
-        method: 'POST',
-        success: function (res) {
-          wx.removeStorageSync("tran_area")
-          wx.removeStorageSync("tran_stage")
-          wx.removeStorageSync("tran_scale")
-          wx.removeStorageSync("tran_industry")
-          let statusCode = res.data.status_code;
-          if (statusCode == 2000000) {
-            app.href('/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification)
-          }
         }
-      })
-    } else {
-      if (iden_name == '') {
-        app.errorHide(that, "姓名不能为空", 1500)
-      } else if (iden_company_name == '') {
-        app.errorHide(that, "公司不能为空", 1500)
-      } else if (iden_company_career == '') {
-        app.errorHide(that, "职位不能为空", 1500)
       }
+      app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+        wx.removeStorageSync("tran_area")
+        wx.removeStorageSync("tran_stage")
+        wx.removeStorageSync("tran_scale")
+        wx.removeStorageSync("tran_industry")
+        app.errorHide(that, '认证资料提交成功', 1000)
+        setTimeout(res => {
+          app.href('/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification)
+        }, 1000)
+      })
     }
   },
   onUnload: function () {
-    wx.setStorageSync('tran_industry', []);
-    wx.setStorageSync('tran_scale', []);
-    wx.setStorageSync('tran_stage', [])
-    wx.setStorageSync('tran_hotCity', [])
-    wx.setStorageSync('tran_area', [])
+    app.initTran()
   }
 })

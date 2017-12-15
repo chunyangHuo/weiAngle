@@ -387,7 +387,6 @@ Page({
       },
     })
   },
-
   //点击发布
   public: function () {
     let that = this;
@@ -474,24 +473,22 @@ Page({
           company_open_status: Number(!privacy.company_open_status),
         },
       }
-      app.buttonSubmit(that, submitData,that.data.buttonOneText,res => {
+      app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
         wx.removeStorageSync('setPrivacy');
-        app.errorHide(that,successText,1000)
+        app.errorHide(that, successText, 1000)
         // 提交中过渡态处理
         setTimeout(x => {
-          app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
+          wx.redirectTo({
+            url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type
+          })
         }, 1000)
       })
     }
   },
   onUnload: function () {
-    wx.setStorageSync('tran_industry', []);
-    wx.setStorageSync('tran_scale', []);
-    wx.setStorageSync('tran_stage', [])
-    wx.setStorageSync('tran_area', [])
-    wx.setStorageSync('tran_hotCity', [])
+    app.initTran()
   },
 });

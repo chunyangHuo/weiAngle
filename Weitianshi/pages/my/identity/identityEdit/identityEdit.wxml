@@ -1,3 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
 <view class="classname">
   <view class="visitCard flex" bindtap="scanIDcard" hover-class='t-hoverColor'>
     <view class="visitCardMessage">名片</view>
@@ -108,12 +109,12 @@
         <view class="investListTile">投资轮次</view>
         <view class="flex overMore">
           <view class="personListContent" wx:if="{{invest_info.invest_stage.length == 0}}">请选择</view>
-          <view class="flex overMore"  wx:if="{{invest_info.invest_stage.length != 0}}"> 
+          <view class="flex overMore" wx:if="{{invest_info.invest_stage.length != 0}}">
             <block wx:for="{{invest_info.invest_stage}}" wx:key="{{index}}" wx:for-item='stage'>
               <label class="investStyle" wx:if="{{index < invest_info.invest_stage.length-1}}">{{stage.stage_name}}、</label>
               <label class="investStyle" wx:if="{{index == invest_info.invest_stage.length-1}}">{{stage.stage_name}}</label>
             </block>
-          </view> 
+          </view>
           <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -123,7 +124,7 @@
         <view class="investListTile">投资金额</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{invest_info.invest_scale.length == 0}}">请选择</view>
-          <view class="overMore flex"  wx:if="{{invest_info.invest_scale.length != 0}}">
+          <view class="overMore flex" wx:if="{{invest_info.invest_scale.length != 0}}">
             <block wx:for="{{invest_info.invest_scale}}" wx:key="{{index}}" wx:for-item='scale'>
               <label class="investStyle" wx:if="{{index < invest_info.invest_scale.length-1}}">{{scale.scale_money}}、</label>
               <label class="investStyle" wx:if="{{index == invest_info.invest_scale.length-1}}">{{scale.scale_money}}</label>
@@ -155,13 +156,13 @@
         <view class="investContent flex">
           <!-- group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他  -->
           <view class="personListTile">申请加入FA行业联盟</view>
-           <picker id="bindFAService" bindchange="bindFAService" value="{{is_alliance}}" range="{{array}}">
+          <picker id="bindFAService" bindchange="bindFAService" value="{{is_alliance}}" range="{{array}}">
             <view class="flex" wx:if="{{group_id == 18 ||group_id == 21}}">
               <view class="chooseContent" wx:if="{{!array[is_alliance]}}">请选择</view>
               <view class="chooseAfter" wx:if="{{array[is_alliance] !=''}}">{{array[is_alliance]}}</view>
               <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
             </view>
-          </picker> 
+          </picker>
         </view>
       </view>
     </view>
@@ -223,8 +224,9 @@
     </view>
     <view style="height:152rpx;"></view>
   </view>
-    <!--错误提示-->
+  <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>
 
-<view class="btn" bindtap="submit">提交</view>
+<!--保存  -->
+<template is="buttonOne" data="{{text:buttonOneText,btnName:'submit',disabled}}"></template>

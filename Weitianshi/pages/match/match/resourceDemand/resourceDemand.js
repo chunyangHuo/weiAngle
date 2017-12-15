@@ -11,6 +11,7 @@ Page({
     t_checkedId: [],//已经选中标签的id
     error: "0",
     error_text: "",
+    buttonOneText: '发布',
   },
   onLoad: function (options) {
     var that = this;
@@ -187,24 +188,23 @@ Page({
     var describe = this.data.describe;
     var current = this.data.current;
     if (targetValue != '' || enchangeValue != '') {
-      wx.request({
+      let submitData = {
         url: url + '/api/resource/updateOrCreateResource',
         data: {
           user_id: user_id,
           res_give: enchangeId,
           res_find: targetId,
           res_desc: describe
-        },
-        method: 'POST',
-        success: function (res) {
-          wx.setStorageSync("resource_desc", describe);
-        },
-        fail: function (res) {
-          console.log(res)
         }
-      })
-      wx.navigateBack({
-        delta: 1
+      }
+      app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+        wx.setStorageSync("resource_desc", describe);
+        app.errorHide(that,'资源需求发布成功',1000)
+        setTimeout(res=>{
+          wx.navigateBack({
+            delta: 1
+          })
+        },1000)
       })
     } else {
       app.errorHide(that, "可提供资源和在需求资源不能同时为空", 1500)

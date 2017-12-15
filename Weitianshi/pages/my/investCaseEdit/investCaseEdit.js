@@ -15,7 +15,7 @@ Page({
     industryCard: {
       text: "项目领域*",
       url: "/pages/form/industry/industry?current=3",
-      css: "",
+      css: "black",
       value: ["选择领域"],
       id: []
     },
@@ -23,7 +23,7 @@ Page({
       area_title: '',
       area_id: ''
     },
-    buttonOneText:'保存'
+    buttonOneText: '保存'
   },
   onLoad: function (options) {
     //获取当前时间,以备picker使用
@@ -158,7 +158,6 @@ Page({
       var case_province = this.data.belongArea.pid;
       var case_city = this.data.belongArea.area_id;
     }
-
     let case_stage_id = "";
     let stage = this.data.stage;
     stage.forEach((x, index) => {
@@ -174,74 +173,44 @@ Page({
       app.errorHide(that, "领域不能为空", 1500)
     } else if (case_stage_id == 0) {
       app.errorHide(that, "轮次不能为空", 1500)
-    } else if (case_money == undefined ||case_money == "") {
+    } else if (case_money == undefined || case_money == "") {
       app.errorHide(that, "投资金额不能为空", 1500)
     } else if (case_time == '请选择') {
       app.errorHide(that, "交易时间不能为空", 1500)
     } else if (!case_city) {
       app.errorHide(that, "地区不能为空", 1500)
-    } else if (!reg.test(case_money)){
+    } else if (!reg.test(case_money)) {
       app.errorHide(that, "请输入整数", 1500)
     } else {
-      if (case_index) {
-        app.httpPost({
-          url: url_common + '/api/user/editUserProjectCase',
-          data: {
-            case_id: case_id,
-            user_id: user_id,
-            case_name: case_name,
-            case_industry: case_industry,
-            case_stage: case_stage_id,
-            case_money: case_money,
-            case_deal_time: case_time,
-            case_province: case_province,
-            case_city: case_city
-          },
-        }, that).then(res => {
-          console.log(res)
-          if (res.data.status_code == 2000000) {
-            wx.removeStorageSync("industryCurrent3")
-            wx.navigateBack({
-              delta: 1,
-            })
-          } else {
-            app.errorHide(that, res.data.error_msg, 3000)
-          }
-        })
-      } else {
-        app.httpPost({
-          url: url_common + '/api/user/createUserProjectCase',
-          data: {
-            user_id: user_id,
-            case_name: case_name,
-            case_industry: case_industry,
-            case_stage: case_stage_id,
-            case_money: case_money,
-            case_deal_time: case_time,
-            case_province: case_province,
-            case_city: case_city
-          },
-        }, that).then(res => {
-          if (res.data.status_code == 2000000) {
-            wx.removeStorageSync("industryCurrent3")
-            wx.navigateBack({
-              delta: 1,
-            })
-          } else {
-            app.errorHide(that, res.data.error_msg, 3000)
-          }
-        })
-
+      let submitData = {
+        url: url_common + '/api/user/createUserProjectCase',
+        data: {
+          user_id: user_id,
+          case_name: case_name,
+          case_industry: case_industry,
+          case_stage: case_stage_id,
+          case_money: case_money,
+          case_deal_time: case_time,
+          case_province: case_province,
+          case_city: case_city
+        }
       }
+      let successText = '创建投资案例成功'
+      // 区别处理创建和编辑
+      if (case_index) {
+        submitData.url = url_common + '/api/user/editUserProjectCase';
+        submitData.data.case_id = case_id;
+        successText = '编辑投资案例成功'
+      }
+      app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+        app.errorHide(that, successText, 1000)
+        setTimeout(res => {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }, 1000)
+      })
     }
-
-  },
-  onUnload: function () {
-    wx.setStorageSync('tran_industry', []);
-    wx.setStorageSync('tran_scale', []);
-    wx.setStorageSync('tran_stage', [])
-    wx.setStorageSync('tran_area',[])
-    wx.setStorageSync('tran_hotCity', [])
   },
   // 获取项目信息() 
   getInfo: function (options) {
@@ -307,5 +276,8 @@ Page({
         case_id: case_id
       })
     }
-  }
+  },
+  onUnload: function () {
+    app.initTran()
+  },
 }) 

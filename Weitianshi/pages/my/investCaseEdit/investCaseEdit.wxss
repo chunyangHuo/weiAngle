@@ -20,9 +20,11 @@ input, textarea {
   color: #333;
   margin-top: 16rpx;
 }
-.text:first-child{
-  margin-top: 0
+
+.text:first-child {
+  margin-top: 0;
 }
+
 .slect {
   border-radius: 4px;
   height: 82repx;
@@ -69,4 +71,8 @@ input, textarea {
   color: white;
   font-size: 30rpx;
   text-align: center;
+}
+
+.slect .black {
+  color: black;
 }

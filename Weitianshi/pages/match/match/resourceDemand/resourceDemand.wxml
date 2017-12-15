@@ -1,4 +1,4 @@
-<!--pages/resourceEnchange/resourceEnchange.wxml-->
+<import src="/pages/Template/Template.wxml" />
 <!--可提供资源-->
 <view id="resourceEnchange">
   <view class="offer">
@@ -38,11 +38,11 @@
     <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc' bindinput="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
   </view>
 
- 
-  <!--发布项目-->
-  <button class="nextBtn publish-resources-confirm" bindtap="publish" hover-class='t-other-button-hover'>
-    发布
-  </button>
-   <!--错语提示-->
+  <view style='height:98rpx;'></view>
+
+  <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>
+
+<!--发布项目-->
+<template is="buttonOne" data="{{text:buttonOneText,btnName:'publish',disabled}}"></template>
