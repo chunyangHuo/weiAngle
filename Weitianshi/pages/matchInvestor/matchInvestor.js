@@ -52,12 +52,9 @@ Page({
               })
             }
             console.log(x.pro_scale)
-            if (x.pro_finance_stock_after == 0.00 && x.pro_scale!="" &&x.pro_stage !="" &&x.pro_area 
-            != ""){
+            if (x.pro_finance_stock_after == 0.00 ){
               x.pro_finance_stock_after = 0;
               x.otherTag = x.pro_scale.scale_money + '、' + x.pro_finance_stock_after + '%、' + x.pro_stage.stage_name + '、' + x.pro_area.area_title
-            }else if(x.pro_scale == ""){
-console.log("不存在")
             }
           })
         }

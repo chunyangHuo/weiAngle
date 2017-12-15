@@ -22,7 +22,8 @@ Page({
     belongArea: {
       area_title: '',
       area_id: ''
-    }
+    },
+    buttonOneText:'保存'
   },
   onLoad: function (options) {
     //获取当前时间,以备picker使用
@@ -150,13 +151,6 @@ Page({
     var tran_area = this.data.tran_area;
     let belongArea = this.data.belongArea;
     let reg = /^[1-9]\d*$/;
-    // if ()) {
-    //   that.setData({
-    //     case_money: case_money
-    //   })
-    // } else {
-     
-    // }
     console.log(case_money)
     if (tran_area) {
       var case_province = tran_area[0].area_id;
@@ -244,10 +238,7 @@ Page({
     }
 
   },
-  onUnload: function () {
-    wx.setStorageSync('provinceNum', [])
-    wx.setStorageSync('cityNum', [])
-  },
+  // 获取项目信息() 
   getInfo: function (options) {
     let case_id = options.case_id;
     // 维护案例的情况下
@@ -312,4 +303,4 @@ Page({
       })
     }
   }
-})
+}) 

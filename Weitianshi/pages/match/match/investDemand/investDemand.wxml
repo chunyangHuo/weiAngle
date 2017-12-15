@@ -5,7 +5,7 @@
     <navigator url="/pages/form/industry/industry?current=1" id="domain">
       <view class="slect flex">
         <view wx:if="{{tran_industry == ''}}">选择领域</view>
-        <view  class="checkOn" wx:else="{{tran_industry != ''}}">
+        <view class="checkOn" wx:else="{{tran_industry != ''}}">
           <block wx:for="{{tran_industry}}" wx:key="{{index}}">{{item.industry_name}},</block>
         </view>
         <image class="downArrow" src="/img/downArrow.png"></image>
@@ -56,7 +56,7 @@
     <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc;' bindinput="bindTextAreaBlur" maxlength="60" value="{{describe}}" />
   </view>
 
-  <button class="nextBtn publish-investment-confirm" bindtap="public" hover-class='t-other-button-hover'>发布</button>
+
 
   <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -67,3 +67,5 @@
     <view class="weui-loadmore__tips">正在加载</view>
   </view>
 </view>
+<!--保存-->
+<template is="buttonOne" data="{{text:buttonOneText,btnName:'public',disabled}}"></template>

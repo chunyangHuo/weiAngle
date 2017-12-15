@@ -1,5 +1,5 @@
 
-<!--pages/my/cardEdit/cardEdit.wxml-->
+<import src="/pages/Template/Template.wxml" />
 <view id="cardEdit">
   <view class="userPic">
     <image class="noPic" src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}" bindtap="headPic"></image>
@@ -36,6 +36,6 @@
 </view>
 <!--错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-<view class="floatBtn flex" bindtap="save">
-  <button class="save save-infom">保存</button>
-</view>
+
+<!--保存  -->
+<template is="buttonOne" data="{{text:buttonOneText,btnName:'public',disabled}}"></template>

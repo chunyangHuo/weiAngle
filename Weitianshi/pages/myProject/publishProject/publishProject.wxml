@@ -127,7 +127,7 @@
 <view class="highBox"></view>
 
 <!--保存  -->
-<template is="buttonOne" data="{{text:buttonText,btnName:'public',disabled}}"></template>
+<template is="buttonOne" data="{{text:buttonOneText,btnName:'public',disabled}}"></template>
 
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">

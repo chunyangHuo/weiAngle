@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 26,
 			"list": [
 				{
 					"id": 1,
@@ -178,6 +178,12 @@
 					"name": "编辑案例添加",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
 					"query": "index=2&case_id=481"
+				},
+				{
+					"id": -1,
+					"name": "成功案例编辑",
+					"pathName": "pages/my/investCaseEdit/investCaseEdit",
+					"query": "index=0&case_id=425"
 				}
 			]
 		}
