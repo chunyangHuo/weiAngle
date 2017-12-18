@@ -50,11 +50,11 @@ Page({
       currentTab: options.currentTab,
       shareType: options.type
     });
-    console.log('pro_id',this.data.id);
+    console.log('pro_id', this.data.id);
   },
   onShow: function () {
     let share_id = this.data.share_id;
-    console.log('share_id',share_id);
+    console.log('share_id', share_id);
     //返回上一页时启动onShow;
     let pages = getCurrentPages();
     let pre = pages[pages.length - 2];
@@ -165,7 +165,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('projectDetail',res)
+        console.log('projectDetail', res)
         let brandList = res.data.data.brand;
         let project = res.data.data;
         let user = res.data.user;
@@ -882,6 +882,7 @@ Page({
               wx.request({
                 url: url_common + '/api/mail/sendBp',
                 data: {
+                  open_session: wx.getStorageSync('open_session'),
                   user_id: user_id,
                   project_id: project_id
                 },

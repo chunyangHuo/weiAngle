@@ -1,4 +1,4 @@
-var app = getApp();
+var app = getApp(); 
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as SearchModel from '../../utils/searchModel';

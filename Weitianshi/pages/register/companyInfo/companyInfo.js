@@ -154,10 +154,11 @@ Page({
           let num = pages.length - 1;
           if (res.data.status_code == 2000000) {
             console.log(res)
-            var followed_user_id = wx.getStorageSync('followed_user_id');
+            let followed_user_id = wx.getStorageSync('followed_user_id');
             if (followed_user_id) {
-              var driectAdd = wx.getStorageSync("driectAdd");
+              let driectAdd = wx.getStorageSync("driectAdd");
               if (driectAdd) {
+                console.log(1)
                 //直接添加为好友
                 wx.request({
                   url: url + '/api/user/followUser',
@@ -167,6 +168,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     if (res.data.status_code == 2000000) {
                       wx.showModal({
                         title: "提示",
@@ -179,7 +181,10 @@ Page({
                           })
                         }
                       })
-                      wx.removeStorageSync("driectAdd")
+                      wx.removeStorageSync("driectAdd");
+                      wx.removeStorageSync('followed_user_id');
+                    }else{
+                      app.errorHide(that, res.data.error_msg, 1500)
                     }
                   },
                 })
@@ -193,6 +198,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(2)
                     if (res.data.status_code == 2000000) {
                       wx.showModal({
                         title: "提示",
@@ -200,6 +206,7 @@ Page({
                         showCancel: false,
                         confirmText: "到人脉库",
                         success: function () {
+                          wx.removeStorageSync('followed_user_id');
                           wx.switchTab({
                             url: '/pages/discoverInvest/discoverInvest',
                           })
@@ -210,9 +217,11 @@ Page({
                 })
               }
             } else {
-              if(type){
+              if (type) {
+                console.log(3)
                 app.href('/pages/register/bindSuccess/bindSuccess?type=' + type)
-              }else{
+              } else {
+                console.log(4)
                 app.href('/pages/register/bindSuccess/bindSuccess?type=' + 0)
               }
             }

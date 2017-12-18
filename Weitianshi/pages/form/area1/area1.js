@@ -5,26 +5,26 @@ Page({
   data: {
     province: [],
     city: [],
-    provinceNum:1
+    provinceNum: 1
   },
   onLoad: function (options) {
     // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例
     let that = this;
     // 获取数据并标定check
-    this.areaDeal();
+    this._areaDeal();
   },
-  areaDeal() {
+  _areaDeal() {
     let that = this;
     let tran_area = wx.getStorageSync('tran_area');
     let provinceNum = this.data.provinceNum;
     let cityNum = this.data.cityNum;
     let province = wx.getStorageSync('area');
 
-    if(tran_area.length != 0){
+    if (tran_area.length != 0) {
       provinceNum = tran_area[0].area_id;
       cityNum = tran_area[1].area_id;
     }
-    
+
     // 省
     province.forEach(x => {
       if (x.area_id == provinceNum) {
@@ -58,10 +58,12 @@ Page({
     let index = e.target.dataset.index;
     let id = e.target.dataset.id;
     let province = this.data.province;
-
+    province.forEach(x => {
+      x.check = false;
+    })
     province[index].check = true;
     this.setData({
-      province:province
+      province: province
     })
 
     wx.request({
@@ -89,8 +91,8 @@ Page({
     let cityNum = city[index].area_id;
     let tran_area = wx.getStorageSync('tran_area');
     tran_area[1] = city[index];
-    if(!tran_area[0]){
-      tran_area[0] = { area_id: 1, area_title: "北京"}
+    if (!tran_area[0]) {
+      tran_area[0] = { area_id: 1, area_title: "北京" }
     }
     wx.setStorageSync('tran_area', tran_area)
     city.forEach((x, idx) => {

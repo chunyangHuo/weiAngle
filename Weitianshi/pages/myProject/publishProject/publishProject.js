@@ -57,7 +57,7 @@ Page({
     this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
     // 如果是编辑项目入口
-    if (editProId) { this._editProject(editProId); }
+    if (editProId) { this._editProject(editProId) }
   },
   //页面显示
   onShow: function () {
@@ -65,6 +65,9 @@ Page({
     this._tranIndustryDeal();
     this._tranAreaDeal();
     this._privacyData();
+  },
+  onReady() {
+    console.log(this.data)
   },
   //picker数据预处理
   _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
@@ -150,6 +153,10 @@ Page({
         industryCard.value = _industryDeal(projectEditInfo.pro_industry).industryValue;
         industryCard.id = _industryDeal(projectEditInfo.pro_industry).industryId;
         industryCard.css = 'black';
+        if (industryCard.value.length == 0) {
+          industryCard.value = '选择领域'
+          industryCard.css = ''
+        }
         wx.setStorageSync('tran_industry', projectEditInfo.pro_industry)
         // 编辑-stage和scale处理
         _editPickerDeal(that, projectEditInfo.pro_stage, projectEditInfo.pro_scale)
@@ -480,11 +487,19 @@ Page({
         wx.removeStorageSync('setPrivacy');
         app.errorHide(that, successText, 1000)
         // 提交中过渡态处理
-        setTimeout(x => {
-          wx.redirectTo({
-            url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type
-          })
-        }, 1000)
+        if(that.data.pro_id){
+          setTimeout(x => {
+            wx.navigateBack({
+              delta:1
+            })
+          }, 1000)
+        }else{
+          setTimeout(x => {
+            wx.redirectTo({
+              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type
+            })
+          }, 1000)
+        }
       })
     }
   },

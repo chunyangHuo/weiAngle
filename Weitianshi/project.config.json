@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 25,
 			"list": [
 				{
 					"id": 1,
@@ -60,10 +60,10 @@
 					"query": ""
 				},
 				{
-					"id": 11,
+					"id": 6,
 					"name": "编辑项目",
 					"pathName": "pages/myProject/publishProject/publishProject",
-					"query": "pro_id=Er6Ona04"
+					"query": "pro_id=QWNn9gW1"
 				},
 				{
 					"id": 13,
@@ -126,7 +126,7 @@
 					"query": "id=QWNn5OW1&index=0"
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "项目店铺",
 					"pathName": "pages/my/projectShop/projectShop/projectShop",
 					"query": ""
@@ -171,6 +171,12 @@
 					"id": -1,
 					"name": "找投资人",
 					"pathName": "pages/matchInvestor/matchInvestor",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目店铺筛选",
+					"pathName": "pages/my/projectShop/tagFilter/tagFilter",
 					"query": ""
 				}
 			]

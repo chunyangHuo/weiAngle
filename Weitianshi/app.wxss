@@ -2,6 +2,7 @@
 @import '/utils/wxss/myContactsCard.wxss';
 @import '/utils/wxss/searchModel.wxss';
 @import '/utils/wxss/organization.wxss';
+@import '/utils/wxss/filterTag.wxss';
 
 scroll-view {
   height: 100%;

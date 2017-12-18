@@ -17,7 +17,7 @@ let data = {
     'hotCity': 'area_id',
     'label_industry': 'industry_id',
     'label_area': 'area_id',
-    'label_style': 'style_id',
+    'label_style': 'style_id', 
     'label_type': 'type_id',
     'label_time': 'time_id'
   },
@@ -336,7 +336,6 @@ function linkCheckAll(e, that) {
 }
 // 标签选择
 function tagsCheck(e, that) {
-  let time1 = new Date().getTime();
   let str = e.currentTarget.dataset.str;
   let itemIdStr = e.currentTarget.dataset.itemidstr;
   let SearchInit = that.data.SearchInit;
@@ -720,6 +719,34 @@ function linkSearchCertain(that) {
   })
 }
 
+// ---------------------单页面式筛选---------------------------------------------
+function page_tagsCheck(e,that){
+  let sort = e.currentTarget.dataset.sort;
+  let sortId = e.currentTarget.dataset.sortId;
+  let index = e.currentTarget.dataset.index;
+  let id = e.currentTarget.dataset.id;
+  let filterList = that.data.filterList;
+  // 最多选取数量限制
+  function _checkLimit(callBack,number = 5){
+    let limitNum = 0;
+    filterList[sortId].arry.forEach(x=>{
+      if(x.check == true ){ limitNum ++}
+    })
+    if (limitNum >= number && filterList[sortId].arry[index].check == false){
+      app.errorHide(that,'最多选择5个',3000)
+      return
+    }else{
+      callBack();
+    }
+  }
+  _checkLimit(x=>{
+    filterList[sortId].arry[index].check = !filterList[sortId].arry[index].check;
+    that.setData({
+      filterList
+    })
+  })
+}
+
 export {
   data,
   _label_industry,
@@ -742,4 +769,5 @@ export {
   detialItemSearch,
   linkFirstStair,
   linkSecondStair,
+  page_tagsCheck,
 } 

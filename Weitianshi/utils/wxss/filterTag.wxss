@@ -1,0 +1,75 @@
+.filterBlock {
+  padding: 40rpx 32rpx;
+}
+
+.mainTitle {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.subTitle {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+.content {
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.tag {
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 4rpx;
+  width: 144rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border: 1px solid #ccc;
+  margin-right: 20rpx;
+  margin-bottom: 32rpx;
+  color: #666;
+}
+
+.autoLength {
+  width: auto;
+  height: auto;
+  padding: 12rpx 20rpx;
+  line-height: 30rpx;
+}
+
+.check {
+  background: #293b55;
+  border-color: #293b55;
+  color: white;
+}
+
+/*------------------------------按钮组-----------------------------------------  */
+
+.buttonArry {
+  background: white;
+  padding: 40rpx 32rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.buttonArry .reset {
+  padding: 20rpx 80rpx;
+  text-align: center;
+  color: #293b55;
+  border: 1px solid #293b55;
+  border-radius: 4rpx;
+  margin-right: 32rpx;
+  line-height: 1;
+}
+
+.buttonArry .certain {
+  background: #293b55;
+  padding: 20rpx 170rpx;
+  text-align: center;
+  border-radius: 4rpx;
+  color: white;
+  line-height: 1;
+}

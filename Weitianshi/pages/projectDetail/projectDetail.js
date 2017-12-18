@@ -761,34 +761,42 @@ Page({
             that.setData({
               userEmail: userEmail
             })
-            app.console(userEmail)
             if (res.data.status_code == 2000000) {
               wx.request({
                 url: url_common + '/api/mail/sendBp',
                 data: {
+                  open_session: wx.getStorageSync('open_session'),
                   user_id: user_id,
                   project_id: project_id
                 },
                 method: 'POST',
                 success: function (res) {
                   console.log(res)
-                  wx.request({
-                    url: url_common + '/api/project/insertViewBpRecord',
-                    data: {
-                      user_id: user_id,
-                      project_id: project_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      console.log(res)
-                    }
-                  })
+                  if(res.data.status_code == 2000000){
+                    app.errorHide(that,'BP文件发送邮箱成功',3000)
+                    wx.request({
+                      url: url_common + '/api/project/insertViewBpRecord',
+                      data: {
+                        type: 'email',
+                        open_session: wx.getStorageSync('open_session'),
+                        user_id: user_id,
+                        project_id: project_id
+                      },
+                      method: 'POST',
+                      success: function (res) {
+                        console.log(res)
+                      }
+                    })
+                  }else{
+                    app.errorHide(that,res.data.error_msg,3000)
+                  }
                 }
               })
               that.setData({
                 sendPc: 0
               })
             } else {
+
             }
           }
         })
@@ -832,7 +840,6 @@ Page({
         wx.showActionSheet({
           itemList: ['直接预览', '发送到邮箱'],
           success: function (res) {
-            console.log(res.tapIndex)
             if (res.tapIndex == 1) {
               wx.request({
                 url: url_common + '/api/user/checkUserInfo',
@@ -875,6 +882,8 @@ Page({
                       wx.request({
                         url: url_common + '/api/project/insertViewBpRecord',
                         data: {
+                          type: 'preview',
+                          open_session: wx.getStorageSync('open_session'),
                           user_id: user_id,
                           project_id: project_id
                         },
