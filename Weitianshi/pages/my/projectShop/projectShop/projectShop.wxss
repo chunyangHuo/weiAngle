@@ -193,9 +193,11 @@ page {
   color: #333;
   background: #fff;
 }
-.t-hoverColor .button-hover{
-  background:#f2f3f4; 
+
+.t-hoverColor .button-hover {
+  background: #f2f3f4;
 }
+
 .shopBlock {
   width: 172rpx;
   text-align: center;
@@ -702,11 +704,11 @@ button::after {
 }
 
 .item {
-  display: inline!important;
+  display: inline !important;
   /* height: 64rpx; */
   padding: 8rpx 12rpx;
   background: white;
-  white-space:nowrap;
+  white-space: nowrap;
   margin-left: 32rpx;
   border-radius: 8rpx;
   text-align: center;
@@ -766,6 +768,8 @@ button::after {
 .search_img image {
   width: 40rpx;
   height: 40rpx;
+}
+
 .flexBox {
   display: flex;
   position: relative;

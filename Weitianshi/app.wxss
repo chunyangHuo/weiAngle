@@ -1215,6 +1215,7 @@ textarea {
 }
 .t-more{
   background: #e0e0e0!important;
+}
 .t-redColor{
   background: #CC364F!important;
 }
