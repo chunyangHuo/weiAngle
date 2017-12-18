@@ -13,7 +13,7 @@
      <view id="brand" class="flex">
       <input placeholder="品牌" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
     </view>
-    <button form-type="submit" class="nextBtn complete-infom" bindtap="backHome" loading="{{loading=='1'}}">
+    <button form-type="submit" hover-class='t-other-button-hover' class="nextBtn complete-infom" bindtap="backHome" loading="{{loading=='1'}}">
       完成
     </button>
   </form>
