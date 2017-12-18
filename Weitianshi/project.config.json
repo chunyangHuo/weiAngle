@@ -174,10 +174,17 @@
 					"query": ""
 				},
 				{
+<<<<<<< HEAD
 					"id": -1,
 					"name": "项目店铺筛选",
 					"pathName": "pages/my/projectShop/tagFilter/tagFilter",
 					"query": ""
+=======
+					"id": 25,
+					"name": "项目店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": "followed_user_id=Np38mX9r"
+>>>>>>> 09daf6030579f3a7e2af4c37ee4cdf87151fac33
 				}
 			]
 		}
