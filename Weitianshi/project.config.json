@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 25,
 			"list": [
 				{
 					"id": 1,
@@ -172,6 +172,12 @@
 					"name": "找投资人",
 					"pathName": "pages/matchInvestor/matchInvestor",
 					"query": ""
+				},
+				{
+					"id": 25,
+					"name": "项目店铺",
+					"pathName": "pages/my/projectShop/projectShop/projectShop",
+					"query": "followed_user_id=Np38mX9r"
 				}
 			]
 		}

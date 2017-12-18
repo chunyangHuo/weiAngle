@@ -127,6 +127,7 @@ Page({
       method: 'POST',
       success: function (res) {
         let myProject = res.data.data;
+        console.log(myProject)
         wx.hideLoading();
         //刷新数据
         that.setData({
@@ -609,9 +610,15 @@ Page({
       }
     })
   },
-  //分享店铺
+  //分享店铺二维码
   toShareShop() {
     let user_id = this.data.user_id;
     app.href("/pages/my/projectShop/shopShare/shopShare?user_id=" + user_id)
-  }
+  },
+  //分享页面
+  onShareAppMessage: function () {
+    console.log(555)
+    let that = this;
+    return ShareModel.projectShopShare(that);
+  },
 })
