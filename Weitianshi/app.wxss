@@ -34,7 +34,7 @@ background: white;
 }
 
 page {
-  background-color: #f8f8f8;
+  background-color: #f2f3f4;
   /*font-size: 16px;*/
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
@@ -1209,9 +1209,11 @@ textarea {
 .t-white{
   background: #fff!important;
 }
-.t-color{
-  color: #008DE5!important;
+.t-color1{
+   color: #008DE5!important; 
 }
+.t-more{
+  background: #e0e0e0!important;
 .t-redColor{
   background: #CC364F!important;
 }

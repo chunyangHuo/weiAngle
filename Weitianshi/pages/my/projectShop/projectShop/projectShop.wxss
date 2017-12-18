@@ -48,6 +48,8 @@ page {
 /*  */
 
 .screen {
+  position: fixed;
+  top: 0;
   background: #fff;
   width: 750rpx;
   height: 80rpx;
@@ -55,6 +57,7 @@ page {
   color: #666;
   line-height: 80rpx;
   text-align: center;
+  padding-bottom: 16rpx;
 }
 
 .box {
@@ -73,6 +76,7 @@ page {
   width: 100%;
   height: 280rpx;
   position: relative;
+  margin-top: 80rpx;
 }
 
 .userInfo {
@@ -86,34 +90,55 @@ page {
   color: #fff;
   line-height: 36rpx;
   text-align: left;
-  margin-right: 16rpx;
-  margin-bottom: 16rpx;
+}
+
+.userInfo .userNameTitle {
+  position: absolute;
+  left: 150rpx;
+  top: 35rpx;
 }
 
 .userInfo .userPosition {
   font-size: 28rpx;
   color: #fff;
-  line-height: 28rpx;
   text-align: left;
-  margin-bottom: 16rpx;
+  white-space: nowrap;
+  width: auto;
+  text-overflow: clip;
+}
+
+.userInfo .lineTwo {
+  position: absolute;
+  left: 150rpx;
+  top: 90rpx;
+}
+
+.userCircle {
+  font-size: 12px;
+  color: #fff;
+  margin-left: 10rpx;
+  margin-top: 5rpx;
 }
 
 .userInfo .userCompany {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #fff;
   line-height: 24rpx;
-  text-align: left;
+  margin-top: 8rpx;
+  margin-left: 5rpx;
+  /* text-align: left; */
 }
 
 .shopDesBox {
-  padding: 32rpx;
+  margin: 32rpx;
   background: #fff;
   margin-top: 32rpx;
+  padding-top: 24rpx;
 }
 
 .shopDesBox .shopDes {
   font-size: 30rpx;
-  color: #333;
+  color: #666;
   line-height: 30rpx;
   text-align: left;
   margin-bottom: 32rpx;
@@ -121,32 +146,38 @@ page {
 
 .shopDesBox .shopContent {
   font-size: 24rpx;
-  color: #999;
-  line-height: 36rpx;
+  color: #666;
+  line-height: 42rpx;
   text-align: left;
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  margin: 0rpx 24rpx 24rpx 24rpx;
   /* height: 78rpx; */
 }
 
 .shopDesBox .shopContentAfer {
   font-size: 24rpx;
-  color: #999;
-  line-height: 36rpx;
+  color: #666;
+  line-height: 42rpx;
   text-align: left;
   height: auto;
+  margin: 0rpx 24rpx 24rpx 24rpx;
 }
 
 .more {
-  color: #009eff;
-  font-size: 24rpx;
+  font-size: 10px;
+  color: #999;
   text-align: center;
-  width: 686rpx;
+  width: 100%;
+  height: 52rpx;
+  background: #fafafa;
   display: inline-block;
+  line-height: 52rpx;
+  margin-top: 12rpx;
 }
 
 /*按鈕  */
@@ -334,15 +365,15 @@ button::after {
 
 .line {
   align-items: flex-end;
-  margin-bottom: 16rpx;
+  margin-top: -30rpx;
 }
 
 .userCompany, .userCareer, .userName {
-  font-size: 22rpx;
+  font-size: 28rpx;
   color: #999;
-  line-height: 22rpx;
+  line-height: 24rpx;
   text-align: left;
-  width: 320rpx;
+  width: 500rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -503,8 +534,9 @@ button::after {
   border: 1px solid #40587a;
 }
 
-.search_icon {
-  padding: 10rpx 30rpx;
+.search_icon1 {
+  display: inline-block;
+  margin-left: -250rpx;
 }
 
 .modal {
@@ -513,7 +545,7 @@ button::after {
   top: 80rpx;
   width: 100%;
   height: 1174rpx;
-  background: black;
+  background: #293b55;
   opacity: 0.5;
   z-index: 99;
 }
@@ -530,18 +562,26 @@ button::after {
 }
 
 .renzheng {
-  width: 24rpx;
-  height: 24rpx;
+  width: 32rpx;
+  height: 32rpx;
   margin-right: 4rpx;
   margin-left: 8rpx;
   margin: 17rpx 4rpx 0 8rpx;
+  z-index: 111;
 }
 
 .userPart1 {
-  font-size: 20rpx;
+  font-size: 18rpx;
   color: #d3b987;
   line-height: 20rpx;
   text-align: left;
+  border: 1rpx solid #d3b987;
+  border-radius: 30rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  padding-right: 8rpx;
+  padding-left: 20rpx;
+  margin-left: -20rpx;
 }
 
 .user_pic {
@@ -549,8 +589,8 @@ button::after {
   width: 104rpx;
   border-radius: 50%;
   position: absolute;
-  right: -220rpx;
-  top: -4rpx;
+  left: 10rpx;
+  top: 25rpx;
 }
 
 .user_text {
@@ -650,6 +690,10 @@ button::after {
   padding-bottom: 32rpx;
   padding-top: 32rpx;
   background: #fff;
+  /* position: sticky!important;
+  position: -webkit-sticky!important;
+  top: 0!important;
+  z-index: 1111 */
 }
 
 .scroll {
@@ -658,10 +702,11 @@ button::after {
 }
 
 .item {
-  width: 160rpx;
-  min-width: 160rpx;
-  height: 112rpx;
+  display: inline!important;
+  /* height: 64rpx; */
+  padding: 8rpx 12rpx;
   background: white;
+  white-space:nowrap;
   margin-left: 32rpx;
   border-radius: 8rpx;
   text-align: center;
@@ -670,9 +715,9 @@ button::after {
 
 .item .itemName {
   font-size: 26rpx;
-  color: #333;
-  margin-bottom: 16rpx;
-  margin-top: 24rpx;
+  color: #666;
+  /* margin-bottom: 16rpx;
+  margin-top: 24rpx; */
 }
 
 .item .itemNum {
@@ -681,13 +726,46 @@ button::after {
 }
 
 .itemhover {
-  background: #e6e6e6;
+  background: #f5f5f5;
 }
 
 .t-modal {
   top: 175rpx;
 }
 
+.search_search {
+  background: #f5f5f5;
+  border-radius: 46px;
+  width: 610rpx;
+  height: 64rpx;
+  margin-left: 32rpx;
+  margin-top: 16rpx;
+  line-height: 72rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+.search_text {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 0;
+  text-align: left;
+  padding-left: 20rpx;
+  display: inline-block;
+  line-height: 30rpx;
+}
+
+.search_img {
+  width: 64rpx;
+  height: 64rpx;
+  background: #fff;
+  position: relative;
+  top: 20rpx;
+  left: 20rpx;
+}
+
+.search_img image {
+  width: 40rpx;
+  height: 40rpx;
 .flexBox {
   display: flex;
   position: relative;

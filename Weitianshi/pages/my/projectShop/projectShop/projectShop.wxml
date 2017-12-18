@@ -1,66 +1,14 @@
 <import src="/pages/Template/Template.wxml" />
-<scroll-view style='heigt:3000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
-  <view class='scrollFrame flex' wx:if="{{hasCompetitor == true}}">
-    <scroll-view class='scroll flex' scroll-x='true'>
-      <view class='flex'>
-        <block wx:for='{{node_list}}' wx:key='{{item.schedule_id}}'>
-          <view class='item {{node_list[index].is_select == 1 ? "itemhover" : ""}}' data-id='{{item.schedule_id}}' data-index='{{index}}' bindtap='scheduleCheck'>
-            <view class='itemName'>{{item.schedule_name}}</view>
-            <view class='itemNum'>{{item.node_count}}个项目</view>
-          </view>
-        </block>
-      </view>
-    </scroll-view>
-  </view>
+ <scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
   <!--筛选和搜索  -->
   <view class="	screen flex">
-    <!--筛选  -->
-    <block wx:for='{{tab}}' wx:key='index'>
-      <view class='tabIndex {{currentIndex==index || item.arr==true?"deepBlue" : ""}}' data-index='{{index}}' bindtap='move' hover-class='t-hoverColor'>
-        {{item.name}}
-        <image class='withAnimate {{currentIndex==index?"rotate" : ""}}' src='/img/downArrow.png'></image>
-      </view>
-    </block>
     <!--搜索  -->
-    <icon type="search" size="15" class="search_icon" catchtap="searchSth" hover-class='t-hoverColor'></icon>
-    <!--下拉框  -->
-    <view class="withAnimate {{hasCompetitor == true ? 'dropDown':'dropDownMore'}}">
-      <view class='dropTitle' wx:if='{{currentIndex==0}}'>项目领域</view>
-      <view class='dropTitle' wx:if='{{currentIndex==1}}'>融资轮次</view>
-      <view class='dropTitle' wx:if='{{currentIndex==2}}'>期望融资</view>
-      <view class='dropTitle' wx:if='{{currentIndex==3}}'>项目地区</view>
-      <!--多选框  -->
-      <view class='flex dropFlex'>
-        <!--领域  -->
-        <block wx:for='{{industry}}' wx:if='{{currentIndex==0}}' wx:key='item.industry_id' wx:for-item='item1' wx:for-index='index1'>
-          <view class='checkbox {{item1.check==true?"checkOne":""}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
-            {{item1.industry_name}}
-          </view>
-        </block>
-        <!--轮次  -->
-        <block wx:for='{{stage}}' wx:if='{{currentIndex==1}}' wx:key='item.stage_id' wx:for-item='item2' wx:for-index='index2'>
-          <view class='checkbox {{item2.check==true?"checkOne":""}}' data-item="{{item2}}" data-index="{{index2}}" bindtap='tagsCheck'>
-            {{item2.stage_name}}
-          </view>
-        </block>
-        <!--金额  -->
-        <block wx:for='{{scale}}' wx:if='{{currentIndex==2}}' wx:key='item.sacle_id' wx:for-item='item3' wx:for-index='index3'>
-          <view class='checkbox scale {{item3.check==true?"checkOne":""}}' data-item="{{item3}}" data-index="{{index3}}" bindtap='tagsCheck'>
-            {{item3.scale_money}}
-          </view>
-        </block>
-        <!--地区  -->
-        <block wx:for='{{hotCity}}' wx:if='{{currentIndex==3}}' wx:key='item.area_id' wx:for-item='item4' wx:for-index='index4'>
-          <view class='checkbox {{item4.check==true?"checkOne":""}}' data-item="{{item4}}" data-index="{{index4}}" bindtap='tagsCheck'>
-            {{item4.area_title}}
-          </view>
-        </block>
-      </view>
-      <!--重置确定  -->
-      <view class='btnGroup flex' wx:if="{{currentIndex!=5}}">
-        <button bindtap='reset'>重置</button>
-        <button bindtap='searchCertain'>确定</button>
-      </view>
+    <view class="search_search" catchtap="searchSth">
+      <icon type="search" size="14" class="search_icon1"></icon>
+      <text class="search_text">搜索公司名称，项目名称</text>
+    </view>
+    <view class="search_img" hover-class='t-hoverColor'>
+      <image src="/img/icon-shaixuan@2x.png"></image>
     </view>
   </view>
   <!--图片  -->
@@ -70,29 +18,47 @@
     <view class='modal picModal'></view>
     <view class="userInfo zIndex99">
       <view class="flex online">
-        <view class="userName">{{userInfo.user_real_name}}</view>
-        <view class="userPosition">{{userInfo.user_company_career}}</view>
-        <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
-          <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-          <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
+        <!--第一行显示  -->
+        <view class="userNameTitle flex">
+          <view class="userName">{{userInfo.user_real_name}}</view>
+          <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
+            <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+            <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
+          </view>
+        </view>
+        <!--第二行显示  -->
+        <view class="lineTwo flex">
+          <view class="userPosition">{{userInfo.user_company_career}}</view>
+          <view class="userCircle">●</view>
+          <view class="userCompany">{{userInfo.user_company_name}}</view>
         </view>
         <view>
           <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}" bindtap='toPersonDetail'></image>
           <view wx:if="{{userInfo.user_avatar_text}}" class="user_text noPic" bindtap='toPersonDetail'>{{userInfo.user_avatar_text}}</view>
         </view>
+
       </view>
-      <view class="userCompany">{{userInfo.user_company_name}}</view>
     </view>
   </view>
-
   <!--店铺描述  -->
   <view class="shopDesBox" wx:if="{{userInfo.user_intro}}">
-    <view class="shopDes">店铺描述</view>
     <view class="shopContent" class="{{isChecked?'shopContent':'shopContentAfer'}}">{{userInfo.user_intro}}</view>
-    <label class="more" bindtap="allPoint" wx:if="{{isChecked == true && contentMore== true}}">全部</label>
-    <label class="more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">收起</label>
+    <view class="more" hover-class="t-more"  bindtap="allPoint"  wx:if="{{isChecked == true && contentMore== true}}" >点击查看全部</view>
+    <view class="more" hover-class="t-more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">点击收起</view>
   </view>
-  <view style="height:30rpx;"></view>
+  <!-- <view style="height:30rpx;"></view> -->
+  <view class='scrollFrame flex' wx:if="{{hasCompetitor == true}}">
+    <scroll-view class='scroll flex' scroll-x='true'>
+      <view class='flex'>
+        <block wx:for='{{node_list}}' wx:key='{{item.schedule_id}}'>
+          <view class='item {{node_list[index].is_select == 1 ? "itemhover" : ""}}' data-id='{{item.schedule_id}}' data-index='{{index}}' bindtap='scheduleCheck'>
+            <view class='itemName'>{{item.schedule_name}}({{item.node_count}})</view>
+            <!-- <view class='itemNum'>个项目</view> -->
+          </view>
+        </block> 
+      </view>
+    </scroll-view>
+  </view>
   <!--符合条件的我的项目  -->
   <!-- <view wx:if="{{myProject.length !=0}}">
     <block wx:for="{{myProject}}" wx:key="{{index}}">
