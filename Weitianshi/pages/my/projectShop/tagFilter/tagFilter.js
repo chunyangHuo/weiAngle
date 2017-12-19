@@ -47,10 +47,16 @@ Page({
         arry:[]
       }
     ],
-    SearchInit: SearchModel.data
+    SearchInit: SearchModel.data,
+    SearchData:{
+      industry:[],
+      stage:[],
+      scale:[],
+      hotCity:[]
+    }
   },
   onLoad(){
-    this._initData()
+    this._initData();
   },
   // 初始化数据
   _initData(){
@@ -59,13 +65,22 @@ Page({
     filterList[1].arry = wx.getStorageSync('stage');
     filterList[2].arry = wx.getStorageSync('scale');
     filterList[3].arry = wx.getStorageSync('hotCity');
+    // 根据缓存重新标定check属性值
+    SearchModel.page_tagFilterInit(this)
     this.setData({
       filterList: filterList
     })
-    console.log(this.data.filterList)
   },
   // 标签选择
   tagsCheck(e){
     SearchModel.page_tagsCheck(e,this);
   },
+  // 重置
+  reset(){
+    SearchModel.page_reset(this)
+  },
+  // 筛选确定
+  certain(){
+    SearchModel.page_certain(this)
+  }
 })

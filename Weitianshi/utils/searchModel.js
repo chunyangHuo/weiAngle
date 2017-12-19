@@ -17,7 +17,7 @@ let data = {
     'hotCity': 'area_id',
     'label_industry': 'industry_id',
     'label_area': 'area_id',
-    'label_style': 'style_id', 
+    'label_style': 'style_id',
     'label_type': 'type_id',
     'label_time': 'time_id'
   },
@@ -163,10 +163,6 @@ function initGroup() {
   _linkDataShow.firstStair[0].check = true;
   _linkDataShow.secondStair = _label_industry[0].child;
 }
-
-// console.log('_label_industry',_label_industry)
-// console.log('_linkDataShow',_linkDataShow)
-
 // label=>itemIdStr
 function labelToId(label) {
   if (typeof label != 'string') {
@@ -720,30 +716,88 @@ function linkSearchCertain(that) {
 }
 
 // ---------------------单页面式筛选---------------------------------------------
-function page_tagsCheck(e,that){
+// 根据缓存重新标定check属性值
+function page_tagFilterInit(that) {
+  let filterList = that.data.filterList;
+  let projectShopFilterCache = wx.getStorageSync('projectShopFilterCache');
+  if (projectShopFilterCache) {
+    filterList.forEach(x => {
+      x.arry = x.arry.map(y => {
+        if (projectShopFilterCache[x.name].includes(y[x.tagId])) {
+          y.check = true;
+        }
+        return y;
+      })
+    })
+    that.setData({
+      filterList
+    })
+  }
+}
+// 点击标签
+function page_tagsCheck(e, that) {
   let sort = e.currentTarget.dataset.sort;
   let sortId = e.currentTarget.dataset.sortId;
   let index = e.currentTarget.dataset.index;
   let id = e.currentTarget.dataset.id;
   let filterList = that.data.filterList;
   // 最多选取数量限制
-  function _checkLimit(callBack,number = 5){
+  function _checkLimit(callBack, number = 5) {
     let limitNum = 0;
-    filterList[sortId].arry.forEach(x=>{
-      if(x.check == true ){ limitNum ++}
+    filterList[sortId].arry.forEach(x => {
+      if (x.check == true) { limitNum++ }
     })
-    if (limitNum >= number && filterList[sortId].arry[index].check == false){
-      app.errorHide(that,'最多选择5个',3000)
+    if (limitNum >= number && filterList[sortId].arry[index].check == false) {
+      app.errorHide(that, '最多选择5个', 3000)
       return
-    }else{
+    } else {
       callBack();
     }
   }
-  _checkLimit(x=>{
+  _checkLimit(x => {
     filterList[sortId].arry[index].check = !filterList[sortId].arry[index].check;
     that.setData({
       filterList
     })
+  })
+}
+// 重置
+function page_reset(that) {
+  let filterList = that.data.filterList;
+  filterList.forEach((x, index) => {
+    x.arry.forEach((y, idx) => {
+      y.check = false
+    })
+  })
+  that.setData({
+    filterList
+  })
+}
+// 确定
+function page_certain(that) {
+  let pages = getCurrentPages();
+  let currentPage = pages[pages.length - 1];
+  let prePage = pages[pages.length - 2];
+  let searchData = prePage.data.searchData;
+  let filterList = that.data.filterList;
+  filterList.forEach((x, index) => {
+    let arry = [];
+    x.arry.forEach((y, idx) => {
+      if (y.check == true) {
+        arry.push(y[x.tagId])
+      }
+    })
+    searchData[x.name] = arry;
+  })
+  console.log("tagFilterSearchData", searchData)
+  prePage.setData({
+    searchData: searchData,
+    firstTime: false
+  })
+  // 存入缓存
+  wx.setStorageSync('projectShopFilterCache', searchData)
+  wx.navigateBack({
+    delta: 1,
   })
 }
 
@@ -769,5 +823,8 @@ export {
   detialItemSearch,
   linkFirstStair,
   linkSecondStair,
+  page_tagFilterInit,
   page_tagsCheck,
+  page_reset,
+  page_certain,
 } 

@@ -7,7 +7,7 @@
       <icon type="search" size="14" class="search_icon1"></icon>
       <text class="search_text">搜索公司名称，项目名称</text>
     </view>
-    <view class="search_img" hover-class='t-hoverColor'>
+    <view class="search_img" hover-class='t-hoverColor' bindtap='tagFilter'>
       <image src="/img/icon-shaixuan@2x.png"></image>
     </view>
   </view>
