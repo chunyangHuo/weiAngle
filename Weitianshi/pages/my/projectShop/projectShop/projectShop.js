@@ -4,6 +4,7 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/shareModel';
 Page({
   data: {
+    isChecked1:false,
     buttonOne: {
       text: "新增项目"
     },
@@ -153,9 +154,14 @@ Page({
         let shop_name = userInfo.shop_name;
         if (userInfo.user_intro) {
           let user_intro = userInfo.user_intro;
-          if (user_intro.length >= 55) {
+          if (user_intro.length >= 108) {
             that.setData({
-              contentMore: true
+              contentMore: true,
+              isChecked1: false
+            })
+          }else{
+            that.setData({
+              isChecked1: true
             })
           }
         }

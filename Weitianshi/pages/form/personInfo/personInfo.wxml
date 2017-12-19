@@ -20,6 +20,6 @@
 <view wx:if="{{type == 7}}">
   <textarea bindinput="personDescrible" class="myDescrible"  maxlength="500" placeholder="请输入个人描述" value="{{user_describle}}" />
 </view>
-<view class="btn" bindtap="save">保存</view>
+<view class="btn" hover-class='t-other-button-hover' bindtap="save">保存</view>
 <!--错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
