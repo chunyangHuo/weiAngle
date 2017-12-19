@@ -78,7 +78,7 @@
     "pages/Cropper/Cropper"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#fafafa",
     "navigationBarTitleText": "微天使乐投平台",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,

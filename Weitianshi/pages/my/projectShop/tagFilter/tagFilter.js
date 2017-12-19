@@ -19,7 +19,7 @@ Page({
       { 
         sortId:1,
         name:'stage',
-        mainTitlte:'轮次',
+        mainTitle:'轮次',
         subTitle:'* 最多选择5个',
         autoLength:false,
         tagName:'stage_name',
@@ -29,7 +29,7 @@ Page({
       {
         sortId: 2,
         name:'scale',
-        mainTitle:'轮次',
+        mainTitle:'金额',
         subTitle:'* 最多选择5个',
         autoLength:true,
         tagName:'scale_money',
