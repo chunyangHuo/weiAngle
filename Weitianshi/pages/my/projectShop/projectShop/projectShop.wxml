@@ -30,7 +30,8 @@
         <view class="lineTwo flex">
           <view class="userPosition">{{userInfo.user_company_career}}</view>
           <view class="userCircle">●</view>
-          <view class="userCompany">{{userInfo.user_company_name}}</view>
+          <view class="userCompany" wx:if="{{userInfo.user_brand}}">{{userInfo.user_brand}}</view>
+          <view class="userCompany" wx:if="{{!userInfo.user_brand}}">{{userInfo.user_company_name}}</view>
         </view>
         <view>
           <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}" bindtap='toPersonDetail'></image>
@@ -42,7 +43,7 @@
   </view>
   <!--店铺描述  -->
   <view class="shopDesBox" wx:if="{{userInfo.user_intro}}">
-    <view class="shopContent" class="{{isChecked?'shopContent':'shopContentAfer'}}">{{userInfo.user_intro}}</view>
+    <view class="shopContent" class="{{isChecked?'shopContent':'shopContentAfer'}} {{isChecked1?'shopPad':'shopPad1'}}">{{userInfo.user_intro}}</view>
     <view class="more" hover-class="t-more"  bindtap="allPoint"  wx:if="{{isChecked == true && contentMore== true}}" >点击查看全部</view>
     <view class="more" hover-class="t-more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">点击收起</view>
   </view>
@@ -96,7 +97,7 @@
   </view> -->
   <view class='outBox'>
     <block wx:for="{{myProject}}" wx:key="{{index}}">
-      <view class='insideBox' data-id="{{item.project_id}}" bindtap="detail">
+      <view class='insideBox' data-id="{{item.project_id}}" hover-class='t-hoverColor' bindtap="detail">
         <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
         <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
         <view class='flex industryBox'>

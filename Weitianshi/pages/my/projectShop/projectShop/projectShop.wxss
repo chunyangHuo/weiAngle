@@ -95,7 +95,8 @@ page {
 .userInfo .userNameTitle {
   position: absolute;
   left: 150rpx;
-  top: 35rpx;
+  top: 65rpx;
+  width: 700rpx;
 }
 
 .userInfo .userPosition {
@@ -110,7 +111,11 @@ page {
 .userInfo .lineTwo {
   position: absolute;
   left: 150rpx;
-  top: 90rpx;
+  top: 118rpx;
+  width: 500rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .userCircle {
@@ -145,7 +150,7 @@ page {
 }
 
 .shopDesBox .shopContent {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #666;
   line-height: 42rpx;
   text-align: left;
@@ -167,7 +172,12 @@ page {
   height: auto;
   margin: 0rpx 24rpx 24rpx 24rpx;
 }
-
+.shopPad{
+  padding-bottom: 24rpx;
+}
+.shopPad1{
+  padding-bottom: 0
+}
 .more {
   font-size: 10px;
   color: #999;
@@ -177,7 +187,7 @@ page {
   background: #fafafa;
   display: inline-block;
   line-height: 52rpx;
-  margin-top: 12rpx;
+  margin-top: 16rpx;
 }
 
 /*按鈕  */
@@ -273,7 +283,7 @@ button::after {
 }
 
 .insideBox {
-  border-bottom: 1rpx solid #e6e6e6;
+  border-bottom: 0.5rpx solid #e6e6e6;
   padding: 32rpx;
   position: relative;
 }
@@ -370,7 +380,7 @@ button::after {
   margin-top: -30rpx;
 }
 
-.userCompany, .userCareer, .userName {
+.userCareer {
   font-size: 28rpx;
   color: #999;
   line-height: 24rpx;
@@ -381,7 +391,18 @@ button::after {
   white-space: nowrap;
 }
 
-.userCareer, .userName {
+.userName {
+  font-size: 28rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  max-width: 400rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.userCareer {
   margin-right: 16rpx;
   white-space: nowrap;
   width: auto;
@@ -592,17 +613,17 @@ button::after {
   border-radius: 50%;
   position: absolute;
   left: 10rpx;
-  top: 25rpx;
+  top: 55rpx;
 }
 
 .user_text {
   height: 104rpx;
   width: 104rpx;
   border-radius: 50%;
-  line-height: 104rpx;
   position: absolute;
-  right: -220rpx;
-  top: -4rpx;
+  left: 10rpx;
+  top: 55rpx;
+  line-height: 104rpx;
 }
 
 .topPic {
