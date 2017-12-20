@@ -43,20 +43,10 @@ Page({
           thisData.industry.forEach((x) => { x.check = false })
           thisData.scale.forEach((x) => { x.check = false })
           thisData.stage.forEach((x) => { x.check = false })
+          thisData.hotCity.forEach((x) => { x.check = false })
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
-        },
-      })
-      wx.request({
-        url: url_common + '/api/category/getHotCity',
-        data: {},
-        method: 'POST',
-        success: function (res) {
-          let hotCity = res.data.data;
-          hotCity.forEach((x) => {
-            x.check = false;
-          })
           wx.setStorageSync('hotCity', hotCity)
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
@@ -67,8 +57,8 @@ Page({
           that.setData({
             SearchInit: SearchInit
           })
-        }
-      });
+        },
+      })
     }
 
 

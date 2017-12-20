@@ -17,7 +17,7 @@ Page({
     //banner
     bannerIndex: 0,
     modalBox: 0,
-    insideColor:true,
+    insideColor: true,
     imgUrls: [
       app.globalData.picUrl.banner_1,
       app.globalData.picUrl.banner_3,
@@ -48,8 +48,9 @@ Page({
       });
       that.selectProject();
     })
-
-    // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
+  },
+  onReady() {
+    let that = this;
     // 无缓存用户searchModel预处理
     if (!that.data.SearchInit.industry) {
       //获取筛选项所需的信息并存入缓存
@@ -63,21 +64,11 @@ Page({
           thisData.industry.forEach((x) => { x.check = false })
           thisData.scale.forEach((x) => { x.check = false })
           thisData.stage.forEach((x) => { x.check = false })
+          thisData.hotCity.forEach((x) => { x.check = false })
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
-        },
-      })
-      wx.request({
-        url: url_common + '/api/category/getHotCity',
-        data: {},
-        method: 'POST',
-        success: function (res) {
-          let hotCity = res.data.data;
-          hotCity.forEach((x) => {
-            x.check = false;
-          })
-          wx.setStorageSync('hotCity', hotCity)
+          wx.setStorageSync('hotCity', thisData.hotCity)
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');
@@ -87,8 +78,9 @@ Page({
           that.setData({
             SearchInit: SearchInit
           })
-        }
-      });
+          console.log(SearchInit)
+        },
+      })
     }
   },
   // 不显示项目库的筛选项(辅助函数)
@@ -265,11 +257,11 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-            app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
-         
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+
         } else {
-            app.href('/pages/projectDetail/projectDetail?id=' + project_id)
-        
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+
         }
       }
     })
