@@ -1,11 +1,11 @@
 <import src="/pages/Template/Template.wxml" />
- <scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+<scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
   <!--筛选和搜索  -->
   <view class="	screen flex">
     <!--搜索  -->
-    <view class="search_search" catchtap="searchSth">
+    <view class="search_search flex" catchtap="searchSth">
       <icon type="search" size="14" class="search_icon1"></icon>
-      <text class="search_text">搜索公司名称，项目名称</text>
+      <view class="search_text">搜索公司名称，项目名称</view>
     </view>
     <view class="search_img" hover-class='t-hoverColor'>
       <image src="/img/icon-shaixuan@2x.png"></image>
@@ -21,15 +21,20 @@
         <!--第一行显示  -->
         <view class="userNameTitle flex">
           <view class="userName">{{userInfo.user_real_name}}</view>
+          <!-- userInfo.authentication[0].group_title -->
           <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
-            <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-            <view class="userPart1">{{userInfo.authentication[0].group_title}}</view>
+            <image src="/img/img-touzifang copy@2x.png" class="renzheng1" wx:if="{{userInfo.authentication[0].group_title=='其他'}}"></image>
+            <image src="/img/img-maifangFA.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='买方FA'}}"></image>
+            <image src="/img/img-maifangFA Copy@2x.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='卖方FA'}}"></image>
+             <image src="/img/img-touzifang.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='投资方'}}" ></image>
+             <image src="/img/img-chuangyefang@2x.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='创业方'}}" ></image>
+            <!-- <view class="userPart1">{{userInfo.authentication[0].group_title}}</view> -->
           </view>
         </view>
         <!--第二行显示  -->
         <view class="lineTwo flex">
           <view class="userPosition">{{userInfo.user_company_career}}</view>
-          <view class="userCircle">●</view>
+          <view class="userCircle">.</view>
           <view class="userCompany" wx:if="{{userInfo.user_brand}}">{{userInfo.user_brand}}</view>
           <view class="userCompany" wx:if="{{!userInfo.user_brand}}">{{userInfo.user_company_name}}</view>
         </view>
@@ -44,7 +49,7 @@
   <!--店铺描述  -->
   <view class="shopDesBox" wx:if="{{userInfo.user_intro}}">
     <view class="shopContent" class="{{isChecked?'shopContent':'shopContentAfer'}} {{isChecked1?'shopPad':'shopPad1'}}">{{userInfo.user_intro}}</view>
-    <view class="more" hover-class="t-more"  bindtap="allPoint"  wx:if="{{isChecked == true && contentMore== true}}" >点击查看全部</view>
+    <view class="more" hover-class="t-more" bindtap="allPoint" wx:if="{{isChecked == true && contentMore== true}}">点击查看全部</view>
     <view class="more" hover-class="t-more" bindtap="noPoint" wx:if="{{isChecked == false && contentMore == true}}">点击收起</view>
   </view>
   <!-- <view style="height:30rpx;"></view> -->
@@ -56,7 +61,7 @@
             <view class='itemName'>{{item.schedule_name}}({{item.node_count}})</view>
             <!-- <view class='itemNum'>个项目</view> -->
           </view>
-        </block> 
+        </block>
       </view>
     </scroll-view>
   </view>
@@ -165,7 +170,7 @@
       <view class='shopBlock'>首页</view>
     </view>
     <view class='t-line'></view>
-    <view class="flexBox"  hover-class="t-hoverColor ">
+    <view class="flexBox" hover-class="t-hoverColor ">
       <image src='/img/icon-fenxiang@2x.png' class='shopPic'></image>
       <button class='shopBlock' open-type="share" id="shareFriend">分享</button>
     </view>
