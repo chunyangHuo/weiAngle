@@ -7,7 +7,8 @@ import * as SearchModel from '../../../../utils/searchModel';
 Page({
   data: {
     SearchInit: SearchModel.data,
-
+    label_industry: SearchModel._label_industry,
+    linkDataShow: SearchModel._linkDataShow,
   },
   onLoad: function (options) {
     let that = this;
@@ -15,14 +16,13 @@ Page({
       investment_id: options.investment_id,
     });
     console.log(this.data.investment_id);
-
     //更改搜索模块初始化设置
     SearchModel.reInitSearch(that, {
       tab: [
         { type: 2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page: '0' },
         { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
-        { type: 1, name: '轮次', label: "stage", itemId: 'stage_id', itemName: 'stage_name', longCheckBox: false },
-        { type: 1, name: '时间', label: "label_time", itemId: 'time_id', itemName: 'time_name', longCheckBox: false },
+        { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
+        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: true },
       ],
     })
     let SearchInit = that.data.SearchInit;
@@ -48,7 +48,7 @@ Page({
     this.investList();
 
   },
- 
+
   //加载更多
   loadMore() {
     let that = this;
@@ -136,14 +136,7 @@ Page({
     str = this.data.currentTab == 0 ? "selected" : "newest"
     SearchModel.searchSth(that, str)
   },
-  // 一级联动选择
-  firstLinkCheck(e) {
-    SearchModel.firstLinkCheck(e, this);
-  },
-  // 联动选择全部
-  linkCheckAll(e) {
-    SearchModel.linkCheckAll(e, this);
-  },
+  // 投资案例列表
   investList() {
     let that = this;
     wx.showLoading({
@@ -173,5 +166,18 @@ Page({
         }
       }
     })
+  },
+
+  // 一级联动选择
+  linkFirstStair(e) {
+    SearchModel.linkFirstStair(e, this)
+  },
+  // 二级联动选择
+  linkSecondStair(e) {
+    SearchModel.linkSecondStair(e, this)
+  },
+  // 联动选择全部
+  linkCheckAll(e) {
+    SearchModel.linkCheckAll(e, this);
   },
 })

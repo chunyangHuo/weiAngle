@@ -7,7 +7,7 @@
   <view class="investImg" wx:if="{{newPage.investment_event_url}}">
     <image src="{{newPage.investment_event_url}}"></image>
   </view>
-  <!--循环投资案例  -->
+  <!--循环投资案例  --> 
   <view>
     <view class="media">
       <block wx:for="{{project_list}}" wx:key="{{project_list}}">

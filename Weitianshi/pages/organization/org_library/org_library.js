@@ -11,7 +11,7 @@ Page({
     label_industry: SearchModel._label_industry,
     linkDataShow: SearchModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
-  },
+  }, 
   onLoad: function (options) {
     let label = options.label;
     let itemId = options.itemId;
@@ -150,11 +150,8 @@ Page({
     SearchModel.labelDelete(e, this)
   },
   // 一级联动选择
-  /* firstLinkCheck(e) {
-    SearchModel.firstLinkCheck(e, this);
-  }, */
-  // 一级联动选择
   linkFirstStair(e){
+    console.log(this.data.label_industry)
     SearchModel.linkFirstStair(e,this)
   },
   // 二级联动选择
