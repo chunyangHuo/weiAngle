@@ -66,40 +66,6 @@
     </scroll-view>
   </view>
   <!--符合条件的我的项目  -->
-  <!-- <view wx:if="{{myProject.length !=0}}">
-    <block wx:for="{{myProject}}" wx:key="{{index}}">
-      <view class="outBox picFather" wx:if="{{item.handle_status != 2 }}">
-        <view class="insideBox" data-id="{{item.project_id}}" bindtap="detail" hover-class='t-hoverColor'>
-          <view>
-            <view class="flex">
-              <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-              <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-              <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
-            </view>
-            <view class="allIndustry" style="text-align:left">
-              <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-                <label class="noLight" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label>
-                <label class="'noLight" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
-              </block>
-            </view>
-            <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-              <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
-              <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
-              <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
-              <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
-            </view>
-            <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}">
-              <image src="/img/icon-zhiding-n@2x.png" class="starPic" wx:if='{{item.is_top == 0}}'></image>
-              <image src="/img/icon-zhiding-s@2x.png" class="starPic" wx:if='{{item.is_top == 1}}'></image>
-            </view>
-            <view class="top" data-id="{{item.project_id}}" wx:if="{{otherPerson == true}}">
-              <image src="/img/img-tuijian@2x.png" class="topPic" wx:if="{{item.is_top == 1 }}"></image>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
-  </view> -->
   <view class='outBox'>
     <block wx:for="{{myProject}}" wx:key="{{index}}">
       <view class='insideBox' data-id="{{item.project_id}}" hover-class='t-hoverColor' bindtap="detail">
@@ -118,7 +84,7 @@
             <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
           </view>
         </view>
-        <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}">
+        <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}" hover-class="t-hoverColor" hover-stop-propagation="true">
           <image src="/img/btn-zhiding@2x.png" class="starPic" wx:if='{{item.is_top == 0}}'></image>
           <image src="/img/btn-quxiao@2x.png" class="starPic" wx:if='{{item.is_top == 1}}'></image>
         </view>
@@ -134,15 +100,6 @@
   </view>
 
   <view class="highBox"></view>
-  <!-- <view class="aboutNetwork flex" wx:if="{{otherPerson == false}}">
-    <view bindtap="decorate" hover-class="t-other-button-hover" class="newProject">
-      店铺装修
-    </view>
-    <view class="t-line"></view>
-    <view bindtap="editDetail" class="newProject" hover-class="t-other-button-hover">新增项目</view>
-  </view> -->
-  <!--分享  -->
-  <!-- <view class="shareSth">分享店铺</view> -->
   <!--我的项目店铺的底部按钮  -->
   <view class="flex aboutNetwork" wx:if="{{otherPerson == false}}">
     <view class="flexBox" hover-class="t-hoverColor" catchtap="toShareShop">
