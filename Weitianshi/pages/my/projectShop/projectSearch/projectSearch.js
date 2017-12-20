@@ -106,14 +106,15 @@ Page({
     }
   },
   // 选中项目
+
   clickProject: function (e) {
     let that = this;
-    let user_id = wx.getStorageSync('user_id');
+    let user_id = this.data.user_id;
     let myProject = this.data.myProject;
     let project_id = e.currentTarget.dataset.id;
     let is_top = e.currentTarget.dataset.top;
     wx.request({
-      url: url_common + '/api/project/stickProject ',
+      url: url_common + '/api/project/stickProject',
       data: {
         project_id: project_id,
         user_id: user_id
@@ -123,8 +124,10 @@ Page({
         if (res.data.status_code = 200000) {
           myProject.forEach((x) => {
             if (x.project_id == project_id && is_top == 0) {
+              app.errorHide(that, "设为推荐项目", 1000)
               x.is_top = 1
             } else if (x.project_id == project_id && is_top == 1) {
+              app.errorHide(that, "取消推荐项目", 1000)
               x.is_top = 0
             }
           })
@@ -132,8 +135,6 @@ Page({
             myProject: myProject
           })
         }
-        //刷新上一个页栈的排序
-
       }
     })
   },
