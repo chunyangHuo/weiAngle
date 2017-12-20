@@ -140,13 +140,14 @@ Page({
         let shop_name = userInfo.shop_name;
         if (userInfo.user_intro) {
           let user_intro = userInfo.user_intro;
-          if (user_intro.length >= 108) {
+          if (user_intro.length >= 100) {
             that.setData({
               contentMore: true,
               isChecked1: false
             })
           }else{
             that.setData({
+              contentMore: false,
               isChecked1: true
             })
           }

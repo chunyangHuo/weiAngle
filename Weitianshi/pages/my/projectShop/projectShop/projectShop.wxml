@@ -23,11 +23,11 @@
           <view class="userName">{{userInfo.user_real_name}}</view>
           <!-- userInfo.authentication[0].group_title -->
           <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
-            <image src="/img/img-touzifang copy@2x.png" class="renzheng1" wx:if="{{userInfo.authentication[0].group_title=='其他'}}"></image>
-            <image src="/img/img-maifangFA.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='买方FA'}}"></image>
-            <image src="/img/img-maifangFA Copy@2x.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='卖方FA'}}"></image>
-             <image src="/img/img-touzifang.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='投资方'}}" ></image>
-             <image src="/img/img-chuangyefang@2x.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='创业方'}}" ></image>
+             <image src="/img/img-touzifang1.png" class="renzheng1" wx:if="{{userInfo.authentication[0].group_title=='其他'}}"></image>
+             <image src="/img/img-maifangFA.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='买方FA'}}"></image> 
+            <image src="/img/img-maifangFA1@2x.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='卖方FA'}}"></image>
+              <image src="/img/img-touzifang.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='投资方'}}" ></image> 
+             <image src="/img/img-chuangye1.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='创业者'}}" ></image> 
             <!-- <view class="userPart1">{{userInfo.authentication[0].group_title}}</view> -->
           </view>
         </view>
