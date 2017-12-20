@@ -94,6 +94,7 @@ Page({
   },
   onShow: function () {
     if (!this.data.firstTime) {
+      this._getUserInfo();
       this.setData({
         requestCheck: true,
         currentPage: 1,
