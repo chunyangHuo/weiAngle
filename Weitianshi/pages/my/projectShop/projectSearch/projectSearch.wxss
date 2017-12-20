@@ -6,6 +6,7 @@
   padding: 16rpx 128rpx 16rpx 32rpx;
   z-index: 5;
 }
+
 .searchBox {
   align-items: center;
   height: 56rpx;
@@ -22,8 +23,9 @@
   height: 56rpx;
   width: 85%;
   line-height: 56rpx;
-  padding-left:24rpx;
+  padding-left: 24rpx;
 }
+
 /*取消*/
 
 .esc {
@@ -34,27 +36,35 @@
   margin-top: 14rpx;
   margin-right: 32rpx;
 }
+
 .outBox {
-  margin: 0 32rpx 30rpx 32rpx;
-  width: auto;
+  background: white;
+  width: 100%;
   height: auto;
+}
+
+.insideBox {
+  border-bottom: 0.5rpx solid #f0f0f0;
+  padding: 32rpx;
   position: relative;
 }
-.insideBox {
-  padding: 32rpx 32rpx 24rpx 32rpx;
-  background: #fff;
-  border-radius: 8rpx;
+
+.insideBox:last-child {
+  border-bottom: none;
 }
+
 .outBox .describle {
-  font-size: 34rpx;
-  color: #666;
-  line-height: 38rpx;
+  font-size: 30rpx;
+  color: #333;
+  line-height: 42rpx;
   text-align: left;
-  margin-bottom: 32rpx;
-  /* width:1418rpx; */
-  white-space: nowrap;
+  margin-bottom: 20rpx;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-weight: bold;
 }
 
 .projectDetailType {
@@ -64,20 +74,24 @@
   top: -6rpx;
   position: absolute;
 }
+
 .allIndustry {
-  font-size: 26rpx;
-  color: #666666;
-  line-height: 26rpx;
-  text-align: left;
-  margin-bottom: 24rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  width: 128rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 50rpx;
+  text-align: center;
+  margin-right: 16rpx;
 }
 
 .projectDetailLine {
-  padding: 0 16rpx;
-  border-right: 1rpx solid #999;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  text-align: left;
+  padding-left: 10rpx;
   color: #666;
 }
 
@@ -91,22 +105,26 @@
 
 .allProjectDetail {
   font-size: 26rpx;
-  color: #999;
+  color: #666;
   line-height: 26rpx;
   text-align: left;
-  /* margin-bottom: 34rpx; */
 }
+
+.industryBox {
+  margin-bottom: 20rpx;
+}
+
 .otherInfo {
   position: relative;
-  padding-bottom: 30rpx;
-  border-bottom: 1rpx solid #e6e6e6;
 }
+
 .others_pic {
   width: 40rpx;
   height: 40rpx;
   display: block;
   margin-right: 16rpx;
 }
+
 .user_image {
   width: 40rpx;
   height: 40rpx;
@@ -118,10 +136,12 @@
   line-height: 40rpx;
   color: #40587a;
 }
+
 .userInfo {
   width: 566rpx;
   margin-top: 9rpx;
 }
+
 .userCompany, .userCareer, .userName {
   font-size: 22rpx;
   color: #999;
@@ -140,22 +160,24 @@
   text-overflow: clip;
   overflow: none;
 }
+
 .star {
-  height: 24rpx;
-  width: 26rpx;
+  height: 52rpx;
+  width: 112rpx;
   position: absolute;
   right: 26rpx;
   bottom: 30rpx;
 }
 
 .starPic {
-  height: 24rpx;
-  width: 26rpx;
+  height: 52rpx;
+  width: 112rpx;
 }
 
 .picFather {
   position: relative;
 }
+
 .user_pic {
   height: 104rpx;
   width: 104rpx;
@@ -169,22 +191,25 @@
   height: 104rpx;
   width: 104rpx;
   border-radius: 50%;
-  line-height:104rpx;
-   position: absolute;
+  line-height: 104rpx;
+  position: absolute;
   right: -220rpx;
   top: -4rpx;
 }
-.topPic{
-  height:46rpx;
-  width:64rpx;
+
+.topPic {
+  height: 46rpx;
+  width: 64rpx;
 }
-.top{
-  height:46rpx;
-  width:64rpx;
+
+.top {
+  height: 46rpx;
+  width: 64rpx;
   position: absolute;
   right: 26rpx;
   bottom: 30rpx;
-} 
+}
+
 .nullState {
   position: absolute;
   top: 642rpx;

@@ -968,23 +968,22 @@ Page({
     let that = this;
     let message = this.data.message;
     let project_id = this.data.id;//项目id
-    let user_id = wx.getStorageSync('user_id'); //当前登陆者的 id
-    wx.request({
+    // 防反复提交处理
+    let submitData = {
       url: url_common + '/api/project/met',
       data: {
-        user_id: user_id,
+        user_id: wx.getStorageSync('user_id'),
         project_id: project_id,
         remark: message
       },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        if (res.data.status_code == 2000000) {
+    }
+    app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+      // 提交中过渡态处理
+        setTimeout(x => {
           that.setData({
             modalBox: 0
           })
-        }
-      }
+        }, 1000)
     })
   },
   /*点击tab切换*/
