@@ -186,7 +186,6 @@ function reInitSearch(that, data) {
 }
 // 下拉框
 function move(e, that) {
-  let time1 = new Date().getTime();
   let SearchInit = that.data.SearchInit;
   let index = e.currentTarget.dataset.index;
   let label = e.currentTarget.dataset.label;
@@ -195,6 +194,7 @@ function move(e, that) {
 
   // 清除未保存的选中标签
   if (label == 'label_industry') {
+    console.log(_linkDataShow)
     linkDataShow = Object.assign({}, _linkDataShow);
     linkDataShow.secondStair.forEach(x => {
       x.check = false;
