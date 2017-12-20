@@ -207,7 +207,7 @@ page {
   font-size: 20rpx;
   color: #333;
   background: #fff;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 0.5rpx solid #f0f0f0;
 }
 
 .t-hoverColor .button-hover {
@@ -217,7 +217,7 @@ page {
 .shopBlock {
   width: 172rpx;
   text-align: center;
-  margin-top: 64rpx;
+  padding-top: 64rpx;
   line-height: 22rpx;
   font-size: 20rpx;
   color: #333;
@@ -289,9 +289,12 @@ button::after {
 }
 
 .insideBox {
-  border-bottom: 0.5rpx solid #e6e6e6;
+  border-bottom: 0.5rpx solid #f0f0f0;
   padding: 32rpx;
   position: relative;
+}
+.insideBox:last-child{
+  border-bottom: none;
 }
 
 .outBox .describle {

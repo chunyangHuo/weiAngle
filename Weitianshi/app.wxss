@@ -7,23 +7,27 @@
 scroll-view {
   height: 100%;
 }
-button{
-padding: 0;
-margin: 0;
-padding-left: 0;
-padding-right: 0;
-margin-left: 0;
-margin-right: 0;
-position: static;
-border-radius: 0;
-background: white;
+
+button {
+  padding: 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  position: static;
+  border-radius: 0;
+  background: white;
+  /* text-align: left; */
 }
-button::after{
-border: none;
-width: auto;
-height: auto;
-background: white;
+
+button::after {
+  border: none;
+  width: auto;
+  height: auto;
+  background: white;
 }
+
 .container {
   height: 100%;
   display: flex;
@@ -1180,46 +1184,58 @@ textarea {
 .t-hoverColor {
   background: #f2f3f4 !important;
 }
-.t-investorColor{
+
+.t-investorColor {
   background: #fff;
   margin: 0 30rpx 0 30rpx;
 }
-.t-createColor{
-  background: #F3E2D6!important;
+
+.t-createColor {
+  background: #f3e2d6 !important;
 }
-.t-hoverColor .projectListBlock{
-   /* background: #f2f3f4 !important; */
-   background: inherit!important
+
+.t-hoverColor .projectListBlock {
+  /* background: #f2f3f4 !important; */
+  background: inherit !important;
 }
-.t-hoverColor .memberDes{
-   /* background: #f2f3f4 !important; */
-    background: inherit!important
+
+.t-hoverColor .memberDes {
+  /* background: #f2f3f4 !important; */
+  background: inherit !important;
 }
+
 .t-aLine {
   border-top: 1rpx solid #e6e6e6;
   margin: 0 32rpx;
 }
-.t-hoverColor .projectDetal{
-   background: inherit!important
+
+.t-hoverColor .projectDetal {
+  background: inherit !important;
 }
-.user_down  .t-color{
-  background: #E0E0E0;
+
+.user_down  .t-color {
+  background: #e0e0e0;
 }
-.t-alineHeight{
+
+.t-alineHeight {
   margin: 0 32rpx;
   width: 90%;
   height: 2rpx;
   background: #e6e6e6;
 }
-.t-white{
-  background: #fff!important;
+
+.t-white {
+  background: #fff !important;
 }
-.t-color1{
-   color: #008DE5!important; 
+
+.t-color1 {
+  color: #008de5 !important;
 }
-.t-more{
-  background: #e0e0e0!important;
+
+.t-more {
+  background: #e0e0e0 !important;
 }
-.t-redColor{
-  background: #CC364F!important;
+
+.t-redColor {
+  background: #cc364f !important;
 }
