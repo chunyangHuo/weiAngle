@@ -88,7 +88,7 @@ page {
 .userInfo .userName {
   font-size: 36rpx;
   color: #fff;
-  line-height: 36rpx;
+  line-height: 40rpx;
   text-align: left;
   font-weight: bold;
 }
@@ -116,6 +116,7 @@ page {
   width: 500rpx;
   text-overflow: ellipsis;
   overflow: hidden;
+  height: 40rpx;
   white-space: nowrap;
 }
 
@@ -130,7 +131,7 @@ page {
   font-size: 28rpx;
   color: #fff;
   line-height: 24rpx;
-  margin-top: 8rpx;
+   margin-top: 10.5rpx; 
   margin-left: 5rpx;
   /* text-align: left; */
 }
@@ -745,7 +746,7 @@ button::after {
 .item {
   display: inline !important;
   /* height: 64rpx;  */
-  padding: 10.5rpx 12rpx;
+  padding: 12rpx 12rpx;
   background: white;
   white-space: nowrap;
   margin-left: 24rpx;
