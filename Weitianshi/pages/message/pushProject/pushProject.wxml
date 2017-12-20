@@ -85,6 +85,6 @@
     <view class="modalTitle">联系项目方</view>
     <textarea class="modalContent" placeholder="请描述您的意向约谈时间，方式" bindinput="contentProject" />
     <view class="modalTips">微天使将为您联系项目方并安排约谈或添加FA哥微信：weitianshicn</view>
-    <view class="btn" bindtap="yesBtn" hover-class='t-other-button-hover'>确定</view>
+    <button class="btn" bindtap="yesBtn" hover-class='t-other-button-hover' disabled="{{disabled}}">确定</button>
   </view>
 </view>

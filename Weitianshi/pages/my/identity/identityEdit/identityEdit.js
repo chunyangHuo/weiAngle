@@ -74,7 +74,7 @@ Page({
           console.log(invest_info)
           wx.setStorageSync("tran_scale", invest_info.invest_scale)
           wx.setStorageSync("tran_stage", invest_info.invest_stage)
-          wx.setStorageSync("tran_area", invest_info.invest_area)
+          wx.setStorageSync("tran_hotCity", invest_info.invest_area)
           wx.setStorageSync("tran_industry", invest_info.invest_industry)
           that.setData({
             user_info: user_info,
@@ -93,7 +93,7 @@ Page({
     let tran_industry = wx.getStorageSync('tran_industry') || [];
     let tran_scale = wx.getStorageSync('tran_scale') || [];
     let tran_stage = wx.getStorageSync('tran_stage') || [];
-    let tran_area = wx.getStorageSync('tran_area') || [];
+    let tran_hotCity = wx.getStorageSync('tran_hotCity') || [];
     let newScale = [];
     let newStage = [];
     let newArea = [];
@@ -115,7 +115,7 @@ Page({
       newStage.push({ stage_name: x.stage_name })
       stageId.push({ stage_id: x.stage_id })
     })
-    tran_area.forEach(x => {
+    tran_hotCity.forEach(x => {
       newArea.push({ area_title: x.area_title })
       areaId.push({ area_id: x.area_id })
     })
@@ -303,7 +303,7 @@ Page({
         }
       }
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
-        wx.removeStorageSync("tran_area")
+        wx.removeStorageSync("tran_hotCity")
         wx.removeStorageSync("tran_stage")
         wx.removeStorageSync("tran_scale")
         wx.removeStorageSync("tran_industry")
