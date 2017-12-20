@@ -766,23 +766,30 @@ Page({
               wx.request({
                 url: url_common + '/api/mail/sendBp',
                 data: {
+                  open_session:wx.getStorageSync('open_session'),
                   user_id: user_id,
                   project_id: project_id
                 },
                 method: 'POST',
                 success: function (res) {
-                  console.log(res)
-                  wx.request({
-                    url: url_common + '/api/project/insertViewBpRecord',
-                    data: {
-                      user_id: user_id,
-                      project_id: project_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      console.log(res)
-                    }
-                  })
+                  if(res.data.status_code == 2000000){
+                    app.errorHide(that,'BP文件发送邮箱成功',2000);
+                    wx.request({
+                      url: url_common + '/api/project/insertViewBpRecord',
+                      data: {
+                        type: 'email',
+                        open_session: wx.getStorageSync('open_session'),
+                        user_id: user_id,
+                        project_id: project_id
+                      },
+                      method: 'POST',
+                      success: function (res) {
+                        console.log(res)
+                      }
+                    })
+                  }else{
+                    app.errorHide(that,res.data.error_msg,2000)
+                  }
                 }
               })
               that.setData({
@@ -875,6 +882,8 @@ Page({
                       wx.request({
                         url: url_common + '/api/project/insertViewBpRecord',
                         data: {
+                          type:'preview',
+                          open_session:wx.getStorageSync('open_session'),
                           user_id: user_id,
                           project_id: project_id
                         },

@@ -875,11 +875,15 @@ Page({
               wx.request({
                 url: url_common + '/api/mail/sendBp',
                 data: {
+                  open_session: wx.getStorageSync('open_session'),
                   user_id: user_id,
                   project_id: project_id
                 },
                 method: 'POST',
                 success: function (res) {
+                  if (res.statusCode == 2000000) {
+                    app.errorHide(that, 'BP文件发送邮箱成功', 2000)
+                  }
                 }
               })
               that.setData({
