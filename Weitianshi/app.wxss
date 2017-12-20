@@ -10,6 +10,10 @@ scroll-view {
 button{
 padding: 0;
 margin: 0;
+padding-left: 0;
+padding-right: 0;
+margin-left: 0;
+margin-right: 0;
 position: static;
 border-radius: 0;
 background: white;
