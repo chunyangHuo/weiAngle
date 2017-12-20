@@ -202,6 +202,7 @@ page {
   font-size: 20rpx;
   color: #333;
   background: #fff;
+  border-top:1rpx solid #f0f0f0;
 }
 
 .t-hoverColor .button-hover {
@@ -211,8 +212,8 @@ page {
 .shopBlock {
   width: 172rpx;
   text-align: center;
-  margin-top: 32rpx;
-  line-height: 104rpx;
+   margin-top: 64rpx; 
+   line-height: 22rpx; 
   font-size: 20rpx;
   color: #333;
   border: none;
@@ -293,7 +294,7 @@ button::after {
   color: #333;
   line-height: 42rpx;
   text-align: left;
-  margin-bottom: 28rpx;
+  margin-bottom: 20rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -430,8 +431,8 @@ button::after {
 .projectDetailType {
   height: 92rpx;
   width: 92rpx;
-  right: -3rpx;
-  top: -6rpx;
+  right: 0rpx;
+  top: 0rpx;
   position: absolute;
 }
 
@@ -803,4 +804,10 @@ button::after {
   position: absolute;
   top: 16rpx;
   left: 64rpx;
+}
+.t-line {
+  width: 2rpx;
+  height: 35rpx;
+  background: #f2f2f2;
+  margin-top: 15px;
 }
