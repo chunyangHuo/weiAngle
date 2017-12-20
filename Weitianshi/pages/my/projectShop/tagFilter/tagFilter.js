@@ -19,7 +19,7 @@ Page({
       { 
         sortId:1,
         name:'stage',
-        mainTitlte:'轮次',
+        mainTitle:'轮次',
         subTitle:'* 最多选择5个',
         autoLength:false,
         tagName:'stage_name',
@@ -29,7 +29,7 @@ Page({
       {
         sortId: 2,
         name:'scale',
-        mainTitle:'轮次',
+        mainTitle:'金额',
         subTitle:'* 最多选择5个',
         autoLength:true,
         tagName:'scale_money',
@@ -47,10 +47,16 @@ Page({
         arry:[]
       }
     ],
-    SearchInit: SearchModel.data
+    SearchInit: SearchModel.data,
+    SearchData:{
+      industry:[],
+      stage:[],
+      scale:[],
+      hotCity:[]
+    }
   },
   onLoad(){
-    this._initData()
+    this._initData();
   },
   // 初始化数据
   _initData(){
@@ -59,13 +65,22 @@ Page({
     filterList[1].arry = wx.getStorageSync('stage');
     filterList[2].arry = wx.getStorageSync('scale');
     filterList[3].arry = wx.getStorageSync('hotCity');
+    // 根据缓存重新标定check属性值
+    SearchModel.page_tagFilterInit(this)
     this.setData({
       filterList: filterList
     })
-    console.log(this.data.filterList)
   },
   // 标签选择
   tagsCheck(e){
     SearchModel.page_tagsCheck(e,this);
   },
+  // 重置
+  reset(){
+    SearchModel.page_reset(this)
+  },
+  // 筛选确定
+  certain(){
+    SearchModel.page_certain(this)
+  }
 })

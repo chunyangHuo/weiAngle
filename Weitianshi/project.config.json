@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 17,
 			"list": [
 				{
 					"id": 1,
@@ -177,6 +177,12 @@
 					"id": -1,
 					"name": "项目店铺筛选",
 					"pathName": "pages/my/projectShop/tagFilter/tagFilter",
+					"query": ""
+				},
+				{
+					"id": 26,
+					"name": "裁剪",
+					"pathName": "pages/Cropper/Cropper",
 					"query": ""
 				}
 			]

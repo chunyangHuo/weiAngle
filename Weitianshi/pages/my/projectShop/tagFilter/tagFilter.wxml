@@ -15,7 +15,7 @@
   <!--按钮组  -->
   <view class='buttonArry flex'>
     <button class='reset' bindtap='reset'>重置</button>
-    <button class='certain' bindtap='certain'>确定</button>
+    <button class='certain' hoverBlue='hoverBlue' bindtap='certain'>确定</button>
   </view>
 </view>
 

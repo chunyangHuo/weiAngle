@@ -1,10 +1,11 @@
 .filterBlock {
-  padding: 40rpx 32rpx;
+  padding: 8rpx 0 8rpx 32rpx;
 }
 
 .mainTitle {
   font-size: 26rpx;
   color: #333;
+  font-weight: bold;
 }
 
 .subTitle {
@@ -23,19 +24,19 @@
   text-align: center;
   font-size: 24rpx;
   border-radius: 4rpx;
-  width: 144rpx;
+  width: 155rpx;
   height: 56rpx;
   line-height: 56rpx;
-  border: 1px solid #ccc;
+  border: 1rpx solid #ccc;
   margin-right: 20rpx;
   margin-bottom: 32rpx;
   color: #666;
 }
 
 .autoLength {
-  width: auto;
+  width: 214rpx;
   height: auto;
-  padding: 12rpx 20rpx;
+  padding: 12rpx 0rpx;
   line-height: 30rpx;
 }
 
@@ -49,27 +50,33 @@
 
 .buttonArry {
   background: white;
-  padding: 40rpx 32rpx;
+  padding: 32rpx 32rpx;
   position: fixed;
   left: 0;
   bottom: 0;
+  width: 100%;
 }
 
 .buttonArry .reset {
-  padding: 20rpx 80rpx;
+  padding: 24rpx 76rpx;
   text-align: center;
   color: #293b55;
   border: 1px solid #293b55;
   border-radius: 4rpx;
   margin-right: 32rpx;
   line-height: 1;
+  font-size: 30rpx;
 }
 
 .buttonArry .certain {
   background: #293b55;
-  padding: 20rpx 170rpx;
+  padding: 24rpx 189rpx;
   text-align: center;
   border-radius: 4rpx;
   color: white;
   line-height: 1;
+  font-size: 30rpx;
+}
+.hoverBlue{
+  color: #24344c;
 }

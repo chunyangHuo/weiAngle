@@ -1,0 +1,2 @@
+/* pages/Cropper/Cropper.wxss */
+@import "/utils/welCropper/welCropper.wxss";

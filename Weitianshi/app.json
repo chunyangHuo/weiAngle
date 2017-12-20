@@ -74,10 +74,11 @@
     "pages/organization/subPage/list_leaveMember/list_leaveMember",
     "pages/organization/subPage/list_media/list_media",
     "pages/organization/subPage/guide_help/guide_help",
-    "pages/projectScale/projectEvaluation/projectEvaluation"
+    "pages/projectScale/projectEvaluation/projectEvaluation",
+    "pages/Cropper/Cropper"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#fafafa",
     "navigationBarTitleText": "微天使乐投平台",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
