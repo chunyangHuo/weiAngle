@@ -6,7 +6,8 @@ Page({
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
-    modalBox: 0
+    modalBox: 0,
+    buttonOneText: "确定"
   },
   onLoad: function (e) {
   },
@@ -482,58 +483,24 @@ Page({
     let pushToList = this.data.pushToList;
     let message = this.data.message;
     let status = this.data.status;
-    // let project_id = this.data.id;//项目id
     let user_id = wx.getStorageSync('user_id'); //当前登陆者的 id
-    wx.request({
+    let submitData = {
       url: url_common + '/api/project/met',
       data: {
-        user_id: user_id,
+        user_id: wx.getStorageSync('user_id'),
         project_id: currentProject_id,
         remark: message
       },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          wx.request({
-            url: url_common + '/api/message/handlePushProjectMessage',
-            data: {
-              user_id : user_id,
-              push_id: push_id,
-              status: status
-            },
-            method: 'POST',
-            success: function (res) {
-              console.log(res)
-              let statusCode = res.data.status_code;
-              if (statusCode == 2000000) {
-                pushToList.forEach((x) => {
-                  if (x.push_id == push_id) {
-                    x.handle_status = 1
-                  }
-                })
-                wx.showToast({
-                  title: '已感兴趣',
-                  icon: 'success',
-                  duration: 2000
-                })
-                that.setData({
-                  pushToList: pushToList
-                })
-              } else {
-                console.log(statusCode)
-              }
-            }
-          })
-          that.setData({
-            modalBox: 0
-          })
-        }
-      }
+    }
+    app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+      // 提交中过渡态处理
+      setTimeout(x => {
+        this.contactProjectPerson(user_id, push_id, status, pushToList);
+      }, 1000)
     })
-  },
+  }, 
   //加入项目库
   addProjectLibrary: function (e) {
-    console.log(111)
     let user_id = wx.getStorageSync('user_id');
     let project_id = e.currentTarget.dataset.project;
     let pushToList = this.data.pushToList;
@@ -560,6 +527,42 @@ Page({
           console.log(res.data.error_msg)
         }
       }
+    })
+  },
+  //联系项目方后..改变样式
+  contactProjectPerson(user_id, push_id, status, pushToList){ 
+    let  that = this;
+    wx.request({
+      url: url_common + '/api/message/handlePushProjectMessage',
+      data: {
+        user_id : user_id,
+        push_id: push_id,
+        status: status
+      },
+      method: 'POST',
+      success: function (res) {
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
+          pushToList.forEach((x) => {
+            if (x.push_id == push_id) {
+              x.handle_status = 1
+            }
+          })
+          wx.showToast({
+            title: '已感兴趣',
+            icon: 'success',
+            duration: 2000
+          })
+          that.setData({
+            pushToList: pushToList
+          })
+        } else {
+          console.log(statusCode)
+        }
+      }
+    })
+    that.setData({
+      modalBox: 0
     })
   }
 })
