@@ -97,7 +97,7 @@ page {
   position: absolute;
   left: 150rpx;
   top: 60rpx;
-  width: 700rpx;
+  width: 1000rpx;
 }
 
 .userInfo .userPosition {
@@ -602,7 +602,7 @@ button::after {
   margin-left: 8rpx;
   margin: 17rpx 4rpx 0 8rpx;
   z-index: 111;
-  margin-bottom: 2rpx;
+  margin-bottom: 6rpx;
 }
 
 .renzheng1 {
