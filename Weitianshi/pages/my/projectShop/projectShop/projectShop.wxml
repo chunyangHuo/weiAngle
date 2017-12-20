@@ -34,9 +34,9 @@
         <!--第二行显示  -->
         <view class="lineTwo flex">
           <view class="userPosition">{{userInfo.user_company_career}}</view>
-          <view class="userCircle">.</view>
-          <view class="userCompany" wx:if="{{userInfo.user_brand}}">{{userInfo.user_brand}}</view>
-          <view class="userCompany" wx:if="{{!userInfo.user_brand}}">{{userInfo.user_company_name}}</view>
+          <!-- <view class="userCircle">.</view> -->
+          <view class="userCompany" wx:if="{{userInfo.user_brand}}">· {{userInfo.user_brand}}</view>
+          <view class="userCompany" wx:if="{{!userInfo.user_brand}}">· {{userInfo.user_company_name}}</view>
         </view>
         <view>
           <image wx:if="{{userInfo.user_avatar_url}}" class="user_pic" src="{{userInfo.user_avatar_url}}" bindtap='toPersonDetail'></image>
