@@ -21,14 +21,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 25,
 			"list": [
-				{
-					"id": 1,
-					"name": "FAIndustryAllianceRegister",
-					"pathName": "pages/FAIndustryAlliance/FAIndustryAllianceRegister/FAIndustryAllianceRegister",
-					"query": ""
-				},
 				{
 					"id": 2,
 					"name": "验证码",
@@ -180,9 +174,9 @@
 					"query": ""
 				},
 				{
-					"id": 26,
+					"id": 25,
 					"name": "裁剪",
-					"pathName": "pages/Cropper/Cropper",
+					"pathName": "pages/register/bindSuccess/bindSuccess",
 					"query": ""
 				}
 			]

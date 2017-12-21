@@ -730,11 +730,14 @@ App({
   href(url) {
     let pages = getCurrentPages();
     if (pages.length == 5) {
-      pages.splice(0, 1)
+     wx.redirectTo({
+       url: url,
+     })
+    }else{
+      wx.navigateTo({
+        url: url,
+      })
     }
-    wx.navigateTo({
-      url: url,
-    })
   },
 
   //多选

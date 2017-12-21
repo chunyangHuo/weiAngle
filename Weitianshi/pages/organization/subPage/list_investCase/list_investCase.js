@@ -35,6 +35,9 @@ Page({
         SearchInit: SearchInit
       })
     }
+    this.setData({
+      label_industry: wx.getStorageSync('label_industry')
+    })
   },
   onShow: function () {
     let that = this;
@@ -122,7 +125,7 @@ Page({
     that.setData({
       currentPage: 0,
     })
-    this.investList();
+    this.investList('search');
   },
   // 点击modal层
   modal() {
@@ -137,7 +140,7 @@ Page({
     SearchModel.searchSth(that, str)
   },
   // 投资案例列表
-  investList() {
+  investList(search) {
     let that = this;
     wx.showLoading({
       title: 'loading',
@@ -161,7 +164,7 @@ Page({
           page_end: page_end,
         })
         wx.hideLoading()
-        if (page_end == true) {
+        if (page_end == true && !search) {
           app.errorHide(that, '没有更多了', 3000)
         }
       }

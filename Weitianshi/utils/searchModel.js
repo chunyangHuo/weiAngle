@@ -139,7 +139,7 @@ function getCache() {
           data.label_type = label_type;
           // 时间筛选项
           wx.setStorageSync('label_time', [{ time_id: 0, time_name: '近一年', check: false }, { time_id: 1, time_name: '近三年', check: false }, { time_id: 2, time_name: '全部', check: false }])
-          initGroup()
+          initGroup();
         })
       })
     })
