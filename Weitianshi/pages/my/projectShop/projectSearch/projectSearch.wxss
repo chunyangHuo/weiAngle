@@ -85,6 +85,8 @@
   line-height: 50rpx;
   text-align: center;
   margin-right: 16rpx;
+  margin-bottom: 20rpx;
+  white-space: nowrap;
 }
 
 .projectDetailLine {
@@ -111,7 +113,8 @@
 }
 
 .industryBox {
-  margin-bottom: 20rpx;
+  word-break: break-all;
+  flex-wrap: wrap;
 }
 
 .otherInfo {
@@ -166,7 +169,7 @@
   width: 112rpx;
   position: absolute;
   right: 26rpx;
-  bottom: 30rpx;
+  bottom: 24rpx;
 }
 
 .starPic {

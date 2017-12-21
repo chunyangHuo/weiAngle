@@ -23,18 +23,17 @@
           <view class="userName">{{userInfo.user_real_name}}</view>
           <!-- userInfo.authentication[0].group_title -->
           <view class="flex line" wx:if="{{userInfo.authentication[0].group_title}}">
-             <image src="/img/img-touzifang1.png" class="renzheng1" wx:if="{{userInfo.authentication[0].group_title=='其他'}}"></image>
-             <image src="/img/img-maifangFA.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='买方FA'}}"></image> 
+            <image src="/img/img-touzifang1.png" class="renzheng1" wx:if="{{userInfo.authentication[0].group_title=='其他'}}"></image>
+            <image src="/img/img-maifangFA.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='买方FA'}}"></image>
             <image src="/img/img-maifangFA1@2x.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='卖方FA'}}"></image>
-              <image src="/img/img-touzifang.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='投资方'}}" ></image> 
-             <image src="/img/img-chuangye1.png" class="renzheng"wx:if="{{userInfo.authentication[0].group_title=='创业者'}}" ></image> 
+            <image src="/img/img-touzifang.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='投资方'}}"></image>
+            <image src="/img/img-chuangye1.png" class="renzheng" wx:if="{{userInfo.authentication[0].group_title=='创业者'}}"></image>
             <!-- <view class="userPart1">{{userInfo.authentication[0].group_title}}</view> -->
           </view>
         </view>
         <!--第二行显示  -->
         <view class="lineTwo flex">
           <view class="userPosition">{{userInfo.user_company_career}}</view>
-          <!-- <view class="userCircle">.</view> -->
           <view class="userCompany" wx:if="{{userInfo.user_brand}}">· {{userInfo.user_brand}}</view>
           <view class="userCompany" wx:if="{{!userInfo.user_brand}}">· {{userInfo.user_company_name}}</view>
         </view>
@@ -107,9 +106,10 @@
       <view class='shopBlock'>店铺二维码</view>
     </view>
     <view class="t-line"></view>
-    <view class="flexBox" hover-class="t-hoverColor">
-      <image src='/img/icon-fenxiang@2x.png' class='shopPic'></image>
-      <button class='shopBlock' open-type="share" id="shareFriend">分享</button>
+    <view class="flexBox">
+      <button class='shopBlock' open-type="share" id="shareFriend"  hover-class="t-hoverColor">
+        <image src='/img/icon-fenxiang@2x.png' class='shopPic'></image>
+        分享</button>
     </view>
     <view class="t-line"></view>
     <view class="flexBox" bindtap="decorate" hover-class="t-hoverColor">

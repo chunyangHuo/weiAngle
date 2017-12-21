@@ -55,6 +55,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  border-top: 0.5rpx solid #f0f0f0;
 }
 
 .buttonArry .reset {
