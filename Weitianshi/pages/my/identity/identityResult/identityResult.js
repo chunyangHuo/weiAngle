@@ -72,10 +72,12 @@ Page({
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
           var pages = getCurrentPages()
+          console.log(pages);
           var num = pages.length - 1;
           wx.navigateBack({
-            delta: num
+            delta: 3
           })
+          
         } else {
         }
       }
@@ -101,7 +103,7 @@ Page({
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
           wx.navigateBack({
-            delta: num
+            delta: 3
           })
         }
       }

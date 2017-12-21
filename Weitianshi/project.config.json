@@ -90,12 +90,6 @@
 					"query": "current=1"
 				},
 				{
-					"id": 19,
-					"name": "领域表单",
-					"pathName": "pages/form/industry/industry",
-					"query": ""
-				},
-				{
 					"id": 20,
 					"name": "认证资料",
 					"pathName": "pages/my/identity/identityEdit/identityEdit",
@@ -112,12 +106,6 @@
 					"name": "我的投资名片",
 					"pathName": "pages/my/myNew/myNew",
 					"query": ""
-				},
-				{
-					"id": 22,
-					"name": "项目推送",
-					"pathName": "pages/message/pushProject/pushProject",
-					"query": "type=7&num=1"
 				},
 				{
 					"id": 18,
@@ -183,6 +171,12 @@
 					"id": 26,
 					"name": "裁剪",
 					"pathName": "pages/Cropper/Cropper",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "认证回退",
+					"pathName": "pages/my/identity/identityResult/identityResult",
 					"query": ""
 				}
 			]
