@@ -714,14 +714,14 @@ App({
   },
 
   //非表单提交按钮防连续点击处理
-  delayDeal(callBack){
+  delayDeal(callBack) {
     console.log(this.globalData.delay_time)
-    if(this.globalData.delay_time == 0){
-      this.globalData.delay_time ==1000;
+    if (this.globalData.delay_time == 0) {
+      this.globalData.delay_time == 1000;
       console.log(this.globalData.delay_time)
-      setTimeout(x=>{
+      setTimeout(x => {
         this.globalData.delay_time == 0
-      },1000)
+      }, 1000)
       callBack()
     }
   },
@@ -729,15 +729,18 @@ App({
   //页栈超出处理
   href(url) {
     let pages = getCurrentPages();
-    if (pages.length == 5) {
-     wx.redirectTo({
-       url: url,
-     })
-    }else{
-      wx.navigateTo({
-        url: url,
-      })
-    }
+    // if (pages.length == 5) {
+    //  wx.redirectTo({
+    //    url: url,
+    //  })
+    // }else{
+    //   wx.navigateTo({
+    //     url: url,
+    //   })
+    // }
+    wx.navigateTo({
+      url: url,
+    })
   },
 
   //多选
@@ -781,12 +784,12 @@ App({
     error: 0,
     picUrl: picUrl,
     app_key: 'wxos_lt',
-    delay_time:0,
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
+    delay_time: 0,
+    url: "https://wx.weitianshi.cn",
+    url_common: "https://wx.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    url: "https://wx.dev.weitianshi.cn",
-    url_common: "https://wx.dev.weitianshi.cn"
+    // url: "https://wx.dev.weitianshi.cn",
+    // url_common: "https://wx.dev.weitianshi.cn"
   },
 }); 
