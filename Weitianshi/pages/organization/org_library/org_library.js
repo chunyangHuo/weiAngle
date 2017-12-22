@@ -2,14 +2,14 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as SearchModel from '../../../utils/searchModel';
+import * as FilterModel from '../../../utils/filterModel';
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
     //筛选搜索
-    SearchInit: SearchModel.data,
-    label_industry: SearchModel._label_industry,
-    linkDataShow: SearchModel._linkDataShow,
+    SearchInit: FilterModel.data,
+    label_industry: FilterModel._label_industry,
+    linkDataShow: FilterModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
   }, 
   onLoad: function (options) {
@@ -22,7 +22,7 @@ Page({
     })
 
     //更改搜索模块初始化设置
-    SearchModel.reInitSearch(that, {
+    FilterModel.reInitSearch(that, {
       tab: [
         { type: 2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page: '0' },
         { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
@@ -43,7 +43,7 @@ Page({
 
     // 页面间跳转传值筛选
     if (label) {
-      SearchModel.detialItemSearch(label, itemId, that, searchData => {
+      FilterModel.detialItemSearch(label, itemId, that, searchData => {
         console.log(searchData)
       })
     }
@@ -103,26 +103,26 @@ Page({
   move(e) {
     let that = this;
     let SearchInit = this.data.SearchInit;
-    SearchModel.move(e, that)
+    FilterModel.move(e, that)
   },
   // 标签选择
   tagsCheck(e) {
-    SearchModel.tagsCheck(e, this)
+    FilterModel.tagsCheck(e, this)
   },
   // 筛选重置
   reset() {
-    SearchModel.reset(this)
+    FilterModel.reset(this)
   },
   // 筛选全部重置
   allReset() {
-    SearchModel.allReset(this)
+    FilterModel.allReset(this)
   },
   // 筛选确定
   searchCertain() {
     let that = this;
     let current = this.data.currentTab;
     let SearchInit = this.data.SearchInit;
-    let searchData = SearchModel.searchCertain(that);
+    let searchData = FilterModel.searchCertain(that);
     SearchInit.searchData = searchData;
     this.setData({
       searchInit: SearchInit
@@ -132,14 +132,14 @@ Page({
   // 点击modal层
   modal() {
     let that = this;
-    SearchModel.modal(that)
+    FilterModel.modal(that)
   },
   // 搜索
   searchSth() {
     let that = this;
     let str;
     str = this.data.currentTab == 0 ? "selected" : "newest"
-    SearchModel.searchSth(that, str, x => {
+    FilterModel.searchSth(that, str, x => {
       app.href(
         "/pages/organization/org_search/org_search"
       )
@@ -147,20 +147,20 @@ Page({
   },
   // 展示项删除
   labelDelete(e) {
-    SearchModel.labelDelete(e, this)
+    FilterModel.labelDelete(e, this)
   },
   // 一级联动选择
   linkFirstStair(e){
     console.log(this.data.label_industry)
-    SearchModel.linkFirstStair(e,this)
+    FilterModel.linkFirstStair(e,this)
   },
   // 二级联动选择
   linkSecondStair(e){
-    SearchModel.linkSecondStair(e,this)
+    FilterModel.linkSecondStair(e,this)
   },
   // 联动选择全部
   linkCheckAll(e) {
-    SearchModel.linkCheckAll(e, this);
+    FilterModel.linkCheckAll(e, this);
   },
 
 

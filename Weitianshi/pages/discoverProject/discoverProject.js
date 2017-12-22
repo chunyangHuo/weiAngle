@@ -1,4 +1,4 @@
-import * as SearchModel from '../../utils/searchModel';
+import * as FilterModel from '../../utils/filterModel';
 import * as CreateProject from '../../utils/createProjectBottom';
 import * as ShareModel from '../../utils/shareModel';
 var app = getApp();
@@ -13,7 +13,7 @@ Page({
     slectProject: '',
     hidden: true,
     //筛选搜索
-    SearchInit: SearchModel.data,
+    SearchInit: FilterModel.data,
     //banner
     bannerIndex: 0,
     modalBox: 0,
@@ -51,7 +51,7 @@ Page({
   },
   onReady() {
     let that = this;
-    // 无缓存用户searchModel预处理
+    // 无缓存用户FilterModel预处理
     if (!that.data.SearchInit.industry) {
       //获取筛选项所需的信息并存入缓存
       wx.request({
@@ -307,24 +307,24 @@ Page({
   // 下拉框
   move(e) {
     let that = this;
-    SearchModel.move(e, that)
+    FilterModel.move(e, that)
   },
   // 标签选择
   tagsCheck(e) {
-    SearchModel.tagsCheck(e, this)
+    FilterModel.tagsCheck(e, this)
   },
   // 筛选重置
   reset() {
-    SearchModel.reset(this)
+    FilterModel.reset(this)
   },
   // 筛选全部重置
   allReset() {
-    SearchModel.allReset(this)
+    FilterModel.allReset(this)
   },
   // 筛选确定
   searchCertain() {
     let that = this;
-    let searchData = SearchModel.searchCertain(that);
+    let searchData = FilterModel.searchCertain(that);
     let current = this.data.currentTab;
     let SearchInit = this.data.SearchInit;
     SearchInit.searchData = searchData;
@@ -348,14 +348,14 @@ Page({
   },
   // 点击modal层
   modal() {
-    SearchModel.modal(this)
+    FilterModel.modal(this)
   },
   //搜索
   searchSth() {
     let that = this;
     let str;
     str = this.data.currentTab == 0 ? "selected" : "newest"
-    SearchModel.searchSth(that, str)
+    FilterModel.searchSth(that, str)
   },
 
   //----------------------创建项目引导------------------------------------------------ 
