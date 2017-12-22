@@ -217,18 +217,15 @@ function move(e, that) {
 
   if (currentIndex != index) {
     SearchInit.currentIndex = index;
-    let time1 = new Date().getTime();
     that.setData({
       SearchInit: SearchInit
     })
-    // console.log('setData_SearchInit', new Date().getTime() - time1)
   } else {
     SearchInit.currentIndex = 99;
     that.setData({
       SearchInit: SearchInit
     })
   }
-  // console.log('下拉框完成', new Date().getTime() - time1)
 }
 // 获取dropDown
 function getOffset(that) {
@@ -287,12 +284,9 @@ function initItem(str, that, SearchInit) {
   SearchInit[itemStr] = item;
   SearchInit[itemArrStr] = itemArr;
 
-  let time1 = new Date().getTime();
   that.setData({
     SearchInit: SearchInit,
   })
-
-  // console.log('setDate_SearchInit2', new Date().getTime() - time1)
 }
 // 选择一级标签
 function firstLinkCheck(e, that) {
@@ -390,7 +384,6 @@ function tagsCheck(e, that) {
   that.setData({
     SearchInit: SearchInit
   })
-  console.log('选择标签', new Date().getTime() - time1)
 }
 // 筛选重置 
 function reset(that) {
@@ -417,7 +410,6 @@ function allReset(that) {
   })
 }
 function itemReset(str, that) {
-  let time1 = new Date().getTime();
   let SearchInit = that.data.SearchInit;
   let itemStr = str;
   let itemArrStr = str + 'Arr';
@@ -436,11 +428,9 @@ function itemReset(str, that) {
   }
   SearchInit[itemArrStr] = [];
   searchData[itemStr] = [];
-  console.log(1, new Date().getTime() - time1)
   that.setData({
     SearchInit: SearchInit
   })
-  console.log(2, new Date().getTime() - time1)
 }
 // 筛选确定
 function searchCertain(that) {
