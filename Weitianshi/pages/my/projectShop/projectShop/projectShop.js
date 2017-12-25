@@ -4,10 +4,11 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/shareModel';
 Page({
   data: {
-    isChecked1:false,
+    isChecked1: false,
     buttonOne: {
       text: "新增项目"
     },
+    searchText: '搜索公司名称，项目名称',
     tab: [
       { name: '领域', check: false, arr: false, id: 'industry' },
       { name: '轮次', check: false, arr: false, id: "stage" },
@@ -146,7 +147,7 @@ Page({
               contentMore: true,
               isChecked1: false
             })
-          }else{
+          } else {
             that.setData({
               contentMore: false,
               isChecked1: true

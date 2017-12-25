@@ -1187,3 +1187,19 @@
     </view>
   </block>
 </template>
+
+<!--****************************新改筛选************************* -->
+<template name="newSearch">
+  <view id="newSearch">
+    <view class="	screen flex">
+      <!--搜索  -->
+      <view class="search_search flex" catchtap="{{searchTap}}">
+        <icon type="search" size="14" class="search_icon1"></icon>
+        <view class="search_text">{{text}}</view>
+      </view>
+      <view class="search_img" hover-class='t-hoverColor' bindtap='{{filter}}'>
+        <image src="/img/icon-shaixuan@2x.png"></image>
+      </view>
+    </view>
+  </view>
+</template>
