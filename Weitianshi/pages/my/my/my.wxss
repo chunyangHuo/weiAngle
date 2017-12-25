@@ -21,9 +21,11 @@ page {
 .user_left {
   width: 80%;
 }
-.myUserInfo{
-  align-self:flex-end;
+
+.myUserInfo {
+  align-self: flex-end;
 }
+
 .user_intro, .user_project_info, .user_invest_info, .user_resource_info {
   background: #fafafa;
   border-radius: 4rpx;
@@ -336,8 +338,8 @@ page {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width:510rpx;
-  margin-right:32rpx;
+  width: 510rpx;
+  margin-right: 32rpx;
 }
 
 .noLight {
@@ -731,7 +733,7 @@ page {
   text-align: left;
   /* margin-left: 24rpx;
   margin-bottom: 12rpx; */
-    align-self:flex-end;
+  align-self: flex-end;
 }
 
 .competitor {
@@ -777,6 +779,7 @@ page {
   width: 36rpx;
   height: 36rpx;
 }
+
 .is_exclusive {
   border: 2rpx solid #40587a;
   border-radius: 4rpx;
@@ -786,4 +789,52 @@ page {
   font-size: 18rpx;
   line-height: 28rpx;
   text-align: center;
+}
+
+/*my新样式  */
+
+.myEdit {
+  margin: 32rpx;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(51, 120, 224, 0.05);
+  border-radius: 8rpx;
+  padding: 32rpx;
+  position: relative;
+}
+.editTop{
+  margin-bottom:80rpx;
+}
+.personName {
+  font-size: 52rpx;
+  color: #333;
+  text-align: left;
+  line-height: 76rpx;
+}
+
+.personPosition {
+  font-size: 30rpx;
+  color: #666;
+  text-align: left;
+}
+.personPic{
+  top:32rpx;
+  right:32rpx;
+  position: absolute;
+  border-radius: 50%;
+  background: black; 
+  height: 120rpx;
+  width: 120rpx;
+}
+.personCompany{
+font-size:20rpx;
+color:#ffffff;
+text-align:left; 
+}
+.bottomPic{
+
+}
+.personCompanyContent{
+font-size:26rpx;
+color:#666666;
+text-align:left;
 }

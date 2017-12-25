@@ -1,10 +1,10 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as SearchModel from '../../../utils/searchModel';
+import * as FilterModel from '../../../utils/filterModel';
 Page({
   data: {
-    SearchInit: SearchModel.data,
+    SearchInit: FilterModel.data,
     financingNeed: [],//最新
     slectProject: [],
     investorList: [],

@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.6.0",
-	"appid": "wxdf2eba3b79b83110",
-	"projectname": "%E5%BE%AE%E5%A4%A9%E4%BD%BF",
+	"appid": "wx29c97aaa8a58aedb",
+	"projectname": "%E5%A4%A7%E6%B9%BE%E5%8C%BA",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -46,12 +46,6 @@
 					"name": "project_orgMatch",
 					"pathName": "pages/organization/subPage/project_orgMatch/project_orgMatch",
 					"query": "project_id=a1ryoGW3"
-				},
-				{
-					"id": -1,
-					"name": "org_search",
-					"pathName": "pages/organization/org_search/org_search",
-					"query": ""
 				},
 				{
 					"id": 6,
@@ -133,12 +127,6 @@
 				},
 				{
 					"id": -1,
-					"name": "找项目投资人",
-					"pathName": "pages/matchInvestor/matchInvestor",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "案例添加",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
 					"query": ""
@@ -162,16 +150,15 @@
 					"query": ""
 				},
 				{
-					"id": 25,
-					"name": "裁剪",
-					"pathName": "pages/register/bindSuccess/bindSuccess",
+					"id": -1,
+					"name": "我的二级页面",
+					"pathName": "pages/my/my/my",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "认证回退",
-					"pathName": "pages/my/identity/identityResult/identityResult",
-					"query": ""
+					"name": "创建项目页面",
+					"pathName": "pages/myProject/publishSuccess/publishSuccess"
 				}
 			]
 		}

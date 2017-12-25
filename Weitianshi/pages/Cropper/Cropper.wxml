@@ -1,9 +1,0 @@
-<!--pages/Cropper/Cropper.wxml-->
-<!-- 引入组件 -->
-<import src="/utils/welCropper/welCropper.wxml" />
-
-<!-- 调用组件 -->
-<template is="welCropper" data="{{data:cropperData, cropperMovableItems:cropperMovableItems, cropperChangableData:cropperChangableData}}"></template>
-
-<!-- 用于选择图片，传入cropper中 -->
-<button bindtap='selectTap'>select image</button>

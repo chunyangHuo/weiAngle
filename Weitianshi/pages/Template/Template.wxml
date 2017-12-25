@@ -927,11 +927,19 @@
     <view class="t-statusPic">
       <image src="/img/icon-chenggong@2x.png" class="t-statusPic"></image>
     </view>
-    <view class="t-bindSuccess">{{text}}</view>
+    <view class="t-bindSuccessBox">
+      <view class="t-bindSuccess">{{text}}</view>
+      <view class="t-bindSuccessContent">{{content}}</view>
+    </view>
+    <view class='t-customService'>联系客服</view>
   </view>
   <image src="{{imgUrls}}" class="t-picAfter"></image>
-  <view class="floatBtn">
-    <view class="t-btnYes" bindtap="btnYes">完成</view>
+  <view class="floatBtn t-btnBackground" wx:if="{{type==1}}">
+    <view class="t-btnYes" bindtap="btnYes">确定</view>
+  </view>
+  <view class="floatBtn t-btnBackground flex">
+  <view class="t-btnLeft">确定</view>
+  <view class="t-btnRight"> 继续完善</view>
   </view>
 </template>
 
@@ -1201,5 +1209,19 @@
         <image src="/img/icon-shaixuan@2x.png"></image>
       </view>
     </view>
+  </view>
+</template>
+
+<!--为空状态  -->
+<template name="isEmpty">
+  <view class="t-noContent" wx:if="{{emptyNumber == ''}}">暂无内容</view>
+</template>
+
+<!--已经见底了  -->
+<template name="theBottom">
+  <view class="flex theBottomBox">
+    <label class="t-leftLine">——</label>
+    <view class="t-nothingBottom">已经见底了</view>
+    <label class="t-leftLine">——</label>
   </view>
 </template>

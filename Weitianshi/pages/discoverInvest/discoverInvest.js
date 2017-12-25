@@ -1,7 +1,7 @@
 var app = getApp(); 
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as SearchModel from '../../utils/searchModel';
+import * as FilterModel from '../../utils/filterModel';
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
@@ -16,7 +16,7 @@ Page({
     slectProject: '',
     banner_organization: app.globalData.picUrl.banner_organization,
     // 筛选搜索
-    SearchInit: SearchModel.data,
+    SearchInit: FilterModel.data,
     activtyBanner: app.globalData.picUrl.activtyBanner,
   },
   onLoad(options) {
@@ -30,7 +30,7 @@ Page({
     }
 
     // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
-    // 无缓存用户searchModel预处理
+    // 无缓存用户FilterModel预处理
     if (!that.data.SearchInit.industry) {
       //获取筛选项所需的信息并存入缓存
       wx.request({
@@ -501,27 +501,27 @@ Page({
   // 下拉框
   move(e) {
     let that = this;
-    SearchModel.move(e, that)
+    FilterModel.move(e, that)
   },
   // 标签选择
   tagsCheck(e) {
     let that = this;
-    SearchModel.tagsCheck(e, that)
+    FilterModel.tagsCheck(e, that)
   },
   // 筛选重置
   reset() {
     let that = this;
-    SearchModel.reset(that)
+    FilterModel.reset(that)
   },
   // 全部筛选重置
   allReset() {
     let that = this;
-    SearchModel.allReset(that);
+    FilterModel.allReset(that);
   },
   // 筛选确定
   searchCertain() {
     let that = this;
-    let searchData = SearchModel.searchCertain(that);
+    let searchData = FilterModel.searchCertain(that);
     let current = this.data.currentTab;
     if (current == 1) {
       console.log('筛选投资人', searchData);
@@ -539,7 +539,7 @@ Page({
   // 点击modal层
   modal() {
     let that = this;
-    SearchModel.modal(that)
+    FilterModel.modal(that)
   },
   //搜索
   searchSth() {
@@ -557,19 +557,19 @@ Page({
         str = 'myList';
         break;
     }
-    SearchModel.searchSth(that, str)
+    FilterModel.searchSth(that, str)
   },
   // 展示项删除
   labelDelete(e) {
-    SearchModel.labelDelete(e, this)
+    FilterModel.labelDelete(e, this)
   },
   // 一级联动选择
   firstLinkCheck(e) {
-    SearchModel.firstLinkCheck(e, this);
+    FilterModel.firstLinkCheck(e, this);
   },
   // 联动选择全部
   linkCheckAll(e) {
-    SearchModel.linkCheckAll(e, this);
+    FilterModel.linkCheckAll(e, this);
   },
 
   //---------------------------我的人脉--------------------------------------------------------------

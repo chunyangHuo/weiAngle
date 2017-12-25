@@ -5,13 +5,13 @@ Page({
   data: {
     count: 0,
     messageList: [
-      {
-        event: "toIdentity",
-        iconPath: "/img/icon-xiaoxi_renzheng@2x.png",
-        message_name: "身份认证",
-        count: 0,
-        type_id: 8
-      },
+      // {
+      //   event: "toIdentity",
+      //   iconPath: "/img/icon-xiaoxi_renzheng@2x.png",
+      //   message_name: "身份认证",
+      //   count: 0,
+      //   type_id: 8
+      // },
       {
         event: "projectApply",
         iconPath: "/img/icon-xiaoxi_xiangmu@2x.png",
@@ -51,6 +51,7 @@ Page({
         method: 'POST',
         success: function (res) {
           var list = res.data.data;
+          console.log(list)
           list.forEach((x, index) => {
             messageList[index].message_name = x.message_name;
             messageList[index].count = x.count;
@@ -68,65 +69,11 @@ Page({
           })
         }
       })
-      wx.request({
-        url: url_common + '/api/user/getUserGroupByStatus',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          // 0:未认证1:待审核 2 审核通过 3审核未通过
-          let status = res.data.status;
-          if (status != 0) {
-            let group_id = res.data.group.group_id;
-            that.setData({
-              group_id: group_id
-            })
-          }
-          that.setData({
-            status: status
-          })
-        }
-      })
     }
   },
   // 跳转到人脉申请页面
   beAddedContacts: function () {
     app.href('/pages/message/beAddedContacts/beAddedContacts')
-  },
-  // 身份认证跳转
-  toIdentity: function (e) {
-    let status = this.data.status;
-    var user_id = wx.getStorageSync('user_id');
-    // 0未认证 1待审核 2 认证成功 3 拒绝
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以显示去认证
-            if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity')
-            } else if (status == 1) {
-              app.href('/pages/my/identity/identityResult/identityResult?type=' + 1)
-            } else if (status == 2) {
-              app.href('/pages/my/identity/identityResult/identityResult?type=' + 2)
-            } else if (status == 3) {
-              app.href('/pages/my/identity/identityResult/identityResult?type=' + 3)
-            }
-          } else if (complete == 0) {
-            app.href('/pages/register/companyInfo/companyInfo?type=1')
-          }
-        } else {
-          app.href('/pages/register/personInfo/personInfo?type=2')
-        }
-      },
-    });
   },
   // 项目申请跳转
   projectApply: function (e) {

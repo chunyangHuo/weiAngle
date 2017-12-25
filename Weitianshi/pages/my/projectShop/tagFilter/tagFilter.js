@@ -1,7 +1,7 @@
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
-import * as SearchModel from '../../../../utils/searchModel';
+import * as FilterModel from '../../../../utils/filterModel';
 import * as ShareModel from '../../../../utils/shareModel';
 Page({
   data:{
@@ -47,7 +47,7 @@ Page({
         arry:[]
       }
     ],
-    SearchInit: SearchModel.data,
+    SearchInit: FilterModel.data,
     SearchData:{
       industry:[],
       stage:[],
@@ -66,21 +66,21 @@ Page({
     filterList[2].arry = wx.getStorageSync('scale');
     filterList[3].arry = wx.getStorageSync('hotCity');
     // 根据缓存重新标定check属性值
-    SearchModel.page_tagFilterInit(this)
+    FilterModel.page_tagFilterInit(this)
     this.setData({
       filterList: filterList
     })
   },
   // 标签选择
   tagsCheck(e){
-    SearchModel.page_tagsCheck(e,this);
+    FilterModel.page_tagsCheck(e,this);
   },
   // 重置
   reset(){
-    SearchModel.page_reset(this)
+    FilterModel.page_reset(this)
   },
   // 筛选确定
   certain(){
-    SearchModel.page_certain(this)
+    FilterModel.page_certain(this)
   }
 })
