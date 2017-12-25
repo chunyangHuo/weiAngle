@@ -244,17 +244,6 @@ page {
   width: 662rpx;
 }
 
-.littleBox {
-  margin-right: 78rpx;
-  width: 36rpx;
-  height: 36rpx;
-}
-
-.messageIconStyle {
-  width: 36rpx;
-  height: 36rpx;
-}
-
 .user_down {
   background: white;
   padding: 32rpx 64rpx;
@@ -763,23 +752,6 @@ page {
   display: inline-block;
 }
 
-.messageIconStyle {
-  width: 36rpx;
-  height: 36rpx;
-  /* margin-right:42rpx; *//* margin-left:42rpx; */
-}
-
-.iconBox {
-  margin-top: 20rpx;
-  width: 662rpx;
-}
-
-.littleBox {
-  margin-right: 78rpx;
-  width: 36rpx;
-  height: 36rpx;
-}
-
 .is_exclusive {
   border: 2rpx solid #40587a;
   border-radius: 4rpx;
@@ -801,9 +773,11 @@ page {
   padding: 32rpx;
   position: relative;
 }
-.editTop{
-  margin-bottom:80rpx;
+
+.editTop {
+  margin-bottom: 80rpx;
 }
+
 .personName {
   font-size: 52rpx;
   color: #333;
@@ -815,26 +789,112 @@ page {
   font-size: 30rpx;
   color: #666;
   text-align: left;
+  line-height: 36rpx;
 }
-.personPic{
-  top:32rpx;
-  right:32rpx;
+
+.personActive {
+  background: #f5f5f5;
+  margin-left: 14rpx;
+  border-radius: 4rpx;
+  width: 98rpx;
+  height: 36rpx;
+  font-size: 20rpx;
+  color: #999;
+  text-align: center;
+  line-height: 36rpx;
+}
+
+.personPic {
+  top: 32rpx;
+  right: 32rpx;
   position: absolute;
   border-radius: 50%;
-  background: black; 
+  background: black;
   height: 120rpx;
   width: 120rpx;
 }
-.personCompany{
-font-size:20rpx;
-color:#ffffff;
-text-align:left; 
-}
-.bottomPic{
 
+.personCompany {
+  font-size: 20rpx;
+  color: #fff;
+  text-align: left;
 }
-.personCompanyContent{
-font-size:26rpx;
-color:#666666;
-text-align:left;
+
+.bottomPic {
+  background: #ccc;
+  width: 15px;
+  height: 14px;
+  border-radius: 100%;
+  margin-right: 14rpx;
+}
+
+.personCompanyContent, .personTelephone, .personEmail {
+  font-size: 26rpx;
+  color: #666;
+  text-align: left;
+  margin-bottom: 12rpx;
+}
+
+.personEmail {
+  margin-bottom: 0;
+}
+
+.checkNum {
+  font-size: 24rpx;
+  color: #3378e0;
+  text-align: center;
+  margin-left: 34rpx;
+}
+
+/*联系icon  */
+
+.contactIcon {
+  padding: 32rpx 38rpx 26rpx 36rpx;
+  background: #fff;
+  width: 678rpx;
+}
+
+.messageIconStyle {
+  width: 52rpx;
+  height: 54rpx;
+}
+
+.littleBox {
+  margin-right: 74rpx;
+  width: 52rpx;
+  height: 54rpx;
+  border-radius: 100%;
+}
+
+/*描述  */
+
+.personDes {
+  padding: 32rpx;
+  background: #fff;
+  margin-top: 32rpx;
+}
+
+.personTitle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 24rpx;
+  text-align: left;
+  margin-bottom: 32rpx;
+  font-weight: bold;
+}
+.shopBox{
+  justify-content: space-between;
+}
+.personDesContent {
+  font-size: 28rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 44rpx;
+  text-align: left;
+}
+
+.allNum {
+  font-size: 24rpx;
+  color: #3378e0;
+  text-align: right;
 }
