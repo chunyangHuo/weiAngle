@@ -93,12 +93,6 @@
         "text": "找项目"
       },
       {
-        "iconPath": "img/icon-renmai-n@2x.png",
-        "selectedIconPath": "img/icon-renmai-s@2x.png",
-        "pagePath": "pages/discoverInvest/discoverInvest",
-        "text": "找投资"
-      },
-      {
         "iconPath": "img/message.png",
         "selectedIconPath": "img/messageOn.png",
         "pagePath": "pages/message/message/message",

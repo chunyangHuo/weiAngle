@@ -1125,7 +1125,7 @@ textarea {
 
 .t-upBox {
   background: #fff;
-  /* border:0 solid #f0f0f0; */
+  position: relative;
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.10);
   border-radius: 4rpx;
   width: 488rpx;
@@ -1147,7 +1147,7 @@ textarea {
 
 .t-btnYes {
   background: #40587a;
-  width: 100%;
+  width: 90%;
   text-align: center;
   height: 88rpx;
   font-size: 28rpx;
@@ -1155,8 +1155,59 @@ textarea {
   line-height: 88rpx;
 }
 
+.t-btnBackground {
+  background: #fff;
+  padding: 20rpx 28rpx 20rpx 36rpx;
+}
+
 .t-bindSuccess {
-  margin-top: 24rpx;
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  line-height: 42rpx;
+}
+
+.t-bindSuccessContent {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+}
+
+.t-customService {
+  background: #3378e0;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 60rpx;
+  right: 32rpx;
+}
+
+.t-btnLeft {
+  border: 2rpx solid #293b55;
+  border-radius: 4rpx;
+  width: 212rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  font-size: 30rpx;
+  color: #293b55;
+  margin-right: 32rpx;
+}
+
+.t-btnRight {
+  background: #293b55;
+  border-radius: 4rpx;
+  width: 438rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
 }
 
 .t-picAfter {
@@ -1175,11 +1226,6 @@ textarea {
   background: #2b405e !important;
   color: #fff;
 }
-
-/* .button[disabled][type="default"], wx-button[disabled]:not([type]) {
-  background: #2b405e;
-  color: #fff;
-} */
 
 .t-hoverColor {
   background: #f2f3f4 !important;
@@ -1238,4 +1284,30 @@ textarea {
 
 .t-redColor {
   background: #cc364f !important;
+}
+
+.t-noContent {
+  font-size: 30rpx;
+  color: #999;
+  text-align: center;
+  margin-top: 422rpx;
+}
+
+.theBottomBox {
+  justify-content: center;
+  margin-top: 32rpx;
+}
+
+.t-nothingBottom {
+  font-size: 20rpx;
+  color: #ccc;
+  text-align: center;
+  margin: 0 8rpx;
+}
+
+.t-leftLine {
+  display: block;
+  line-height: 28rpx;
+  font-size: 16rpx;
+  color: #e6e6e6;
 }

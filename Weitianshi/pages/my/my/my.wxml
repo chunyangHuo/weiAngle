@@ -65,3 +65,18 @@
 </view>
 <!--人脉大赛  -->
 <!-- <view class="competitor" bindtap="competitor">人脉王大赛</view> -->
+
+
+<view class="myEdit">
+  <view class="editTop">
+    <view class="personName">中国FA行业联盟</view>
+    <view class="personPosition">投资总监</view>
+    <view class="personPic"></view>
+  </view>
+  <view class="editBottom">
+    <view class="personCompany flex">
+    <view class="bottomPic"></view>
+    <view class="personCompanyContent">微天使 · 杭州投着乐网络科技有限公司</view>
+    </view>
+  </view>
+</view>

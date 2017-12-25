@@ -11,6 +11,9 @@
   padding: 40rpx 20rpx 40rpx 50rpx;
 }
 
+.beAddedContacts:first-child{
+  margin-top: 0;
+}
 .messageList {
   height: 32rpx;
   padding: 50rpx 42rpx 50rpx 32rpx;
