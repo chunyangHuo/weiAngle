@@ -243,7 +243,7 @@ Page({
       success: function (res) {
         wx.showToast({
           title: '复制成功',
-          icon: 'success'
+          icon: 'success',
         })
         wx.getClipboardData({
           success: function (res) {

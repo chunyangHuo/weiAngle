@@ -1,16 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
   <!--筛选和搜索  -->
-  <view class="	screen flex">
-    <!--搜索  -->
-    <view class="search_search flex" catchtap="searchSth">
-      <icon type="search" size="14" class="search_icon1"></icon>
-      <view class="search_text">搜索公司名称，项目名称</view>
-    </view>
-    <view class="search_img" hover-class='t-hoverColor' bindtap='tagFilter'>
-      <image src="/img/icon-shaixuan@2x.png"></image>
-    </view>
-  </view>
+  <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
   <!--图片  -->
   <view class="shopBanner" bindtap="toPersonDetail">
     <image src="{{banner_personShop}}" class="bgPic" wx:if="{{!userInfo.shop_banner}}"></image>
@@ -107,7 +98,7 @@
     </view>
     <view class="t-line"></view>
     <view class="flexBox">
-      <button class='shopBlock' open-type="share" id="shareFriend"  hover-class="t-hoverColor">
+      <button class='shopBlock' open-type="share" id="shareFriend" hover-class="t-hoverColor">
         <image src='/img/icon-fenxiang@2x.png' class='shopPic'></image>
         分享</button>
     </view>

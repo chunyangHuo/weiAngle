@@ -1128,9 +1128,9 @@ textarea {
   /* border:0 solid #f0f0f0; */
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.10);
   border-radius: 4rpx;
-  width: 488rpx;
+  width: 600rpx;
   height: 98rpx;
-  padding: 50rpx 126rpx 26rpx 40rpx;
+  padding: 50rpx 28rpx 26rpx 40rpx;
   font-size: 32rpx;
   line-height: 34rpx;
   margin: 32rpx 48rpx;
@@ -1238,4 +1238,62 @@ textarea {
 
 .t-redColor {
   background: #cc364f !important;
+}
+
+#newSearch .screen {
+  position: fixed;
+  top: 0;
+  background: #fff;
+  width: 750rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 80rpx;
+  text-align: center;
+  padding-bottom: 16rpx;
+}
+
+#newSearch .search_search {
+  background: #f5f5f5;
+  border-radius: 46px;
+  width: 610rpx;
+  height: 64rpx;
+  margin-left: 32rpx;
+  margin-top: 16rpx;
+  line-height: 72rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+#newSearch .search_text {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 0;
+  text-align: left;
+  padding-left: 16rpx;
+  display: inline-block;
+  height: 64rpx;
+  /* line-height: 30rpx; */
+}
+
+#newSearch .search_img {
+  width: 94rpx;
+  height: 94rpx;
+  background: #fff;
+  position: relative;
+  /* top: 20rpx; */
+  left: 20rpx;
+}
+
+#newSearch .search_img image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 40rpx;
+}
+
+#newSearch .search_icon1 {
+  display: block;
+  margin-left: 30rpx;
+  margin-top: 14rpx;
 }

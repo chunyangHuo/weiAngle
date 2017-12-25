@@ -1,0 +1,17 @@
+<!--pages/discover/discoverPerson/diccoverPerson.wxml-->
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+      <view class="aBox"></view>
+      <template is="searchNothing" data="{{empty:investorList}}"></template>
+      <block wx:for="{{investorList}}" wx:key="{{investorList}}">
+        <view class='investorCard'>
+          <view class="t-investorColor" hover-class='t-hoverColor'>
+            <template is='InvestorCard' data='{{item}}'></template>
+            <view class="t-alineHeight"></view>
+            <template is='cardBottom1' data='{{item,user_id}}'></template>
+          </view>
+        </view>
+      </block>
+      <view class="high"></view>
+    </scroll-view>
+    <!--空状态-->
+    <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image>

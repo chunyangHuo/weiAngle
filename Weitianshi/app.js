@@ -785,11 +785,11 @@ App({
     picUrl: picUrl,
     app_key: 'wxos_lt',
     delay_time: 0,
-    url: "https://wx.weitianshi.cn",
-    url_common: "https://wx.weitianshi.cn"
+    // url: "https://wx.weitianshi.cn",
+    // url_common: "https://wx.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 }); 
