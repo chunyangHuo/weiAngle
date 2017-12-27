@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.6.0",
+	"libVersion": "1.7.2",
 	"appid": "wx29c97aaa8a58aedb",
 	"projectname": "%E5%A4%A7%E6%B9%BE%E5%8C%BA",
 	"condition": {
@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 13,
 			"list": [
 				{
 					"id": 2,
@@ -158,7 +158,8 @@
 				{
 					"id": -1,
 					"name": "创建项目页面",
-					"pathName": "pages/myProject/publishSuccess/publishSuccess"
+					"pathName": "pages/myProject/publishSuccess/publishSuccess",
+					"query": ""
 				}
 			]
 		}

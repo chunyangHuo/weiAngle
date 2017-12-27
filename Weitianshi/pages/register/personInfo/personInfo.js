@@ -270,6 +270,7 @@ Page({
     wx.request({
       url: 'https://www.weitianshi.cn/api/wx/returnWxOauthMobile',
       data: {
+        app_key:app.globalData.app_key,
         code: code,
         encryptedData: encryptedData,
         iv: iv
