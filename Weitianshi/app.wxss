@@ -3,6 +3,7 @@
 @import '/utils/wxss/filterModel.wxss';
 @import '/utils/wxss/organization.wxss';
 @import '/utils/wxss/filterTag.wxss';
+@import '/utils/wxss/oneadd.wxss';
 
 scroll-view {
   height: 100%;
@@ -556,7 +557,7 @@ textarea {
 /*---------------------------------项目卡片------------------------------------*/
 
 .t-outBox {
-  margin: 0 32rpx 0 32rpx;
+  /* margin: 0 32rpx 0 32rpx; */
   width: auto;
   height: auto;
   position: relative;
@@ -564,7 +565,7 @@ textarea {
 }
 
 .t-outBox:first-child {
-  margin-top: 32rpx;
+  /* margin-top: 32rpx; */
 }
 
 .t-insideBox {
@@ -607,8 +608,8 @@ textarea {
 }
 
 .t-projectDetailLine {
-  padding: 0 16rpx;
-  border-right: 1rpx solid #999;
+  padding: 0 8rpx;
+  /* border-right: 1rpx solid #999; */
 }
 
 .t-projectDetailLight {
@@ -859,19 +860,30 @@ textarea {
 }
 
 .t-applyMyProject .t-userPosition {
-  font-size: 28rpx;
-  color: #666;
+  font-size: 24rpx;
+  color: #999;
   line-height: 28rpx;
   text-align: left;
-  margin-right: 16rpx;
-  white-space: nowrap;
+  margin-right: 8rpx;
+  max-width: 200rpx;
+  text-overflow: ellipsis !important;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+}
+
+.t-applyMyProject .t-careerCompany {
+  margin-left: 140rpx;
+  margin-bottom: 84rpx;
 }
 
 .t-introduceBox {
   margin-bottom: 16rpx;
   align-items: flex-end;
+  margin-left: 140rpx;
+  margin-top: 18rpx;
 }
 
 .t-introduceBox .t-userName {
@@ -881,6 +893,10 @@ textarea {
   text-align: left;
   margin-right: 16rpx;
   align-items: flex-end;
+  max-width: 400rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .t-applyMyProject .t-userPart {
@@ -889,14 +905,21 @@ textarea {
   line-height: 22rpx;
   text-align: left;
   align-items: flex-end;
+  max-width: 200rpx;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.t-applyMyProject .t-userCompany {
+.t-applyMyProject .t-userCompany1 {
   font-size: 24rpx;
   color: #999;
-  line-height: 26rpx;
   text-align: left;
-  margin-bottom: 84rpx;
+  line-height: 28rpx;
+  max-width: 300rpx;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .t-agreeBtn, .t-refuseBtn {
@@ -946,9 +969,9 @@ textarea {
 }
 
 .t-renzheng {
-  width: 24rpx;
-  height: 24rpx;
-  margin-right: 4rpx;
+  width: 98rpx;
+  height: 36rpx;
+  margin-right: 16rpx;
 }
 
 .t-userPart1 {
@@ -968,12 +991,25 @@ textarea {
   top: -2rpx;
 }
 
+.t-people {
+  width: 110rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  font-size: 12px;
+  text-align: center;
+  line-height: 50rpx;
+  border: 0 solid #3378e0;
+  border-radius: 2px;
+}
+
 .t-userPic {
   width: 104rpx;
   height: 104rpx;
   border-radius: 100%;
   position: absolute;
-  right: 32rpx;
+  left: 32rpx;
   top: 32rpx;
 }
 
@@ -986,7 +1022,7 @@ textarea {
   height: 104rpx;
   border-radius: 100%;
   position: absolute;
-  right: 32rpx;
+  left: 32rpx;
   top: 32rpx;
   color: #40587a;
 }
@@ -1055,13 +1091,16 @@ textarea {
 }
 
 .t-record {
-  position: absolute;
+  /* position: absolute;
   top: 158rpx;
   right: 54rpx;
-  font-size: 20rpx;
-  color: #ccc;
   line-height: 26rpx;
-  text-align: left;
+  text-align: left; */
+  font-size: 10px;
+  color: #999;
+  background: #f5f5f5;
+  border-radius: 2px;
+  padding: 4rpx 8rpx;
 }
 
 .t-color {
@@ -1071,25 +1110,85 @@ textarea {
 /*---------------------------------卡片底部--推送项目和加人脉----------------------------------- */
 
 .t-cardBottom {
-  margin: 0 0 22rpx 0;
+  /* margin: 0 0 22rpx 0; */
+  width: 100%;
+  height: 94rpx;
+  line-height: 94rpx;
+  padding: 0rpx 0rpx 0rpx 32rpx;
   font-size: 28rpx;
   color: #40587a;
 }
 
+.t-wait {
+  border: 1rpx solid #ccc;
+  color: #ccc;
+}
+
+.t-history {
+  width: 66%;
+}
+
+.t-historyNum {
+  background: #f6a623;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 10px;
+  padding: 2rpx 5rpx 2rpx 5rpx;
+}
+
+.t-add {
+  border: 1rpx solid #3378e0;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #3378e0;
+}
+
 .t-cardBottomItem {
-  width: 50%;
-  padding-top: 30rpx;
-  padding-bottom: 30rpx;
-  text-align: center;
   vertical-align: middle;
   justify-content: center;
+  width: 112rpx;
+  height: 52rpx;
+  font-size: 12px;
+  text-align: center;
+  line-height: 52rpx;
+  border-radius: 2px;
+  margin-top: 30rpx;
+}
+
+.t-cardBottomItem1 {
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  width: 25%;
+  padding-right: 32rpx;
+  height: 94rpx;
+  font-size: 15px;
+  color: #3378e0;
+  text-align: center;
+  line-height: 94rpx;
+  border-radius: 2px;
+}
+
+.t-yiti {
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  width: 50%;
+  padding-right: 32rpx;
+  height: 94rpx;
+  font-size: 15px;
+  color: #3378e0;
+  text-align: center;
+  line-height: 94rpx;
+  border-radius: 2px;
 }
 
 .t-itemPic {
-  width: 28rpx;
-  height: 28rpx;
-  padding-top: 5rpx;
-  padding-right: 16rpx;
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 16rpx;
+  /* padding-top: 5rpx;
+  padding-right: 16rpx; */
 }
 
 /*---------------------------------活动浮标----------------------------------- */
@@ -1233,7 +1332,8 @@ textarea {
 
 .t-investorColor {
   background: #fff;
-  margin: 0 30rpx 0 30rpx;
+  /* margin: 0 30rpx 0 30rpx; */
+  margin-bottom: 32rpx;
 }
 
 .t-createColor {
@@ -1310,9 +1410,7 @@ textarea {
   line-height: 28rpx;
   font-size: 16rpx;
   color: #e6e6e6;
-
 }
-
 
 #newSearch .screen {
   position: fixed;
@@ -1372,3 +1470,58 @@ textarea {
   margin-top: 14rpx;
 }
 
+.t-roundGroupTitle {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 14rpx;
+}
+
+.t-addFriend {
+  width: 20rpx;
+  height: 22rpx;
+  margin-right: 4rpx;
+  margin-top: -2rpx;
+}
+
+.t-addFri {
+  align-items: center;
+}
+
+.t-yichu {
+  width: 50%;
+  font-size: 15px;
+  color: #999;
+}
+
+.t-pipei {
+  width: 110rpx;
+  text-align: right;
+  position: absolute;
+  right: 32rpx;
+  top: 57rpx;
+}
+
+.t-numPipei {
+  font-size: 20px;
+  color: #f95355;
+}
+
+.t-numPipei1 {
+  font-size: 20px;
+  color: #f6a623;
+}
+
+.t-pipeidu {
+  font-size: 10px;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.t-industryStage {
+  margin-left: 140rpx;
+}
+
+.t-carCom {
+  font-size: 12px;
+  color: #333!important;
+}

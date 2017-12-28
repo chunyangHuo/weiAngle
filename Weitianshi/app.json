@@ -74,7 +74,8 @@
     "pages/organization/subPage/list_leaveMember/list_leaveMember",
     "pages/organization/subPage/list_media/list_media",
     "pages/organization/subPage/guide_help/guide_help",
-    "pages/projectScale/projectEvaluation/projectEvaluation"
+    "pages/projectScale/projectEvaluation/projectEvaluation",
+    "pages/discover/discoverPerson/discoverPerson"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fafafa",

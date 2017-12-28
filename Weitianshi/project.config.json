@@ -24,9 +24,9 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 2,
-					"name": "验证码",
-					"pathName": "pages/register/personInfo/personInfo",
+					"id": 0,
+					"name": "投资",
+					"pathName": "pages/discoverInvest/discoverInvest",
 					"query": ""
 				},
 				{
@@ -127,12 +127,6 @@
 				},
 				{
 					"id": -1,
-					"name": "案例添加",
-					"pathName": "pages/my/investCaseEdit/investCaseEdit",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "编辑案例添加",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
 					"query": "index=2&case_id=481"
@@ -151,14 +145,33 @@
 				},
 				{
 					"id": -1,
-					"name": "我的二级页面",
-					"pathName": "pages/my/my/my",
+					"name": "创建项目页面",
+					"pathName": "pages/myProject/publishSuccess/publishSuccess",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "创建项目页面",
-					"pathName": "pages/myProject/publishSuccess/publishSuccess"
+					"name": "投资人",
+					"pathName": "pages/discover/discoverPerson/discoverPerson",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "本人项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=k0xlyx0v&index=undefined"
+				},
+				{
+					"id": -1,
+					"name": "他人项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=NrXj2yWK"
+				},
+				{
+					"id": 24,
+					"name": "加锁项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=8W1o4Rr5"
 				}
 			]
 		}

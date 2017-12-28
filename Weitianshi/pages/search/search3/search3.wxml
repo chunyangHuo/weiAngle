@@ -22,6 +22,7 @@
       </view>
     </view>
   </block>
+  <template is="theBottom" wx:if="{{investorList!==''}}"></template>
   <!--fa列表  -->
   <block wx:for="{{faList}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
     <view class='investorCard'>

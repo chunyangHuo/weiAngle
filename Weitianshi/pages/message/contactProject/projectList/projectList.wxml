@@ -6,20 +6,19 @@
       <view data-project="{{projectMessage.project_id}}" catchtap="projectDetail">
         <view class="flex">
           <view class="t-describle" wx:if="{{projectMessage.pro_intro != ''}}">{{projectMessage.pro_intro}}</view>
-          <image src="/img/img-dujiaqianyue1@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 1}}"></image>
-          <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 2}}"></image>
+          <image src="/img/img-dujia@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 1}}"></image>
+          <!-- <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{projectMessage.is_exclusive == 2}}"></image> -->
         </view>
-        <view class="t-allIndustry" style="text-align:left">
+        <view class="t-allIndustry flex" style="text-align:left">
           <block wx:for="{{projectMessage.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-            <label class="t-noLight" wx:if="{{index < projectMessage.pro_industry.length-1}}">{{industry.industry_name}}、</label>
-            <label class="t-noLight" wx:if="{{index == projectMessage.pro_industry.length-1}}">{{industry.industry_name}}</label>
+            <label class="t-noLight">{{industry.industry_name}}</label>
           </block>
         </view>
-        <view class="allProjectDetail flex" wx:if="{{projectMessage.pro_area != ''||projectMessage.pro_finance_stock_after!=0||projectMessage.pro_stage!=''||projectMessage.pro_scale!=''}}">
+        <view class="allProjectDetail flex" wx:if="{{projectMessage.pro_area != ''||projectMessage.pro_stage!=''||projectMessage.pro_scale!=''}}">
           <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_scale != ''}}">{{projectMessage.pro_scale.scale_money}}</view>
-          <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_finance_stock_after != ''}}">{{projectMessage.pro_finance_stock_after}}%</view>
-          <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_stage != ''}}">{{projectMessage.pro_stage.stage_name}}</view>
-          <view class='t-projectDetailLine'>{{projectMessage.pro_area.area_title}}</view>
+          <!-- <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_finance_stock_after != ''}}">{{projectMessage.pro_finance_stock_after}}%</view> -->
+          <view class="t-projectDetailLine" wx:if="{{projectMessage.pro_stage != ''}}">· {{projectMessage.pro_stage.stage_name}}</view>
+          <view class='t-projectDetailLine'>· {{projectMessage.pro_area.area_title}}</view>
         </view>
       </view>
     </view>

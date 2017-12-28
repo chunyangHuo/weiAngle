@@ -3,63 +3,6 @@
 <import src="/pages/Template/Template.wxml" />
 <!--页面主体  -->
 <view id="myDetail">
-  <view class="classname">
-    <view class="projectDetailTop">
-      <view class="projectDetailBox">
-        <view>
-          <view class="flex">
-            <view class="describle">
-              {{project.pro_intro}}
-            </view>
-            <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
-            <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
-          </view>
-          <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
-            <!-- <view class="industry">{{industy_sort}}</view> -->
-            <block wx:for="{{pro_industry}}" wx:key="{{index}}">
-              <label class="industry" wx:if="{{index < pro_industry.length-1}}">{{item.industry_name}}、</label>
-              <label class="industry" wx:if="{{index == pro_industry.length-1}}">{{item.industry_name}}</label>
-            </block>
-          </view>
-          <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
-            <view class="projectDetailLine" wx:if="{{project.pro_scale.scale_money}}">{{project.pro_scale.scale_money}}</view>
-            <view class="projectDetailLine" wx:if="{{project.pro_finance_stock_after!= 0}}">{{project.pro_finance_stock_after}}%</view>
-            <view class="projectDetailLine" wx:if="{{project.pro_stage.stage_name}}">{{project.pro_stage.stage_name}}</view>
-            <view class="projectDetailLine" wx:if="{{project.pro_area.area_title}}">{{project.pro_area.area_title}}</view>
-          </view>
-          <!-- <view class="ProjectClues flex">
-            <view class="classname">项目线索</view>
-            <view class="ProjectCluesLine"></view>
-            <view class="classname">佣金收讫</view>
-          </view> -->
-        </view>
-      </view>
-      <view class="aline"></view>
-      <view class="flex bottomBox">
-        <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}" hover-class='t-hoverColor'>
-          <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
-          <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
-            <label>{{count.view_times_all}}</label>
-          </view>
-        </view>
-        <view class="t-line"></view>
-        <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor'>
-          <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
-          <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">申请查看：
-            <label>{{count.apply_times_all}}</label>
-          </view>
-        </view>
-        <view class="t-line"></view>
-        <!-- <view class="investPerson">-</view> -->
-        <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor'>
-          <view class="applyProjectNew" wx:if="{{project.count.meet_times_new != 0}}">+{{count.meet_times_new}}</view>
-          <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">约谈：
-            <label>{{count.meet_times_all}}</label>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
   <include src='/utils/wxml/threeTab.wxml' />
 </view>
 
@@ -68,7 +11,8 @@
   <button class="push" disabled="true">一键推送(近期开放)</button>
 </view> -->
 <!-- <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}"> -->
-<view class=" flex floatBtn flexBox" hidden="{{currentTab==1 }}">
+<view class=" flex floatBtn flexBox">
+<!--hidden="{{currentTab==1 }}"  -->
   <view class="collectBox" bindtap="deleteProject" hover-class='t-hoverColor'>
     <image src="/img/icon-shanchu@2x.png" class="collectPic"></image>
   </view>
@@ -81,9 +25,6 @@
     <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>
     <view class="businessBook">私密性设置</view>
   </view>
-</view>
-<view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}" hover-class='t-other-button-hover'>
-  机构版买家图谱
 </view>
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">

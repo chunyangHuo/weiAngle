@@ -8,7 +8,12 @@
 .flex {
   display: flex;
 }
-
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
+  background: #e6e6e6;
+}
 .title {
   font-size: 26rpx;
   color: #333;
