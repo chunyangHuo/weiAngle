@@ -24,9 +24,9 @@
 			"current": 21,
 			"list": [
 				{
-					"id": 2,
-					"name": "验证码",
-					"pathName": "pages/register/personInfo/personInfo",
+					"id": 0,
+					"name": "投资",
+					"pathName": "pages/discoverInvest/discoverInvest",
 					"query": ""
 				},
 				{
@@ -127,12 +127,6 @@
 				},
 				{
 					"id": -1,
-					"name": "案例添加",
-					"pathName": "pages/my/investCaseEdit/investCaseEdit",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "编辑案例添加",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
 					"query": "index=2&case_id=481"
@@ -151,14 +145,15 @@
 				},
 				{
 					"id": -1,
-					"name": "我的二级页面",
-					"pathName": "pages/my/my/my",
+					"name": "创建项目页面",
+					"pathName": "pages/myProject/publishSuccess/publishSuccess",
 					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "创建项目页面",
 					"pathName": "pages/myProject/publishSuccess/publishSuccess",
+
 					"query": ""
 				},
 				{

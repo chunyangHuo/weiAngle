@@ -4,6 +4,8 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
+    matchBut:true,//显示投资人/投资机构
+    matchBut1:false,
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
     currentTab: 1,//选项卡
@@ -74,6 +76,16 @@ Page({
     let scale_tag = [];
     let stage_tag = [];
     let pro_goodness = "";
+    // 机构版买家图谱信息修改
+    that.setData({
+      newPage: '',
+      requestCheck: true,
+      currentPage: 0,
+      page_end: false,
+      investment_list: []
+    })
+    this.loadMore1();
+
     // 为上拉加载准备
     app.initPage(that);
     wx.request({
@@ -341,7 +353,7 @@ Page({
         // 融资信息
         let pro_history_financeList = project.pro_history_finance;
         pro_history_financeList.forEach((x, index) => {
-          pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
+          pro_history_financeList[index].finance_time = app.changeTimeStyle1(x.finance_time);
           pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
           pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
           pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
@@ -353,7 +365,7 @@ Page({
         // 里程碑
         let mileStoneArray = project.pro_develop;
         mileStoneArray.forEach((x, index) => {
-          mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
+          mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
           mileStoneArray[index].dh_event = x.dh_event;
         })
 
@@ -614,6 +626,45 @@ Page({
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
+  },
+  // 机构版买家图谱
+  loadMore1() {
+    let that = this;
+    let id = this.data.id;
+    let currentPage = this.data.currentPage;
+    let investment_list = this.data.investment_list;
+    let request = {
+      url: url_common + '/api/investment/matchs',
+      data: {
+        project_id: id,
+        page: this.data.currentPage
+      },
+    }
+    app.loadMore2(that, request, res => {
+      console.log("机构版买家图谱", res)
+      let newPage = res.data.data;
+      let list = res.data.data.investment_list;
+      let page_end = res.data.data.page_end;
+      if (list) {
+        let newProject = investment_list.concat(list)
+        currentPage++;
+        that.setData({
+          newPage: newPage,
+          investment_list: newProject,
+          page_end: page_end,
+          requestCheck: true,
+          currentPage: currentPage
+        })
+      }
+      if (page_end == true) {
+        // app.errorHide(that, '没有更多了', 3000)
+      }
+    })
+  },
+  // 跳转详情页
+  institutionalDetails1: function (e) {
+    let thisData = e.currentTarget.dataset;
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + thisData.id)
   },
   /*滑动切换tab*/
   bindChange: function (e) {
@@ -1142,5 +1193,30 @@ Page({
   toMap: function () {
     var that = this;
     app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
+  },
+  // 进入潜在投资方
+  potential:function(){
+    let that = this;
+    that.setData({ currentTab: 1});
+  },
+  onKey:function(){
+    let that = this;
+    that.setData({ currentTab: 2 });
+  },
+  // 买家图谱
+  matchButt:function(){
+   let that=this;
+   that.setData({
+     matchBut:true,
+     matchBut1: false
+   })
+  },
+  // 机构版买家图谱
+   matchButt1: function () {
+     let that = this;
+     that.setData({
+       matchBut1: true,
+       matchBut: false
+     })
   }
 });

@@ -254,14 +254,17 @@ scroll-view {
 
 /*头像*/
 
+.otherInfo .userName {
+  text-align: left;
+  margin-left: 32rpx;
+}
+
 .others_pic {
-  width: 48rpx;
-  height: 48rpx;
+  width: 80rpx;
+  height: 80rpx;
   display: inline-block;
   text-align: center;
   border-radius: 50%;
-  margin-top: 18rpx;
-  margin-right: 16rpx;
 }
 
 .others_nopic {
@@ -373,12 +376,12 @@ scroll-view {
 
 .projectDetailTop {
   /*height: 420rpx;*/
-  width: 90%;
+  width: 100%;
   height: auto;
   background: #fff;
   box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10);
   border-radius: 8rpx;
-  margin: 32rpx 32rpx 38rpx 36rpx;
+  margin: 0 0 38rpx 0;
 }
 
 .projectDetailBox {
@@ -402,7 +405,7 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  margin: 36rpx 0 24rpx 0;
+  margin: 24rpx 0 24rpx 0;
 }
 
 .allProjectDetail {
@@ -424,32 +427,31 @@ scroll-view {
 
 .otherInfo {
   /* border-top: 1rpx solid #e6e6e6; */
-  height: 94rpx;
+  height: 144rpx;
   position: relative;
   background: white;
-  padding:0 32rpx;
+  padding: 0 32rpx;
+  align-items: center;
 }
 
 .userCareer {
-  font-size: 24rpx;
+  font-size: 12px;
   color: #666;
   letter-spacing: 0;
   line-height: 24rpx;
   text-align: left;
   margin-right: 16rpx;
-  margin-top: 34rpx;
+  max-width: 200rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .userCompany {
-  font-size: 20rpx;
+  font-size: 12px;
   color: #666;
   letter-spacing: 0;
-  line-height: 22rpx;
-  text-align: left;
-  margin-top: 34rpx;
+  text-align: left !important;
   width: 320rpx;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -463,7 +465,6 @@ scroll-view {
   line-height: 28rpx;
   text-align: left;
   margin-right: 16rpx;
-  margin-top: 32rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -476,12 +477,15 @@ scroll-view {
 
 .userInfo {
   width: 460rpx;
+  margin-left: 32rpx;
+  align-items: center;
+  margin-top: 20rpx;
 }
 
 /*项目亮点*/
 
 .brightBox {
-  padding: 32rpx;
+  /* padding: 32rpx; */
   text-align: left;
 }
 
@@ -618,8 +622,8 @@ button::after {
 }
 
 .projectDetailLine {
-  padding: 0 16rpx;
-  border-right: 1rpx solid #999;
+  /* padding: 0 16rpx; */
+  /* border-right: 1rpx solid #999; */
 }
 
 .projectDetailLine:first-child {
@@ -640,7 +644,7 @@ button::after {
 
 .contactPersonBox {
   position: absolute;
-  top: 40rpx;
+  top: 70rpx;
   right: 32rpx;
 }
 
@@ -690,20 +694,42 @@ button::after {
 
 /*项目详情内容页 */
 
-.followPerson, .brightPoint, .material, .corePerson, .information, .milestone,
-.signFA, .companyBrand {
+.followPerson, .corePerson, .information, .milestone, .signFA, .companyBrand {
   background: #fafafa;
   border-radius: 2px;
   padding: 32rpx 24rpx 32rpx 24rpx;
   margin-bottom: 20rpx;
 }
 
+.material {
+  background: #fff;
+  border-radius: 2px;
+  padding: 32rpx 24rpx 32rpx 24rpx;
+  margin-bottom: 20rpx;
+  margin-top: 32rpx;
+}
+
+.brightPoint {
+  background: #fff;
+  border-radius: 2px;
+  padding: 32rpx 32rpx 32rpx 32rpx;
+  /* margin-bottom: 20rpx; */
+}
+
+.brightPoint1 {
+  background: #fff;
+  border-radius: 2px;
+  padding: 32rpx 32rpx 0rpx 32rpx;
+  margin-bottom: 20rpx;
+}
+
 .title {
-  font-size: 14px;
+  margin-bottom: 32rpx;
+  font-size: 15px;
   color: #333;
-  line-height: 14px;
+  /* line-height: 21px; */
   text-align: left;
-  margin-bottom: 46rpx;
+  font-weight: bold;
 }
 
 .titlePic {
@@ -722,12 +748,17 @@ button::after {
 }
 
 .titleRightBP {
-  font-size: 24rpx;
-  color: #40587a;
-  line-height: 24rpx;
+  background: #3378e0;
+  border-radius: 2px;
+  width: 136rpx;
+  height: 56rpx;
+  color: #fff;
+  text-align: center !important;
+  line-height: 56rpx;
   position: absolute;
   right: 32rpx;
   top: 33rpx;
+  font-size: 12px;
 }
 
 .titleRightBPIcon {
@@ -897,8 +928,8 @@ button::after {
 }
 
 .textNum {
-  font-size: 30rpx;
-  color: #333;
+  font-size: 13px;
+  color: #f6a623;
   line-height: 30rpx;
   text-align: center;
 }
@@ -920,9 +951,10 @@ button::after {
 .purpose .purposeContent {
   font-size: 26rpx;
   color: #666;
-  line-height: 34rpx;
+  line-height: 52rpx;
   text-align: left;
-  margin-bottom: 48rpx;
+  margin-bottom: 4rpx;
+  height: auto;
 }
 
 .case_money {
@@ -1045,13 +1077,13 @@ button::after {
 }
 
 .bigBox {
-  margin: 0 32rpx 0 32rpx;
+  margin: 0;
   text-align: left;
 }
 
 #projectBox {
-  background: white;
-  padding-top: 32rpx;
+  background: #f2f3f4;
+  /* padding-top: 32rpx; */
 }
 
 .scale_moneyIcon {
@@ -1060,7 +1092,7 @@ button::after {
 }
 
 #projectBox .teamPro {
-  margin-bottom: 48rpx;
+  margin-bottom: 40rpx;
 }
 
 /*空白页*/
@@ -1191,8 +1223,8 @@ button::after {
 }
 
 .projectDetailLine {
-  padding: 0 16rpx;
-  border-right: 1rpx solid #999;
+  /* padding: 0 16rpx; */
+  /* border-right: 1rpx solid #999; */
 }
 
 .projectDetailLine:first-child {
@@ -1211,8 +1243,8 @@ button::after {
   text-align: center;
   width: 37.5%;
   background: #40587a;
-  padding: 30rpx 0; 
-   /* border-right: 1rpx solid #e6e6e6;  */
+  padding: 30rpx 0;
+  /* border-right: 1rpx solid #e6e6e6;  */
 }
 
 .businessBook {
@@ -1342,14 +1374,15 @@ button::after {
 }
 
 /*项目打分  */
- .projectScore {
+
+.projectScore {
   position: fixed;
   background: #fc703e;
   border: 0 solid #e0e6ed;
   box-shadow: 0 0 4px 0 rgba(64, 88, 122, 0.20);
   width: 166rpx;
   height: 66rpx;
-  top:910rpx;
+  top: 910rpx;
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;
@@ -1358,9 +1391,10 @@ button::after {
   right: 0;
   border-radius: 35rpx 0 0 35rpx;
 }
-.aline{
-  margin:0 32rpx;
-  width:90%;
-  height:2rpx;
+
+.aline {
+  margin: 0 32rpx;
+  width: 90%;
+  height: 2rpx;
   background: #e6e6e6;
 }

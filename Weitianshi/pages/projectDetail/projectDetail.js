@@ -4,6 +4,8 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
+    matchBut: true,//显示投资人/投资机构
+    matchBut1: false,
     score: true,
     competition_id: "",
     firstName: "代",
@@ -85,7 +87,18 @@ Page({
       })
     }
   },
-
+  onShow: function () {
+    let that=this;
+    // 机构版买家图谱信息修改
+    that.setData({
+      newPage: '',
+      requestCheck: true,
+      currentPage: 0,
+      page_end: false,
+      investment_list: []
+    })
+    this.loadMore1();
+  },
   /* -----------------------数据获取------------------------------------------- */
   //是否完成身份认证状态
   identityInfo(that) {
@@ -353,7 +366,7 @@ Page({
         let pro_history_financeList = project.pro_history_finance;
         if (pro_history_financeList) {
           pro_history_financeList.forEach((x, index) => {
-            pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
+            pro_history_financeList[index].finance_time = app.changeTimeStyle1(x.finance_time);
             pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
             pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
             pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
@@ -366,7 +379,7 @@ Page({
         let mileStoneArray = project.pro_develop;
         if (mileStoneArray) {
           mileStoneArray.forEach((x, index) => {
-            mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
+            mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
             mileStoneArray[index].dh_event = x.dh_event;
           })
 
@@ -638,7 +651,45 @@ Page({
     //调用通用加载函数
     app.loadMore(that, request, "investor2")
   },
-
+  // 机构版买家图谱
+  loadMore1() {
+    let that = this;
+    let id = this.data.id;
+    let currentPage = this.data.currentPage;
+    let investment_list = this.data.investment_list;
+    let request = {
+      url: url_common + '/api/investment/matchs',
+      data: {
+        project_id: id,
+        page: this.data.currentPage
+      },
+    }
+    app.loadMore2(that, request, res => {
+      console.log("机构版买家图谱", res)
+      let newPage = res.data.data;
+      let list = res.data.data.investment_list;
+      let page_end = res.data.data.page_end;
+      if (list) {
+        let newProject = investment_list.concat(list)
+        currentPage++;
+        that.setData({
+          newPage: newPage,
+          investment_list: newProject,
+          page_end: page_end,
+          requestCheck: true,
+          currentPage: currentPage
+        })
+      }
+      if (page_end == true) {
+        // app.errorHide(that, '没有更多了', 3000)
+      }
+    })
+  },
+  // 跳转详情页
+  institutionalDetails1: function (e) {
+    let thisData = e.currentTarget.dataset;
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + thisData.id)
+  },
   /* -----------------------交互行为------------------------------------------- */
   // 用户详情
   userDetail: function (e) {
@@ -772,8 +823,8 @@ Page({
                 method: 'POST',
                 success: function (res) {
                   console.log(res)
-                  if(res.data.status_code == 2000000){
-                    app.errorHide(that,'BP文件发送邮箱成功',3000)
+                  if (res.data.status_code == 2000000) {
+                    app.errorHide(that, 'BP文件发送邮箱成功', 3000)
                     wx.request({
                       url: url_common + '/api/project/insertViewBpRecord',
                       data: {
@@ -787,8 +838,8 @@ Page({
                         console.log(res)
                       }
                     })
-                  }else{
-                    app.errorHide(that,res.data.error_msg,3000)
+                  } else {
+                    app.errorHide(that, res.data.error_msg, 3000)
                   }
                 }
               })
@@ -979,11 +1030,11 @@ Page({
     }
     app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
       // 提交中过渡态处理
-        setTimeout(x => {
-          that.setData({
-            modalBox: 0
-          })
-        }, 1000)
+      setTimeout(x => {
+        that.setData({
+          modalBox: 0
+        })
+      }, 1000)
     })
   },
   /*点击tab切换*/
@@ -1216,5 +1267,35 @@ Page({
       app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
     })
 
+  },
+  // 机构版买家图谱跳转
+  toMap: function () {
+    var that = this;
+    app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
+  },
+  // 进入潜在投资方
+  potential: function () {
+    let that = this;
+    that.setData({ currentTab: 1 });
+  },
+  onKey: function () {
+    let that = this;
+    that.setData({ currentTab: 2 });
+  },
+  // 买家图谱
+  matchButt: function () {
+    let that = this;
+    that.setData({
+      matchBut: true,
+      matchBut1: false
+    })
+  },
+  // 机构版买家图谱
+  matchButt1: function () {
+    let that = this;
+    that.setData({
+      matchBut1: true,
+      matchBut: false
+    })
   }
 }) 

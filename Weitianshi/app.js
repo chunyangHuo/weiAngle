@@ -496,7 +496,18 @@ App({
     let D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     return (Y + M + D)
   },
-
+  changeTimeStyle1(x) {
+    let n;
+    if (x.length === 13) {
+      n = x * 1
+    } else {
+      n = x * 1000
+    }
+    let date = new Date(n);
+    let Y = date.getFullYear() + '.';
+    let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    return (Y + M )
+  },
   //邮箱检验
   checkEmail(data) {
     let myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;

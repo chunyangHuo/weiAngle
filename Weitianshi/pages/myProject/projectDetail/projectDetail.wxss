@@ -178,17 +178,17 @@ page {
 
 .projectDetailTop {
   /*height: 420rpx;*/
-  width: 90%;
+  width: 100%;
   height: auto;
   background: #fff;
   box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10);
   border-radius: 8rpx;
-  margin: 32rpx 32rpx 38rpx 36rpx;
+  margin: 0 0 38rpx 0;
 }
 
 .projectDetailType {
-  height: 92rpx;
-  width: 92rpx;
+  height: 100rpx;
+  width: 100rpx;
   right: -3rpx;
   top: -6rpx;
   position: absolute;
@@ -206,19 +206,24 @@ page {
   color: #333;
   line-height: 48rpx;
   text-align: left;
+  margin-top: 32rpx;
   /* width: 480rpx; */
 }
 
 .industry {
   font-family: PingFangSC-Regular;
-  font-size: 26rpx;
+  font-size: 24rpx;
   color: #666;
   line-height: 26rpx;
   text-align: left;
+  padding: 8rpx 16rpx;
+  background: #f5f5f5;
+  border-radius: 2px;
+  margin-right: 30rpx;
 }
 
 .allIndustry {
-  margin: 36rpx 0 24rpx 0;
+  margin: 24rpx 0 24rpx 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1062,7 +1067,7 @@ page {
 
 .swiper-tab-list {
   display: inline-block;
-  width: 33.3%;
+  width: 25%;
   font-size: 26rpx;
   color: #999;
   line-height: 62rpx;
@@ -1071,25 +1076,47 @@ page {
 
 .on {
   color: #40587a;
-  border-bottom: 4rpx solid #40587a;
+  border-bottom: 4rpx solid #3378e0;
 }
 
 /*啦啦啦啦啦啦啦*/
 
-.followPerson, .brightPoint, .material, .corePerson, .information, .milestone,
-.signFA, .companyBrand {
+.followPerson, .corePerson, .information, .milestone, .signFA, .companyBrand {
   background: #fafafa;
   border-radius: 2px;
   padding: 32rpx 24rpx 32rpx 24rpx;
   margin-bottom: 20rpx;
 }
 
+.material {
+  background: #fff;
+  border-radius: 2px;
+  padding: 32rpx 24rpx 32rpx 24rpx;
+  margin-bottom: 20rpx;
+  margin-top: 32rpx;
+}
+
+.brightPoint {
+  background: #fff;
+  border-radius: 2px;
+  padding: 32rpx 32rpx 32rpx 32rpx;
+  /* margin-bottom: 20rpx; */
+}
+
+.brightPoint1 {
+  background: #fff;
+  border-radius: 2px;
+  padding: 32rpx 32rpx 0rpx 32rpx;
+  margin-bottom: 20rpx;
+}
+
 .title {
-  font-size: 14px;
+  margin-bottom: 32rpx;
+  font-size: 15px;
   color: #333;
-  line-height: 14px;
+  /* line-height: 21px; */
   text-align: left;
-  margin-bottom: 46rpx;
+  font-weight: bold;
 }
 
 .titlePic {
@@ -1108,12 +1135,17 @@ page {
 }
 
 .titleRightBP {
-  font-size: 24rpx;
-  color: #40587a;
-  line-height: 24rpx;
+  background: #3378e0;
+  border-radius: 2px;
+  width: 136rpx;
+  height: 56rpx;
+  color: #fff;
+  text-align: center !important;
+  line-height: 56rpx;
   position: absolute;
   right: 32rpx;
   top: 33rpx;
+  font-size: 12px;
 }
 
 .titleRightBPIcon {
@@ -1215,14 +1247,14 @@ page {
 
 #projectBox  .pro_sort {
   font-size: 20rpx;
-  color: #40587a;
-  border-radius: 98rpx;
-  border: 1rpx solid #40587a;
+  color: #293b55;
+  border-radius: 56rpx;
+  border: 1rpx solid #293b55;
   text-align: center;
-  height: 36rpx;
+  height: 48rpx;
   width: auto;
-  line-height: 44rpx;
-  padding: 0 16rpx;
+  line-height: 48rpx;
+  padding: 4rpx 8rpx;
   margin-right: 24rpx;
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -1275,6 +1307,12 @@ page {
   margin-bottom: 16rpx;
 }
 
+#projectBox .myPic {
+  width: 100%;
+  height: 214rpx;
+  background: #1a2e4a;
+}
+
 #projectBox .scale {
   font-size: 22rpx;
   color: #40587a;
@@ -1298,11 +1336,11 @@ page {
 }
 
 .materialContent {
-  font-size: 26rpx;
-  color: #666;
   letter-spacing: 0;
   line-height: 26rpx;
   text-align: left;
+  font-size: 14px;
+  color: #333;
 }
 
 .materialWeb {
@@ -1315,7 +1353,7 @@ page {
 
 .whiteContent {
   background-color: #fff;
-  border: 1rpx solid #e6e6e6;
+  border: 1rpx solid #f0f0f0;
   border-radius: 4rpx;
   width: 100%;
   height: 176rpx;
@@ -1334,8 +1372,8 @@ page {
 }
 
 .textNum {
-  font-size: 30rpx;
-  color: #333;
+  font-size: 13px;
+  color: #f6a623;
   line-height: 30rpx;
   text-align: center;
 }
@@ -1357,17 +1395,18 @@ page {
 .purpose .purposeContent {
   font-size: 26rpx;
   color: #666;
-  line-height: 34rpx;
+  line-height: 52rpx;
   text-align: left;
-  margin-bottom: 48rpx;
+  margin-bottom: 4rpx;
+  height: auto;
 }
 
-.case_money {
+/* .case_money {
   font-size: 26rpx;
   color: #333;
   line-height: 26rpx;
   text-align: left;
-}
+} */
 
 .case_turn {
   border-radius: 62rpx;
@@ -1391,13 +1430,13 @@ page {
   padding: 0;
 }
 
-.investContent {
+/* .investContent {
   font-size: 22rpx;
   color: #666;
   line-height: 22rpx;
   text-align: left;
   padding-left: 32rpx;
-}
+} */
 
 .milestoneContent:last-child {
   border-left: none;
@@ -1431,6 +1470,7 @@ page {
   margin-bottom: 20rpx;
 }
 
+/* 
 .case_pic {
   margin-top: -1rpx;
   width: 16rpx;
@@ -1438,7 +1478,7 @@ page {
   margin-right: 24rpx;
   margin-left: -7rpx;
   z-index: 3;
-}
+} */
 
 #projectBox .case_content {
   font-size: 24rpx;
@@ -1482,13 +1522,13 @@ page {
 }
 
 .bigBox {
-  margin: 0 32rpx 0 32rpx;
+  margin: 0;
   text-align: left;
 }
 
 #projectBox {
-  background: white;
-  padding-top: 32rpx;
+  background: #f2f3f4;
+  /* padding-top: 32rpx; */
 }
 
 .scale_moneyIcon {
@@ -1497,7 +1537,7 @@ page {
 }
 
 #projectBox .teamPro {
-  margin-bottom: 48rpx;
+  margin-bottom: 40rpx;
 }
 
 /*空白页*/
@@ -1629,8 +1669,8 @@ page {
 }
 
 .projectDetailLine {
-  padding: 0 16rpx;
-  border-right: 1rpx solid #999;
+  padding: 0 8rpx;
+  /* border-right: 1rpx solid #999; */
 }
 
 .projectDetailLine:first-child {
@@ -1671,47 +1711,56 @@ page {
 #productBox {
   background-color: #fff;
   border-radius: 4rpx;
-  width: 91%;
-  padding: 30rpx;
+  width: 100%;
+  padding: 30rpx 0rpx 30rpx 0;
   position: relative;
-  margin-bottom: 16rpx;
-  height: 128rpx;
+  /* margin-bottom: 16rpx; */
+  height: 166rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+#productBox:last-of-type {
+  border-bottom: 0;
 }
 
 #productBox .productTitle {
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: #333;
-  line-height: 30rpx;
+  /* line-height: 30rpx; */
   text-align: left;
-  width: 225px;
+  width: 180px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 #productBox .productContent {
-  margin-top: 44rpx;
+  margin-top: 20rpx;
   text-align: left;
 }
 
 #productBox .projectTips {
   position: absolute;
-  right: 16rpx;
+  right: 10rpx;
   margin: 0;
   height: 30rpx;
   line-height: 30rpx;
+  top: 40rpx;
 }
 
 .productContent {
-  font-size: 24rpx;
+  /* font-size: 24rpx;
   line-height: 30rpx;
-  color: #666;
+  color: #666; */
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  font-size: 12px;
+  color: #666;
+  line-height: 44rpx;
 }
 
 /*删除项目  */
@@ -1776,8 +1825,10 @@ page {
 /*买家图谱  */
 
 .buyerPage {
-  background: #fff;
-  padding: 0 32rpx;
+  width: 100%;
+  height: 100%;
+  background: #f2f3f4;
+  padding: 0 ;
 }
 
 #introduce {
@@ -1794,8 +1845,10 @@ page {
 
 .resourceBox {
   border-radius: 0 0 4px 4px;
-  padding-bottom: 32rpx;
-  padding-top: 0;
+  padding: 0 0 0 32rpx;
+  background: #fff;
+  width: 100%;
+  margin-bottom: 32rpx;
 }
 
 #introduce .introduce {
@@ -2044,10 +2097,113 @@ page {
   height: 2rpx;
   background: #e6e6e6;
 }
-.t-line{
+
+.t-line {
   width: 2rpx;
 }
-.bottomBox{
-  height:88rpx;
+
+.bottomBox {
+  height: 88rpx;
   line-height: 88rpx;
+}
+
+.productImg {
+  width: 104rpx;
+  height: 104rpx;
+  /* background: red; */
+  margin-top: 10rpx;
+}
+
+.productInside {
+  margin-left: 14rpx;
+  width: 85%;
+}
+
+.productAll {
+  font-size: 12px;
+  color: #3378e0;
+  position: absolute;
+  right: 0;
+  top: 2rpx;
+}
+
+.brightPointBox {
+  position: relative;
+  /* padding: 0 30rpx; */
+}
+
+.productMiddle {
+  padding-top: 20rpx;
+}
+
+.detailTop {
+  margin-top: 20rpx;
+}
+
+.purpose {
+  margin-top: 64rpx;
+}
+
+.pro_sorts {
+  margin-bottom: 20rpx;
+}
+
+.detailBottom {
+  width: 100%;
+  height: 160rpx;
+  background: f2f3f4;
+}
+
+.service {
+  z-index: 111111;
+  /* border: 0 solid #e6e6e6; */
+  box-shadow: 0 0 4px 0 rgba(41, 59, 85, 0.10);
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 186rpx;
+  right: 34rpx;
+}
+
+/* pages/organization/subPage/list_orgMember/list_orgMember.wxss */
+
+page {
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.media12 {
+  height:1000rpx;
+   background: #fff; 
+  padding: 0 30rpx;
+}
+
+.matchIntro {
+  text-align: left!important;
+  font-size: 15px;
+  color: #333;
+  padding-top: 15rpx;
+}
+
+.hasNothing {
+  margin-top: 410rpx;
+  font-size: 36rpx;
+  color: #999;
+  line-height: 36rpx;
+  text-align: center;
+  height: 800rpx;
+}
+.resourceRight{
+  width: 85%;
+
+}
+.resourceLeft{
+  width: 8%;
+  text-align: right;
+}
+.resourceImg{
+  width: 62rpx;
+  height: 62rpx;
+  margin-top:43rpx; 
 }
