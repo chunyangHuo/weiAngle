@@ -204,8 +204,28 @@
 
 .searchBox {
   background: #293b55;
-  width: 100%;
-  height: 98rpx;
+  /* width: 100%; */
+  /* height: 98rpx; */
+  border-radius: 0;
+  padding:16rpx 32rpx;
+  height: auto;
+}
+
+.seachSth {
+  width: 684rpx;
+  border-radius: 92rpx;
+  background: #fff;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  text-align: left;
+}
+.search_icon1 {
+  display: block;
+  line-height: 64rpx;
+  margin: 14rpx 16rpx 0 30rpx;
 }
 
 .jumpBox {
@@ -394,6 +414,7 @@
 
 .t-toAccreditation {
   right: 32rpx;
+  background:#3378e0;
 }
 
 .appling, .refuseToRead {

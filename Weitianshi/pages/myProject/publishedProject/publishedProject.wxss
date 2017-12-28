@@ -152,7 +152,6 @@ page {
   height: 114rpx;
   background: #fff;
   line-height: 112rpx;
-  margin-top: 32rpx;
 }
 
 .projectBoxContent {
@@ -338,66 +337,4 @@ page {
 
 .slect .black {
   color: black;
-}
-
-/*=========================  */
-
-.card {
-  height: 112rpx;
-  line-height: 112rpx;
-  background: #fff;
-  font-size: 32rpx;
-  color: #333;
-}
-
-.cardTitle {
-  margin-left: 32rpx;
-}
-
-.newBox {
-  text-align: right;
-  height: 112rpx;
-  line-height: 112rpx;
-  width: 556rpx;
-  font-size: 28rpx;
-  color: #ccc;
-}
-
-.otherInfo {
-  margin: 24rpx 0 30rpx 0;
-}
-
-.aLine {
-  width: 686rpx;
-  height: 2rpx;
-  background: #f0f0f0;
-  margin: 0 32rpx;
-}
-
-.littleBox {
-  background: #fff;
-  height: 208rpx;
-}
-
-.contentBox {
-  margin-top: 24rpx;
-  margin-left: 32rpx;
-}
-
-.littleTitle {
-  font-size: 28rpx;
-  color: #333;
-  text-align: center;
-  margin-bottom: 16rpx;
-}
-
-.littleContent {
-  background: #f5f5f5;
-  border-radius: 4rpx;
-  width: 208rpx;
-  height: 96rpx;
-  line-height: 96rpx;
-  font-size: 24rpx;
-  color: #333;
-  text-align: center;
 }

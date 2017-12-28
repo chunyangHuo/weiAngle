@@ -2,6 +2,8 @@
   "pages": [
     "pages/discoverProject/discoverProject",
     "pages/discoverInvest/discoverInvest",
+    "pages/discoverInvest/institutionalInvest/institutionalInvest",
+    "pages/discoverInvest/investor/investor",
     "pages/my/my/my",
     "pages/match/match/investDemand/investDemand",
     "pages/match/match/resourceDemand/resourceDemand",
@@ -31,6 +33,7 @@
     "pages/projectDetail/projectDetail",
     "pages/myProject/projectDetail/projectDetail",
     "pages/myProject/publishProject/publishProject",
+    "pages/myProject/publishedProject/publishedProject",
     "pages/myProject/pushTo/pushTo",
     "pages/myProject/initPrivacy/initPrivacy",
     "pages/myProject/pushToSuccess/pushToSuccess",

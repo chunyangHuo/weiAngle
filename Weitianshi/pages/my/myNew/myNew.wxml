@@ -102,7 +102,7 @@
   <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class="t-hoverColor">
     <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
     <label class="attentionNum" wx:if="{{count.user_followed_new}}">+{{count.user_followed_new}}</label>
-    <label  wx:if="{{count.user_followed_new==0}}"></label>
+    <label wx:if="{{count.user_followed_new==0}}"></label>
     <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all}}
     </view>
     <view class="attention-people">Ta的好友</view>
@@ -119,14 +119,12 @@
 </view>
 
 <!--项目店铺  -->
-<view class="blockInfo flex" bindtap="projectShop" hover-class="t-hoverColor">
-  <view class="flex">
-    <image src="/img/Shape@2x.png" class="blockPic"></image>
-    <view class="blockTitle">项目店铺</view>
-    <image src="/img/img-fazhuanshu@2x.png" class="FaShop"></image>
-    <image src="/img/img-xiangmuzhanshi@2x.png" class="FaShop"></image>
-    <image src="/img/img-anyuanshouji@2x.png" class="FaShop"></image>
-  </view>
+<view class="shopBlock flex" bindtap="projectShop" hover-class="t-hoverColor">
+  <image src="/img/icon-xiangmudianpu@2x.png" class="shopPic"></image>
+   <view> 
+    <view class="shopTitle">项目店铺</view>
+    <view class="shopShow">FA专属 · 项目展示 · 案源收集</view>
+   </view> 
   <view class="flex">
     <view class="number">{{count.project_count}}</view>
     <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
