@@ -660,5 +660,6 @@ Page({
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   }
+  
 })
 

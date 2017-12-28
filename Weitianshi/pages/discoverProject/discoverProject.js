@@ -14,7 +14,7 @@ Page({
     hidden: true,
     //筛选搜索
     SearchInit: FilterModel.data,
-    //banner
+    //banner 
     bannerIndex: 0,
     modalBox: 0,
     insideColor: true,
@@ -379,4 +379,29 @@ Page({
       modalBox: 0
     })
   },
+
+  // 跳转投资机构
+  jumpOrg(){
+    wx.navigateTo({
+      url: '/pages/discoverInvest/institutionalInvest/institutionalInvest',
+    })
+  },
+  //投资人
+  jumpInvestor() {
+    wx.navigateTo({
+      url: '/pages/discoverInvest/investor/investor',
+    })
+  },
+  //FA融资顾问
+  jumpFinancingAdvisor(){
+    wx.navigateTo({
+      url: '/pages/discoverInvest/financingAdvisor/financingAdvisor',
+    })
+  },
+  //潜在投资方
+  potentialInvestor(){
+    wx.navigateTo({
+      url: '/pages/matchInvestor/matchInvestor',
+    })
+  }
 })
