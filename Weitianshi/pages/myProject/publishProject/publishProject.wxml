@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <template is="pointPC">去电脑上创建项目更方便</template>
-<view id="myProject">
+<!-- <view id="myProject">
   <view class="card">
     <view class="text">项目名称</view>
     <input placeholder="仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
@@ -52,18 +52,18 @@
   <view class="card">
     <view class="text">项目亮点*</view>
     <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" />
-  </view>
+  </view> -->
 
-  <!--错语提示-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--错语提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
-  <!--加载更多-->
-  <view class="weui-loadmore" wx:if="{{loading=='1'}}">
+<!--加载更多-->
+<!-- <view class="weui-loadmore" wx:if="{{loading=='1'}}">
     <view class="weui-loading"></view>
     <view class="weui-loadmore__tips">正在加载</view>
   </view>
-</view>
-<view class="topBox">
+</view>  -->
+<!-- <view class="topBox">
   <view class="userBox">
     <view class="projectBoxContent flex" bindtap="toPc">
       <view class="projectTitle">商业计划书</view>
@@ -79,7 +79,6 @@
       <view class="flex">
         <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value='{{pro_finance_stock_after}}' />
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-        <!-- <view class="personListContentAfter"></view> -->
       </view>
     </view>
   </view>
@@ -89,7 +88,6 @@
       <view class="flex">
         <view class="projectContent">请选择</view>
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-        <!-- <view class="personListContentAfter"></view> -->
       </view>
     </view>
   </view>
@@ -123,8 +121,8 @@
   <view class="questionWhy">Q：什么是云投行合作</view>
   <view class="answer">A：微天使平台将协助您寻找最合适的投资机构，并与合作伙伴共同协助推进您的项目融资。（业务同学会通过您在平台留下的联系方式与您沟通具体合作方式）
   </view>
-</view>
-<view class="highBox"></view>
+</view>  -->
+<!-- <view class="highBox"></view> -->
 
 <!--保存  -->
 <template is="buttonOne" data="{{text:buttonOneText,btnName:'public',disabled}}"></template>
@@ -139,4 +137,52 @@
     <view class="modalTips">www.weitianshi.cn/qr</view>
     <view class="btn" hover-class='t-other-button-hover' bindtap="upLoadPc">扫一扫</view>
   </view>
+</view>
+<view class="card flex">
+  <label class="cardTitle">项目名称</label>
+  <input placeholder="请输入" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+</view>
+
+<view class='otherInfo'>
+  <view class="card flex">
+    <label class="cardTitle">项目领域</label>
+    <input placeholder="请输入" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+  </view>
+  <view class="aLine"></view>
+  <view class="card flex">
+    <label class="cardTitle">是否独家</label>
+    <input placeholder="请输入" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+  </view>
+  <view class="aLine"></view>
+  <view class='flex  littleBox'>
+    <view class='contentBox'>
+      <view class="littleTitle">阶段</view>
+      <view class="littleContent">
+        <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
+          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
+        </picker>
+      </view>
+    </view>
+    <view class='contentBox'>
+      <view class="littleTitle">期望融资</view>
+      <view class="littleContent">
+        <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
+          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
+        </picker>
+      </view>
+    </view>
+    <view class='contentBox'>
+      <view class="littleTitle">地区</view>
+      <view class="littleContent">
+        <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
+          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="card flex" hover-class='t-hoverColor'>
+  <label class="cardTitle">投后股份(%)*</label>
+  <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value='{{pro_finance_stock_after}}' />
 </view>

@@ -1,22 +1,40 @@
 <import src="/pages/Template/Template.wxml" />
 
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
-
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'加我为人脉',show : 1,IdentificationShow :1,playTime:0}}"></template>
-
+  <view class="contactIcon flex">
+    <view class="littleBox">
+      <image src="/img/iocn-weixin@2x.png" class="messageIconStyle"></image>
+    </view>
+    <view class="littleBox">
+      <image src="/img/icon-maimai@2x.png" class="messageIconStyle"></image>
+    </view>
+    <view class="littleBox">
+      <image src="/img/icon-zhihu@2x.png" class="messageIconStyle"></image>
+    </view>
+    <view class="littleBox">
+      <image src="/img/icon-weibo@2x.png" class="messageIconStyle"></image>
+    </view>
+    <view class="littleBox">
+      <image src="/img/icon-qq@2x.png" class="messageIconStyle"></image>
+    </view>
+    <view class="littleBox">
+      <image src="/img/icon-linkedin@2x.png" class="messageIconStyle"></image>
+    </view>
+  </view>
   <view class="downBox">
     <!--个人描述  -->
     <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
     <!--项目店铺  -->
     <template is="financingProject" data="{{project_info:project_info,text:'项目店铺',canEdit:canEdit,count:count,playTime:1}}"></template>
-    <!--成功案例  -->
+    <!-- 成功案例   -->
     <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit,playTime:1}}"></template>
     <!--  投资需求-->
     <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
     <!--资源需求  -->
-    <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>
-    <view style="height:92rpx;"></view>
+    <!-- <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>  -->
+    <!-- <view style="height:92rpx;"></view>  -->
     <!--交换名片-->
     <!-- <view class="changeCard flex" wx:if="{{!options}}">
       <view>交换名片,搭建我的人脉库</view>
@@ -63,96 +81,5 @@
     </view>
   </view>
 </view>
-<!--人脉大赛  -->
-<!-- <view class="competitor" bindtap="competitor">人脉王大赛</view> -->
 
-
-<view class="myEdit">
-  <view class="editTop">
-    <view class="personName">中国FA行业联盟</view>
-    <view class="flex">
-      <view class="personPosition">投资总监</view>
-      <view class="personActive">活跃度</view>
-    </view>
-    <view class="personPic"></view>
-  </view>
-  <view class="editBottom">
-    <view class="personCompany flex">
-      <view class="bottomPic"></view>
-      <view class="personCompanyContent">微天使 · 杭州投着乐网络科技有限公司</view>
-      <view class="checkNum">查税号</view>
-    </view>
-    <view class="personCompany flex">
-      <view class="bottomPic"></view>
-      <view class="personTelephone">15046339774</view>
-    </view>
-    <view class="personCompany flex">
-      <view class="bottomPic"></view>
-      <view class="personEmail">521fruit.love@163.com</view>
-    </view>
-  </view>
-</view>
 <!--通讯工具  -->
-<view class="contactIcon flex">
-  <view class="littleBox">
-    <image src="/img/icon-weixin@2x.png" class="messageIconStyle"></image>
-  </view>
-  <view class="littleBox">
-    <image src="/img/icon-maimai@2x.png" class="messageIconStyle"></image>
-  </view>
-  <view class="littleBox">
-    <image src="/img/icon-zhihu@2x.png" class="messageIconStyle"></image>
-  </view>
-  <view class="littleBox">
-    <image src="/img/icon-weibo@2x.png" class="messageIconStyle"></image>
-  </view>
-  <view class="littleBox">
-    <image src="/img/icon-qq@2x.png" class="messageIconStyle"></image>
-  </view>
-  <view class="littleBox">
-    <image src="/img/icon-linkedin@2x.png" class="messageIconStyle"></image>
-  </view>
-
-</view>
-<!--个人描述  -->
-<view class="personDes">
-  <view class="personTitle">个人描述</view>
-  <view class='personDesContent'>杭州投着乐网络科技有限公司成立于2016年9月，同年全资收购天津微天使网络科技有限公司及旗下微天使APP产品及相关品牌（微天使网、中国微天使节、微天使投资俱乐部、社群号等），并将互联网化FA平台（创</view>
-</view>
-<!--项目店铺  -->
-
-<view class='personDes'>
-  <view class='flex shopBox'>
-    <view class="personTitle">项目店铺</view>
-    <view class="allNum">全部(12)</view>
-  </view>
-  <!-- <template is="shopProject" data="{{myProject:project_info}}"></template> -->
-    <!-- <view class='outBox'> -->
-    <block wx:for="{{project_info}}" wx:key="{{index}}">
-      <view class='insideBox' data-id="{{item.project_id}}" hover-class='t-hoverColor' bindtap="detail">
-        <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-        <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-        <view class='flex industryBox'>
-          <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-            <view class="allIndustry">{{industry.industry_name}}</view>
-          </block>
-        </view>
-        <view class='flex otherInfo'>
-          <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-            <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
-            <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
-            <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
-            <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
-          </view>
-        </view>
-        <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}" hover-class="t-hoverColor" hover-stop-propagation="true">
-          <image src="/img/btn-zhiding@2x.png" class="starPic" wx:if='{{item.is_top == 0}}'></image>
-          <image src="/img/btn-quxiao@2x.png" class="starPic" wx:if='{{item.is_top == 1}}'></image>
-        </view>
-        <view class="top" data-id="{{item.project_id}}" wx:if="{{otherPerson == true}}">
-          <image src="/img/img-tuijian@2x.png" class="topPic" wx:if="{{item.is_top == 1 }}"></image>
-        </view>
-      </view>
-    </block>
-  <!-- </view> -->
-</view>

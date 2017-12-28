@@ -1,6 +1,5 @@
 page {
-  background: white;
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 
 #myProject {
@@ -42,13 +41,13 @@ page {
   margin-top: 16rpx;
 }
 
-.card input {
-  padding: 0 32rpx;
-  background: #f2f2f2;
-  border: 1px solid #f2f2f2;
-  height: 88rpx;
-  line-height: 88rpx;
-}
+/* .card input {
+  border: none;
+  background: #fff;
+  height: 112rpx;
+  line-height: 112rpx;
+  width: 580rpx;
+} */
 
 .slect {
   border-radius: 4px;
@@ -115,9 +114,12 @@ page {
   color: white;
   padding: 15rpx;
 }
+
 /*去电脑端上传*/
+
 .pointToPC {
-  background: #fff1e8;
+  background: #293b55;
+  opacity: 0.9;
   width: 87%;
   height: 80rpx;
   font-family: PingFangSC-Regular;
@@ -127,15 +129,18 @@ page {
   line-height: 80rpx;
   padding: 0 48rpx;
 }
-.pointPcToNet{
-  position:absolute;
-  right:48rpx;
+
+.pointPcToNet {
+  position: absolute;
+  right: 48rpx;
 }
-.pointPcIcon{
-  width:24rpx;
-  height:22rpx;
-  margin-right:8rpx;
+
+.pointPcIcon {
+  width: 24rpx;
+  height: 22rpx;
+  margin-right: 8rpx;
 }
+
 /*新样式  */
 
 .topBox {
@@ -229,18 +234,31 @@ page {
   color: #666;
   line-height: 36rpx;
 }
-.highBox{
-  height:146rpx;
+
+.highBox {
+  height: 146rpx;
 }
-.noBorder{
-  border:none;
+
+.noBorder {
+  border: none;
 }
-.card .newBox{
-  height:82rpx;
- padding:0 32rpx;
- line-height: 160rpx; 
+
+/* .card {
+  height: 112rpx;
+  line-height: 112rpx;
+  background: #fff;
+  padding: 0 32rpx;
 }
+
+.card .newBox {
+  height: 82rpx;
+  padding: 0 32rpx;
+  line-height: 160rpx;
+  text-align: right;
+} */
+
 /*模态框  */
+
 .modalBox {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -248,9 +266,10 @@ page {
   position: absolute;
   left: 0;
   top: 0;
-   z-index:9999999;
-   overflow: hidden;
+  z-index: 9999999;
+  overflow: hidden;
 }
+
 .contactModalBox {
   height: 652rpx;
   width: 506rpx;
@@ -259,71 +278,142 @@ page {
   margin-left: 79rpx;
   padding: 40rpx 32rpx 32rpx 32rpx;
   position: fixed;
-  z-index:99999999;
+  z-index: 99999999;
   border-radius: 4rpx;
 }
-.modalTitle{
-font-size:32rpx;
-color:#333333;
-line-height:32rpx;
-text-align:center;
-margin-bottom:16rpx;
+
+.modalTitle {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 32rpx;
+  text-align: center;
+  margin-bottom: 16rpx;
 }
-.modalContent{
-border:1rpx solid #e6e6e6;
-/* width:504rpx; */
-height:258rpx;
-margin-bottom:48rpx;
-margin-right: 0;
-outline: none;
-padding-top:20rpx;
-padding-left:24rpx;
-font-size:28rpx;
-color:#999999;
-line-height:28rpx;
+
+.modalContent {
+  border: 1rpx solid #e6e6e6;
+  /* width:504rpx; */
+  height: 258rpx;
+  margin-bottom: 48rpx;
+  margin-right: 0;
+  outline: none;
+  padding-top: 20rpx;
+  padding-left: 24rpx;
+  font-size: 28rpx;
+  color: #999;
+  line-height: 28rpx;
 }
-.modalTips{
-font-size:28rpx;
-color:#666666;
-line-height:40rpx;
-text-align:center;
-padding:0 28rpx;
+
+.modalTips {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 40rpx;
+  text-align: center;
+  padding: 0 28rpx;
 }
-.btn{
-background:#40587a;
-border-radius:6rpx;
-width:506rpx;
-height:88rpx;
-font-size:32rpx;
-color:#ffffff;
-line-height:88rpx;
-text-align:center;
-margin-top: 72rpx;
+
+.btn {
+  background: #40587a;
+  border-radius: 6rpx;
+  width: 506rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 88rpx;
+  text-align: center;
+  margin-top: 72rpx;
 }
-.close{
-  width:48rpx;
-  height:48rpx;
+
+.close {
+  width: 48rpx;
+  height: 48rpx;
   position: fixed;
-  top:185rpx;
-  right:78rpx;
-    z-index:999999999;
+  top: 185rpx;
+  right: 78rpx;
+  z-index: 999999999;
 }
-.aPic{
-  height:250rpx;
-  width:276rpx;
+
+.aPic {
+  height: 250rpx;
+  width: 276rpx;
   margin: 96rpx 0 62rpx 118rpx;
 }
-.projectContentInput{
+
+.projectContentInput {
   font-size: 28rpx;
   color: #ccc;
   /* line-height: 28rpx; */
   text-align: right;
   margin-right: 12rpx;
-  margin-top:32rpx;
+  margin-top: 32rpx;
 }
-.newBox{
-  color:#333
+
+.newBox {
+  color: #333;
 }
-.slect .black{
+
+.slect .black {
   color: black;
+}
+
+/*=========================  */
+
+.card {
+  height: 112rpx;
+  line-height: 112rpx;
+  background: #fff;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.cardTitle {
+  margin-left: 32rpx;
+}
+
+.newBox {
+  text-align: right;
+  height: 112rpx;
+  line-height: 112rpx;
+  width: 556rpx;
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+.otherInfo {
+  margin: 24rpx 0 30rpx 0;
+}
+
+.aLine {
+  width: 686rpx;
+  height: 2rpx;
+  background: #f0f0f0;
+  margin: 0 32rpx;
+}
+
+.littleBox {
+  background: #fff;
+  height: 208rpx;
+}
+
+.contentBox {
+  margin-top: 24rpx;
+  margin-left: 32rpx;
+}
+
+.littleTitle {
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.littleContent {
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  width: 208rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
 }
