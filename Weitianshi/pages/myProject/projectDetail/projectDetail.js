@@ -692,7 +692,7 @@ Page({
   maintainProject() {
     let id = this.data.id;
     let user_id = this.data.user_id;
-    app.href('/pages/myProject/publishProject/publishProject?pro_id=' + id)
+    app.href('/pages/myProject/publishedProject/publishedProject?pro_id=' + id)
   },
   //分享当前页面
   onShareAppMessage: function () {

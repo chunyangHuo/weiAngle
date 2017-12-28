@@ -11,14 +11,16 @@
   width: 100%;
   height: 1992rpx;
 }
-.xiangmu1{
+
+.xiangmu1 {
   width: 100%;
   height: 50rpx;
-  background: #cccccc;
+  background: #ccc;
 }
+
 .swiper-tab-list {
   display: inline-block;
-  width:33.33%;
+  width: 33.33%;
   font-size: 30rpx;
   color: #999;
   line-height: 62rpx;
@@ -34,7 +36,6 @@
   line-height: 80rpx;
   border-bottom: 4rpx solid white;
 }
-
 
 /*banner轮播图  */
 
@@ -197,4 +198,247 @@
 
 .dropDown {
   top: 160rpx;
+}
+
+/*新样式  */
+
+.searchBox {
+  background: #293b55;
+  /* width: 100%; */
+  /* height: 98rpx; */
+  border-radius: 0;
+  padding:16rpx 32rpx;
+  height: auto;
+}
+
+.seachSth {
+  width: 684rpx;
+  border-radius: 92rpx;
+  background: #fff;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  text-align: left;
+}
+.search_icon1 {
+  display: block;
+  line-height: 64rpx;
+  margin: 14rpx 16rpx 0 30rpx;
+}
+
+.jumpBox {
+  margin-top: 98rpx;
+  background: #fff;
+  width: 100%;
+  height: 140rpx;
+  padding: 44rpx 0 40rpx 0;
+}
+
+.jumpTo {
+  width: 25%;
+  text-align: center;
+}
+
+.jumpImage {
+  background: rgba(58, 158, 244, 0.34);
+  width: 90rpx;
+  height: 88rpx;
+  border-radius: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 16rpx;
+}
+
+.jumpToContent {
+  font-size: 26rpx;
+  color: #333;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.selectProject {
+  width: 100%;
+  font-size: 26rpx;
+  color: #333;
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+/*精选内容  */
+
+.selectProjectBox {
+  margin-bottom: 32rpx;
+  padding: 28rpx 32rpx;
+  padding-bottom: 0;
+  position: relative;
+  background: #fff;
+}
+
+/* .insideBox {
+  border-bottom: 0.5rpx solid #f0f0f0;
+  padding: 32rpx;
+  position: relative;
+} */
+
+.insideBox:last-child {
+  border-bottom: none;
+}
+
+.selectProjectBox .describle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 42rpx;
+  text-align: left;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-weight: bold;
+}
+
+.projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: 0rpx;
+  top: 0rpx;
+  position: absolute;
+}
+
+.industryBox {
+  word-break: break-all;
+  flex-wrap: wrap;
+}
+
+.allIndustry {
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  padding: 0 16rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 50rpx;
+  text-align: center;
+  margin-right: 16rpx;
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+
+.otherInfo {
+  margin-bottom: 44rpx;
+}
+
+.allProjectDetail {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.projectDetailLine {
+  color: #666;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  text-align: left;
+  padding-left: 10rpx;
+}
+
+.projectDetailLine:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLine:last-child {
+  border-right: none;
+}
+
+/*用户信息  */
+
+.userPic {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 100%;
+}
+
+.userPicText {
+  background: #f5f5f5;
+  font-size: 24rpx;
+  color: #333;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 100%;
+  line-height: 64rpx;
+}
+
+.userInfo {
+  margin-bottom: 20rpx;
+}
+
+.userInfoRight {
+  margin-left: 16rpx;
+}
+
+.userName {
+  font-size: 24rpx;
+  color: #333;
+  text-align: left;
+}
+
+.userCompany {
+  font-size: 20rpx;
+  color: #999;
+  text-align: left;
+}
+
+.userLine {
+  background: #f0f0f0;
+  width: 686rpx;
+  height: 2rpx;
+}
+
+.personNumPic {
+  height: 24rpx;
+  width: 38rpx;
+  margin-top: 34rpx;
+}
+
+.personNum {
+  font-size: 24rpx;
+  color: #666;
+  text-align: left;
+  margin: 28rpx 0 32rpx 14rpx;
+}
+
+.t-toAccreditation {
+  right: 32rpx;
+  background:#3378e0;
+}
+
+.appling, .refuseToRead {
+  font-size: 24rpx;
+  color: #ccc;
+  text-align: center;
+  margin-top: 30rpx;
+  position: absolute;
+  right: 52rpx;
+  line-height: 36rpx;
+}
+
+.t-btnToAccreditation {
+  right: 34rpx;
+}
+
+.t-btnToAccreditation {
+  border: 2rpx solid #3378e0;
+  border-radius: 4rpx;
+  width: 132rpx;
+  height: 52rpx;
+}
+
+.t-accreditation {
+  background: #fff;
+  border-top: 0.5rpx solid #f0f0f0;
 }

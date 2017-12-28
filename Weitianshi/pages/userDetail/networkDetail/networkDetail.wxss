@@ -71,10 +71,12 @@
   white-space: nowrap;
   padding-left: 110rpx;
 }
-.addPersonBox{
+
+.addPersonBox {
   background: #40587a;
   padding-right: 134rpx;
 }
+
 .pushProjectBox {
   padding-right: 110rpx;
   background: #40587a;
@@ -100,4 +102,11 @@
   line-height: 30rpx;
   text-align: center;
   color: #fff;
+}
+
+.contactLine {
+  background: #f0f0f0;
+  width: 686rpx;
+  height: 2rpx;
+  margin:0 32rpx;
 }

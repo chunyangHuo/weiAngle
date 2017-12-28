@@ -379,13 +379,13 @@ textarea {
   padding-right: 24rpx;
 }
 
-.card input {
+/* .card input {
   padding: 0 32rpx;
   background: #f2f2f2;
   border: 1px solid #f2f2f2;
   height: 88rpx;
   line-height: 88rpx;
-}
+} */
 
 .card_case {
   padding: 0 32rpx;
@@ -755,20 +755,6 @@ textarea {
   line-height: 88rpx;
   text-align: left;
   padding-left: 32rpx;
-}
-
-.t-toAccreditation {
-  font-size: 24rpx;
-  color: #fff;
-  line-height: 52rpx;
-  text-align: center;
-  background: #40587a;
-  border-radius: 4rpx;
-  width: 136rpx;
-  height: 52rpx;
-  margin-top: 18rpx;
-  position: absolute;
-  right: 0;
 }
 
 .t-btnToAccreditation {

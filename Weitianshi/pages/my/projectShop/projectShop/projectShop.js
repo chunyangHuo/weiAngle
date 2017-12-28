@@ -32,7 +32,37 @@ Page({
     contentMore: false,
     otherPerson: false,
     notHave: 1,
-    firstTime: true
+    firstTime: true,
+    // bottomBtn
+    subOperation: [
+      {
+        id: 1,
+        eventName: '_toIndex',
+        picUrl: '/img/icon-fenxiang@2x.png',
+        text: "首页"
+      },
+      {
+        id: 2,
+        eventName: '_toIndex',
+        picUrl: '/img/icon-fenxiang@2x.png',
+        text: '删除'
+      },
+      {
+        id: 3,
+        eventName: '_toIndex',
+        picUrl: '/img/icon-fenxiang@2x.png',
+        text: '编辑'
+      },
+      {
+        id: 4,
+        eventName: '_toIndex',
+        picUrl: '/img/icon-fenxiang@2x.png',
+        text: '私密性设置'
+      }
+    ],
+    mainOperation: {
+      value: '创建项目'
+    },
   },
   onLoad: function (options) {
     wx.showLoading({

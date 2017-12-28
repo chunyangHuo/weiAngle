@@ -66,9 +66,9 @@ function projectListShare() {
   }
 }
 // 机构详情分享
-function orgDetail(){
-  return{
-    title:'机构详情',
+function orgDetail() {
+  return {
+    title: '机构详情',
     path: '/pages/organization/org_detail/org_detail'
   }
 }
@@ -204,6 +204,7 @@ function shareLog(path) {
                 url: url_common + '/api/log/shareLogRecord',
                 method: "POST",
                 data: {
+                  app_key: app.globalData.app_key,
                   code: code,
                   path: path,
                   encryptedData: encryptedData,

@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <!-- <template is="topBlock"></template> -->
-<view class="user_info flex user-infom" bindtap="toMyCard" hover-class="t-hoverColor">
+<!-- <view class="user_info flex user-infom" bindtap="toMyCard" hover-class="t-hoverColor">
   <view class="user_left">
     <view class="flex">
       <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
@@ -65,39 +65,97 @@
       <image src="/img/icon-linkedin@2x.png" class="messageIconStyle"></image>
     </view>
   </view>
+</view> -->
+
+
+<view class="myInfo flex">
+  <view class="user_left" catchtap='avatarEdit'>
+    <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
+    <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
+    <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
+  </view>
+  <view class='user_right'>
+    <view class="userName" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
+    <view class="user_career">
+      <label wx:if="{{user.user_company_career}}">{{user.user_company_career}}</label> ·
+      <label wx:if="{{user.user_company_name}}">{{user.user_company_name}}</label>
+    </view>
+  </view>
+  <view class="flex">
+    <image src="/img/icon-jiantou3@2x.png" class="myArrowStyle"></image>
+  </view>
 </view>
-<!--人气-->
+
+
+
+
+<!--浏览过-->
 <view class="user_down flex">
-  <view hover-class="t-hoverColor" class="user_popularity user_tips contacts-sentimentm" bindtap="popularity">
+  <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity" hover-class="t-hoverColor">
     <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
     <label class="popularityNum" wx:if="{{count.user_view_new}}">+{{count.user_view_new}}</label>
-    <label class="popularityNum" wx:if="{{count.user_view_new==0}}"></label>
+    <label wx:if="{{count.user_view_new==0}}"></label>
     <view wx:if="{{!user.user_popularity}}" class="popularity-Num">{{count.user_view_all}}</view>
-    <view class="popularity-people">人气</view>
+    <view class="popularity-people">浏览过</view>
   </view>
-  <!--加我为人脉-->
+  <!--新的好友-->
   <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class="t-hoverColor">
     <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
     <label class="attentionNum" wx:if="{{count.user_followed_new}}">+{{count.user_followed_new}}</label>
-    <label class="popularityNum" wx:if="{{count.user_followed_new==0}}"></label>
+    <label wx:if="{{count.user_followed_new==0}}"></label>
     <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all}}
     </view>
-    <view class="attention-people">加我为人脉</view>
+    <view class="attention-people">Ta的好友</view>
   </view>
-  <!--潜在项目-->
+  <!-- 收到项目 -->
   <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class="t-hoverColor">
     <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
+    <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
     <label class="potentialNum" wx:if="{{count.project_push_new}}">+{{count.project_push_new}}</label>
-    <label class="popularityNum" wx:if="{{count.project_push_new==0}}"></label>
+    <label wx:if="{{count.project_push_new==0}}"></label>
     <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.project_push_all}}</view>
-    <view class="potential-content">潜在项目</view>
+    <view class="potential-content">收到项目</view>
+  </view>
+</view>
+
+<!--项目店铺  -->
+<view class="shopBlock flex" bindtap="projectShop" hover-class="t-hoverColor">
+  <image src="/img/icon-xiangmudianpu@2x.png" class="shopPic"></image>
+   <view> 
+    <view class="shopTitle">项目店铺</view>
+    <view class="shopShow">FA专属 · 项目展示 · 案源收集</view>
+   </view> 
+  <view class="flex">
+    <view class="number">{{count.project_count}}</view>
+    <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
   </view>
 </view>
 <!--模块内容  -->
 <view class="outSideBox">
+  <view class="blockInfo flex" hover-class="t-hoverColor">
+    <view class="flex">
+      <image src="/img/icon-haoyou@2x.png" class="blockPic"></image>
+      <view class="blockTitle">我的好友</view>
+    </view>
+    <view class="flex">
+      <view class="number">{{count.meet_project_count}}</view>
+      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
+    </view>
+  </view>
+  <view class="aline"></view>
+  <view class="blockInfo flex" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}" hover-class="t-hoverColor">
+    <view class="flex">
+      <image src="/img/icon-erweima@2x.png" class="blockPic"></image>
+      <view class="blockTitle">名片二维码</view>
+    </view>
+    <view class="flex">
+      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
+    </view>
+  </view>
+  <view class="aline"></view>
   <view class="flex blockInfo" bindtap="identity" hover-class="t-hoverColor">
     <view class="flex">
-      <image src="/img/icon-shenfenrenzheng@2x.png" class="blockPic"></image>
+      <image src="/img/icon-renzheng@2x.png" class="blockPic"></image>
       <view class="blockTitle">身份认证</view>
     </view>
     <view class="blockContent" wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
@@ -106,47 +164,36 @@
     <view class="identifyContent" wx:if="{{status == 2}}">{{user.authentication[0].group_title}}</view>
   </view>
   <view class="aline"></view>
-  <view class="blockInfo flex" bindtap="projectShop" hover-class="t-hoverColor">
-    <view class="flex">
-      <image src="/img/Shape@2x.png" class="blockPic"></image>
-      <view class="blockTitle">项目店铺</view>
-      <image src="/img/img-fazhuanshu@2x.png" class="FaShop"></image>
-      <image src="/img/img-xiangmuzhanshi@2x.png" class="FaShop"></image>
-      <image src="/img/img-anyuanshouji@2x.png" class="FaShop"></image>
-    </view>
-    <view class="flex">
-      <view class="number">{{count.project_count}}</view>
-      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-    </view>
-  </view>
-  <view class="aline"></view>
   <view class="blockInfo flex" bindtap="contactProject" hover-class="t-hoverColor">
     <view class="flex">
-      <image src="/img/icon-yuetandexiangmu@2x.png" class="blockPic"></image>
-      <view class="blockTitle">约谈的项目</view>
+      <image src="/img/icon-yuetan@2x.png" class="blockPic"></image>
+      <view class="blockTitle">我约谈的项目</view>
     </view>
     <view class="flex">
       <view class="number">{{count.meet_project_count}}</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
-  <view class="aline"></view>
-  <view class="blockInfo flex" bindtap="collectProject" hover-class="t-hoverColor">
-    <view class="flex">
-      <image src="/img/icon-shoucangdexiangmu@2x.png" class="blockPic"></image>
-      <view class="blockTitle">收藏的项目</view>
-    </view>
-    <view class="flex">
-      <view class="number">近期开放</view>
-      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-    </view>
+</view>
+
+<view class="contectPerson flex" bindtap="collectProject" hover-class="t-hoverColor">
+  <view class="flex">
+    <image src="/img/icon-kefu@2x.png" class="blockPic"></image>
+    <view class="blockTitle">联系客服</view>
+  </view>
+  <view class="flex">
+    <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
   </view>
 </view>
 
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+
+
+
 <!--税号-->
-<view class="modalBox" hidden="{{modalBox==0}}">
+<!-- <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="IdentificationNum">
     <view class="flex">
       <label class="oneLine"></label>
@@ -173,4 +220,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
