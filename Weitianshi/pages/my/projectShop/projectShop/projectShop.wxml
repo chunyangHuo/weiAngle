@@ -91,7 +91,7 @@
 
   <view class="highBox"></view>
   <!--我的项目店铺的底部按钮  -->
-  <view class="flex aboutNetwork" wx:if="{{otherPerson == false}}">
+  <!-- <view class="flex aboutNetwork" wx:if="{{otherPerson == false}}">
     <view class="flexBox" hover-class="t-hoverColor" catchtap="toShareShop">
       <image src='/img/icon-erweima@2x.png' class='shopPic'></image>
       <view class='shopBlock'>店铺二维码</view>
@@ -109,10 +109,11 @@
     </view>
     <view class="t-line"></view>
     <view bindtap="editDetail" class='creatProject' hover-class="t-redColor">创建项目</view>
-  </view>
+  </view> -->
+  <buttonBtn subOperation = '{{subOperation}}'  mainOperation = '{{mainOperation}}'></buttonBtn>
 
   <!--他人项目店铺的底部按钮  -->
-  <view class="aboutNetwork flex" wx:if="{{otherPerson == true}}">
+  <!-- <view class="aboutNetwork flex" wx:if="{{otherPerson == true}}">
     <view class="flexBox" bindtap="moreProject" hover-class="t-hoverColor">
       <image src='/img/icon-shouye@2x.png' class='shopPic'></image>
       <view class='shopBlock'>首页</view>
@@ -129,7 +130,8 @@
     </view>
     <view class='t-line'></view>
     <view bindtap="pushProject" class='creatProject' hover-class="t-redColor">提交项目</view>
-  </view>
+  </view> -->
+
 
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
