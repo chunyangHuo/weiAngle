@@ -1333,7 +1333,7 @@
     </view>
   </view>
   <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
-
+</template>
 
 <!--项目店铺公共  -->
 <template name="shopProject">

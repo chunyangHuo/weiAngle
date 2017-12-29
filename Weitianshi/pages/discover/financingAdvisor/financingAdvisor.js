@@ -7,17 +7,13 @@ Page({
   data: {
     firstTime: true,
     searchText: '搜索公司名称、项目名称',
-    investorList: '',
+    faList: '',
+    faList2: '',
     hidden: true,
     slectProject: '',
-    SearchInit: FilterModel.data,
+    banner_organization: app.globalData.picUrl.banner_organization,
     // 筛选搜索
-    tab: [
-      { name: '领域', check: false, arr: false, id: 'industry' },
-      { name: '轮次', check: false, arr: false, id: "stage" },
-      { name: '金额', check: false, arr: false, id: "scale" },
-      { name: '地区', check: false, arr: false, id: "hotCity" }
-    ],
+    // SearchInit: FilterModel.data,
     searchData: {
       industry: [],
       stage: [],
@@ -61,22 +57,27 @@ Page({
           })
         }
       })
-      that.investorList();
+      that.faList();
     })
   },
   onShow() {
     if (!this.data.firstTime) {
-      this.investorList();
+
+      this.faList();
     }
   },
+
+
   //下拉刷新
   onPullDownRefresh() {
-    //请求投资人列表
-    this.investorList();
+    //请求FA列表
+    this.faList();
+
   },
-  //投资人列表信息
-  investorList() {
-    let that = this;
+
+  //FA列表信息
+  faList() {
+    var that = this;
     let SearchInit = this.data.SearchInit;
     wx.showLoading({
       title: 'loading',
@@ -86,49 +87,32 @@ Page({
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
         user_id: this.data.user_id,
-        type: 'investor',
+        type: 'fa',
         filter: this.data.searchData
       },
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('投资人列表', res.data.data)
+          console.log('FA列表', res.data.data)
           wx.hideLoading();
-          let investorList = res.data.data;
-          let page_end = res.data.data.page_end;
-          // searchData.currentIndex = 99;
-          // 存入无筛选项的投资人列表以备他用
-          if (!that.data.investorList) {
+          let faList = res.data.data;
+          // SearchInit.currentIndex = 99;
+          // 存入无筛选项的FA列表以备他用
+          if (!that.data.faList) {
             that.setData({
-              investorList2: investorList
+              faList2: faList
             })
           }
           that.setData({
-            investorList: investorList,
+            faList: faList,
             // searchData: searchData
           })
         }
       },
       complete() {
-        wx.hideLoading()
+        wx.hideLoading();
       }
     });
-  },
-  // 搜索
-  searchSth() {
-    let user_id = this.data.user_id;
-    let str;
-    str = 'investorList';
-    // app.href('/pages/search/search3/search3?user_id=' + user_id)
-    wx.navigateTo({
-      url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
-    })
-  },
-  //  跳转到项目店铺筛选页面
-  tagFilter() {
-    wx.navigateTo({
-      url: '/pages/my/projectShop/tagFilter/tagFilter',
-    })
   },
   // 用户详情
   userDetail: function (e) {
@@ -153,13 +137,13 @@ Page({
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
         user_id: user_id,
-        type: 'investor',
+        type: 'fa',
         page: this.data.currentPage,
         filter: this.data.searchData
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "investorList")
+    app.loadMore(that, request, "faList")
 
   },
   // 分享当前页面
@@ -221,6 +205,22 @@ Page({
       app.errorHide(that, res.data.error_Msg, 3000)
     }
   },
+  // 搜索
+  searchSth() {
+    let user_id = this.data.user_id;
+    let str;
+    str = 'fa';
+    // app.href('/pages/search/search3/search3?user_id=' + user_id)
+    wx.navigateTo({
+      url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
+    })
+  },
+  //  跳转到项目店铺筛选页面
+  tagFilter() {
+    wx.navigateTo({
+      url: '/pages/my/projectShop/tagFilter/tagFilter',
+    })
+  },
   //---------------------------我的人脉--------------------------------------------------------------
   // 一键拨号
   telephone: function (e) {
@@ -279,9 +279,6 @@ Page({
         }
       },
     });
-  },
-  onUnload: function () {
-    app.initTran()
   },
   onUnload: function () {
     app.initTran()

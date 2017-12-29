@@ -22,9 +22,9 @@
       </view>
     </view>
   </block>
-  <template is="theBottom" wx:if="{{investorList!==''}}"></template>
+  <!-- <template is="theBottom" wx:if="{{investorList!==''}}"></template> -->
   <!--fa列表  -->
-  <block wx:for="{{faList}}" wx:key="{{res_match}}" wx:if='{{faList}}'>
+  <block wx:for="{{faList}}" wx:key="{{faList}}" wx:if='{{faList}}'>
     <view class='investorCard'>
       <view class="t-investorColor" hover-class='t-hoverColor'>
         <template is='InvestorCard' data='{{item}}'></template>

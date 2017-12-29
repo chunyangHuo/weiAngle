@@ -243,4 +243,7 @@ Page({
     wx.setStorageSync('QR_id', QR_id)
     app.href('/pages/my/qrCode/qrCode')
   },
+  myFri:function(){
+    app.href('/pages/discover/myFriend/myFriend')
+  }
 })

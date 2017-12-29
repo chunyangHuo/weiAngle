@@ -6,7 +6,7 @@
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav">一键尽调</view>
     <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}} due-diligencem" data-current="3" bindtap="swichNav">相似公司</view>
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:918rpx" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1038rpx" bindchange="bindChange">
     <!--项目详情  -->
     <swiper-item>
       <scroll-view scroll-y="true">
@@ -65,7 +65,7 @@
               <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}" hover-class='t-hoverColor'>
                 <view class="weui-cell__hd">
                   <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
-                  <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
+                   <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view> 
                 </view>
                 <view class="weui-cell__bd contacts-detailm">
                   <view class="userName">{{user.user_name}}</view>
@@ -74,7 +74,7 @@
                     <view class="userCareer">{{user.user_career}}</view>
                     <view class="userCompany">·{{user.user_company}}</view>
                     <view class="contactPersonBox flex">
-                      <image src="/img/icon-jiantou.png" class="userIcon"></image>
+                       <image src="/img/icon-jiantou.png" class="userIcon"></image> 
                     </view>
                   </view>
                 </view>

@@ -132,7 +132,7 @@
 </view>
 <!--模块内容  -->
 <view class="outSideBox">
-  <view class="blockInfo flex" hover-class="t-hoverColor">
+  <view class="blockInfo flex" hover-class="t-hoverColor" bindtap='myFri'>
     <view class="flex">
       <image src="/img/icon-haoyou@2x.png" class="blockPic"></image>
       <view class="blockTitle">我的好友</view>

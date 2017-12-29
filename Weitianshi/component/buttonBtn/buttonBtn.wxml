@@ -10,7 +10,7 @@
   <button class='mainOperation' bindtap="mainOperation" hover-class="t-redColor">{{mainOperation.value}}</button>
 </view>
 
-<!-- <view class="flexBox" hover-class="t-hoverColor" catchtap="toShareShop">
+ <!-- <view class="flexBox" hover-class="t-hoverColor" catchtap="toShareShop">
   <image src='/img/icon-erweima@2x.png' class='shopPic'></image>
   <view class='shopBlock'>店铺二维码</view>
 </view>
@@ -25,4 +25,4 @@
   <image src='/img/icon-dianpu@2x.png' class='shopPic'></image>
   <view class='shopBlock'>店铺装修</view>
 </view>
-<view class="t-line"></view> -->
+<view class="t-line"></view>  -->

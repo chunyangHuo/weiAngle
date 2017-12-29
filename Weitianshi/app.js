@@ -784,9 +784,10 @@ App({
   initTran() {
     wx.setStorageSync('tran_industry', []);
     wx.setStorageSync('tran_scale', []);
-    wx.setStorageSync('tran_stage', [])
-    wx.setStorageSync('tran_area', [])
-    wx.setStorageSync('tran_hotCity', [])
+    wx.setStorageSync('tran_stage', []);
+    wx.setStorageSync('tran_area', []);
+    wx.setStorageSync('tran_hotCity', []);
+    wx.removeStorageSync('projectShopFilterCache');
   },
 
 
