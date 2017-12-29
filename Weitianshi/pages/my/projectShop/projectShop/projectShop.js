@@ -39,7 +39,10 @@ Page({
         id: 1,
         eventName: '_toIndex',
         picUrl: '/img/icon-fenxiang@2x.png',
-        text: "首页"
+        text: "首页",
+        func:function(){
+          console.log(11111)
+        }
       },
       {
         id: 2,
