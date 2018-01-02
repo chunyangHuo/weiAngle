@@ -41,6 +41,29 @@
       <button bindtap="cardChange" hover-class='t-other-button-hover'>去交换</button>
     </view> -->
 
+    <view class="flex t-aboutNetwork" wx:if="{{!options}}">
+      <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
+        <image src='/img/icon-shouye@2x.png'class="t-shopPic1"></image>
+        <view class='t-shopBlock'>首页</view>
+      </view>
+      <view class="t-line"></view>
+      <view class="t-flexBox1">
+        <view class='t-shopBlock'  hover-class="t-hoverColor">
+          <image src='/img/icon-erweima12.png' class="t-shopPic1"></image>
+          二维码</view>
+      </view>
+      <view class="t-line"></view>
+      <view class="t-flexBox1" bindtap="avatarEdit" hover-class="t-hoverColor">
+        <image src='/img/icon-bianji1@2x.png' class="t-shopPic1"></image>
+        <view class='t-shopBlock'>编辑</view>
+      </view>
+      <view class="t-line"></view>
+      <button open-type='share' class='t-creatProject' hover-class="t-redColor">分享名片</button>
+    </view>
+
+
+
+
     <!--我的人脉和加入人脉-->
     <view class="aboutNetwork flex" wx:if="{{options}}">
       <view bindtap="myNetwork">我的人脉</view>
@@ -81,5 +104,4 @@
     </view>
   </view>
 </view>
-
 <!--通讯工具  -->

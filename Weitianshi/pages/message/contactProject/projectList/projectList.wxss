@@ -65,13 +65,15 @@
 }
 
 .t-outsideBox {
-  margin: 0 30rpx 22rpx 30rpx;
+  margin: 0 0 22rpx 0;
   position: relative;
-  background: #fafafa;
+  /* background: #fafafa; */
 }
-.t-outsideBox123{
-    position: relative;
+
+.t-outsideBox123 {
+  position: relative;
 }
+
 .hoverBack {
   background: #e0e0e0;
 }
@@ -177,9 +179,9 @@
 }
 
 .t-renzheng {
-  width: 24rpx;
-  height: 24rpx;
-  margin-right: 4rpx;
+  width: 98rpx;
+  height: 36rpx;
+  margin-right: 16rpx;
 }
 
 .t-userPart1 {
@@ -287,13 +289,11 @@
 }
 
 .t-record {
-  position: absolute;
-  top: 158rpx;
-  right: 44rpx;
-  font-size: 20rpx;
-  color: #ccc;
-  line-height: 26rpx;
-  text-align: left;
+  font-size: 10px;
+  color: #999;
+  background: #f5f5f5;
+  border-radius: 2px;
+  padding: 4rpx 8rpx;
 }
 
 .btnPic {

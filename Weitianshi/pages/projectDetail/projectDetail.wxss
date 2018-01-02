@@ -16,7 +16,9 @@ scroll-view {
   border-bottom: 5rpx solid #333;
   text-align: center;
 } */
-
+.media123{
+  background: #f2f3f4;
+}
 .more {
   color: #009eff;
   font-size: 12px;

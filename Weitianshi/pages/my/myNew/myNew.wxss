@@ -461,7 +461,9 @@ page {
   color: #333;
   text-align: left;
   line-height: 50rpx;
-  margin-bottom: 16rpx;
+  margin-bottom: -2rpx;
+  margin-right: 8.5px;
+  margin-left: -15rpx;
 }
 
 .shopShow {

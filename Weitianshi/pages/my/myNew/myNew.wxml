@@ -68,7 +68,7 @@
 </view> -->
 
 
-<view class="myInfo flex">
+<view class="myInfo flex" bindtap='toMyCard'>
   <view class="user_left" catchtap='avatarEdit'>
     <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
     <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
@@ -121,11 +121,11 @@
 <!--项目店铺  -->
 <view class="shopBlock flex" bindtap="projectShop" hover-class="t-hoverColor">
   <image src="/img/icon-xiangmudianpu@2x.png" class="shopPic"></image>
-   <view> 
+   <view class="flex" style="align-items:center"> 
     <view class="shopTitle">项目店铺</view>
     <view class="shopShow">FA专属 · 项目展示 · 案源收集</view>
    </view> 
-  <view class="flex">
+  <view class="flex" style="align-items:center;margin-left:12rpx;">
     <view class="number">{{count.project_count}}</view>
     <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
   </view>

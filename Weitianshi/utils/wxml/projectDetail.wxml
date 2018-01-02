@@ -191,19 +191,40 @@
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
 </view>
 
-<view class=" flex floatBtn flexBox" hidden="{{currentTab==1}}">
+<!-- <view class=" flex floatBtn flexBox">
   <view class="collectBox" hover-class='t-hoverColor' bindtap="collectProject">
     <image src="/img/icon-shoucang@2x.png" class="collectPic"></image>
   </view>
   <view class="contactProject" hover-class='t-other-button-hover' catchtap="contactPerson">联系项目方</view>
   <view class='t-line'></view>
   <view class="businessBook" catchtap="businessBook" hover-class='t-other-button-hover' wx:if="{{button_type == 1}}">商业计划书</view>
-  <view class="businessBook1" wx:if="{{button_type == 0}}">申请中</view>
-  <view class="businessBook project-applicationm" hover-class='t-other-button-hover' bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
-  <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class='t-other-button-hover'>重新申请</view>
-</view>
-<view class=" flex floatBtn flexBox jigou" bindtap='toMap' hidden="{{currentTab==0||currentTab==2 }}">
-  机构版买家图谱
+   <view class="businessBook1" wx:if="{{button_type == 0}}">申请中</view> 
+   <view class="businessBook project-applicationm" hover-class='t-other-button-hover' bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
+  <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class='t-other-button-hover'>重新申请</view> 
+</view> -->
+<view class="flex t-aboutNetwork">
+  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}" hover-class="t-hoverColor" bindtap="moreProject">
+    <image src='/img/icon-shouye@2x.png' class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+    <view class='t-shopBlock'>首页</view>
+  </view>
+  <view class="t-line"></view>
+  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}">
+    <view class='t-shopBlock' wx:if="{{score}}" bindtap="projectRemark" hover-class="t-hoverColor">
+      <image src='/img/icon-pingjia@2x.png'  class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+      评价</view>
+  </view>
+  <view class="t-line"></view>
+  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}"  bindtap="maintainProject" hover-class="t-hoverColor">
+    <image src='/img/icon-fenxiang@2x.png' class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+    <button class='t-shopBlock'  open-type="share">分享</button>
+  </view>
+  <view class="t-line"></view>
+  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}" catchtap="businessBook" wx:if="{{button_type == 1}}" hover-class="t-hoverColor">
+    <image src='/img/icon-jihuashu@2x.png' class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+    <view class='t-shopBlock'>商业计划书</view>
+  </view>
+  <view class="t-line"></view>
+  <view class='t-creatProject' catchtap="contactPerson" hover-class="t-redColor">联系项目方</view>
 </view>
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">

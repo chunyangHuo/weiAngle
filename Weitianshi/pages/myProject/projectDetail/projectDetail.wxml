@@ -11,8 +11,31 @@
   <button class="push" disabled="true">一键推送(近期开放)</button>
 </view> -->
 <!-- <view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}"> -->
-<view class=" flex floatBtn flexBox">
-<!--hidden="{{currentTab==1 }}"  -->
+<view class="flex t-aboutNetwork">
+  <view class="t-flexBox" hover-class="t-hoverColor" bindtap="moreProject">
+    <image src='/img/icon-shouye@2x.png' class='t-shopPic'></image>
+    <view class='t-shopBlock'>首页</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="t-flexBox">
+    <view class='t-shopBlock' bindtap="deleteProject"  id="shareFriend" hover-class="t-hoverColor">
+      <image src='/img/icon-shanchu@2x.png' class='t-shopPic'></image>
+      删除</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="t-flexBox"  bindtap="maintainProject" hover-class="t-hoverColor">
+    <image src='/img/icon-bianji1@2x.png' class='t-shopPic'></image>
+    <view class='t-shopBlock'>编辑</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="t-flexBox" bindtap="initPrivacy" hover-class="t-hoverColor">
+    <image src='/img/icon-simixing@2x.png' class='t-shopPic'></image>
+    <view class='t-shopBlock'>私密性设置</view>
+  </view>
+  <view class="t-line"></view>
+  <button open-type="share" class='t-creatProject' hover-class="t-redColor">分享</button>
+</view>
+<!-- <view class=" flex floatBtn flexBox">
   <view class="collectBox" bindtap="deleteProject" hover-class='t-hoverColor'>
     <image src="/img/icon-shanchu@2x.png" class="collectPic"></image>
   </view>
@@ -25,7 +48,7 @@
     <image src="/img/icon-simixingshezhi@2x.png" class="btnPic"></image>
     <view class="businessBook">私密性设置</view>
   </view>
-</view>
+</view> -->
 <!--邮箱-->
 <view class="modal" wx:if="{{sendPc == 1}}">
   <view class="bpModal">

@@ -47,7 +47,9 @@ page {
 .sort {
   display: flex;
 }
-
+.media123{
+  background: #f2f3f4;
+}
 /*others的卡片*/
 
 .others {
@@ -2184,6 +2186,7 @@ page {
   font-size: 15px;
   color: #333;
   padding-top: 15rpx;
+  padding-left: 32rpx;
 }
 
 .hasNothing {

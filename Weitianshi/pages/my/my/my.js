@@ -102,6 +102,10 @@ Page({
   pushTo: function () {
     app.href('/pages/message/potentialProject/potentialProject')
   },
+  //头像编辑
+  avatarEdit() {
+    app.href('/pages/my/cardEdit/cardEdit')
+  },
   //寻找案源
   findProjectEdit: function () {
     app.href('/pages/match/match/investDemand/investDemand?current=' + 1)

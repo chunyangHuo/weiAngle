@@ -25,3 +25,6 @@ page {
   text-align: center;
   height: 800rpx;
 }
+.media123{
+  background: #f2f3f4;
+}

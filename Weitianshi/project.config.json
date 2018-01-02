@@ -151,12 +151,6 @@
 				},
 				{
 					"id": -1,
-					"name": "首页",
-					"pathName": "pages/discoverProject/discoverProject",
-					"query": "id=Opv5J3lW"
-				},
-				{
-					"id": -1,
 					"name": "创建页面",
 					"pathName": "pages/myProject/publishProject/publishProject",
 					"query": ""
@@ -168,10 +162,16 @@
 					"query": "id=k0xlyx0v&index=undefined"
 				},
 				{
-					"id": 24,
-					"name": "按钮",
-					"pathName": "component/buttonBtn/buttonBtn",
-					"query": ""
+					"id": 25,
+					"name": "他人的投资名片",
+					"pathName": "pages/userDetail/networkDetail/networkDetail",
+					"query": "id=Opv5J3lW"
+				},
+				{
+					"id": -1,
+					"name": "我的投资名片",
+					"pathName": "pages/my/my/my",
+					"query": "id=Opv5J3lW"
 				}
 			]
 		}

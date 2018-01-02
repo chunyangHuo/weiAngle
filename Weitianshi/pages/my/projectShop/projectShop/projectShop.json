@@ -1,8 +1,5 @@
 {
   "navigationBarTitleText": "我的项目店铺",
   "navigationBarBackgroundColor": "#fafafa",
-  "navigationBarTextStyle": "black",
-  "usingComponents": {
-    "buttonBtn": "/component/buttonBtn/buttonBtn"
-  }
+  "navigationBarTextStyle": "black"
 }
