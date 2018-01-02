@@ -1,0 +1,27 @@
+<import src="/pages/Template/Template.wxml" />
+  <!--筛选和搜索  -->
+  <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
+<!--投资人  -->
+<scroll-view style="height:2000rpx;margin-top:96rpx" scroll-y="true" bindscrolltolower='loadMore'>
+  <!-- <template is="searchNothing" data="{{empty:investorList}}"></template> -->
+  <block wx:for="{{faList}}" wx:key="{{faList}}">
+    <view class='investorCard'>
+      <view class="t-investorColor" hover-class='t-hoverColor'>
+        <template is='InvestorCard' data='{{item,user_id,user_mobile}}'></template>
+        <view class="t-alineHeight"></view>
+        <template is='cardBottom1' data='{{item}}'></template>
+      </view>
+    </view>
+  </block>
+  <template is="theBottom" wx:if="{{faList!==''}}"></template>
+  <view class="high"></view>
+</scroll-view>
+<!--空状态-->
+<template is="isEmpty"  data="{{emptyNumber:faList}}"></template>
+<!-- <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image> -->
+
+
+
+
+
+<!---------------------------------------------------------------------------->

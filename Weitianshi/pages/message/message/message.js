@@ -14,21 +14,21 @@ Page({
       // },
       {
         event: "projectApply",
-        iconPath: "/img/icon-xiaoxi_xiangmu@2x.png",
+        iconPath: "/img/icon-shenqing@2x.png",
         message_name: "项目申请",
         count: 0,
         type_id: 0
       },
       {
         event: "projectPush",
-        iconPath: "/img/icon-xiaoxi_tuisong@2x.png",
+        iconPath: "/img/icon-tijiao456.png",
         message_name: "项目推送",
         count: 0,
         type_id: 0
       },
       {
         event: "beAddedContacts",
-        iconPath: "/img/icon-xiaoxi_renmai@2x.png",
+        iconPath: "/img/icon-tijiao123.png",
         message_name: "人脉申请",
         count: 0,
         type_id: 0

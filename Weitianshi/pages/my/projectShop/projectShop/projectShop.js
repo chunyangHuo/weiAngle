@@ -48,20 +48,15 @@ Page({
         id: 2,
         eventName: '_toIndex',
         picUrl: '/img/icon-fenxiang@2x.png',
-        text: '删除'
+        text: '分享'
       },
       {
         id: 3,
         eventName: '_toIndex',
         picUrl: '/img/icon-fenxiang@2x.png',
-        text: '编辑'
+        text: '店铺装修'
       },
-      {
-        id: 4,
-        eventName: '_toIndex',
-        picUrl: '/img/icon-fenxiang@2x.png',
-        text: '私密性设置'
-      }
+
     ],
     mainOperation: {
       value: '创建项目'
@@ -123,8 +118,6 @@ Page({
         that.requestPost();
       })
     });
-    // 清除项目店铺筛选项缓存
-    wx.removeStorageSync('projectShopFilterCache')
   },
   onShow: function () {
     if (!this.data.firstTime) {
@@ -451,5 +444,8 @@ Page({
     console.log(555)
     let that = this;
     return ShareModel.projectShopShare(that);
+  },
+  onUnload: function () {
+    app.initTran()
   },
 })

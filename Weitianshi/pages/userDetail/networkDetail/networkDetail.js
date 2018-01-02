@@ -247,5 +247,16 @@ Page({
   shareJump(e) {
     let index = e.currentTarget.dataset.index;
     app.shareJump(index);
-  }
+  },
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
+  },
+  // 二维码分享按钮
+  shareSth: function (e) {
+    var QR_id = e.currentTarget.dataset.clickid;
+    wx.setStorageSync('QR_id', QR_id)
+    app.href('/pages/my/qrCode/qrCode')
+  },
 });

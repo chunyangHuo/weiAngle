@@ -16,7 +16,7 @@
               <view>
                 <view class="flex">
                   <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-                  <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+                  <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
                   <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
                 </view>
                 <view class="allIndustry" style="text-align:left">

@@ -6,7 +6,7 @@
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav">一键尽调</view>
     <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}} due-diligencem" data-current="3" bindtap="swichNav">相似公司</view>
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:918rpx" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1038rpx" bindchange="bindChange">
     <!--项目详情  -->
     <swiper-item>
       <scroll-view scroll-y="true">
@@ -239,12 +239,12 @@
               </block>
             </view>
             <!--历史融资  -->
-            <view class="brightPoint" wx:if="{{pro_history_financeList.length !=0}}">
+            <view class="brightPoint" wx:if="{{pro_history_financeList1.length !=0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
                   <view class="title">历史融资</view>
-                  <view class="productAll">全部（
-                    <label>12</label>）</view>
+                  <view class="productAll" wx:if="{{pro_history_financeList1.length>3}}">全部（
+                    <label>{{pro_history_financeList1.length}}</label>）</view>
                 </view>
               </view>
               <block wx:for="{{pro_history_financeList}}" wx:key="{{pro_history_financeList}}">
@@ -390,11 +390,11 @@
     <!--买家图谱  -->
     <swiper-item wx:if='{{show_company}}'>
       <view class="t-matchButton flex">
-      <!--t-matchButton1  代表选中  -->
-        <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}"  bindtap='matchButt'>投资人(
+        <!--t-matchButton1  代表选中  -->
+        <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}" bindtap='matchButt'>投资人(
           <label>{{matchCount}}</label>)
         </button>
-        <button class="{{matchBut1?'t-matchButton4':'t-matchButton2'}}"  bindtap='matchButt1'>投资机构(
+        <button class="{{matchBut1?'t-matchButton4':'t-matchButton2'}}" bindtap='matchButt1'>投资机构(
           <label>{{investment_list.length}}</label>)</button>
       </view>
       <!--买家图谱  -->
@@ -414,15 +414,15 @@
               </view>
             </view>
           </block>
-            <template is="theBottom" wx:if="{{investor2.length!==0}}"></template> 
+          <template is="theBottom" wx:if="{{investor2.length!==0}}"></template>
           <view style="height:32rpx;"></view>
           <!-- <template is="hasNothing" data="{{emptyNumber:investor2}}"></template> -->
-           <template is="isEmpty" data="{{emptyNumber:investor2}}"></template> 
+          <template is="isEmpty" data="{{emptyNumber:investor2}}"></template>
         </view>
       </scroll-view>
       <!--机构版买家图谱  -->
       <scroll-view wx:if="{{matchBut1}}" style='heigt:1000rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
-        <view class="media12">
+        <view class="{{investment_list.length==0?media123:media12}}">
           <view class="matchIntro">{{newPage.pro_intro}}</view>
           <view id="investment1" wx:if="{{investment_list.length!=0}}">
             <template is='investment1' data='{{investment_list}}'></template>
@@ -804,5 +804,5 @@
   <!-- 客服 -->
   <image class="service" src="/img/btn-lianxikefu@2x.png" wx:if="{{currentTab==0}}"></image>
   <!--项目打分  -->
-  <view class="projectScore" wx:if="{{score&&currentTab==0}}" bindtap="projectRemark">项目评价</view>
+  <!-- <view class="projectScore" wx:if="{{score&&currentTab==0}}" bindtap="projectRemark">项目评价</view> -->
 </view>

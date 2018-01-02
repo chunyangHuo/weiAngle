@@ -389,13 +389,13 @@ Page({
   //投资人
   jumpInvestor() {
     wx.navigateTo({
-      url: '/pages/discoverInvest/investor/investor',
+      url: '/pages/discover/discoverPerson/discoverPerson',
     })
   },
   //FA融资顾问
   jumpFinancingAdvisor(){
     wx.navigateTo({
-      url: '/pages/discoverInvest/financingAdvisor/financingAdvisor',
+      url: '/pages/discover/financingAdvisor/financingAdvisor',
     })
   },
   //潜在投资方

@@ -78,7 +78,9 @@
     "pages/organization/subPage/list_media/list_media",
     "pages/organization/subPage/guide_help/guide_help",
     "pages/projectScale/projectEvaluation/projectEvaluation",
-    "pages/discover/discoverPerson/discoverPerson"
+    "pages/discover/discoverPerson/discoverPerson",
+    "pages/discover/financingAdvisor/financingAdvisor",
+    "pages/discover/myFriend/myFriend"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fafafa",

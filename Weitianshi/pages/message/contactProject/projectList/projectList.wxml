@@ -96,6 +96,7 @@
           </view>
         </view>
       </view>
+
       <view id="time">{{item.created_at}}</view>
     </block>
     <template is="hasNothing" data="{{emptyNumber:metList}}">></template>

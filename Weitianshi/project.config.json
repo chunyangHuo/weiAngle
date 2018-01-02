@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.2",
+	"libVersion": "1.6.6",
 	"appid": "wx29c97aaa8a58aedb",
 	"projectname": "%E5%A4%A7%E6%B9%BE%E5%8C%BA",
 	"condition": {
@@ -127,20 +127,8 @@
 				},
 				{
 					"id": -1,
-					"name": "编辑案例添加",
-					"pathName": "pages/my/investCaseEdit/investCaseEdit",
-					"query": "index=2&case_id=481"
-				},
-				{
-					"id": -1,
 					"name": "找投资人",
 					"pathName": "pages/matchInvestor/matchInvestor",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "项目店铺筛选",
-					"pathName": "pages/my/projectShop/tagFilter/tagFilter",
 					"query": ""
 				},
 				{
@@ -163,15 +151,27 @@
 				},
 				{
 					"id": -1,
-					"name": "首页",
-					"pathName": "pages/discoverProject/discoverProject",
+					"name": "创建页面",
+					"pathName": "pages/myProject/publishProject/publishProject",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "本人项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=k0xlyx0v&index=undefined"
+				},
+				{
+					"id": 25,
+					"name": "他人的投资名片",
+					"pathName": "pages/userDetail/networkDetail/networkDetail",
 					"query": "id=Opv5J3lW"
 				},
 				{
 					"id": -1,
-					"name": "创建页面",
-					"pathName": "pages/myProject/publishProject/publishProject",
-					"query": ""
+					"name": "我的投资名片",
+					"pathName": "pages/my/my/my",
+					"query": "id=Opv5J3lW"
 				}
 			]
 		}

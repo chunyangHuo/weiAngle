@@ -4,11 +4,11 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-    matchBut:true,//显示投资人/投资机构
-    matchBut1:false,
+    matchBut: true,//显示投资人/投资机构
+    matchBut1: false,
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
     firstName: "代",
     id: "",
     page: 1,
@@ -359,8 +359,17 @@ Page({
           pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
 
         })
+        // 取原始的长度
+        let pro_history_financeList1 = project.pro_history_finance;
+        if (pro_history_financeList1.length !== 0) {
+          // 显示3条判断
+          if (pro_history_financeList1.length > 3) {
+            pro_history_financeList = pro_history_financeList.slice(0, 3);
+          } 
+        }
         that.setData({
-          pro_history_financeList: pro_history_financeList
+          pro_history_financeList: pro_history_financeList,//显示在详情的数据
+          pro_history_financeList1: pro_history_financeList1,//显示总长度
         })
         // 里程碑
         let mileStoneArray = project.pro_develop;
@@ -1195,28 +1204,35 @@ Page({
     app.href('/pages/organization/subPage/project_orgMatch/project_orgMatch?project_id=' + this.data.id);
   },
   // 进入潜在投资方
-  potential:function(){
+  potential: function () {
     let that = this;
-    that.setData({ currentTab: 1});
+    that.setData({ currentTab: 1 });
   },
-  onKey:function(){
+  onKey: function () {
     let that = this;
     that.setData({ currentTab: 2 });
   },
   // 买家图谱
-  matchButt:function(){
-   let that=this;
-   that.setData({
-     matchBut:true,
-     matchBut1: false
-   })
+  matchButt: function () {
+    let that = this;
+    that.setData({
+      matchBut: true,
+      matchBut1: false
+    })
   },
   // 机构版买家图谱
-   matchButt1: function () {
-     let that = this;
-     that.setData({
-       matchBut1: true,
-       matchBut: false
-     })
-  }
+  matchButt1: function () {
+    let that = this;
+    that.setData({
+      matchBut1: true,
+      matchBut: false
+    })
+  },
+  // 跳转到首页
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
+  },
+  //分享页面
 });

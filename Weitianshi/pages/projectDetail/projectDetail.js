@@ -1297,5 +1297,11 @@ Page({
       matchBut1: true,
       matchBut: false
     })
-  }
+  },
+  // 跳转到首页
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
+  },
 }) 

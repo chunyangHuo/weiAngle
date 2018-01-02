@@ -329,7 +329,7 @@
         <view data-project="{{item.project_id}}" catchtap="projectDetail">
           <view class="flex">
             <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-            <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+            <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
             <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
           </view>
           <view class="allIndustry" style="text-align:left">
@@ -736,7 +736,7 @@
         <view data-project="{{item.project_id}}" catchtap="projectDetail">
           <view class="flex">
             <view class="t-describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-            <image src="/img/img-dujiaqianyue1@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+            <image src="/img/img-dujia@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
             <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
           </view>
           <view class="t-allIndustry" style="text-align:left">
@@ -1223,7 +1223,7 @@
     </view>
     <view class="invest">
       <view class="investBoxContent flex">
-        <image class="case_pic" src="/img/dot@3x.png"></image>
+        <image class="case_pic" src="/img/img-dian@2x.png"></image>
         <view class="case_money">{{item.pro_finance_scale}}</view>
       </view>
       <view class="investContent">{{item.pro_finance_investor}}</view>
@@ -1265,7 +1265,7 @@
     </view>
     <view class="invest">
       <view class="investBoxContent flex">
-        <image class="case_pic" src="/img/dot@3x.png"></image>
+        <image class="case_pic" src="/img/img-dian@2x.png"></image>
       </view>
       <view class="investContent">{{item.dh_event}}</view>
     </view>

@@ -20,6 +20,14 @@
   text-decoration: underline;
 }
 
+.t-shopPic1 {
+  width: 38rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 16rpx;
+  left: 66rpx;
+}
+
 .waitPerson {
   background: #f2f2f2;
   width: 100%;
@@ -108,5 +116,17 @@
   background: #f0f0f0;
   width: 686rpx;
   height: 2rpx;
-  margin:0 32rpx;
+  margin: 0 32rpx;
+}
+
+.service {
+  z-index: 111111;
+  /* border: 0 solid #e6e6e6; */
+  box-shadow: 0 0 4px 0 rgba(41, 59, 85, 0.10);
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 186rpx;
+  right: 34rpx;
 }
