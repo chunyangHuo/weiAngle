@@ -42,10 +42,20 @@ Component({
   },
   methods: {
     _toIndex(){
+      this.checkFunc('_toIndex')
       wx.switchTab({
         url: '/pages/discoverProject/discoverProject',
       })
       this.triggerEvent()
+    },
+    checkFunc(funcName){
+      this.data.subOperation.forEach(x=>{
+        if(x.func){
+          if(x.eventName == funcName){
+            x.func()
+          }
+        }
+      })
     }
   }
 })
