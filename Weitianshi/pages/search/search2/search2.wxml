@@ -25,7 +25,6 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1020rpx" bindchange="bindChange">
   <swiper-item data-current='0'>
     <scroll-view style="height:100%;" scroll-y="true">
-      <view style="height:32rpx;width:100%;"></view>
       <view class="outStyleBox1" id="investment" wx:if="{{investment_list.length != 0}}">
         <view class="outPadding">
           <view class="blockTitle">项目</view>
@@ -56,7 +55,6 @@
   </swiper-item>
   <swiper-item data-current='1'>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore' data-current='1'>
-      <view style="height:32rpx;width:100%;"></view>
       <view class="outStyleBox1" id="investment" wx:if="{{investment_list.length != 0}}">
         <view class="outPadding">
           <view class="blockTitle">投资机构</view>
@@ -70,7 +68,6 @@
   </swiper-item>
   <swiper-item data-current='2'>
     <scroll-view style="height:100%;" scroll-y="true">
-      <view style="height:32rpx;width:100%;"></view>
       <view class="outStyleBox" id="memberList" wx:if="{{industry_list.length != 0}}">
         <view class="blockTitle">投资领域</view>
         <block wx:for="{{industry_list}}" wx:key="{{item}}">

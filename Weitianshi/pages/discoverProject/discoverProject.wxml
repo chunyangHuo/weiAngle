@@ -10,7 +10,7 @@
 <!--项目展示列表  -->
 <!-- <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:938rpx"  bindchange="bindChange"> -->
 <!--精选  -->
-<!-- <swiper-item data-current='0'> --> 
+<!-- <swiper-item data-current='0'> -->
 <!--项目展示  -->
 <!-- <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'> -->
 <!--banner轮播  -->
@@ -57,7 +57,7 @@
 <!--创建项目引导  -->
 <!-- <template is='createProject'></template> -->
 <!--错误提示  -->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> 
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <!--人脉王浮标  -->
 <!-- <view class="competitor" bindtap="competitor">人脉王大赛</view> -->
 <!--电脑上传扫一扫  -->
@@ -97,50 +97,50 @@
 
 <view class="selectProject">微天使FA精选项目</view>
 
-<scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
-<block wx:for="{{slectProject}}" wx:key="{{index}}">
-  <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor'  catchtap="projectDetail">
-    <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-    <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-    <view class='flex industryBox'>
-      <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-        <view class="allIndustry">{{industry.industry_name}}</view>
-      </block>
-    </view>
-    <view class='flex otherInfo'>
-      <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-        <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
-        <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
-        <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
-        <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
+<scroll-view style="height:2000rpx;" scroll-y="true" bindscrolltolower='loadMore'>
+  <block wx:for="{{slectProject}}" wx:key="{{index}}">
+    <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor' catchtap="projectDetail">
+      <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+      <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+      <view class='flex industryBox'>
+        <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
+          <view class="allIndustry">{{industry.industry_name}}</view>
+        </block>
       </view>
-    </view>
-    <view class="userInfo flex">
-      <image src="{{item.user.investor_logo_url}}" class="userPic" wx:if="{{item.user.investor_logo_url}}" />
-      <view class="userPicText flex " wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
-      <view class="userInfoRight">
-        <view class='userName'>{{item.user.user_name}}</view>
-        <view class='userCompany'>
-          <label>{{item.user.user_career}}</label> ·
-          <label>{{item.user.user_company}}</label>
+      <view class='flex otherInfo'>
+        <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+          <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
+          <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
+          <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
+          <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
+        </view>
+      </view>
+      <view class="userInfo flex">
+        <image src="{{item.user.investor_logo_url}}" class="userPic" wx:if="{{item.user.investor_logo_url}}" />
+        <view class="userPicText flex " wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
+        <view class="userInfoRight">
+          <view class='userName'>{{item.user.user_name}}</view>
+          <view class='userCompany'>
+            <label>{{item.user.user_career}}</label> ·
+            <label>{{item.user.user_company}}</label>
+          </view>
+        </view>
+      </view>
+      <view class='userLine'></view>
+      <view class="applyProjcet flex">
+        <image class="personNumPic" src='/img/icon-chakan@2x.png'></image>
+        <view class="personNum">{{item.view_count}}人</view>
+        <view class="t-interest flex">
+          <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
+          <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
+          <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
+          <view class="refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+          <view wx:if="{{item.relationship_button == 5}}"></view>
+          <view class="t-toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
         </view>
       </view>
     </view>
-    <view class='userLine'></view>
-    <view class="applyProjcet flex">
-      <image class="personNumPic" src='/img/icon-chakan@2x.png'></image>
-      <view class="personNum">{{item.view_count}}人</view>
-      <view class="t-interest flex">
-        <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
-        <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
-        <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
-        <view class="refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
-        <view wx:if="{{item.relationship_button == 5}}"></view>
-        <view class="t-toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
-      </view>
-    </view>
-  </view>
-</block>
+  </block>
 </scroll-view>
 
 

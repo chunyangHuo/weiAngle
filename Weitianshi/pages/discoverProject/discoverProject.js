@@ -214,7 +214,6 @@ Page({
   // 上拉加载
   loadMore: function () {
     //请求上拉加载接口所需要的参数
-    console.log(555)
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
