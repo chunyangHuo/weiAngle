@@ -1,0 +1,65 @@
+.searchContent {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 192rpx;
+  text-align: center;
+}
+
+.searchBox {
+  font-size: 26rpx;
+  color: #666;
+  text-align: left;
+  justify-content: space-between;
+  background: none;
+  margin: 60rpx 0 48rpx 0;
+}
+
+.searchPro {
+  margin-left: 98rpx;
+}
+
+.searchPer {
+  margin-right: 84rpx;
+}
+
+.searchLine {
+  background: #e6e6e6;
+  width: 2rpx;
+  height: 26rpx;
+}
+
+.contentAfter {
+  color: #666;
+}
+
+.swiper-tab {
+  background: #fff;
+  z-index: 999;
+}
+
+.swiper-tab-list {
+  display: inline-block;
+  width: 20%;
+  font-size: 26rpx;
+  color: #333;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.swiper-tab-list:last-child {
+  margin-right: 0;
+}
+
+.on {
+  border-bottom: 4rpx solid #3378e0;
+  border-radius: 4rpx;
+}
+
+/*swipter样式  */
+
+.blockTitle {
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  font-weight: bold; 
+}

@@ -403,5 +403,11 @@ Page({
     wx.navigateTo({
       url: '/pages/matchInvestor/matchInvestor',
     })
+  },
+  //跳转搜索页面
+  searchMore(){
+    wx.navigateTo({
+      url: '/pages/search/search2/search2',
+    })
   }
 })
