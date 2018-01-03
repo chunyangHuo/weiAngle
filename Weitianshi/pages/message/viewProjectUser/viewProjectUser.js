@@ -226,4 +226,11 @@ Page({
       app.errorHide(that, res.data.error_Msg, 3000)
     }
   },
+  // 一键拨号
+  telephone: function (e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
+  },
 })

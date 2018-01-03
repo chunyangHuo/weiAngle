@@ -105,7 +105,7 @@
           </view>
         </view>
       </block>
-      <template is="theBottom" wx:if="{{investorList!==''}}"></template>
+      <template is="theBottom" wx:if="{{jiandi==true}}"></template>
     </view>
   </scroll-view>
 </view>

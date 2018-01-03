@@ -36,8 +36,28 @@
               </view>
             </view>
             <view class="aline"></view>
+            <!--他人的项目  -->
+            <view wx:if="{{user.user_id!==user_id&&taren==true}}">
+              <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}" hover-class='t-hoverColor'>
+                <view class="weui-cell__hd">
+                  <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
+                  <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
+                </view>
+                <view class="weui-cell__bd contacts-detailm">
+                  <view class="userName">{{user.user_name}}</view>
+                  <view class="flex userInfo">
+                    <!--style="align-items: baseline;"  -->
+                    <view class="userCareer">{{user.user_career}}</view>
+                    <view class="userCompany">·{{user.user_company}}</view>
+                    <view class="contactPersonBox flex">
+                      <image src="/img/icon-jiantou.png" class="userIcon"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
             <!--自己的项目  -->
-            <view class="flex bottomBox" wx:if="{{user.user_id==user_id}}">
+            <view class="flex bottomBox" wx:if="{{user.user_id==user_id&&ziji==true}}">
               <view class="flex sceenPerson" catchtap="viewProject" data-proid="{{id}}" hover-class='t-hoverColor'>
                 <view class="viewTimeNew" wx:if="{{project.count.view_times_new != 0}}">+{{count.view_times_new}}</view>
                 <view class="viewTimeAll screenPersonColor project-sentimentm">浏览：
@@ -60,26 +80,7 @@
                 </view>
               </view>
             </view>
-            <!--他人的项目  -->
-            <view wx:if="{{user.user_id!=user_id}}">
-              <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}" hover-class='t-hoverColor'>
-                <view class="weui-cell__hd">
-                  <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
-                  <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
-                </view>
-                <view class="weui-cell__bd contacts-detailm">
-                  <view class="userName">{{user.user_name}}</view>
-                  <view class="flex userInfo">
-                    <!--style="align-items: baseline;"  -->
-                    <view class="userCareer">{{user.user_career}}</view>
-                    <view class="userCompany">·{{user.user_company}}</view>
-                    <view class="contactPersonBox flex">
-                      <image src="/img/icon-jiantou.png" class="userIcon"></image>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
+
           </view>
         </view>
         <view id="projectBox">
@@ -167,7 +168,7 @@
               <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked3 == true && textBeyond3 == true}}" data-check="{{3}}">收起</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked3 == false && textBeyond3 == true}}" data-check="{{3}}">全部</label> -->
             </view>
-            <view class="myPic" bindtap="potential"></view>
+            <image class="myPic" bindtap="potential" src="{{imgUrls1}}"></image>
             <!--项目资料-->
             <view class="material" style="position:relative;" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
               <view class="materialBox flex">
@@ -226,24 +227,24 @@
             </view>
 
             <!--产品  -->
-            <view class="brightPoint1" wx:if="{{brandList.length != 0}}">
+            <view class="brightPoint1" wx:if="{{project.brand.length != 0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
                   <view class="title">产品</view>
-                  <view class="productAll">全部（
-                    <label>12</label>）</view>
+                  <view class="productAll" wx:if="{{brandList1.length>3}}" bindtap='toBrand'>全部（
+                    <label>{{brandList1.length}}</label>）</view>
                 </view>
               </view>
-              <block wx:for="{{brandList}}" wx:key="{{memberList}}">
+              <block wx:for="{{brandList}}" wx:key="{{brandList}}">
                 <template is="productBox" data='{{item}}'></template>
               </block>
             </view>
             <!--历史融资  -->
-            <view class="brightPoint" wx:if="{{pro_history_financeList1.length !=0}}">
+            <view class="brightPoint" wx:if="{{project.pro_history_finance.length !=0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
                   <view class="title">历史融资</view>
-                  <view class="productAll" wx:if="{{pro_history_financeList1.length>3}}">全部（
+                  <view class="productAll" bindtap="toHistory" wx:if="{{pro_history_financeList1.length>3}}">全部（
                     <label>{{pro_history_financeList1.length}}</label>）</view>
                 </view>
               </view>
@@ -309,12 +310,12 @@
               </view>
             </view>-->
             <!--核心团队-->
-            <view class="brightPoint detailTop" wx:if="{{teamOfPro.length !=0 ||project.core_users}}">
+            <view class="brightPoint detailTop" wx:if="{{teamOfPro.length !=0 ||project.core_users.length!=0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
                   <view class="title">核心团队</view>
-                  <view class="productAll">全部（
-                    <label>12</label>）</view>
+                  <view class="productAll" bindtap='toTeam' wx:if="{{core_memberArray1.length>3}}">全部（
+                    <label>{{core_memberArray1.length}}</label>）</view>
                 </view>
               </view>
               <view class="contentAll">
@@ -333,8 +334,8 @@
               <view id="detailHead">
                 <view class="brightPointBox flex">
                   <view class="title">里程碑</view>
-                  <view class="productAll">全部（
-                    <label>12</label>）</view>
+                  <view class="productAll" bindtap='mileStone' wx:if="{{mileStoneArray1.length>3}}">全部（
+                    <label>{{mileStoneArray1.length}}</label>）</view>
                 </view>
               </view>
               <view class="classname">
@@ -409,8 +410,8 @@
               </view>
               <view class="resourceRight">
                 <template is='matchButton' data='{{item,user_id}}'></template>
-                <view class="t-alineHeight"></view>
-                <template is='matchButton1' data='{{item}}'></template>
+                <view class="t-alineHeight" wx:if="{{type==2}}"></view>
+                <template is='matchButton1' data='{{item}}' wx:if="{{type==2}}"></template>
               </view>
             </view>
           </block>
@@ -422,7 +423,7 @@
       </scroll-view>
       <!--机构版买家图谱  -->
       <scroll-view wx:if="{{matchBut1}}" style='heigt:1000rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
-        <view class="{{investment_list.length==0?media123:media12}}">
+        <view class="{{investment_list.length==0?'media123':'media12'}}">
           <view class="matchIntro">{{newPage.pro_intro}}</view>
           <view id="investment1" wx:if="{{investment_list.length!=0}}">
             <template is='investment1' data='{{investment_list}}'></template>

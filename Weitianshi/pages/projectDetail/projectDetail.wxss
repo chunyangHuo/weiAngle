@@ -397,7 +397,7 @@ scroll-view {
   font-size: 32rpx;
   color: #333;
   line-height: 48rpx;
-  text-align: left;
+  text-align: left!important;
   /* width: 480rpx; */
 }
 
@@ -407,7 +407,7 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  margin: 24rpx 0 24rpx 0;
+  margin: 24rpx 10rpx 24rpx 0;
 }
 
 .allProjectDetail {
