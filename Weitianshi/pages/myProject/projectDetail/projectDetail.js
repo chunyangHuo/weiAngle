@@ -4,6 +4,8 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
+    taren: false,
+    ziji: true,
     matchBut: true,//显示投资人/投资机构
     matchBut1: false,
     winWidth: 0,//选项卡
@@ -44,6 +46,7 @@ Page({
     show_company: true,
     type: 2,
     other: true,
+    imgUrls1: app.globalData.picUrl.projectDetailpotential,
   },
   onLoad: function (options) {
     this.setData({
@@ -263,35 +266,6 @@ Page({
               isChecked3: false,
             })
         }
-        // if (pro_goodness.length != 0) {
-        //   if (pro_goodness[0].goodness_desc.length > 50) {
-        //     console.log("textBeyond0")
-        //     that.setData({
-        //       textBeyond0: true
-        //     })
-        //   }
-        //   if (pro_goodness.length >= 2) {
-        //     if (pro_goodness[1].goodness_desc.length > 50) {
-        //       that.setData({
-        //         textBeyond1: true
-        //       })
-        //     }
-        //   }
-        //   if (pro_goodness.length >= 3) {
-        //     if (pro_goodness[2].goodness_desc.length > 50) {
-        //       that.setData({
-        //         textBeyond2: true
-        //       })
-        //     }
-        //   }
-        //   if (pro_goodness.length >= 4) {
-        //     if (pro_goodness[3].goodness_desc.length > 50) {
-        //       that.setData({
-        //         textBeyond3: true
-        //       })
-        //     }
-        //   }
-        // }
 
         if (project.pro_finance_use) {
           if (project.pro_finance_use.length > 50) {
@@ -299,6 +273,17 @@ Page({
               textBeyond4: true
             })
           }
+        }
+        // 产品
+        let brandList1 = res.data.data.brand;
+        if (brandList1.length != 0) {
+          if (brandList1.length > 3) {
+            brandList = brandList1.slice(0, 3);
+          }
+          that.setData({
+            brandList: brandList,
+            brandList1: brandList1
+          })
         }
         that.setData({
           project: project,
@@ -320,13 +305,17 @@ Page({
         })
         // 核心团队
         if (project.core_users != 0) {
-          let core_memberArray = project.core_users;
+          let core_memberArray1 = project.core_users;//取原始长度
+          let core_memberArray = project.core_users;//
           core_memberArray.forEach((x, index) => {
             core_memberArray[index] = x;
           })
-          console.log(core_memberArray.length)
+          if (core_memberArray1.length > 3) {
+            core_memberArray = core_memberArray.slice(0, 3);
+          }
           that.setData({
-            core_memberArray: core_memberArray
+            core_memberArray: core_memberArray,
+            core_memberArray1: core_memberArray1
           })
         }
         // 标签 type:0; 项目标签 type:1 团队标签
@@ -365,7 +354,7 @@ Page({
           // 显示3条判断
           if (pro_history_financeList1.length > 3) {
             pro_history_financeList = pro_history_financeList.slice(0, 3);
-          } 
+          }
         }
         that.setData({
           pro_history_financeList: pro_history_financeList,//显示在详情的数据
@@ -378,8 +367,19 @@ Page({
           mileStoneArray[index].dh_event = x.dh_event;
         })
 
+        // 取原始的长度
+        let mileStoneArray1 = project.pro_develop;
+        if (mileStoneArray1.length !== 0) {
+          // 显示3条判断
+          if (mileStoneArray1.length > 3) {
+            mileStoneArray = mileStoneArray.slice(0, 3);
+          }
+        }
         that.setData({
-          mileStoneArray: mileStoneArray,
+          mileStoneArray: mileStoneArray,//显示在详情的数据
+          mileStoneArray1: mileStoneArray1,//显示总长度
+        })
+        that.setData({
           industy_sort: industy_sort,
           pro_goodness: pro_goodness
         });
@@ -1234,5 +1234,32 @@ Page({
       url: '/pages/discoverProject/discoverProject',
     })
   },
-  //分享页面
+  //跳转到历史融资
+  toHistory: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到核心团队
+  toTeam: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到产品
+  toBrand: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到里程碑
+  mileStone: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
+  },
 });

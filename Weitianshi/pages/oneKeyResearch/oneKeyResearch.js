@@ -1112,5 +1112,63 @@ Page({
       app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
     })
 
-  }
+  },
+  potential: function () {
+    let that = this;
+    that.setData({ currentTab: 1 });
+  },
+  onKey: function () {
+    let that = this;
+    that.setData({ currentTab: 2 });
+  },
+  // 买家图谱
+  matchButt: function () {
+    let that = this;
+    that.setData({
+      matchBut: true,
+      matchBut1: false
+    })
+  },
+  // 机构版买家图谱
+  matchButt1: function () {
+    let that = this;
+    that.setData({
+      matchBut1: true,
+      matchBut: false
+    })
+  },
+  // 跳转到首页
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
+  },
+  //跳转到历史融资
+  toHistory: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到核心团队
+  toTeam: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到产品
+  toBrand: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到里程碑
+  mileStone: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
+  },
 }) 

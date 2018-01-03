@@ -3,7 +3,8 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    count: 0
+    count: 0,
+    jiandi:false
   },
   onLoad: function (options) {
     console.log(options)
@@ -135,6 +136,13 @@ Page({
       })
     }
   },
+  // 一键拨号
+  telephone: function (e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
+  },
   // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
@@ -155,6 +163,12 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "contacts")
+    console.log(this.data.page_end);
+    if (this.data.page_end == true) {
+      that.setData({
+        jiandi: true
+      })
+    }
   },
   //列表加载
   browseMe:function(user_id){

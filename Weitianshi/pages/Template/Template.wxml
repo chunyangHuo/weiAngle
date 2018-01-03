@@ -863,7 +863,7 @@
 <template name='cardBottom1'>
   <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
     <view class="t-history">看过
-      <label class="t-historyNum">990</label>
+      <label class="t-historyNum">{{item.view_project_count}}</label>
       个项目</view>
     <view class="t-line"></view>
     <view class='t-cardBottomItem1 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
@@ -1325,9 +1325,9 @@
 <!--卡片底部----项目详情中潜在投资方2 -->
 <template name='matchButton1'>
   <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-    <view class="t-yichu">移除</view>
+    <view class="t-yichu" catchtap="deletePerson" data-investor="{{item.investor_id}}">移除</view>
     <view class="t-line"></view>
-    <view class='t-yiti flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
+    <view class='t-yiti flex'catchtap="pushProject" data-id="{{item.user_id}}" wx:if="{{item.push_status == 0}}" catchtap='pushProject' hover-class='t-hoverColor' hover-stop-propagation='true' >
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>提交项目</span>
     </view>
