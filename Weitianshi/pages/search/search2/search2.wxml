@@ -30,7 +30,7 @@
         <view class="outPadding">
           <view class="blockTitle">项目</view>
         </view>
-        <template is="investment" data="{{investment_list,currentTab,index}}"></template>
+        <template is="shopProject" data="{{investment_list,currentTab,index}}"></template>
         <view class="outPadding">
           <view class="more" wx:if="{{searchData.investment_list.list.length >= 6}}" bindtap="investment">更多</view>
         </view>

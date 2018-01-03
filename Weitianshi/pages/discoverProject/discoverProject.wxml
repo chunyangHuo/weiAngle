@@ -57,7 +57,7 @@
 <!--创建项目引导  -->
 <!-- <template is='createProject'></template> -->
 <!--错误提示  -->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> 
 <!--人脉王浮标  -->
 <!-- <view class="competitor" bindtap="competitor">人脉王大赛</view> -->
 <!--电脑上传扫一扫  -->
@@ -97,7 +97,7 @@
 
 <view class="selectProject">微天使FA精选项目</view>
 
-
+<scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
 <block wx:for="{{slectProject}}" wx:key="{{index}}">
   <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor'  catchtap="projectDetail">
     <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
@@ -129,7 +129,7 @@
     <view class='userLine'></view>
     <view class="applyProjcet flex">
       <image class="personNumPic" src='/img/icon-chakan@2x.png'></image>
-      <view class="personNum">188人</view>
+      <view class="personNum">{{item.view_count}}人</view>
       <view class="t-interest flex">
         <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
         <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
@@ -141,7 +141,7 @@
     </view>
   </view>
 </block>
-
+</scroll-view>
 
 
 <view class="floatBtn">
