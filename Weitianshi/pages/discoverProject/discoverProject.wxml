@@ -73,7 +73,7 @@
   </view>
 </view> -->
 
-<view class="searchBox">
+<view class="searchBox" bindtap='searchMore'>
   <view class="seachSth flex">
     <icon type="search" size="14" class="search_icon1"></icon>
     <label> 搜个关键词试试</label>

@@ -8,9 +8,9 @@
         <view class="personPosition" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="personActive" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       </view>
-      <view class="personPic">
-      <!-- <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
-      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view> -->
+      <view>
+        <image wx:if="{{user.user_avatar_url}}" class="personPic" src="{{user.user_avatar_url}}"></image>
+        <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       </view>
     </view>
     <view class="editBottom">
@@ -23,13 +23,13 @@
         <view class="checkNum" catchtap="searchIdentification" wx:if="{{IdentificationShow == 1&& playTime == 0}}">查税号</view>
       </view>
       <view class="personCompany flex">
-            <image class='bottomPic' src='/img/icon-T@2x.png'></image>
+        <image class='bottomPic' src='/img/icon-T@2x.png'></image>
         <view class="personTelephone" wx:if="{{user.user_mobile}}">
           <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
         </view>
       </view>
       <view class="personCompany flex">
-            <image class='bottomPic' src='/img/icon-E@2x.png'></image>
+        <image class='bottomPic' src='/img/icon-E@2x.png'></image>
         <view class="personEmail" wx:if="{{user.user_email}}">{{user.user_email}}</view>
       </view>
     </view>
@@ -43,8 +43,8 @@
       <view wx:if="{{!user.user_popularity}}" class="popularity-Num">{{count.user_view_all}}</view>
       <view class="popularity-people">人气</view>
     </view> -->
-    <!--加我为人脉-->
-    <!-- <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class='t-color'>
+  <!--加我为人脉-->
+  <!-- <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class='t-color'>
       <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
       <label class="attentionNum" wx:if="{{count.user_followed_new && show ==1}}">+{{count.user_followed_new}}</label>
       <label class="popularityNum" wx:if="{{count.user_followed_new==0 || show ==0}}"></label>
@@ -52,8 +52,8 @@
       </view>
       <view class="attention-people">{{text}}</view>
     </view> -->
-    <!--潜在项目-->
-    <!-- <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class='t-color'>
+  <!--潜在项目-->
+  <!-- <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class='t-color'>
       <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
       <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
       <label class="popularityNum" wx:if="{{count.project_push_new==0 || show ==0}}"></label>
@@ -188,9 +188,9 @@
           <view class="successLeftTime" wx:if="{{item.case_deal_time}}">{{item.case_deal_time}}</view>
           <view class="successLeftTurn" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
         </view>
-     
+
         <view class="successRight">
-           <image src='/img/img-dot@2x.png' class="successPic"></image>
+          <image src='/img/img-dot@2x.png' class="successPic"></image>
           <view class="successProjcetName" wx:if="{{item.case_name}}">{{item.case_name}}</view>
           <view class="successRightArea">
             <label wx:if="{{item.case_money}}">{{item.case_money}}</label>*杭州</view>
@@ -1182,6 +1182,16 @@
       <view class="search_img" hover-class='t-hoverColor' bindtap='{{filter}}'>
         <image src="/img/icon-shaixuan@2x.png"></image>
       </view>
+    </view>
+  </view>
+</template>
+
+<template name="newSearch2">
+  <view id="newSearch2">
+    <view class="flex screen">
+      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth" />
+      <icon type="search" size="14" class="search_icon1"></icon>
+      <view class="search_word" bindtap="searchYes">搜索</view>
     </view>
   </view>
 </template>

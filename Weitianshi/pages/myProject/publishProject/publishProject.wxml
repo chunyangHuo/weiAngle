@@ -145,10 +145,11 @@
 
 <view class='otherInfo'>
   <view class="userBox">
-    <view class="projectBoxContent flex noBorder" bindtap="initPrivacy">
+    <view class="projectBoxContent flex noBorder" bindtap="industryChoice">
       <view class="projectTitle">项目领域</view>
       <view class="flex">
-        <view class="projectContent">请选择</view>
+        <!-- <view class="projectContent" wx:if="{{!industryCard.value}}">请选择</view> -->
+        <view class="projectContent">{{industryCard.value}}</view>
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
       </view>
     </view>
@@ -156,7 +157,9 @@
   <view class="aLine"></view>
   <view class="card flex">
     <label class="cardTitle">是否独家</label>
-    <input placeholder="请输入" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+    <picker id="exclusive" bindchange="tipsOn" range="{{exclusive_arry}}" value='{{tips_index}}'>
+      <view class="projectContent">{{exclusive_arry[tips_index] || "请选择"}} </view>
+    </picker>
   </view>
   <view class="aLine"></view>
   <view class='flex  littleBox'>
@@ -171,17 +174,17 @@
     <view class='contentBox'>
       <view class="littleTitle">期望融资</view>
       <view class="littleContent">
-        <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
-          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
+        <picker id="expect" bindchange="scale" value="{{scale_index}}" range="{{scale_arry}}">
+          <view class="{{scale_index ==0 ? '' : 'checkOn'}}">{{scale[scale_index].scale_money || "选择金额"}}</view>
         </picker>
       </view>
     </view>
     <view class='contentBox'>
       <view class="littleTitle">地区</view>
       <view class="littleContent">
-        <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
-          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
-        </picker>
+        <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
+          <view>{{area_title}}</view>
+        </navigator>
       </view>
     </view>
   </view>
