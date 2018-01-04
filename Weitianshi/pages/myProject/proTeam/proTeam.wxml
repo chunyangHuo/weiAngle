@@ -6,8 +6,8 @@
   <block wx:for="{{core_memberArray}}" wx:key="{{core_memberArray}}">
     <template is='detailTeam' data='{{item}}'></template>
   </block>
-  <template is="theBottom" wx:if="{{core_memberArray!==''}}"></template>
-  <view class="high"></view>
+  <!-- <template is="theBottom" wx:if="{{core_memberArray!==''}}"></template> -->
+  <!-- <view class="high"></view> -->
 </scroll-view>
 <!--空状态-->
 <template is="isEmpty" data="{{emptyNumber:core_memberArray}}"></template>

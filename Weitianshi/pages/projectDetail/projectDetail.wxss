@@ -8,6 +8,15 @@ page {
 scroll-view {
   height: 100%;
 }
+.theBottomBox {
+  justify-content: center;
+  margin-top: 32rpx;
+  margin-bottom: 127rpx;
+}
+.investGroupBlock{
+  border-bottom: 0!important;
+  /* padding-bottom: 0; */
+}
 
 /*我的项目卡片*/
 
@@ -470,6 +479,7 @@ scroll-view {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  /* max-width: 100rpx; */
 }
 
 .userIcon {

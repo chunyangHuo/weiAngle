@@ -1,13 +1,13 @@
 <import src="/pages/Template/Template.wxml" />
 
 <!--历史融资  -->
-<scroll-view style="height:1200rpx;background:#fff;width:93%;padding:20rpx 32rpx 32rpx 32rpx" scroll-y="true">
+<scroll-view style="height:1200rpx;background:#fff;width:93%;padding:20rpx 32rpx 32rpx 32rpx" class="proBrand" scroll-y="true">
   <!-- <template is="searchNothing" data="{{empty:investorList}}"></template> -->
   <block wx:for="{{brandList}}" wx:key="{{brandList}}">
     <template is="productBox" data='{{item}}'></template>
   </block>
-  <template is="theBottom" wx:if="{{brandList!==''}}"></template>
-  <view class="high"></view>
+  <!-- <template is="theBottom" wx:if="{{brandList!==''}}"></template> -->
+  <!-- <view class="high"></view> -->
 </scroll-view>
 <!--空状态-->
 <template is="isEmpty" data="{{emptyNumber:brandList}}"></template>

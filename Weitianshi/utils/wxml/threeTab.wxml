@@ -44,7 +44,7 @@
                   <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
                 </view>
                 <view class="weui-cell__bd contacts-detailm">
-                  <view class="userName">{{user.user_name}}</view>
+                   <view class="userName">{{user.user_name}}</view> 
                   <view class="flex userInfo">
                     <!--style="align-items: baseline;"  -->
                     <view class="userCareer">{{user.user_career}}</view>
@@ -396,7 +396,7 @@
           <label>{{matchCount}}</label>)
         </button>
         <button class="{{matchBut1?'t-matchButton4':'t-matchButton2'}}" bindtap='matchButt1'>投资机构(
-          <label>{{investment_list.length}}</label>)</button>
+          <label>{{investment_total_num}}</label>)</button>
       </view>
       <!--买家图谱  -->
       <scroll-view wx:if="{{matchBut}}" scroll-y="true" bindscrolltolower="loadMore">
@@ -406,28 +406,32 @@
           <block wx:for="{{investor2}}" wx:key="{{investor2}}">
             <view class="resourceBox flex" wx:if="{{item.remove !=1}}">
               <view class="resourceLeft">
-                <image class="resourceImg" src="/img/img-1@2x.png"></image>
+                <image class="resourceImg" wx:if="{{item.match_rank==1}}" src="/img/img-1@2x.png"></image>
+                <image class="resourceImg" wx:if="{{item.match_rank==2}}" src="/img/img-2@2x.png"></image>
+                <image class="resourceImg" wx:if="{{item.match_rank==3}}" src="/img/img-3@2x.png"></image>
+                <view  class="resourceImg" >{{item.match_rank}}</view>
               </view>
               <view class="resourceRight">
-                <template is='matchButton' data='{{item,user_id}}'></template>
+                <template is='matchButton' data='{{item,user_id,investor_id,push_status}}'></template>
                 <view class="t-alineHeight" wx:if="{{type==2}}"></view>
                 <template is='matchButton1' data='{{item}}' wx:if="{{type==2}}"></template>
               </view>
             </view>
           </block>
-          <template is="theBottom" wx:if="{{investor2.length!==0}}"></template>
+          <view style="height:32rpx;"></view>
+          <template is="theBottom" style="margin-bottom:92rpx"  wx:if="{{jiandi==true&&investor2.length!=0}}"></template>
           <view style="height:32rpx;"></view>
           <!-- <template is="hasNothing" data="{{emptyNumber:investor2}}"></template> -->
           <template is="isEmpty" data="{{emptyNumber:investor2}}"></template>
         </view>
       </scroll-view>
       <!--机构版买家图谱  -->
-      <scroll-view wx:if="{{matchBut1}}" style='heigt:1000rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
+      <scroll-view wx:if="{{matchBut1}}" style='height:1000rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
         <view class="{{investment_list.length==0?'media123':'media12'}}">
           <view class="matchIntro">{{newPage.pro_intro}}</view>
           <view id="investment1" wx:if="{{investment_list.length!=0}}">
             <template is='investment1' data='{{investment_list}}'></template>
-            <template is="theBottom" wx:if="{{investment_list!==''}}"></template>
+            <template is="theBottom" wx:if="{{investment_list.length!=0}}"></template>
           </view>
           <!-- <view class="hasNothing" wx:if="{{investment_list.length ==0 }}">暂无数据</view> -->
           <template is="isEmpty" data="{{emptyNumber:investment_list}}"></template>
@@ -796,7 +800,7 @@
           <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
           <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">收起</view>
         </view>
-        <template is="isEmpty" data="{{emptyNumber:competeList}}"></template>
+        <template is="isEmpty" data="{{emptyNumber:competeList}}"  wx:if="{{competeList.length==0}}"></template>
         <view style="height:88rpx;"></view>
       </view>
 

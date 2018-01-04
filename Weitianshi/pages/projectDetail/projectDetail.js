@@ -4,8 +4,10 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
-    taren:true,
-    ziji:false,
+    jiandi:false,
+    competeList: [],
+    taren: true,
+    ziji: false,
     matchBut: true,//显示投资人/投资机构
     matchBut1: false,
     score: true,
@@ -91,7 +93,7 @@ Page({
     }
   },
   onShow: function () {
-    let that=this;
+    let that = this;
     // 机构版买家图谱信息修改
     that.setData({
       newPage: '',
@@ -305,11 +307,11 @@ Page({
             brandList = brandList1.slice(0, 3);
           }
         }
-          that.setData({
-            brandList: brandList,
-            brandList1: brandList1
-          })
-       
+        that.setData({
+          brandList: brandList,
+          brandList1: brandList1
+        })
+
         that.setData({
           project: project,
           user: user,
@@ -354,7 +356,7 @@ Page({
           pro_industry: pro_industry
         })
         // 核心团队
-        if (project.core_users != 0) {
+        if (project.core_users) {
           let core_memberArray1 = project.core_users;//取原始长度
           let core_memberArray = project.core_users;//
           core_memberArray.forEach((x, index) => {
@@ -392,6 +394,7 @@ Page({
           })
         }
         // 融资信息
+        if (project.pro_history_finance){
         let pro_history_financeList = project.pro_history_finance;
         pro_history_financeList.forEach((x, index) => {
           pro_history_financeList[index].finance_time = app.changeTimeStyle1(x.finance_time);
@@ -412,7 +415,9 @@ Page({
           pro_history_financeList: pro_history_financeList,//显示在详情的数据
           pro_history_financeList1: pro_history_financeList1,//显示总长度
         })
+        }
         // 里程碑
+        if (project.pro_develop){
         let mileStoneArray = project.pro_develop;
         mileStoneArray.forEach((x, index) => {
           mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
@@ -431,6 +436,7 @@ Page({
           mileStoneArray: mileStoneArray,//显示在详情的数据
           mileStoneArray1: mileStoneArray1,//显示总长度
         })
+        }
         that.setData({
           industy_sort: industy_sort,
           pro_goodness: pro_goodness
@@ -695,7 +701,14 @@ Page({
       },
     }
     //调用通用加载函数
-    app.loadMore(that, request, "investor2")
+    app.loadMore(that, request, "investor2");
+    console.log(this.data.page_end);
+    if (this.data.page_end == true) {
+      that.setData({
+        jiandi: true
+      })
+    }
+
   },
   // 机构版买家图谱
   loadMore1() {
@@ -715,6 +728,7 @@ Page({
       let newPage = res.data.data;
       let list = res.data.data.investment_list;
       let page_end = res.data.data.page_end;
+      let investment_total_num = res.data.data.investment_total_num;
       if (list) {
         let newProject = investment_list.concat(list)
         currentPage++;
@@ -723,11 +737,9 @@ Page({
           investment_list: newProject,
           page_end: page_end,
           requestCheck: true,
-          currentPage: currentPage
+          currentPage: currentPage,
+          investment_total_num: investment_total_num
         })
-      }
-      if (page_end == true) {
-        // app.errorHide(that, '没有更多了', 3000)
       }
     })
   },

@@ -4,6 +4,9 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
+    investment_total_num:'',
+    jiandi:false,
+    competeList: [],
     taren: false,
     ziji: true,
     matchBut: true,//显示投资人/投资机构
@@ -654,6 +657,7 @@ Page({
       let newPage = res.data.data;
       let list = res.data.data.investment_list;
       let page_end = res.data.data.page_end;
+      let investment_total_num = res.data.data.investment_total_num;
       if (list) {
         let newProject = investment_list.concat(list)
         currentPage++;
@@ -662,11 +666,15 @@ Page({
           investment_list: newProject,
           page_end: page_end,
           requestCheck: true,
-          currentPage: currentPage
+          currentPage: currentPage,
+          investment_total_num: investment_total_num
         })
       }
-      if (page_end == true) {
-        // app.errorHide(that, '没有更多了', 3000)
+      console.log(this.data.page_end);
+      if (this.data.page_end == true) {
+        that.setData({
+          jiandi: true
+        })
       }
     })
   },
