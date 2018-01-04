@@ -284,7 +284,7 @@
   color: #333;
   line-height: 33rpx;
   text-align: left;
-  margin-bottom: 40rpx;
+  margin-bottom: 16rpx;
 } 
 #memberList  .memberInfo {
   padding-bottom: 40rpx;

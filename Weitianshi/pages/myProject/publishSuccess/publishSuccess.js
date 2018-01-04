@@ -22,5 +22,8 @@ Page({
         url: '/pages/matchInvestor/matchInvestor'
       });
     }
+  },
+  continueEdit(){
+    
   }
 })

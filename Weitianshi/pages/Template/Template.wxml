@@ -240,6 +240,13 @@
   </view>
 </template>
 
+<!--按钮二号  -->
+<template name="buttonTwo">
+  <view class="floatBtn buttonTwo" bindtap="{{btnName}}">
+    <button disabled="{{disabled}}" class='t-btnYes' hover-class="t-other-button-hover">{{text}}</button>
+  </view>
+</template>
+
 <!--input_jump-->
 <template name="input_jump">
   <view class="card">
@@ -283,7 +290,7 @@
   <view class="flex pc-guidem">
     <view class="pointToPC" hover-class='t-createColor' bindtap="toPc">
       <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
-      去电脑上创建项目更方便
+      用电脑创建项目，体验更好更流畅
       <label class="pointPcToNet">></label>
     </view>
   </view>
@@ -912,8 +919,8 @@
     <view class="t-btnYes" bindtap="btnYes">确定</view>
   </view>
   <view class="floatBtn t-btnBackground flex">
-    <view class="t-btnLeft">确定</view>
-    <view class="t-btnRight"> 继续完善</view>
+    <view class="t-btnLeft" bindtap='btnYes'>确定</view>
+    <view class="t-btnRight" bindtap='continueEdit'> 继续完善</view>
   </view>
 </template>
 

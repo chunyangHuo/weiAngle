@@ -1,117 +1,111 @@
 <import src="/pages/Template/Template.wxml" />
 <template is="pointPC">用电脑创建项目，体验更好更流畅</template>
-<view id="myProject">
-  <view class="card">
-    <view class="text">项目名称</view>
-    <input placeholder="仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
-  </view>
-  <view class="card">
-    <view class="text">公司名称</view>
+<view class="card flex">
+  <label class="cardTitle">项目名称*</label>
+  <input placeholder="项目代号，快速识别，仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+</view>
+
+<view class='otherInfo'>
+  <view class="card flex">
+    <view class="cardTitle">公司名称</view>
     <input placeholder="仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="companyName" maxlength="40" value="{{companyName}}" />
   </view>
-  <view class="card">
-    <view class="text">项目介绍*</view>
-    <input placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe}}" />
+  <view class='aLine'></view>
+  <view class="card flex">
+    <view class="cardTitle">一句话介绍</view>
+    <input placeholder="决定了投资人是否查看项目，30字以内" placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="40" value="{{describe||projectName}}" class="newBox2" />
   </view>
-  <template is="input_jump" data="{{...industryCard}}"></template>
-  <view class="card">
-    <view class="text">项目阶段*</view>
-    <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
-      <view class="slect flex">
-        <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "选择阶段"}} </view>
-        <image class="downArrow" src="/img/downArrow.png"></image>
-      </view>
-    </picker>
-  </view>
-  <view class="card">
-    <view class="text">期望融资*</view>
-    <picker id="expect" bindchange="scale" value="{{scale_index}}" range="{{scale_arry}}">
-      <view class="slect flex">
-        <view class="{{scale_index ==0 ? '' : 'checkOn'}}">{{scale[scale_index].scale_money || "选择金额"}} </view>
-        <image class="downArrow" src="/img/downArrow.png"></image>
-      </view>
-    </picker>
-  </view>
-  <view class="card">
-    <view class="text">所在地区*</view>
-    <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
-      <view id="belongArea" class="slect flex">
-        <view class="{{area_title =='选择城市' ? '':'checkOn'}}">{{area_title}}</view>
-        <image class="downArrow" src="/img/downArrow.png"></image>
-      </view>
-    </navigator>
-  </view>
-  <view class="card card_tips">
-    <view class="text">是否独家*</view>
+</view>
+
+<view class='otherInfo'>
+  <view class="card flex" bindtap="industryChoice">
+    <view class="cardTitle">项目领域</view>
     <view class="flex">
-      <view class="tips {{tips_index==1 ? 'tips_on' : ''}}" id="tips1" bindtap="tipsOn" data-tips="1">独家签约</view>
-      <view class="tips {{tips_index==2 ? 'tips_on' : ''}}" id="tips2" bindtap="tipsOn" data-tips="2">非独家</view>
-      <view class="tips {{tips_index==0 ? 'tips_on' : ''}}" id="tips3" bindtap="tipsOn" data-tips="0">其他</view>
+      <view class="projectContent">{{industryCard.value}}</view>
     </view>
   </view>
-  <view class="card">
-    <view class="text">项目亮点*</view>
-    <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" />
+  <view class="aLine"></view>
+  <view class="card flex">
+    <label class="cardTitle">是否独家</label>
+    <picker id="exclusive" bindchange="tipsOn" range="{{exclusive_arry}}" value='{{tips_index}}'>
+      <view class="projectContent">{{exclusive_arry[tips_index] || "请选择"}} </view>
+    </picker>
   </view>
+  <view class="aLine"></view>
+  <view class='flex  littleBox'>
+    <view class='contentBox'>
+      <view class="littleTitle">阶段</view>
+      <view class="littleContent">
+        <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
+          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
+        </picker>
+      </view>
+    </view>
+    <view class='contentBox'>
+      <view class="littleTitle">期望融资</view>
+      <view class="littleContent">
+        <picker id="expect" bindchange="scale" value="{{scale_index}}" range="{{scale_arry}}">
+          <view class="{{scale_index ==0 ? '' : 'checkOn'}}">{{scale[scale_index].scale_money || "选择金额"}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class='contentBox'>
+      <view class="littleTitle">地区</view>
+      <view class="littleContent">
+        <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
+          <view>{{area_title}}</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
 
-  <!--错语提示-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<view class="pro_goodness">
+  <view class="cardTitle goodness">项目亮点</view>
+  <textarea id="slectInput" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" placeholder="是决定投资人是否查看项目详情的重要因素" class='selectInput' />
+</view>
 
-  <!--加载更多-->
-  <view class="weui-loadmore" wx:if="{{loading=='1'}}">
-    <view class="weui-loading"></view>
-    <view class="weui-loadmore__tips">正在加载</view>
+<view class="otherInfo">
+  <view class="card flex" bindtap="toPc" hover-class='t-hoverColor'>
+    <view class="cardTitle">商业计划书</view>
+    <view class="toPcClass">去电脑上传</view>
   </view>
-</view>
-<view class="topBox">
-  <view class="userBox">
-    <view class="projectBoxContent flex" bindtap="toPc">
-      <view class="projectTitle">商业计划书</view>
-      <view class="flex">
-        <view class="projectContent">去电脑上传</view>
-        <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-      </view>
+  <view class="aLine"></view>
+  <view class="card flex" hover-class='t-hoverColor'>
+    <view class="cardTitle">投后股份(%)</view>
+    <view class="flex">
+      <input class="projectContentInput newBox2" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value='{{pro_finance_stock_after}}' />
     </view>
   </view>
-  <view class="userBox" hover-class='t-hoverColor'>
-    <view class="projectBoxContent flex">
-      <view class="projectTitle">投后股份(%)*</view>
-      <view class="flex">
-        <input class="projectContentInput newBox" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value='{{pro_finance_stock_after}}' />
-        <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-      </view>
-    </view>
-  </view>
-  <view class="userBox" hover-class='t-hoverColor'>
-    <view class="projectBoxContent flex noBorder" bindtap="initPrivacy">
-      <view class="projectTitle">私密性设置</view>
-      <view class="flex">
-        <view class="projectContent">请选择</view>
-        <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-      </view>
+  <view class="aLine"></view>
+  <view class="card flex" hover-class='t-hoverColor' bindtap="initPrivacy">
+    <view class="cardTitle">私密性设置</view>
+    <view class="flex newBox2">
+      <view class="projectContent">请选择</view>
+      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
 </view>
-<view class="tipsNew flex">
-  <image src="/img/icon-zhuyi@2x.png" class="tipsPic"></image>
-  <view class="tipsContent">未经您的许可，项目数据绝对私密安全</view>
-</view>
-<view>
+
+<view class='otherInfo'>
   <view class="choiceBox flex" wx:if="{{!yesData}}">
     <view class="content">需要Bp美化</view>
     <switch bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
   </view>
+  <view class='aLine'></view>
   <view class="choiceBox flex" wx:if="{{!yesData}}">
     <view class="content">需要融资顾问（FA）服务</view>
     <switch bindchange="switchChange2" class="switchTab" checked="{{service_fa}}" />
   </view>
-</view>
-<view wx:if="{{yesData}}">
-  <view class="choiceBox flex">
-    <view class="content">是否需要云投行（FA）合作</view>
-    <switch bindchange="switchChange3" class="switchTab" checked="{{service_yun}}" />
+  <view wx:if="{{yesData}}">
+    <view class="choiceBox flex">
+      <view class="content">是否需要云投行（FA）合作</view>
+      <switch bindchange="switchChange3" class="switchTab" checked="{{service_yun}}" />
+    </view>
   </view>
 </view>
+
+
 <view class="question" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
   <view class="questionWhy">Q：什么是融资顾问服务</view>
   <view class="answer">A：微天使平台会结合您的融资需求推荐最适合的FA，帮助您打磨 商业计划，梳理BP，引荐投资机构。（业务同学会通过您在平台 留下的联系方式与您沟通具体融资需求）
@@ -121,11 +115,11 @@
   <view class="questionWhy">Q：什么是云投行合作</view>
   <view class="answer">A：微天使平台将协助您寻找最合适的投资机构，并与合作伙伴共同协助推进您的项目融资。（业务同学会通过您在平台留下的联系方式与您沟通具体合作方式）
   </view>
-</view> -
+</view> 
 <view class="highBox"></view>
 
 <!--保存  -->
-<template is="buttonOne" data="{{text:buttonOneText,btnName:'public',disabled}}"></template>
+<template is="buttonTwo" data="{{text:'保存',btnName:'public',disabled}}"></template>
 
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">
@@ -138,3 +132,14 @@
     <view class="btn" hover-class='t-other-button-hover' bindtap="upLoadPc">扫一扫</view>
   </view>
 </view>
+
+
+<!--错语提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+<!--加载更多-->
+<view class="weui-loadmore" wx:if="{{loading=='1'}}">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">正在加载</view>
+</view>
+

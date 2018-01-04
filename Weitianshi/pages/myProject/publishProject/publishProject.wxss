@@ -206,7 +206,6 @@ page {
   padding: 0 32rpx;
   justify-content: space-between;
   background: white;
-  margin-top: 32rpx;
 }
 
 .content {
@@ -353,6 +352,8 @@ page {
 
 .cardTitle {
   margin-left: 32rpx;
+  font-size: 32rpx;
+  color: #333;
 }
 
 .newBox {
@@ -369,6 +370,7 @@ page {
 
 .otherInfo {
   margin: 24rpx 0 30rpx 0;
+  background: white;
 }
 
 .aLine {

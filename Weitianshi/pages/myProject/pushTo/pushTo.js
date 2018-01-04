@@ -61,7 +61,7 @@ Page({
 
     // 创建项目
     createProject: function () {
-        app.href('/pages/myProject/publishProject/publishProject')
+        app.href('/pages/myProject/publishedProject/publishedProject')
     },
     //点击选中标签
     checkboxChange(e) {

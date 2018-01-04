@@ -343,6 +343,28 @@ textarea {
   width: auto;
 }
 
+/*----------------------------按钮二号---------------------------------*/
+
+.buttonTwo {
+  background: #fff;
+  padding: 20rpx 28rpx 20rpx 36rpx;
+}
+
+.buttonTwo button {
+  background: #293b55;
+  border-radius: 4rpx;
+  width: 90%;
+  text-align: center;
+  height: 88rpx;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 88rpx;
+}
+
+textarea {
+  width: auto;
+}
+
 /*-------------------------多选标签选中时样式----------------------------*/
 
 .tips .checkedOne {
@@ -1230,21 +1252,6 @@ textarea {
   margin-right: 24rpx;
 }
 
-.t-btnYes {
-  background: #40587a;
-  width: 90%;
-  text-align: center;
-  height: 88rpx;
-  font-size: 28rpx;
-  color: #fff;
-  line-height: 88rpx;
-}
-
-.t-btnBackground {
-  background: #fff;
-  padding: 20rpx 28rpx 20rpx 36rpx;
-}
-
 .t-bindSuccess {
   font-size: 30rpx;
   color: #333;
@@ -1430,8 +1437,9 @@ textarea {
   margin-left: 32rpx;
   margin-top: 16rpx;
   line-height: 72rpx;
-  padding-left: 64rpx
+  padding-left: 64rpx;
 }
+
 #newSearch2 .screen {
   position: fixed;
   top: 0;
@@ -1444,6 +1452,7 @@ textarea {
   text-align: left;
   padding-bottom: 16rpx;
 }
+
 #newSearch .search_text {
   font-size: 24rpx;
   color: #999;
@@ -1461,6 +1470,7 @@ textarea {
   position: relative;
   left: 20rpx;
 }
+
 #newSearch2 .search_word {
   width: 94rpx;
   height: 94rpx;

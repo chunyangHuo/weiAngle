@@ -5,7 +5,7 @@ Page({
   data: {
     disabled: false,//保存按钮是否禁用
     describe: "",
-    area_title: "选择城市",
+    area_title: "请选择",
     provinceNum: '',
     cityNum: '',
     // ---------------------picker----------------------
@@ -74,9 +74,9 @@ Page({
   //picker数据预处理
   _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
     if (string_itemArr == 'stage_arry') {
-      item.unshift({ stage_name: '选择阶段' })
-    } else if (string_itemArr == 'scale_money') {
-      item.unshift({ scale_money: '选择金额' })
+      item.unshift({ stage_name: '请选择' })
+    } else{
+      item.unshift({ scale_money: '请选择' })
     }
     item.forEach(x => {
       itemArr.push(x[itemName])
@@ -100,7 +100,7 @@ Page({
       //字体颜色改变
       industryCard.css = 'black';
     } else {
-      industryCard.value = ['请选择'];
+      industryCard.value = ['最多选择5个'];
       industryCard.css = '';
       industryCard.id = [];
     }
@@ -420,7 +420,8 @@ Page({
     // let pro_goodness = that.data.pro_goodness;
     let pro_finance_stock_after = that.data.pro_finance_stock_after;
 
-
+    let  projectName = that.data.projectName;
+console.log(projectName)
     //处理下投后股份数据类型 
     if (isNaN(pro_finance_stock_after)) {
     } else {
@@ -439,24 +440,22 @@ Page({
     }
 
     // 表单检验和发送表单
-    // if (describe == '') {
-    //   app.errorHide(that, '请填写项目介绍', 3000)
-    // } else
-     if (industry.length == 0) {
-      app.errorHide(that, '请选择项目领域', 3000)
-    } else if (!pro_finance_stage) {
-      app.errorHide(that, '请选择项目阶段', 3000)
-    } else if (!pro_finance_scale) {
-      app.errorHide(that, '请选择期望融资', 3000)
-    } else if (pro_area_city == '') {
-      app.errorHide(that, '请选择所在地区', 3000)
-    } else if (is_exclusive == 4) {
-      app.errorHide(that, '请选择是否独家', 3000)
-    } 
+    if (!projectName) {
+      app.errorHide(that, '请填写项目名称', 3000)
+    // } else if (industry.length == 0) {
+    //   app.errorHide(that, '请选择项目领域', 3000)
+    // } else if (!pro_finance_stage) {
+    //   app.errorHide(that, '请选择项目阶段', 3000)
+    // } else if (!pro_finance_scale) {
+    //   app.errorHide(that, '请选择期望融资', 3000)
+    // } else if (pro_area_city == '') {
+    //   app.errorHide(that, '请选择所在地区', 3000)
+    // } else if (is_exclusive == 4) {
+    //   app.errorHide(that, '请选择是否独家', 3000)
+    // } 
     // else if (pro_goodness == '') {
     //   app.errorHide(that, '请填写项目亮点', 3000)
-    // } 
-    else {
+    } else {
       // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
       let successText = '成功创建融资项目';
@@ -508,7 +507,7 @@ Page({
         } else {
           setTimeout(x => {
             wx.redirectTo({
-              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type
+              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type + 'projectId=' +projectId
             })
           }, 1000)
         }

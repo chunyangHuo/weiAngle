@@ -178,6 +178,12 @@
 					"name": "搜索2",
 					"pathName": "pages/search/search2/search2",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "编辑项目",
+					"pathName": "pages/myProject/publishedProject/publishedProject",
+					"query": "pro_id=EWgmQQrJ"
 				}
 			]
 		}

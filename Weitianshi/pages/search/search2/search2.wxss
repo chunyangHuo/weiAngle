@@ -63,3 +63,10 @@
   text-align: left;
   font-weight: bold; 
 }
+.t-applyMyProject .t-careerCompany {
+  margin-left: 140rpx;
+  margin-bottom: 0;
+}
+.t-applyMyProject {
+  padding: 32rpx;
+}

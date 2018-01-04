@@ -139,8 +139,8 @@
   </view>
 </view>
 <view class="card flex">
-  <label class="cardTitle">项目名称</label>
-  <input placeholder="请输入" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+  <label class="cardTitle">项目名称*</label>
+  <input placeholder="项目代号，快速识别，仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
 </view>
 
 <view class='otherInfo'>
@@ -148,9 +148,7 @@
     <view class="projectBoxContent flex noBorder" bindtap="industryChoice">
       <view class="projectTitle">项目领域</view>
       <view class="flex">
-        <!-- <view class="projectContent" wx:if="{{!industryCard.value}}">请选择</view> -->
         <view class="projectContent">{{industryCard.value}}</view>
-        <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
       </view>
     </view>
   </view>
@@ -195,34 +193,37 @@
 
 
 
-<view class="card flex" hover-class='t-hoverColor'>
+<!-- <view class="card flex" hover-class='t-hoverColor'>
   <label class="cardTitle">投后股份(%)</label>
   <input class="projectContentInput" placeholder="请输入投后股权占比" placeholder-style="color:#ccc" bindinput="projectFinance" value='{{pro_finance_stock_after}}' />
-</view>
-<view class="userBox" hover-class='t-hoverColor'>
-  <view class="projectBoxContent flex noBorder" bindtap="initPrivacy">
-    <view class="projectTitle">私密性设置</view>
-    <view class="flex">
-      <view class="projectContent">请选择</view>
-      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
+</view> -->
+<view style='background:white;'>
+  <view class="userBox" hover-class='t-hoverColor'>
+    <view class="projectBoxContent flex noBorder" bindtap="initPrivacy">
+      <view class="projectTitle">私密性设置</view>
+      <view class="flex">
+        <view class="projectContent">请选择</view>
+        <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
+      </view>
     </view>
   </view>
-</view>
-
-<view>
-  <view class="choiceBox flex" wx:if="{{!yesData}}">
-    <view class="content">需要Bp美化</view>
-    <switch bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
+  <view class="aLine"></view>
+  <view>
+    <view class="choiceBox flex" wx:if="{{!yesData}}">
+      <view class="content">需要Bp美化</view>
+      <switch bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
+    </view>
+    <view class="aLine"></view>
+    <view class="choiceBox flex" wx:if="{{!yesData}}">
+      <view class="content">需要融资顾问（FA）服务</view>
+      <switch bindchange="switchChange2" class="switchTab" checked="{{service_fa}}" />
+    </view>
   </view>
-  <view class="choiceBox flex" wx:if="{{!yesData}}">
-    <view class="content">需要融资顾问（FA）服务</view>
-    <switch bindchange="switchChange2" class="switchTab" checked="{{service_fa}}" />
-  </view>
-</view>
-<view wx:if="{{yesData}}">
-  <view class="choiceBox flex">
-    <view class="content">是否需要云投行（FA）合作</view>
-    <switch bindchange="switchChange3" class="switchTab" checked="{{service_yun}}" />
+  <view wx:if="{{yesData}}">
+    <view class="choiceBox flex">
+      <view class="content">是否需要云投行（FA）合作</view>
+      <switch bindchange="switchChange3" class="switchTab" checked="{{service_yun}}" />
+    </view>
   </view>
 </view>
 <view class="question" wx:if="{{group_id != 21&& group_id != 18 && group_id != 6}}">
@@ -236,8 +237,5 @@
   </view>
 </view>
 
-<view class="floatBtn t-btnBackground">
-  <view class="t-btnYes" bindtap="public">确定</view>
-</view>
-
+<template is="buttonTwo" data="{{text:'保存',btnName:'public',disabled}}"></template>
 <view class="highBox"></view>

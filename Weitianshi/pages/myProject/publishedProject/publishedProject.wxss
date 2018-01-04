@@ -1,4 +1,4 @@
-page {
+ page {
   font-size: 32rpx;
 }
 
@@ -22,16 +22,6 @@ page {
   font-size: 24rpx;
   color: #333;
   margin-top: 16rpx;
-}
-
-.card textarea {
-  background: #f2f2f2;
-  border-radius: 4px;
-  padding: 24rpx 32rpx;
-  height: 66rpx;
-  font-size: 28rpx;
-  margin-bottom: 16rpx;
-  width: 590rpx;
 }
 
 .text {
@@ -118,16 +108,15 @@ page {
 /*去电脑端上传*/
 
 .pointToPC {
-  background: #293b55;
+  background:#293b55;
   opacity: 0.9;
-  width: 87%;
-  height: 80rpx;
+  width: 93%;
+  height: 104rpx;
   font-family: PingFangSC-Regular;
   font-size: 28rpx;
-  color: #666;
-  letter-spacing: 0;
-  line-height: 80rpx;
-  padding: 0 48rpx;
+  color: #ffffff;
+  line-height: 104rpx;
+  padding: 0 30rpx;
 }
 
 .pointPcToNet {
@@ -166,14 +155,6 @@ page {
   color: #333;
 }
 
-.projectContent {
-  font-size: 28rpx;
-  color: #ccc;
-  /* line-height: 28rpx; */
-  text-align: right;
-  margin-right: 12rpx;
-}
-
 .arrowStyle {
   margin-top: 47rpx;
   width: 12rpx;
@@ -204,7 +185,6 @@ page {
   padding: 0 32rpx;
   justify-content: space-between;
   background: white;
-  margin-top: 32rpx;
 }
 
 .content {
@@ -337,4 +317,131 @@ page {
 
 .slect .black {
   color: black;
+} 
+
+/*新样式  */
+
+.card {
+  height: 112rpx;
+  line-height: 112rpx;
+  background: #fff;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.cardTitle {
+  margin-left: 32rpx;
+}
+
+.newBox {
+  text-align: right;
+  height: 112rpx;
+  line-height: 112rpx;
+  width: 556rpx;
+  font-size: 28rpx;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.otherInfo {
+  margin: 24rpx 0 30rpx 0;
+  background: white;
+}
+
+.aLine {
+  width: 686rpx;
+  height: 2rpx;
+  background: #f0f0f0;
+  margin: 0 32rpx;
+}
+
+.littleBox {
+  background: #fff;
+  height: 208rpx;
+}
+
+.contentBox {
+  margin-top: 24rpx;
+  margin-left: 32rpx;
+}
+
+.littleTitle {
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.littleContent {
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  width: 208rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+}
+
+input:after {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.pro_goodness {
+  background: #fff;
+  width: 376px;
+  height: 206px;
+}
+
+.selectInput {
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  width: 622rpx;
+  height: 216rpx;
+  font-size: 28rpx;
+  margin: 0 34rpx 32rpx 34rpx;
+  padding: 32rpx;
+}
+
+.goodness {
+  line-height: 100rpx;
+}
+
+.toPcClass {
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  background: #3378e0;
+  border-radius: 4rpx;
+  width: 160rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  margin-top: 28rpx;
+  margin-left: 366rpx;
+
+}
+
+.newBox2 {
+  text-align: right;
+  height: 112rpx;
+  line-height: 112rpx;
+  width: 508rpx;
+  font-size: 28rpx;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.projectContent {
+  font-size: 28rpx;
+  color: #ccc;
+  text-align: right;
+  margin-right: 12rpx;
+  width: 550rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
