@@ -209,7 +209,7 @@ page {
   font-size: 32rpx;
   color: #333;
   line-height: 48rpx;
-  text-align: left;
+  text-align: left !important;
   margin-top: 32rpx;
   /* width: 480rpx; */
 }
@@ -231,6 +231,7 @@ page {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 860rpx;
   /* word-break: break-all;
   flex-wrap: wrap; */
 }
@@ -2170,9 +2171,9 @@ page {
 }
 
 .service {
-  z-index: 111111;
+   /* z-index: 111111; */
   /* border: 0 solid #e6e6e6; */
-  box-shadow: 0 0 4px 0 rgba(41, 59, 85, 0.10);
+  /* box-shadow: 0 0 4px 0 rgba(41, 59, 85, 0.10); */
   width: 112rpx;
   height: 112rpx;
   border-radius: 100%;
@@ -2224,4 +2225,6 @@ page {
   width: 62rpx;
   height: 62rpx;
   margin-top: 43rpx;
+  font-size: 18px;
+  color: #999;
 }

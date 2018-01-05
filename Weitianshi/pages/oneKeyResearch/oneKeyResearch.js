@@ -9,6 +9,7 @@ Page({
     ziji: false,
     matchBut: true,//显示投资人/投资机构
     matchBut1: false,
+    score:true,
     firstName: "代",
     id: "",
     page: 0,

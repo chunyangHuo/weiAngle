@@ -44,7 +44,7 @@
                   <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
                 </view>
                 <view class="weui-cell__bd contacts-detailm">
-                   <view class="userName">{{user.user_name}}</view> 
+                  <view class="userName">{{user.user_name}}</view>
                   <view class="flex userInfo">
                     <!--style="align-items: baseline;"  -->
                     <view class="userCareer">{{user.user_career}}</view>
@@ -194,10 +194,12 @@
                   <view class="grayName" wx:if="{{project.pro_name == ''&&show_company==true}}">项目名称：
                     <label class="materialContent">暂未透露</label>
                   </view>
-                  <view class="grayName" wx:if="{{project.pro_company_name != ''}}" wx:if='{{show_company==true}}'>公司名称：
+                  <!--wx:if='{{show_company==true}}'  -->
+                  <view class="grayName" wx:if="{{project.pro_company_name != ''}}">公司名称：
                     <label class="materialContent byPass">{{project.pro_company_name}}</label>
                   </view>
-                  <view class="grayName" wx:if="{{project.pro_company_name == ''&&show_company==true}}">公司名称：
+                  <!--&&show_company==true  -->
+                  <view class="grayName" wx:if="{{project.pro_company_name == ''}}">公司名称：
                     <label class="materialContent">暂未透露</label>
                   </view>
                   <view class="grayName" wx:if="{{project.pro_status != ''}}">运营状态：
@@ -409,7 +411,7 @@
                 <image class="resourceImg" wx:if="{{item.match_rank==1}}" src="/img/img-1@2x.png"></image>
                 <image class="resourceImg" wx:if="{{item.match_rank==2}}" src="/img/img-2@2x.png"></image>
                 <image class="resourceImg" wx:if="{{item.match_rank==3}}" src="/img/img-3@2x.png"></image>
-                <view  class="resourceImg" >{{item.match_rank}}</view>
+                <view class="resourceImg">{{item.match_rank}}</view>
               </view>
               <view class="resourceRight">
                 <template is='matchButton' data='{{item,user_id,investor_id,push_status}}'></template>
@@ -419,7 +421,7 @@
             </view>
           </block>
           <view style="height:32rpx;"></view>
-          <template is="theBottom" style="margin-bottom:92rpx"  wx:if="{{jiandi==true&&investor2.length!=0}}"></template>
+          <template is="theBottom" style="margin-bottom:92rpx" wx:if="{{jiandi==true&&investor2.length!=0}}"></template>
           <view style="height:32rpx;"></view>
           <!-- <template is="hasNothing" data="{{emptyNumber:investor2}}"></template> -->
           <template is="isEmpty" data="{{emptyNumber:investor2}}"></template>
@@ -800,14 +802,17 @@
           <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
           <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">收起</view>
         </view>
-        <template is="isEmpty" data="{{emptyNumber:competeList}}"  wx:if="{{competeList.length==0}}"></template>
+        <template is="isEmpty" data="{{emptyNumber:competeList}}" wx:if="{{competeList.length==0}}"></template>
         <view style="height:88rpx;"></view>
       </view>
 
     </swiper-item>
   </swiper>
   <!-- 客服 -->
-  <image class="service" src="/img/btn-lianxikefu@2x.png" wx:if="{{currentTab==0}}"></image>
+  <button open-type="contact" class="t-contact" wx:if="{{currentTab==0}}">
+    <image class="service" src="/img/btn-lianxikefu@2x.png">
+    </image>
+  </button>
   <!--项目打分  -->
   <!-- <view class="projectScore" wx:if="{{score&&currentTab==0}}" bindtap="projectRemark">项目评价</view> -->
 </view>
