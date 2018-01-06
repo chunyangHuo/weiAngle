@@ -3,17 +3,15 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    currentTab: 3,
-    value : ''
+    currentTab: 0,
+    value: ''
   },
   onLoad: function (options) {
     let user_id = wx.getStorageSync('user_id');
+    this.search();
     this.setData({
-      user_id : user_id
+      user_id:user_id
     })
-    this.investorList();
-    this.faList();
-    this.newestProject()
   },
   onShow: function () {
 
@@ -22,146 +20,112 @@ Page({
   swichNav: function (e) {
     let that = this;
     let current = e.target.dataset.current;
+    let searchValue = this.data.searchValue;
     that.setData({
       currentTab: e.target.dataset.current
     })
     app.initPage(that);
+    if (!searchValue) {
+      this.search()
+    } else {
+      this.searchYes();
+    }
   },
   // 滑动切换tab
   bindChange: function (e) {
     let that = this;
+    let searchValue = this.data.searchValue;
     that.setData({
       currentTab: e.detail.current
     })
     app.initPage(that);
+    if (!searchValue) {
+      this.search()
+    } else {
+      this.searchYes();
+    }
   },
   //输入的内容
   searchSth(e) {
     let value = e.detail.value;
     this.setData({
-      searchValue : value
+      searchValue: value
     })
   },
   //搜索确定的按钮
-  searchYes() { 
-
+  searchYes() {
+    let current = this.data.currentTab;
+    let searchValue = this.data.searchValue;
+    this.setData({
+      show : true
+    })
+    switch (current) {
+      case 0: {
+        this.search(searchValue);
+        break;
+      }
+      case 1: {
+        this.newestProject(searchValue);
+        break;
+      }
+      case 2: {
+        this.applyList(searchValue)
+        break;
+      }
+      case 3: {
+        this.investorList(searchValue)
+        break;
+      }
+      case 4: {
+        this.faList(searchValue)
+        break;
+      }
+    }
   },
   //搜索指定内容
   jumpToSearch(e) {
     let current = e.currentTarget.dataset.current;
     this.setData({
-      currentTab: current
+      currentTab: current,
+      show : true
     })
   },
-  //投资人列表信息
-  investorList() {
-    let that = this;
-    console.log(this.data.user_id)
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
-    wx.request({
-      url: url_common + '/api/investor/getInvestorListByGroup',
-      data: {
-        user_id: this.data.user_id,
-        type: 'investor',
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == '2000000') {
-          console.log('投资人列表', res.data.data)
-          wx.hideLoading();
-          let investorList = res.data.data;
-          // 存入无筛选项的投资人列表以备他用
-          if (!that.data.investorList) {
-            that.setData({
-              investorList2: investorList
-            })
-          }
-          that.setData({
-            investorList: investorList,
-            // SearchInit: SearchInit
-          })
-        }
-      },
-      complete() {
-        wx.hideLoading()
-      }
-    });
-  },
-  //FA列表信息
-  faList() {
-    let that = this;
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
-    wx.request({
-      url: url_common + '/api/investor/getInvestorListByGroup',
-      data: {
-        user_id: this.data.user_id,
-        type: 'fa'
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == '2000000') {
-          console.log('FA列表', res.data.data)
-          wx.hideLoading();
-          let faList = res.data.data;
-          // 存入无筛选项的FA列表以备他用
-          if (!that.data.faList) {
-            that.setData({
-              faList2: faList
-            })
-          }
-          that.setData({
-            faList: faList,
-          })
-        }
-      },
-      complete() {
-        wx.hideLoading();
-      }
-    });
-  },
+
   // 上拉加载
   loadMore: function () {
-    console.log(5555)
     //请求上拉加载接口所需要的参数
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
     let currentTab = this.data.currentTab;
+    let searchValue = this.data.searchValue;
     switch (currentTab) {
       case 1:
         {
           let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
+            url: url_common + '/api/project/getMarketProjectList',
             data: {
-              user_id: user_id,
-              type: 'investor',
+              user_id: this.data.user_id,
               page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
+              filter: { search: searchValue }
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "investorList")
+          app.loadMore(that, request, "projects_list")
         }
         break;
       case 2:
         {
           let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
+            url: url_common + '/api/search/investmentSearch',
             data: {
-              user_id: user_id,
-              type: 'fa',
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
+              user_id: this.data.user_id,
+              word: searchValue,
+              page: this.data.currentPage
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "faList")
+          app.loadMore(that, request, "investments_list")
         }
         break;
       case 3:
@@ -172,11 +136,11 @@ Page({
               user_id: user_id,
               type: 'investor',
               page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
+              search: searchValue
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "investorList")
+          app.loadMore(that, request, "investors_list")
         }
         break;
       case 4:
@@ -187,17 +151,17 @@ Page({
               user_id: user_id,
               type: 'fa',
               page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
+              search: searchValue
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request, "faList")
+          app.loadMore(that, request, "fa_list")
         }
         break;
     }
   },
   //最新项目
-  newestProject() {
+  newestProject(searchValue) {
     let that = this;
     if (!that.data.financingNeed) {
       wx.showLoading({
@@ -209,20 +173,14 @@ Page({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
         user_id: this.data.user_id,
-        // filter: this.data.SearchInit.searchData
+        filter: { search: searchValue }
       },
       method: 'POST',
       success: function (res) {
         var financingNeed = res.data.data;
         console.log('最新', financingNeed);
-        // 将无筛选条件的最新列表存入变量以备使用
-        if (!that.data.financingNeed) {
-          that.setData({
-            financingNeed2: financingNeed
-          })
-        }
         that.setData({
-          financingNeed: financingNeed,
+          projects_list: financingNeed,
         })
       },
       complete() {
@@ -230,4 +188,143 @@ Page({
       }
     })
   },
+  //投资机构
+  applyList(searchValue) {
+    let that = this;
+    wx.request({
+      url: url_common + '/api/search/investmentSearch',
+      method: "POST",
+      data: {
+        user_id: this.data.user_id,
+        word: searchValue
+      },
+      success: function (res) {
+        console.log("投资机构", res)
+        wx.hideLoading()
+        let investments_list = res.data.data.investments_list.list;
+        that.setData({
+          investments_list: investments_list
+        })
+        wx.hideLoading();
+      }
+    })
+  },
+  //投资人列表信息
+  investorList(searchValue) {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    wx.request({
+      url: url_common + '/api/investor/getInvestorListByGroup',
+      data: {
+        user_id: this.data.user_id,
+        type: 'investor',
+        search: searchValue
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == '2000000') {
+          console.log('投资人列表', res.data.data)
+          wx.hideLoading();
+          let investors_list = res.data.data;
+          that.setData({
+            investors_list: investors_list,
+          })
+        }
+      },
+      complete() {
+        wx.hideLoading()
+      }
+    });
+  },
+  //FA列表信息
+  faList(searchValue) {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    wx.request({
+      url: url_common + '/api/investor/getInvestorListByGroup',
+      data: {
+        user_id: this.data.user_id,
+        type: 'fa',
+        search: searchValue
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == '2000000') {
+          console.log('FA列表', res.data.data)
+          wx.hideLoading();
+          that.setData({
+            fa_list: res.data.data,
+          })
+        }
+      },
+      complete() {
+        wx.hideLoading();
+      }
+    });
+  },
+  //项目详情跳转
+  detail: function (e) {
+    console.log(e)
+    let thisData = e.currentTarget.dataset;
+    let id = thisData.id;
+    let user_id = this.data.user_id
+    if (user_id != id) {
+      app.href('/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + user_id)
+    } else {
+      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id)
+    }
+  },
+  //跳转投资机构详情
+  institutionalDetails(e) {
+    let institutionId = e.currentTarget.dataset.id;
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + institutionId)
+  },
+  //跳转投资人详情或者FA详情
+  userDetail(e) {
+    let userDetailId = e.currentTarget.dataset.id;
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + userDetailId)
+  },
+  search() {
+    let user_id = wx.getStorageSync('user_id');
+    let that = this;
+    let timer = this.data.timer;
+    let currentTab = this.data.currentTab;
+    let searchValue = this.data.searchValue
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(x => {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
+      })
+      app.httpPost({
+        url: url_common + '/api/search/multipleSearch',
+        data: {
+          user_id: user_id,
+          word: searchValue
+        }
+      }).then(res => {
+        let searchData = res.data.data;
+        console.log(searchData)
+        wx.hideLoading();
+        that.setData({
+          searchData: searchData,
+          fa_list: searchData.fa_list.list,
+          investors_list: searchData.investors_list.list,
+          investments_list: searchData.investments_list.list,
+          projects_list: searchData.projects_list.list
+        })
+      })
+    }, 1500)
+    this.setData({
+      timer: timer
+    })
+  }
 })

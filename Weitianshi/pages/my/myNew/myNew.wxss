@@ -204,15 +204,13 @@ page {
 }
 
 .blockContent {
-  background: #40587a;
-  border-radius: 4rpx;
   width: 136rpx;
   height: 54rpx;
   font-size: 24rpx;
-  color: #fff;
+  color: #3378e0;
   line-height: 54rpx;
   text-align: center;
-  margin-bottom: 29rpx;
+  margin-top: 29rpx;
 }
 
 .number {
@@ -453,7 +451,8 @@ page {
   text-align: left;
   margin: 32rpx 0;
   padding: 34rpx 0;
-  /* justify-content: space-between; */
+  justify-content: space-between;
+  padding-right: 32rpx;
 }
 
 .shopTitle {
@@ -469,5 +468,28 @@ page {
 .shopShow {
   font-size: 24rpx;
   color: #666;
+  text-align: left;
+  margin-top: 16rpx;
+}
+
+/*未登录  */
+
+.entryBox {
+  padding: 32rpx;
+  height: 154rpx;
+  background: #f2f3f4;
+}
+
+.entryPoint {
+  font-size: 40rpx;
+  color: #262626;
+  text-align: left;
+  margin-bottom: 10rpx;
+  font-weight: bold;
+}
+
+.entryContent {
+  font-size: 28rpx;
+  color: #999;
   text-align: left;
 }

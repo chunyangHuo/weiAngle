@@ -21,7 +21,7 @@
         <view class="outPadding">
           <view class="blockTitle">投资机构</view>
         </view>
-        <template is="investment" data="{{investment_list,currentTab,index}}"></template>
+        <template is="investment" data="{{investment_list,currentTab,index,number:6}}"></template>
         <view class="outPadding">
           <view class="more" wx:if="{{searchData.investment_list.list.length >= 6}}" bindtap="investment">更多</view>
         </view>

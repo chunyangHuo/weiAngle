@@ -32,6 +32,7 @@
     <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit,playTime:1}}"></template>
     <!--  投资需求-->
     <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
+    <view style='height:104rpx;'></view>
     <!--资源需求  -->
     <!-- <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>  -->
     <!-- <view style="height:92rpx;"></view>  -->
@@ -47,7 +48,7 @@
         <view class='t-shopBlock'>首页</view>
       </view>
       <view class="t-line"></view>
-      <view class="t-flexBox1">
+      <view class="t-flexBox1"  plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
         <view class='t-shopBlock'  hover-class="t-hoverColor">
           <image src='/img/icon-erweima12.png' class="t-shopPic1"></image>
           二维码</view>
@@ -60,10 +61,6 @@
       <view class="t-line"></view>
       <button open-type='share' class='t-creatProject' hover-class="t-redColor">分享名片</button>
     </view>
-
-
-
-
     <!--我的人脉和加入人脉-->
     <view class="aboutNetwork flex" wx:if="{{options}}">
       <view bindtap="myNetwork">我的人脉</view>
@@ -104,4 +101,3 @@
     </view>
   </view>
 </view>
-<!--通讯工具  -->

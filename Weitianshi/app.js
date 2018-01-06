@@ -698,7 +698,7 @@ App({
       console.log('res', res)
       if (res.data.status_code == 2000000) {
         wx.hideLoading();
-        callBack();
+        callBack(res);
         setTimeout(x => {
           that.setData({
             disabled: false,

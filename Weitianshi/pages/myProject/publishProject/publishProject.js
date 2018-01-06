@@ -417,44 +417,11 @@ Page({
     let pro_area_province = that.data.provinceNum;
     let pro_area_city = that.data.cityNum;
     let is_exclusive = that.data.tips_index;
-    // let pro_goodness = that.data.pro_goodness;
-    let pro_finance_stock_after = that.data.pro_finance_stock_after;
-
     let  projectName = that.data.projectName;
-console.log(projectName)
-    //处理下投后股份数据类型 
-    if (isNaN(pro_finance_stock_after)) {
-    } else {
-      pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
-    }
-    if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
-      if (pro_finance_stock_after < 0) {
-        app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
-      } else if (pro_finance_stock_after > 100) {
-        app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
-      } else if (typeof pro_finance_stock_after != 'number') {
-        console.log(pro_finance_stock_after)
-        app.errorHide(that, '投后股份项应该为数字', 3000);
-      }
-      return;
-    }
 
     // 表单检验和发送表单
     if (!projectName) {
       app.errorHide(that, '请填写项目名称', 3000)
-    // } else if (industry.length == 0) {
-    //   app.errorHide(that, '请选择项目领域', 3000)
-    // } else if (!pro_finance_stage) {
-    //   app.errorHide(that, '请选择项目阶段', 3000)
-    // } else if (!pro_finance_scale) {
-    //   app.errorHide(that, '请选择期望融资', 3000)
-    // } else if (pro_area_city == '') {
-    //   app.errorHide(that, '请选择所在地区', 3000)
-    // } else if (is_exclusive == 4) {
-    //   app.errorHide(that, '请选择是否独家', 3000)
-    // } 
-    // else if (pro_goodness == '') {
-    //   app.errorHide(that, '请填写项目亮点', 3000)
     } else {
       // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
@@ -469,21 +436,16 @@ console.log(projectName)
         data: {
           user_id: wx.getStorageSync('user_id'),
           project_id: that.data.pro_id || '',
-          // pro_intro: describe,
           industry: industry,
           pro_finance_stage: pro_finance_stage,
           pro_finance_scale: pro_finance_scale,
           pro_area_province: pro_area_province,
           pro_area_city: pro_area_city,
           is_exclusive: is_exclusive,
-          // pro_goodness: pro_goodness,
-          pro_finance_stock_after: pro_finance_stock_after,
-          // pro_company_name: that.data.companyName,
           pro_name: that.data.projectName,
           service_ps_bp: that.data.service_ps_bp,
           service_fa: that.data.service_fa,
           service_yun: that.data.service_yun,
-          // subscribe: that.data.subscribe,
           pro_total_score: that.data.pro_total_score,
           open_status: privacy.open_status,
           power_share_status: privacy.power_share_status,
@@ -492,6 +454,9 @@ console.log(projectName)
         },
       }
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+        console.log(res)
+        let projectId = res.data.project_id;
+console.log(projectId)
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
@@ -507,7 +472,7 @@ console.log(projectName)
         } else {
           setTimeout(x => {
             wx.redirectTo({
-              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type + 'projectId=' +projectId
+              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type + '&&projectId=' +projectId
             })
           }, 1000)
         }

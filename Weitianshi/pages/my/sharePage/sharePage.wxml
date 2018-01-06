@@ -17,7 +17,7 @@
     <template is="InvestInfo" data="{{invest:invest}}"></template>
 
     <!--资源需求-->
-    <template is="resourceInfo" data="{{resource:resource}}"></template>
+    <!-- <template is="resourceInfo" data="{{resource:resource}}"></template> -->
 
     <template is="forButton"></template>
   </view>

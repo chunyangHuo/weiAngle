@@ -170,7 +170,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         console.log(user_id, id, is_share)
-        console.log(res)
+        console.log("bp",res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -883,6 +883,7 @@ Page({
   //商业计划书
   businessBook: function () {
     let BPath = this.data.BPath;
+    
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
@@ -891,6 +892,7 @@ Page({
         wx.showActionSheet({
           itemList: ['直接预览', '发送到邮箱'],
           success: function (res) {
+            console.log(res)
             if (res.tapIndex == 1) {
               wx.request({
                 url: url_common + '/api/user/checkUserInfo',
@@ -924,7 +926,9 @@ Page({
               wx.downloadFile({
                 url: BPath,
                 success: function (res) {
+                  console.log(res)
                   var filePath = res.tempFilePath;
+                  console.log("bp",filePath)
                   wx.openDocument({
                     filePath: filePath,
                     success: function (res) {

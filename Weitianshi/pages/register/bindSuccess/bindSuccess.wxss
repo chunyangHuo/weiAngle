@@ -40,3 +40,7 @@
   width: 750rpx;
   height: 944rpx;
 }
+.t-btnBackground{
+  background: white;
+  padding: 20rpx 32rpx;
+}

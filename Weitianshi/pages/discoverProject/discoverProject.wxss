@@ -204,10 +204,12 @@
 
 .searchBox {
   background: #293b55;
-  /* width: 100%; */
-  /* height: 98rpx; */
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 99999;
   border-radius: 0;
-  padding:16rpx 32rpx;
+  padding: 16rpx 32rpx;
   height: auto;
 }
 
@@ -222,6 +224,7 @@
   letter-spacing: 0;
   text-align: left;
 }
+
 .search_icon1 {
   display: block;
   line-height: 64rpx;
@@ -229,7 +232,6 @@
 }
 
 .jumpBox {
-  margin-top: 98rpx;
   background: #fff;
   width: 100%;
   height: 140rpx;
@@ -414,7 +416,7 @@
 
 .t-toAccreditation {
   right: 32rpx;
-  background:#3378e0;
+  background: #3378e0;
 }
 
 .appling, .refuseToRead {
