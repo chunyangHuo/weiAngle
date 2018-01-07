@@ -150,18 +150,20 @@
 /*投资机构  */
 
 #investment .investGroupBlock {
-   padding-bottom: 40rpx;
-  padding-top: 40rpx; 
-  padding: 32rpx 32rpx 0 32rpx;
+  padding-bottom: 40rpx;
+  padding-top: 40rpx;
+  /* padding: 32rpx 32rpx 0 32rpx; */
 }
-#investment .investGroupBlock .investGroupBlock1{
+
+#investment .investGroupBlock .investGroupBlock1 {
   padding-bottom: 32rpx;
   border-bottom: 1rpx solid #e6e6e6;
 }
- #investment .investGroupBlock:last-child .investGroupBlock1 {
+
+#investment .investGroupBlock:last-child .investGroupBlock1 {
   border-bottom: 0;
   /* padding-bottom: 0; */
- }  
+}
 
 #investment .investGroupLeft {
   height: 104rpx;
@@ -282,19 +284,23 @@
 #memberList  .blockTitle {
   font-size: 30rpx;
   color: #333;
-  line-height: 33rpx;
+  height: 74rpx;
   text-align: left;
-  margin-bottom: 40rpx;
-} 
+  line-height: 74rpx;
+  padding-left: 32rpx;
+}
+
 #memberList  .memberInfo {
   padding-bottom: 40rpx;
   padding-top: 40rpx;
   padding: 32rpx 32rpx 0 32rpx;
 }
-#memberList  .memberInfo  .memberInfo1{
- padding-bottom: 32rpx;
+
+#memberList  .memberInfo  .memberInfo1 {
+  padding-bottom: 32rpx;
   border-bottom: 1rpx solid #e6e6e6;
 }
+
 #memberList  .memberInfo:last-child  .memberInfo1 {
   border: 0;
 }
@@ -649,7 +655,7 @@
   color: #fc703e;
   line-height: 26rpx;
   text-align: right;
-   margin-right: -45rpx; 
+  margin-right: -45rpx;
 }
 
 #investment1 .investTitleBlock {
@@ -728,18 +734,36 @@
   text-align: center;
   margin-right: 13rpx;
 }
+
 .outStyleBox {
   margin-bottom: 32rpx;
   background: #fff;
-  padding: 32rpx;
+  padding: 0;
 }
+
 .outStyleBox1 {
   margin-bottom: 32rpx;
   background: #fff;
+  padding: 0 32rpx;
 }
-.outPadding{
+
+.outPadding {
   padding: 32rpx 32rpx 0 32rpx;
 }
+
 .outStyleBox:last-child {
   margin-bottom: 0;
 }
+
+#projects .blockTitle2, #investment .blockTitle2 {
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  height: 74rpx;
+  line-height: 74rpx;
+  padding-left: 32rpx;
+  font-weight: bold;
+}
+ #investment .blockTitle2{
+   padding-left: 0;
+ }

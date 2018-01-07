@@ -1,2 +1,2 @@
 <import src="/pages/Template/Template.wxml" />
-<template is="jumpToWhere" data="{{text:'创建成功',imgUrls:imgUrls,content:'联系客服可加速项目审核'}}"></template>
+<template is="jumpToWhere" data="{{text:'创建成功',imgUrls:imgUrls,content:'联系客服可加速项目审核',projectId:projectId}}"></template>

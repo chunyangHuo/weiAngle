@@ -6,9 +6,11 @@ Page({
     imgUrls: app.globalData.picUrl.project_success
   },
   onLoad: function (options) {
-    let type = options.type;
+   let projectId = options.projectId;
+   console.log(projectId)
     this.setData({
-      type: type
+      type: options.type,
+      projectId: projectId
     })
   },
   btnYes: function () {
@@ -22,5 +24,11 @@ Page({
         url: '/pages/matchInvestor/matchInvestor'
       });
     }
+  },
+  continueEdit(){
+    let projectId = this.data.projectId;
+    wx.navigateTo({
+      url: '/pages/myProject/publishedProject/publishedProject?pro_id='+ projectId ,
+    })
   }
 })

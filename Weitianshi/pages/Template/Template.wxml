@@ -8,9 +8,8 @@
         <view class="personPosition" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="personActive" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       </view>
-      <view class="personPic">
-        <!-- <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
-      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view> -->
+      <view>
+        <image wx:if="{{user.user_avatar_url}}" class="personPic" src="{{user.user_avatar_url}}"></image>
       </view>
     </view>
     <view class="editBottom">
@@ -240,6 +239,13 @@
   </view>
 </template>
 
+<!--按钮二号  -->
+<template name="buttonTwo">
+  <view class="floatBtn buttonTwo" bindtap="{{btnName}}">
+    <button disabled="{{disabled}}" class='t-btnYes' hover-class="t-other-button-hover">{{text}}</button>
+  </view>
+</template>
+
 <!--input_jump-->
 <template name="input_jump">
   <view class="card">
@@ -283,7 +289,7 @@
   <view class="flex pc-guidem">
     <view class="pointToPC" hover-class='t-createColor' bindtap="toPc">
       <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
-      去电脑上创建项目更方便
+      用电脑创建项目，体验更好更流畅
       <label class="pointPcToNet">></label>
     </view>
   </view>
@@ -1005,12 +1011,12 @@
     <view class='t-customService'>联系客服</view>
   </view>
   <image src="{{imgUrls}}" class="t-picAfter"></image>
-  <view class="floatBtn t-btnBackground" wx:if="{{type==1}}">
-    <view class="t-btnYes" bindtap="btnYes">确定</view>
+  <view class="floatBtn buttonTwo" bindtap="{{btnName}}" wx:if="{{type==1}}">
+    <button disabled="{{disabled}}" class='t-btnYes' hover-class="t-other-button-hover">{{text2}}</button>
   </view>
-  <view class="floatBtn t-btnBackground flex">
-    <view class="t-btnLeft">确定</view>
-    <view class="t-btnRight"> 继续完善</view>
+  <view class="floatBtn t-btnBackground flex" wx:if="{{type != 1}}">
+    <view class="t-btnLeft" bindtap='btnYes'>确定</view>
+    <view class="t-btnRight" bindtap='continueEdit'> 继续完善</view>
   </view>
 </template>
 
@@ -1082,7 +1088,7 @@
 <template name="investment">
   <view id="investment">
     <block wx:for="{{investment_list}}" wx:key="{{index}}">
-      <view class="investGroupBlock flex" hover-class='t-hoverColor' bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= 6}}" style="{{index == 5 && currentTab == 0 ? 'border:none':''}}">
+      <view class="investGroupBlock flex" hover-class='t-hoverColor' bindtap="institutionalDetails" data-id="{{item.investment_id}}" hidden="{{currentTab == 0 && index >= number}}" style="{{index == number-1 && currentTab == 0 ? 'border:none':''}}">
         <view class="investGroupBlock1 flex">
           <view class="investGroupLeft">
             <image src="{{item.investment_logo}}" class="investGroupLeft" wx:if="{{item.investment_logo}}" mode="aspectFit"></image>
@@ -1283,6 +1289,16 @@
   </view>
 </template>
 
+<template name="newSearch2">
+  <view id="newSearch2">
+    <view class="flex screen">
+      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth" />
+      <icon type="search" size="14" class="search_icon1"></icon>
+      <view class="search_word" bindtap="searchYes">搜索</view>
+    </view>
+  </view>
+</template>
+
 <!--为空状态  -->
 <template name="isEmpty">
   <view class="t-noContent" wx:if="{{emptyNumber == ''}}">暂无内容</view>
@@ -1436,29 +1452,32 @@
 <template name="shopProject">
   <view class='outBox'>
     <block wx:for="{{myProject}}" wx:key="{{index}}">
-      <view class='insideBox' data-id="{{item.project_id}}" hover-class='t-hoverColor' bindtap="detail">
-        <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-        <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-        <view class='flex industryBox'>
-          <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-            <view class="allIndustry">{{industry.industry_name}}</view>
-          </block>
-        </view>
-        <view class='flex otherInfo'>
-          <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-            <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
-            <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
-            <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
-            <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
+      <view hidden="{{currentTab == 0 && index >= number}}">
+        <view class='insideBox' data-id="{{item.project_id}}" hover-class='t-hoverColor' bindtap="detail">
+          <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+          <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+          <view class='flex industryBox'>
+            <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
+              <view class="allIndustry">{{industry.industry_name}}</view>
+            </block>
+          </view>
+          <view class='flex otherInfo'>
+            <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+              <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
+              <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
+              <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
+              <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
+            </view>
+          </view>
+          <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}" hover-class="t-hoverColor" hover-stop-propagation="true">
+            <image src="/img/btn-zhiding@2x.png" class="starPic" wx:if='{{item.is_top == 0}}'></image>
+            <image src="/img/btn-quxiao@2x.png" class="starPic" wx:if='{{item.is_top == 1}}'></image>
+          </view>
+          <view class="top" data-id="{{item.project_id}}" wx:if="{{otherPerson == true}}">
+            <image src="/img/img-tuijian@2x.png" class="topPic" wx:if="{{item.is_top == 1 }}"></image>
           </view>
         </view>
-        <view class="star" catchtap="clickProject" data-id="{{item.project_id}}" wx:if="{{otherPerson == false}}" data-top="{{item.is_top}}" hover-class="t-hoverColor" hover-stop-propagation="true">
-          <image src="/img/btn-zhiding@2x.png" class="starPic" wx:if='{{item.is_top == 0}}'></image>
-          <image src="/img/btn-quxiao@2x.png" class="starPic" wx:if='{{item.is_top == 1}}'></image>
-        </view>
-        <view class="top" data-id="{{item.project_id}}" wx:if="{{otherPerson == true}}">
-          <image src="/img/img-tuijian@2x.png" class="topPic" wx:if="{{item.is_top == 1 }}"></image>
-        </view>
+        <view class='t-alineHeight'></view>
       </view>
     </block>
   </view>

@@ -156,12 +156,6 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "本人项目详情",
-					"pathName": "pages/myProject/projectDetail/projectDetail",
-					"query": "id=k0xlyx0v&index=undefined"
-				},
-				{
 					"id": 25,
 					"name": "他人的投资名片",
 					"pathName": "pages/userDetail/networkDetail/networkDetail",
@@ -172,6 +166,24 @@
 					"name": "我的投资名片",
 					"pathName": "pages/my/my/my",
 					"query": "id=Opv5J3lW"
+				},
+				{
+					"id": -1,
+					"name": "搜索2",
+					"pathName": "pages/search/search2/search2",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "编辑项目",
+					"pathName": "pages/myProject/publishedProject/publishedProject",
+					"query": "pro_id=EWgmQQrJ"
+				},
+				{
+					"id": -1,
+					"name": "绑定成功",
+					"pathName": "pages/myProject/pushToSuccess/pushToSuccess",
+					"query": "type=0"
 				}
 			]
 		}

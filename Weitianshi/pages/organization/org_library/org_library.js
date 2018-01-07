@@ -172,7 +172,6 @@ Page({
   //机构详情跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
-
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
   },
 
@@ -199,22 +198,6 @@ Page({
         wx.hideLoading();
       }
     })
-    // app.httpPost({
-    //   url: url_common + '/api/investment/list',
-    //   data: {
-    //     filter: this.data.SearchInit.searchData
-    //   }
-    // }).then(res => {
-    //   console.log(res)
-    //   wx.hideLoading()
-    //   let investormentList = res.data.data;
-    //   let investment_list = investormentList.investment_list.list;
-    //   that.setData({
-    //     investormentList: investormentList,
-    //     investment_list: investment_list
-    //   })
-    //   wx.hideLoading();
-    // })
 
   }
 })

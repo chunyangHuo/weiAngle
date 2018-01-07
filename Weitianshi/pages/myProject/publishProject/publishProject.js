@@ -5,7 +5,7 @@ Page({
   data: {
     disabled: false,//保存按钮是否禁用
     describe: "",
-    area_title: "选择城市",
+    area_title: "请选择",
     provinceNum: '',
     cityNum: '',
     // ---------------------picker----------------------
@@ -15,6 +15,7 @@ Page({
     scale: [],
     scale_index: 0,
     scale_arry: [],
+    exclusive_arry: ['请选择', '独家签约', '非独家签约', '其他'],
     // ---------------------picker----------------------
     tips: ["其他", "独家签约", "非独家"],
     tips_index: 4, //独家效果
@@ -53,6 +54,7 @@ Page({
     let scale = wx.getStorageSync('scale');
     let stage_arry = [];
     let scale_arry = [];
+    let belongArea_arry = [];
     // picker 初始数据预处理
     this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
@@ -72,9 +74,9 @@ Page({
   //picker数据预处理
   _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
     if (string_itemArr == 'stage_arry') {
-      item.unshift({ stage_name: '选择阶段' })
-    } else {
-      item.unshift({ scale_money: '选择金额' })
+      item.unshift({ stage_name: '请选择' })
+    } else{
+      item.unshift({ scale_money: '请选择' })
     }
     item.forEach(x => {
       itemArr.push(x[itemName])
@@ -98,7 +100,7 @@ Page({
       //字体颜色改变
       industryCard.css = 'black';
     } else {
-      industryCard.value = ['请择领域'];
+      industryCard.value = ['最多选择5个'];
       industryCard.css = '';
       industryCard.id = [];
     }
@@ -230,6 +232,12 @@ Page({
       companyName: e.detail.value
     })
   },
+  //项目领域
+  industryChoice() {
+    wx.navigateTo({
+      url: '/pages/form/industry/industry?current=0',
+    })
+  },
   //项目介绍
   bindTextAreaBlur: function (e) {
     this.setData({
@@ -250,8 +258,9 @@ Page({
   },
   //是否独家的效果实现
   tipsOn: function (e) {
+    console.log(e)
     this.setData({
-      tips_index: e.target.dataset.tips
+      tips_index: e.detail.value
     })
   },
   //项目阶段
@@ -401,49 +410,18 @@ Page({
     let theData = this.data;
     let privacy = this.privacyDeal();
     // --------------------表单的各项值-------------------------------------
-    let describe = that.data.describe;
+    // let describe = that.data.describe;
     let industry = that.data.industryCard.id;
     let pro_finance_stage = that.data.stage[that.data.stage_index].stage_id;
     let pro_finance_scale = that.data.scale[that.data.scale_index].scale_id;
     let pro_area_province = that.data.provinceNum;
     let pro_area_city = that.data.cityNum;
     let is_exclusive = that.data.tips_index;
-    let pro_goodness = that.data.pro_goodness;
-    let pro_finance_stock_after = that.data.pro_finance_stock_after;
-
-
-    //处理下投后股份数据类型 
-    if (isNaN(pro_finance_stock_after)) {
-    } else {
-      pro_finance_stock_after = Number(Number(pro_finance_stock_after).toFixed(2));
-    }
-    if (typeof pro_finance_stock_after != 'number' || pro_finance_stock_after < 0 || pro_finance_stock_after > 100) {
-      if (pro_finance_stock_after < 0) {
-        app.errorHide(that, '投后股份项应该为大于等0的数字', 3000);
-      } else if (pro_finance_stock_after > 100) {
-        app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
-      } else if (typeof pro_finance_stock_after != 'number') {
-        console.log(pro_finance_stock_after)
-        app.errorHide(that, '投后股份项应该为数字', 3000);
-      }
-      return;
-    }
+    let  projectName = that.data.projectName;
 
     // 表单检验和发送表单
-    if (describe == '') {
-      app.errorHide(that, '请填写项目介绍', 3000)
-    } else if (industry.length == 0) {
-      app.errorHide(that, '请选择项目领域', 3000)
-    } else if (!pro_finance_stage) {
-      app.errorHide(that, '请选择项目阶段', 3000)
-    } else if (!pro_finance_scale) {
-      app.errorHide(that, '请选择期望融资', 3000)
-    } else if (pro_area_city == '') {
-      app.errorHide(that, '请选择所在地区', 3000)
-    } else if (is_exclusive == 4) {
-      app.errorHide(that, '请选择是否独家', 3000)
-    } else if (pro_goodness == '') {
-      app.errorHide(that, '请填写项目亮点', 3000)
+    if (!projectName) {
+      app.errorHide(that, '请填写项目名称', 3000)
     } else {
       // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
@@ -458,21 +436,16 @@ Page({
         data: {
           user_id: wx.getStorageSync('user_id'),
           project_id: that.data.pro_id || '',
-          pro_intro: describe,
           industry: industry,
           pro_finance_stage: pro_finance_stage,
           pro_finance_scale: pro_finance_scale,
           pro_area_province: pro_area_province,
           pro_area_city: pro_area_city,
           is_exclusive: is_exclusive,
-          pro_goodness: pro_goodness,
-          pro_finance_stock_after: pro_finance_stock_after,
-          pro_company_name: that.data.companyName,
           pro_name: that.data.projectName,
           service_ps_bp: that.data.service_ps_bp,
           service_fa: that.data.service_fa,
           service_yun: that.data.service_yun,
-          subscribe: that.data.subscribe,
           pro_total_score: that.data.pro_total_score,
           open_status: privacy.open_status,
           power_share_status: privacy.power_share_status,
@@ -481,22 +454,25 @@ Page({
         },
       }
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
+        console.log(res)
+        let projectId = res.data.project_id;
+console.log(projectId)
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
         wx.removeStorageSync('setPrivacy');
         app.errorHide(that, successText, 1000)
         // 提交中过渡态处理
-        if(that.data.pro_id){
+        if (that.data.pro_id) {
           setTimeout(x => {
             wx.navigateBack({
-              delta:1
+              delta: 1
             })
           }, 1000)
-        }else{
+        } else {
           setTimeout(x => {
             wx.redirectTo({
-              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type
+              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type + '&&projectId=' +projectId
             })
           }, 1000)
         }

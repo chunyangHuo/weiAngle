@@ -191,7 +191,7 @@ Page({
       })
     }
     app.httpPost({
-      url: url_common + '/api/project/getSelectedProjectList',
+      url: url_common + '/api/project/getSelectedAndMarketProjectList',
       data: {
         user_id: this.data.user_id,
         filter: this.data.SearchInit.searchData
@@ -218,7 +218,7 @@ Page({
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
     let request = {
-      url: url_common + '/api/project/getSelectedProjectList',
+      url: url_common + '/api/project/getSelectedAndMarketProjectList',
       data: {
         user_id: user_id,
         filter: this.data.SearchInit.searchData,
@@ -402,6 +402,12 @@ Page({
   potentialInvestor(){
     wx.navigateTo({
       url: '/pages/matchInvestor/matchInvestor',
+    })
+  },
+  //跳转搜索页面
+  searchMore(){
+    wx.navigateTo({
+      url: '/pages/search/search2/search2',
     })
   }
 })

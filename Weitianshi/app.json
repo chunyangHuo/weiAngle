@@ -28,6 +28,7 @@
     "pages/message/contactProject/projectList/projectList",
     "pages/message/contactProject/userList/userList",
     "pages/search/search1/search1",
+    "pages/search/search2/search2",
     "pages/search/search3/search3",
     "pages/userDetail/networkDetail/networkDetail",
     "pages/projectDetail/projectDetail",
