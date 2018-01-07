@@ -38,12 +38,12 @@
             <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
           </view>
           <view class="weui-cell__bd contacts-detailm">
-            <view class="flex userInfo" style="align-items: baseline;">
-              <view class="userName">{{user.user_name}}</view>
+            <view class="userName">{{user.user_name}}</view>
+            <view class="flex userInfo">
+              <!--style="align-items: baseline;"  -->
               <view class="userCareer">{{user.user_career}}</view>
-              <view class="userCompany">{{user.user_company}}</view>
+              <view class="userCompany">·{{user.user_company}}</view>
               <view class="contactPersonBox flex">
-                <!-- <view class="contactPerson">联系Ta</view> -->
                 <image src="/img/icon-jiantou.png" class="userIcon"></image>
               </view>
             </view>
@@ -139,21 +139,21 @@
     </view>
     <!--三个tab页  -->
     <include src='/utils/wxml/threeTab.wxml' />
-    <view class="projectScore" wx:if="{{score==true&&show_detail != 1}}" bindtap="projectRemark">项目评价</view>
+    <!-- <view class="projectScore" wx:if="{{score==true&&show_detail != 1}}" bindtap="projectRemark">项目评价</view> -->
     <!--申请查看未能过-->
-    <view class="lockStyle"  wx:if="{{show_detail != 1}}">
-    <image src="/img/img-suozhu@2x.png" class="lockImg"></image>
+    <view class="lockStyle" wx:if="{{show_detail != 1}}">
+      <image src="/img/img-suozhu@2x.png" class="lockImg"></image>
       <view class="lockText">认证投资人和认证买方FA可以查看项目的完整信息</view>
       <text class="lockText1">基本介绍\t\t \t\t\t\t\t\t\t\t\t\t·\t\t 更多产品 · 融资信息 · 核心团队 · 里程碑</text>
       <view class="lockRenzheng" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">立即认证</view>
       <!--申请中  -->
-       <view class="lockRenzheng1" wx:if="{{button_type == 0}}"></view>
-       <!-- 重新申请 -->
-         <view class="lockRenzheng1" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class='t-other-button-hover'>立即认证</view>
+      <view class="lockRenzheng1" wx:if="{{button_type == 0}}"></view>
+      <!-- 重新申请 -->
+      <view class="lockRenzheng1" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class='t-other-button-hover'>立即认证</view>
       <!-- <image class="lock" src="/img/img-suo2@2x.png"></image>
       <image src="{{projectBack}}" class="lockBackground"> </image> -->
     </view>
-    <view class="lockKong"></view>
+    <view class="lockKong" wx:if="{{show_detail != 1}}"></view>
   </view>
 </view>
 
@@ -178,14 +178,14 @@
 </view>
 <!--下面的浮动按钮-->
 <view class="floatBtn" wx:if="{{button_type != 1}}">
-  <view class="accreditation flex" wx:if="{{status == 0 ||status ==3}}">
+  <!-- <view class="accreditation flex" wx:if="{{status == 0 ||status ==3}}">
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
   </view>
   <view class="accreditation flex" wx:if="{{status == 5 &&button_type == 3}}">
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation identitym" bindtap="toAccreditation">立即认证</view>
-  </view>
+  </view> -->
   <!-- <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}">申请查看</view>
   <view class="push project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}">重新申请</view> -->
   <!-- <view class="pushing" wx:if="{{button_type == 0}}">申请中</view> -->
@@ -203,25 +203,40 @@
   <view class="businessBook project-applicationm" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class='t-other-button-hover'>重新申请</view> 
 </view> -->
 <view class="flex t-aboutNetwork">
-  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}" hover-class="t-hoverColor" bindtap="moreProject">
-    <image src='/img/icon-shouye@2x.png' class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+  <view class="t-flexBox" hover-class="t-hoverColor" bindtap="moreProject">
+    <image src='/img/icon-shouye@2x.png' class="t-shopPic"></image>
     <view class='t-shopBlock'>首页</view>
   </view>
   <view class="t-line"></view>
-  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}">
+  <view class="t-flexBox">
     <view class='t-shopBlock' wx:if="{{score}}" bindtap="projectRemark" hover-class="t-hoverColor">
-      <image src='/img/icon-pingjia@2x.png'  class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+      <image src='/img/icon-pingjia@2x.png' class="t-shopPic"></image>
       评价</view>
   </view>
   <view class="t-line"></view>
-  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}"  bindtap="maintainProject" hover-class="t-hoverColor">
-    <image src='/img/icon-fenxiang@2x.png' class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
-    <button class='t-shopBlock'  open-type="share">分享</button>
+  <view class="t-flexBox" bindtap="maintainProject" hover-class="t-hoverColor">
+    <image src='/img/icon-fenxiang@2x.png' class="t-shopPic"></image>
+    <button class='t-shopBlock' open-type="share">分享</button>
   </view>
   <view class="t-line"></view>
-  <view  class="{{button_type == 1?'t-flexBox':'t-flexBox1'}}" catchtap="businessBook" wx:if="{{button_type == 1}}" hover-class="t-hoverColor">
-    <image src='/img/icon-jihuashu@2x.png' class="{{button_type == 1?'t-shopPic':'t-shopPic1'}}"></image>
+  <view class="t-flexBox" catchtap="businessBook" wx:if="{{button_type == 1}}" hover-class="t-hoverColor">
+    <image src='/img/icon-jihuashu@2x.png' class="t-shopPic"></image>
     <view class='t-shopBlock'>商业计划书</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="t-flexBox" bindtap="applyProject" wx:if="{{button_type == 3}}" data-project="{{id}}" hover-class="t-hoverColor">
+    <image src='/img/icon-shenqingchakan@2x.png' class="t-shopPic"></image>
+    <view class='t-shopBlock'>申请查看</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="t-flexBox" wx:if="{{button_type == 0}}" hover-class="t-hoverColor">
+    <image src='/img/icon-shenqingchakan@2x.png' class="t-shopPic"></image>
+    <view class='t-shopBlock'>申请中</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="t-flexBox" bindtap="applyProject" wx:if="{{button_type == 2}}" data-project="{{id}}" hover-class="t-hoverColor">
+    <image src='/img/icon-shenqingchakan@2x.png' class="t-shopPic"></image>
+    <view class='t-shopBlock'>重新申请</view>
   </view>
   <view class="t-line"></view>
   <view class='t-creatProject' catchtap="contactPerson" hover-class="t-redColor">联系项目方</view>
@@ -237,5 +252,9 @@
     <button class="btn" hover-class='t-other-button-hover' bindtap="yesBtn" disabled="{{disabled}}">确定</button>
   </view>
 </view>
+<button open-type="contact" class="t-contact">
+  <image class="service" src="/img/btn-lianxikefu@2x.png">
+  </image>
+</button>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

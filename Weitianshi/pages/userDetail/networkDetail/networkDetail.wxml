@@ -145,7 +145,6 @@
         二维码</view>
     </view>
     <view class="t-line"></view>
-    <view class="t-line"></view>
     <view class="t-flexBox1" bindtap="initPrivacy" hover-class="t-hoverColor">
       <image src='/img/icon-bianji1@2x.png' class="t-shopPic1"></image>
       <view class='t-shopBlock'>编辑</view>
@@ -156,5 +155,8 @@
   <!--错误提示  -->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
   <!-- 客服 -->
-  <image class="service" src="/img/btn-lianxikefu@2x.png"></image>
+  <button open-type="contact" class="t-contact">
+    <image class="service" src="/img/btn-lianxikefu@2x.png">
+    </image>
+  </button>
 </view>

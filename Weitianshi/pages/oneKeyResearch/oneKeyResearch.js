@@ -4,6 +4,12 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
+    competeList: [],
+    taren: true,
+    ziji: false,
+    matchBut: true,//显示投资人/投资机构
+    matchBut1: false,
+    score:true,
     firstName: "代",
     id: "",
     page: 0,
@@ -32,7 +38,8 @@ Page({
     score: true,
     message: "",
     projectBack: app.globalData.picUrl.project_detail_backgroud,
-    buttonOneText:"确定"
+    buttonOneText:"确定",
+    imgUrls1: app.globalData.picUrl.projectDetailpotential,
   },
   onLoad: function (options) {
     var that = this;
@@ -72,6 +79,18 @@ Page({
         });
       }
     })
+  },
+  onShow: function () {
+    let that = this;
+    // 机构版买家图谱信息修改
+    that.setData({
+      newPage: '',
+      requestCheck: true,
+      currentPage: 0,
+      page_end: false,
+      investment_list: []
+    })
+    this.loadMore1();
   },
   /* -----------------------数据获取------------------------------------------- */
 
@@ -202,6 +221,17 @@ Page({
           })
 
         }
+        // 产品
+        let brandList1 = res.data.data.brand;
+        if (brandList1) {
+          if (brandList1.length > 3) {
+            brandList = brandList1.slice(0, 3);
+          }
+        }
+        that.setData({
+          brandList: brandList,
+          brandList1: brandList1
+        })
         that.setData({
           project: project,
           user: user,
@@ -226,13 +256,18 @@ Page({
           pro_industry: pro_industry
         })
         // 核心团队
-        if (project.core_users) {
-          let core_memberArray = project.core_users;
+        if (project.core_users != 0) {
+          let core_memberArray1 = project.core_users;//取原始长度
+          let core_memberArray = project.core_users;//
           core_memberArray.forEach((x, index) => {
             core_memberArray[index] = x;
           })
+          if (core_memberArray1.length > 3) {
+            core_memberArray = core_memberArray.slice(0, 3);
+          }
           that.setData({
-            core_memberArray: core_memberArray
+            core_memberArray: core_memberArray,
+            core_memberArray1: core_memberArray1
           })
         }
         // 标签 type:0; 项目标签 type:1 团队标签
@@ -260,31 +295,50 @@ Page({
         }
         // 融资信息
         let pro_history_financeList = project.pro_history_finance;
-        if (pro_history_financeList) {
-          pro_history_financeList.forEach((x, index) => {
-            pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
-            pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
-            pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
-            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
-          })
-          that.setData({
-            pro_history_financeList: pro_history_financeList
-          })
+        pro_history_financeList.forEach((x, index) => {
+          pro_history_financeList[index].finance_time = app.changeTimeStyle1(x.finance_time);
+          pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
+          pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
+          pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
+
+        })
+        // 取原始的长度
+        let pro_history_financeList1 = project.pro_history_finance;
+        if (pro_history_financeList1.length !== 0) {
+          // 显示3条判断
+          if (pro_history_financeList1.length > 3) {
+            pro_history_financeList = pro_history_financeList.slice(0, 3);
+          }
         }
+        that.setData({
+          pro_history_financeList: pro_history_financeList,//显示在详情的数据
+          pro_history_financeList1: pro_history_financeList1,//显示总长度
+        })
         // 里程碑
         let mileStoneArray = project.pro_develop;
-        if (mileStoneArray) {
-          mileStoneArray.forEach((x, index) => {
-            mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
-            mileStoneArray[index].dh_event = x.dh_event;
-          })
+        mileStoneArray.forEach((x, index) => {
+          mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
+          mileStoneArray[index].dh_event = x.dh_event;
+        })
 
+        // 取原始的长度
+        let mileStoneArray1 = project.pro_develop;
+        if (mileStoneArray1.length !== 0) {
+          // 显示3条判断
+          if (mileStoneArray1.length > 3) {
+            mileStoneArray = mileStoneArray.slice(0, 3);
+          }
+        }
+        that.setData({
+          mileStoneArray: mileStoneArray,//显示在详情的数据
+          mileStoneArray1: mileStoneArray1,//显示总长度
+        })
           that.setData({
             mileStoneArray: mileStoneArray,
             industy_sort: industy_sort,
             pro_goodness: pro_goodness
           });
-        }
+       
         //一键尽调
         let company_name = that.data.pro_company_name || ' ';
         // if (company_name == '') {
@@ -548,7 +602,40 @@ Page({
     //调用通用加载函数
     app.loadMore(that, request, "investor2")
   },
-
+  // 机构版买家图谱
+  loadMore1() {
+    let that = this;
+    let id = this.data.id;
+    let currentPage = this.data.currentPage;
+    let investment_list = this.data.investment_list;
+    let request = {
+      url: url_common + '/api/investment/matchs',
+      data: {
+        project_id: id,
+        page: this.data.currentPage
+      },
+    }
+    app.loadMore2(that, request, res => {
+      console.log("机构版买家图谱", res)
+      let newPage = res.data.data;
+      let list = res.data.data.investment_list;
+      let page_end = res.data.data.page_end;
+      if (list) {
+        let newProject = investment_list.concat(list)
+        currentPage++;
+        that.setData({
+          newPage: newPage,
+          investment_list: newProject,
+          page_end: page_end,
+          requestCheck: true,
+          currentPage: currentPage
+        })
+      }
+      if (page_end == true) {
+        // app.errorHide(that, '没有更多了', 3000)
+      }
+    })
+  },
   /* -----------------------交互行为------------------------------------------- */
   // 用户详情
   userDetail: function (e) {
@@ -1112,5 +1199,63 @@ Page({
       app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
     })
 
-  }
+  },
+  potential: function () {
+    let that = this;
+    that.setData({ currentTab: 1 });
+  },
+  onKey: function () {
+    let that = this;
+    that.setData({ currentTab: 2 });
+  },
+  // 买家图谱
+  matchButt: function () {
+    let that = this;
+    that.setData({
+      matchBut: true,
+      matchBut1: false
+    })
+  },
+  // 机构版买家图谱
+  matchButt1: function () {
+    let that = this;
+    that.setData({
+      matchBut1: true,
+      matchBut: false
+    })
+  },
+  // 跳转到首页
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
+  },
+  //跳转到历史融资
+  toHistory: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到核心团队
+  toTeam: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到产品
+  toBrand: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id);
+  },
+  //跳转到里程碑
+  mileStone: function () {
+    let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let id = this.data.id;
+    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
+  },
 }) 

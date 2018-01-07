@@ -901,10 +901,10 @@ textarea {
   text-align: left;
   margin-right: 16rpx;
   align-items: flex-end;
-  max-width: 400rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 144rpx;
 }
 
 .t-applyMyProject .t-userPart {
@@ -1096,6 +1096,7 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left !important;
 }
 
 .t-record {
@@ -1122,7 +1123,7 @@ textarea {
   width: 100%;
   height: 94rpx;
   line-height: 94rpx;
-  padding: 0rpx 0rpx 0rpx 32rpx;
+  padding: 0rpx 0rpx 0rpx 0rpx;
   font-size: 28rpx;
   color: #40587a;
 }
@@ -1134,6 +1135,14 @@ textarea {
 
 .t-history {
   width: 66%;
+   padding-left: 32rpx;
+}
+
+.t-history1 {
+  width: 48%;
+  text-align: center;
+  padding-left: 32rpx;
+  color: #3378e0;
 }
 
 .t-historyNum {
@@ -1168,6 +1177,20 @@ textarea {
   vertical-align: middle;
   justify-content: center;
   width: 25%;
+  padding-right: 32rpx;
+  height: 94rpx;
+  font-size: 15px;
+  color: #3378e0;
+  text-align: center;
+  line-height: 94rpx;
+  border-radius: 2px;
+}
+
+.t-cardBottomItem2 {
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  width: 48%;
   padding-right: 32rpx;
   height: 94rpx;
   font-size: 15px;
@@ -1308,7 +1331,7 @@ textarea {
 }
 
 .t-line {
-  width: 2rpx;
+  width: 4rpx;
   height: 35rpx;
   background: #f2f2f2;
   margin-top: 15px;

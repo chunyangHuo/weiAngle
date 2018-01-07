@@ -8,6 +8,15 @@ page {
 scroll-view {
   height: 100%;
 }
+.theBottomBox {
+  justify-content: center;
+  margin-top: 32rpx;
+  margin-bottom: 127rpx;
+}
+.investGroupBlock{
+  border-bottom: 0!important;
+  /* padding-bottom: 0; */
+}
 
 /*我的项目卡片*/
 
@@ -397,7 +406,7 @@ scroll-view {
   font-size: 32rpx;
   color: #333;
   line-height: 48rpx;
-  text-align: left;
+  text-align: left!important;
   /* width: 480rpx; */
 }
 
@@ -407,7 +416,7 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  margin: 24rpx 0 24rpx 0;
+  margin: 24rpx 10rpx 24rpx 0;
 }
 
 .allProjectDetail {
@@ -470,6 +479,7 @@ scroll-view {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  /* max-width: 100rpx; */
 }
 
 .userIcon {

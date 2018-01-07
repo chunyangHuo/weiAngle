@@ -1,0 +1,14 @@
+<import src="/pages/Template/Template.wxml" />
+
+<!--历史融资  -->
+<scroll-view style="height:1200rpx;background:#fff;padding-top:20rpx" scroll-y="true">
+  <!-- <template is="searchNothing" data="{{empty:investorList}}"></template> -->
+  <block wx:for="{{pro_history_financeList}}" wx:key="{{pro_history_financeList}}">
+    <template is="investHistory" data='{{item}}'></template>
+  </block>
+  <!-- <template is="theBottom" wx:if="{{pro_history_financeList!==''}}"></template> -->
+  <!-- <view class="high"></view> -->
+</scroll-view>
+<!--空状态-->
+<template is="isEmpty" data="{{emptyNumber:pro_history_financeList}}"></template>
+<!-- <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image> -->
