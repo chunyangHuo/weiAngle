@@ -374,7 +374,7 @@
 }
 
 .t-line {
-  width: 2rpx;
+  width: 4rpx;
   height: 35rpx;
   background: #f2f2f2;
   margin-top: 15px;

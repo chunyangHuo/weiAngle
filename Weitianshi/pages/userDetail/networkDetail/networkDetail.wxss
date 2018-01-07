@@ -120,9 +120,6 @@
 }
 
 .service {
-  z-index: 111111;
-  /* border: 0 solid #e6e6e6; */
-  box-shadow: 0 0 4px 0 rgba(41, 59, 85, 0.10);
   width: 112rpx;
   height: 112rpx;
   border-radius: 100%;

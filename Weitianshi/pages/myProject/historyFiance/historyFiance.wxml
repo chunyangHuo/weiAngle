@@ -6,8 +6,8 @@
   <block wx:for="{{pro_history_financeList}}" wx:key="{{pro_history_financeList}}">
     <template is="investHistory" data='{{item}}'></template>
   </block>
-  <template is="theBottom" wx:if="{{pro_history_financeList!==''}}"></template>
-  <view class="high"></view>
+  <!-- <template is="theBottom" wx:if="{{pro_history_financeList!==''}}"></template> -->
+  <!-- <view class="high"></view> -->
 </scroll-view>
 <!--空状态-->
 <template is="isEmpty" data="{{emptyNumber:pro_history_financeList}}"></template>

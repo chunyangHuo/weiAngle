@@ -5,6 +5,7 @@ import * as FilterModel from '../../../utils/filterModel';
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
+    jiandi:false,
     firstTime: true,
     searchText: '搜索公司名称、项目名称',
     faList: '',
@@ -144,6 +145,12 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "faList")
+    console.log(this.data.page_end);
+    if (this.data.page_end == true) {
+      that.setData({
+        jiandi: true
+      })
+    }
 
   },
   // 分享当前页面
