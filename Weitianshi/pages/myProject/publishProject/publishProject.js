@@ -6,8 +6,8 @@ Page({
     disabled: false,//保存按钮是否禁用
     describe: "",
     area_title: "请选择",
-    provinceNum: '',
-    cityNum: '',
+    provinceNum: 0,
+    cityNum: 0,
     // ---------------------picker----------------------
     stage: [],
     stage_index: 0,
@@ -20,7 +20,6 @@ Page({
     tips: ["其他", "独家签约", "非独家"],
     tips_index: 4, //独家效果
     loading: '0',
-    pro_goodness: "",
     service_fa: 0,
     service_yun: 0,
     service_ps_bp: 0,
@@ -58,8 +57,6 @@ Page({
     // picker 初始数据预处理
     this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
-    // 如果是编辑项目入口
-    if (editProId) { this._editProject(editProId) }
   },
   //页面显示
   onShow: function () {
@@ -137,85 +134,6 @@ Page({
       })
     }
   },
-  // 编辑项目入口,数据获取
-  _editProject(editProId) {
-    let that = this;
-    wx.request({
-      url: url_common + '/api/project/getProjectEditInfo',
-      data: {
-        user_id: wx.getStorageSync('user_id'),
-        project_id: editProId
-      },
-      method: 'POST',
-      success: function (res) {
-        let projectEditInfo = res.data.data;
-        console.log('projectEditInfo', res.data.data)
-        // 编辑-industry处理
-        let industryCard = that.data.industryCard;
-        industryCard.value = _industryDeal(projectEditInfo.pro_industry).industryValue;
-        industryCard.id = _industryDeal(projectEditInfo.pro_industry).industryId;
-        industryCard.css = 'black';
-        if (industryCard.value.length == 0) {
-          industryCard.value = '选择领域'
-          industryCard.css = ''
-        }
-        wx.setStorageSync('tran_industry', projectEditInfo.pro_industry)
-        // 编辑-stage和scale处理
-        _editPickerDeal(that, projectEditInfo.pro_stage, projectEditInfo.pro_scale)
-        // 编辑-area处理
-        let editArea = projectEditInfo.pro_area;
-        wx.setStorageSync('tran_area', [{ area_id: editArea.pid, area_title: '' }, { area_id: editArea.area_id, area_title: editArea.area_title }])
-        that.setData({
-          pro_id: editProId,
-          projectName: projectEditInfo.pro_name,
-          companyName: projectEditInfo.pro_company_name,
-          describe: projectEditInfo.pro_intro,
-          industryCard: industryCard,
-          area_title: editArea.area_title,
-          provinceNum: editArea.pid,
-          cityNum: editArea.area_id,
-          tips_index: projectEditInfo.is_exclusive,
-          pro_goodness: projectEditInfo.pro_goodness,
-          pro_finance_stock_after: projectEditInfo.pro_finance_stock_after,
-          service_fa: projectEditInfo.service_fa,
-          service_ps_bp: projectEditInfo.service_ps_bp,
-          service_yun: projectEditInfo.service_yun,
-          buttonOneText: '维护项目'
-        })
-      }
-    })
-    // 编辑-industry处理
-    let _industryDeal = (pro_industry) => {
-      let industryValue = [];
-      let industryId = [];
-      pro_industry.forEach(x => {
-        industryValue.push(x.industry_name);
-        industryId.push(x.industry_id);
-      })
-      return {
-        industryValue, industryId
-      }
-    }
-    // 编辑-stage和scale处理
-    function _editPickerDeal(that, pro_stage, pro_scale) {
-      let stage = that.data.stage;
-      let scale = that.data.scale;
-      stage.forEach((x, index) => {
-        if (x.stage_id == pro_stage.stage_id) {
-          that.setData({
-            stage_index: index
-          })
-        }
-      })
-      scale.forEach((x, index) => {
-        if (x.scale_id == pro_scale.scale_id) {
-          that.setData({
-            scale_index: index
-          })
-        }
-      })
-    }
-  },
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
@@ -226,39 +144,15 @@ Page({
       projectName: e.detail.value
     })
   },
-  //公司名称
-  companyName: function (e) {
-    this.setData({
-      companyName: e.detail.value
-    })
-  },
   //项目领域
   industryChoice() {
     wx.navigateTo({
       url: '/pages/form/industry/industry?current=0',
     })
   },
-  //项目介绍
-  bindTextAreaBlur: function (e) {
-    this.setData({
-      describe: e.detail.value
-    })
-  },
-  //投后股份
-  projectFinance: function (e) {
-    this.setData({
-      pro_finance_stock_after: e.detail.value
-    })
-  },
-  //项目亮点
-  slectInput: function (e) {
-    this.setData({
-      pro_goodness: e.detail.value
-    })
-  },
+
   //是否独家的效果实现
   tipsOn: function (e) {
-    console.log(e)
     this.setData({
       tips_index: e.detail.value
     })
@@ -364,17 +258,13 @@ Page({
             project_id: that.data.pro_id,
             credential: res.result,//二维码扫描信息
             pro_data: {
-              pro_intro: that.data.describe,
               industry: that.data.industryCard.id,
               pro_finance_stage: that.data.stage[that.data.stage_index].stage_id || '',
               pro_finance_scale: that.data.scale[that.data.scale_index].scale_id || '',
               pro_area_province: that.data.provinceNum,
               pro_area_city: that.data.cityNum,
               is_exclusive: that.data.tips_index,
-              pro_goodness: that.data.pro_goodness,
-              pro_company_name: that.data.companyName,
               pro_name: that.data.projectName,
-              pro_finance_stock_after: that.data.pro_finance_stock_after,
               service_fa: that.data.service_fa,
               service_yun: that.data.service_yun,
               service_ps_bp: that.data.service_ps_bp,
@@ -426,10 +316,6 @@ Page({
       // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
       let successText = '成功创建融资项目';
-      if (that.data.pro_id) {
-        httpUrl = '/api/project/updateProject';
-        successText = '维护项目成功'
-      }
       // 防反复提交处理
       let submitData = {
         url: url_common + httpUrl,
@@ -454,9 +340,7 @@ Page({
         },
       }
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
-        console.log(res)
         let projectId = res.data.project_id;
-console.log(projectId)
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);

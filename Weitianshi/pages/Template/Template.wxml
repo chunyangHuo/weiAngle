@@ -482,7 +482,7 @@
 
 <!--没有内容时候的样式  -->
 <template name="hasNothing">
-  <view class="empty flex" wx:if="{{emptyNumber == ''}}">
+  <view class="empty flex" wx:if="{{emptyNumber == ''||emptyNumber == 0}}">
     <image src="/img/img-kong1@2x.png" class="noData"></image>
     <view class="hasNothing">暂无数据</view>
   </view>
@@ -1299,7 +1299,7 @@
   </view>
 </template>
 
-<!--为空状态  -->
+<!--为空状态  --> 
 <template name="isEmpty">
   <view class="t-noContent" wx:if="{{emptyNumber == ''}}">暂无内容</view>
 </template>
