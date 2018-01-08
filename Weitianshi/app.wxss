@@ -1406,7 +1406,7 @@ textarea {
   font-size: 30rpx;
   color: #999;
   text-align: center;
-  margin-top: 422rpx;
+  padding-top: 422rpx;
 }
 
 .theBottomBox {

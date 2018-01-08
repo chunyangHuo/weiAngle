@@ -234,7 +234,6 @@ Page({
   },
   //确定或稍后再试
   laterOn: function () {
-    app.href('/pages/my/my/my',)
     this.setData({
       modalBox: 0
     })
@@ -267,7 +266,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-
         if (res.data.status_code == 2000000) {
           var complete = res.data.is_complete;
           if (complete == 1) {

@@ -326,7 +326,8 @@ App({
         request.data.page++;
         that.setData({
           currentPage: request.data.page,
-          requestCheck: false
+          requestCheck: false,
+          atBottom: false
         });
         //请求加载数据
         wx.request({
@@ -339,25 +340,25 @@ App({
             if (dataStr && typeof dataStr == "string") {
               newPage = res.data[dataStr];
             }
-            console.log(request.data.page, newPage);
-
-            // for (let i = 0; i < newPage.length; i++) {
-            //   dataSum.push(newPage[i])
-            // }
+            console.log(request.data.page, newPage, page_end);
             dataSum = dataSum.concat(newPage)
             that.setData({
               [str]: dataSum,
               page_end: page_end,
               requestCheck: true
             })
-
+            if (page_end) {
+              that.setData({
+                atBottom: true
+              })
+            }
           },
           complete() {
             wx.hideLoading();
           }
         })
       } else {
-        this.errorHide(that, "没有更多了", 3000);
+        this.hasNothingMore(that);
         wx.hideLoading();
         that.setData({
           requestCheck: true
@@ -506,7 +507,7 @@ App({
     let date = new Date(n);
     let Y = date.getFullYear() + '.';
     let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
-    return (Y + M )
+    return (Y + M)
   },
   //邮箱检验
   checkEmail(data) {
@@ -790,7 +791,11 @@ App({
     wx.removeStorageSync('projectShopFilterCache');
   },
 
-
+  hasNothingMore(that, page_end) {
+    that.setData({
+      atBottom: true
+    })
+  },
   //初始本地缓存
   globalData: {
     error: 0,
