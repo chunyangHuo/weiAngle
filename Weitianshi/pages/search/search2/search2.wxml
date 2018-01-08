@@ -57,7 +57,7 @@
       <view class="hasNothing" wx:if="{{investment_list.length ==0 &&industry_list.length == 0 && memberList.list.length == 0}}">暂无数据</view>
     </scroll-view>
   </swiper-item>
-  <swiper-item data-current='1' bindscrolltolower='loadMore'>
+  <swiper-item data-current='1'>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore' data-current='1'>
       <view class="outStyleBox" wx:if="{{projects_list.length != 0}}">
         <template is="shopProject" data="{{myProject:projects_list}}"></template>
@@ -68,14 +68,14 @@
     </scroll-view>
   </swiper-item>
   <swiper-item data-current='2'>
-    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore' data-current='2'>
       <view class="outStyleBox1" wx:if="{{investments_list.length != 0}}">
         <template is="investment" data="{{investment_list:investments_list,index}}"></template>
       </view>
       <view class="hasNothing" wx:if="{{investments_list.length == 0}}">暂无数据</view>
     </scroll-view>
   </swiper-item>
-  <swiper-item data-current='3' bindscrolltolower='loadMore'>
+  <swiper-item data-current='3' >
     <scroll-view style="height:100%;" scroll-y="true" wx:if="{{investors_list.length != 0}}" bindscrolltolower='loadMore' data-current='3'>
       <view class="outStyleBox" wx:if="{{investors_list.length != 0}}">
         <template is='investorModel' data='{{personList:investors_list,user_id}}'></template>
@@ -83,8 +83,8 @@
       <view class="hasNothing" wx:if="{{investors_list.length == 0}}">暂无数据</view>
     </scroll-view>
   </swiper-item>
-  <swiper-item data-current='4' bindscrolltolower='loadMore'>
-    <scroll-view style="height:100%;" scroll-y="true" wx:if="{{fa_list.length != 0}}" bindscrolltolower='loadMore' data-current='3'>
+  <swiper-item data-current='4' >
+    <scroll-view style="height:100%;" scroll-y="true" wx:if="{{fa_list.length != 0}}" bindscrolltolower='loadMore' data-current='4'>
       <view class="outStyleBox" wx:if="{{fa_list.list.length != 0}}">
         <template is="investorModel" data="{{personList:fa_list,user_id}}"></template>
       </view>

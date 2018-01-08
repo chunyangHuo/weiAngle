@@ -20,6 +20,10 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -46,12 +50,6 @@
 					"name": "project_orgMatch",
 					"pathName": "pages/organization/subPage/project_orgMatch/project_orgMatch",
 					"query": "project_id=a1ryoGW3"
-				},
-				{
-					"id": 6,
-					"name": "编辑项目",
-					"pathName": "pages/myProject/publishProject/publishProject",
-					"query": "pro_id=QWNn9gW1"
 				},
 				{
 					"id": 13,
@@ -166,24 +164,6 @@
 					"name": "我的投资名片",
 					"pathName": "pages/my/my/my",
 					"query": "id=Opv5J3lW"
-				},
-				{
-					"id": -1,
-					"name": "搜索2",
-					"pathName": "pages/search/search2/search2",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "编辑项目",
-					"pathName": "pages/myProject/publishedProject/publishedProject",
-					"query": "pro_id=EWgmQQrJ"
-				},
-				{
-					"id": -1,
-					"name": "绑定成功",
-					"pathName": "pages/myProject/pushToSuccess/pushToSuccess",
-					"query": "type=0"
 				}
 			]
 		}
