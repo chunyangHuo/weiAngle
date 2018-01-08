@@ -4,11 +4,11 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     currentTab: 0,
-    value: ''
+    value: '',
+    atBottom : false
   },
   onLoad: function (options) {
     let user_id = wx.getStorageSync('user_id');
-    this.search();
     this.setData({
       user_id:user_id
     })
@@ -85,6 +85,8 @@ Page({
   //搜索指定内容
   jumpToSearch(e) {
     let current = e.currentTarget.dataset.current;
+    app.initPage(this);
+    this.search();
     this.setData({
       currentTab: current,
       show : true
@@ -97,7 +99,8 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
-    let currentTab = this.data.currentTab;
+    let currentTab = this.data.currentTab*1;
+    console.log( typeof currentTab)
     let searchValue = this.data.searchValue;
     switch (currentTab) {
       case 1:
@@ -116,6 +119,8 @@ Page({
         break;
       case 2:
         {
+console.log("开始加载")
+          let investments_list = this.data.investments_list;
           let request = {
             url: url_common + '/api/search/investmentSearch',
             data: {
@@ -124,8 +129,28 @@ Page({
               page: this.data.currentPage
             }
           }
+          console.log(request)
           //调用通用加载函数
-          app.loadMore(that, request, "investments_list")
+          app.loadMore2(that, request, res => {
+            console.log(res)
+            let list = res.data.data.investments_list.list;
+            let page_end = res.data.data.investments_list.page_end;
+            if (list) {
+              let investList = investments_list.concat(list)
+              that.setData({
+                investments_list: investList,
+                page_end: page_end,
+                requestCheck: true,
+                atBottom: false
+              })
+            }
+            if (page_end == true) {
+              that.setData({
+                atBottom: true
+              })
+            }
+          })
+          console.log("加载完成")
         }
         break;
       case 3:
@@ -182,6 +207,11 @@ Page({
         that.setData({
           projects_list: financingNeed,
         })
+        if(res.data.page_end){
+          that.setData({
+            atBottom :true
+          })
+        }
       },
       complete() {
         wx.hideLoading();
@@ -206,6 +236,11 @@ Page({
           investments_list: investments_list
         })
         wx.hideLoading();
+        if (res.data.page_end) {
+          that.setData({
+            atBottom: true
+          })
+        }
       }
     })
   },
@@ -232,6 +267,11 @@ Page({
           that.setData({
             investors_list: investors_list,
           })
+          if (res.data.page_end) {
+            that.setData({
+              atBottom: true
+            })
+          }
         }
       },
       complete() {
@@ -261,6 +301,11 @@ Page({
           that.setData({
             fa_list: res.data.data,
           })
+          if (res.data.page_end) {
+            that.setData({
+              atBottom: true
+            })
+          }
         }
       },
       complete() {
@@ -322,7 +367,7 @@ Page({
           projects_list: searchData.projects_list.list
         })
       })
-    }, 1500)
+    }, 500)
     this.setData({
       timer: timer
     })
