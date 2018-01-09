@@ -129,13 +129,13 @@
 
 <!--项目店铺  -->
 <view class="shopBlock flex" bindtap="projectShop" hover-class="t-hoverColor">
-<view class="flex">
-  <image src="/img/icon-xiangmudianpu@2x.png" class="shopPic"></image>
-  <view style="align-items:center">
-    <view class="shopTitle">项目店铺</view>
-    <view class="shopShow">FA专属 · 项目展示 · 案源收集</view>
+  <view class="flex">
+    <image src="/img/icon-xiangmudianpu@2x.png" class="shopPic"></image>
+    <view style="align-items:center">
+      <view class="shopTitle">项目店铺</view>
+      <view class="shopShow">FA专属 · 项目展示 · 案源收集</view>
+    </view>
   </view>
-</view>
   <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
 </view>
 <!--模块内容  -->
@@ -186,17 +186,18 @@
     </view>
   </view>
 </view>
+<button open-type='contact' style='margin:32rpx 0;'>
+  <view class="contectPerson flex"  hover-class="t-hoverColor">
+    <view class="flex">
+      <image src="/img/icon-kefu@2x.png" class="blockPic"></image>
+      <view class="blockTitle">联系客服</view>
+    </view>
 
-<view class="contectPerson flex" bindtap="collectProject" hover-class="t-hoverColor">
-  <view class="flex">
-    <image src="/img/icon-kefu@2x.png" class="blockPic"></image>
-    <view class="blockTitle">联系客服</view>
+    <view class="flex">
+      <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
+    </view>
   </view>
-  <view class="flex">
-    <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
-  </view>
-</view>
-
+</button>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 

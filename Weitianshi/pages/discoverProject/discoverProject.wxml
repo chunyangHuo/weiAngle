@@ -35,13 +35,13 @@
       <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor' catchtap="projectDetail">
         <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
         <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-        <view class='flex industryBox'>
+        <view class='flex industryBox' wx:if="{{item.pro_industry.length != 0}}">
           <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
             <view class="allIndustry">{{industry.industry_name}}</view>
           </block>
         </view>
-        <view class='flex otherInfo'>
-          <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+        <view class='flex otherInfo'  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+          <view class="allProjectDetail flex">
             <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
             <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
             <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
@@ -79,7 +79,7 @@
 <view class="floatBtn">
   <view class="t-accreditation flex">
     <view>提交项目，加速融资</view>
-    <view class="t-btnToAccreditation" hover-class='t-createColor' bindtap="toCreateProject">马上创建</view>
+    <view class="t-btnToAccreditation" hover-class='t-hoverColor' bindtap="toCreateProject">马上创建</view>
   </view>
 </view>
 

@@ -21,14 +21,14 @@
   <view class="card flex" bindtap="industryChoice">
     <view class="cardTitle">项目领域</view>
     <view class="flex">
-      <view class="projectContent">{{industryCard.value}}</view>
+      <view class="projectContent {{industryCard.value == '最多选择5个' ? 'noCheck' : 'checkOn'}}">{{industryCard.value}}</view>
     </view>
   </view>
   <view class="aLine"></view>
   <view class="card flex">
     <label class="cardTitle">是否独家</label>
     <picker id="exclusive" bindchange="tipsOn" range="{{exclusive_arry}}" value='{{tips_index}}'>
-      <view class="projectContent">{{exclusive_arry[tips_index] || "请选择"}} </view>
+      <view class="projectContent {{tips_index == 0 ? 'noCheck' : 'checkOn'}}">{{exclusive_arry[tips_index] || "请选择"}} </view>
     </picker>
   </view>
   <view class="aLine"></view>
@@ -37,7 +37,7 @@
       <view class="littleTitle">阶段</view>
       <view class="littleContent">
         <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
-          <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
+          <view class="{{stage_index ==0 ? 'noCheck' : 'checkOn'}}">{{stage[stage_index].stage_name || "请选择"}} </view>
         </picker>
       </view>
     </view>
@@ -45,7 +45,7 @@
       <view class="littleTitle">期望融资</view>
       <view class="littleContent">
         <picker id="expect" bindchange="scale" value="{{scale_index}}" range="{{scale_arry}}">
-          <view class="{{scale_index ==0 ? '' : 'checkOn'}}">{{scale[scale_index].scale_money || "选择金额"}}</view>
+          <view class="{{scale_index ==0 ? 'noCheck' : 'checkOn'}}">{{scale[scale_index].scale_money || "选择金额"}}</view>
         </picker>
       </view>
     </view>
@@ -53,7 +53,7 @@
       <view class="littleTitle">地区</view>
       <view class="littleContent">
         <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
-          <view>{{area_title}}</view>
+          <view lass="{{cityNum == '' ? 'noCheck' : 'checkOn'}}">{{area_title}}</view>
         </navigator>
       </view>
     </view>

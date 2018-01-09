@@ -18,7 +18,7 @@ Page({
     exclusive_arry: ['请选择', '独家签约', '非独家签约', '其他'],
     // ---------------------picker----------------------
     tips: ["其他", "独家签约", "非独家"],
-    tips_index: 4, //独家效果
+    tips_index: 0, //独家效果
     loading: '0',
     service_fa: 0,
     service_yun: 0,
@@ -153,6 +153,7 @@ Page({
 
   //是否独家的效果实现
   tipsOn: function (e) {
+    console.log(e.detail.value)
     this.setData({
       tips_index: e.detail.value
     })

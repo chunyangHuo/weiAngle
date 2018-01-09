@@ -299,5 +299,12 @@ Page({
   //人脉大赛
   competitor: function () {
     app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
+  },
+  // 首页
+  moreProject(){
+    console.log("首页")
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
   }
 });

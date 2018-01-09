@@ -78,7 +78,7 @@
       <view class='t-shopBlock'>首页</view>
     </view>
     <view class="t-line"></view>
-    <view class="t-flexBox">
+    <view class="t-flexBox" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
       <view class='t-shopBlock' hover-class="t-hoverColor">
         <image src='/img/icon-erweima12.png' class='t-shopPic'></image>
         二维码</view>
