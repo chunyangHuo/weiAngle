@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-<view style='margin-top:96rpx;'>
+<view style='margin-top:100rpx;'>
   <view class="searchBox" bindtap='searchMore'>
     <view class="seachSth flex">
       <icon type="search" size="14" class="search_icon1"></icon>

@@ -209,7 +209,7 @@
   position: fixed;
   z-index: 99999;
   border-radius: 0;
-  padding: 16rpx 32rpx;
+  padding: 20rpx 32rpx;
   height: auto;
 }
 

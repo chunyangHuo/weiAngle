@@ -1292,7 +1292,7 @@
 <template name="newSearch2">
   <view id="newSearch2">
     <view class="flex screen">
-      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth" />
+      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth"  focus="true" />
       <icon type="search" size="14" class="search_icon1"></icon>
       <view class="search_word" bindtap="searchYes">搜索</view>
     </view>
