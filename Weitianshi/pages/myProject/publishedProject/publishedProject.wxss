@@ -31,14 +31,15 @@
   margin-top: 16rpx;
 }
 
-/* .card input {
-  border: none;
-  background: #fff;
-  height: 112rpx;
-  line-height: 112rpx;
-  width: 580rpx;
-} */
-
+.card .checkOn{
+  color:#333;
+}
+picker .checkOn {
+  color: #333;
+}
+.noCheck{
+  color:#ccc;
+}
 .slect {
   border-radius: 4px;
   height: 82repx;

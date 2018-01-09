@@ -65,11 +65,15 @@ page {
   width: 90%;
   color: #ccc;
 }
-
-.slect .checkOn {
+.userBox .checkOn{
+  color:#333;
+}
+picker .checkOn {
   color: #333;
 }
-
+.noCheck{
+  color:#ccc;
+}
 .slect image {
   height: 12rpx;
   width: 24rpx;
@@ -411,4 +415,7 @@ page {
 input:after {
   font-size: 24rpx;
   color: #333;
+}
+.newContent{
+  width: 550rpx;
 }

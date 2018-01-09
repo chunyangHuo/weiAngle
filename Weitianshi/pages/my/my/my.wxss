@@ -992,7 +992,8 @@ page {
   position: relative;
   margin-left: 48rpx;
 }
-.successProjcet:last-child .successRight{
+
+.successProjcet:last-child .successRight {
   border: none;
 }
 
@@ -1029,4 +1030,11 @@ page {
   color: #333;
   text-align: center;
   margin-bottom: 4rpx;
+}
+
+.no-border {
+  border-left: none;
+  padding-left: 24rpx;
+  position: relative;
+  margin-left: 48rpx;
 }

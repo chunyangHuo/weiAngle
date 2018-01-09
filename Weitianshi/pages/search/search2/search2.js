@@ -54,7 +54,7 @@ Page({
   },
   //搜索确定的按钮
   searchYes() {
-    let current = this.data.currentTab;
+    let current = this.data.currentTab*1;
     let searchValue = this.data.searchValue;
     this.setData({
       show : true

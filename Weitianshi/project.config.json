@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 24,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -164,6 +164,12 @@
 					"name": "我的投资名片",
 					"pathName": "pages/my/my/my",
 					"query": "id=Opv5J3lW"
+				},
+				{
+					"id": -1,
+					"name": "编辑项目",
+					"pathName": "pages/myProject/publishedProject/publishedProject",
+					"query": "pro_id=bpjJKKp9"
 				}
 			]
 		}

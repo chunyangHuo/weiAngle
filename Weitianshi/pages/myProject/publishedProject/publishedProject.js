@@ -99,7 +99,7 @@ Page({
       //字体颜色改变
       industryCard.css = 'black';
     } else {
-      industryCard.value = ['请择领域'];
+      industryCard.value = ['最多选择5个'];
       industryCard.css = '';
       industryCard.id = [];
     }

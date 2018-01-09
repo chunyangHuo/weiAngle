@@ -148,7 +148,7 @@
   <view class='personDes'>
     <view class='flex shopBox' catchtap="projectFinance">
       <view class="personTitle">项目店铺</view>
-      <view class="allNum">全部({{count.project_count}})</view>
+      <view class="allNum" wx:if="{{count.project_count > 3}}">全部({{count.project_count}})</view>
     </view>
     <view class='outBox'>
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
@@ -173,22 +173,22 @@
     </view>
   </view>
 </template>
-
+ 
 <!--成功案例-->
 <template name="investProject">
   <view class="personDes" catchtap="investCase">
     <view class='flex shopBox'>
       <view class="personTitle">成功案例</view>
-      <view class="allNum">全部({{invest_case.length}})</view>
+      <view class="allNum" wx:if="{{invest_case.length > 3}}">全部({{invest_case.length}})</view>
     </view>
     <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
-      <view class="successProjcet flex" catchtap="investCase" data-id="{{item.case_id}}" data-index="{{index}}">
+      <view class="successProjcet flex" catchtap="investCase" data-id="{{item.case_id}}" data-index="{{index}}" hidden="{{index >= 3}}">
         <view class="successLeft">
           <view class="successLeftTime" wx:if="{{item.case_deal_time}}">{{item.case_deal_time}}</view>
           <view class="successLeftTurn" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
         </view>
 
-        <view class="successRight">
+        <view class="{{index == 2 ?'no-border':'successRight'}}">
           <image src='/img/img-dot@2x.png' class="successPic"></image>
           <view class="successProjcetName" wx:if="{{item.case_name}}">{{item.case_name}}</view>
           <view class="successRightArea">
@@ -1292,7 +1292,7 @@
 <template name="newSearch2">
   <view id="newSearch2">
     <view class="flex screen">
-      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth" />
+      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth"  focus="true" />
       <icon type="search" size="14" class="search_icon1"></icon>
       <view class="search_word" bindtap="searchYes">搜索</view>
     </view>

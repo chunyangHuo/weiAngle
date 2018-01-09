@@ -187,7 +187,6 @@ page {
 }
 
 .contectPerson {
-  margin: 32rpx 0;
   background: white;
 }
 

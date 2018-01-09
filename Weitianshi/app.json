@@ -97,20 +97,20 @@
   "tabBar": {
     "list": [
       {
-        "iconPath": "img/project.png",
-        "selectedIconPath": "img/projectOn.png",
+        "iconPath": "img/icon-shouye-n@2x.png",
+        "selectedIconPath": "img/icon-shouye-s@2x.png",
         "pagePath": "pages/discoverProject/discoverProject",
-        "text": "找项目"
+        "text": "首页"
       },
       {
-        "iconPath": "img/message.png",
-        "selectedIconPath": "img/messageOn.png",
+        "iconPath": "img/icon-xiaoxi-n@2x.png",
+        "selectedIconPath": "img/icon-xiaoxi-s@2x.png",
         "pagePath": "pages/message/message/message",
         "text": "消息"
       },
       {
-        "iconPath": "img/my.png",
-        "selectedIconPath": "img/myOn.png",
+        "iconPath": "img/icon-wode-n@2x.png",
+        "selectedIconPath": "img/icon-wode-s@2x.png",
         "pagePath": "pages/my/myNew/myNew",
         "text": "我的"
       }
