@@ -5,7 +5,7 @@
   <view class="searchBox" bindtap='searchMore'>
     <view class="seachSth flex">
       <icon type="search" size="14" class="search_icon1"></icon>
-      <label> 搜个关键词试试</label>
+      <label> 搜索项目、投资机构、投资人、FA</label>
     </view>
   </view>
   <scroll-view style="height:2000rpx;" scroll-y="true" bindscrolltolower='loadMore'>
@@ -78,14 +78,14 @@
 </view>
 <view class="floatBtn">
   <view class="t-accreditation flex">
-    <view>提交项目，加速融资</view>
+    <view>创建项目，加速融资</view>
     <view class="t-btnToAccreditation" hover-class='t-hoverColor' bindtap="toCreateProject">马上创建</view>
   </view>
 </view>
 
 
 <template name="jumpBlock">
-  <view class="jumpTo" bindtap='{{tapName}}'>
+  <view class="jumpTo" bindtap='{{tapName}}' hover-class='t-hoverColor'>
     <image class='jumpImage' src='{{src}}'></image>
     <view class='jumpToContent'>{{text}}</view>
   </view>

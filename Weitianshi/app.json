@@ -116,7 +116,7 @@
       }
     ],
     "selectedColor": "#40587A",
-    "borderStyle": "white",
+    "borderStyle": "#fafafa",
     "color": "#999999"
   },
   "networkTimeout": {

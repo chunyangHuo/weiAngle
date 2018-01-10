@@ -209,6 +209,12 @@ Page({
       app.href('/pages/myProject/initPrivacy/initPrivacy')
     }
   },
+  //地区跳转
+  areaJump(){
+    wx.navigateTo({
+      url: '/pages/form/area1/area1?current=0',
+    })
+  },
   //私密性处理(辅助函数)
   privacyDeal() {
     let subscribe = this.data.subscribe;

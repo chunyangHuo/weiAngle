@@ -1,73 +1,4 @@
 <import src="/pages/Template/Template.wxml" />
-<!-- <template is="topBlock"></template> -->
-<!-- <view class="user_info flex user-infom" bindtap="toMyCard" hover-class="t-hoverColor">
-  <view class="user_left">
-    <view class="flex">
-      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
-      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
-      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
-      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-      <view class="userPart flex" wx:if="{{user.identify_status == 2 &&IdentificationShow==1}}">
-        <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-        <view class="userPart1">{{user.authentication[0].group_title}}</view>
-      </view>
-      <view class="userAuthentication flex" catchtap="authentication" wx:if="{{user.identify_status == 0 && IdentificationShow==1}}" data-identitystatus="{{0}}">认证</view>
-      <view class="userAuthentication flex" catchtap="authentication" wx:if="{{user.identify_status == 3 && IdentificationShow==1}}" data-identitystatus="{{3}}">认证</view>
-      <view class="userAuthentication flex" wx:if="{{user.identify_status == 1 && IdentificationShow==1}}">认证中</view>
-    </view>
-    <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
-    <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
-    <view class="user_company" wx:if="{{!user.user_company_name}}">公司：暂无编辑</view>
-    <view class="user_mobile" wx:if="{{user.user_brand}}">品牌：{{user.user_brand}}</view>
-    <view class="user_mobile" wx:if="{{!user.user_brand}}">品牌：暂无编辑</view>
-    <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
-      <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
-    </view>
-    <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机：暂无编辑</view>
-    <view class="user_email flex" wx:if="{{user.user_email}}">
-      <view>邮箱：{{user.user_email}}</view>
-    </view>
-    <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱：暂无编辑
-    </view>
-  </view>
-  <view class="user_right" style="position:relative;" catchtap='avatarEdit'>
-    <icon class='avatarEdit'>
-      <image src='/img/icon-revise@3x.png'></image>
-    </icon>
-    <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
-    <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
-    <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
-    <view class="Identification">
-      <view catchtap="searchIdentification">查税号</view>
-    </view>
-    <view class="user_edit" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
-      <image src="/img/img-share.png" style="width: 40rpx;height: 42rpx; border-radius:0;"></image>
-    </view>
-  </view>
-  <view class="line"></view>
-  <view class="flex iconBox">
-    <view class="littleBox">
-      <image src="/img/icon-weixin@2x.png" class="messageIconStyle"></image>
-    </view>
-    <view class="littleBox">
-      <image src="/img/icon-maimai@2x.png" class="messageIconStyle"></image>
-    </view>
-    <view class="littleBox">
-      <image src="/img/icon-zhihu@2x.png" class="messageIconStyle"></image>
-    </view>
-    <view class="littleBox">
-      <image src="/img/icon-weibo@2x.png" class="messageIconStyle"></image>
-    </view>
-    <view class="littleBox">
-      <image src="/img/icon-qq@2x.png" class="messageIconStyle"></image>
-    </view>
-    <view class="littleBox">
-      <image src="/img/icon-linkedin@2x.png" class="messageIconStyle"></image>
-    </view>
-  </view>
-</view> -->
-
-
 <view class="entryBox flex" wx:if="{{!user}}" bindtap='entry'>
   <view class="user_left">
     <image class="user_pic" src="/img/img-touxiang@2x.png"></image>
@@ -77,12 +8,17 @@
     <label class='entryContent'>登录只需1秒，就能体验更多功能</label>
   </view>
 </view>
-
 <view wx:if="{{user}}">
   <view class="myInfo flex" bindtap='toMyCard'>
     <view class="user_left" catchtap='avatarEdit'>
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
+      <view wx:if="{{status == 2}}">
+        <image wx:if="{{user.authentication[0].group_id == 3}}" src="/img/img-rzchuangyezhe@2x.png" class='user_identifyContent'></image>
+        <image wx:if="{{user.authentication[0].group_id == 18}}" src="/img/img-rzfa@2x.png" class='user_identifyContent'></image>
+        <image wx:if="{{user.authentication[0].group_id == 19}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
+        <image wx:if="{{user.authentication[0].group_id == 6}}" src="/img/img-rztouziren@2x.png" class='user_identifyContent'></image>
+      </view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
     </view>
     <view class='user_right'>
@@ -170,7 +106,7 @@
       <view class="blockContent" wx:if="{{status == 0 || !user}}" data-status="{{0}}">立即认证</view>
       <view class="identifyContent" wx:if="{{status == 3}}">审核未通过</view>
       <view class="identifyContent on" wx:if="{{status == 1}}">审核中</view>
-      <view class="identifyContent" wx:if="{{status == 2}}">{{user.authentication[0].group_title}}</view>
+      <view class="blockContent" wx:if="{{status == 2}}">{{user.authentication[0].group_title}}</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
@@ -187,7 +123,7 @@
   </view>
 </view>
 <button open-type='contact' style='margin:32rpx 0;'>
-  <view class="contectPerson flex"  hover-class="t-hoverColor">
+  <view class="contectPerson flex" hover-class="t-hoverColor">
     <view class="flex">
       <image src="/img/icon-kefu@2x.png" class="blockPic"></image>
       <view class="blockTitle">联系客服</view>

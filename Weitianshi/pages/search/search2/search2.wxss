@@ -238,16 +238,19 @@
 /*投资机构  */
 
 #investment .investGroupBlock {
-  padding: 40rpx  0 0 0;
+  padding: 40rpx 0 0 32rpx;
 }
+
 .more {
   font-size: 24rpx;
   color: #3378e0;
   text-align: center;
 }
+
 .outPadding {
   padding: 20rpx 0;
 }
+
 .t-userName {
   font-size: 36rpx;
   color: #333;
@@ -259,4 +262,25 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.outStyleBox1 {
+  margin-bottom: 32rpx;
+  background: #fff;
+  padding: 0;
+}
+
+.outStyleBox {
+  padding: 0;
+}
+
+#projects .blockTitle2, #investment .blockTitle2, #investor .blockTitle2,
+#faPerson .blockTitle2 {
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  height: 74rpx;
+  line-height: 74rpx;
+  font-weight: bold;
+  padding-left: 32rpx;
 }

@@ -12,13 +12,17 @@
     <view class="btn" hover-class='t-other-button-hover' bindtap="upLoadPc">扫一扫</view>
   </view>
 </view>
-<view class="card flex">
-  <label class="cardTitle">项目名称*</label>
-  <input placeholder="项目代号，快速识别，仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+
+<view style='background:white;'>
+  <view class="projectBoxContent flex noBorder">
+    <view class="projectTitle">项目名称*</view>
+    <input placeholder="项目代号，快速识别，仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+  </view>
 </view>
 
+
 <view class='otherInfo'>
-  <view class="userBox">
+  <view class="userBox" hover-class='t-hoverColor'>
     <view class="projectBoxContent flex noBorder" bindtap="industryChoice">
       <view class="projectTitle">项目领域</view>
       <view class="flex">
@@ -27,13 +31,15 @@
     </view>
   </view>
   <view class="aLine"></view>
-  <view class="card flex">
-    <label class="cardTitle">是否独家</label>
+
+  <view class="projectBoxContent flex">
+    <view class="projectTitle">是否独家</view>
     <picker id="exclusive" bindchange="tipsOn" range="{{exclusive_arry}}" value='{{tips_index}}'>
-      <view class="{{tips_index == 0 ? 'noCheck' : 'checkOn'}} projectContent  newContent">{{exclusive_arry[tips_index] || "请选择"}} </view>
+      <view class="{{tips_index == 0 ? 'noCheck' : 'checkOn'}} projectContent">{{exclusive_arry[tips_index] || "请选择"}} </view>
     </picker>
   </view>
   <view class="aLine"></view>
+
   <view class='flex  littleBox'>
     <view class='contentBox'>
       <view class="littleTitle">阶段</view>
@@ -53,10 +59,10 @@
     </view>
     <view class='contentBox'>
       <view class="littleTitle">地区</view>
-      <view class="littleContent">
-        <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
+      <view class="littleContent" bindtap='areaJump'>
+        <view id="belongArea">
           <view class="{{cityNum == '' ? 'noCheck' : 'checkOn'}}">{{area_title}}</view>
-        </navigator>
+        </view>
       </view>
     </view>
   </view>
@@ -67,23 +73,21 @@
     <view class="projectBoxContent flex noBorder" bindtap="initPrivacy">
       <view class="projectTitle">私密性设置</view>
       <view class="flex">
-        <view class="projectContent">请选择</view>
+        <view class="projectContent newContent">请选择</view>
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
       </view>
     </view>
   </view>
   <view class="aLine"></view>
-  <view>
-    <view class="choiceBox flex" wx:if="{{!yesData}}">
-      <view class="content">需要Bp美化</view>
-      <switch bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
-    </view>
-    <view class="aLine"></view>
-    <view class="choiceBox flex" wx:if="{{!yesData}}">
-      <view class="content">需要融资顾问（FA）服务</view>
-      <switch bindchange="switchChange2" class="switchTab" checked="{{service_fa}}" />
-    </view>
+  <view class="projectBoxContent flex" wx:if="{{!yesData}}">
+    <view class="projectTitle">需要Bp美化</view>
+    <switch bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
   </view>
+  <view class="aLine"></view>
+   <view class="choiceBox flex" wx:if="{{!yesData}}">
+    <view class="content">需要融资顾问（FA）服务</view>
+    <switch bindchange="switchChange2" class="switchTab" checked="{{service_fa}}" />
+  </view> 
   <view wx:if="{{yesData}}">
     <view class="choiceBox flex">
       <view class="content">是否需要云投行（FA）合作</view>

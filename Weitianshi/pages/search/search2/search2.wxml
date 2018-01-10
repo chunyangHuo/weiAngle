@@ -1,6 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 
 <template is="newSearch2" data="{{text:'搜个关键词试试'}}"></template>
+
 <view hidden='{{show}}'>
   <view class="searchContent">搜索指定内容</view>
   <view class='searchBox flex'>
@@ -13,7 +14,6 @@
   <view class="searchContent contentAfter" bindtap='jumpToSearch' data-current="4">FA(融资顾问)</view>
 </view>
 
-
 <view wx:if="{{show}}">
   <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab == 0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
@@ -25,8 +25,8 @@
 
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1020rpx" bindchange="bindChange">
     <swiper-item data-current='0'>
-      <scroll-view style="height:100%;" scroll-y="true">
-        <view class="outStyleBox" id="projects" wx:if="{{projects_list.length != 0}}">
+      <scroll-view style="height:100%;" scroll-y="true" wx:if="{{(projects_list.length != 0 || investments_list.length != 0 ||investors_list.length != 0 || fa_list.length != 0) && showSth == true}}">
+        <view class="outStyleBox1" id="projects" wx:if="{{projects_list.length != 0}}">
           <view class="blockTitle2">项目</view>
           <template is="shopProject" data="{{myProject:projects_list,currentTab,index,currentTab:0,number:3,showAfter}}"></template>
           <view class="outPadding" bindtap='jumpToSearch' data-current="1">
@@ -40,21 +40,21 @@
             <view class="more" wx:if="{{searchData.investments_list.list.length >= 3}}">更多</view>
           </view>
         </view>
-        <view class="outStyleBox" id="investor" wx:if="{{investors_list.length != 0}}">
-          <view class="blockTitle">投资人</view>
+        <view class="outStyleBox1" id="investor" wx:if="{{investors_list.length != 0}}">
+          <view class="blockTitle2">投资人</view>
           <template is='investorModel' data='{{personList:investors_list,user_id,currentTab:0,number:3}}'></template>
           <view class="outPadding" bindtap='jumpToSearch' data-current="3">
             <view class="more" wx:if="{{searchData.investors_list.list.length >= 3}}" bindtap="toMember">更多</view>
           </view>
         </view>
-        <view class="outStyleBox" id="faPerson" wx:if="{{fa_list.length != 0}}">
-          <view class="blockTitle">FA(融资顾问)</view>
+        <view class="outStyleBox1" id="faPerson" wx:if="{{fa_list.length != 0}}">
+          <view class="blockTitle2">FA(融资顾问)</view>
           <template is="investorModel" data="{{personList:fa_list,user_id,currentTab:0,number:3}}"></template>
           <view class="outPadding" bindtap='jumpToSearch' data-current="4">
             <view class="more" wx:if="{{searchData.fa_list.list.length >= 3}}" bindtap="toMember">更多</view>
           </view>
         </view>
-        <view class="hasNothing" wx:if="{{investment_list.length ==0 &&industry_list.length == 0 && memberList.list.length == 0}}">暂无数据</view>
+        <view class="t-noContent" wx:if="{{projects_list.length ==0 &&investments_list.length == 0 && investors_list.length == 0 && fa_list.length == 0}}">暂无数据</view>
       </scroll-view>
     </swiper-item>
     <swiper-item data-current='1' bindscrolltolower='loadMore'>

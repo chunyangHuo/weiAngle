@@ -5,12 +5,13 @@ Page({
   data: {
     currentTab: 0,
     value: '',
-    atBottom : false
+    atBottom: false,
+    showSth: false
   },
   onLoad: function (options) {
     let user_id = wx.getStorageSync('user_id');
     this.setData({
-      user_id:user_id
+      user_id: user_id
     })
   },
   onShow: function () {
@@ -54,10 +55,10 @@ Page({
   },
   //搜索确定的按钮
   searchYes() {
-    let current = this.data.currentTab*1;
+    let current = this.data.currentTab * 1;
     let searchValue = this.data.searchValue;
     this.setData({
-      show : true
+      show: true
     })
     switch (current) {
       case 0: {
@@ -89,7 +90,7 @@ Page({
     this.search();
     this.setData({
       currentTab: current,
-      show : true
+      show: true
     })
   },
 
@@ -99,8 +100,8 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
     let currentPage = this.data.currentPage;
-    let currentTab = this.data.currentTab*1;
-    console.log( typeof currentTab)
+    let currentTab = this.data.currentTab * 1;
+    console.log(typeof currentTab)
     let searchValue = this.data.searchValue;
     switch (currentTab) {
       case 1:
@@ -119,7 +120,7 @@ Page({
         break;
       case 2:
         {
-console.log("开始加载")
+
           let investments_list = this.data.investments_list;
           let request = {
             url: url_common + '/api/search/investmentSearch',
@@ -207,9 +208,9 @@ console.log("开始加载")
         that.setData({
           projects_list: financingNeed,
         })
-        if(res.data.page_end){
+        if (res.data.page_end) {
           that.setData({
-            atBottom :true
+            atBottom: true
           })
         }
       },
@@ -364,7 +365,8 @@ console.log("开始加载")
           fa_list: searchData.fa_list.list,
           investors_list: searchData.investors_list.list,
           investments_list: searchData.investments_list.list,
-          projects_list: searchData.projects_list.list
+          projects_list: searchData.projects_list.list,
+          showSth :true
         })
       })
     }, 500)
