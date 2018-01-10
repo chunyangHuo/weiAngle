@@ -252,7 +252,7 @@
     <button class="btn" hover-class='t-other-button-hover' bindtap="yesBtn" disabled="{{disabled}}">确定</button>
   </view>
 </view>
-<button open-type="contact" class="t-contact">
+<button open-type="contact" class="t-contact" wx:if="{{currentTab==0}}">
   <image class="service" src="/img/btn-lianxikefu@2x.png">
   </image>
 </button>

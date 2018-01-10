@@ -183,7 +183,8 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('projectDetail', res)
+        console.log('projectDetail', res);
+        wx.hideLoading();
         let brandList = res.data.data.brand;
         let project = res.data.data;
         let user = res.data.user;
