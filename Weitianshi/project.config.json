@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 23,
 			"list": [
 				{
 					"id": 0,
@@ -137,12 +137,6 @@
 				},
 				{
 					"id": -1,
-					"name": "创建项目页面",
-					"pathName": "pages/myProject/publishSuccess/publishSuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "他人的名片",
 					"pathName": "pages/userDetail/networkDetail/networkDetail",
 					"query": "id=Opv5J3lW"
@@ -170,6 +164,18 @@
 					"name": "编辑项目",
 					"pathName": "pages/myProject/publishedProject/publishedProject",
 					"query": "pro_id=bpjJKKp9"
+				},
+				{
+					"id": -1,
+					"name": "搜索页面",
+					"pathName": "pages/search/search2/search2",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索页面1",
+					"pathName": "pages/organization/org_search/org_search",
+					"query": ""
 				}
 			]
 		}

@@ -1,9 +1,13 @@
 <import src="/pages/Template/Template.wxml" />
 <template is="pointPC">用电脑创建项目，体验更好更流畅</template>
-<view class="card flex">
-  <label class="cardTitle">项目名称*</label>
-  <input placeholder="项目代号，快速识别，仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" />
+
+<view style='background:white;'>
+  <view class="projectBoxContent flex noBorder">
+    <view class="projectTitle">项目名称*</view>
+    <input placeholder="项目代号，快速识别，仅自己可见" placeholder-style='color:#ccc' class="newBox" bindinput="projectName" maxlength="40" value="{{projectName}}" style='width:536rpx' />
+  </view>
 </view>
+
 
 <view class='otherInfo'>
   <view class="card flex">
@@ -18,7 +22,7 @@
 </view>
 
 <view class='otherInfo'>
-  <view class="card flex" bindtap="industryChoice">
+  <view class="card flex" bindtap="industryChoice" hover-class='t-hoverColor'>
     <view class="cardTitle">项目领域</view>
     <view class="flex">
       <view class="projectContent {{industryCard.value == '最多选择5个' ? 'noCheck' : 'checkOn'}}">{{industryCard.value}}</view>
@@ -88,8 +92,8 @@
 </view>
 
 <view class='otherInfo'>
-  <view class="choiceBox flex" wx:if="{{!yesData}}">
-    <view class="content">需要Bp美化</view>
+  <view class="projectBoxContent flex" wx:if="{{!yesData}}">
+    <view class="projectTitle">需要Bp美化</view>
     <switch bindchange="switchChange1" class="switchTab" checked="{{service_ps_bp}}" />
   </view>
   <view class='aLine'></view>
@@ -115,7 +119,7 @@
   <view class="questionWhy">Q：什么是云投行合作</view>
   <view class="answer">A：微天使平台将协助您寻找最合适的投资机构，并与合作伙伴共同协助推进您的项目融资。（业务同学会通过您在平台留下的联系方式与您沟通具体合作方式）
   </view>
-</view> 
+</view>
 <view class="highBox"></view>
 
 <!--保存  -->
@@ -142,4 +146,3 @@
   <view class="weui-loading"></view>
   <view class="weui-loadmore__tips">正在加载</view>
 </view>
-

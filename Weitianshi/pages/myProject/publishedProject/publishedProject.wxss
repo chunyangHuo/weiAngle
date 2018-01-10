@@ -154,6 +154,7 @@ picker .checkOn {
 .projectTitle {
   font-size: 32rpx;
   color: #333;
+  line-height: 112rpx;
 }
 
 .arrowStyle {
@@ -186,6 +187,7 @@ picker .checkOn {
   padding: 0 32rpx;
   justify-content: space-between;
   background: white;
+  font-size: 32rpx;
 }
 
 .content {
@@ -338,7 +340,7 @@ picker .checkOn {
   text-align: right;
   height: 112rpx;
   line-height: 112rpx;
-  width: 556rpx;
+  width: 550rpx;
   font-size: 28rpx;
   color: #333;
   overflow: hidden;
@@ -353,7 +355,7 @@ picker .checkOn {
 
 .aLine {
   width: 686rpx;
-  height: 2rpx;
+  height: 1rpx;
   background: #f0f0f0;
   margin: 0 32rpx;
 }
@@ -404,7 +406,7 @@ input:after {
   height: 216rpx;
   font-size: 28rpx;
   margin: 0 34rpx 32rpx 34rpx;
-  padding: 32rpx;
+  padding: 24rpx;
 }
 
 .goodness {
