@@ -11,7 +11,7 @@
       <view>
         <image wx:if="{{user.user_avatar_url}}" class="personPic" src="{{user.user_avatar_url}}"></image>
         <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
-        <view wx:if="{{user.identify_status == 2}}">
+        <view wx:if="{{user.identify_status == 2 && playTime == 1}}">
           <image wx:if="{{user.authentication[0].group_id == 3}}" src="/img/img-rzchuangyezhe@2x.png" class='user_identifyContent'></image>
           <image wx:if="{{user.authentication[0].group_id == 18}}" src="/img/img-rzfa@2x.png" class='user_identifyContent'></image>
           <image wx:if="{{user.authentication[0].group_id == 19}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
