@@ -44,7 +44,13 @@ page {
   flex-wrap: wrap;
   padding-bottom: 20rpx;
 }
-
+.user_left .user_identifyContent{
+  position: absolute;
+  left: 14rpx;
+  top: 128rpx;
+  width: 124rpx;
+  height: 34rpx;
+}
 .Identification {
   margin: 4rpx;
   border: 2rpx solid #40587a;

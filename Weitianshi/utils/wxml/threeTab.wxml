@@ -1,6 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <view id='threeTab' wx:if='{{show_detail}}'>
-  <view class="swiper-tab" wx:if='{{show_company}}'>
+  <view class="swiper-tab">
+  <!--wx:if='{{show_company}}'  -->
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}} project-detail-tabm" data-current="0" bindtap="swichNav">详情</view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} buyers-mapm" data-current="1" bindtap="swichNav">潜在投资方</view>
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} due-diligencem" data-current="2" bindtap="swichNav">一键尽调</view>

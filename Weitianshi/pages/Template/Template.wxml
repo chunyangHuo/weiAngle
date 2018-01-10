@@ -1,5 +1,5 @@
 <!--------------------------我的-------------------------------------------------------  -->
-<!--My我的名片-->
+<!--My我的名片--> 
 <template name="userInfo">
   <view class="myEdit" bindtap="cardEdit">
     <view class="editTop">
@@ -10,6 +10,13 @@
       </view>
       <view>
         <image wx:if="{{user.user_avatar_url}}" class="personPic" src="{{user.user_avatar_url}}"></image>
+        <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
+        <view wx:if="{{user.identify_status == 2}}">
+          <image wx:if="{{user.authentication[0].group_id == 3}}" src="/img/img-rzchuangyezhe@2x.png" class='user_identifyContent'></image>
+          <image wx:if="{{user.authentication[0].group_id == 18}}" src="/img/img-rzfa@2x.png" class='user_identifyContent'></image>
+          <image wx:if="{{user.authentication[0].group_id == 19}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
+          <image wx:if="{{user.authentication[0].group_id == 6}}" src="/img/img-rztouziren@2x.png" class='user_identifyContent'></image>
+        </view>
       </view>
     </view>
     <view class="editBottom">
@@ -173,7 +180,7 @@
     </view>
   </view>
 </template>
- 
+
 <!--成功案例-->
 <template name="investProject">
   <view class="personDes" catchtap="investCase">
@@ -286,11 +293,12 @@
 
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
-  <view class="flex pc-guidem">
+  <view class="flex pc-guidem"> 
     <view class="pointToPC" hover-class='t-createColor' bindtap="toPc">
       <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
       用电脑创建项目，体验更好更流畅
-      <label class="pointPcToNet">></label>
+      <!-- <label class="pointPcToNet">></label> -->
+       <image src="/img/icon-jiantou3@2x.png" class="pointPcToNet arrowStyle"></image>
     </view>
   </view>
 </template>
@@ -923,7 +931,7 @@
         <view class="t-userCompany1" wx:if="{{item.investor_company}}">·{{item.investor_company}}</view>
       </view>
       <view class='t-people flex' wx:if='{{item.user_id!=user_id}}'>
-      
+
       </view>
       <view class='t-people flex' wx:if='{{item.user_id==user_id}}'></view>
       <view class="t-roundGroupPush flex" wx:if="{{item.industry_tag.length != 0}}">
@@ -962,11 +970,11 @@
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>打电话</span>
     </view>
-     <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
+    <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>待验证</span>
     </view>
-     <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
+    <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>加好友</span>
     </view>
@@ -1002,21 +1010,21 @@
 <template name="jumpToWhere">
   <view class="t-upBox flex">
     <view class="t-statusPic">
-      <image src="/img/icon-chenggong@2x.png" class="t-statusPic"></image>
+      <image src="/img/img-chenggong@2x.png" class="t-statusPic"></image>
     </view>
     <view class="t-bindSuccessBox">
       <view class="t-bindSuccess">{{text}}</view>
       <view class="t-bindSuccessContent">{{content}}</view>
     </view>
-    <button class='t-customService' open-type='contact'>联系客服</button>
+    <button class='t-customService' open-type='contact' hover-class='t-hover-custom'>联系客服</button>
   </view>
   <image src="{{imgUrls}}" class="t-picAfter"></image>
   <view class="floatBtn buttonTwo" bindtap="{{btnName}}" wx:if="{{type==1}}">
     <button disabled="{{disabled}}" class='t-btnYes' hover-class="t-other-button-hover">{{text2}}</button>
   </view>
   <view class="floatBtn t-btnBackground flex" wx:if="{{type != 1}}">
-    <view class="t-btnLeft" bindtap='btnYes'>确定</view>
-    <view class="t-btnRight" bindtap='continueEdit'> 继续完善</view>
+    <view class="t-btnLeft" bindtap='btnYes' hover-class='t-hoverColor'>确定</view>
+    <view class="t-btnRight" bindtap='continueEdit' hover-class='t-hover-yes'> 继续完善</view>
   </view>
 </template>
 
@@ -1292,14 +1300,14 @@
 <template name="newSearch2">
   <view id="newSearch2">
     <view class="flex screen">
-      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth"  focus="true" />
+      <input class="search_search2" placeholder="{{text}}" bindinput="searchSth" focus="true"  confirm-type="search" bindconfirm="searchYes"/>
       <icon type="search" size="14" class="search_icon1"></icon>
       <view class="search_word" bindtap="searchYes">搜索</view>
     </view>
   </view>
 </template>
 
-<!--为空状态  --> 
+<!--为空状态  -->
 <template name="isEmpty">
   <view class="t-noContent" wx:if="{{emptyNumber == ''}}">暂无内容</view>
 </template>

@@ -127,3 +127,10 @@
   bottom: 186rpx;
   right: 34rpx;
 }
+.user_identifyContent{
+  position: absolute;
+  right: 26rpx;
+  top: 128rpx;
+  width: 124rpx;
+  height: 34rpx;
+}

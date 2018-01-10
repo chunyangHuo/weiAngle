@@ -3,7 +3,7 @@
 <view class="browseMeTitle flex" style="justify-content: space-between;">
   <view class="title flex">
     <view class="block"></view>
-    加我为人脉的用户
+    加我为好友
   </view>
   <view class="num">
     <!--动态改变数字-->

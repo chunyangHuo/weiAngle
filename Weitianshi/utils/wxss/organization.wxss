@@ -150,9 +150,7 @@
 /*投资机构  */
 
 #investment .investGroupBlock {
-  padding-bottom: 40rpx;
   padding-top: 40rpx;
-  /* padding: 32rpx 32rpx 0 32rpx; */
 }
 
 #investment .investGroupBlock .investGroupBlock1 {
@@ -162,7 +160,6 @@
 
 #investment .investGroupBlock:last-child .investGroupBlock1 {
   border-bottom: 0;
-  /* padding-bottom: 0; */
 }
 
 #investment .investGroupLeft {
@@ -287,13 +284,12 @@
   height: 74rpx;
   text-align: left;
   line-height: 74rpx;
-  padding-left: 32rpx;
 }
 
 #memberList  .memberInfo {
-  padding-bottom: 40rpx;
+  /* padding-bottom: 40rpx; */
   padding-top: 40rpx;
-  padding: 32rpx 32rpx 0 32rpx;
+  /* padding: 32rpx 32rpx 0 32rpx; */
 }
 
 #memberList  .memberInfo  .memberInfo1 {
@@ -441,12 +437,6 @@
 }
 
 /*详情中机构成员  */
-
-.outStyleBox {
-  margin-bottom: 32rpx;
-  background: #fff;
-  padding: 32rpx;
-}
 
 #memberList1 {
   /* padding: 42rpx 32rpx -2rpx 32rpx;  */
@@ -735,11 +725,7 @@
   margin-right: 13rpx;
 }
 
-.outStyleBox {
-  margin-bottom: 32rpx;
-  background: #fff;
-  padding: 0;
-}
+
 
 .outStyleBox1 {
   margin-bottom: 32rpx;
@@ -748,22 +734,21 @@
 }
 
 .outPadding {
-  padding: 32rpx 32rpx 0 32rpx;
+  padding: 32rpx 32rpx 0 0;
 }
 
 .outStyleBox:last-child {
   margin-bottom: 0;
 }
 
-#projects .blockTitle2, #investment .blockTitle2 {
+#projects .blockTitle2, #investment .blockTitle2 ,#investor .blockTitle2,#faPerson .blockTitle2{
   font-size: 30rpx;
   color: #333;
   text-align: left;
   height: 74rpx;
   line-height: 74rpx;
-  padding-left: 32rpx;
-  font-weight: bold;
-}
- #investment .blockTitle2{
-   padding-left: 0;
+  font-weight: bold;}
+  
+#projects .blockTitle2{
+   padding-left: 32rpx;
  }

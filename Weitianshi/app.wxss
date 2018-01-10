@@ -348,6 +348,7 @@ textarea {
 .buttonTwo {
   background: #fff;
   padding: 20rpx 28rpx 20rpx 36rpx;
+  border-top: 1rpx solid #f0f0f0;
 }
 
 .buttonTwo button {
@@ -1495,7 +1496,6 @@ textarea {
 }
 
 #newSearch2 .search_word {
-  width: 94rpx;
   height: 94rpx;
   background: #fff;
   position: relative;
@@ -1582,4 +1582,10 @@ textarea {
 .t-carCom {
   font-size: 12px;
   color: #333 !important;
+}
+.t-hover-custom{
+  background: #2D6BC9 !important;
+}
+.t-hover-yes{
+  background:#24344C;
 }

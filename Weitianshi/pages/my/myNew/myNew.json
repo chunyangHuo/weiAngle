@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "我的投资名片"
+  "navigationBarTitleText": "我的投资名片",
+  "navigationBarBackgroundColor": "#293B55",
+    "navigationBarTextStyle": "white"
 }
