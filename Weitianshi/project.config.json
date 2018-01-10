@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.4",
+	"libVersion": "1.7.2",
 	"appid": "wx29c97aaa8a58aedb",
 	"projectname": "%E5%A4%A7%E6%B9%BE%E5%8C%BA",
 	"condition": {
@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 24,
 			"list": [
 				{
 					"id": 0,
@@ -170,6 +170,12 @@
 					"name": "编辑项目",
 					"pathName": "pages/myProject/publishedProject/publishedProject",
 					"query": "pro_id=bpjJKKp9"
+				},
+				{
+					"id": 24,
+					"name": "活动签到",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": ""
 				}
 			]
 		}
