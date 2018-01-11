@@ -55,7 +55,7 @@
 }
 
 .outPadding {
-  padding: 32rpx 32rpx 0 32rpx;
+  padding: 32rpx 0 0 0;
 }
 
 .outStyleBox:last-child {
@@ -131,12 +131,6 @@
   text-align: left;
 }
 
-.allThing {
-  font-size: 24rpx;
-  color: #009eff;
-  line-height: 26rpx;
-  text-align: right;
-}
 
 /*热门领域  */
 
@@ -174,7 +168,7 @@
 
 .industryContentTitle {
   width: 304rpx;
-  margin-left: 36rpx;
+  /* margin-left: 36rpx; */
 }
 
 .industryContent {

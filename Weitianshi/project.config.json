@@ -26,6 +26,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
+
 			"list": [
 				{
 					"id": 0,
@@ -76,12 +77,6 @@
 					"query": "current=1"
 				},
 				{
-					"id": 20,
-					"name": "认证资料",
-					"pathName": "pages/my/identity/identityEdit/identityEdit",
-					"query": "group_id=18&authenticate_id=7899&isUpdate=0"
-				},
-				{
 					"id": -1,
 					"name": "成功案例",
 					"pathName": "pages/my/investCaseEdit/investCaseEdit",
@@ -104,12 +99,6 @@
 					"name": "项目店铺",
 					"pathName": "pages/my/projectShop/projectShop/projectShop",
 					"query": ""
-				},
-				{
-					"id": 22,
-					"name": "项目推送",
-					"pathName": "pages/message/pushProject/pushProject",
-					"query": "type=7&num=1"
 				},
 				{
 					"id": -1,
@@ -159,11 +148,13 @@
 					"pathName": "pages/my/my/my",
 					"query": "id=Opv5J3lW"
 				},
+
+
 				{
-					"id": -1,
-					"name": "编辑项目",
-					"pathName": "pages/myProject/publishedProject/publishedProject",
-					"query": "pro_id=bpjJKKp9"
+					"id": 24,
+					"name": "活动签到",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": ""
 				}
 			]
 		}

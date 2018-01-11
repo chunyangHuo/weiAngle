@@ -453,3 +453,8 @@
   color: #666;
   border-top: 0.5rpx solid #f0f0f0;
 }
+.selectPic{
+  height: 32rpx;
+  width: 32rpx;
+  margin: 0 8rpx 00
+}
