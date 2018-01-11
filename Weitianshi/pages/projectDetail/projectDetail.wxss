@@ -267,7 +267,6 @@ scroll-view {
 
 .otherInfo .userName {
   text-align: left;
-  margin-left: 32rpx;
 }
 
 .others_pic {
@@ -282,12 +281,10 @@ scroll-view {
   font-size: 28rpx;
   color: #40587a;
   background: #f2f2f2;
-  /*padding: 14rpx 20rpx;*/
   border-radius: 50%;
   width: 48rpx;
   height: 48rpx;
   text-align: center;
-  margin-top: 18rpx;
   margin-right: 16rpx;
   line-height: 48rpx;
   padding: 0;
@@ -407,7 +404,7 @@ scroll-view {
   color: #333;
   line-height: 48rpx;
   text-align: left!important;
-  /* width: 480rpx; */
+  font-weight: bold;
 }
 
 .industry {
@@ -484,14 +481,13 @@ scroll-view {
 
 .userIcon {
   width: 12rpx;
-  height: 16rpx;
+  height: 20rpx;
 }
-
+ 
 .userInfo {
   width: 460rpx;
-  margin-left: 32rpx;
   align-items: center;
-  margin-top: 20rpx;
+  margin-top: 6rpx;
 }
 
 /*项目亮点*/

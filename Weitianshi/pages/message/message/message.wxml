@@ -3,9 +3,3 @@
 <block wx:for="{{messageList}}" wx:key="index">
   <template is="messageList" data="{{item:item,status:status}}"></template>
 </block> 
-
-<!--底部信息提示  -->
-<view class="bottomBox">
-  <view class="contactPerson">联系客服</view>
-  <view class="wechatNumber">微信添加：weitianshicn</view>
-</view>

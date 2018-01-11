@@ -11,9 +11,7 @@
         <view class="projectDetailBox">
           <view>
             <view class="flex">
-              <view class="describle">
-                {{project.pro_intro}}
-              </view>
+              <view class="describle">{{project.pro_intro}}</view>
               <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
               <!-- <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image> -->
             </view>
@@ -33,14 +31,13 @@
         </view>
         <view class="aline"></view>
         <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}" hover-class='t-hoverColor'>
-          <view class="weui-cell__hd">
+          <view>
             <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
             <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
           </view>
-          <view class="weui-cell__bd contacts-detailm">
+          <view>
             <view class="userName">{{user.user_name}}</view>
             <view class="flex userInfo">
-              <!--style="align-items: baseline;"  -->
               <view class="userCareer">{{user.user_career}}</view>
               <view class="userCompany">·{{user.user_company}}</view>
               <view class="contactPersonBox flex">
