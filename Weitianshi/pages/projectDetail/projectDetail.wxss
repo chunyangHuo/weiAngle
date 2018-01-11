@@ -19,7 +19,9 @@ scroll-view {
 }
 
 /*我的项目卡片*/
-
+.t-userName{
+  font-weight: bold;
+}
 /* .on {
   color: #ccc;
   border-bottom: 5rpx solid #333;
@@ -732,7 +734,7 @@ button::after {
 }
 
 .title {
-  margin-bottom: 32rpx;
+  /* margin-bottom: 32rpx; */
   font-size: 15px;
   color: #333;
   /* line-height: 21px; */
@@ -838,7 +840,7 @@ button::after {
 }
 
 .grayName {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #999;
   line-height: 24rpx;
   text-align: left;
@@ -900,10 +902,10 @@ button::after {
 }
 
 .materialContent {
-  font-size: 26rpx;
-  color: #666;
+  font-size: 28rpx;
+  color: #333;
   letter-spacing: 0;
-  line-height: 26rpx;
+  line-height: 28rpx;
   text-align: left;
 }
 
@@ -1286,6 +1288,7 @@ button::after {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 666
 }
 
 .contactModalBox {

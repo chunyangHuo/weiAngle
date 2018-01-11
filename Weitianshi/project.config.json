@@ -25,8 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-
+			"current": 19,
 			"list": [
 				{
 					"id": 0,
@@ -53,21 +52,9 @@
 					"query": "project_id=a1ryoGW3"
 				},
 				{
-					"id": 13,
-					"name": "投资案例",
-					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
-					"query": "investment_id=1080"
-				},
-				{
 					"id": 14,
 					"name": "项目评价",
 					"pathName": "pages/projectScale/projectEvaluation/projectEvaluation",
-					"query": ""
-				},
-				{
-					"id": 17,
-					"name": "创建项目",
-					"pathName": "pages/myProject/publishProject/publishProject",
 					"query": ""
 				},
 				{
@@ -114,18 +101,6 @@
 				},
 				{
 					"id": -1,
-					"name": "找投资人",
-					"pathName": "pages/matchInvestor/matchInvestor",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "创建项目页面",
-					"pathName": "pages/myProject/publishSuccess/publishSuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "他人的名片",
 					"pathName": "pages/userDetail/networkDetail/networkDetail",
 					"query": "id=Opv5J3lW"
@@ -151,10 +126,22 @@
 
 
 				{
-					"id": 24,
+					"id": 23,
 					"name": "活动签到",
-					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "本人项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=k0xlyx0v&index=undefined"
+				},
+				{
+					"id": -1,
+					"name": "他人项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=bpjJXqp9"
 				}
 			]
 		}

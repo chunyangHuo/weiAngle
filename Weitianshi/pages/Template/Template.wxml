@@ -1418,7 +1418,7 @@
         <view class="t-userPosition t-carCom">{{item.investor_career}}</view>
         <view class="t-userCompany1 t-carCom" wx:if="{{item.investor_company}}">·{{item.investor_company}}</view>
       </view>
-      <view class='t-pipei'>
+      <view class='t-pipei' id="t-pipei12">
         <view class='t-numPipei'>{{item.match_weight}}</view>
         <view class="t-pipeidu">匹配度</view>
       </view>
@@ -1426,10 +1426,10 @@
         <view class="t-roundGroupPush flex" wx:if="{{item.industry_tag.length != 0}}">
           <view class="t-roundGroupContent">
             <block wx:for="{{item.industry_tag}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
-              <label wx:if="{{index < item.industry_tag.length-1}}">
+              <label wx:if="{{index < item.industry_tag.length-1}}" class="{{industryItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">
                 {{industryItem.industry_name}}、
               </label>
-              <label wx:if="{{index ==  item.industry_tag.length-1}}">
+              <label wx:if="{{index ==  item.industry_tag.length-1}}" class="{{industryItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">
                 {{industryItem.industry_name}}
               </label>
             </block>
@@ -1438,8 +1438,8 @@
         <view class="t-roundGroupPush flex" wx:if="{{item.stage_tag.length != 0}}">
           <view class="t-roundGroupContent">
             <block wx:for="{{item.stage_tag}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
-              <label wx:if="{{index < item.stage_tag.length-1}}">{{stageItem.stage_name}}、</label>
-              <label wx:if="{{index ==item.stage_tag.length-1}}">{{stageItem.stage_name}}</label>
+              <label wx:if="{{index < item.stage_tag.length-1}}" class="{{stageItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">{{stageItem.stage_name}}、</label>
+              <label wx:if="{{index ==item.stage_tag.length-1}}" class="{{stageItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">{{stageItem.stage_name}}</label>
             </block>
           </view>
         </view>
@@ -1452,10 +1452,14 @@
 <template name='matchButton1'>
   <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
     <view class="t-yichu" catchtap="deletePerson" data-investor="{{item.investor_id}}">移除</view>
-    <view class="t-line"></view>
+    <view class="t-line12"></view>
     <view class='t-yiti flex' catchtap="pushProject" data-id="{{item.user_id}}" wx:if="{{item.push_status == 0}}" catchtap='pushProject' hover-class='t-hoverColor' hover-stop-propagation='true'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>提交项目</span>
+    </view>
+    <view class="flex" wx:if="{{item.push_status == 1}}">
+      <!-- <image src="/img/icon-yituisong@2x.png" class="pushProject pushProject1"></image> -->
+      <view class="btnContented">已推送</view>
     </view>
   </view>
   <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>

@@ -1069,13 +1069,13 @@ page {
   display: inline-block;
   width: 25%;
   font-size: 26rpx;
-  color: #999;
+  color: #333;
   line-height: 62rpx;
   text-align: center;
 }
 
 .on {
-  color: #40587a;
+  /* color: #40587a; */
   border-bottom: 4rpx solid #3378e0;
 }
 
@@ -1111,7 +1111,7 @@ page {
 }
 
 .title {
-  margin-bottom: 32rpx;
+  /* margin-bottom: 32rpx; */
   font-size: 15px;
   color: #333;
   /* line-height: 21px; */
@@ -1268,9 +1268,9 @@ page {
 }
 
 .grayName {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #999;
-  line-height: 24rpx;
+  line-height: 28rpx;
   text-align: left;
   margin-right: 8rpx;
   margin-bottom: 32rpx;
@@ -1341,6 +1341,7 @@ page {
   text-align: left;
   font-size: 14px;
   color: #333;
+  margin-left: 30rpx;
 }
 
 .materialWeb {
@@ -1357,6 +1358,7 @@ page {
   border-radius: 4rpx;
   width: 100%;
   height: 176rpx;
+  margin-top: 40rpx;
 }
 
 .txtContent {
@@ -1538,6 +1540,7 @@ page {
 
 #projectBox .teamPro {
   margin-bottom: 40rpx;
+  margin-top: 40rpx;
 }
 
 /*空白页*/
@@ -1712,7 +1715,7 @@ page {
   background-color: #fff;
   border-radius: 4rpx;
   width: 100%;
-  padding: 30rpx 0rpx 30rpx 0;
+  padding: 40rpx 0rpx 30rpx 0;
   position: relative;
   /* margin-bottom: 16rpx; */
   height: 166rpx;
@@ -1745,7 +1748,7 @@ page {
   -webkit-box-orient: vertical;
   font-size: 12px;
   color: #666;
-  line-height: 44rpx;
+  line-height: 42rpx;
 }
 
 #productBox .projectTips {
@@ -2082,7 +2085,8 @@ page {
   font-size: 28rpx;
   color: #ccc;
   line-height: 28rpx;
-  text-align: left;
+  text-align: center;
+  margin-left:98rpx;
 }
 
 .hasNothing {
@@ -2151,7 +2155,8 @@ page {
 }
 
 .pro_sorts {
-  margin-bottom: 20rpx;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
 }
 
 .detailBottom {
@@ -2214,7 +2219,10 @@ page {
 .resourceImg {
   width: 62rpx;
   height: 62rpx;
-  margin-top: 43rpx;
+  margin-top: 57rpx;
   font-size: 18px;
   color: #999;
+}
+.t-userName{
+  font-weight: bold;
 }
