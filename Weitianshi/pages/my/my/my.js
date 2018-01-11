@@ -82,6 +82,9 @@ Page({
         })
       } else {
         app.noUserId()
+        wx.setNavigationBarTitle({
+          title: user_name + "的投资名片",
+        })
       }
     })
   },

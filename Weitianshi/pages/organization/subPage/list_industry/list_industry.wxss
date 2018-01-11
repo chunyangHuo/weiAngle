@@ -65,7 +65,7 @@
 
 .industryContentTitle {
   width: 304rpx;
-  margin-left: 36rpx;
+  /* margin-left: 36rpx; */
 }
 
 .industryContent {

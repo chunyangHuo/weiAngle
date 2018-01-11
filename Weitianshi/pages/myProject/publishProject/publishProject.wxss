@@ -142,9 +142,10 @@ picker .checkOn {
 }
 
 .pointPcIcon {
-  width: 24rpx;
-  height: 22rpx;
-  margin-right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+   margin-top: 32rpx; 
 }
 
 /*新样式  */
