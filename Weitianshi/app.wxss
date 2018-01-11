@@ -1332,10 +1332,10 @@ textarea {
 }
 
 .t-line {
-  width: 4rpx;
+  width: 2rpx;
   height: 35rpx;
   background: #f2f2f2;
-  margin-top: 15px;
+  margin-top: -1rpx;
 }
 
 .t-other-button-hover {

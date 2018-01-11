@@ -387,7 +387,7 @@ scroll-view {
   width: 100%;
   height: auto;
   background: #fff;
-  box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10);
+  /* box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10); */
   border-radius: 8rpx;
   margin: 0 0 38rpx 0;
 }
@@ -413,7 +413,7 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  margin: 24rpx 10rpx 24rpx 0;
+  margin: 0rpx 10rpx 0rpx 0;
 }
 
 .allProjectDetail {
