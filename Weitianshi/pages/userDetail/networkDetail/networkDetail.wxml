@@ -87,15 +87,15 @@
       <button open-type='share' class='t-shopBlock'>分享</button>
     </view>
     <view class="t-line"></view>
-    <view class="t-flexBox" wx:if="{{button_type==0}}" bindtap="initPrivacy" hover-class="t-hoverColor">
+    <view class="t-flexBox" wx:if="{{button_type==0}}" bindtap="addPerson" hover-class="t-hoverColor">
       <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>加好友</view>
     </view>
-    <view class="t-flexBox" wx:if="{{button_type==2}}" bindtap="initPrivacy" hover-class="t-hoverColor">
+    <view class="t-flexBox" wx:if="{{button_type==2}}"  hover-class="t-hoverColor">
       <image src='/img/icon-daitongguo@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock' style="color:#cccccc">待通过</view>
     </view>
-    <view class="t-flexBox" wx:if="{{button_type==3}}" bindtap="initPrivacy" hover-class="t-hoverColor">
+    <view class="t-flexBox" wx:if="{{button_type==3}}" data-telephone="{{user.user_mobile}}" catchtap="telephone" hover-class="t-hoverColor">
       <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>打电话</view>
     </view>
@@ -137,18 +137,18 @@
       <view class='t-shopBlock'>首页</view>
     </view>
     <view class="t-line"></view>
-    <view class="t-flexBox1">
+    <view class="t-flexBox1" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
       <view class='t-shopBlock' hover-class="t-hoverColor">
-        <image src='/img/icon-erweima12.png' class="t-shopPic1"></image>
+        <image src='/img/icon-erweima12.png' class='t-shopPic1'></image>
         二维码</view>
     </view>
     <view class="t-line"></view>
-    <view class="t-flexBox1" bindtap="initPrivacy" hover-class="t-hoverColor">
-      <image src='/img/icon-bianji1@2x.png' class="t-shopPic1"></image>
-      <view class='t-shopBlock'>编辑</view>
+    <view class="t-flexBox1" bindtap="maintainProject" hover-class="t-hoverColor">
+      <image src='/img/icon-fenxiang@2x.png' class='t-shopPic1'></image>
+      <button open-type='share' class='t-shopBlock'>分享</button>
     </view>
     <view class="t-line"></view>
-    <button open-type='share' class='t-creatProject' hover-class="t-redColor">分享名片</button>
+    <view bindtap="pushProjectTo" class='t-creatProject' hover-class="t-redColor">提交项目</view>
   </view>
   <!--错误提示  -->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
