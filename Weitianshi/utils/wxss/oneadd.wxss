@@ -283,6 +283,7 @@
   margin-right: 24rpx;
   text-align: center;
   line-height: 100rpx;
+  font-size: 40rpx;
 }
 
 #detailTeam .memberInfoTop {
@@ -319,7 +320,7 @@
 #detailTeam .memberDes {
   background: #f5f5f5;
   border-radius: 4rpx;
-  width: 88%;
+  width: 93%;
   /* margin: 0 auto; *//* height: 64rpx; */
   font-size: 13px;
   color: #666;
@@ -393,7 +394,7 @@
 #investHistory1 .investContent {
   font-size: 14px;
   color: #333;
-  line-height: 52rpx;
+  line-height: 47rpx;
   text-align: left;
   padding-left: 32rpx;
   margin-top: -35rpx;
@@ -474,7 +475,7 @@
 
 .t-matchButton1 {
   width: auto;
-  padding: 16rpx;
+  padding: 12rpx 24rpx;
   height: 56rpx;
   background: #fff;
   border-radius: 25px;
@@ -487,7 +488,7 @@
 .t-matchButton2 {
   margin-left: 32rpx;
   width: auto;
-  padding: 16rpx;
+  padding: 12rpx 24rpx;
   height: 56rpx;
   background: #fff;
   border-radius: 25px;
@@ -500,7 +501,7 @@
 .t-matchButton4 {
   margin-left: 32rpx;
   width: auto;
-  padding: 16rpx;
+  padding: 12rpx 24rpx;
   height: 56rpx;
   background: #fff;
   border-radius: 25px;
@@ -512,7 +513,7 @@
 
 .t-matchButton3 {
   width: auto;
-  padding: 16rpx;
+  padding: 12rpx 24rpx;
   height: 56rpx;
   background: #fff;
   border-radius: 25px;
@@ -601,4 +602,12 @@
 
 .t-contact {
   z-index: 999999999999;
+}
+
+.t-title1 {
+  margin-bottom: 40rpx;
+  font-size: 15px;
+  color: #333;
+  /* text-align:left; */
+  font-weight: bold;
 }
