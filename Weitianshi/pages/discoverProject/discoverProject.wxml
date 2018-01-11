@@ -21,19 +21,21 @@
     <view class='jumpBox flex'>
       <template is="jumpBlock" data="{{text:'投资机构',tapName:'jumpOrg',src:'/img/icon-touzijigou@2x.png'}}"></template>
       <template is="jumpBlock" data="{{text:'投资人',tapName:'jumpInvestor',src:'/img/icon-touziren@2x.png'}}"></template>
-      <template is="jumpBlock" data="{{text:'FA融资顾问',tapName:'jumpFinancingAdvisor',src:'/img/icon-FA@2x.png'}}"></template>
+      <template is="jumpBlock" data="{{text:'FA(融资顾问)',tapName:'jumpFinancingAdvisor',src:'/img/icon-FA@2x.png'}}"></template>
       <template is="jumpBlock" data="{{text:'潜在投资方',tapName:'potentialInvestor',src:'/img/icon-qianzai@2x.png'}}"></template>
     </view>
 
     <view class="selectProject flex">
-     <label style="width:26rpx;height:2rpx;background:#333;margin-right:20rpx"></label>
+     <label style="width:26rpx;height:2rpx;background:#333;margin-right:8rpx"></label>
      微天使FA精选项目
-     <label style="width:26rpx;height:2rpx;background:#333;margin-left:20rpx;"></label>
+     <label style="width:26rpx;height:2rpx;background:#333;margin-left:8rpx;"></label>
      </view>
 
     <block wx:for="{{slectProject}}" wx:key="{{index}}">
       <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor' catchtap="projectDetail">
-        <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+        <view class="describle" wx:if="{{item.pro_intro != ''}}">
+        <image src='/img/icon-jingxuan@2x.png' class="selectPic" wx:if="{{item.is_selected == 3}}"></image>
+        {{item.pro_intro}}</view>
         <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
         <view class='flex industryBox' wx:if="{{item.pro_industry.length != 0}}">
           <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
@@ -65,7 +67,7 @@
           <view class="personNum">{{item.view_count}}人</view>
           <view class="t-interest flex">
             <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
-            <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
+            <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-project-apply' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
             <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
             <view class="refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
             <view wx:if="{{item.relationship_button == 5}}"></view>

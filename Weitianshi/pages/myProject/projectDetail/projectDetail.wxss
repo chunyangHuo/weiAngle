@@ -62,6 +62,7 @@ page {
   width: 60rpx;
   height: 60rpx;
   display: block;
+  margin-right: 16rpx;
 }
 
 .others .weui-cell__bd view {
@@ -151,14 +152,6 @@ page {
 }
 
 /*头像*/
-
-.others_pic {
-  width: 120rpx;
-  height: 120rpx;
-  display: inline-block;
-  text-align: center;
-  border-radius: 50%;
-}
 
 .others_nopic {
   font-size: 64rpx;

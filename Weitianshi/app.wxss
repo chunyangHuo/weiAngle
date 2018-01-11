@@ -1610,3 +1610,9 @@ textarea {
 .t-hover-yes {
   background: #24344c;
 }
+.t-hover-yes{
+  background:#24344C;
+}
+.t-project-apply{
+  background: #2D6BC9 !important;
+}

@@ -295,11 +295,12 @@ page {
 
 .user_project_frame {
   background: #fff;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
   border: 1rpx solid #e6e6e6;
   margin-bottom: 22rpx;
   padding: 24rpx;
   position: relative;
+  padding-bottom: 32rpx;
 }
 
 .user_project_frame:last-child {
@@ -754,6 +755,7 @@ page {
   color: #333;
   text-align: left;
   line-height: 76rpx;
+  font-weight: bold;
 }
 
 .personPosition {
@@ -833,7 +835,7 @@ page {
 
 .messageIconStyle {
   width: 52rpx;
-  height: 54rpx;
+  height: 52rpx;
 }
 
 .littleBox {
@@ -902,14 +904,13 @@ page {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  font-weight: bold;
 }
 
 .projectDetailType {
   height: 92rpx;
   width: 92rpx;
-  right: 0rpx;
-  top: 0rpx;
+  right: -10rpx;
+  top: -10rpx;
   position: absolute;
 }
 
@@ -961,6 +962,17 @@ page {
 
 /*成功案例  */
 
+.successLeft {
+  text-align: right;
+  width: 24%;
+  margin-right: 48rpx;
+    margin-top: 8rpx;
+}
+
+.successRight {
+  width: 76%;
+}
+
 .successLeftTime, .successLeftTurn, .successProjcetName, .successRightArea {
   font-size: 28rpx;
   color: #666;
@@ -972,29 +984,39 @@ page {
 
 .successLeftTurn {
   color: #f6a623;
+  text-align: right;
+}
+
+.successLeftTime {
+  text-align: right;
 }
 
 .successProjcetName {
   color: #333;
   font-weight: bold;
+  /* margin-top: -1rpx; */
 }
+
+
 
 .successPic {
   width: 24rpx;
   height: 24rpx;
-  position: absolute;
-  left: -13rpx;
+  margin-top: 7rpx;
+  z-index: 3;
+  margin-right: 24rpx;
+  margin-left: -11rpx;
 }
 
 .successRight {
-  padding-left: 24rpx;
   border-left: 1rpx solid #e6e6e6;
-  position: relative;
-  margin-left: 48rpx;
 }
 
-.successProjcet:last-child .successRight {
-  border: none;
+.successProjcet:nth-last-child(2) .successRight{
+ border: none!important;
+}
+.successProjcet:nth-child(2) .successRight{
+margin-top: 8rpx;
 }
 
 /*投资需求  */
@@ -1005,7 +1027,6 @@ page {
   letter-spacing: 0;
   text-align: left;
   margin-bottom: 24rpx;
-  font-weight: bold;
 }
 
 .requireBox {
@@ -1034,7 +1055,4 @@ page {
 
 .no-border {
   border-left: none;
-  padding-left: 24rpx;
-  position: relative;
-  margin-left: 48rpx;
 }

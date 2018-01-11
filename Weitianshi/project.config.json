@@ -88,12 +88,6 @@
 					"query": ""
 				},
 				{
-					"id": 22,
-					"name": "项目推送",
-					"pathName": "pages/message/pushProject/pushProject",
-					"query": "type=7&num=1"
-				},
-				{
 					"id": -1,
 					"name": "浏览项目的人",
 					"pathName": "pages/message/viewProjectUser/viewProjectUser",
@@ -129,6 +123,8 @@
 					"pathName": "pages/my/my/my",
 					"query": "id=Opv5J3lW"
 				},
+
+
 				{
 					"id": 23,
 					"name": "活动签到",

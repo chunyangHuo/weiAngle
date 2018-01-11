@@ -40,18 +40,18 @@
             <!--他人的项目  -->
             <view wx:if="{{user.user_id!==user_id&&taren==true}}">
               <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}" hover-class='t-hoverColor'>
-                <view class="weui-cell__hd">
+                <view>
                   <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
                   <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
                 </view>
-                <view class="weui-cell__bd contacts-detailm">
+                <view>
                   <view class="userName">{{user.user_name}}</view>
                   <view class="flex userInfo">
                     <!--style="align-items: baseline;"  -->
                     <view class="userCareer">{{user.user_career}}</view>
-                    <view class="userCompany">·{{user.user_company}}</view>
+                    <view class="userCompany">· {{user.user_company}}</view>
                     <view class="contactPersonBox flex">
-                      <image src="/img/icon-jiantou.png" class="userIcon"></image>
+                      <image src="/img/icon-jiantou3@2x.png" class="userIcon"></image>
                     </view>
                   </view>
                 </view>
