@@ -62,6 +62,7 @@ page {
   width: 60rpx;
   height: 60rpx;
   display: block;
+  margin-right: 16rpx;
 }
 
 .others .weui-cell__bd view {
@@ -152,14 +153,6 @@ page {
 
 /*头像*/
 
-.others_pic {
-  width: 120rpx;
-  height: 120rpx;
-  display: inline-block;
-  text-align: center;
-  border-radius: 50%;
-}
-
 .others_nopic {
   font-size: 64rpx;
   color: #40587a;
@@ -185,7 +178,7 @@ page {
   width: 100%;
   height: auto;
   background: #fff;
-  box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10);
+  /* box-shadow: 0 8rpx 8rpx 0 rgba(64, 88, 122, 0.10); */
   border-radius: 8rpx;
   margin: 0 0 38rpx 0;
 }
@@ -227,7 +220,7 @@ page {
 }
 
 .allIndustry {
-  margin: 24rpx 0 24rpx 0;
+  margin: 20rpx 0 20rpx 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1076,13 +1069,13 @@ page {
   display: inline-block;
   width: 25%;
   font-size: 26rpx;
-  color: #999;
+  color: #333;
   line-height: 62rpx;
   text-align: center;
 }
 
 .on {
-  color: #40587a;
+  /* color: #40587a; */
   border-bottom: 4rpx solid #3378e0;
 }
 
@@ -1118,7 +1111,7 @@ page {
 }
 
 .title {
-  margin-bottom: 32rpx;
+  /* margin-bottom: 32rpx; */
   font-size: 15px;
   color: #333;
   /* line-height: 21px; */
@@ -1275,9 +1268,9 @@ page {
 }
 
 .grayName {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #999;
-  line-height: 24rpx;
+  line-height: 28rpx;
   text-align: left;
   margin-right: 8rpx;
   margin-bottom: 32rpx;
@@ -1348,6 +1341,7 @@ page {
   text-align: left;
   font-size: 14px;
   color: #333;
+  margin-left: 30rpx;
 }
 
 .materialWeb {
@@ -1364,6 +1358,7 @@ page {
   border-radius: 4rpx;
   width: 100%;
   height: 176rpx;
+  margin-top: 40rpx;
 }
 
 .txtContent {
@@ -1545,6 +1540,7 @@ page {
 
 #projectBox .teamPro {
   margin-bottom: 40rpx;
+  margin-top: 40rpx;
 }
 
 /*空白页*/
@@ -1719,7 +1715,7 @@ page {
   background-color: #fff;
   border-radius: 4rpx;
   width: 100%;
-  padding: 30rpx 0rpx 30rpx 0;
+  padding: 40rpx 0rpx 30rpx 0;
   position: relative;
   /* margin-bottom: 16rpx; */
   height: 166rpx;
@@ -1752,7 +1748,7 @@ page {
   -webkit-box-orient: vertical;
   font-size: 12px;
   color: #666;
-  line-height: 44rpx;
+  line-height: 42rpx;
 }
 
 #productBox .projectTips {
@@ -2089,7 +2085,8 @@ page {
   font-size: 28rpx;
   color: #ccc;
   line-height: 28rpx;
-  text-align: left;
+  text-align: center;
+  margin-left:98rpx;
 }
 
 .hasNothing {
@@ -2108,15 +2105,12 @@ page {
 }
 
 .aline {
-  margin: 0 32rpx;
-  width: 90%;
+  /* margin: 0 32rpx; */
+  width: 100%;
   height: 2rpx;
   background: #e6e6e6;
 }
 
-.t-line {
-  width: 2rpx;
-}
 
 .bottomBox {
   height: 88rpx;
@@ -2161,7 +2155,8 @@ page {
 }
 
 .pro_sorts {
-  margin-bottom: 20rpx;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
 }
 
 .detailBottom {
@@ -2224,7 +2219,10 @@ page {
 .resourceImg {
   width: 62rpx;
   height: 62rpx;
-  margin-top: 43rpx;
+  margin-top: 57rpx;
   font-size: 18px;
   color: #999;
+}
+.t-userName{
+  font-weight: bold;
 }

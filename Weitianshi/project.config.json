@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 19,
 			"list": [
 				{
 					"id": 0,
@@ -52,21 +52,9 @@
 					"query": "project_id=a1ryoGW3"
 				},
 				{
-					"id": 13,
-					"name": "投资案例",
-					"pathName": "pages/organization/subPage/list_investCase/list_investCase",
-					"query": "investment_id=1080"
-				},
-				{
 					"id": 14,
 					"name": "项目评价",
 					"pathName": "pages/projectScale/projectEvaluation/projectEvaluation",
-					"query": ""
-				},
-				{
-					"id": 17,
-					"name": "创建项目",
-					"pathName": "pages/myProject/publishProject/publishProject",
 					"query": ""
 				},
 				{
@@ -74,12 +62,6 @@
 					"name": "投资需求",
 					"pathName": "pages/match/match/investDemand/investDemand",
 					"query": "current=1"
-				},
-				{
-					"id": 20,
-					"name": "认证资料",
-					"pathName": "pages/my/identity/identityEdit/identityEdit",
-					"query": "group_id=18&authenticate_id=7899&isUpdate=0"
 				},
 				{
 					"id": -1,
@@ -106,12 +88,6 @@
 					"query": ""
 				},
 				{
-					"id": 22,
-					"name": "项目推送",
-					"pathName": "pages/message/pushProject/pushProject",
-					"query": "type=7&num=1"
-				},
-				{
 					"id": -1,
 					"name": "浏览项目的人",
 					"pathName": "pages/message/viewProjectUser/viewProjectUser",
@@ -122,18 +98,6 @@
 					"name": "约谈",
 					"pathName": "pages/message/contactProject/projectList/projectList",
 					"query": "id=xpE8b5Wq"
-				},
-				{
-					"id": -1,
-					"name": "找投资人",
-					"pathName": "pages/matchInvestor/matchInvestor",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "创建项目页面",
-					"pathName": "pages/myProject/publishSuccess/publishSuccess",
-					"query": ""
 				},
 				{
 					"id": -1,
@@ -159,17 +123,25 @@
 					"pathName": "pages/my/my/my",
 					"query": "id=Opv5J3lW"
 				},
-				{
-					"id": -1,
-					"name": "编辑项目",
-					"pathName": "pages/myProject/publishedProject/publishedProject",
-					"query": "pro_id=bpjJKKp9"
-				},
+
+
 				{
 					"id": 23,
 					"name": "活动签到",
-					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "本人项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=k0xlyx0v&index=undefined"
+				},
+				{
+					"id": -1,
+					"name": "他人项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=bpjJXqp9"
 				}
 			]
 		}

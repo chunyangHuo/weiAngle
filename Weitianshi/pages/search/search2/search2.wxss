@@ -12,6 +12,7 @@
   justify-content: space-between;
   background: none;
   margin: 60rpx 0 48rpx 0;
+  width: 100%;
 }
 
 .searchPro {

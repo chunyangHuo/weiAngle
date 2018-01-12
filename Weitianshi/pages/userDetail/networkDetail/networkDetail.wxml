@@ -26,7 +26,7 @@
     </view>
     <view class="contactLine"></view>
     <view class="user_down flex">
-      <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity" hover-class='t-color'>
+      <view class="user_popularity user_tips contacts-sentimentm" bindtap="popularity">
         <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
         <label class="popularityNum" wx:if="{{count.user_view_new && show ==1}}">+{{count.user_view_new}}</label>
         <label class="popularityNum" wx:if="{{count.user_view_new==0 || show ==0}}"></label>
@@ -34,7 +34,7 @@
         <view class="popularity-people">浏览过</view>
       </view>
       <!--加我为人脉-->
-      <view class="user_attention user_tips contacts-requestm" bindtap="attention" hover-class='t-color'>
+      <view class="user_attention user_tips contacts-requestm" bindtap="attention">
         <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
         <label class="attentionNum" wx:if="{{count.user_followed_new && show ==1}}">+{{count.user_followed_new}}</label>
         <label class="popularityNum" wx:if="{{count.user_followed_new==0 || show ==0}}"></label>
@@ -43,7 +43,7 @@
         <view class="attention-people">Ta的好友</view>
       </view>
       <!-- 潜在项目 -->
-      <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class='t-color'>
+      <view class="user_potential user_tips potential-projectm" bindtap="pushTo">
         <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
         <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
         <label class="popularityNum" wx:if="{{count.project_push_new==0 || show ==0}}"></label>
@@ -103,7 +103,7 @@
     <view bindtap="pushProjectTo" class='t-creatProject' hover-class="t-redColor">提交项目</view>
   </view>
 
-  <!-- button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉 -->-->
+  <!-- button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉 -->
   <!-- <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3||button_type == 4}}">
     <view class="flex pushProjectBox" hover-class='t-other-button-hover'>
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
