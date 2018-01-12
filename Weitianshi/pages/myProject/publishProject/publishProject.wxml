@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <template is="pointPC">用电脑创建项目，体验更好更流畅</template>
-
+<view class='whiteSpace'></view>
 <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="classname" bindtap="closeModal">
     <image src="/img/icon-guanbi@2x.png" class="close"></image>

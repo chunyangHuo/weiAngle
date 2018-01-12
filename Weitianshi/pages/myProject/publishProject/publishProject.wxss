@@ -128,17 +128,17 @@ picker .checkOn {
 .pointToPC {
   background: #293b55;
   opacity: 0.9;
-  width: 87%;
+  width:91.4%;
   height: 104rpx;
   font-size: 28rpx;
   color: #fff;
   line-height: 104rpx;
-  padding: 0 48rpx;
+  padding: 0 32rpx;
 }
 
 .pointPcToNet {
   position: absolute;
-  right: 48rpx;
+  right: 32rpx;
 }
 
 .pointPcIcon {
@@ -221,7 +221,7 @@ picker .checkOn {
 }
 
 .content {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #333;
   line-height: 112rpx;
   height: 112rpx;

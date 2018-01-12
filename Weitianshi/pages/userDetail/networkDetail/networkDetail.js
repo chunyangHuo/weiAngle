@@ -27,15 +27,12 @@ Page({
       view_id: view_id
     })
     //分享至群打点准备
-    /*wx.showShareMenu({
-        withShareTicket: true,
-    })*/
+
     if (user_id == view_id) {
       wx.switchTab({
         url: '/pages/my/myNew/myNew',
       })
     }
-
     //用戶的个人信息
     wx.request({
       url: url_common + '/api/user/getUserAllInfo',
@@ -57,6 +54,10 @@ Page({
         var invest_case = res.data.invest_case;
         var tel = user.user_mobile;
         var button_type = res.data.button_type;
+        let user_name = user.user_real_name;
+        wx.setNavigationBarTitle({
+          title: user_name + "的投资名片",
+        })
         console.log(user.active_status)
         if (tel.indexOf("*") != -1) {
           that.setData({
@@ -77,6 +78,7 @@ Page({
         console.log(res)
       },
     })
+  
   },
   //进入个人详情
   userInfo: function () {

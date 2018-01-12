@@ -456,5 +456,5 @@
 .selectPic{
   height: 32rpx;
   width: 32rpx;
-  margin: 0 8rpx 00
+  margin: 2rpx 8rpx 0 0;
 }

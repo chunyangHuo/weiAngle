@@ -1629,3 +1629,14 @@ textarea {
 .t-project-apply {
   background: #2d6bc9 !important;
 }
+
+.floatTop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+.whiteSpace{
+  height: 104rpx;
+  width: 100%;
+}

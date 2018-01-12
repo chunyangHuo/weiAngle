@@ -68,18 +68,18 @@
     </view>
   </view> -->
 </template>
-
+ 
 <!--My个人描述-->
 <template name="userIntro">
-  <view class="personDes" bindtap="cardEdit" wx:if="{{user.user_intro!=null}}">
+  <view class="personDes" bindtap="cardEdit" wx:if="{{user.user_intro!= ''}}">
     <view class="personTitle">个人描述</view>
-    <view class='personDesContent' wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
+    <view class='personDesContent' wx:if="{{user.user_intro!= ''}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
   </view>
 </template>
 
 <!--My寻找案源-->
 <template name="InvestInfo">
-  <view class="personDes" bindtap="findProjectEdit">
+  <view class="personDes" bindtap="findProjectEdit" wx:if="{{invest != ''}}">
     <view class='flex shopBox'>
       <view class="personTitle">投资需求</view>
     </view>
@@ -152,7 +152,7 @@
 
 <!--项目店铺-->
 <template name="financingProject">
-  <view class='personDes'>
+  <view class='personDes' wx:if="{{count.project_count != 0}}">
     <view class='flex shopBox' catchtap="projectFinance">
       <view class="personTitle">项目店铺</view>
       <view class="allNum" wx:if="{{count.project_count > 3}}">全部({{count.project_count}})</view>
@@ -302,11 +302,13 @@
 
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
+<view class='floatTop'>
   <view class="pointToPC flex" hover-class='t-createColor' bindtap="toPc">
     <image src="/img/icon-diannao@2x.png" class="pointPcIcon"></image>
     <label> 用电脑创建项目，体验更好更流畅</label>
     <image src="/img/icon-jiantou3@2x.png" class="pointPcToNet arrowStyle"></image>
   </view>
+</view>
 </template>
 
 <!--身份认证列表-->

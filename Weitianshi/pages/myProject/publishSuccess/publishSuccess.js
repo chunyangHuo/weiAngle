@@ -28,7 +28,7 @@ Page({
   continueEdit(){
     let projectId = this.data.projectId;
     wx.navigateTo({
-      url: '/pages/myProject/publishedProject/publishedProject?pro_id='+ projectId ,
+      url: '/pages/myProject/publishedProject/publishedProject?pro_id='+ projectId +'&&fromPublish='+ 3,
     })
   }
 })

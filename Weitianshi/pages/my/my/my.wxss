@@ -262,7 +262,7 @@ page {
 
 .user_popularity view:first-child, .user_attention view:first-child,
 .user_potential view:first-child {
-  font-size: 32rpx;
+  font-size: 36rpx;
   color: #333;
   height: 40rpx;
   flex: column;
@@ -270,7 +270,7 @@ page {
 }
 
 .popularityNum, .potentialNum, .attentionNum {
-  font-size: 8px;
+  font-size: 16rpx;
   color: #f44c4c;
   line-height: 20rpx;
   text-align: left;
@@ -763,6 +763,7 @@ page {
   color: #666;
   text-align: left;
   line-height: 36rpx;
+  margin-top: 6rpx;
 }
 
 .personActive {
@@ -774,7 +775,8 @@ page {
   text-align: center;
   line-height: 36rpx;
   white-space: nowrap;
-  padding: 0 16rpx;
+  padding: 0 8rpx;
+  margin-top: 6rpx;
 }
 
 .personPic {
@@ -980,9 +982,11 @@ page {
   margin-bottom: 12rpx;
   white-space: nowrap;
 }
-#investProject .successRightArea,#investProject .industryBox{
-margin-left: 34rpx;
+
+#investProject .successRightArea, #investProject .industryBox {
+  margin-left: 34rpx;
 }
+
 .successLeftTurn {
   color: #f6a623;
   text-align: right;
@@ -1005,7 +1009,6 @@ margin-left: 34rpx;
   z-index: 3;
   margin-right: 22rpx;
 }
-
 
 /*投资需求  */
 

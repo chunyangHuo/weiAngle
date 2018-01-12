@@ -1,4 +1,4 @@
- page {
+page {
   font-size: 32rpx;
 }
 
@@ -31,15 +31,18 @@
   margin-top: 16rpx;
 }
 
-.card .checkOn{
-  color:#333;
+.card .checkOn {
+  color: #333;
 }
+
 picker .checkOn {
   color: #333;
 }
-.noCheck{
-  color:#ccc;
+
+.noCheck {
+  color: #ccc;
 }
+
 .slect {
   border-radius: 4px;
   height: 82repx;
@@ -109,26 +112,27 @@ picker .checkOn {
 /*去电脑端上传*/
 
 .pointToPC {
-  background:#293b55;
+  background: #293b55;
   opacity: 0.9;
   width: 93%;
   height: 104rpx;
   font-family: PingFangSC-Regular;
   font-size: 28rpx;
-  color: #ffffff;
+  color: #fff;
   line-height: 104rpx;
   padding: 0 30rpx;
 }
 
 .pointPcToNet {
   position: absolute;
-  right: 48rpx;
+  right: 32rpx;
 }
 
 .pointPcIcon {
-  width: 24rpx;
-  height: 22rpx;
-  margin-right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+  margin-top: 32rpx;
 }
 
 /*新样式  */
@@ -191,7 +195,7 @@ picker .checkOn {
 }
 
 .content {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #333;
   line-height: 112rpx;
   height: 112rpx;
@@ -320,7 +324,7 @@ picker .checkOn {
 
 .slect .black {
   color: black;
-} 
+}
 
 /*新样式  */
 
@@ -424,7 +428,6 @@ input:after {
   line-height: 56rpx;
   margin-top: 28rpx;
   margin-left: 366rpx;
-
 }
 
 .newBox2 {
@@ -438,6 +441,7 @@ input:after {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .projectContent {
   font-size: 28rpx;
   color: #ccc;

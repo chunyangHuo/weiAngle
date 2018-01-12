@@ -85,8 +85,7 @@
     "pages/myProject/historyFiance/historyFiance",
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
-    "pages/myProject/proMilestone/proMilestone",
-    "activitySignIn/pages/signCheckIndentity/signCheckIndentity"
+    "pages/myProject/proMilestone/proMilestone"
   ],
   "subPackages": [
     {
@@ -96,7 +95,8 @@
         "pages/activitySignForm/activitySignForm",
         "pages/signScan/signScan",
         "pages/signCheckIndentity/signCheckIndentity",
-        "pages/signIndentityCard/signIndentityCard"
+        "pages/signIndentityCard/signIndentityCard",
+        "pages/signNoIndentity/signNoIndentity"
       ]
     }
   ],
@@ -132,19 +132,6 @@
     "borderStyle": "#fafafa",
     "color": "#999999"
   },
-  "subPackages": [
-    {
-      "root": "/activitySignIn/",
-      "pages":[
-        "pages/activityDetail/activityDetail",
-        "pages/activitySignForm/activitySignForm",
-        "pages/signScan/signScan",
-        "pages/signCheckIndentity/signCheckIndentity",
-        "pages/signIndentityCard/signIndentityCard",
-        "pages/signNoIdentity/signNoIdentity"
-      ]
-    }
-  ],
   "networkTimeout": {
     "request": 20000,
     "connectSocket": 20000,
