@@ -887,7 +887,7 @@
     <view class="t-line"></view>
     <view class='t-cardBottomItem1 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-      <span>推送项目</span>
+      <span>提交项目</span>
     </view>
     <!-- <view class='t-cardBottomItem flex'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>

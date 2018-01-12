@@ -889,7 +889,7 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .t-introduceBox {
@@ -1086,12 +1086,15 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.t-hightLight1{
-  color: #666
+
+.t-hightLight1 {
+  color: #666;
 }
-.t-noLight1{
-  color: #ccc
+
+.t-noLight1 {
+  color: #ccc;
 }
+
 .t-bottomTabAfter {
   border-top: 1rpx solid #e6e6e6;
   padding-top: 28rpx;
@@ -1136,7 +1139,7 @@ textarea {
   padding: 0rpx 0rpx 0rpx 0rpx;
   font-size: 28rpx;
   color: #40587a;
-  align-items: center
+  align-items: center;
 }
 
 .t-wait {
@@ -1347,11 +1350,19 @@ textarea {
   background: #f2f2f2;
   margin-top: -1rpx;
 }
+
 .t-line12 {
   width: 2rpx;
   height: 35rpx;
   background: #f2f2f2;
   margin-top: 5rpx;
+}
+
+.t-line567 {
+  width: 2rpx;
+  height: 35rpx;
+  background: #f2f2f2;
+  margin-top: 28rpx;
 }
 
 .t-other-button-hover {
@@ -1610,9 +1621,11 @@ textarea {
 .t-hover-yes {
   background: #24344c;
 }
-.t-hover-yes{
-  background:#24344C;
+
+.t-hover-yes {
+  background: #24344c;
 }
-.t-project-apply{
-  background: #2D6BC9 !important;
+
+.t-project-apply {
+  background: #2d6bc9 !important;
 }

@@ -375,5 +375,6 @@
 .t-investorColor{
   background: #fff;
   /* margin: 0 30rpx 0 30rpx; */
-  margin-bottom: 32rpx
+  margin-bottom: 32rpx;
+  height: 400rpx;
 }
