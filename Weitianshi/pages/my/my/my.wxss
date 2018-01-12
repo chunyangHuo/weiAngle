@@ -262,7 +262,7 @@ page {
 
 .user_popularity view:first-child, .user_attention view:first-child,
 .user_potential view:first-child {
-  font-size: 32rpx;
+  font-size: 36rpx;
   color: #333;
   height: 40rpx;
   flex: column;
@@ -270,7 +270,7 @@ page {
 }
 
 .popularityNum, .potentialNum, .attentionNum {
-  font-size: 8px;
+  font-size: 16rpx;
   color: #f44c4c;
   line-height: 20rpx;
   text-align: left;
@@ -763,6 +763,7 @@ page {
   color: #666;
   text-align: left;
   line-height: 36rpx;
+  margin-top: 6rpx;
 }
 
 .personActive {
@@ -774,7 +775,8 @@ page {
   text-align: center;
   line-height: 36rpx;
   white-space: nowrap;
-  padding: 0 16rpx;
+  padding: 0 8rpx;
+  margin-top: 6rpx;
 }
 
 .personPic {
@@ -965,8 +967,7 @@ page {
 .successLeft {
   text-align: right;
   width: 24%;
-  margin-right: 48rpx;
-    margin-top: 8rpx;
+  margin-right: 22rpx;
 }
 
 .successRight {
@@ -982,6 +983,10 @@ page {
   white-space: nowrap;
 }
 
+#investProject .successRightArea, #investProject .industryBox {
+  margin-left: 34rpx;
+}
+
 .successLeftTurn {
   color: #f6a623;
   text-align: right;
@@ -994,29 +999,15 @@ page {
 .successProjcetName {
   color: #333;
   font-weight: bold;
-  /* margin-top: -1rpx; */
+  margin-right: 12rpx;
 }
-
-
 
 .successPic {
   width: 24rpx;
   height: 24rpx;
   margin-top: 7rpx;
   z-index: 3;
-  margin-right: 24rpx;
-  margin-left: -11rpx;
-}
-
-.successRight {
-  border-left: 1rpx solid #e6e6e6;
-}
-
-.successProjcet:nth-last-child(2) .successRight{
- border: none!important;
-}
-.successProjcet:nth-child(2) .successRight{
-margin-top: 8rpx;
+  margin-right: 22rpx;
 }
 
 /*投资需求  */

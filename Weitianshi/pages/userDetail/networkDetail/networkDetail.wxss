@@ -127,10 +127,20 @@
   bottom: 186rpx;
   right: 34rpx;
 }
-.user_identifyContent{
+
+.user_identifyContent {
   position: absolute;
   right: 30rpx;
   top: 132rpx;
   width: 124rpx;
   height: 34rpx;
+}
+
+.noPic {
+  top: 32rpx;
+  right: 32rpx;
+  position: absolute;
+  border-radius: 50%;
+  height: 120rpx;
+  width: 120rpx;
 }

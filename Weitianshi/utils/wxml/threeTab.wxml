@@ -90,7 +90,7 @@
             <view class="brightPoint " wx:if="{{project.pro_goodness.length!=0}}">
               <view class="brightPointBox flex">
                 <!-- <image src="/img/img-star.png" class="titlePic"></image> -->
-                <view class="title ">投资亮点</view>
+                <view class="title " style="margin-bottom:32rpx">投资亮点</view>
               </view>
               <!-- <view class="{{isChecked0?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
               <view class="brightUnfoldAfter" value="{{number}}">
@@ -110,7 +110,7 @@
             <view class="brightPoint " wx:if="{{project.pro_market_genera.length!=0}}">
               <view class="brightPointBox flex">
                 <!-- <image src="/img/icon-shichanggaikuang@2x.png" class="titlePic"></image> -->
-                <view class="title ">市场概况</view>
+                <view class="title " style="margin-bottom:32rpx">市场概况</view>
               </view>
               <!-- <view class="{{isChecked1?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
               <view class="brightUnfoldAfter" value="{{number}}">
@@ -131,7 +131,7 @@
             <view class="brightPoint " wx:if="{{project.pro_service.length!=0}}">
               <view class="brightPointBox flex">
                 <!-- <image src="/img/icon-chanpingaikuang@2x.png" class="titlePic"></image> -->
-                <view class="title ">产品概况</view>
+                <view class="title " style="margin-bottom:32rpx">产品概况</view>
               </view>
               <!-- <view class="{{isChecked2?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
               <view class="brightUnfoldAfter" value="{{number}}">
@@ -152,7 +152,7 @@
             <view class="brightPoint " wx:if="{{project.pro_business_model.length!=0}}">
               <view class="brightPointBox flex">
                 <!-- <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image> -->
-                <view class="title">商业模式</view>
+                <view class="title" style="margin-bottom:32rpx">商业模式</view>
               </view>
               <!-- <view class="{{isChecked3?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
               <view class="brightUnfoldAfter" value="{{number}}">
@@ -317,7 +317,7 @@
             <view class="brightPoint detailTop" wx:if="{{teamOfPro.length !=0 ||project.core_users.length!=0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
-                  <view  class="{{teamOfPro.length != 0?'title':'t-title1' }}">核心团队</view>
+                  <view class="{{teamOfPro.length != 0?'title':'t-title1' }}">核心团队</view>
                   <view class="productAll" bindtap='toTeam' wx:if="{{core_memberArray1.length>3}}">全部（
                     <label>{{core_memberArray1.length}}</label>）</view>
                 </view>
@@ -814,8 +814,9 @@
     </swiper-item>
   </swiper>
   <!-- 客服 -->
-  <button open-type="contact" class="t-contact" wx:if="{{currentTab==0}}">
-    <image class="service" src="/img/btn-lianxikefu@2x.png">
+  <button open-type="contact" class="t-contact" bindtap='contactTap' wx:if="{{currentTab==0}}">
+    <image class="service" wx:if="{{bindContact==false}}" src="/img/btn-lianxikefu@2x.png"></image>
+    <image class="service" wx:if="{{bindContact==true}}" src="/img/btn-lianxikefu@2x.png">
     </image>
   </button>
   <!--项目打分  -->

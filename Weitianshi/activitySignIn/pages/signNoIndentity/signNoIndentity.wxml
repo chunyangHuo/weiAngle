@@ -1,0 +1,5 @@
+<view class='signBox'>
+<view class="noIndentity"></view>
+<view class='noContent'>对不起，您还没有报名</view>
+<view class="JumpTo">去微天使看看</view>
+</view>

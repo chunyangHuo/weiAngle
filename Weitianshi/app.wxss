@@ -843,8 +843,8 @@ textarea {
 }
 
 .t-applyMyProject {
-  padding: 32rpx;
-  /* background: white; */
+  /* padding: 32rpx; */
+  padding: 32rpx 32rpx 10rpx 32rpx;
 }
 
 .t-outsideBox {
@@ -883,9 +883,9 @@ textarea {
 }
 
 .t-applyMyProject .t-careerCompany {
-  margin-left: 140rpx;
-  margin-bottom: 84rpx;
-  max-width: 364rpx;
+  margin-left: 148rpx;
+  margin-bottom: 48rpx;
+  max-width: 400rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -895,7 +895,7 @@ textarea {
 .t-introduceBox {
   margin-bottom: 16rpx;
   align-items: flex-end;
-  margin-left: 140rpx;
+  margin-left: 148rpx;
   margin-top: 18rpx;
 }
 
@@ -904,12 +904,12 @@ textarea {
   color: #333;
   line-height: 38rpx;
   text-align: left;
-  margin-right: 16rpx;
+  margin-right: 8rpx;
   align-items: flex-end;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 144rpx;
+  max-width: 200rpx;
 }
 
 .t-applyMyProject .t-userPart {
@@ -922,6 +922,7 @@ textarea {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
+  margin-right: 8rpx;
 }
 
 .t-applyMyProject .t-userCompany1 {
@@ -1037,7 +1038,7 @@ textarea {
   position: absolute;
   left: 32rpx;
   top: 32rpx;
-  color: #40587a;
+  color: #333;
 }
 
 .t-redPoint {
@@ -1085,6 +1086,7 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 28rpx;
 }
 
 .t-hightLight1 {
@@ -1110,6 +1112,8 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left !important;
+  color: #999;
+  max-width: 636rpx;
 }
 
 .t-record {
@@ -1148,8 +1152,10 @@ textarea {
 }
 
 .t-history {
-  width: 66%;
+  width: 61%;
   padding-left: 32rpx;
+  color: #333;
+  font-size: 12px;
 }
 
 .t-history1 {
@@ -1165,6 +1171,12 @@ textarea {
   color: #fff;
   font-size: 10px;
   padding: 2rpx 5rpx 2rpx 5rpx;
+  display: inline-block;
+  height: 31rpx;
+  line-height: 31rpx;
+  position: relative;
+  left: 0;
+  top: -2rpx;
 }
 
 .t-add {
@@ -1190,8 +1202,8 @@ textarea {
   align-items: center;
   vertical-align: middle;
   justify-content: center;
-  width: 25%;
-  padding-right: 32rpx;
+  width: 26%;
+  padding-right: 44rpx;
   height: 94rpx;
   font-size: 15px;
   color: #3378e0;
@@ -1232,6 +1244,7 @@ textarea {
   width: 26rpx;
   height: 26rpx;
   margin-right: 16rpx;
+  margin-left: 32rpx;
   /* padding-top: 5rpx;
   padding-right: 16rpx; */
 }
@@ -1411,7 +1424,7 @@ textarea {
   margin: 0 32rpx;
   width: 90%;
   height: 2rpx;
-  background: #e6e6e6;
+  background: #f0f0f0;
 }
 
 .t-white {
@@ -1628,4 +1641,15 @@ textarea {
 
 .t-project-apply {
   background: #2d6bc9 !important;
+}
+
+.floatTop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+.whiteSpace{
+  height: 104rpx;
+  width: 100%;
 }

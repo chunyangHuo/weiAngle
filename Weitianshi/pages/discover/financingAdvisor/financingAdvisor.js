@@ -7,7 +7,7 @@ Page({
   data: {
     jiandi:false,
     firstTime: true,
-    searchText: '搜索公司名称、项目名称',
+    searchText: '请输入姓名、公司、品牌',
     faList: '',
     faList2: '',
     hidden: true,
@@ -216,7 +216,7 @@ Page({
   searchSth() {
     let user_id = this.data.user_id;
     let str;
-    str = 'fa';
+    str = 'faList';
     // app.href('/pages/search/search3/search3?user_id=' + user_id)
     wx.navigateTo({
       url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,

@@ -25,6 +25,7 @@ Page({
       app.globalData.picUrl.banner_5,
     ],
     imgUrls1: app.globalData.picUrl.page_discoverProject,
+    atBottom:false
   },
   onLoad(options) {
     let that = this;
@@ -258,14 +259,11 @@ Page({
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
           app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
-
         } else {
           app.href('/pages/projectDetail/projectDetail?id=' + project_id)
-
         }
       }
     })
-
   },
   // 分享当前页面
   onShareAppMessage: function () {

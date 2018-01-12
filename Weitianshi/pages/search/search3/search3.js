@@ -41,17 +41,17 @@ Page({
         break;
       case "investorList":
         wx.setNavigationBarTitle({
-          title: '人脉搜索',
+          title: '搜索投资人',
         })
         break;
       case "faList":
         wx.setNavigationBarTitle({
-          title: '人脉搜索',
+          title: '搜索融资顾问',
         })
         break;
       case "myList":
         wx.setNavigationBarTitle({
-          title: '人脉搜索',
+          title: '搜索好友',
         })
         break;
     }
