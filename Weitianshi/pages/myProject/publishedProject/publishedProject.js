@@ -47,9 +47,11 @@ Page({
     buttonOneText: '保存',
   },
   onLoad: function (options) {
+    console.log(options)
     let that = this;
     let editProId = options.pro_id;
     let edit = options.edit;
+    let fromPublish = options.fromPublish;
     let stage = wx.getStorageSync('stage');
     let scale = wx.getStorageSync('scale');
     let stage_arry = [];
@@ -59,6 +61,9 @@ Page({
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
     // 如果是编辑项目入口
     if (editProId) { this._editProject(editProId) }
+    this.setData({
+      fromPublish: fromPublish
+    })
   },
   //页面显示
   onShow: function () {
@@ -418,7 +423,7 @@ Page({
     let pro_goodness = that.data.pro_goodness;
     let pro_finance_stock_after = that.data.pro_finance_stock_after;
     let projectName = that.data.projectName;
-
+    let fromPublish = this.data.fromPublish;
     //处理下投后股份数据类型 
     if (isNaN(pro_finance_stock_after)) {
     } else {
@@ -452,9 +457,9 @@ Page({
     // } else if (pro_goodness == '') {
     //   app.errorHide(that, '请填写项目亮点', 3000)
     // } 
-    if(!projectName){
+    if (!projectName) {
       app.errorHide(that, '请填写项目名称', 3000)
-    }else {
+    } else {
       // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
       let successText = '成功创建融资项目';
@@ -497,12 +502,16 @@ Page({
         wx.removeStorageSync('setPrivacy');
         app.errorHide(that, successText, 1000)
         // 提交中过渡态处理
-        if (that.data.pro_id) {
+        if (that.data.pro_id && fromPublish != 3) {
           setTimeout(x => {
             wx.navigateBack({
               delta: 1
             })
           }, 1000)
+        } else if (that.data.pro_id && fromPublish == 3) {
+          wx.switchTab({
+            url: '/pages/discoverProject/discoverProject',
+          })
         } else {
           setTimeout(x => {
             wx.redirectTo({

@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 
-<template is="newSearch2" data="{{text:'搜个关键词试试'}}"></template>
+<template is="newSearch2" data="{{text:'搜索项目、投资机构、投资人、FA'}}"></template>
 
 <view hidden='{{show}}'>
   <view class="searchContent">搜索指定内容</view>
@@ -29,22 +29,22 @@
         <view class="outStyleBox1" id="projects" wx:if="{{projects_list.length != 0}}">
           <view class="blockTitle2">项目</view>
           <template is="shopProject" data="{{myProject:projects_list,currentTab,index,currentTab:0,number:3,showAfter}}"></template>
-          <view class="outPadding" bindtap='jumpToSearch' data-current="1">
-            <view class="more" wx:if="{{searchData.projects_list.list.length >= 3}}">更多</view>
+          <view class="outPadding" bindtap='jumpToSearch' data-current="1"  wx:if="{{searchData.projects_list.list.length >= 3}}">
+            <view class="more">更多</view>
           </view>
         </view>
         <view class="outStyleBox1" id="investment" wx:if="{{investments_list.length != 0}}">
           <view class="blockTitle2">投资机构</view>
           <template is="investment" data="{{investment_list:investments_list,index,currentTab:0,number:3}}"></template>
-          <view class="outPadding" bindtap='jumpToSearch' data-current="2">
-            <view class="more" wx:if="{{searchData.investments_list.list.length >= 3}}">更多</view>
+          <view class="outPadding" bindtap='jumpToSearch' data-current="2"  wx:if="{{searchData.investments_list.list.length >= 3}}">
+            <view class="more">更多</view>
           </view>
         </view>
         <view class="outStyleBox1" id="investor" wx:if="{{investors_list.length != 0}}">
           <view class="blockTitle2">投资人</view>
           <template is='investorModel' data='{{personList:investors_list,user_id,currentTab:0,number:3}}'></template>
-          <view class="outPadding" bindtap='jumpToSearch' data-current="3">
-            <view class="more" wx:if="{{searchData.investors_list.list.length >= 3}}" bindtap="toMember">更多</view>
+          <view class="outPadding" bindtap='jumpToSearch' data-current="3"  wx:if="{{searchData.investors_list.list.length >= 3}}" >
+            <view class="more" bindtap="toMember">更多</view>
           </view>
         </view>
         <view class="outStyleBox1" id="faPerson" wx:if="{{fa_list.length != 0}}">

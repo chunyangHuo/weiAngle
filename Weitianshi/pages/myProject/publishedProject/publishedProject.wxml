@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <template is="pointPC">用电脑创建项目，体验更好更流畅</template>
-
+<view class='whiteSpace'></view>
 <view style='background:white;'>
   <view class="projectBoxContent flex noBorder">
     <view class="projectTitle">项目名称*</view>

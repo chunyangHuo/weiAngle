@@ -319,12 +319,25 @@ Page({
     console.log(e)
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
-    let user_id = this.data.user_id
-    if (user_id != id) {
-      app.href('/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + user_id)
-    } else {
-      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id)
-    }
+    let user_id = this.data.user_id;
+    // 判斷項目是不是自己的
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        if (userId == user) {
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0)
+        } else {
+          app.href('/pages/projectDetail/projectDetail?id=' + id)
+        }
+      }
+    })
   },
   //跳转投资机构详情
   institutionalDetails(e) {
@@ -334,6 +347,7 @@ Page({
   //跳转投资人详情或者FA详情
   userDetail(e) {
     let userDetailId = e.currentTarget.dataset.id;
+    console.log(userDetailId)
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + userDetailId)
   },
   search() {

@@ -91,7 +91,7 @@
       <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>加好友</view>
     </view>
-    <view class="t-flexBox" wx:if="{{button_type==2}}"  hover-class="t-hoverColor">
+    <view class="t-flexBox" wx:if="{{button_type==2}}">
       <image src='/img/icon-daitongguo@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock' style="color:#cccccc">待通过</view>
     </view>

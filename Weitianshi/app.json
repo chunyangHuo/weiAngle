@@ -97,7 +97,8 @@
         "pages/activitySignForm/activitySignForm",
         "pages/signScan/signScan",
         "pages/signCheckIndentity/signCheckIndentity",
-        "pages/signIndentityCard/signIndentityCard"
+        "pages/signIndentityCard/signIndentityCard",
+        "pages/signNoIndentity/signNoIndentity"
       ]
     }
   ],
