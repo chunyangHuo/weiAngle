@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="search_frame">
   <label class="searchBox flex">
-    <input class="search" placeholder="{{placeHold}}" bindinput="searchSth" />
+    <input class="search" focus="" placeholder="{{placeHold}}" bindinput="searchSth" />
   </label>
   <view class="esc" bindtap="searchEsc">取消</view>
 </view>

@@ -7,7 +7,7 @@ Page({
   data: {
     jiandi:false,
     firstTime: true,
-    searchText: '搜索公司名称、项目名称',
+    searchText: '请输入姓名、公司、品牌',
     investorList: '',
     hidden: true,
     slectProject: '',

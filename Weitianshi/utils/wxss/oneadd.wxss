@@ -426,7 +426,7 @@
   color: #666;
   text-align: center;
   position: absolute;
-  left: 15%;
+  left: 13%;
   top: 100rpx;
   /* z-index: 11111; */
 }
@@ -438,7 +438,7 @@
   margin-top: 40rpx;
   /* z-index: 11111; */
   position: absolute;
-  left: 15%;
+  left: 13%;
   top: 122rpx;
 }
 
@@ -455,7 +455,7 @@
   margin-top: 80rpx;
   /* z-index: 111111; */
   position: absolute;
-  left: 0;
+  left: -20rpx;
   top: 200rpx;
 }
 
@@ -463,6 +463,21 @@
   width: 100%;
   height: 186rpx;
   background: #f2f3f4;
+}
+
+.lockRenzheng1 {
+  background: #3378e0;
+  border-radius: 2px;
+  width: 240rpx;
+  height: 80rpx;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  position: absolute;
+  left: 0;
+  margin-left: 32%;
+  top: 272rpx;
 }
 
 /*潜在投资方  */
@@ -611,6 +626,7 @@
   /* text-align:left; */
   font-weight: bold;
 }
-.t-title345{
-margin-bottom: 40rpx;
+
+.t-title345 {
+  margin-bottom: 40rpx;
 }

@@ -5,7 +5,7 @@ import * as FilterModel from '../../../utils/filterModel';
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-    searchText: '搜索公司名称、项目名称',
+    searchText: '请输入姓名、公司、品牌',
     firstTime: true,
     myList: '',
     // 筛选搜索
