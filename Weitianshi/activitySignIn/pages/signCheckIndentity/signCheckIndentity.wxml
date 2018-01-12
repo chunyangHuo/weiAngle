@@ -5,7 +5,7 @@
       <input placeholder='请输入活动报名填写的手机号'></input>
     </view>
     <view class='footer'>
-      <button>确定</button>
+      <button bindtap='checkIndentity'>确定</button>
     </view>
   </view>
   <view class='activityCard shadow'>
