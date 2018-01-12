@@ -65,14 +65,14 @@
                   <label>{{count.view_times_all}}</label>
                 </view>
               </view>
-              <view class="t-line"></view>
+              <view class="t-line567"></view>
               <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor'>
                 <view class="applyProjectNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
                 <view class="viewTimeAll screenPersonColor" data-proid="{{id}}">申请查看：
                   <label>{{count.apply_times_all}}</label>
                 </view>
               </view>
-              <view class="t-line"></view>
+              <view class="t-line567"></view>
               <!-- <view class="investPerson">-</view> -->
               <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor'>
                 <view class="applyProjectNew" wx:if="{{project.count.meet_times_new != 0}}">+{{count.meet_times_new}}</view>
@@ -247,7 +247,7 @@
             <view class="brightPoint" wx:if="{{project.pro_history_finance.length !=0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
-                  <view class="title">历史融资</view>
+                  <view class="title t-title345">历史融资</view>
                   <view class="productAll" bindtap="toHistory" wx:if="{{pro_history_financeList1.length>3}}">全部（
                     <label>{{pro_history_financeList1.length}}</label>）</view>
                 </view>
@@ -337,7 +337,7 @@
             <view class="brightPoint detailTop" wx:if="{{project.pro_develop.length != 0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
-                  <view class="title">里程碑</view>
+                  <view class="title t-title345">里程碑</view>
                   <view class="productAll" bindtap='mileStone' wx:if="{{mileStoneArray1.length>3}}">全部（
                     <label>{{mileStoneArray1.length}}</label>）</view>
                 </view>
