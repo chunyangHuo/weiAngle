@@ -21,6 +21,5 @@
     </block>
   </view>
   <!--报错  -->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> 
-  <!-- <template is='error'></template> -->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>  
 </view>

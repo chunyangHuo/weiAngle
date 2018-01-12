@@ -1,5 +1,6 @@
 let app = getApp();
 let url_common = app.globalData.url_common;
+import * as verify from '../../../utils/global/verify.js';
 Page({
   data: {
     demo: [
@@ -65,18 +66,19 @@ Page({
   },
   // 验证报名信息
   checkIndentity() {
-    app.httpPost({
-      url: url_common + '/api/activity/confirmAttendInfo',
-      data:{
-        activity_id: this.data.activity_id,
-        user_mobile: this.data.mobile,
-        open_session: app.globalData.open_session
-      }
-    },this).then(res => {
-      console.log(res)
-    }).catch(res =>{
-      console.log(res.data.error_msg)
-      app.errorHide(this, res.data.error_msg)
-    })
+    verify.mobile(this,this.data.mobile, x=>{
+      app.httpPost({
+        url: url_common + '/api/activity/confirmAttendInfo',
+        data: {
+          activity_id: this.data.activity_id,
+          user_mobile: this.data.mobile,
+          open_session: app.globalData.open_session
+        }
+      }, this).then(res => {
+        console.log(res)
+      }).catch(res => {
+        app.errorHide(this, res.data.error_msg)
+      })
+    });
   },
 })
