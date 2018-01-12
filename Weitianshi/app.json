@@ -86,7 +86,8 @@
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
     "pages/myProject/proMilestone/proMilestone",
-    "activitySignIn/pages/signCheckIndentity/signCheckIndentity"
+    "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
+    "activitySignIn/pages/signIndentityCard/signIndentityCard"
   ],
   "subPackages": [
     {

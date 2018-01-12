@@ -142,9 +142,10 @@
 					"query": "id=bpjJXqp9"
 				},
 				{
-					"id": -1,
+					"id": 19,
 					"name": "活动签到",
-					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity"
+					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
+					"query": ""
 				}
 			]
 		}
