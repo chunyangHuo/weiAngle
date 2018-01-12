@@ -4,7 +4,8 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
-    jiandi:false,
+    bindContact: false,
+    jiandi: false,
     competeList: [],
     taren: true,
     ziji: false,
@@ -175,7 +176,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         console.log(user_id, id, is_share)
-        console.log("bp",res)
+        console.log("bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -394,48 +395,48 @@ Page({
           })
         }
         // 融资信息
-        if (project.pro_history_finance){
-        let pro_history_financeList = project.pro_history_finance;
-        pro_history_financeList.forEach((x, index) => {
-          pro_history_financeList[index].finance_time = app.changeTimeStyle1(x.finance_time);
-          pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
-          pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
-          pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
+        if (project.pro_history_finance) {
+          let pro_history_financeList = project.pro_history_finance;
+          pro_history_financeList.forEach((x, index) => {
+            pro_history_financeList[index].finance_time = app.changeTimeStyle1(x.finance_time);
+            pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
+            pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
+            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
 
-        })
-        // 取原始的长度
-        let pro_history_financeList1 = project.pro_history_finance;
-        if (pro_history_financeList1.length !== 0) {
-          // 显示3条判断
-          if (pro_history_financeList1.length > 3) {
-            pro_history_financeList = pro_history_financeList.slice(0, 3);
+          })
+          // 取原始的长度
+          let pro_history_financeList1 = project.pro_history_finance;
+          if (pro_history_financeList1.length !== 0) {
+            // 显示3条判断
+            if (pro_history_financeList1.length > 3) {
+              pro_history_financeList = pro_history_financeList.slice(0, 3);
+            }
           }
-        }
-        that.setData({
-          pro_history_financeList: pro_history_financeList,//显示在详情的数据
-          pro_history_financeList1: pro_history_financeList1,//显示总长度
-        })
+          that.setData({
+            pro_history_financeList: pro_history_financeList,//显示在详情的数据
+            pro_history_financeList1: pro_history_financeList1,//显示总长度
+          })
         }
         // 里程碑
-        if (project.pro_develop){
-        let mileStoneArray = project.pro_develop;
-        mileStoneArray.forEach((x, index) => {
-          mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
-          mileStoneArray[index].dh_event = x.dh_event;
-        })
+        if (project.pro_develop) {
+          let mileStoneArray = project.pro_develop;
+          mileStoneArray.forEach((x, index) => {
+            mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
+            mileStoneArray[index].dh_event = x.dh_event;
+          })
 
-        // 取原始的长度
-        let mileStoneArray1 = project.pro_develop;
-        if (mileStoneArray1.length !== 0) {
-          // 显示3条判断
-          if (mileStoneArray1.length > 3) {
-            mileStoneArray = mileStoneArray.slice(0, 3);
+          // 取原始的长度
+          let mileStoneArray1 = project.pro_develop;
+          if (mileStoneArray1.length !== 0) {
+            // 显示3条判断
+            if (mileStoneArray1.length > 3) {
+              mileStoneArray = mileStoneArray.slice(0, 3);
+            }
           }
-        }
-        that.setData({
-          mileStoneArray: mileStoneArray,//显示在详情的数据
-          mileStoneArray1: mileStoneArray1,//显示总长度
-        })
+          that.setData({
+            mileStoneArray: mileStoneArray,//显示在详情的数据
+            mileStoneArray1: mileStoneArray1,//显示总长度
+          })
         }
         that.setData({
           industy_sort: industy_sort,
@@ -941,7 +942,7 @@ Page({
   //商业计划书
   businessBook: function () {
     let BPath = this.data.BPath;
-    
+
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
@@ -986,7 +987,7 @@ Page({
                 success: function (res) {
                   console.log(res)
                   var filePath = res.tempFilePath;
-                  console.log("bp",filePath)
+                  console.log("bp", filePath)
                   wx.openDocument({
                     filePath: filePath,
                     success: function (res) {
@@ -1178,7 +1179,9 @@ Page({
   },
   // 立即认证
   toAccreditation: function () {
+    console.log(1)
     let status = this.data.status;
+    console.log(status);
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
@@ -1394,4 +1397,10 @@ Page({
     let id = this.data.id;
     app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
   },
+  contactTap: function () {
+   let that=this;
+   that.setData({
+     bindContact:true
+   })
+  }
 }) 

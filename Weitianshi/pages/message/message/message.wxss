@@ -11,9 +11,10 @@
   padding: 40rpx 20rpx 40rpx 50rpx;
 }
 
-.beAddedContacts:first-child{
+.beAddedContacts:first-child {
   margin-top: 0;
 }
+
 .messageList {
   height: 106rpx;
   padding: 34rpx 42rpx 34rpx 32rpx;
@@ -40,8 +41,8 @@
 }
 
 .title_icon {
-  width: 158rpx;
-  height: 106rpx;
+  width: 165rpx;
+  height: 105rpx;
   margin-right: 32rpx;
 }
 
@@ -61,7 +62,7 @@
 }
 
 .netWorkNum {
-  background: #f44c4c;
+  background: #E43D59;
   color: #fff;
   width: 40rpx;
   height: 40rpx;
@@ -69,6 +70,8 @@
   border-radius: 50%;
   margin-left: 220rpx;
   line-height: 40rpx;
+  margin-top: 23rpx;
+  text-align: center;
 }
 
 .netWorkNumAfter {
@@ -80,7 +83,7 @@
   padding-top: 6rpx;
 }
 
- .iconEdit {
+.iconEdit {
   width: 12rpx;
   height: 20rpx;
   display: block;
@@ -115,7 +118,7 @@
   padding: 0 20rpx;
   position: absolute;
   right: 34rpx;
-  top:45rpx;
+  top: 45rpx;
 }
 
 .identityIcon {
@@ -137,7 +140,7 @@
   position: absolute;
   right: 32rpx;
   width: 120rpx;
-  top:54rpx;
+  top: 54rpx;
 }
 
 .on {
@@ -147,7 +150,7 @@
 /*底部信息提示  */
 
 .bottomBox {
-  margin-top:320rpx;
+  margin-top: 320rpx;
 }
 
 .contactPerson {
@@ -155,7 +158,7 @@
   color: #666;
   line-height: 28rpx;
   text-align: center;
-  margin-bottom:16rpx;
+  margin-bottom: 16rpx;
 }
 
 .wechatNumber {
