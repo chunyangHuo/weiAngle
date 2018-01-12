@@ -147,11 +147,7 @@
 					"pathName": "activitySignIn/pages/signNoIndentity/signNoIndentity",
 					"query": ""
 				},
-				{
-					"id": -1,
-					"name": "创建爱你完成",
-					"pathName": "pages/myProject/publishSuccess/publishSuccess",
-					"query": "type=undefined&projectId=yrQVJV0v"
+
 				}
 			]
 		}

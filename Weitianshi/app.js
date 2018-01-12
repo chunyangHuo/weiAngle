@@ -520,7 +520,7 @@ App({
   },
 
   //错误提示
-  errorHide(target, errorText, time) {
+  errorHide(target, errorText, time =3000) {
     let that = target;
     that.setData({
       error: "1",
@@ -800,7 +800,9 @@ App({
   globalData: {
     error: 0,
     picUrl: picUrl,
+    app_id:'wxdf2eba3b79b83110',
     app_key: 'wxos_lt',
+    open_session: '',
     delay_time: 0,
     // url: "https://wx.weitianshi.cn",
     // url_common: "https://wx.weitianshi.cn"
