@@ -170,9 +170,12 @@
           <view class='flex otherInfo'>
             <view class="allProjectDetail flex " wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
               <view class="projectDetailLine" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}} </view>
-              <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after}}">· {{item.pro_finance_stock_after}}% </view>
-              <view class="projectDetailLine" wx:if="{{item.pro_stage.stage_name}}"> · {{item.pro_stage.stage_name}}</view>
-              <view class="projectDetailLine" wx:if="{{item.pro_city.area_title}}">· {{item.pro_city.area_title}}</view>
+              <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after}}">
+                <label wx:if="{{item.pro_scale.scale_money}}">·</label> {{item.pro_finance_stock_after}}% </view>
+              <view class="projectDetailLine" wx:if="{{item.pro_stage.stage_name}}">
+                <label wx:if="{{item.pro_finance_stock_after}}"> · </label>{{item.pro_stage.stage_name}}</view>
+              <view class="projectDetailLine" wx:if="{{item.pro_city.area_title}}">
+                <label wx:if="{{item.pro_stage.stage_name}}">· </label>{{item.pro_city.area_title}}</view>
             </view>
           </view>
         </view>
@@ -183,7 +186,7 @@
 
 <!--成功案例-->
 <template name="investProject">
-  <view class="personDes" catchtap="investCase" wx:if="{{invest_case.length != 0}}">
+  <view class="personDes" catchtap="investCase" wx:if="{{invest_case.length != 0}}" id="investProject">
     <view class='flex shopBox'>
       <view class="personTitle">成功案例</view>
       <view class="allNum" wx:if="{{invest_case.length > 3}}">全部({{invest_case.length}})</view>
@@ -194,15 +197,13 @@
           <view class="successLeftTime" wx:if="{{item.case_deal_time}}">{{item.case_deal_time}}</view>
           <view class="successLeftTurn" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
         </view>
-
-        <view class="successRight" >
+        <view class="successRight">
           <view class='flex'>
             <image src='/img/img-dot@2x.png' class="successPic"></image>
             <view class="successProjcetName" wx:if="{{item.case_name}}">{{item.case_name}}</view>
           </view>
           <view>
-
-            <view class="successRightArea"  style='margin-left:24rpx;'>
+            <view class="successRightArea">
               <label wx:if="{{item.case_money}}">{{item.case_money}}</label>
               ·
               <label wx:if="{{item.case_area}}">{{item.case_area.area_title}}</label>

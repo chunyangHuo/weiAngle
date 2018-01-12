@@ -965,8 +965,7 @@ page {
 .successLeft {
   text-align: right;
   width: 24%;
-  margin-right: 48rpx;
-    margin-top: 8rpx;
+  margin-right: 22rpx;
 }
 
 .successRight {
@@ -981,7 +980,9 @@ page {
   margin-bottom: 12rpx;
   white-space: nowrap;
 }
-
+#investProject .successRightArea,#investProject .industryBox{
+margin-left: 34rpx;
+}
 .successLeftTurn {
   color: #f6a623;
   text-align: right;
@@ -994,30 +995,17 @@ page {
 .successProjcetName {
   color: #333;
   font-weight: bold;
-  /* margin-top: -1rpx; */
+  margin-right: 12rpx;
 }
-
-
 
 .successPic {
   width: 24rpx;
   height: 24rpx;
   margin-top: 7rpx;
   z-index: 3;
-  margin-right: 24rpx;
-  margin-left: -11rpx;
+  margin-right: 22rpx;
 }
 
-.successRight {
-  border-left: 1rpx solid #e6e6e6;
-}
-
-.successProjcet:nth-last-child(2) .successRight{
- border: none!important;
-}
-.successProjcet:nth-child(2) .successRight{
-margin-top: 8rpx;
-}
 
 /*投资需求  */
 

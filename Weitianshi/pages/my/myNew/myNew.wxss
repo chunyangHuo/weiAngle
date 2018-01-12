@@ -137,11 +137,11 @@ page {
   padding: 40rpx 0;
 }
 
-.user_attention view:first-child, .user_potential view:first-child {
+/* .user_attention view:first-child, .user_potential view:first-child {
   color: #666;
   height: 50rpx;
   flex: column;
-}
+} */
 
 .popularity-people, .attention-people, .potential-content {
   font-size: 24rpx;
