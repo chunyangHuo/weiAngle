@@ -43,7 +43,12 @@ App({
       })
     }
   },
-
+  onshow() {
+    wx.onNetworkStatusChange(function (res) {
+      console.log(res.isConnected)
+      console.log(res.networkType)
+    })
+  },
   //进入页面判断是否有open_session
   loginPage(cb) {
     let that = this;
@@ -520,7 +525,7 @@ App({
   },
 
   //错误提示
-  errorHide(target, errorText, time =3000) {
+  errorHide(target, errorText, time = 3000) {
     let that = target;
     that.setData({
       error: "1",
@@ -799,7 +804,7 @@ App({
   globalData: {
     error: 0,
     picUrl: picUrl,
-    app_id:'wxdf2eba3b79b83110',
+    app_id: 'wxdf2eba3b79b83110',
     app_key: 'wxos_lt',
     open_session: '',
     delay_time: 0,
