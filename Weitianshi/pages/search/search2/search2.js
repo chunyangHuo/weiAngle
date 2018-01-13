@@ -347,8 +347,14 @@ Page({
   //跳转投资人详情或者FA详情
   userDetail(e) {
     let userDetailId = e.currentTarget.dataset.id;
-    console.log(userDetailId)
-    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + userDetailId)
+    let user_id = wx.getStorageSync('user_id');
+    if (user_id == userDetailId) {
+      wx.switchTab({
+        url: '/pages/my/myNew/myNew'
+      })
+    } else {
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + userDetailId)
+    }
   },
   search() {
     let user_id = wx.getStorageSync('user_id');
@@ -380,7 +386,7 @@ Page({
           investors_list: searchData.investors_list.list,
           investments_list: searchData.investments_list.list,
           projects_list: searchData.projects_list.list,
-          showSth :true
+          showSth: true
         })
       })
     }, 500)
