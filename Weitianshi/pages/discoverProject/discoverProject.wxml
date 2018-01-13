@@ -76,6 +76,9 @@
         </view>
       </view>
     </block>
+
+    <template is="theBottom" wx:if="{{atBottom == true}}"></template>
+    <view class='whiteSpace'></view>
   </scroll-view>
 </view>
 
@@ -85,8 +88,7 @@
     <view class="t-btnToAccreditation" hover-class='t-hoverColor' bindtap="toCreateProject">马上创建</view>
   </view>
 </view>
-<template is="theBottom" wx:if="{{atBottom == true}}"></template>
-<view class='whiteSpace'></view>
+
 <template name="jumpBlock">
   <view class="jumpTo" bindtap='{{tapName}}' hover-class='t-hoverColor'>
     <image class='jumpImage' src='{{src}}'></image>

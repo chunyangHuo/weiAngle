@@ -303,7 +303,6 @@ Page({
   //点击发布
   public: function () {
     let that = this;
-    let type = this.data.type;
     let theData = this.data;
     let privacy = this.privacyDeal();
     // --------------------表单的各项值-------------------------------------
@@ -354,19 +353,11 @@ Page({
         wx.removeStorageSync('setPrivacy');
         app.errorHide(that, successText, 1000)
         // 提交中过渡态处理
-        if (that.data.pro_id) {
-          setTimeout(x => {
-            wx.navigateBack({
-              delta: 1
-            })
-          }, 1000)
-        } else {
           setTimeout(x => {
             wx.redirectTo({
-              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type + '&&projectId=' +projectId
+              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' +projectId
             })
           }, 1000)
-        }
       })
     }
   },

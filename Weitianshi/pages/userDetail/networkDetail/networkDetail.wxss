@@ -115,7 +115,7 @@
 .contactLine {
   background: #f0f0f0;
   width: 686rpx;
-  height: 2rpx;
+  height: 1rpx;
   margin: 0 32rpx;
 }
 
@@ -143,4 +143,7 @@
   border-radius: 50%;
   height: 120rpx;
   width: 120rpx;
+}
+#investProject .successProjcet:last-child{
+  margin-bottom: 0;
 }

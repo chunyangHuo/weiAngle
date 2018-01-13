@@ -41,7 +41,7 @@
 }
 
 .title_icon {
-  width: 165rpx;
+  width: 158rpx;
   height: 105rpx;
   margin-right: 32rpx;
 }

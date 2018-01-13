@@ -442,7 +442,7 @@ page {
 
 .aline {
   margin: 0 32rpx;
-  width: 90%;
+  width: 91.5%;
   height: 1rpx;
   background: #e6e6e6;
 }
@@ -513,4 +513,7 @@ page {
 
 .flexCenter {
   justify-content: center;
+}
+.userName{
+  font-weight: bold;
 }

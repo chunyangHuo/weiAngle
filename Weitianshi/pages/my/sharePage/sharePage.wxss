@@ -76,3 +76,13 @@ color:#40587a;
 background: #fff;
 }
 /*顶部  */
+.user_identifyContent {
+  position: absolute;
+  right: 30rpx;
+  top: 132rpx;
+  width: 124rpx;
+  height: 34rpx;
+}
+#investProject .successProjcet:last-child{
+  margin-bottom: 0;
+}

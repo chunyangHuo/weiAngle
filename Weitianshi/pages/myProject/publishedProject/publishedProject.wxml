@@ -66,7 +66,7 @@
 
 <view class="pro_goodness">
   <view class="cardTitle goodness">项目亮点</view>
-  <textarea id="slectInput" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" placeholder="是决定投资人是否查看项目详情的重要因素" class='selectInput' />
+  <input id="slectInput" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" placeholder="是决定投资人是否查看项目详情的重要因素" class='selectInput' />
 </view>
 
 <view class="otherInfo">
