@@ -16,7 +16,7 @@
       <view wx:if="{{status == 2}}">
         <image wx:if="{{user.authentication[0].group_id == 3}}" src="/img/img-rzchuangyezhe@2x.png" class='user_identifyContent'></image>
         <image wx:if="{{user.authentication[0].group_id == 18}}" src="/img/img-rzfa@2x.png" class='user_identifyContent'></image>
-        <image wx:if="{{user.authentication[0].group_id == 19}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
+        <image wx:if="{{user.authentication[0].group_id == 21}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
         <image wx:if="{{user.authentication[0].group_id == 6}}" src="/img/img-rztouziren@2x.png" class='user_identifyContent'></image>
       </view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>

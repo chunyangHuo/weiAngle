@@ -105,7 +105,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  font-weight: bold;
 }
 
 .allIndustry {
@@ -280,8 +279,10 @@
   font-size: 30rpx;
   color: #333;
   text-align: left;
-  height: 74rpx;
-  line-height: 74rpx;
+  height: auto;
+   line-height: 42rpx; 
+  padding-top:32rpx;
   font-weight: bold;
   padding-left: 32rpx;
+
 }

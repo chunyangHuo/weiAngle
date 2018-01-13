@@ -14,8 +14,10 @@ Page({
     modalBox: 0,
     IdentificationShow: 1,
     shareModal: app.globalData.picUrl.share_modal,
+    nonet: true  
   },
   onLoad: function (options) {
+
     if (options) {
       this.setData({
         modal: options.modal
@@ -56,7 +58,11 @@ Page({
               key: 'resource_data',
               data: res.data.resource_info
             })
-
+            if (invest_case) {
+              if (invest_case.length > 3) {
+                invest_case = invest_case.slice(0, 3);
+              }
+            }
 
             wx.setNavigationBarTitle({
               title: user_name + "的投资名片",
@@ -83,6 +89,9 @@ Page({
         })
       }
     })
+  },
+  onLaunch(options) {
+
   },
   //编辑名片
   cardEdit: function () {
@@ -122,7 +131,7 @@ Page({
     if (!this.data.options) {
       app.href('/pages/my/projectShop/projectShop/projectShop')
     }
-  },
+  }, 
   //融资项目详情
   financingDetail: function (e) {
     var id = e.currentTarget.dataset.id;
