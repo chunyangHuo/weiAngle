@@ -883,35 +883,33 @@ textarea {
 }
 
 .t-applyMyProject .t-careerCompany {
-  margin-left: 128rpx;
-  margin-bottom: 56rpx;
-  max-width:364rpx;
+  margin-left: 148rpx;
+  margin-bottom: 48rpx;
+  max-width: 400rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   /* font-weight: bold; */
-  line-height: 34rpx;
 }
 
 .t-introduceBox {
-  margin-bottom: 12rpx;
+  margin-bottom: 16rpx;
   align-items: flex-end;
-  margin-left: 128rpx;
-  margin-top: 8rpx;
+  margin-left: 148rpx;
+  margin-top: 18rpx;
 }
 
 .t-introduceBox .t-userName {
   font-size: 36rpx;
   color: #333;
-  line-height: 44rpx;
+  line-height: 38rpx;
   text-align: left;
   margin-right: 8rpx;
   align-items: flex-end;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 240rpx;
-  font-weight: bold;
+  max-width: 200rpx;
 }
 
 .t-applyMyProject .t-userPart {
@@ -924,7 +922,7 @@ textarea {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
-  /* margin-right: 8rpx; */
+  margin-right: 8rpx;
 }
 
 .t-applyMyProject .t-userCompany1 {
@@ -1082,14 +1080,13 @@ textarea {
 .t-roundGroupPush {
   font-size: 26rpx;
   /* color: #999; */
-  line-height: 36rpx;
+  line-height: 28rpx;
   text-align: left;
-  margin-bottom: 16rpx;
+  margin-bottom: 22rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-height: 28rpx;
-  align-items: center;
 }
 
 .t-hightLight1 {
@@ -1116,7 +1113,7 @@ textarea {
   text-overflow: ellipsis;
   text-align: left !important;
   color: #999;
-  /* max-width: 636rpx; */
+  max-width: 636rpx;
 }
 
 .t-record {
@@ -1362,14 +1359,14 @@ textarea {
 
 .t-line {
   width: 2rpx;
-  height: 40rpx;
-  background: #f0f0f0;
+  height: 35rpx;
+  background: #f2f2f2;
   margin-top: -1rpx;
 }
 
 .t-line12 {
   width: 2rpx;
-  height: 40rpx;
+  height: 35rpx;
   background: #f2f2f2;
   margin-top: 5rpx;
 }
@@ -1425,8 +1422,8 @@ textarea {
 
 .t-alineHeight {
   margin: 0 32rpx;
-  width: 91.5%;
-  height: 1rpx;
+  width: 90%;
+  height: 2rpx;
   background: #f0f0f0;
 }
 
@@ -1598,8 +1595,8 @@ textarea {
 .t-pipei {
   width: 110rpx;
   position: absolute;
-  right: 0rpx;
-  top: 32rpx;
+  right: 11rpx;
+  top: 57rpx;
 }
 
 #t-pipei12 {
@@ -1609,7 +1606,6 @@ textarea {
 .t-numPipei {
   font-size: 20px;
   color: #f95355;
-  font-weight: bold
 }
 
 .t-numPipei1 {
@@ -1621,11 +1617,10 @@ textarea {
   font-size: 10px;
   color: #999;
   margin-top: 8rpx;
-  text-align: right!important;
 }
 
 .t-industryStage {
-  margin-left: 128rpx;
+  margin-left: 140rpx;
 }
 
 .t-carCom {

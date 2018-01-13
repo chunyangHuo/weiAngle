@@ -4,7 +4,6 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-    // jiazai: true,
     bindContact: false,
     investment_total_num: '',
     jiandi: false,

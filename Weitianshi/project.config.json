@@ -147,16 +147,11 @@
 					"pathName": "activitySignIn/pages/signNoIndentity/signNoIndentity",
 					"query": ""
 				},
+
 				{
 					"id": -1,
 					"name": "推送成功",
 					"pathName": "pages/search/search2/search2",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "断网",
-					"pathName": "pages/networkStorage/networkStorage",
 					"query": ""
 				}
 			]

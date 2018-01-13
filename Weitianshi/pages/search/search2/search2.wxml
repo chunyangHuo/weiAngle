@@ -107,8 +107,6 @@
           <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
             <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资人'}}" src="/img/img-touziren@2x.png"></image>
             <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
-            <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
-            <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
           </view>
           <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view> 
         </view>

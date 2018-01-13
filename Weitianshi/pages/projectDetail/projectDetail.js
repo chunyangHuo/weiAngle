@@ -4,7 +4,6 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/shareModel';
 Page({
   data: {
-    jiazai: true,
     bindContact: false,
     jiandi: false,
     competeList: [],
@@ -79,7 +78,7 @@ Page({
       }
     })
 
-
+    
     // 网络判断
     wx.onNetworkStatusChange(function (res) {
       console.log(res.isConnected)
@@ -136,10 +135,6 @@ Page({
         status: 5
       })
     }
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
   },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取
@@ -181,12 +176,10 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        wx.hideLoading();
         let brandList = res.data.data.brand;
         let project = res.data.data;
         that.setData({
           competition_id: res.data.data.competition_id,
-          jiazai:true
         })
         console.log(user_id, id, is_share)
         console.log("bp", res)

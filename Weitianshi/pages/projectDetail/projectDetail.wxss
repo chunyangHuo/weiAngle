@@ -8,34 +8,28 @@ page {
 scroll-view {
   height: 100%;
 }
-
 .theBottomBox {
   justify-content: center;
   margin-top: 32rpx;
   margin-bottom: 127rpx;
 }
-
-.investGroupBlock {
-  border-bottom: 0 !important;
+.investGroupBlock{
+  border-bottom: 0!important;
   /* padding-bottom: 0; */
 }
 
 /*我的项目卡片*/
-
-.t-userName {
+.t-userName{
   font-weight: bold;
 }
-
 /* .on {
   color: #ccc;
   border-bottom: 5rpx solid #333;
   text-align: center;
 } */
-
-.media123 {
+.media123{
   background: #f2f3f4;
 }
-
 .more {
   color: #009eff;
   font-size: 12px;
@@ -411,9 +405,8 @@ scroll-view {
   font-size: 32rpx;
   color: #333;
   line-height: 48rpx;
-  text-align: left !important;
+  text-align: left!important;
   font-weight: bold;
-  margin-bottom:20rpx; 
 }
 
 .industry {
@@ -422,7 +415,7 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  margin: 0rpx 16rpx 20rpx 0;
+  margin: 0rpx 10rpx 0rpx 0;
 }
 
 .allProjectDetail {
@@ -430,8 +423,8 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  margin-bottom: 32rpx;
-  /* margin-top: 14rpx; */
+  margin-bottom: 34rpx;
+  margin-top: 24rpx;
 }
 
 .ProjectCluesLine {
@@ -477,9 +470,9 @@ scroll-view {
 
 .userName {
   font-size: 28rpx;
-  color: #333;
+  color: #3a3e4a;
   letter-spacing: 0;
-  line-height: 34rpx;
+  line-height: 28rpx;
   text-align: left;
   margin-right: 16rpx;
   text-overflow: ellipsis;
@@ -492,12 +485,11 @@ scroll-view {
   width: 12rpx;
   height: 20rpx;
 }
-
+ 
 .userInfo {
   width: 460rpx;
   align-items: center;
   margin-top: 6rpx;
-  line-height: 34rpx;
 }
 
 /*项目亮点*/
@@ -640,7 +632,8 @@ button::after {
 }
 
 .projectDetailLine {
-  /* padding: 0 16rpx; *//* border-right: 1rpx solid #999; */
+  /* padding: 0 16rpx; */
+  /* border-right: 1rpx solid #999; */
 }
 
 .projectDetailLine:first-child {
@@ -918,7 +911,7 @@ button::after {
 
 .materialWeb {
   font-size: 26rpx;
-  color: #333;
+  color: #666;
   letter-spacing: 0;
   line-height: 26rpx;
   text-align: left;
@@ -1109,7 +1102,7 @@ button::after {
 }
 
 #projectBox .teamPro {
-  margin-bottom: 22rpx;
+  margin-bottom: 40rpx;
 }
 
 /*空白页*/
@@ -1240,7 +1233,8 @@ button::after {
 }
 
 .projectDetailLine {
-  /* padding: 0 16rpx; *//* border-right: 1rpx solid #999; */
+  /* padding: 0 16rpx; */
+  /* border-right: 1rpx solid #999; */
 }
 
 .projectDetailLine:first-child {
@@ -1294,7 +1288,7 @@ button::after {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 666;
+  z-index: 666
 }
 
 .contactModalBox {
@@ -1412,6 +1406,6 @@ button::after {
 .aline {
   /* margin: 0 32rpx; */
   width: 100%;
-  height: 1rpx;
-  background: #f0f0f0;
+  height: 2rpx;
+  background: #e6e6e6;
 }

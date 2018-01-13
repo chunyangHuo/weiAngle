@@ -203,8 +203,8 @@ page {
   color: #333;
   line-height: 48rpx;
   text-align: left !important;
-  margin-bottom: 20rpx;
-  /* margin-top: 32rpx; *//* width: 480rpx; */
+  margin-top: 32rpx;
+  /* width: 480rpx; */
 }
 
 .industry {
@@ -221,9 +221,11 @@ page {
 }
 
 .allIndustry {
-  margin:  0;
-  word-break: break-all;
-  flex-wrap: wrap;
+  margin: 20rpx 0 20rpx 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 860rpx;
   /* word-break: break-all;
   flex-wrap: wrap; */
 }
@@ -1072,7 +1074,6 @@ page {
   line-height: 62rpx;
   text-align: center;
 }
-
 .on::after {
   content: '';
   /* color: #40587a; */
@@ -1081,7 +1082,7 @@ page {
   border-radius: 4rpx;
   text-align: center;
   z-index: 666;
-  display: block !important;
+  display: block!important;
   background: #3378e0;
   margin-left: 38%;
   /* border-bottom: 4rpx solid #3378e0; */
@@ -1547,7 +1548,7 @@ page {
 }
 
 #projectBox .teamPro {
-  margin-bottom: 22rpx;
+  margin-bottom: 40rpx;
   margin-top: 40rpx;
 }
 
@@ -1723,7 +1724,7 @@ page {
   background-color: #fff;
   border-radius: 4rpx;
   width: 100%;
-  padding: 40rpx 0rpx 0rpx 0;
+  padding: 40rpx 0rpx 30rpx 0;
   position: relative;
   /* margin-bottom: 16rpx; */
   height: 166rpx;
@@ -1756,7 +1757,7 @@ page {
   -webkit-box-orient: vertical;
   font-size: 12px;
   color: #666;
-  line-height: 34rpx;
+  line-height: 42rpx;
 }
 
 #productBox .projectTips {
@@ -2127,7 +2128,8 @@ page {
 .productImg {
   width: 104rpx;
   height: 104rpx;
-  /* background: red; *//* margin-top: 10rpx; */
+  /* background: red; */
+  margin-top: 10rpx;
 }
 
 .productInside {
@@ -2149,7 +2151,7 @@ page {
 }
 
 .productMiddle {
-  /* padding-top: 20rpx; */
+  padding-top: 20rpx;
 }
 
 .detailTop {
@@ -2226,7 +2228,6 @@ page {
   margin-top: 57rpx;
   font-size: 18px;
   color: #999;
-  line-height: 67rpx;
 }
 
 .t-userName {
