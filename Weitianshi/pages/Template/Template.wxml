@@ -1032,7 +1032,7 @@
   </view>
   <image src="{{imgUrls}}" class="t-picAfter"></image>
   <view class="floatBtn buttonTwo" bindtap="btnYes" wx:if="{{type==1}}">
-    <button class='t-btnYes' hover-class="t-other-button-hover">{{text2}}</button>
+    <button  class='t-btnYes' hover-class="t-other-button-hover">{{text2}}</button>
   </view>
   <view class="floatBtn t-btnBackground flex" wx:if="{{type != 1}}">
     <view class="t-btnLeft" bindtap='btnYes' hover-class='t-hoverColor'>确定</view>
@@ -1505,14 +1505,4 @@
       </view>
     </block>
   </view>
-</template>
-<!--网络状态  -->
-<template name="network">
-  <scroll-view scroll-y style="height:1108rpx;">
-    <view style="position:relative">
-      <image class="N-netWorkImg" src="/img/img-nonet.png"></image>
-      <view class="N-text">网络不给力</view>
-      <view class="N-refresh" bindtap='refresh'>刷新试试</view>
-    </view>
-  </scroll-view>
 </template>

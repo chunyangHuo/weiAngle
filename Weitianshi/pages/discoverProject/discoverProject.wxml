@@ -95,4 +95,3 @@
     <view class='jumpToContent'>{{text}}</view>
   </view>
 </template>
-<template is="network" wx:if="{{that.data.inConnected==true}}"></template>

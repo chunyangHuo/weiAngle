@@ -2,7 +2,7 @@
 <!--筛选和搜索  -->
 <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
 <!--投资人  -->
-<scroll-view style="height:1108rpx;margin-top:96rpx" scroll-y="true" bindscrolltolower='loadMore'>
+<scroll-view style="height:2000rpx;margin-top:96rpx" scroll-y="true" bindscrolltolower='loadMore'>
   <!-- <template is="searchNothing" data="{{empty:investorList}}"></template> -->
   <block wx:for="{{myList}}" wx:key="{{myList}}">
     <view class='investorCard'>

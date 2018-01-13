@@ -87,19 +87,6 @@
     "pages/myProject/proTeam/proTeam",
     "pages/myProject/proMilestone/proMilestone"
   ],
-  "subPackages": [
-    {
-      "root": "activitySignIn/",
-      "pages": [
-        "pages/activityDetail/activityDetail",
-        "pages/activitySignForm/activitySignForm",
-        "pages/signScan/signScan",
-        "pages/signCheckIndentity/signCheckIndentity",
-        "pages/signIndentityCard/signIndentityCard",
-        "pages/signNoIndentity/signNoIndentity"
-      ]
-    }
-  ],
   "window": {
     "navigationBarBackgroundColor": "#fafafa",
     "navigationBarTitleText": "微天使乐投平台",

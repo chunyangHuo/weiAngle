@@ -63,14 +63,9 @@ Page({
   },
   onShow() {
     if (!this.data.firstTime) {
+
       this.faList();
-    };
-    this.setData({
-      requestCheck: true,
-      currentPage: 1,
-      page_end: false
-    })
-    this.faList();
+    }
   },
 
 
