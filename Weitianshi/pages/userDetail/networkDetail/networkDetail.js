@@ -4,6 +4,7 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
+    bindContact: false,
     integrity: 30,
     resourcesIndex: 9.9,
     user: "",
@@ -78,7 +79,7 @@ Page({
         console.log(res)
       },
     })
-  
+
   },
   //进入个人详情
   userInfo: function () {
@@ -261,4 +262,15 @@ Page({
     wx.setStorageSync('QR_id', QR_id)
     app.href('/pages/my/qrCode/qrCode')
   },
+  contactTap: function () {
+    let that = this;
+    that.setData({
+      bindContact: true
+    })
+    setTimeout(() => {
+      that.setData({
+        bindContact: false
+      });
+    }, 10000)
+  }
 });

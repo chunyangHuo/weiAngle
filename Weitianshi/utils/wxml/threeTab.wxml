@@ -816,7 +816,7 @@
   <!-- 客服 -->
   <button open-type="contact" class="t-contact" bindtap='contactTap' wx:if="{{currentTab==0}}">
     <image class="service" wx:if="{{bindContact==false}}" src="/img/btn-lianxikefu@2x.png"></image>
-    <image class="service" wx:if="{{bindContact==true}}" src="/img/btn-lianxikefu@2x.png">
+    <image class="service" wx:if="{{bindContact==true}}" src="/img/img-kefu-s@2x.png">
     </image>
   </button>
   <!--项目打分  -->

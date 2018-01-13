@@ -78,6 +78,12 @@ Page({
       }
     })
 
+    
+    // 网络判断
+    wx.onNetworkStatusChange(function (res) {
+      console.log(res.isConnected)
+      console.log(res.networkType)
+    })
 
     this.identityInfo(that);
 
@@ -1398,9 +1404,14 @@ Page({
     app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
   },
   contactTap: function () {
-   let that=this;
-   that.setData({
-     bindContact:true
-   })
+    let that = this;
+    that.setData({
+      bindContact: true
+    })
+    setTimeout(() => {
+      that.setData({
+        bindContact: false
+      });
+    }, 10000)
   }
 }) 

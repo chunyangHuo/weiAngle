@@ -4,8 +4,9 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-    investment_total_num:'',
-    jiandi:false,
+    bindContact: false,
+    investment_total_num: '',
+    jiandi: false,
     competeList: [],
     taren: false,
     ziji: true,
@@ -1271,4 +1272,15 @@ Page({
     let id = this.data.id;
     app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
   },
+  contactTap: function () {
+    let that = this;
+    that.setData({
+      bindContact: true
+    })
+    setTimeout(() => {
+      that.setData({
+        bindContact: false
+      });
+    }, 10000)
+  }
 });
