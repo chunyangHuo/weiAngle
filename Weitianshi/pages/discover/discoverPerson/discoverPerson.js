@@ -68,8 +68,7 @@ Page({
   onShow() {
     if (!this.data.firstTime) {
       this.investorList();
-    };
-    this.investorList();
+    }
   },
   //下拉刷新
   onPullDownRefresh() {

@@ -20,7 +20,6 @@
           <view class="t-investorColor" hover-class='t-hoverColor'>
             <!-- <template is='InvestorCard' data='{{item}}'></template> -->
             <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
-            <view class="t-redPoint" wx:if="{{item.message_status == 0}}"></view>
               <view class="t-applyMyProject t-contacts-detailm">
                 <view class="t-introduceBox flex">
                   <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>
@@ -30,8 +29,6 @@
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
                     <image class="t-renzheng" wx:if="{{item.user_groups[0].group_title=='投资方'}}" src="/img/img-touziren@2x.png"></image>
                     <image class="t-renzheng" wx:if="{{item.user_groups[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
-                    <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
-                  <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
                   </view>
                   <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
                   <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
@@ -92,7 +89,7 @@
               <view class="t-line"></view>
               <view class='t-cardBottomItem2 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
                 <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-                <span>提交项目</span>
+                <span>推送项目</span>
               </view>
             </view>
             <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>

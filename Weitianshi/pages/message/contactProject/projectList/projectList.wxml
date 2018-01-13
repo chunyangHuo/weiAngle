@@ -37,8 +37,6 @@
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
                 <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资方'}}" src="/img/img-touziren@2x.png"></image>
                 <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
-               <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
-                <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
               </view>
               <view class="t-record">{{item.active}}</view>
               <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
@@ -96,7 +94,7 @@
           <view class="t-line"></view>
           <view class='t-cardBottomItem2 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
             <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-            <span>提交项目</span>
+            <span>推送项目</span>
           </view>
         </view>
         <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
