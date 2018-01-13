@@ -86,7 +86,19 @@ Page({
     })
 
   },
-
+  // 回到首页
+  moreProject: function () {
+    wx.switchTab({
+      url: '/pages/discoverProject/discoverProject',
+    })
+  },
+  // 一键拨号
+  telephone: function (e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
+  },
   // 添加人脉
   addNetwork: function () {
     let that = this;

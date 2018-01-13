@@ -1205,11 +1205,11 @@ textarea {
   width: 26%;
   padding-right: 44rpx;
   height: 94rpx;
-  font-size: 15px;
+  font-size: 30rpx;
   color: #3378e0;
   text-align: center;
   line-height: 94rpx;
-  border-radius: 2px;
+  border-radius: 4rpx;
 }
 
 .t-cardBottomItem2 {
@@ -1219,11 +1219,11 @@ textarea {
   width: 48%;
   padding-right: 32rpx;
   height: 94rpx;
-  font-size: 15px;
+  font-size:30rpx;
   color: #3378e0;
   text-align: center;
   line-height: 94rpx;
-  border-radius: 2px;
+  border-radius: 4rpx;
 }
 
 .t-yiti {
