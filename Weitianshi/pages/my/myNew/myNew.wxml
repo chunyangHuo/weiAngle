@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<view class="entryBox flex" wx:if="{{!user}}" bindtap='entry'  hover-class='t-hoverColor'>
+<view class="entryBox flex" wx:if="{{!user}}" bindtap='entry' hover-class='t-hoverColor'>
   <view class="user_left">
     <image class="user_pic" src="/img/img-touxiang@2x.png"></image>
   </view>
@@ -39,7 +39,7 @@
       <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
       <view class='flex flexCenter'>
         <view wx:if="{{!user.user_popularity}}" class="popularity-Num">{{count.user_view_all}}</view>
-         <label class="popularityNum" wx:if="{{count.user_view_new !=0}}">+{{count.user_view_new}}</label> 
+        <label class="popularityNum" wx:if="{{count.user_view_new !=0}}">+{{count.user_view_new}}</label>
       </view>
       <view class="popularity-people">浏览过</view>
     </view>
@@ -49,18 +49,16 @@
       <view class='flex flexCenter'>
         <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all}}</view>
         <view class="attentionNum" wx:if="{{count.user_followed_new}}">+{{count.user_followed_new}}
-</view>
+        </view>
       </view>
-      <view class="attention-people">我的好友</view>
+      <view class="attention-people">新的好友</view>
     </view>
     <!-- 收到项目 -->
     <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class="t-hoverColor">
       <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
       <view class='flex flexCenter'>
-        <label wx:if="{{count.project_push_new==0}}"></label>
-        <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
-        <label class="potentialNum" wx:if="{{count.project_push_new}}">+{{count.project_push_new}}</label>
         <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.project_push_all}}</view>
+        <label class="potentialNum" wx:if="{{count.project_push_new}}">+{{count.project_push_new}}</label>
       </view>
       <view class="potential-content">收到项目</view>
     </view>

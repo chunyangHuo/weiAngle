@@ -430,10 +430,10 @@ Page({
   },
   // -----------------------分享------------------------------------------
   //  分享页面
-  onShareAppMessage: function () {
-    let that = this;
-    return ShareModel.projectShopShare(that);
-  },
+  // onShareAppMessage: function () {
+  //   let that = this;
+  //   return ShareModel.projectShopShare(that);
+  // },
   //  分享店铺二维码
   toShareShop() {
     let user_id = this.data.user_id;
@@ -442,8 +442,20 @@ Page({
   //  分享页面
   onShareAppMessage: function () {
     console.log(555)
-    let that = this;
-    return ShareModel.projectShopShare(that);
+  if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/page/user?id=123',
+      success: function (res) {
+        console.log("res成功", res)
+      },
+      fail: function (res) {
+       console.log("res失败",res)
+      }
+    }
   },
   onUnload: function () {
     app.initTran()
