@@ -7,7 +7,7 @@ App({
   onLaunch(options) {
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
-
+  
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
       //获取code
