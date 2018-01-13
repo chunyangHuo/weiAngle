@@ -229,6 +229,8 @@ page {
 
 .blockContentAfter {
   color: #666;
+  text-align: right;
+  margin-right: 12rpx;
 }
 
 .number {
@@ -259,10 +261,11 @@ page {
   font-size: 24rpx;
   color: #ccc;
   line-height: 54rpx;
-  text-align: center;
   width: 136rpx;
   height: 54rpx;
   margin-top: 29rpx;
+  margin-right:12rpx;
+  text-align: right;
 }
 
 .popularityNum, .potentialNum, .attentionNum {

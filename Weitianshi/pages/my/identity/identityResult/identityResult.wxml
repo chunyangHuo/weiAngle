@@ -8,11 +8,11 @@
     <image src="/img/icon-chenggong@2x.png" class="statusPic" wx:if="{{status == 2}}"></image>
     <image src="/img/icon-shibai@2x.png" class="statusPic" wx:if="{{status == 3}}"></image>
   </view>
-  <view class="classname">
+  <view>
     <view class="statusTitle" wx:if="{{status == 1}}">{{group_title}}认证审核中</view>
     <view class="statusTitle" wx:if="{{status == 2}}">{{group_title}}认证审核通过</view>
     <view class="statusTitle" wx:if="{{status == 3}}">{{group_title}}认证审核未通过</view>
-    <view>认证会员将由微天使创始人直接服务 </view>
+    <view class="severThing">认证会员将由微天使创始人直接服务 </view>
     <view>加FA哥微信weitianshiFA</view>
   </view>
 </view>

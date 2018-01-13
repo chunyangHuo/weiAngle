@@ -79,3 +79,6 @@ page {
 .no-border{
   border-right: none;
 }
+.severThing{
+  white-space:nowrap;
+}
