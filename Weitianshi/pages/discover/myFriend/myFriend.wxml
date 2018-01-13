@@ -16,10 +16,12 @@
               <view class="t-userPart flex" wx:if="{{item.authentication.group_title}}">
                 <!-- <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
-                <image class="t-renzheng" wx:if="{{item.authentication.group_title=='投资方'}}" src="/img/img-touziren@2x.png"></image>
+                <image class="t-renzheng" wx:if="{{item.authentication.group_title=='投资人'}}" src="/img/img-touziren@2x.png"></image>
                 <image class="t-renzheng" wx:if="{{item.authentication.group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
+                <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
+                <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
               </view>
-              <view class="t-record">{{item.active_status}}</view>
+              <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
               <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
 
             </view>
@@ -69,7 +71,7 @@
           <view class="t-line"></view>
           <view class='t-cardBottomItem1 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
             <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-            <span>推送项目</span>
+            <span>提交项目</span>
           </view>
 
         </view>

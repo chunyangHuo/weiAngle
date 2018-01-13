@@ -86,7 +86,8 @@
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
     "pages/myProject/proMilestone/proMilestone",
-    "pages/aPage/aPage"
+    "pages/networkStorage/networkStorage"
+
   ],
   "subPackages": [
     {
