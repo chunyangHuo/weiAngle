@@ -214,7 +214,7 @@
       评价</view>
   </view>
   <view class="t-line"></view>
-  <view class="t-flexBox" bindtap="maintainProject" hover-class="t-hoverColor">
+  <view class="t-flexBox" hover-class="t-hoverColor">
     <image src='/img/icon-fenxiang@2x.png' class="t-shopPic"></image>
     <button class='t-shopBlock' open-type="share">分享</button>
   </view>

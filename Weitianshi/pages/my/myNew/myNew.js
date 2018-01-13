@@ -45,9 +45,7 @@ Page({
             var project_info = res.data.data.project_info;
             var user_name = res.data.data.user.user_real_name;
             let user_company_name = res.data.data.user.user_company_name;
-            // wx.setNavigationBarTitle({
-            //   title: user_name + "的投资名片",
-            // })
+
             that.setData({
               user: user,
               invest: invest,
@@ -177,7 +175,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
+        console.log("taxNum",res)
         let data = res.data;
         if (data.status_code == 460004) {
           that.setData({

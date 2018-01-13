@@ -87,6 +87,7 @@
     "pages/myProject/proTeam/proTeam",
     "pages/myProject/proMilestone/proMilestone",
     "pages/networkStorage/networkStorage"
+
   ],
   "subPackages": [
     {
@@ -130,7 +131,8 @@
       }
     ],
     "selectedColor": "#40587A",
-    "borderStyle": "#fafafa",
+    "backgroundColor": "#fafafa",
+    "borderStyle":"white",
     "color": "#999999"
   },
   "networkTimeout": {

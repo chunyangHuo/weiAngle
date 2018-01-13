@@ -362,9 +362,10 @@
 /*用户信息  */
 
 .userPic {
-  width: 64rpx;
-  height: 64rpx;
+  width: 52rpx;
+  height: 52rpx;
   border-radius: 100%;
+  margin-top: 8rpx;
 }
 
 .userPicText {
@@ -372,10 +373,11 @@
   font-size: 24rpx;
   color: #333;
   justify-content: center;
-  width: 64rpx;
-  height: 64rpx;
+  width: 52rpx;
+  height: 52rpx;
   border-radius: 100%;
-  line-height: 64rpx;
+  line-height: 52rpx;
+  margin-top: 8rpx;
 }
 
 .userInfo {

@@ -1035,8 +1035,8 @@
     <button class='t-customService' open-type='contact' hover-class='t-hover-custom'>联系客服</button>
   </view>
   <image src="{{imgUrls}}" class="t-picAfter"></image>
-  <view class="floatBtn buttonTwo" bindtap="{{btnName}}" wx:if="{{type==1}}">
-    <button disabled="{{disabled}}" class='t-btnYes' hover-class="t-other-button-hover">{{text2}}</button>
+  <view class="floatBtn buttonTwo" bindtap="btnYes" wx:if="{{type==1}}">
+    <button  class='t-btnYes' hover-class="t-other-button-hover">{{text2}}</button>
   </view>
   <view class="floatBtn t-btnBackground flex" wx:if="{{type != 1}}">
     <view class="t-btnLeft" bindtap='btnYes' hover-class='t-hoverColor'>确定</view>

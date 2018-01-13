@@ -1302,7 +1302,7 @@ textarea {
   height: 80rpx;
   border-radius: 100%;
   margin: 0;
-  margin-right: 24rpx;
+  margin-right: 16rpx;
 }
 
 .t-bindSuccess {
@@ -1503,8 +1503,9 @@ textarea {
   height: 64rpx;
   margin-left: 32rpx;
   margin-top: 16rpx;
-  line-height: 72rpx;
+  line-height: 64rpx;
   padding-left: 64rpx;
+  font-size: 24rpx;
 }
 
 #newSearch2 .screen {
