@@ -146,8 +146,6 @@
 					"name": "报名身份确认",
 					"pathName": "activitySignIn/pages/signNoIndentity/signNoIndentity",
 					"query": ""
-				},
-
 				}
 			]
 		}

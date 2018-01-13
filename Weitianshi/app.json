@@ -85,9 +85,7 @@
     "pages/myProject/historyFiance/historyFiance",
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
-    "pages/myProject/proMilestone/proMilestone",
-    "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
-    "activitySignIn/pages/signIndentityCard/signIndentityCard"
+    "pages/myProject/proMilestone/proMilestone"
   ],
   "subPackages": [
     {
