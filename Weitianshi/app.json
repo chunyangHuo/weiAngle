@@ -89,10 +89,10 @@
   ],
   "subPackages": [
     {
-      "root": "/activitySignIn/",
+      "root": "activitySignIn/",
       "pages": [
         "pages/activityDetail/activityDetail",
-        "pages/activitySignForm/activitySignForm",
+        "pages/activityAgenda/activityAgenda",
         "pages/signScan/signScan",
         "pages/signCheckIndentity/signCheckIndentity",
         "pages/signIndentityCard/signIndentityCard",

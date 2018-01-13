@@ -743,20 +743,14 @@ App({
   },
 
   //页栈超出处理
-  href(url) {
-    let pages = getCurrentPages();
-    // if (pages.length == 5) {
-    //  wx.redirectTo({
-    //    url: url,
-    //  })
-    // }else{
-    //   wx.navigateTo({
-    //     url: url,
-    //   })
-    // }
-    wx.navigateTo({
-      url: url,
-    })
+  href(url = '/pages/discoverProject/discoverProject') {
+    let indexList=[
+      '/pages/discoverProject/discoverProject',
+      'pages/message/message/message',
+      'pages/my/myNew/myNew'
+    ]
+    if(indexList.includes(url)) wx.switchTab({url: url})
+    else wx.navigateTo({url: url})
   },
 
   //多选

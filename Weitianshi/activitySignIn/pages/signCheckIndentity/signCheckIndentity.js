@@ -42,9 +42,12 @@ Page({
       name: '名称',
       value: data.activity_title
     });
+    let start_time,end_time = '暂时未定';
+    if (data.start_time) start_time = data.start_time.substring(0, 16);
+    if (data.end_time) end_time = data.end_time.substring(0, 16);
     activityDetail.push({
       name: '时间',
-      value: data.start_time.substring(0, 16) + ' ~ ' + data.updated_at.substring(0, 16)
+      value: start_time + ' ~ ' + end_time
     });
     activityDetail.push({
       name: '地点',
@@ -75,7 +78,7 @@ Page({
           open_session: app.globalData.open_session
         }
       }, this).then(res => {
-        console.log(res)
+        app.href('/activitySignIn/pages/signIndentityCard/signIndentityCard?apply_id=' + res.data.apply_id + '&&activity_id=' + this.data.activity_id);
       }).catch(res => {
         app.errorHide(this, res.data.error_msg)
       })

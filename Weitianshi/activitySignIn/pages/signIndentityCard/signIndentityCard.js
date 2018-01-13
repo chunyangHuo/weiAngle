@@ -4,37 +4,61 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    userInfo: {
-      userName: "这里是姓名",
-      userCompany: '杭州投着乐网络科技有限公司',
-      userMobile: '18756323698',
-      userChat: 'weitianshiFA',
-      userMail: '18563698569@qq.com',
-      userCareer: '职位',
-      userUrl: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKRgaiadoTaI5qBu0qlmpdqkiaEc6YVVdziaJUib2iaIfCVkcSTWUeFSCvib4DQBEbJvPH4azWM1zpSEhXg/0'
-
-    },
-    activity: {
-      name: "第一届中国微天使节和第二十届中国B…",
-      time: '2017-12-12 14:00 ~ 2017 12-13 16:00',
-      content: '浙江省杭州市西湖区文一西路588号中节能西溪首座2微天使乐投平台、智云社微天使乐投平台、智云社微...'
-    }
+    apply_id: '',
+    activity_id: '',
+    activity: '',
+    userInfo: ''
   },
-  onLoad(){
+  onLoad(options) {
+    let apply_id = options.apply_id;
+    let activity_id = options.activity_id;
+    this.setData({
+      apply_id: apply_id,
+      activity_id: activity_id
+    })
     app.loginPage(user_id => {
-      this.getActivityDetail();
+      this.getActivityDetail(apply_id, activity_id,user_id);
     })
   },
-  getActivityDetail(){
+  // 获取项目详情和用户信息
+  getActivityDetail(apply_id, activity_id,user_id) {
     app.httpPost({
-      url: url_common +'/api/activity/getActivityEntrance',
+      url: url_common + '/api/activity/getActivityEntrance',
       data: {
-        activity_id: 1,
-        apply_id: "",
+        activity_id: activity_id,
+        apply_id: apply_id,
         open_session: app.globalData.open_session
       }
-    },this).then(res => {
-      console.log(res)
+    }, this).then(res => {
+      console.log(res.data.data.activity);
+      console.log(res.data.data.user);
+      this.setData({
+        activity: res.data.data.activity,
+        userInfo: res.data.data.user
+      })
+      this.getSignForm(activity_id,user_id)
+    }).catch(res => {
+      app.errorHide(this, res.data.error_msg);
     })
+  },
+  // 获取签到名单
+  getSignForm(activity_id, user_id) {
+    app.httpPost({
+      url: url_common + '/api/activity/getSignApply',
+      data: {
+        activity_id: activity_id,
+        user_id: user_id || 0
+      }
+    }, this).then(res => {
+      console.log(res);
+    })
+  },
+  //跳转到活动议程页面
+  goToActivityAgenda(){
+    app.href('/activitySignIn/pages/activityAgenda/activityAgenda');
+  },
+  //跳转微天使首页
+  goToIndex(){
+    app.href('/pages/discoverProject/discoverProject');
   }
 })

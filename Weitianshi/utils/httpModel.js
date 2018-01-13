@@ -59,6 +59,9 @@ export function http(data, that) {
     throw Error('重复提交请求：' + ajaxKey)
   }
   addRequestKey(ajaxKey)
+  wx.showLoading({
+    title: 'loading',
+  })
   //bluebird.js包装成promisepromise api
   return new Promise(function (resolve, reject) {
     //通过wx.request api 向服务器端发出http请求
@@ -74,6 +77,7 @@ export function http(data, that) {
         let app = getApp();
         if (statusCode === 200 || statusCode === 304) {
           if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
+            wx.hideLoading();
             return resolve(res)
           } else {
             if(that){
