@@ -57,13 +57,20 @@ Page({
       that.myList();
     })
   },
-
-  //下拉刷新
-  onPullDownRefresh() {
+  onShow() {
     if (!this.data.firstTime) {
       this.myList();
-    }
-
+    };
+    this.setData({
+      requestCheck: true,
+      currentPage: 1,
+      page_end: false
+    })
+    this.myList();
+  },
+  //下拉刷新
+  onPullDownRefresh() {
+      this.myList();
   },
 
 

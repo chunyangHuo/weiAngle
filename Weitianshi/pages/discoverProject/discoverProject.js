@@ -6,6 +6,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    // inConnected:false,
     //选项卡
     winWidth: 0,
     winHeight: 0,
@@ -44,6 +45,17 @@ Page({
       });
       that.selectProject();
     })
+    //   wx.onNetworkStatusChange(function (res) {
+    //     console.log(res.isConnected)
+    //     console.log(res.networkType)
+    //     if (res.isConnected == false) {
+    //       that.setData({
+    //         inConnected: true
+    //       })
+    //     }
+    //     console.log('网络内',this.data);
+    //   })
+    // console.log('网络外',this.data);
   },
   onShow() {
     let  that = this;

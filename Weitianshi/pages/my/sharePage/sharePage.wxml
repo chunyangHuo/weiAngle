@@ -21,12 +21,66 @@
 
     <template is="forButton"></template>
   </view>
-  <view class="flex sharePageButton floatBtn">
+  <!-- <view class="flex sharePageButton floatBtn">
     <view class="myContacts  my-contactsm" bindtap="toContacts" wx:if="{{complete != 1}}">创建我的名片</view>
     <view class="myContacts  my-contactsm" bindtap="toContactsMy" wx:if="{{complete == 1}}">打开我的名片</view>
     <view class="myContacts addPerson pushprojectm" bindtap="pushProject">推送项目</view>
     <view class="giveProject" wx:if="{{button_type == 1}}">已为人脉</view>
     <view class="addNetwork add-contactsm" bindtap="addNetwork" wx:if="{{button_type == 0||button_type==3 ||button_type == 4}}">保存名片</view>
     <view class="giveProject" bindtap="addNetwork" wx:if="{{button_type==2}}">待验证</view>
+  </view> -->
+
+  <!--按钮  -->
+   <!--加人脉按钮-->
+  <view class="flex t-aboutNetwork">
+    <view class="t-flexBox" hover-class="t-hoverColor" bindtap="moreProject">
+      <image src='/img/icon-shouye@2x.png' class='t-shopPic'></image>
+      <view class='t-shopBlock'>首页</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
+      <view class='t-shopBlock' hover-class="t-hoverColor">
+        <image src='/img/icon-erweima12.png' class='t-shopPic'></image>
+        二维码</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox" hover-class="t-hoverColor">
+      <image src='/img/icon-fenxiang@2x.png' class='t-shopPic'></image>
+      <button open-type='share' class='t-shopBlock'>分享</button>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox" wx:if="{{button_type==0}}" bindtap="addNetwork" hover-class="t-hoverColor">
+      <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
+      <view class='t-shopBlock'>加好友</view>
+    </view>
+    <view class="t-flexBox" wx:if="{{button_type==2}}">
+      <image src='/img/icon-daitongguo@2x.png' class='t-shopPic'></image>
+      <view class='t-shopBlock' style="color:#cccccc">待通过</view>
+    </view>
+    <view class="t-flexBox" wx:if="{{button_type==3}}" data-telephone="{{user.user_mobile}}" catchtap="telephone" hover-class="t-hoverColor">
+      <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
+      <view class='t-shopBlock'>打电话</view>
+    </view>
+    <view class="t-line"></view>
+    <view bindtap="pushProject" class='t-creatProject' hover-class="t-redColor">提交项目</view>
+  </view>
+   <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
+    <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
+      <image src='/img/icon-shouye@2x.png' class="t-shopPic1"></image>
+      <view class='t-shopBlock'>首页</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox1" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
+      <view class='t-shopBlock' hover-class="t-hoverColor">
+        <image src='/img/icon-erweima12.png' class='t-shopPic1'></image>
+        二维码</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox1" bindtap="maintainProject" hover-class="t-hoverColor">
+      <image src='/img/icon-fenxiang@2x.png' class='t-shopPic1'></image>
+      <button open-type='share' class='t-shopBlock'>分享</button>
+    </view>
+    <view class="t-line"></view>
+    <view bindtap="pushProject" class='t-creatProject' hover-class="t-redColor">提交项目</view>
   </view>
 </scroll-view>

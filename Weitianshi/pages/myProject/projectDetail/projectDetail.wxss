@@ -203,6 +203,7 @@ page {
   color: #333;
   line-height: 48rpx;
   text-align: left !important;
+  margin-bottom: 20rpx;
   /* margin-top: 32rpx; *//* width: 480rpx; */
 }
 
@@ -216,6 +217,7 @@ page {
   background: #f5f5f5;
   border-radius: 2px;
   margin-right: 30rpx;
+  margin-bottom: 20rpx;
 }
 
 .allIndustry {
