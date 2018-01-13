@@ -27,7 +27,7 @@ Page({
   },
   continueEdit(){
     let projectId = this.data.projectId;
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/myProject/publishedProject/publishedProject?pro_id='+ projectId +'&&fromPublish='+ 3,
     })
   }

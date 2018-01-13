@@ -8,7 +8,7 @@
       <label> 搜索项目、投资机构、投资人、FA</label>
     </view>
   </view>
-  <scroll-view style="height:2000rpx;" scroll-y="true" bindscrolltolower='loadMore'>
+  <scroll-view style="height:1108rpx;" scroll-y="true" bindscrolltolower='loadMore'>
     <!--banner轮播  -->
     <swiper class='banner' autoplay='true' current='{{bannerIndex}}' interval='4000' duration='500' circular='true' indicator-dots='true' indicator-active-color='#ffffff' indicator-color='rgba(255,255, 255, .3)'>
       <block wx:for="{{imgUrls}}" wx:key='item'>
