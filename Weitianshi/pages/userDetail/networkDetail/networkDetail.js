@@ -65,6 +65,11 @@ Page({
             blue: 1
           })
         }
+        if (invest_case) {
+          if (invest_case.length > 3) {
+            invest_case = invest_case.slice(0, 3);
+          }
+        }
         that.setData({
           user: user,
           invest: invest,

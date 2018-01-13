@@ -27,6 +27,7 @@
         <label wx:if="{{user.user_company_career}}">{{user.user_company_career}}</label> ·
         <label wx:if="{{user.user_company_name}}">{{user.user_company_name}}</label>
       </view>
+      <view class='checkNum' catchtap="searchIdentification" hover-stop-propagation="true">查税号</view>
     </view>
     <view class="flex">
       <image src="/img/icon-jiantou3@2x.png" class="myArrowStyle"></image>
@@ -143,7 +144,7 @@
 
 
 <!--税号-->
-<!-- <view class="modalBox" hidden="{{modalBox==0}}">
+ <view class="modalBox" hidden="{{modalBox==0}}">
   <view class="IdentificationNum">
     <view class="flex">
       <label class="oneLine"></label>
@@ -170,4 +171,4 @@
       </view>
     </view>
   </view>
-</view> -->
+</view> 

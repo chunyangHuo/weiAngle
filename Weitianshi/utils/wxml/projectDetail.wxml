@@ -143,7 +143,7 @@
       <view class="lockText">认证投资人和认证买方FA可以查看项目的完整信息</view>
       <text class="lockText1">基本介绍\t\t \t\t\t\t\t\t\t\t\t\t·\t\t 更多产品 · 融资信息 · 核心团队 · 里程碑</text>
       <!-- <view wx:if="{{button_type != 1}}"> -->
-      <view class="lockRenzheng" bindtap="toAccreditation" wx:if="{{status == 5 &&button_type == 3}}">立即认证</view>
+      <view class="lockRenzheng" bindtap="toAccreditation" wx:if="{{status == 5 && button_type == 3}}">立即认证</view>
       <!--申请中  -->
       <view class="lockRenzheng1" wx:if="{{button_type == 0}}"></view>
       <!-- 重新申请 -->
