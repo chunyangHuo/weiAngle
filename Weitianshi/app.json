@@ -85,7 +85,8 @@
     "pages/myProject/historyFiance/historyFiance",
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
-    "pages/myProject/proMilestone/proMilestone"
+    "pages/myProject/proMilestone/proMilestone",
+    "pages/networkStorage/networkStorage"
   ],
   "subPackages": [
     {

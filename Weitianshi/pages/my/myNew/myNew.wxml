@@ -51,7 +51,7 @@
         <view class="attentionNum" wx:if="{{count.user_followed_new}}">+{{count.user_followed_new}}
 </view>
       </view>
-      <view class="attention-people">我的好友</view>
+      <view class="attention-people">新的好友</view>
     </view>
     <!-- 收到项目 -->
     <view class="user_potential user_tips potential-projectm" bindtap="pushTo" hover-class="t-hoverColor">

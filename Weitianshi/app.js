@@ -638,7 +638,7 @@ App({
     switch (num) {
       case '0':
         wx.switchTab({
-          url: '/pages/discoverInvest/discoverInvest',
+          url: '/pages/discoverProject/discoverProject',
         });
         break;
       case '1':
@@ -648,7 +648,7 @@ App({
         break;
       case '2':
         wx.switchTab({
-          url: '/pages/discoverInvest/discoverInvest',
+          url: '/pages/discoverProject/discoverProject',
         });
         break;
       default:

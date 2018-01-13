@@ -68,7 +68,7 @@
     </view>
   </view> -->
 </template>
- 
+
 <!--My个人描述-->
 <template name="userIntro">
   <view class="personDes" bindtap="cardEdit" wx:if="{{user.user_intro!= ''}}">
@@ -302,13 +302,13 @@
 
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
-<view class='floatTop'>
-  <view class="pointToPC flex" hover-class='t-createColor' bindtap="toPc">
-    <image src="/img/icon-diannao@2x.png" class="pointPcIcon"></image>
-    <label> 用电脑创建项目，体验更好更流畅</label>
-    <image src="/img/icon-jiantou3@2x.png" class="pointPcToNet arrowStyle"></image>
+  <view class='floatTop'>
+    <view class="pointToPC flex" hover-class='t-createColor' bindtap="toPc">
+      <image src="/img/icon-diannao@2x.png" class="pointPcIcon"></image>
+      <label> 用电脑创建项目，体验更好更流畅</label>
+      <image src="/img/icon-jiantou3@2x.png" class="pointPcToNet arrowStyle"></image>
+    </view>
   </view>
-</view>
 </template>
 
 <!--身份认证列表-->
@@ -820,7 +820,9 @@
           <!-- <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资人'}}" src="/img/img-touziren@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
         </view>
         <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
         <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
@@ -844,7 +846,7 @@
         </view>
         <view class='t-cardBottomItem t-wait flex' wx:if='{{item.follow_status==2}}'>
           <!-- <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image> -->
-          <view style='color:#999;'>待验证</view>
+          <view style='color:#999;'>待通过</view>
         </view>
         <view class='t-cardBottomItem t-add flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
           <!-- <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image> -->
@@ -855,7 +857,7 @@
         </view>
       </view>
       <view class='t-people flex' wx:if='{{item.user_id==user_id}}'></view>
-      <view class="t-roundGroupPush flex" >
+      <view class="t-roundGroupPush flex">
         <image class="t-roundGroupTitle" src="/img/icon-lunci@2x.png"></image>
         <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length != 0}}">
           <block wx:for="{{item.industry_tag}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
@@ -867,7 +869,7 @@
             </label>
           </block>
         </view>
-         <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length == 0}}">暂未透露</view>
+        <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length == 0}}">暂未透露</view>
       </view>
       <view class="t-roundGroupPush flex">
         <image class="t-roundGroupTitle" src="/img/icon-lingyu1@2x.png"></image>
@@ -931,6 +933,8 @@
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资人'}}" src="/img/img-touziren@2x.png"></image>
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
         </view>
         <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
         <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
@@ -944,7 +948,7 @@
 
       </view>
       <view class='t-people flex' wx:if='{{item.user_id==user_id}}'></view>
-       <view class="t-roundGroupPush flex" >
+      <view class="t-roundGroupPush flex">
         <image class="t-roundGroupTitle" src="/img/icon-lunci@2x.png"></image>
         <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length != 0}}">
           <block wx:for="{{item.industry_tag}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
@@ -956,7 +960,7 @@
             </label>
           </block>
         </view>
-         <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length == 0}}">暂未透露</view>
+        <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length == 0}}">暂未透露</view>
       </view>
       <view class="t-roundGroupPush flex">
         <image class="t-roundGroupTitle" src="/img/icon-lingyu1@2x.png"></image>
@@ -984,7 +988,7 @@
     </view>
     <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-      <span>待验证</span>
+      <span>待通过</span>
     </view>
     <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
@@ -1416,6 +1420,8 @@
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资方'}}" src="/img/img-touziren@2x.png"></image>
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
         </view>
         <!-- <view class="t-record">{{item.active_status}}</view> -->
         <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
