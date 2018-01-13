@@ -29,6 +29,8 @@
           <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
                     <image class="t-renzheng" wx:if="{{item.user_groups[0].group_title=='投资方'}}" src="/img/img-touziren@2x.png"></image>
                     <image class="t-renzheng" wx:if="{{item.user_groups[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
+                    <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
+                    <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
                   </view>
                   <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
                   <view class="t-user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
@@ -41,7 +43,7 @@
                 <view class='t-people flex' wx:if='{{item.user_id!=user_id}}'>
                 </view>
                 <view class='t-people flex' wx:if='{{item.user_id==user_id}}'></view>
-                <view class="t-roundGroupPush flex" >
+                <view class="t-roundGroupPush flex">
                   <image class="t-roundGroupTitle" src="/img/icon-lunci@2x.png"></image>
                   <view class="t-roundGroupContent" wx:if="{{item.user_invest_industry.length != 0}}">
                     <block wx:for="{{item.user_invest_industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
@@ -57,13 +59,13 @@
                 </view>
                 <view class="t-roundGroupPush flex">
                   <image class="t-roundGroupTitle" src="/img/icon-lingyu1@2x.png"></image>
-                  <view class="t-roundGroupContent"  wx:if="{{item.user_invest_stage.length != 0}}">
+                  <view class="t-roundGroupContent" wx:if="{{item.user_invest_stage.length != 0}}">
                     <block wx:for="{{item.user_invest_stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
                       <label wx:if="{{index < item.user_invest_stage.length-1}}">{{stageItem.stage_name}}、</label>
                       <label wx:if="{{index ==item.user_invest_stage.length-1}}">{{stageItem.stage_name}}</label>
                     </block>
                   </view>
-                   <view class="t-roundGroupContent" wx:if="{{item.user_invest_stage.length == 0}}">暂未透露</view>
+                  <view class="t-roundGroupContent" wx:if="{{item.user_invest_stage.length == 0}}">暂未透露</view>
                 </view>
               </view>
             </view>
@@ -89,7 +91,7 @@
               <view class="t-line"></view>
               <view class='t-cardBottomItem2 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
                 <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-                <span>推送项目</span>
+                <span>提交项目</span>
               </view>
             </view>
             <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>

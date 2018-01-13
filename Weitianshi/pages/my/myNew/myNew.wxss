@@ -222,12 +222,15 @@ page {
   font-size: 24rpx;
   color: #3378e0;
   line-height: 54rpx;
-  text-align: center;
+  text-align: right;
   margin-top: 29rpx;
+  margin-right:12rpx;
 }
 
 .blockContentAfter {
   color: #666;
+  text-align: right;
+  margin-right: 12rpx;
 }
 
 .number {
@@ -258,10 +261,11 @@ page {
   font-size: 24rpx;
   color: #ccc;
   line-height: 54rpx;
-  text-align: center;
   width: 136rpx;
   height: 54rpx;
   margin-top: 29rpx;
+  margin-right:12rpx;
+  text-align: right;
 }
 
 .popularityNum, .potentialNum, .attentionNum {
@@ -272,6 +276,8 @@ page {
   border-radius: 4rpx;
   padding: 8rpx;
   height: 20rpx;
+  margin-top: 6rpx;
+  margin-left: 8rpx;
 }
 
 /*税号  */
@@ -442,9 +448,9 @@ page {
 
 .aline {
   margin: 0 32rpx;
-  width: 90%;
+  width: 91.5%;
   height: 1rpx;
-  background: #e6e6e6;
+  background: #f0f0f0;
 }
 
 /*我的信息  */
@@ -513,4 +519,15 @@ page {
 
 .flexCenter {
   justify-content: center;
+}
+
+.userName {
+  font-weight: bold;
+}
+
+.checkNum {
+  font-size: 24rpx;
+  margin-top: 4rpx;
+  color: #3378e0;
+  text-align: left;
 }

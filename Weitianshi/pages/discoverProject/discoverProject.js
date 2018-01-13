@@ -25,16 +25,11 @@ Page({
       app.globalData.picUrl.banner_5,
     ],
     imgUrls1: app.globalData.picUrl.page_discoverProject,
-    atBottom:false
+    atBottom: false
   },
   onLoad(options) {
     let that = this;
     let user_id = this.data.user_id;
-    if (options.currentTab) {
-      this.setData({
-        currentTab: options.currentTab
-      })
-    }
     this.noSearch();
     //初始化数据
     app.initPage(that)
@@ -49,6 +44,10 @@ Page({
       });
       that.selectProject();
     })
+  },
+  onShow() {
+    let  that = this;
+    that.selectProject();
   },
   onReady() {
     let that = this;
@@ -96,42 +95,6 @@ Page({
       })
     }
   },
-  // 点击tab切换
-  swichNav: function (e) {
-    let that = this;
-    let current = e.target.dataset.current;
-    that.setData({
-      currentTab: e.target.dataset.current
-    })
-  },
-  // 滑动切换tab
-  bindChange: function (e) {
-    let that = this;
-    let current = e.detail.current;
-    let searchData = that.data.SearchInit.searchData;
-    let searchLength = searchData.industry.length + searchData.stage.length + searchData.scale.length + searchData.hotCity.length;
-    app.initPage(that);
-    that.setData({ currentTab: e.detail.current });
-    this.noSearch();
-    this.allReset();
-    // 进入tab页时该tab页无数据则请求接口
-    if (current == 0) {
-      if (!that.data.slectProject) {
-        this.selectProject();
-      }
-    } else if (current == 1) {
-      if (!that.data.financingNeed) {
-        this.newestProject();
-      }
-    }
-    // 如果当前tab使用过筛选功能,则重置所有tab页数据
-    if (searchLength != 0) {
-      that.setData({
-        financingNeed: that.data.financingNeed2,
-        slectProject: that.data.slectProject2
-      })
-    }
-  },
   // 轮播图跳转
   bannerLink(e) {
     let index = e.currentTarget.dataset.index + 1;
@@ -139,14 +102,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh() {
-    let current = this.data.currentTab;
-    if (current === 0) {
-      //请求精选项目列表
-      this.selectProject();
-    } else if (current === 1) {
-      //请求最新项目列表
-      this.newestProject();
-    }
+    this.selectProject();
   },
   // 请求最新tab页面项目数据(辅助函数)
   newestProject() {
@@ -301,60 +257,6 @@ Page({
   competitor: function () {
     app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
-  // --------------------------筛选搜索--------------------------------------------------
-  // 下拉框
-  move(e) {
-    let that = this;
-    FilterModel.move(e, that)
-  },
-  // 标签选择
-  tagsCheck(e) {
-    FilterModel.tagsCheck(e, this)
-  },
-  // 筛选重置
-  reset() {
-    FilterModel.reset(this)
-  },
-  // 筛选全部重置
-  allReset() {
-    FilterModel.allReset(this)
-  },
-  // 筛选确定
-  searchCertain() {
-    let that = this;
-    let searchData = FilterModel.searchCertain(that);
-    let current = this.data.currentTab;
-    let SearchInit = this.data.SearchInit;
-    SearchInit.searchData = searchData;
-    this.setData({
-      searchInit: SearchInit
-    })
-    if (current == 0) {
-      console.log('筛选精选', searchData)
-      this.selectProject();
-    } else if (current == 1) {
-      console.log('筛选最新', searchData)
-      this.newestProject();
-    } else {
-      console.log('searchCertain()出错了')
-    }
-    SearchInit.currentIndex = 99;
-    this.setData({
-      SearchInit: SearchInit
-    })
-    console.log(this.data.SearchInit)
-  },
-  // 点击modal层
-  modal() {
-    FilterModel.modal(this)
-  },
-  //搜索
-  searchSth() {
-    let that = this;
-    let str;
-    str = this.data.currentTab == 0 ? "selected" : "newest"
-    FilterModel.searchSth(that, str)
-  },
 
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
@@ -379,7 +281,7 @@ Page({
   },
 
   // 跳转投资机构
-  jumpOrg(){
+  jumpOrg() {
     wx.navigateTo({
       url: '/pages/discoverInvest/institutionalInvest/institutionalInvest',
     })
@@ -391,19 +293,19 @@ Page({
     })
   },
   //FA融资顾问
-  jumpFinancingAdvisor(){
+  jumpFinancingAdvisor() {
     wx.navigateTo({
       url: '/pages/discover/financingAdvisor/financingAdvisor',
     })
   },
   //潜在投资方
-  potentialInvestor(){
+  potentialInvestor() {
     wx.navigateTo({
       url: '/pages/matchInvestor/matchInvestor',
     })
   },
   //跳转搜索页面
-  searchMore(){
+  searchMore() {
     wx.navigateTo({
       url: '/pages/search/search2/search2',
     })

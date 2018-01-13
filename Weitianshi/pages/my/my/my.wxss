@@ -966,12 +966,12 @@ page {
 
 .successLeft {
   text-align: right;
-  width: 24%;
+  width: 18%;
   margin-right: 22rpx;
 }
 
 .successRight {
-  width: 76%;
+  width: 82%;
 }
 
 .successLeftTime, .successLeftTurn, .successProjcetName, .successRightArea {
@@ -984,7 +984,7 @@ page {
 }
 
 #investProject .successRightArea, #investProject .industryBox {
-  margin-left: 34rpx;
+  margin-left: 48rpx;
 }
 
 .successLeftTurn {

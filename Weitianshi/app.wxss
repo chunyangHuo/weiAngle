@@ -1205,11 +1205,11 @@ textarea {
   width: 26%;
   padding-right: 44rpx;
   height: 94rpx;
-  font-size: 15px;
+  font-size: 30rpx;
   color: #3378e0;
   text-align: center;
   line-height: 94rpx;
-  border-radius: 2px;
+  border-radius: 4rpx;
 }
 
 .t-cardBottomItem2 {
@@ -1219,11 +1219,11 @@ textarea {
   width: 48%;
   padding-right: 32rpx;
   height: 94rpx;
-  font-size: 15px;
+  font-size:30rpx;
   color: #3378e0;
   text-align: center;
   line-height: 94rpx;
-  border-radius: 2px;
+  border-radius: 4rpx;
 }
 
 .t-yiti {
@@ -1299,7 +1299,7 @@ textarea {
   height: 80rpx;
   border-radius: 100%;
   margin: 0;
-  margin-right: 24rpx;
+  margin-right: 16rpx;
 }
 
 .t-bindSuccess {
@@ -1358,16 +1358,16 @@ textarea {
 }
 
 .t-line {
-  width: 2rpx;
+  width: 1rpx;
   height: 35rpx;
-  background: #f2f2f2;
+  background: #f0f0f0;
   margin-top: -1rpx;
 }
 
 .t-line12 {
-  width: 2rpx;
+  width: 1rpx;
   height: 35rpx;
-  background: #f2f2f2;
+  background: #f0f0f0;
   margin-top: 5rpx;
 }
 
@@ -1500,8 +1500,9 @@ textarea {
   height: 64rpx;
   margin-left: 32rpx;
   margin-top: 16rpx;
-  line-height: 72rpx;
+  line-height: 64rpx;
   padding-left: 64rpx;
+  font-size: 24rpx;
 }
 
 #newSearch2 .screen {

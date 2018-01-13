@@ -8,7 +8,7 @@
       <label> 搜索项目、投资机构、投资人、FA</label>
     </view>
   </view>
-  <scroll-view style="height:2000rpx;" scroll-y="true" bindscrolltolower='loadMore'>
+  <scroll-view style="height:1108rpx;" scroll-y="true" bindscrolltolower='loadMore'>
     <!--banner轮播  -->
     <swiper class='banner' autoplay='true' current='{{bannerIndex}}' interval='4000' duration='500' circular='true' indicator-dots='true' indicator-active-color='#ffffff' indicator-color='rgba(255,255, 255, .3)'>
       <block wx:for="{{imgUrls}}" wx:key='item'>
@@ -34,8 +34,9 @@
     <block wx:for="{{slectProject}}" wx:key="{{index}}">
       <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor' catchtap="projectDetail">
         <view class="describle" wx:if="{{item.pro_intro != ''}}">
-          <image src='/img/icon-jingxuan@2x.png' class="selectPic" wx:if="{{item.is_selected == 3}}"></image>
-          {{item.pro_intro}}</view>
+          <image src='/img/img-jingxuan@2x.png' class="selectPic" wx:if="{{item.is_selected == 3}}"></image>
+         <label> {{item.pro_intro}}</label>
+         </view>
         <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
         <view class='flex industryBox' wx:if="{{item.pro_industry.length != 0}}">
           <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
@@ -76,6 +77,9 @@
         </view>
       </view>
     </block>
+
+    <template is="theBottom" wx:if="{{atBottom == true}}"></template>
+    <view class='whiteSpace'></view>
   </scroll-view>
 </view>
 
@@ -85,8 +89,7 @@
     <view class="t-btnToAccreditation" hover-class='t-hoverColor' bindtap="toCreateProject">马上创建</view>
   </view>
 </view>
-<template is="theBottom" wx:if="{{atBottom == true}}"></template>
-<view class='whiteSpace'></view>
+
 <template name="jumpBlock">
   <view class="jumpTo" bindtap='{{tapName}}' hover-class='t-hoverColor'>
     <image class='jumpImage' src='{{src}}'></image>

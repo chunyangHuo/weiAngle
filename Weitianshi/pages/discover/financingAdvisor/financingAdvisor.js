@@ -5,7 +5,7 @@ import * as FilterModel from '../../../utils/filterModel';
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-    jiandi:false,
+    jiandi: false,
     firstTime: true,
     searchText: '请输入姓名、公司、品牌',
     faList: '',
@@ -66,6 +66,12 @@ Page({
 
       this.faList();
     }
+    this.setData({
+      requestCheck: true,
+      currentPage: 1,
+      page_end: false
+    })
+    this.faList();
   },
 
 

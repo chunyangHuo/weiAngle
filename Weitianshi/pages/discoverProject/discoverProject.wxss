@@ -292,9 +292,9 @@
 }
 
 .selectProjectBox .describle {
-  font-size: 30rpx;
+  font-size: 32rpx;
   color: #333;
-  line-height: 42rpx;
+  line-height: 44rpx;
   text-align: left;
   margin-bottom: 20rpx;
   overflow: hidden;
@@ -362,9 +362,10 @@
 /*用户信息  */
 
 .userPic {
-  width: 64rpx;
-  height: 64rpx;
+  width: 52rpx;
+  height: 52rpx;
   border-radius: 100%;
+  margin-top: 8rpx;
 }
 
 .userPicText {
@@ -372,10 +373,11 @@
   font-size: 24rpx;
   color: #333;
   justify-content: center;
-  width: 64rpx;
-  height: 64rpx;
+  width: 52rpx;
+  height: 52rpx;
   border-radius: 100%;
-  line-height: 64rpx;
+  line-height: 52rpx;
+  margin-top: 8rpx;
 }
 
 .userInfo {
@@ -454,7 +456,9 @@
   border-top: 0.5rpx solid #f0f0f0;
 }
 .selectPic{
-  height: 32rpx;
-  width: 32rpx;
-  margin: 2rpx 8rpx 0 0;
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 4rpx;
+  position: relative;
+  top: 8rpx;
 }

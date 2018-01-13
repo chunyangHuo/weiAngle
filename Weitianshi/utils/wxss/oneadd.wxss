@@ -8,6 +8,7 @@
 #detailHead .title {
   text-align: left;
   /*margin-bottom:48rpx;*/
+  /*margin-bottom:48rpx;*/
 }
 
 #detailHead .productAll {
@@ -24,7 +25,7 @@
   background-color: #fff;
   border-radius: 4rpx;
   width: 100%;
-  padding: 30rpx 0;
+  padding: 40rpx 0 0 0;
   position: relative;
   /* margin-bottom: 16rpx; */
   height: 166rpx;
@@ -92,7 +93,7 @@
   -webkit-box-orient: vertical;
   font-size: 12px;
   color: #666;
-  line-height: 44rpx;
+  line-height: 34rpx;
 }
 
 #productBox .projectTips {
@@ -108,7 +109,7 @@
   width: 104rpx;
   height: 104rpx;
   /* background: red; */
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
 }
 
 #productBox .productInside {
@@ -129,7 +130,7 @@
 }
 
 #productBox .productMiddle {
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
 }
 
 /*历史融资  */
@@ -282,7 +283,7 @@
   border-radius: 100%;
   margin-right: 24rpx;
   text-align: center;
-  line-height: 100rpx;
+  line-height: 104rpx;
   font-size: 40rpx;
 }
 
@@ -394,10 +395,10 @@
 #investHistory1 .investContent {
   font-size: 14px;
   color: #333;
-  line-height: 47rpx;
+  line-height: 40rpx;
   text-align: left;
   padding-left: 32rpx;
-  margin-top: -35rpx;
+  margin-top: -30rpx;
 }
 
 /*加锁状态  */
@@ -629,4 +630,36 @@
 
 .t-title345 {
   margin-bottom: 40rpx;
+}
+
+/*断网  */
+
+.N-netWorkImg {
+  position: absolute;
+  left: 37%;
+  top: 200rpx;
+  width: 187rpx;
+  height: 187rpx;
+}
+
+.N-text {
+  font-size: 15px;
+  color: #999;
+  position: absolute;
+  left: 40%;
+  top: 412rpx;
+}
+
+.N-refresh {
+  border: 1rpx solid #3378e0;
+  border-radius: 51px;
+  width: 294rpx;
+  height: 86rpx;
+  position: absolute;
+  left: 30%;
+  top: 569rpx;
+  text-align: center;
+  line-height: 86rpx;
+  font-size: 15px;
+  color: #3378e0;
 }

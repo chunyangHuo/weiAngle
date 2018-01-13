@@ -29,21 +29,21 @@
         <view class="outStyleBox1" id="projects" wx:if="{{projects_list.length != 0}}">
           <view class="blockTitle2">项目</view>
           <template is="shopProject" data="{{myProject:projects_list,currentTab,index,currentTab:0,number:3,showAfter}}"></template>
-          <view class="outPadding" bindtap='jumpToSearch' data-current="1"  wx:if="{{searchData.projects_list.list.length >= 3}}">
+          <view class="outPadding" bindtap='jumpToSearch' data-current="1" wx:if="{{searchData.projects_list.list.length >= 3}}">
             <view class="more">更多</view>
           </view>
         </view>
         <view class="outStyleBox1" id="investment" wx:if="{{investments_list.length != 0}}">
           <view class="blockTitle2">投资机构</view>
           <template is="investment" data="{{investment_list:investments_list,index,currentTab:0,number:3}}"></template>
-          <view class="outPadding" bindtap='jumpToSearch' data-current="2"  wx:if="{{searchData.investments_list.list.length >= 3}}">
+          <view class="outPadding" bindtap='jumpToSearch' data-current="2" wx:if="{{searchData.investments_list.list.length >= 3}}">
             <view class="more">更多</view>
           </view>
         </view>
         <view class="outStyleBox1" id="investor" wx:if="{{investors_list.length != 0}}">
           <view class="blockTitle2">投资人</view>
           <template is='investorModel' data='{{personList:investors_list,user_id,currentTab:0,number:3}}'></template>
-          <view class="outPadding" bindtap='jumpToSearch' data-current="3"  wx:if="{{searchData.investors_list.list.length >= 3}}" >
+          <view class="outPadding" bindtap='jumpToSearch' data-current="3" wx:if="{{searchData.investors_list.list.length >= 3}}">
             <view class="more" bindtap="toMember">更多</view>
           </view>
         </view>
@@ -107,8 +107,10 @@
           <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
             <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资人'}}" src="/img/img-touziren@2x.png"></image>
             <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
+                <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
+          <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
           </view>
-          <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view> 
+          <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
         </view>
         <view class="t-careerCompany flex">
           <view class="t-userPosition">{{item.investor_career}}</view>
