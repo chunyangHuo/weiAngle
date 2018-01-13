@@ -111,6 +111,7 @@ Page({
       investment_list: []
     })
     this.loadMore1();
+    this.identityInfo(that);
   },
   /* -----------------------数据获取------------------------------------------- */
   //是否完成身份认证状态
@@ -129,6 +130,10 @@ Page({
           that.setData({
             status: status
           })
+          // wx.showLoading({
+          //   title: 'loading',
+          //   mask: true,
+          // })
         }
       })
     } else {
@@ -136,10 +141,7 @@ Page({
         status: 5
       })
     }
-    wx.showLoading({
-      title: 'loading',
-      mask: true,
-    })
+    wx.hideLoading()
   },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取
@@ -186,7 +188,7 @@ Page({
         let project = res.data.data;
         that.setData({
           competition_id: res.data.data.competition_id,
-          jiazai:true
+          jiazai: true
         })
         console.log(user_id, id, is_share)
         console.log("bp", res)

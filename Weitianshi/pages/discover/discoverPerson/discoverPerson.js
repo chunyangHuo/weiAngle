@@ -70,6 +70,11 @@ Page({
       this.investorList();
     };
     this.investorList();
+    this.setData({
+      requestCheck: true,
+      currentPage: 1,
+      page_end: false
+    })
   },
   //下拉刷新
   onPullDownRefresh() {
