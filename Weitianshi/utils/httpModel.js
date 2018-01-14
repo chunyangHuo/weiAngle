@@ -71,13 +71,13 @@ export function http(data, that) {
       method: data.method,
       header: data.header || { 'Content-Type': 'application/json' },
       complete: function (res) {
+        wx.hideLoading();
         // 请求完成，释放记录的key，可以发起下次请求了
         removeRequestKey(ajaxKey)
         let statusCode = res.statusCode;
         let app = getApp();
         if (statusCode === 200 || statusCode === 304) {
           if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-            wx.hideLoading();
             return resolve(res)
           } else {
             if(that){

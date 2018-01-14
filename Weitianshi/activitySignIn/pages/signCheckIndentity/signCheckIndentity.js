@@ -13,15 +13,12 @@ Page({
         value: '浙江省杭州市西湖区文一西路588号中节能西溪首座B3-51信用卡-1楼'
       }
     ],
-    activity_id:1,
+    activity_id:26,
     activityDetail: '',
     mobile: '',
   },
   onLoad(options) {
     this.getActivityDetail();
-    app.loginPage(user_id => {
-      console.log(user_id);
-    })
   },
   // 获取活动信息
   getActivityDetail() {
@@ -42,7 +39,7 @@ Page({
       name: '名称',
       value: data.activity_title
     });
-    let start_time,end_time = '暂时未定';
+    let start_time,end_time = '';
     if (data.start_time) start_time = data.start_time.substring(0, 16);
     if (data.end_time) end_time = data.end_time.substring(0, 16);
     activityDetail.push({
@@ -70,17 +67,19 @@ Page({
   // 验证报名信息
   checkIndentity() {
     verify.mobile(this,this.data.mobile, x=>{
-      app.httpPost({
-        url: url_common + '/api/activity/confirmAttendInfo',
-        data: {
-          activity_id: this.data.activity_id,
-          user_mobile: this.data.mobile,
-          open_session: app.globalData.open_session
-        }
-      }, this).then(res => {
-        app.href('/activitySignIn/pages/signIndentityCard/signIndentityCard?apply_id=' + res.data.apply_id + '&&activity_id=' + this.data.activity_id);
-      }).catch(res => {
-        app.errorHide(this, res.data.error_msg)
+      app.loginPage(user_id => {
+        app.httpPost({
+          url: url_common + '/api/activity/confirmAttendInfo',
+          data: {
+            activity_id: this.data.activity_id,
+            user_mobile: this.data.mobile,
+            open_session: app.globalData.open_session
+          }
+        }, this).then(res => {
+          app.href('/activitySignIn/pages/signIndentityCard/signIndentityCard?apply_id=' + res.data.apply_id + '&&activity_id=' + this.data.activity_id);
+        }).catch(res => {
+          app.errorHide(this, res.data.error_msg);
+        })
       })
     });
   },

@@ -15,7 +15,7 @@
       <view wx:if="{{!userInfo.user_wechat}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
     <view class="activityMail flex">
-      <view class="activityMobile1">邮箱</view>
+      <view class="activityMobile1">邮箱</view> 
       <view class="activityMobile2">{{userInfo.user_email}}</view>
       <view wx:if="{{!userInfo.user_email}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
@@ -34,7 +34,7 @@
     <label style="width:26rpx;height:2rpx;background:#333;margin-left:20rpx;"></label>
   </view>
   <!-- 已经报名用户列表 -->
-  <!-- <block wx:for="{{investorList}}" wx:key="{{investorList}}"> -->
+   <block wx:for="{{investorList}}" wx:key="{{investorList}}">
     <view class='investorCard'>
       <view class="t-investorColor" hover-class='t-hoverColor'>
         <template is='InvestorCard' data='{{item,user_id,user_mobile}}'></template>
@@ -42,7 +42,8 @@
         <template is='cardBottom1' data='{{item,user_id,user_mobile}}'></template>
       </view>
     </view>
-  <!-- </block> -->
+  </block>
+  <view style='height:128rpx;'></view>
   <view class="activityBottom flex">
     <view class="activityMeet" bindtap='goToActivityAgenda'>活动议程</view>
     <view class="activityWei" bindtap='goToIndex'>去微天使看看</view>
