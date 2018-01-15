@@ -95,7 +95,12 @@
       <image src='/img/icon-daitongguo@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock' style="color:#cccccc">待通过</view>
     </view>
-    <view class="t-flexBox" wx:if="{{button_type==3}}" data-telephone="{{user.user_mobile}}" catchtap="telephone" hover-class="t-hoverColor">
+    <view class="t-flexBox" wx:if="{{button_type==3}}" bindtap="addPerson" hover-class="t-hoverColor">
+      <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
+      <view class='t-shopBlock'>加好友</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox" wx:if="{{button_type==1}}" data-telephone="{{user.user_mobile}}" catchtap="telephone" hover-class="t-hoverColor">
       <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>打电话</view>
     </view>

@@ -16,7 +16,7 @@ scroll-view {
 }
 
 .investGroupBlock {
-  border-bottom: 0 !important;
+  /* border-bottom: 0 !important; */
   /* padding-bottom: 0; */
 }
 
@@ -413,6 +413,7 @@ scroll-view {
   line-height: 48rpx;
   text-align: left !important;
   font-weight: bold;
+  margin-bottom: 20rpx;
 }
 
 .industry {
@@ -424,7 +425,7 @@ scroll-view {
   color: #666;
   line-height: 50rpx;
   text-align: center;
-  margin-right: 16rpx;
+  margin:0 16rpx 20rpx 0;
   white-space: nowrap;
   margin-bottom: 20rpx;
 }
@@ -434,8 +435,8 @@ scroll-view {
   color: #666;
   line-height: 32rpx;
   text-align: left;
-  margin-bottom: 34rpx;
-  margin-top: 24rpx;
+  margin-bottom: 32rpx;
+  /* margin-top: 24rpx; */
 }
 
 .ProjectCluesLine {
@@ -481,9 +482,9 @@ scroll-view {
 
 .userName {
   font-size: 28rpx;
-  color: #3a3e4a;
+  color: #333;
   letter-spacing: 0;
-  line-height: 28rpx;
+  line-height: 34rpx;
   text-align: left;
   margin-right: 16rpx;
   text-overflow: ellipsis;
@@ -501,6 +502,7 @@ scroll-view {
   width: 460rpx;
   align-items: center;
   margin-top: 6rpx;
+  line-height: 34rpx;
 }
 
 /*项目亮点*/
@@ -921,7 +923,7 @@ button::after {
 
 .materialWeb {
   font-size: 26rpx;
-  color: #666;
+  color: #333;
   letter-spacing: 0;
   line-height: 26rpx;
   text-align: left;
@@ -1112,7 +1114,7 @@ button::after {
 }
 
 #projectBox .teamPro {
-  margin-bottom: 40rpx;
+  margin-bottom: 22rpx;
 }
 
 /*空白页*/
