@@ -12,7 +12,9 @@ Page({
     this.setData({
       type: options.type,
       projectId: projectId
-    })
+    });
+    let that = this;
+    app.netWorkChange(that)
   },
   btnYes: function () {
     let type = this.data.type;

@@ -17,7 +17,7 @@ Page({
     that.setData({
       type: type,
     })
-
+    app.netWorkChange(that)
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     // 申请查看我的项目
     wx.showLoading({

@@ -36,6 +36,7 @@ Page({
     var timeBefore = yearBefore + '-' + month + '-' + day;
     var timeNow = yearNow + '-' + month + '-' + day;
     var that = this;
+    app.netWorkChange(that)
     let stageId = [];
     let stage_arr = [];
     wx.request({

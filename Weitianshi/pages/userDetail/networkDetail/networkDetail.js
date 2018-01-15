@@ -17,11 +17,12 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    let that = this;
+    app.netWorkChange(that)
     wx.showLoading({
       title: 'loading',
       mask: true,
     })
-    var that = this
     var user_id = options.id;
     var view_id = wx.getStorageSync('user_id');
     that.setData({
@@ -84,7 +85,7 @@ Page({
       fail: function (res) {
         console.log(res)
       },
-    })
+    });
 
   },
   //进入个人详情

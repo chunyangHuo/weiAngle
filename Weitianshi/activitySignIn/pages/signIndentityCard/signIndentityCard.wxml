@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<image src="/img/img@2x.png" class="activityImg">
+<image src="{{signIndentityCard}}" class="activityImg">
   <image class="activityUrl" wx:if='{{userInfo.user_logo_url}}' src="{{userInfo.user_logo_url}}"></image>
   <view  class="activityUrl" wx:if='{{userInfo.user_logo_text}}'>{{userInfo.user_logo_text}}</view>
   <view class="activityName">{{userInfo.user_name}}</view>

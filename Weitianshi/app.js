@@ -43,7 +43,7 @@ App({
       })
     }
   },
-  onshow() {
+  onShow() {
     wx.onNetworkStatusChange(function (res) {
       console.log(111)
       console.log(res.isConnected)
@@ -739,9 +739,19 @@ App({
       '/pages/discoverProject/discoverProject',
       '/pages/message/message/message',
       '/pages/my/myNew/myNew'
-    ]
-    if (indexList.includes(url)) wx.switchTab({ url: url })
-    else wx.navigateTo({ url: url })
+    ];
+    let routerPage = this.globalData.routerPage;
+    if (!routerPage.includes(url)){
+      // 记录路由
+      routerPage.push(url);
+      console.log(this.globalData.url);
+      setTimeout(rex=>{
+        routerPage.pop();
+        console.log(this.globalData.url)
+      },1000)
+      if (indexList.includes(url)) wx.switchTab({ url: url })
+      else wx.navigateTo({ url: url })
+    }
   },
 
   //多选
@@ -799,6 +809,7 @@ App({
   },
   //初始本地缓存
   globalData: {
+    routerPage:[],
     error: 0,
     picUrl: picUrl,
     app_id: 'wxdf2eba3b79b83110',

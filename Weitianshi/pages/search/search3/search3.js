@@ -55,7 +55,8 @@ Page({
           title: '搜索好友',
         })
         break;
-    }
+    };
+    app.netWorkChange(that)
   },
   //搜索事件
   searchSth: function (e) {

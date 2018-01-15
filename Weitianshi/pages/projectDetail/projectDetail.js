@@ -40,7 +40,8 @@ Page({
     message: "",
     projectBack: app.globalData.picUrl.project_detail_backgroud,
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
-    nonet: true
+    nonet: true,
+    projectImg: app.globalData.picUrl.projectBac,
   },
   onLoad: function (options) {
     console.log(options)
@@ -99,7 +100,8 @@ Page({
         })
         that.showStatus(that, id, "share", share_id);
       })
-    }
+    };
+    app.netWorkChange(that)
   },
   onShow: function () {
     let that = this;

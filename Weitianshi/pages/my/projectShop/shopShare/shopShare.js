@@ -8,12 +8,14 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    let that = this;
     let user_id = options.user_id;
     let share_id = wx.getStorageSync('user_id');
     this.setData({
       user_id: user_id,
       share_id: share_id
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     let user_id = this.data.user_id;

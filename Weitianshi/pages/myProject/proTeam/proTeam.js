@@ -15,6 +15,8 @@ Page({
       share_id: options.share_id
     });
     console.log('pro_id', this.data.id);
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function () {
     //  投资人数据

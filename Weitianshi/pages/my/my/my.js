@@ -22,7 +22,9 @@ Page({
       this.setData({
         modal: options.modal
       })
-    }
+    };
+    let that = this;
+    app.netWorkChange(that);
   },
   onShow: function () {
     var that = this

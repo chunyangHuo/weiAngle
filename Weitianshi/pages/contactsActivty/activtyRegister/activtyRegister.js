@@ -15,6 +15,7 @@ Page({
     onLoad: function (options) {
         var that = this;
         var user_id = wx.getStorageSync('user_id');
+        app.netWorkChange(that)
         wx.showLoading({
             title: 'loading',
             mask:true

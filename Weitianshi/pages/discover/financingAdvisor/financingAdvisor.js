@@ -27,7 +27,8 @@ Page({
   onLoad(options) {
     let that = this;
     let searchData = that.data.searchData;
-    app.initPage(that)
+    app.initPage(that);
+    app.netWorkChange(that)
     wx.showLoading({
       title: 'loading',
       mask: true,

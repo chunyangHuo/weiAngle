@@ -20,6 +20,8 @@ Page({
     this.setData({
       project_id: options.project_id,
     });
+    let that = this;
+    app.netWorkChange(that)
   },
 
   /**

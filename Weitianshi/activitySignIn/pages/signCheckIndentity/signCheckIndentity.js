@@ -6,11 +6,11 @@ Page({
     activity_id:26,
     activityDetail: '',
     mobile: '',
-  },
+  }, 
   onLoad(options) {
-    // this.setData({
-    //   activity_id: options.activity_id
-    // })
+    this.setData({
+      activity_id: options.activity_id
+    })
     app.loginPage(user_id => {
       this.getActivityDetail();
       if(user_id != 0){

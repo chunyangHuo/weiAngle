@@ -9,7 +9,8 @@ Page({
     str: '',//搜索字段
   },
   onLoad: function (options) {
-
+    let that = this;
+    app.netWorkChange(that)
   },
 
   onShow: function () {

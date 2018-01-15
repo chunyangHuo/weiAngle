@@ -8,7 +8,11 @@ Page({
     modalBox: 0,
     nonet: true
   },
-  onLoad(){
+  onLoad:function(){
+    let that=this;
+    app.netWorkChange(that)
+  },
+  onShow() {
     let that = this;
     this.getMyProject();
     app.initPage(that);

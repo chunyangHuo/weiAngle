@@ -17,6 +17,8 @@ Page({
     this.setData({
       investment_id: options.investment_id,
     });
+    let that = this;
+    app.netWorkChange(that)
   },
 
   onShow: function () {

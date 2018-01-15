@@ -8,6 +8,17 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    let that = this;
+    console.log(options);
+    app.netWorkChange(that)
+    if (options.id) {
+      let otherPerson_id = options.id;
+      this.setData({
+        otherPerson_id: otherPerson_id
+      })
+    }
+  },
+  onShow: function () {
     var that = this;
     app.initPage(that);
     let user_id = this.data.user_id;

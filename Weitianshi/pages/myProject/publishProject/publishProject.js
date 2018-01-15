@@ -58,6 +58,7 @@ Page({
     // picker 初始数据预处理
     this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
+    app.netWorkChange(that)
   },
   //页面显示
   onShow: function () {

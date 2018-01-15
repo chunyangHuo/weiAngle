@@ -1,4 +1,3 @@
-// pages/activity_detailPreview/activity_detailPreview.js
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -9,6 +8,7 @@ Page({
     activity: '',
     userInfo: '',
     user_id:'',
+    signIndentityCard: app.globalData.picUrl.signIndentityCard
   },
   onLoad(options) {
     let apply_id = options.apply_id;
@@ -17,7 +17,7 @@ Page({
       apply_id: apply_id,
       activity_id: activity_id
     })
-    app.loginPage(user_id => {
+    app.getSession(user_id => {
       this.setData({
         user_id
       })

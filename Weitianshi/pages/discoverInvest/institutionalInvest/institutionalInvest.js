@@ -12,7 +12,8 @@ Page({
   },
 
   onLoad: function (options) {
-
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function () {
     this.investment()

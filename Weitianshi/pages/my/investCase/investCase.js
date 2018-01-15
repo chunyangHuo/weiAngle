@@ -10,6 +10,10 @@ Page({
     buttonOneText:'添加案例',
     nonet: true
   },
+  onLoad:function(){
+    let that = this;
+    app.netWorkChange(that)
+  },
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');

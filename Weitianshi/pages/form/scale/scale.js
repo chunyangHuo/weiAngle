@@ -14,6 +14,7 @@ Page({
   onLoad: function () {
     var that = this;
     let scale = wx.getStorageSync("scale");
+    app.netWorkChange(that)
     let tran_scale = [];
     if (wx.getStorageSync("tran_scale").length != 0) {
       tran_scale = wx.getStorageSync("tran_scale");

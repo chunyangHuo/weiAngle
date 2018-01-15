@@ -12,7 +12,9 @@ Page({
   console.log(options)
   this.setData({
     type : type
-  })
+  });
+  let that = this;
+  app.netWorkChange(that)
   },
 
   onShow: function () {

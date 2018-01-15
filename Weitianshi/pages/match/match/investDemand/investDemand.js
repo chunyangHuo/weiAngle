@@ -29,6 +29,7 @@ Page({
   onLoad: function (options) {
     var user_id = wx.getStorageSync('user_id');
     var that = this;
+    app.netWorkChange(that)
     var current = options.current;
     this.setData({
       current: current

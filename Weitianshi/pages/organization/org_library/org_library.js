@@ -49,6 +49,7 @@ Page({
       })
     }
     this.applyList();
+    app.netWorkChange(that)
   },
  
   onShow: function () {

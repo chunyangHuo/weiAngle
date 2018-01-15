@@ -16,6 +16,7 @@ Page({
   onLoad: function (options) {
     let type = options.type;
     let that = this;
+    app.netWorkChange(that)
     that.setData({
       type: type
     })

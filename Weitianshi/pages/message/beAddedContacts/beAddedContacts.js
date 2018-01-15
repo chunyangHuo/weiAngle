@@ -7,7 +7,11 @@ Page({
     count: 0,
     nonet: true
   },
-  onLoad(){
+  onLoad:function(){
+    let that=this;
+    app.netWorkChange(that)
+  },
+  onShow: function () {
     var that = this;
     app.initPage(that);
     var user_id = this.data.user_id;

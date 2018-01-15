@@ -10,6 +10,7 @@ Page({
   },
   onLoad: function (option) {
     let that = this;
+    app.netWorkChange(that)
     //用来判断是否是重新认证
     let recertification = option.isUpdate;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
