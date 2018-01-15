@@ -288,7 +288,7 @@ Page({
     wx.navigateTo({
       url: '/pages/search/search2/search2',
     })
-}
+  },
   // 重新加载
   refresh() {
     let timer = '';
@@ -297,8 +297,8 @@ Page({
       mask: true
     });
     timer = setTimeout(x => {
-     wx.hideLoading();
-     this.onShow();
+      wx.hideLoading();
+      this.onShow();
     }, 1500)
 
   }
