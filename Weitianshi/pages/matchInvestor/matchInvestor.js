@@ -20,6 +20,7 @@ Page({
       }
     });
     app.netWorkChange(that)
+
   },
   // 获取项目信息
   getMyProject() {

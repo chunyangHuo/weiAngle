@@ -232,7 +232,7 @@
             <view class="brightPoint1" wx:if="{{project.brand.length != 0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
-                  <view class="title t-title345">产品</view>
+                  <view class="title">产品</view>
                   <view class="productAll" wx:if="{{brandList1.length>3}}" bindtap='toBrand'>全部（
                     <label>{{brandList1.length}}</label>）</view>
                 </view>
@@ -286,7 +286,7 @@
                 <view class="purpose" wx:if="{{project.pro_finance_use}}">
                   <view id="detailHead">
                     <view class="brightPointBox flex">
-                      <view class="title">资金用途</view>
+                      <view class="title t-title345">资金用途</view>
                     </view>
                   </view>
                   <view class="purposeContent">{{project.pro_finance_use}}</view>
@@ -395,11 +395,9 @@
       <view>
         <view class="t-matchButton flex">
           <!--t-matchButton1  代表选中  -->
-          <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}" bindtap='matchButt'>投资人(
-            <label>{{matchCount}}</label>)
+          <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}" bindtap='matchButt'>投资人(<label>{{matchCount}}</label>)
           </button>
-          <button class="{{matchBut1?'t-matchButton4':'t-matchButton2'}}" bindtap='matchButt1'>投资机构(
-            <label>{{investment_total_num}}</label>)</button>
+          <button class="{{matchBut1?'t-matchButton4':'t-matchButton2'}}" bindtap='matchButt1'>投资机构(<label>{{investment_total_num}}</label>)</button>
         </view>
         <!--买家图谱  -->
         <scroll-view wx:if="{{matchBut}}" scroll-y="true" style="height: 900rpx;" bindscrolltolower="loadMore">

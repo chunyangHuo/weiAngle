@@ -43,7 +43,7 @@
 .title_icon {
   width: 158rpx;
   height: 105rpx;
-  margin-right: 32rpx;
+  margin-right: 24rpx;
 }
 
 /* .addedContacts .title {
@@ -81,6 +81,7 @@
   border-radius: 50%;
   margin-left: 228rpx;
   padding-top: 6rpx;
+  margin-top: 4rpx;
 }
 
 .iconEdit {

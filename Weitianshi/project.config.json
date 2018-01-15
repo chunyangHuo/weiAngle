@@ -50,6 +50,12 @@
 					"name": "产品",
 					"pathName": "pages/myProject/proBrand/proBrand",
 					"query": "user_id=vrny6QAp&project_id=2rzVKYr3"
+				},
+				{
+					"id": -1,
+					"name": "本人项目详情",
+					"pathName": "pages/myProject/projectDetail/projectDetail",
+					"query": "id=k0xlyx0v&index=undefined"
 				}
 			]
 		}

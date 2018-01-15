@@ -20,7 +20,7 @@
 
       <!--资源需求-->
       <!-- <template is="resourceInfo" data="{{resource:resource}}"></template> -->
-
+<view class="whiteSpace"></view>
       <template is="forButton"></template>
     </view>
     <!-- <view class="flex sharePageButton floatBtn">
@@ -64,7 +64,7 @@
         <view class='t-shopBlock'>打电话</view>
       </view>
       <view class="t-line"></view>
-      <view class="t-flexBox" wx:if="{{button_type==3}}" bindtap="addNetwork" hover-class="t-hoverColor">
+      <view class="t-flexBox" wx:if="{{button_type==3 || button_type == 4}}" bindtap="addNetwork" hover-class="t-hoverColor">
         <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
         <view class='t-shopBlock'>加好友</view>
       </view>
