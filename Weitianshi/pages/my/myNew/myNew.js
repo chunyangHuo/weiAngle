@@ -248,5 +248,17 @@ Page({
   },
   myFri:function(){
     app.href('/pages/discover/myFriend/myFriend')
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 })

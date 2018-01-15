@@ -273,4 +273,16 @@ Page({
       app.errorHide(that, "提交失败", 3000)
     })
   },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
+  }
 })

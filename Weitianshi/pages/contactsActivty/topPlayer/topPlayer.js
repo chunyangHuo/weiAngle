@@ -322,4 +322,16 @@ Page({
   onShareAppMessage(e) {
     return ShareModel.topPlayerShare(e)
   },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
+  }
 })

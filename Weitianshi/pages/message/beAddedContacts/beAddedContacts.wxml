@@ -83,7 +83,7 @@
               </view>
               <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
                 <!-- <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image> -->
-                <span>待通过</span>
+                 <span style="color:#ccc">待通过</span>
               </view>
               <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
                 <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>

@@ -401,7 +401,7 @@ scroll-view {
 }
 
 .projectDetailBox {
-  padding: 32rpx;
+  padding: 32rpx 0 32rpx 32rpx;
   height: auto;
   padding-bottom: 0;
   position: relative;
@@ -622,7 +622,7 @@ button::after {
 .projectDetailType {
   height: 92rpx;
   width: 92rpx;
-  right: -3rpx;
+  right: 0rpx;
   top: -6rpx;
   position: absolute;
 }
@@ -733,14 +733,14 @@ button::after {
 
 .brightPoint {
   background: #fff;
-  border-radius: 2px;
-  padding: 32rpx 32rpx 32rpx 32rpx;
+  border-radius: 4rpx;
+  padding: 32rpx;
   /* margin-bottom: 20rpx; */
 }
 
 .brightPoint1 {
   background: #fff;
-  border-radius: 2px;
+  border-radius: 4rpx;
   padding: 32rpx 32rpx 0rpx 32rpx;
   margin-bottom: 20rpx;
 }
