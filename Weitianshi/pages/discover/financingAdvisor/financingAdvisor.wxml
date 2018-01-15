@@ -13,7 +13,7 @@
       </view>
     </view>
   </block>
-  <template is="theBottom" wx:if="{{faList!==''}}"></template>
+  <template is="theBottom" wx:if="{{jiandi==true}}"></template>
   <view class="high"></view>
 </scroll-view>
 <!--空状态-->

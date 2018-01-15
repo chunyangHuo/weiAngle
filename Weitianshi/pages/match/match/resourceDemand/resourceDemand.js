@@ -209,5 +209,17 @@ Page({
     } else {
       app.errorHide(that, "可提供资源和在需求资源不能同时为空", 1500)
     }
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 });
