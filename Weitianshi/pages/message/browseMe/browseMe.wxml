@@ -73,27 +73,29 @@
                   </view>
                 </view>
               </view>
-            <view class="aline"></view>
-            <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
-              <view class="t-history1" wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
-                <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>
-                <span>加好友</span>
-              </view>
-              <view class="t-history1" wx:if='{{item.follow_status==1}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-telephone="{{item.user_mobile}}" catchtap="telephone">
-                <image class='t-itemPic' src='/img/icon-dadianhua@2x.png'></image>
-                <span>打电话</span>
-              </view>
-              <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
-                <span style="color:#ccc">待通过</span>
-              </view>
-              <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
-                <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>
-                <span>加好友</span>
-              </view>
-              <view class="t-line"></view>
-              <view class='t-cardBottomItem2 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
-                <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-                <span>提交项目</span>
+
+              <view class="aline"></view>
+              <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
+                <view class="t-history1" wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
+                  <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>
+                  <span>加好友</span>
+                </view>
+                <view class="t-history1" wx:if='{{item.follow_status==1}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-telephone="{{item.user_mobile}}" catchtap="telephone">
+                  <image class='t-itemPic' src='/img/icon-dadianhua@2x.png'></image>
+                  <span>打电话</span>
+                </view>
+                <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
+                  <span style="color:#ccc">待通过</span>
+                </view>
+                <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
+                  <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>
+                  <span>加好友</span>
+                </view>
+                <view class="t-line"></view>
+                <view class='t-cardBottomItem2 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
+                  <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
+                  <span>提交项目</span>
+                </view>
               </view>
               <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
 

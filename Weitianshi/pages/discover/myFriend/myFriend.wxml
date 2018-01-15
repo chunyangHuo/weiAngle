@@ -6,7 +6,6 @@
   <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
   <!--投资人  -->
   <scroll-view style="height:1108rpx;margin-top:96rpx" scroll-y="true" bindscrolltolower='loadMore'>
-    <!-- <template is="searchNothing" data="{{empty:investorList}}"></template> -->
     <block wx:for="{{myList}}" wx:key="{{myList}}">
       <view class='investorCard'>
         <view class="t-investorColor" hover-class='t-hoverColor'>
@@ -83,12 +82,12 @@
           <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
         </view>
       </view>
-    </view>
-  </block>
-  <template is="theBottom" wx:if="{{jiandi==true}}"></template>
-  <view class="high"></view>
-</scroll-view>
-<!--空状态-->
-<template is="isEmpty" data="{{emptyNumber:myList}}"></template>
-<!-- <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image> -->
 
+    </block>
+    <template is="theBottom" wx:if="{{jiandi==true}}"></template>
+    <view class="high"></view>
+  </scroll-view>
+  <!--空状态-->
+  <template is="isEmpty" data="{{emptyNumber:myList}}"></template>
+</view>
+<!-- <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image> -->
