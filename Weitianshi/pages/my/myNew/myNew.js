@@ -40,17 +40,17 @@ Page({
             wx.hideLoading()
             var user = res.data.data.user;
             var count = res.data.data.count;
-            var invest = res.data.data.invest_info;
-            var resource = res.data.data.resource_info;
-            var project_info = res.data.data.project_info;
+            // var invest = res.data.data.invest_info;
+            // var resource = res.data.data.resource_info;
+            // var project_info = res.data.data.project_info;
             var user_name = res.data.data.user.user_real_name;
             let user_company_name = res.data.data.user.user_company_name;
 
             that.setData({
               user: user,
-              invest: invest,
-              resource: resource,
-              project_info: project_info,
+              // invest: invest,
+              // resource: resource,
+              // project_info: project_info,
               count: count,
               user_company_name: user_company_name
             })

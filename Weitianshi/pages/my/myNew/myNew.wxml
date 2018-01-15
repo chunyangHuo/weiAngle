@@ -85,7 +85,7 @@
       <view class="blockTitle">我的好友</view>
     </view>
     <view class="flex">
-      <view class="number">{{count.meet_project_count}}</view>
+      <view class="number">{{count.my_friends}}</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>

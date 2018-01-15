@@ -7,7 +7,7 @@ App({
   onLaunch(options) {
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
-  
+
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
       //获取code
@@ -745,13 +745,13 @@ App({
 
   //页栈超出处理
   href(url = '/pages/discoverProject/discoverProject') {
-    let indexList=[
+    let indexList = [
       '/pages/discoverProject/discoverProject',
       'pages/message/message/message',
       'pages/my/myNew/myNew'
     ]
-    if(indexList.includes(url)) wx.switchTab({url: url})
-    else wx.navigateTo({url: url})
+    if (indexList.includes(url)) wx.switchTab({ url: url })
+    else wx.navigateTo({ url: url })
   },
 
   //多选
@@ -788,6 +788,18 @@ App({
     wx.setStorageSync('tran_area', []);
     wx.setStorageSync('tran_hotCity', []);
     wx.removeStorageSync('projectShopFilterCache');
+  },
+  //判断网络状态
+  netWorkChange(that) {
+    wx.onNetworkStatusChange(function (res) {
+      console.log(res.isConnected)
+      console.log(res.networkType)
+      if (res.networkType == "none") {
+        that.setData({ nonet: false })
+      } else {
+        that.setData({ nonet: true })
+      }
+    })
   },
 
   hasNothingMore(that, page_end) {
