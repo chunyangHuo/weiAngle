@@ -43,7 +43,7 @@ App({
       })
     }
   },
-  onshow() {
+  onShow() {
     wx.onNetworkStatusChange(function (res) {
       console.log(111)
       console.log(res.isConnected)

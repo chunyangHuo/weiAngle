@@ -6,7 +6,7 @@ Page({
     activity_id:26,
     activityDetail: '',
     mobile: '',
-  },
+  }, 
   onLoad(options) {
     // this.setData({
     //   activity_id: options.activity_id

@@ -27,6 +27,7 @@ const picUrl = {
   share_modal:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/tips-share.png",
   projectDetailpotential:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/match-project-list.png",
   projectBac:"https://cdn.weitianshi.cn/image/banner/img-lock.png"
+  signIndentityCard:'https://cdn.weitianshi.cn/image/banner/img-ticket.png'
 }
 
 export {
