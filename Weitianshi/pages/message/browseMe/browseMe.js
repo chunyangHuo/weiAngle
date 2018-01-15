@@ -8,7 +8,9 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    console.log(options)
+    let that = this;
+    console.log(options);
+    app.netWorkChange(that)
     if (options.id) {
       let otherPerson_id = options.id;
       this.setData({

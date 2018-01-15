@@ -63,7 +63,8 @@ Page({
     if (editProId) { this._editProject(editProId) }
     this.setData({
       fromPublish: fromPublish
-    })
+    });
+    app.netWorkChange(that)
   },
   //页面显示
   onShow: function () {

@@ -18,6 +18,7 @@ Page({
   onLoad: function () {
     var that = this;
     var that = this;
+    app.netWorkChange(that)
     let area = wx.getStorageSync("hotCity");
     console.log(area)
     let tran_hotCity = [];

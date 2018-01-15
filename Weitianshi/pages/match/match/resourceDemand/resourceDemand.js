@@ -16,6 +16,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    app.netWorkChange(that)
     var current = options.current;//current=1:从my页面跳转过来的
     this.setData({
       current: current

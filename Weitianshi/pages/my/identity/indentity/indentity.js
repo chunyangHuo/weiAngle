@@ -42,6 +42,7 @@ Page({
     let old_group_id = options.group_id;
     let old_authenticate_id = options.authenticate_id;
     let that = this;
+    app.netWorkChange(that)
     wx.request({
       url: url_common + '/api/category/getGroupIdentify',
       data: {

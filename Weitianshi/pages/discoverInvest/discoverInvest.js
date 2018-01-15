@@ -22,6 +22,7 @@ Page({
   },
   onLoad(options) {
     let that = this;
+    app.netWorkChange(that)
     let SearchInit = that.data.SearchInit;
     let tab = SearchInit.tab;
     if (options.currentTab) {

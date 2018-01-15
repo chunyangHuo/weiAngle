@@ -15,6 +15,7 @@ Page({
     let user_describle = options.writeDescrible;
     let type = options.type;
     let that = this;
+    app.netWorkChange(that)
     that.setData({
       user_name: user_name,
       user_brand: user_brand,

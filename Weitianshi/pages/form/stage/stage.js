@@ -11,6 +11,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
+    app.netWorkChange(that)
     var stage = wx.getStorageSync('stage');
     let tran_stage = [];
     if (wx.getStorageSync("tran_stage").length != 0) {

@@ -14,6 +14,7 @@ Page({
     let recertification = options.recertification;
     let that = this;
     let authenticate_id = options.authenticate_id;
+    app.netWorkChange(that)
     wx.request({
       url: url_common + '/api/user/getUserGroupByStatus',
       data: {

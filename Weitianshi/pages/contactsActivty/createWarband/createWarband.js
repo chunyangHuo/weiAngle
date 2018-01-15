@@ -5,7 +5,10 @@ Page({
     data: {
         filePath: ''
     },
-    onLoad: function (options) { },
+    onLoad: function (options) {
+      let that = this;
+      app.netWorkChange(that);
+     },
     onShow: function () { },
     writeNewThing: function (e) {
         let that = this;

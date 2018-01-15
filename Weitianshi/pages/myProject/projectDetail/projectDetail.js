@@ -61,6 +61,8 @@ Page({
       shareType: options.type
     });
     console.log('pro_id', this.data.id);
+    let that=this;
+    app.netWorkChange(that)
   },
   onShow: function () {
     let share_id = this.data.share_id;

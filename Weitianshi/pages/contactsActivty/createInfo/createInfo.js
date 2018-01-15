@@ -4,9 +4,11 @@ var url_common = app.globalData.url_common;
 Page({
   data: {},
   onLoad: function (options) {
-    console.log(options)
-    let type = options.type;
     let that = this;
+    console.log(options);
+    app.netWorkChange(that)
+    let type = options.type;
+
     let user_real_name = options.user_real_name;
     let user_company_name = options.user_company_name;
     let user_brand = options.user_brand;

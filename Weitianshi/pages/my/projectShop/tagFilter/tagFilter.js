@@ -58,6 +58,8 @@ Page({
   },
   onLoad(){
     this._initData();
+    let that = this;
+    app.netWorkChange(that)
   },
   // 初始化数据
   _initData(){

@@ -119,6 +119,7 @@ Page({
         that.requestPost();
       })
     });
+    app.netWorkChange(that)
   },
   onShow: function () {
     if (!this.data.firstTime) {

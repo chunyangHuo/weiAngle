@@ -14,6 +14,7 @@ Page({
     let company = options.company;
     let user_id = options.user_id;
     let type = options.type;
+    app.netWorkChange(that)
     that.setData({
       company_name: company,
       type: type,

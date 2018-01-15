@@ -48,7 +48,8 @@ Page({
     }, 1500)
     this.setData({
       timer: timer
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     this.setData({

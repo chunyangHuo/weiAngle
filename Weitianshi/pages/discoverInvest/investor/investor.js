@@ -13,6 +13,7 @@ Page({
   onLoad(options) {
     let that = this;
     let SearchInit = that.data.SearchInit;
+    app.netWorkChange(that)
     let tab = SearchInit.tab;
 
     // ------------下面获取缓存是必要的,不要删除--------------------------------------------------

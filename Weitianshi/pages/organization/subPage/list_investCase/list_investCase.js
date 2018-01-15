@@ -38,7 +38,8 @@ Page({
     }
     this.setData({
       label_industry: wx.getStorageSync('label_industry')
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     let that = this;

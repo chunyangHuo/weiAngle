@@ -6,7 +6,8 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function () {
 

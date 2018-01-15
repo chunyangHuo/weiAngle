@@ -9,7 +9,8 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-
+    let that=this;
+    app.netWorkChange(that)
   },
 
   onShow: function () {
@@ -260,6 +261,7 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
+    wx.hideLoading();
   }
 })
