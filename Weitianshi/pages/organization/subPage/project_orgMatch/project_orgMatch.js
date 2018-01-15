@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    project_id: ''
+    project_id: '',
+    nonet: true
   },
 
   /**

@@ -4,7 +4,8 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     type_id: 2,
-    count: 0
+    count: 0,
+    nonet: true
   },
   onShow: function () {
     var that = this;

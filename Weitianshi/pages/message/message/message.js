@@ -4,14 +4,8 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     count: 0,
+    nonet: true,
     messageList: [
-      // {
-      //   event: "toIdentity",
-      //   iconPath: "/img/icon-xiaoxi_renzheng@2x.png",
-      //   message_name: "身份认证",
-      //   count: 0,
-      //   type_id: 8
-      // },
       {
         event: "projectApply",
         iconPath: "/img/icon-shenqing@2x.png",

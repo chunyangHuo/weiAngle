@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
+    nonet: true,
     disabled: false,//保存按钮是否禁用
     describe: "",
     area_title: "请选择",
@@ -285,6 +286,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            console.log(res)
             if (res.data.status_code == 2000000) {
               //清除数据
               wx.setStorageSync('tran_industry', []);

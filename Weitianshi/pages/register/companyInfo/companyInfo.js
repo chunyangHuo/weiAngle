@@ -8,7 +8,8 @@ Page({
     email: "",
     result: "1",
     error: "0",
-    error_text: ''
+    error_text: '',
+    nonet: true
   },
   //onLoad
   onLoad: function (options) {

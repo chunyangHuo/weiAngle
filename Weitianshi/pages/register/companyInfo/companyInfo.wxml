@@ -1,4 +1,6 @@
-<view id="companyInfo">
+<include src='/utils/wxml/netWork' />
+
+<view id="companyInfo" wx:if="{{nonet}}">
   <form>
     <view class="flex title">公司信息，有助于投资人或项目快速识别您的身份</view>
     <view id="company" class="flex">
@@ -10,7 +12,7 @@
     <view id="email" class="flex">
       <input placeholder="邮箱(选填)" bindblur="checkEmail" value="{{email}}" />
     </view>
-     <view id="brand" class="flex">
+    <view id="brand" class="flex">
       <input placeholder="品牌" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
     </view>
     <button form-type="submit" hover-class='t-other-button-hover' class="nextBtn complete-infom" bindtap="backHome" loading="{{loading=='1'}}">

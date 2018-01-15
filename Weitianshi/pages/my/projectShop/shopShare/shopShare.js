@@ -4,6 +4,9 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/shareModel';
 Page({
+  data:{
+    nonet: true
+  },
   onLoad: function (options) {
     let user_id = options.user_id;
     let share_id = wx.getStorageSync('user_id');

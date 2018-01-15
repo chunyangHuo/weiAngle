@@ -3,7 +3,8 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    imgUrls: app.globalData.picUrl.project_success
+    imgUrls: app.globalData.picUrl.project_success,
+    nonet: true
   },
   onLoad: function (options) {
    let projectId = options.projectId;

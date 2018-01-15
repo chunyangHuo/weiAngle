@@ -10,7 +10,7 @@ Page({
     aisChecked4: true,
     textBeyond3: false,
     textBeyond4: false,
-
+    nonet: true
   },
 
   onLoad: function (options) {

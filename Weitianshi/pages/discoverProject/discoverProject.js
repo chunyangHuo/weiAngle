@@ -48,8 +48,6 @@ Page({
     app.netWorkChange(that)
   },
   onShow() {
-    let that = this;
-    that.selectProject();
   },
   onReady() {
     let that = this;
@@ -255,33 +253,12 @@ Page({
       })
     });
   },
-  // 人脉大赛
-  competitor: function () {
-    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
-  },
 
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
   toCreateProject: function () {
     CreateProject.toCreateProject();
   },
-  // 在电脑上创建
-  createProjectPc() {
-    CreateProject.createProjectPc();
-  },
-  //去电脑上传
-  toPc: function () {
-    this.setData({
-      modalBox: 1
-    })
-  },
-  //关闭模态框
-  closeModal: function () {
-    this.setData({
-      modalBox: 0
-    })
-  },
-
   // 跳转投资机构
   jumpOrg() {
     wx.navigateTo({
@@ -311,25 +288,7 @@ Page({
     wx.navigateTo({
       url: '/pages/search/search2/search2',
     })
-  },
-  // 断网
-  netWork() {
-    wx.onNetworkStatusChange(function (res) {
-      console.log(111)
-      console.log(res.isConnected)
-      let that = this;
-      if (res.isConnected) {
-        this.setData({
-          aa: res.isConnected
-        })
-      } else {
-        this.setData({
-          aa: res.isConnected
-        })
-      }
-      console.log(res.networkType)
-    })
-  },
+}
   // 重新加载
   refresh() {
     let timer = '';
@@ -341,5 +300,6 @@ Page({
      wx.hideLoading();
      this.onShow();
     }, 1500)
+
   }
 })

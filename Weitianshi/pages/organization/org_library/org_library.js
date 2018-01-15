@@ -11,6 +11,7 @@ Page({
     label_industry: FilterModel._label_industry,
     linkDataShow: FilterModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
+    nonet: true
   }, 
   onLoad: function (options) {
     let label = options.label;

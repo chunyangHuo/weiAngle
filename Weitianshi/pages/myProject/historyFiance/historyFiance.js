@@ -4,7 +4,7 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-
+    nonet: true
   },
   onLoad: function (options) {
     this.setData({

@@ -6,6 +6,7 @@ Page({
   data: {
     modalBox: 0,
     modal: 0,
+    nonet: true
   },
   onLoad: function (options) {
 

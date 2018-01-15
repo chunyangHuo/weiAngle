@@ -1,5 +1,8 @@
 <include src='/utils/wxml/projectDetail' />
-<view class="flex t-aboutNetwork">
+
+<include src='/utils/wxml/netWork' />
+
+<view class="flex t-aboutNetwork" wx:if="{{nonet}}">
   <view class="t-flexBox" hover-class="t-hoverColor" bindtap="moreProject">
     <image src='/img/icon-shouye@2x.png' class="t-shopPic"></image>
     <view class='t-shopBlock'>首页</view>

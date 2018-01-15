@@ -51,6 +51,7 @@ Page({
     type: 2,
     other: true,
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
+    nonet: true
   },
   onLoad: function (options) {
     this.setData({

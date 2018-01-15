@@ -6,6 +6,7 @@ Page({
   data: {
     user: "",
     followed_user_id: "",
+    nonet: true
   },
   onLoad: function (options) {
     console.log('this is sharePage')

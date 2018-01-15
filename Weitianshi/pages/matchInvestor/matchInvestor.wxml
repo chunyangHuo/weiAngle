@@ -1,6 +1,9 @@
 <import src="/pages/Template/Template.wxml" />
 <!--找项目投资人  -->
-<view id='matchInvestor'>
+
+
+<include src='/utils/wxml/netWork' />
+<view id='matchInvestor' wx:if="{{nonet}}">
   <!--蓝顶  -->
   <view class='blueTop'>
     <view class='publicButton flex' hover-class='t-hoverColor' bindtap='publicBtn'>
@@ -54,14 +57,14 @@
             </view>
           </view>
           <view class="t-line"></view>
-          <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor' hover-stop-propagation='true'  data-proid="{{item.project_id}}">
+          <view class="flex sceenPerson" catchtap="applyPerson" hover-class='t-hoverColor' hover-stop-propagation='true' data-proid="{{item.project_id}}">
             <view class="applyProjectNew" wx:if="{{item.count.apply_times_new != 0}}">+{{item.count.apply_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">申请查看：
               <label>{{item.count.apply_times_all}}</label>
             </view>
           </view>
           <view class="t-line"></view>
-          <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor' hover-stop-propagation='true'  data-proid="{{item.project_id}}">
+          <view class="flex sceenPerson" catchtap="hasMeeting" hover-class='t-hoverColor' hover-stop-propagation='true' data-proid="{{item.project_id}}">
             <view class="applyProjectNew" wx:if="{{item.count.meet_times_new != 0}}">+{{item.count.meet_times_new}}</view>
             <view class="viewTimeAll screenPersonColor" data-proid="{{item.project_id}}">约谈：
               <label>{{item.count.meet_times_all}}</label>

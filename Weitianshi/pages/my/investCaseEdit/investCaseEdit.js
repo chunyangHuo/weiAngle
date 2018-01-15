@@ -23,7 +23,8 @@ Page({
       area_title: '',
       area_id: ''
     },
-    buttonOneText: '保存'
+    buttonOneText: '保存',
+    nonet: true
   },
   onLoad: function (options) {
     //获取当前时间,以备picker使用

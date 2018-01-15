@@ -6,7 +6,8 @@ Page({
     currentTab: 0,
     value: '',
     atBottom: false,
-    showSth: false
+    showSth: false,
+    nonet: true
   },
   onLoad: function (options) {
     let user_id = wx.getStorageSync('user_id');

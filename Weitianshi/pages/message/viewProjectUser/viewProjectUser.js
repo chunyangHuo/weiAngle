@@ -3,7 +3,8 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    count: 0
+    count: 0,
+    nonet: true
   },
   onLoad: function (options) {
     let project_id = options.project_id;
