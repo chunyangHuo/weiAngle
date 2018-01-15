@@ -629,7 +629,7 @@ App({
     switch (num) {
       case '0':
         wx.switchTab({
-          url: '/pages/discoverInvest/discoverInvest',
+          url: '/pages/discoverProject/discoverProject',
         });
         break;
       case '1':
@@ -639,7 +639,7 @@ App({
         break;
       case '2':
         wx.switchTab({
-          url: '/pages/discoverInvest/discoverInvest',
+          url: '/pages/discoverProject/discoverProject',
         });
         break;
       default:
@@ -778,6 +778,18 @@ App({
     wx.setStorageSync('tran_area', []);
     wx.setStorageSync('tran_hotCity', []);
     wx.removeStorageSync('projectShopFilterCache');
+  },
+  //判断网络状态
+  netWorkChange(that) {
+    wx.onNetworkStatusChange(function (res) {
+      console.log(res.isConnected)
+      console.log(res.networkType)
+      if (res.networkType == "none") {
+        that.setData({ nonet: false })
+      } else {
+        that.setData({ nonet: true })
+      }
+    })
   },
 
   hasNothingMore(that, page_end) {

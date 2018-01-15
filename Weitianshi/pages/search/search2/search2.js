@@ -157,7 +157,7 @@ Page({
       case 3:
         {
           let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
+            url: url_common + '/api/investor/searchInvestorListByGroup',
             data: {
               user_id: user_id,
               type: 'investor',
@@ -172,7 +172,7 @@ Page({
       case 4:
         {
           let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
+            url: url_common + '/api/investor/searchInvestorListByGroup',
             data: {
               user_id: user_id,
               type: 'fa',
@@ -253,7 +253,7 @@ Page({
       mask: true,
     })
     wx.request({
-      url: url_common + '/api/investor/getInvestorListByGroup',
+      url: url_common + '/api/investor/searchInvestorListByGroup',
       data: {
         user_id: this.data.user_id,
         type: 'investor',
@@ -288,7 +288,7 @@ Page({
       mask: true,
     })
     wx.request({
-      url: url_common + '/api/investor/getInvestorListByGroup',
+      url: url_common + '/api/investor/searchInvestorListByGroup',
       data: {
         user_id: this.data.user_id,
         type: 'fa',

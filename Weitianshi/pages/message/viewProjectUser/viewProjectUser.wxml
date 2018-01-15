@@ -20,6 +20,7 @@
           <view class="t-investorColor" hover-class='t-hoverColor'>
             <!-- <template is='InvestorCard' data='{{item}}'></template> -->
             <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
+              <view class="t-redPoint" wx:if="{{item.message_status == 0}}"></view>
               <view class="t-applyMyProject t-contacts-detailm">
                 <view class="t-introduceBox flex">
                   <image src="{{item.user_avatar_url}}" class="t-userPic" wx:if="{{item.user_avatar_url}}"></image>

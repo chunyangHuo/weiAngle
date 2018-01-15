@@ -194,7 +194,7 @@ page {
 .blockInfo, .contectPerson {
   padding: 0 32rpx;
   height: 112rpx;
-  width: 92%;
+  width: 91.47%;
   justify-content: space-between;
   align-items: flex-end;
   line-height: 116rpx;
