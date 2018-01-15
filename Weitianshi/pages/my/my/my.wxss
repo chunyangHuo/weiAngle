@@ -169,6 +169,12 @@ page {
   flex-direction: column-reverse;
 }
 
+.user_text {
+  top: 32rpx;
+  right: 32rpx;
+  position: absolute;
+}
+
 .Identification {
   margin: 4rpx;
   border: 2rpx solid #40587a;
@@ -1047,9 +1053,11 @@ page {
 .no-border {
   border-left: none;
 }
+
 .successProjcet {
   margin-bottom: 52rpx;
 }
-#investProject .successProjcet:last-child{
+
+#investProject .successProjcet:last-child {
   margin-bottom: 0;
 }
