@@ -8,6 +8,7 @@ Page({
   data: {
     // 筛选搜索
     SearchInit: FilterModel.data,
+    nonet: true
   },
   onLoad(options) {
     let that = this;

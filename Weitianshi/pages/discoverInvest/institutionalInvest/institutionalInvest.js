@@ -7,6 +7,7 @@ Page({
 
   data: {
     banner_organization: app.globalData.picUrl.banner_organization,
+    nonet: true
   },
 
   onLoad: function (options) {

@@ -18,7 +18,8 @@ Page({
     investScore: 6,
     score_list: [],
     score_list1: [],
-    buttonOneText: '提交'
+    buttonOneText: '提交',
+    nonet: true
   },
   onLoad: function (options) {
     this.setData({
@@ -26,12 +27,10 @@ Page({
       user_id: options.user_id,
       competition_id: options.competition_id
     });
-    // console.log(options, this.data.user_id, this.data.competition_id);
   },
   onShow: function () {
     let that = this;
     this.history();
-
 
   },
   // 获取内容
@@ -44,9 +43,6 @@ Page({
         user_id: that.data.user_id,
         project_id: that.data.project_id,
         competition_id: that.data.competition_id,
-        // user_id: 'MWM6Gq7p',
-        // project_id: 'mr9R4m09',
-        // competition_id: 8,
       },
       success: function (res) {
         console.log('input填写', res);
@@ -92,8 +88,6 @@ Page({
         user_id: that.data.user_id,
         project_id: that.data.project_id,
         competition_id: that.data.competition_id,
-        // user_id: 'MWM6Gq7p',
-        // project_id: 'mr9R4m09',
       },
 
       success: function (res) {

@@ -192,7 +192,7 @@ page {
 }
 
 .projectDetailBox {
-  padding: 32rpx;
+  /* padding: 32rpx; */
   height: auto;
   position: relative;
   padding-bottom: 0;

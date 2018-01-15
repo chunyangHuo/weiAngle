@@ -19,7 +19,6 @@ Page({
     // ---------------------picker----------------------
     tips: ["其他", "独家签约", "非独家"],
     tips_index: 4, //独家效果
-    loading: '0',
     pro_goodness: "",
     service_fa: 0,
     service_yun: 0,
@@ -45,6 +44,7 @@ Page({
     },
     modalBox: 0,
     buttonOneText: '保存',
+    nonet: true
   },
   onLoad: function (options) {
     console.log(options)

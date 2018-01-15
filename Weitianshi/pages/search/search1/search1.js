@@ -5,7 +5,8 @@ Page({
 
   data: {
     tags: '',
-    com_id: 0
+    com_id: 0,
+    nonet:true
   },
 
   onLoad: function (options) {

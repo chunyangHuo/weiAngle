@@ -1,4 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
+ <include src='/utils/wxml/netWork' />
+ <view wx:if="{{nonet}}">
 <view class="entryBox flex" wx:if="{{!user}}" bindtap='entry' hover-class='t-hoverColor'>
   <view class="user_left">
     <image class="user_pic" src="/img/img-touxiang@2x.png"></image>
@@ -144,7 +146,7 @@
 
 
 <!--税号-->
- <view class="modalBox" hidden="{{modalBox==0}}">
+<view class="modalBox" hidden="{{modalBox==0}}">
   <view class="IdentificationNum">
     <view class="flex">
       <label class="oneLine"></label>
@@ -171,4 +173,5 @@
       </view>
     </view>
   </view>
-</view> 
+</view>
+</view>

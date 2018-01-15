@@ -1,6 +1,5 @@
-
-<!--pages/myProject/scanCode/scanCodeSuccess.wxml-->
-<view id="scanCodeSuccess">
+<include src='/utils/wxml/netWork' />
+<view id="scanCodeSuccess" wx:if="{{nonet}}">
   <view class="flex">
     <image class="pic" src="/img/img-computer.png"></image>
   </view>
