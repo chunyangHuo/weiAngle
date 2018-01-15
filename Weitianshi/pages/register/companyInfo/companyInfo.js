@@ -82,7 +82,7 @@ Page({
   position: function (e) {
     var that = this;
     var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
-    var rs = "";
+    var rs = ""; 
     var position = e.detail.value;
     for (var i = 0; i < position.length; i++) {
       rs = rs + position.substr(i, 1).replace(pattern, '');

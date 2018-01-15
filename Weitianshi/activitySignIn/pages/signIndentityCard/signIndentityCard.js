@@ -7,7 +7,8 @@ Page({
     apply_id: '',
     activity_id: '',
     activity: '',
-    userInfo: ''
+    userInfo: '',
+    user_id:'',
   },
   onLoad(options) {
     let apply_id = options.apply_id;
@@ -17,6 +18,9 @@ Page({
       activity_id: activity_id
     })
     app.loginPage(user_id => {
+      this.setData({
+        user_id
+      })
       this.getActivityDetail(apply_id, activity_id, user_id);
     })
   },
@@ -108,6 +112,13 @@ Page({
     } else {
       app.errorHide(that, res.data.error_Msg, 3000)
     }
+  },
+  // 一键拔号
+  telephone(e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
   },
   // 提交项目
   projectPush(e) {

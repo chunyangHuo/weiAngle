@@ -44,10 +44,15 @@
 .activityCard{
   margin-top: 36rpx;
   font-size: 28rpx;
-  padding: 32rpx 32rpx;
+}
+.activityCard .title{
+  padding-left:32rpx;
+  padding-bottom:24rpx;
 }
 .activityCard .cardItem{
-  margin-bottom: 64rpx;
+  padding: 32rpx 32rpx;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
 }
 .activityCard .cardItem:last-child{
   margin-bottom: 0;

@@ -7,7 +7,7 @@ App({
   onLaunch(options) {
     let url = this.globalData.url;
     let url_common = this.globalData.url_common;
-  
+
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
       //获取code
@@ -87,52 +87,42 @@ App({
             that.globalData.userInfo = res.userInfo;//这里,赋完值函数就结束了
             that.globalData.encryptedData = res.encryptedData;
             that.globalData.iv = res.iv;
-            wx.request({
+            that.httpPost({
               url: that.globalData.url + '/api/wx/returnOauth',
               data: {
                 code: code,
                 encryptedData: res.encryptedData,
                 iv: res.iv,
                 app_key: that.globalData.app_key
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log("这里是用户授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
-                //在globalData里存入open_session,session_time,user_id;
-                that.globalData.open_session = res.data.open_session;
-                wx.setStorageSync('open_session', res.data.open_session)
-                that.globalData.session_time = Date.now();
-                that.globalData.user_id = res.data.user_id;
-                wx.setStorageSync("user_id", res.data.user_id)
-                typeof cb == "function" && cb(wx.getStorageSync("user_id"))
-              },
-              fail: function () {
-                console.log("调用returnOauth失败")
               }
+            }, that).then(res => {
+              console.log("这里是用户授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
+              //在globalData里存入open_session,session_time,user_id;
+              that.globalData.open_session = res.data.open_session;
+              wx.setStorageSync('open_session', res.data.open_session)
+              that.globalData.session_time = Date.now();
+              that.globalData.user_id = res.data.user_id;
+              wx.setStorageSync("user_id", res.data.user_id)
+              typeof cb == "function" && cb(wx.getStorageSync("user_id"))
             })
           },
           //用户不授权
           fail: function (res) {
-            wx.request({
+            that.httpPost({
               url: that.globalData.url + '/api/wx/returnOauth',
               data: {
                 code: code,
                 app_key: that.globalData.app_key
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log("这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
-                //在globalData里存入open_session,session_time,user_id;
-                that.globalData.open_session = res.data.open_session;
-                wx.setStorageSync('open_session', res.data.open_session)
-                that.globalData.session_time = Date.now();
-                that.globalData.user_id = res.data.user_id;
-                wx.setStorageSync("user_id", res.data.user_id)
-                typeof cb == "function" && cb(wx.getStorageSync("user_id"))
-              },
-              fail: function () {
-                console.log("调用returnOauth失败")
-              },
+              }
+            }, that).then(res => {
+              console.log("这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
+              //在globalData里存入open_session,session_time,user_id;
+              that.globalData.open_session = res.data.open_session;
+              wx.setStorageSync('open_session', res.data.open_session)
+              that.globalData.session_time = Date.now();
+              that.globalData.user_id = res.data.user_id;
+              wx.setStorageSync("user_id", res.data.user_id)
+              typeof cb == "function" && cb(wx.getStorageSync("user_id"))
             })
           },
         })
@@ -605,8 +595,8 @@ App({
   },
 
   //请求封装
-  httpPost(data, that) {
-    return httpModel.httpPost(data, that)
+  httpPost(data, that,callBack) {
+    return httpModel.httpPost(data, that,callBack)
   },
   //用户操作模块(util/operationModel)
   operationModel() {
@@ -745,13 +735,13 @@ App({
 
   //页栈超出处理
   href(url = '/pages/discoverProject/discoverProject') {
-    let indexList=[
+    let indexList = [
       '/pages/discoverProject/discoverProject',
       'pages/message/message/message',
       'pages/my/myNew/myNew'
     ]
-    if(indexList.includes(url)) wx.switchTab({url: url})
-    else wx.navigateTo({url: url})
+    if (indexList.includes(url)) wx.switchTab({ url: url })
+    else wx.navigateTo({ url: url })
   },
 
   //多选
@@ -805,9 +795,9 @@ App({
     delay_time: 0,
     // url: "https://wx.weitianshi.cn",
     // url_common: "https://wx.weitianshi.cn"
-    // url: "https://wx.debug.weitianshi.cn",
-    // url_common: "https://wx.debug.weitianshi.cn"
     url: "https://wx.dev.weitianshi.cn",
     url_common: "https://wx.dev.weitianshi.cn"
+    // url: "https://wx.debug.weitianshi.cn",
+    // url_common: "https://wx.debug.weitianshi.cn"
   },
 }); 

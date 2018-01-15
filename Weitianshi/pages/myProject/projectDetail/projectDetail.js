@@ -954,7 +954,8 @@ Page({
                 data: {
                   open_session: wx.getStorageSync('open_session'),
                   user_id: user_id,
-                  project_id: project_id
+                  project_id: project_id,
+                  email: userEmail
                 },
                 method: 'POST',
                 success: function (res) {
