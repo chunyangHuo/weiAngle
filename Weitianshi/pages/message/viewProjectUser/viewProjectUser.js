@@ -4,17 +4,14 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     count: 0,
-    nonet: true
+    nonet: true,
+    jiandi:false,
   },
   onLoad: function (options) {
-    let that = this;
     let project_id = options.project_id;
     this.setData({
       project_id: project_id
     });
-    app.netWorkChange(that)
-  },
-  onShow: function () {
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -23,7 +20,7 @@ Page({
     // 初始化下拉加载相关参数
     app.initPage(that);
     var user_id = this.data.user_id;
-    let project_id = this.data.project_id;
+    // let project_id = this.data.project_id;
     // 获取浏览我的用户信息
     if (user_id) {
       wx.request({
@@ -58,6 +55,10 @@ Page({
       method: "POST",
     })
     wx.removeStorageSync("project_id")
+    app.netWorkChange(that);
+  },
+  onShow: function () {
+    
   },
   // 添加人脉
   addNetWork: function (e) {
@@ -143,7 +144,8 @@ Page({
       }
     }
     //调用通用加载函数
-    this.more(that, request, "contacts", that.data.contacts)
+    this.more(that, request, "contacts", that.data.contacts);
+     
   },
   //下拉加载模版
   more: function (that, request, str, dataSum) {
@@ -175,14 +177,23 @@ Page({
                 [str]: dataSum,
                 page_end: page_end,
                 requestCheck: true
-              })
+              });
+              console.log(that.data.page_end);
+              if (that.data.page_end == true) {
+                that.setData({
+                  jiandi: true,
+                  requestCheck: true
+                })
+              }
             }
-          })
-        } else {
-          app.errorHide(that, "没有更多了", 3000)
-          that.setData({
-            requestCheck: true
           });
+        } else {
+          if (that.data.page_end == true) {
+            that.setData({
+              jiandi: true,
+              requestCheck: true
+            })
+          }
         }
       }
     }

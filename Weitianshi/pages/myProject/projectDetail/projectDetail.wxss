@@ -159,6 +159,10 @@ page {
   background: #f2f2f2;
   padding: 28rpx 40rpx;
   border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
 }
 
 .load {
