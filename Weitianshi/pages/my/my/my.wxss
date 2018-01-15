@@ -164,7 +164,7 @@ page {
   border-radius: 50%;
 }
 
-.user_pic, user_text {
+.user_pic, .user_text {
   display: flex;
   flex-direction: column-reverse;
 }
