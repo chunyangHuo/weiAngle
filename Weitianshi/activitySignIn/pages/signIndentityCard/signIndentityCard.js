@@ -50,30 +50,35 @@ Page({
   },
   // 获取签到名单
   getSignForm(activity_id, user_id) {
-    wx.showLoading({
-      title: 'loading',
-      mask: true
-    })
-    app.httpPost({
-      url: url_common + '/api/activity/getSignApply',
-      data: {
-        activity_id: activity_id,
-        user_id: user_id || 0,
-        page: this.data.currentPage
-      }
-    }, this).then(res => {
-      let currentPage = this.data.currentPage;
-      let investorList = this.data.investorList;
-      let newPage = res.data.data.list;
-      currentPage++;
-      investorList = investorList.concat(newPage);
-      this.setData({
-        currentPage: currentPage,
-        investorList: investorList,
-        page_end: res.data.data.page_end
+    console.log(this.data.page_end)
+    if (this.data.page_end) {
+      app.errorHide(this, '没有更多了')
+    } else {
+      wx.showLoading({
+        title: 'loading',
+        mask: true
       })
-      wx.hideLoading();
-    })
+      app.httpPost({
+        url: url_common + '/api/activity/getSignApply',
+        data: {
+          activity_id: activity_id,
+          user_id: user_id || 0,
+          page: this.data.currentPage
+        }
+      }, this).then(res => {
+        let currentPage = this.data.currentPage;
+        let investorList = this.data.investorList;
+        let newPage = res.data.data.list;
+        currentPage++;
+        investorList = investorList.concat(newPage);
+        this.setData({
+          currentPage: currentPage,
+          investorList: investorList,
+          page_end: res.data.data.page_end
+        })
+        wx.hideLoading();
+      })
+    }
   },
   // 跳转到活动议程页面
   goToActivityAgenda() {
@@ -157,11 +162,6 @@ Page({
   },
   //加载更多
   loadMore() {
-    console.log(this.data.page_end)
-    if (this.data.page_end) {
-      app.errorHide(this, '没有更多了')
-    } else {
-      this.getSignForm(this.data.activity_id, this.data.user_id)
-    }
+    this.getSignForm(this.data.activity_id, this.data.user_id)
   }
 })
