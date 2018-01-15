@@ -171,8 +171,8 @@ Page({
             confirmText: '去看看',
             success: function (res) {
               if (res.confirm) {
-                wx.switchTab({
-                  url: '/pages/discoverInvest/discoverInvest',
+                wx.redirectTo({
+                  url: '/pages/discover/myFriend/myFriend',
                 })
               } else if (res.cancel) {
               }
