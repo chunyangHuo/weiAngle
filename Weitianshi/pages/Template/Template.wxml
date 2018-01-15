@@ -779,7 +779,7 @@
               <view class="t-user_image flex " wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
             </view>
             <view>
-              <view class="t-userInfo flex">
+              <view class="t-userInfo flex"> 
                 <view class="t-userName">{{item.user.user_name}}</view>
                 <view class="t-userCareer">{{item.user.user_career}}</view>
                 <view class="t-userCompany" style="text-align:left">{{item.user.user_company}}</view>

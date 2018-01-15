@@ -1,6 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <image src="/img/img@2x.png" class="activityImg">
-  <image class="activityUrl" src="{{userInfo.user_logo_url}}"></image>
+  <image class="activityUrl" wx:if='{{userInfo.user_logo_url}}' src="{{userInfo.user_logo_url}}"></image>
+  <view  class="activityUrl" wx:if='{{userInfo.user_logo_text}}'>{{userInfo.user_logo_text}}</view>
   <view class="activityName">{{userInfo.user_name}}</view>
   <view class="activityCom">{{userInfo.user_company_name}}</view>
   <view class="activityMobile flex">
@@ -44,6 +45,6 @@
 </block>
 <view style='height:128rpx;'></view>
 <view class="activityBottom flex">
-  <view class="activityMeet" bindtap='goToActivityAgenda'>活动议程</view>
-  <view class="activityWei" bindtap='goToIndex'>去微天使看看</view>
+  <button class="activityMeet" disabled='true' style='border-color:#ccc;' bindtap='goToActivityAgenda'>活动议程</button>
+  <button class="activityWei" bindtap='goToIndex'>去微天使看看</button>
 </view>

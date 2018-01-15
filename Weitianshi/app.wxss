@@ -890,6 +890,7 @@ textarea {
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 34rpx;
+  height: 28rpx;
   /* font-weight: bold; */
 }
 
@@ -912,6 +913,7 @@ textarea {
   white-space: nowrap;
   max-width: 240rpx;
   font-weight: bold;
+  height: 44rpx;
 }
 
 .t-applyMyProject .t-userPart {

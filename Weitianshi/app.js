@@ -737,8 +737,8 @@ App({
   href(url = '/pages/discoverProject/discoverProject') {
     let indexList = [
       '/pages/discoverProject/discoverProject',
-      'pages/message/message/message',
-      'pages/my/myNew/myNew'
+      '/pages/message/message/message',
+      '/pages/my/myNew/myNew'
     ]
     if (indexList.includes(url)) wx.switchTab({ url: url })
     else wx.navigateTo({ url: url })

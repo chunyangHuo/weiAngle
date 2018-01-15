@@ -60,9 +60,19 @@ Page({
       })
     })
   },
-  //跳转到活动议程页面
+  // 跳转到活动议程页面
   goToActivityAgenda() {
     app.href('/activitySignIn/pages/activityAgenda/activityAgenda');
+  },
+  // 跳转用户详情
+  userDetail(e){
+    let id = e.currentTarget.dataset.id
+    var user_id = wx.getStorageSync("user_id");//用戶id
+    if (id == user_id) {
+      app.href('/pages/my/myNew/myNew');
+    } else {
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+    }
   },
   // 直接加人脉
   contactsAddDirect(e) {

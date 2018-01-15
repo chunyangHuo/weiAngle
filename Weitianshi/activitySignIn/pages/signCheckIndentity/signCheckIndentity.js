@@ -10,8 +10,24 @@ Page({
   onLoad(options) {
     app.loginPage(user_id => {
       this.getActivityDetail();
+      if(user_id != 0){
+        // this.hasChecked(user_id);
+      }
     })
-   
+  },
+  // 如果已经签到则跳转凭证
+  hasChecked(user_id){
+    app.httpPost({
+      url: url_common + '/api/activity/confirmAttendByUserId',
+      data:{
+        user_id: user_id,
+        activity_id: this.data.activity_id 
+      }
+    },this).then(res=>{
+      if (res.data.apply_id != 0) app.href('/activitySignIn/pages/signIndentityCard/signIndentityCard?apply_id=' + res.data.apply_id + '&&activity_id=' + this.data.activity_id);
+    }).catch(res=>{
+      app.errorHide(this,res.data.error_msg)
+    })
   },
   // 获取活动信息
   getActivityDetail() {
@@ -32,14 +48,14 @@ Page({
       name: '名称',
       value: data.activity_title
     });
-    let end_time = '暂时未定';
-    let start_time = '暂时未定';
+    let end_time = '暂未透露';
+    let start_time = '暂未透露';
     if (data.start_time) start_time = data.start_time.substring(0, 16);
     if (data.end_time) end_time = data.end_time.substring(0, 16);
-    if(end_time == '暂时未定' && start_time == '暂时未定'){
+    if (end_time == '暂未透露' && start_time == '暂未透露'){
       activityDetail.push({
         name: '时间',
-        value: ''
+        value: '暂未透露'
       });
     }else{
       activityDetail.push({

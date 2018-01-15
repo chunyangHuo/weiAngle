@@ -45,6 +45,9 @@
   position: absolute;
   top: 31rpx;
   left: 39.5%;
+  text-align: center;
+  line-height: 160rpx;
+  font-size: 60rpx;
 }
 
 .activityMobile {
