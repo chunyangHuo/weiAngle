@@ -25,7 +25,8 @@ Page({
       app.globalData.picUrl.banner_5,
     ],
     imgUrls1: app.globalData.picUrl.page_discoverProject,
-    atBottom: false
+    atBottom: false,
+    nonet: true
   },
   onLoad(options) {
     let that = this;
@@ -44,9 +45,10 @@ Page({
       });
       that.selectProject();
     })
+    app.netWorkChange(that)
   },
   onShow() {
-    let  that = this;
+    let that = this;
     that.selectProject();
   },
   onReady() {
@@ -308,6 +310,23 @@ Page({
   searchMore() {
     wx.navigateTo({
       url: '/pages/search/search2/search2',
+    })
+  },
+  netWork() {
+    wx.onNetworkStatusChange(function (res) {
+      console.log(111)
+      console.log(res.isConnected)
+      let that = this;
+      if (res.isConnected) {
+        this.setData({
+          aa: res.isConnected
+        })
+      } else {
+        this.setData({
+          aa: res.isConnected
+        })
+      }
+      console.log(res.networkType)
     })
   }
 })
