@@ -86,7 +86,19 @@
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
     "pages/myProject/proMilestone/proMilestone"
-
+  ],
+  "subPackages": [
+    {
+      "root": "activitySignIn/",
+      "pages": [
+        "pages/activityDetail/activityDetail",
+        "pages/activityAgenda/activityAgenda",
+        "pages/signScan/signScan",
+        "pages/signCheckIndentity/signCheckIndentity",
+        "pages/signIndentityCard/signIndentityCard",
+        "pages/signNoIndentity/signNoIndentity"
+      ]
+    }
   ],
   "window": {
     "navigationBarBackgroundColor": "#fafafa",

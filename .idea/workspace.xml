@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba9c1c97-0e44-4892-b6ce-9b9b0d1f9a2a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/activitySignForm/activitySignForm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/activitySignForm/activitySignForm.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/activitySignForm/activitySignForm.wxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/activitySignForm/activitySignForm.wxss" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.js" afterPath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxml" afterPath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxss" afterPath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signScan/signScan.js" afterPath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signScan/signScan.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signIndentityCard/signIndentityCard.js" afterPath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signIndentityCard/signIndentityCard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signIndentityCard/signIndentityCard.wxml" afterPath="$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signIndentityCard/signIndentityCard.wxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/app.js" afterPath="$PROJECT_DIR$/Weitianshi/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/app.json" afterPath="$PROJECT_DIR$/Weitianshi/app.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/project.config.json" afterPath="$PROJECT_DIR$/Weitianshi/project.config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Weitianshi/utils/httpModel.js" afterPath="$PROJECT_DIR$/Weitianshi/utils/httpModel.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +29,8 @@
       <file leaf-file-name="signCheckIndentity.wxml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+            <state relative-caret-position="374">
+              <caret line="17" column="47" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -73,6 +77,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -86,11 +91,16 @@
               <item name="weiAngle" type="462c0819:PsiDirectoryNode" />
               <item name="Weitianshi" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="weiAngle" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weiAngle" type="462c0819:PsiDirectoryNode" />
+              <item name="Weitianshi" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -125,11 +135,12 @@
       <workItem from="1515578146795" duration="42000" />
       <workItem from="1515651772569" duration="3354000" />
       <workItem from="1515658122227" duration="9000" />
+      <workItem from="1515851043077" duration="18000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5499000" />
+    <option name="totallyTimeSpent" value="5517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -163,6 +174,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -250,8 +269,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Weitianshi/activitySignIn/pages/signCheckIndentity/signCheckIndentity.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        <state relative-caret-position="374">
+          <caret line="17" column="47" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
           <folding />
         </state>
       </provider>

@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.2",
+	"libVersion": "1.9.1",
 	"appid": "wx29c97aaa8a58aedb",
 	"projectname": "%E5%A4%A7%E6%B9%BE%E5%8C%BA",
 	"condition": {
@@ -25,134 +25,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "投资",
-					"pathName": "pages/discoverInvest/discoverInvest",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "browseMe",
-					"pathName": "pages/message/browseMe/browseMe",
-					"query": ""
-				},
-				{
-					"id": 5,
-					"name": "分享后的我的项目 ",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=e0qQB10v&&share_id=mr93M3KW"
-				},
-				{
-					"id": 5,
-					"name": "project_orgMatch",
-					"pathName": "pages/organization/subPage/project_orgMatch/project_orgMatch",
-					"query": "project_id=a1ryoGW3"
-				},
-				{
-					"id": 14,
-					"name": "项目评价",
-					"pathName": "pages/projectScale/projectEvaluation/projectEvaluation",
-					"query": ""
-				},
-				{
-					"id": 18,
-					"name": "投资需求",
-					"pathName": "pages/match/match/investDemand/investDemand",
-					"query": "current=1"
-				},
-				{
-					"id": -1,
-					"name": "成功案例",
-					"pathName": "pages/my/investCaseEdit/investCaseEdit",
-					"query": "index=0&case_id=415"
-				},
-				{
-					"id": -1,
-					"name": "我的投资名片",
-					"pathName": "pages/my/myNew/myNew",
-					"query": ""
-				},
-				{
-					"id": 18,
-					"name": "项目详情",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=QWNn5OW1&index=0"
-				},
-				{
-					"id": 17,
-					"name": "项目店铺",
-					"pathName": "pages/my/projectShop/projectShop/projectShop",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "浏览项目的人",
-					"pathName": "pages/message/viewProjectUser/viewProjectUser",
-					"query": "project_id=PpPk2ZWR"
-				},
-				{
-					"id": 22,
-					"name": "约谈",
-					"pathName": "pages/message/contactProject/projectList/projectList",
-					"query": "id=xpE8b5Wq"
-				},
-				{
-					"id": -1,
-					"name": "他人的名片",
-					"pathName": "pages/userDetail/networkDetail/networkDetail",
-					"query": "id=Opv5J3lW"
-				},
-				{
-					"id": -1,
-					"name": "创建页面",
-					"pathName": "pages/myProject/publishProject/publishProject",
-					"query": ""
-				},
-				{
-					"id": 25,
-					"name": "他人的投资名片",
-					"pathName": "pages/userDetail/networkDetail/networkDetail",
-					"query": "id=Opv5J3lW"
-				},
-				{
-					"id": -1,
-					"name": "我的投资名片",
-					"pathName": "pages/my/my/my",
-					"query": "id=Opv5J3lW"
-				},
-				{
-					"id": 23,
 					"name": "活动签到",
 					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
-					"query": ""
+					"query": "apply_id=8&&activity_id=1"
 				},
 				{
 					"id": -1,
-					"name": "本人项目详情",
-					"pathName": "pages/myProject/projectDetail/projectDetail",
-					"query": "id=k0xlyx0v&index=undefined"
-				},
-				{
-					"id": -1,
-					"name": "他人项目详情",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=bpjJXqp9"
-				},
-				{
-					"id": -1,
-					"name": "报名身份确认",
-					"pathName": "activitySignIn/pages/signNoIndentity/signNoIndentity",
-					"query": ""
-				},
-
-				{
-					"id": -1,
-					"name": "推送成功",
-					"pathName": "pages/search/search2/search2",
-					"query": ""
+					"name": "活动签到确认",
+					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
+					"query": "apply_id=8&&activity_id=1"
 				}
 			]
 		}

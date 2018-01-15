@@ -59,6 +59,9 @@ export function http(data, that) {
     throw Error('重复提交请求：' + ajaxKey)
   }
   addRequestKey(ajaxKey)
+  wx.showLoading({
+    title: 'loading',
+  })
   //bluebird.js包装成promisepromise api
   return new Promise(function (resolve, reject) {
     //通过wx.request api 向服务器端发出http请求
@@ -68,6 +71,7 @@ export function http(data, that) {
       method: data.method,
       header: data.header || { 'Content-Type': 'application/json' },
       complete: function (res) {
+        wx.hideLoading();
         // 请求完成，释放记录的key，可以发起下次请求了
         removeRequestKey(ajaxKey)
         let statusCode = res.statusCode;

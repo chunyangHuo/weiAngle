@@ -1,32 +1,32 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:2000rpx" scroll-y="true" bindscrolltolower=''>
   <image src="/img/img@2x.png" class="activityImg">
-    <image class="activityUrl" src="{{userInfo.userUrl}}"></image>
-    <view class="activityName">{{userInfo.userName}}</view>
-    <view class="activityCom">{{userInfo.userCompany}}</view>
+    <image class="activityUrl" src="{{userInfo.user_logo_url}}"></image>
+    <view class="activityName">{{userInfo.user_name}}</view>
+    <view class="activityCom">{{userInfo.user_company_name}}</view>
     <view class="activityMobile flex">
       <view class="activityMobile1">手机</view>
-      <view class="activityMobile2">{{userInfo.userMobile}}</view>
-      <view wx:if="{{!userInfo.userMobile}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view class="activityMobile2">{{userInfo.user_mobile}}</view>
+      <view wx:if="{{!userInfo.user_mobile}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
     <view class="activityChat flex">
       <view class="activityMobile1">微信</view>
-      <view class="activityMobile2">{{userInfo.userChat}}</view>
-      <view wx:if="{{!userInfo.userChat}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view class="activityMobile2">{{userInfo.user_wechat}}</view>
+      <view wx:if="{{!userInfo.user_wechat}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
     <view class="activityMail flex">
-      <view class="activityMobile1">邮箱</view>
-      <view class="activityMobile2">{{userInfo.userMail}}</view>
-      <view wx:if="{{!userInfo.userMail}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view class="activityMobile1">邮箱</view> 
+      <view class="activityMobile2">{{userInfo.user_email}}</view>
+      <view wx:if="{{!userInfo.user_email}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
     <view class="activityCareer flex">
       <view class="activityMobile1">职位</view>
-      <view class="activityMobile2">{{userInfo.userCareer}}</view>
-      <view wx:if="{{!userInfo.userCareer}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view class="activityMobile2">{{userInfo.user_company_career}}</view>
+      <view wx:if="{{!userInfo.user_company_career}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
-    <view class="activityacName">{{activity.name}}</view>
-    <view class="activityacTime">{{activity.time}}</view>
-    <view class="activityContent">{{activity.content}}</view>
+    <view class="activityacName">{{activity.activity_title}}</view>
+    <view class="activityacTime">{{activity.start_time || '暂时未定'}} ~ {{activity.end_time || '暂时未定'}}</view>
+    <view class="activityContent">{{activity.activity_address}}</view>
   </image>
   <view class="selectProject flex">
     <label style="width:26rpx;height:2rpx;background:#333;margin-right:20rpx"></label>
@@ -34,7 +34,7 @@
     <label style="width:26rpx;height:2rpx;background:#333;margin-left:20rpx;"></label>
   </view>
   <!-- 已经报名用户列表 -->
-  <!-- <block wx:for="{{investorList}}" wx:key="{{investorList}}"> -->
+   <block wx:for="{{investorList}}" wx:key="{{investorList}}">
     <view class='investorCard'>
       <view class="t-investorColor" hover-class='t-hoverColor'>
         <template is='InvestorCard' data='{{item,user_id,user_mobile}}'></template>
@@ -42,9 +42,10 @@
         <template is='cardBottom1' data='{{item,user_id,user_mobile}}'></template>
       </view>
     </view>
-  <!-- </block> -->
+  </block>
+  <view style='height:128rpx;'></view>
   <view class="activityBottom flex">
-    <view class="activityMeet">活动议程</view>
-    <view class="activityWei">去微天使看看</view>
+    <view class="activityMeet" bindtap='goToActivityAgenda'>活动议程</view>
+    <view class="activityWei" bindtap='goToIndex'>去微天使看看</view>
   </view>
 </scroll-view>
