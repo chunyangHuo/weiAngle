@@ -84,7 +84,8 @@ Page({
           }
         },
       });
-    })
+    });
+    app.netWorkChange(that)
 
   },
   // 回到首页

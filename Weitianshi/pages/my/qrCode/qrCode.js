@@ -8,6 +8,7 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    let that = this;
     let QR_id = this.options.user_id;
     let type = this.options.type;
     if (type) {
@@ -15,7 +16,8 @@ Page({
         QR_id: QR_id,
         type: type
       })
-    }
+    };
+    app.netWorkChange(that)
   },
   onShow: function () {
     let that = this;

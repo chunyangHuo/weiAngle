@@ -98,7 +98,8 @@ Page({
         })
         that.showStatus(that, id, "share", share_id);
       })
-    }
+    };
+    app.netWorkChange(that)
   },
   onShow: function () {
     let that = this;

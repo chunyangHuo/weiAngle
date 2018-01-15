@@ -24,7 +24,8 @@ Page({
       that.setData({
         type: type
       })
-    }
+    };
+    app.netWorkChange(that)
   },
   onShow: function () {
     var that = this;

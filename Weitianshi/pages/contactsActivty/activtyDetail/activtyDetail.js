@@ -7,6 +7,10 @@ Page({
     status: false,
     activtyDetail: app.globalData.picUrl.activtyDetail
   },
+  onLoad: function () {
+    let that = this;
+    app.netWorkChange(that)
+  },
   onShow: function () {
     let that = this;
     app.loginPage(function (user_id) {

@@ -11,7 +11,8 @@ Page({
     let that = this;
     that.setData({
       project_id: project_id
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     var user_id = wx.getStorageSync('user_id');//获取我的user_id

@@ -79,7 +79,8 @@ Page({
           }
         });
       }
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     let that = this;

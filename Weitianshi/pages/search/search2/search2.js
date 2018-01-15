@@ -13,7 +13,9 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     this.setData({
       user_id: user_id
-    })
+    });
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function () {
 

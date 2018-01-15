@@ -27,6 +27,8 @@ Page({
       user_id: options.user_id,
       competition_id: options.competition_id
     });
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function () {
     let that = this;

@@ -15,11 +15,13 @@ Page({
   onLoad(options) {
     let that = this;
     app.initPage(that);
+    app.netWorkChange(that)
     wx.showLoading({
       title: 'loading',
       mask: true,
     })
-    that.getInfo('', 1)
+    that.getInfo('', 1);
+    app.netWorkChange(that)
   },
   onShow() { },
   //搜索战队

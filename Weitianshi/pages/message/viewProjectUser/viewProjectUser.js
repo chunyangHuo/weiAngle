@@ -7,10 +7,12 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    let that = this;
     let project_id = options.project_id;
     this.setData({
       project_id: project_id
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     wx.showLoading({

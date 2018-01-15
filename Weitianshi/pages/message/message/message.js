@@ -30,6 +30,10 @@ Page({
     ],
     status: 0
   },
+  onLoad:function(){
+    let that=this;
+    app.netWorkChange(that)
+  },
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');

@@ -7,6 +7,10 @@ Page({
     count: 0,
     nonet: true
   },
+  onLoad:function(){
+    let that=this;
+    app.netWorkChange(that)
+  },
   onShow: function () {
     var that = this;
     app.initPage(that);

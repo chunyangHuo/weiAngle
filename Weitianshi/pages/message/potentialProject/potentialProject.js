@@ -11,6 +11,8 @@ Page({
     nonet: true
   },
   onLoad: function (e) {
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function (e) {
     // 我申请查看的项目

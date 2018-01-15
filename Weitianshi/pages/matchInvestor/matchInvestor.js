@@ -8,6 +8,10 @@ Page({
     modalBox: 0,
     nonet: true
   },
+  onLoad:function(){
+    let that=this;
+    app.netWorkChange(that)
+  },
   onShow() {
     let that = this;
     this.getMyProject();
