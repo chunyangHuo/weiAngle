@@ -203,7 +203,7 @@ page {
   color: #333;
   line-height: 48rpx;
   text-align: left !important;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
 }
 
 .industry {
@@ -220,11 +220,9 @@ page {
 }
 
 .allIndustry {
-  margin: 0rpx 0 20rpx 0;
+  margin: 0;
   word-break: break-all;
   flex-wrap: wrap;
-  /* word-break: break-all;
-  flex-wrap: wrap; */
 }
 
 .allProjectDetail {
@@ -1080,7 +1078,7 @@ page {
   border-radius: 4rpx;
   text-align: center;
   z-index: 666;
-  display: block !important;
+  display: block!important;
   background: #3378e0;
   margin-left: 38%;
   /* border-bottom: 4rpx solid #3378e0; */
@@ -1546,7 +1544,7 @@ page {
 }
 
 #projectBox .teamPro {
-  margin-bottom: 40rpx;
+  margin-bottom: 22rpx;
   margin-top: 40rpx;
 }
 
@@ -1755,7 +1753,7 @@ page {
   -webkit-box-orient: vertical;
   font-size: 12px;
   color: #666;
-  line-height: 42rpx;
+  line-height: 34rpx;
 }
 
 #productBox .projectTips {
@@ -2127,7 +2125,7 @@ page {
   width: 104rpx;
   height: 104rpx;
   /* background: red; */
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
 }
 
 .productInside {
@@ -2149,7 +2147,7 @@ page {
 }
 
 .productMiddle {
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
 }
 
 .detailTop {
@@ -2226,6 +2224,7 @@ page {
   margin-top: 57rpx;
   font-size: 18px;
   color: #999;
+  line-height: 67rpx;
 }
 
 .t-userName {

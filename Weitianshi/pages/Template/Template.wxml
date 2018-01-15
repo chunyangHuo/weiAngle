@@ -827,7 +827,7 @@
         </view>
         <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
         <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
-
+        <view class="t-user_text" wx:if="{{item.investor_logo_text==''}}"></view>
       </view>
       <view class="t-careerCompany flex">
         <view class="t-userPosition">{{item.investor_career}}</view>
@@ -847,7 +847,7 @@
         </view>
         <view class='t-cardBottomItem t-wait flex' wx:if='{{item.follow_status==2}}'>
           <!-- <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image> -->
-          <view style='color:#999;'>待验证</view>
+          <view style='color:#999;'>待通过</view>
         </view>
         <view class='t-cardBottomItem t-add flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
           <!-- <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image> -->
@@ -938,6 +938,7 @@
         </view>
         <view class="t-record" wx:if="{{item.active_status}}">{{item.active_status}}</view>
         <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
+        <view class="t-user_text" wx:if="{{item.investor_logo_text==''}}"></view>
 
       </view>
       <view class="t-careerCompany flex">
@@ -979,19 +980,18 @@
 <template name='cardBottom2'>
   <view class='t-cardBottom flex' wx:if='{{item.user_id!=user_id}}'>
     <view class="t-history1" wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
-      <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
+      <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>
       <span>加好友</span>
     </view>
     <view class="t-history1" wx:if='{{item.follow_status==1}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-telephone="{{item.user_mobile}}" catchtap="telephone ">
-      <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
+      <image class='t-itemPic' src='/img/icon-dadianhua@2x.png'></image>
       <span>打电话</span>
     </view>
     <view class="t-history1" wx:if='{{item.follow_status==2}}' hover-class='t-hoverColor' hover-stop-propagation='true'>
-      <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-      <span>待验证</span>
+      <span>待通过</span>
     </view>
     <view class="t-history1" wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect' hover-class='t-hoverColor' hover-stop-propagation='true'>
-      <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
+      <image class='t-itemPic' src='/img/icon-jiahaoyou@2x.png'></image>
       <span>加好友</span>
     </view>
     <view class="t-line"></view>
@@ -1026,7 +1026,7 @@
 <template name="jumpToWhere">
   <view class="t-upBox flex">
     <view class="t-statusPic">
-      <image src="/img/img-chenggong@2x.png" class="t-statusPi"></image>
+      <image src="/img/img-chenggong@2x.png" class="t-statusPic"></image>
     </view>
     <view class="t-bindSuccessBox">
       <view class="t-bindSuccess">{{text}}</view>
@@ -1045,13 +1045,13 @@
 </template>
 
 <!--投资案例  -->
-<template name="invest ">
+<template name="invest">
   <view id="invest" class="invest">
     <view class="flex investW">
       <view class="investLogo">
         <view class="investLogo1">
           <image src="{{item.project_logo}}" wx:if="{{item.project_logo}}" mode="aspectFit"></image>
-          <image src="/img/warband-logo.png" wx:if="{{item.project_logo=='' }} "></image>
+          <image src="/img/warband-logo.png" wx:if="{{item.project_logo==''}} "></image>
         </view>
       </view>
       <view class="investRight">

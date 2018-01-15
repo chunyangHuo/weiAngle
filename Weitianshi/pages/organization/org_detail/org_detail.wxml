@@ -114,7 +114,7 @@
   <!--投资案例  -->
   <view class="media1" wx:if="{{investment_events.list.length!=0}}">
     <view class="inMedia  flex case1">
-      <view class="case ">投资案例</view>
+      <view class="case">投资案例</view>
       <view class="caseAll" bindtap="toCase">
         <view class="caseIn caseLeft"> 全部</view>
         <view class="caseIn">({{investment_events.investment_event_total_num}})</view>
