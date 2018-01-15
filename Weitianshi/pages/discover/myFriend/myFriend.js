@@ -16,8 +16,8 @@ Page({
       hotCity: [],
       schedule: [],
       search: '',
-
-    }
+    },
+    nonet: true
   },
   onLoad(options) {
     let that = this;

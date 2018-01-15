@@ -7,7 +7,8 @@ Page({
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
     modalBox: 0,
-    buttonOneText: "确定"
+    buttonOneText: "确定",
+    nonet: true
   },
   onLoad: function (e) {
   },

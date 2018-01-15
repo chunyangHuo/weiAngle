@@ -7,7 +7,8 @@ Page({
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目,
-    hasRedPoint: true
+    hasRedPoint: true,
+    nonet: true
   },
   onLoad: function (options) {
     let type = options.type;

@@ -3,7 +3,8 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    imgUrls: app.globalData.picUrl.band_identity
+    imgUrls: app.globalData.picUrl.band_identity,
+    nonet: true
   },
 
   onLoad: function (options) {

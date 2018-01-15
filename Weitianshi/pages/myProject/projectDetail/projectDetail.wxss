@@ -186,13 +186,13 @@ page {
 .projectDetailType {
   height: 100rpx;
   width: 100rpx;
-  right: -3rpx;
+  right: 0rpx;
   top: -6rpx;
   position: absolute;
 }
 
 .projectDetailBox {
-  padding: 32rpx;
+  /* padding: 32rpx; */
   height: auto;
   position: relative;
   padding-bottom: 0;

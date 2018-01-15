@@ -6,6 +6,7 @@ Page({
   data: {
     imgUrls: app.globalData.picUrl.page_matchInvestorEmpty,
     modalBox: 0,
+    nonet: true
   },
   onShow() {
     let that = this;

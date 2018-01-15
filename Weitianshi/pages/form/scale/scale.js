@@ -8,7 +8,8 @@ Page({
     error: "0",
     error_text: "",
     tran_scale: [],
-    scale_id: ""
+    scale_id: "",
+    nonet: true
   },
   onLoad: function () {
     var that = this;

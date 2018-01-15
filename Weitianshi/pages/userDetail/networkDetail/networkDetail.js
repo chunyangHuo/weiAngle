@@ -13,7 +13,8 @@ Page({
     blue: -1,
     condition: 0,
     IdentificationShow: 0,
-    playTime: 1
+    playTime: 1,
+    nonet: true
   },
   onLoad: function (options) {
     wx.showLoading({

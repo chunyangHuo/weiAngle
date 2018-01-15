@@ -11,7 +11,8 @@ Page({
     memberList: {
       list: []
     },
-    industry_list: []
+    industry_list: [],
+    nonet: true
   },
   onLoad: function (options) {
     let that = this;

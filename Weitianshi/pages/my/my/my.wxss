@@ -832,7 +832,7 @@ page {
 .contactIcon {
   padding: 32rpx 38rpx 26rpx 36rpx;
   background: #fff;
-  width: 678rpx;
+  width: 677rpx;
 }
 
 .messageIconStyle {

@@ -4,7 +4,8 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/shareModel'
 Page({
   data: {
-    dataUrl: ""
+    dataUrl: "",
+    nonet: true
   },
   onLoad: function (options) {
     let QR_id = this.options.user_id;

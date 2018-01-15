@@ -4,7 +4,7 @@ var url_common = app.globalData.url_common;
 
 Page({
   data: {
-
+    nonet: true
   },
   onLoad: function (options) {
     let user_id = options.user_id;
@@ -19,7 +19,6 @@ Page({
     let pages = getCurrentPages();
     let pre = pages[pages.length - 2];
     pre.data.firstTime = false;
-
     wx.request({
       url: url_common + '/api/user/getUserBasicInfo',
       data: {

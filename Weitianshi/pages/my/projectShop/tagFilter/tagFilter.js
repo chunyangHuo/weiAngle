@@ -53,7 +53,8 @@ Page({
       stage:[],
       scale:[],
       hotCity:[]
-    }
+    },
+    nonet: true
   },
   onLoad(){
     this._initData();

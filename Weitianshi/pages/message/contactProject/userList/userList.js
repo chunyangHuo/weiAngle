@@ -4,7 +4,7 @@ var url_common = app.globalData.url_common;
 Page({
 
   data: {
-
+    nonet: true
   },
 
   onLoad: function (options) {

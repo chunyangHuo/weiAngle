@@ -5,7 +5,7 @@ import *  as  FilterModel from '../../../../utils/filterModel';
 import * as ShareModel from '../../../../utils/shareModel';
 Page({
   data: {
-
+    nonet: true
   },
 
   onLoad: function (options) {

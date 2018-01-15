@@ -4,7 +4,8 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     otherPerson: false,
-    empty: 0
+    empty: 0,
+    nonet: true
   },
   onLoad: function (options) {
     let user_id = options.user_id;

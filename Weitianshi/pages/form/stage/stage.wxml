@@ -1,22 +1,14 @@
-<view id="doMain">
+<include src='/utils/wxml/netWork' />
+<view id="doMain" wx:if="{{nonet}}">
   <view class="title">*最多可选择5个</view>
-  <!--<view class="context flex">
-    <block wx:for="{{payStage}}" wx:key="{{item.stage_id}}">
-      <label  class="tips">
-        <view wx:for-index="idx" bindtap="checkboxChange" id="{{item.stage_id}}" data-index="{{index}}" data-value='{{item.stage_name}}' data-check="0" wx:key="{{item.stage_id}}">
-          <checkbox class="checkbox"></checkbox>
+  <view class="context flex">
+    <block wx:for="{{stage}}" wx:key="{{item.stage_id}}">
+      <label class="tips">
+        <view class="{{item.check ==true?'checkedOne':''}}" id="{{item.stage_id}}" data-index="{{index}}" data-item="{{item}}" bindtap="checkboxChange">
           {{item.stage_name}}</view>
       </label>
     </block>
-  </view>-->
-      <view class="context flex">
-        <block wx:for="{{stage}}" wx:key="{{item.stage_id}}">
-          <label class="tips">
-            <view class="{{item.check ==true?'checkedOne':''}}" id="{{item.stage_id}}" data-index="{{index}}" data-item="{{item}}" bindtap="checkboxChange">
-              {{item.stage_name}}</view>
-          </label>
-        </block>
-      </view>
+  </view>
   <button class="nextBtn" bindtap="certain">
     确定
   </button>

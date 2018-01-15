@@ -23,7 +23,8 @@ Page({
       value: ["选择领域"],
       id: []
     },
-    buttonOneText:'发布'
+    buttonOneText:'发布',
+    nonet: true
   },
   onLoad: function (options) {
     var user_id = wx.getStorageSync('user_id');

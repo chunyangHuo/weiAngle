@@ -17,7 +17,8 @@ Page({
       white_user: 0,
       black_company: '',
       black_user: ''
-    }
+    },
+    nonet: true
   },
 
   onLoad: function (options) {

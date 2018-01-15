@@ -7,6 +7,7 @@ Page({
     tran_stage: [],
     error: "0",
     error_text: "",
+    nonet: true
   },
   onLoad: function () {
     var that = this;

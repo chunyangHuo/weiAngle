@@ -5,7 +5,8 @@ Page({
   data: {
     province: [],
     city: [],
-    provinceNum: 1
+    provinceNum: 1,
+    nonet: true
   },
   onLoad: function (options) {
     // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例

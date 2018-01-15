@@ -10,7 +10,8 @@ Page({
     investorList: [],
     faList: [],
     myList: [],
-    placeHold: "请输入姓名、公司、品牌"
+    placeHold: "请输入姓名、公司、品牌",
+    nonet: true
   },
   onLoad: function (options) {
     let that = this;

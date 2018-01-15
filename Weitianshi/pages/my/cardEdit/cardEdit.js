@@ -4,6 +4,7 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     buttonOneText: '保存',
+    nonet: true
   },
   onLoad: function (options) {
     var that = this;

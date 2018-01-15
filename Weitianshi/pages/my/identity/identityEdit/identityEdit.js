@@ -5,7 +5,8 @@ Page({
   data: {
     array: ['否', '是'],
     upLoadSuccess: false,
-    buttonOneText: '提交'
+    buttonOneText: '提交',
+    nonet: true
   },
   onLoad: function (option) {
     let that = this;

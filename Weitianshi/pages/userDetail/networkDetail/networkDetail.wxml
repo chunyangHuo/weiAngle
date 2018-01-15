@@ -1,5 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
-<view id="my">
+<include src='/utils/wxml/netWork' />
+
+<view id="my" wx:if="{{nonet}}">
 
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,blue:blue,count:count,text:'加他为人脉',show:0,IdentificationShow:2,playTime:1}}"></template>
@@ -109,33 +111,6 @@
   </view>
 
   <!-- button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉 -->
-  <!-- <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3||button_type == 4}}">
-    <view class="flex pushProjectBox" hover-class='t-other-button-hover'>
-      <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
-    </view>
-    <view class="t-line"></view>
-    <view class="flex addPersonBox" hover-class='t-other-button-hover'>
-      <image src="/img/icon-jiarenmai-w@2x.png" class="iconStyle"></image>
-      <view class="addPersonBtn add-contactsm" bindtap="addPerson">加人脉</view>
-    </view>
-  </view> -->
-  <!--button-type == 2 待验证状态  -->
-  <!-- <view class="floatBtn flex addPerson" wx:if="{{button_type==2}}">
-    <view class="flex pushProjectBox" data-id="{{user.user_id}}" hover-class='t-other-button-hover'>
-      <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
-    </view>
-    <view class="t-line"></view>
-    <view class="flex addPersonBox">
-      <image src="/img/icon-daiyanzheng@3x.png" class="iconStyle"></image>
-      <view class="addPersonBtn">待验证</view>
-    </view>
-  </view> -->
-  <!-- <view class="floatBtn flex pushPro" wx:if="{{button_type==1}}" data-id="{{user.user_id}}" hover-class='t-other-button-hover'>
-    <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-    <view class="pushProjectAfter pushprojectm" bindtap="pushProjectTo">推送项目</view>
-  </view> -->
   <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
     <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
       <image src='/img/icon-shouye@2x.png' class="t-shopPic1"></image>

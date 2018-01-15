@@ -4,7 +4,8 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     count: 0,
-    jiandi:false
+    jiandi:false,
+    nonet: true
   },
   onLoad: function (options) {
     console.log(options)

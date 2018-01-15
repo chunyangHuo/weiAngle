@@ -61,6 +61,7 @@ Page({
     mainOperation: {
       value: '创建项目'
     },
+    nonet: true
   },
   onLoad: function (options) {
     wx.showLoading({

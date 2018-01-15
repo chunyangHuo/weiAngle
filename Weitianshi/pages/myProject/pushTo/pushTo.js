@@ -7,6 +7,7 @@ Page({
             tagsData: ''
         },
         clicked: false,
+        nonet: true
     },
     onLoad: function (options) {
         let pushed_user_id = options.pushId;

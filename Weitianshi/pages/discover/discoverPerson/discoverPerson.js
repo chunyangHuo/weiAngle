@@ -26,6 +26,7 @@ Page({
       hotCity: [],
       schedule: [],
     },
+    nonet: true
   },
   onLoad(options) {
     let that = this;
@@ -69,13 +70,12 @@ Page({
     if (!this.data.firstTime) {
       this.investorList();
     };
-    this.investorList();
+    // this.investorList();
     this.setData({
       requestCheck: true,
       currentPage: 1,
       page_end: false
     })
-
   },
   //下拉刷新
   onPullDownRefresh() {

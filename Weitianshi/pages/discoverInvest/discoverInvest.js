@@ -18,6 +18,7 @@ Page({
     // 筛选搜索
     SearchInit: FilterModel.data,
     activtyBanner: app.globalData.picUrl.activtyBanner,
+    nonet: true
   },
   onLoad(options) {
     let that = this;

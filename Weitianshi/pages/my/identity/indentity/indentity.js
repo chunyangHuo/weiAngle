@@ -34,7 +34,8 @@ Page({
         identityName: "其他",
         indentityExplain: "政府、公益组织、高校等用户"
       }
-    ]
+    ],
+    nonet: true
   },
 
   onLoad: function (options) {

@@ -12,6 +12,7 @@ Page({
     error: "0",
     error_text: "",
     buttonOneText: '发布',
+    nonet: true
   },
   onLoad: function (options) {
     var that = this;

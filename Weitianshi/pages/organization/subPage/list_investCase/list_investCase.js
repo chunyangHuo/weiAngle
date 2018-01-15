@@ -9,6 +9,7 @@ Page({
     SearchInit: FilterModel.data,
     label_industry: FilterModel._label_industry,
     linkDataShow: FilterModel._linkDataShow,
+    nonet: true
   },
   onLoad: function (options) {
     let that = this;

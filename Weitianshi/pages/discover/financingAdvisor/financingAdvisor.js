@@ -22,6 +22,7 @@ Page({
       hotCity: [],
       schedule: [],
     },
+    nonet: true
   },
   onLoad(options) {
     let that = this;
@@ -63,7 +64,6 @@ Page({
   },
   onShow() {
     if (!this.data.firstTime) {
-
       this.faList();
     }
     this.setData({
@@ -71,7 +71,7 @@ Page({
       currentPage: 1,
       page_end: false
     })
-    this.faList();
+    // this.faList();
   },
 
 

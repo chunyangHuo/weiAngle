@@ -38,6 +38,12 @@
 					"name": "活动签到确认",
 					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
 					"query": "apply_id=8&&activity_id=1"
+				},
+				{
+					"id": -1,
+					"name": "投资人不可卡",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=aWJxKMrY"
 				}
 			]
 		}

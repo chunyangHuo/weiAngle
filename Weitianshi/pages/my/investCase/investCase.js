@@ -7,7 +7,8 @@ Page({
     buttonOne: {
       text: "添加案例"
     },
-    buttonOneText:'添加案例'
+    buttonOneText:'添加案例',
+    nonet: true
   },
   onShow: function () {
     var that = this;

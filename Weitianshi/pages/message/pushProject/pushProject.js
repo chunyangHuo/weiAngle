@@ -10,7 +10,8 @@ Page({
     hasRedPoint: true,
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
     modalBox: 0,
-    buttonOneText: "确定"
+    buttonOneText: "确定",
+    nonet: true
   },
   onLoad: function (options) {
     let type = options.type;

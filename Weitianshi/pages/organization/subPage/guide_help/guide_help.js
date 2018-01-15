@@ -68,7 +68,8 @@ Page({
         organization: '西科天使基金、东湖天使基金、中关村发展集团',
         num: '11'
       },
-    }
+    },
+    nonet: true
   },
 
   onLoad: function (options) {

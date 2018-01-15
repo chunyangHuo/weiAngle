@@ -14,7 +14,8 @@ Page({
     loading: "0",//加载动画控制
     getCode: "获取验证码",
     endTime: 60,//多少秒后验证码得发
-    isShow: 0,//显示personInfo页面还是bindPhone页面
+    isShow: 0,//显示personInfo页面还是bindPhone页面,
+    nonet: true
   },
   onLoad: function (options) {
     let type = options.type;

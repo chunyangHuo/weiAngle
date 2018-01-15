@@ -12,7 +12,8 @@ Page({
     error_text: "",
     enchangeCheck: [],
     enchangeValue: [],
-    enchangeId: []
+    enchangeId: [],
+    nonet: true
   },
   onLoad: function () {
     var that = this;
