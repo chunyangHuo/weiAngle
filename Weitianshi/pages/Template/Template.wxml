@@ -20,23 +20,26 @@
       </view>
     </view>
     <view class="editBottom">
-      <view class="personCompany flex" wx:if="{{user.user_brand || user.user_company_name}}">
+
+      <view class="personCompany flex">
         <image class='bottomPic' src='/img/icon-C@2x.png'></image>
         <view class="personCompanyContent">
-          <label wx:if="{{user.user_brand}}">{{user.user_brand}} · </label>
-          <label wx:if="{{user.user_company_name}}">{{user.user_company_name}}</label>
+          <label wx:if="{{user.user_brand}}" wx:if="{{user.user_brand}}">{{user.user_brand}} · </label>
+          <label wx:if="{{user.user_company_name}}" wx:if="{{user.user_company_name}}">{{user.user_company_name}}</label>
         </view>
         <view class="checkNum" catchtap="searchIdentification" wx:if="{{IdentificationShow == 1&& playTime == 0}}">查税号</view>
       </view>
-      <view class="personCompany flex" wx:if="{{user.user_mobile}}">
+      <view class="personCompany flex">
         <image class='bottomPic' src='/img/icon-T@2x.png'></image>
-        <view class="personTelephone">
+        <view class="personTelephone" wx:if="{{user.user_mobile}}">
           <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
         </view>
+        <view wx:if="{{!user.user_mobile}}" class="personEmail">暂未透露</view>
       </view>
-      <view class="personCompany flex" wx:if="{{user.user_email}}">
+      <view class="personCompany flex">
         <image class='bottomPic' src='/img/icon-E@2x.png'></image>
-        <view class="personEmail">{{user.user_email}}</view>
+        <view class="personEmail" wx:if="{{user.user_email}}">{{user.user_email}}</view>
+        <view class="personEmail" wx:if="{{!user.user_email}}">暂未透露</view>
       </view>
     </view>
   </view>

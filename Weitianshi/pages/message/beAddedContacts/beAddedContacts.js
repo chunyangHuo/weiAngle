@@ -10,11 +10,8 @@ Page({
   onLoad:function(){
     let that=this;
     app.netWorkChange(that)
-  },
-  onShow: function () {
-    var that = this;
     app.initPage(that);
-    var user_id = this.data.user_id;
+    var user_id = wx.getStorageSync('user_id');
     //获取加我为人脉的用户信息
     if (user_id) {
       wx.showLoading({
@@ -30,6 +27,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           wx.hideLoading();
           that.setData({
             contacts: res.data.data,

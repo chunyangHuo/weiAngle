@@ -144,6 +144,13 @@
   height: 120rpx;
   width: 120rpx;
 }
-#investProject .successProjcet:last-child{
+
+#investProject .successProjcet:last-child {
   margin-bottom: 0;
+}
+
+.user_text {
+  font-size: 48rpx;
+  color: #333;
+  line-height: 120rpx;
 }

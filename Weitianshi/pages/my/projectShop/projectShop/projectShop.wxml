@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <include src='/utils/wxml/netWork' />
-
+ 
 <scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
   <view wx:if="{{nonet}}">
     <!--筛选和搜索  -->
@@ -113,7 +113,6 @@
       <view class="t-line"></view>
       <view bindtap="editDetail" class='creatProject' hover-class="t-redColor">创建项目</view>
     </view>
-    <!-- <buttonBtn subOperation = '{{subOperation}}'  mainOperation = '{{mainOperation}}'></buttonBtn> -->
 
     <!--他人项目店铺的底部按钮  -->
     <view class="aboutNetwork flex" wx:if="{{otherPerson == true}}">
@@ -135,14 +134,15 @@
       <view bindtap="pushProject" class='creatProject' hover-class="t-redColor">提交项目</view>
     </view>
 
-
+      <template is="theBottom" wx:if="{{atBottom == true}}"></template>
+        <view class='whiteSpace'></view>
     <!--错误提示-->
-    <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+    <!-- <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> -->
 
     <!--模态层  -->
     <view class='t-modal' wx:if='{{currentIndex!=5}}' bindtap='modal'></view>
 
     <!--筛选无结果  -->
-    <view class="hasNoThing" wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>
+    <view class="hasNoThing" wx:if="{{notHave == 0 && myProject.length==0}}">暂时没有符合该条件的项目</view>
   </view>
 </scroll-view>

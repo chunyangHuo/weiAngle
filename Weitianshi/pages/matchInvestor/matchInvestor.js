@@ -10,10 +10,6 @@ Page({
   },
   onLoad:function(){
     let that=this;
-    app.netWorkChange(that)
-  },
-  onShow() {
-    let that = this;
     this.getMyProject();
     app.initPage(that);
     app.loginPage((user_id) => {
@@ -23,6 +19,8 @@ Page({
         })
       }
     });
+    app.netWorkChange(that)
+
   },
   // 获取项目信息
   getMyProject() {

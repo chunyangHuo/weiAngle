@@ -107,6 +107,7 @@ Page({
     let user_id = this.data.user_id;//我的id,查看者的id
     let followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
     let button_type = this.data.button_type;
+    console.log(button_type)
     let view_id = this.data.view_id;
     // button_type==0  0.申请加人脉按钮 1.不显示任何按钮  2.待验证   3.同意加为人脉  4.加为单方人脉
     //直接可添加好友的情况

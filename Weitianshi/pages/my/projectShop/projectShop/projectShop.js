@@ -61,7 +61,8 @@ Page({
     mainOperation: {
       value: '创建项目'
     },
-    nonet: true
+    nonet: true,
+    atBottom: false,
   },
   onLoad: function (options) {
     wx.showLoading({
@@ -296,7 +297,9 @@ Page({
         })
       }
       if (page_end == true) {
-        app.errorHide(that, '没有更多了', 3000)
+        this.setData({
+          atBottom:true
+        })
       }
     });
 
