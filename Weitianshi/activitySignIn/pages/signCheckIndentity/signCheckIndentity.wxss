@@ -9,11 +9,12 @@
   font-weight: 800;
   font-size: 30rpx;
   background: #f5f5f5;
+  border-radius: 16rpx;
 }
 
 .checkCard {
   background: #f5f5f5;
-  border-radius: 8rpx 8rpx 0 0;
+  border-radius: 16rpx;
 }
 
 .checkCard .inputTel {
@@ -45,6 +46,7 @@
   margin-top: 36rpx;
   font-size: 28rpx;
   padding: 32rpx 32rpx;
+  border-radius: 16rpx;
 }
 .activityCard .cardItem{
   margin-bottom: 64rpx;
@@ -61,4 +63,7 @@
 }
 .activityCard .value{
   flex: 253;
+}
+.classHover{
+  background: #2D6BC9!important;
 }
