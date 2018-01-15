@@ -54,7 +54,7 @@
       <view class="brightPoint" wx:if="{{project.pro_goodness.length!=0}}">
         <view class="brightPointBox flex">
           <!-- <image src="/img/img-star.png" class="titlePic"></image> -->
-          <view class="title" style="margin-bottom:32rpx;">投资亮点</view>
+          <view class="title t-title345">投资亮点</view>
         </view>
         <!-- <view class="{{isChecked0?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
         <view class="brightUnfoldAfter" value="{{number}}">
@@ -74,7 +74,7 @@
       <view class="brightPoint" wx:if="{{project.pro_market_genera.length!=0}}">
         <view class="brightPointBox flex">
           <!-- <image src="/img/icon-shichanggaikuang@2x.png" class="titlePic"></image> -->
-          <view class="title" style="margin-bottom:32rpx;">市场概况</view>
+          <view class="title t-title345">市场概况</view>
         </view>
         <!-- <view class="{{isChecked1?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
         <view class="brightUnfoldAfter" value="{{number}}">
@@ -95,7 +95,7 @@
       <view class="brightPoint" wx:if="{{project.pro_service.length!=0}}">
         <view class="brightPointBox flex">
           <!-- <image src="/img/icon-chanpingaikuang@2x.png" class="titlePic"></image> -->
-          <view class="title" style="margin-bottom:32rpx;">产品概况</view>
+          <view class="title t-title345">产品概况</view>
         </view>
         <!-- <view class="{{isChecked2?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
         <view class="brightUnfoldAfter" value="{{number}}">
@@ -116,7 +116,7 @@
       <view class="brightPoint " wx:if="{{project.pro_business_model.length!=0}}">
         <view class="brightPointBox flex">
           <!-- <image src="/img/icon-shangyemoshi@2x.png" class="titlePic"></image> -->
-          <view class="title" style="margin-bottom:32rpx;">商业模式</view>
+          <view class="title t-title345">商业模式</view>
         </view>
         <!-- <view class="{{isChecked3?'brightUnfold':'brightUnfoldAfter'}}" value="{{number}}"> -->
         <view class="brightUnfoldAfter" value="{{number}}">

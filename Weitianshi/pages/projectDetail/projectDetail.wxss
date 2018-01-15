@@ -746,7 +746,7 @@ button::after {
 }
 
 .title {
-  /* margin-bottom: 32rpx; */
+   margin-bottom: 10rpx; 
   font-size: 15px;
   color: #333;
   /* line-height: 21px; */

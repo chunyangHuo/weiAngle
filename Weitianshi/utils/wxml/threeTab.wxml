@@ -234,7 +234,7 @@
             <view class="brightPoint1" wx:if="{{project.brand.length != 0}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
-                  <view class="title">产品</view>
+                  <view class="title t-title345">产品</view>
                   <view class="productAll" wx:if="{{brandList1.length>3}}" bindtap='toBrand'>全部（
                     <label>{{brandList1.length}}</label>）</view>
                 </view>
@@ -260,7 +260,7 @@
             <view class="brightPoint detailTop" wx:if="{{project.pro_finance_stock_after != '' || project.pro_scale != '' || project.pro_finance_value != ''||project.pro_finance_use != ''}}">
               <view id="detailHead">
                 <view class="brightPointBox flex">
-                  <view class="title">融资信息</view>
+                  <view class="title t-title345">融资信息</view>
                 </view>
               </view>
               <view class="signFAcontentAll" wx:if="{{project.pro_scale != '' ||project.pro_finance_stock_after !=''|| project.pro_finance_value!= ''}}">
