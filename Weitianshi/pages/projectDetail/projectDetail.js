@@ -40,7 +40,8 @@ Page({
     message: "",
     projectBack: app.globalData.picUrl.project_detail_backgroud,
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
-    nonet: true
+    nonet: true,
+    projectImg: app.globalData.picUrl.projectBac,
   },
   onLoad: function (options) {
     var that = this;

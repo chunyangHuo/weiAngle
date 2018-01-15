@@ -40,7 +40,8 @@ Page({
     projectBack: app.globalData.picUrl.project_detail_backgroud,
     buttonOneText:"确定",
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
-    nonet: true
+    nonet: true,
+    projectImg: app.globalData.picUrl.projectBac,
   },
   onLoad: function (options) {
     var that = this;

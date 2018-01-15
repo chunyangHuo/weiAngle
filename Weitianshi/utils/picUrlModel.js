@@ -25,7 +25,8 @@ const picUrl = {
   page_discoverProject:'https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/xiangmu%402x.jpg',
   project_detail_backgroud:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/project-lock.png",
   share_modal:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/tips-share.png",
-  projectDetailpotential:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/match-project-list.png"
+  projectDetailpotential:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/match-project-list.png",
+  projectBac:"https://cdn.weitianshi.cn/image/banner/img-lock.png"
 }
 
 export {
