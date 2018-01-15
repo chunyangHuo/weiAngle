@@ -84,7 +84,7 @@
 }
 
 #productBox .productContent {
-  margin-top: 20rpx;
+  margin-top: 31rpx;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -113,7 +113,7 @@
 }
 
 #productBox .productInside {
-  margin-left: 14rpx;
+  margin-left: 24rpx;
   width: 85%;
 }
 
@@ -137,25 +137,26 @@
 
 #investHistory {
   width: 100%;
-  padding-left: 16rpx;
+  /* padding-left: 16rpx; */
 }
 
 #investHistory .investTime {
-  width: 20%;
-  margin-right: 22rpx;
+  width: 18%;
+  margin-right: 32rpx;
+  text-align: right;
 }
 
 #investHistory .investTime1 {
-  font-size: 14px;
+  font-size: 28rpx;
   color: #666;
-  text-align: center;
+  text-align: right;
 }
 
 #investHistory .investTime2 {
   font-size: 14px;
   color: #333;
   font-weight: bold;
-  text-align: center;
+  text-align: right;
   margin-top: 12rpx;
 }
 
@@ -173,7 +174,7 @@
 
 #investHistory .case_pic {
   margin-top: 1rpx;
-  width: 26rpx;
+  width: 24rpx;
   height: 24rpx;
   margin-right: 24rpx;
   margin-left: -11rpx;
@@ -186,12 +187,13 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 12rpx;
+  margin-top: 3rpx;
 }
 
 #investHistory .investContent {
   font-size: 14px;
   color: #333;
-  line-height: 52rpx;
+  line-height: 40rpx;
   text-align: left;
   padding-left: 32rpx;
 }
@@ -341,12 +343,12 @@
 
 #investHistory1 {
   width: 100%;
-  padding-left: 16rpx;
+  /* padding-left: 16rpx; */
 }
 
 #investHistory1 .investTime {
-  width: 20%;
-  margin-right: 22rpx;
+  width: 18%;
+  margin-right: 24rpx;
 }
 
 #investHistory1 .investTime1 {
@@ -377,7 +379,7 @@
 
 #investHistory1 .case_pic {
   margin-top: 1rpx;
-  width: 26rpx;
+  width: 24rpx;
   height: 24rpx;
   margin-right: 24rpx;
   margin-left: -11rpx;

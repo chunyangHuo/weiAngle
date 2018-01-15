@@ -20,7 +20,7 @@
       </view>
     </view>
     <view class="editBottom">
-      <view class="personCompany flex"  wx:if="{{user.user_brand || user.user_company_name}}">
+      <view class="personCompany flex" wx:if="{{user.user_brand || user.user_company_name}}">
         <image class='bottomPic' src='/img/icon-C@2x.png'></image>
         <view class="personCompanyContent">
           <label wx:if="{{user.user_brand}}">{{user.user_brand}} · </label>
@@ -28,13 +28,13 @@
         </view>
         <view class="checkNum" catchtap="searchIdentification" wx:if="{{IdentificationShow == 1&& playTime == 0}}">查税号</view>
       </view>
-      <view class="personCompany flex"  wx:if="{{user.user_mobile}}">
+      <view class="personCompany flex" wx:if="{{user.user_mobile}}">
         <image class='bottomPic' src='/img/icon-T@2x.png'></image>
         <view class="personTelephone">
           <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
         </view>
       </view>
-      <view class="personCompany flex"  wx:if="{{user.user_email}}">
+      <view class="personCompany flex" wx:if="{{user.user_email}}">
         <image class='bottomPic' src='/img/icon-E@2x.png'></image>
         <view class="personEmail">{{user.user_email}}</view>
       </view>
@@ -696,7 +696,7 @@
     <view class='allReset' bindtap='allReset'>清空</view>
   </view>
 </template>
- 
+
 <!--筛选结果展示横列(单个)  -->
 <template name='searchResult_single'>
   <!--有联动关系  -->
@@ -752,7 +752,7 @@
               <view class="t-user_image flex" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
             </view>
             <view>
-              <view class="t-userInfo flex"> 
+              <view class="t-userInfo flex">
                 <view class="t-userName">{{item.user.user_name}}</view>
                 <view class="t-userCareer">{{item.user.user_career}}</view>
                 <view class="t-userCompany" style="text-align:left">{{item.user.user_company}}</view>
@@ -895,7 +895,7 @@
   <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
     <view class="t-applyMyProject t-contacts-detailm">
       <view class="t-introduceBox flex">
-  <image src="{{item.investor_logo_url}}" class="t-userPic" wx:if="{{item.investor_logo_url}}"></image>
+        <image src="{{item.investor_logo_url}}" class="t-userPic" wx:if="{{item.investor_logo_url}}"></image>
         <view class="t-userName">{{item.investor_name}}</view>
         <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资人' }}" src="/img/img-touziren@2x.png"></image>
@@ -1302,7 +1302,7 @@
       <image src="/img/img-no@2x.png" class="productImg"></image>
       <view class="productInside">
         <view class="productTitle" wx:if="{{item.brand_name}}">{{item.brand_name}}</view>
-        <view class="pro_sort projectTips" wx:if="{{item.brand_type}}">{{item.brand_type}}</view>
+        <view class="projectTips" wx:if="{{item.brand_type}}">{{item.brand_type}}</view>
         <view class="productContent" wx:if="{{item.brand_desc}}">{{item.brand_desc}}</view>
       </view>
     </view>
@@ -1393,8 +1393,8 @@
         <view class="t-pipeidu">匹配度</view>
       </view>
       <view class="t-industryStage">
-        <view class="t-roundGroupPush flex" wx:if="{{item.industry_tag.length != 0}}">
-          <view class="t-roundGroupContent">
+        <view class="t-roundGroupPush flex">
+          <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length != 0}}">
             <block wx:for="{{item.industry_tag}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
               <label wx:if="{{index < item.industry_tag.length-1}}" class="{{industryItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">
                 {{industryItem.industry_name}}、
@@ -1404,14 +1404,16 @@
               </label>
             </block>
           </view>
+          <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length == 0}}">暂未透露</view>
         </view>
-        <view class="t-roundGroupPush flex" wx:if="{{item.stage_tag.length != 0}}">
-          <view class="t-roundGroupContent">
+        <view class="t-roundGroupPush flex">
+          <view class="t-roundGroupContent" wx:if="{{item.stage_tag.length != 0}}">
             <block wx:for="{{item.stage_tag}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
               <label wx:if="{{index < item.stage_tag.length-1}}" class="{{stageItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">{{stageItem.stage_name}}、</label>
               <label wx:if="{{index ==item.stage_tag.length-1}}" class="{{stageItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">{{stageItem.stage_name}}</label>
             </block>
           </view>
+          <view class="t-roundGroupContent" wx:if="{{item.stage_tag.length == 0}}">暂未透露</view>
         </view>
       </view>
     </view>
