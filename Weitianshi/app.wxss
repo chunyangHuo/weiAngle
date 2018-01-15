@@ -1207,7 +1207,7 @@ textarea {
   align-items: center;
   vertical-align: middle;
   justify-content: center;
-  width: 30%;
+  width: 33%;
   padding-right: 44rpx;
   height: 94rpx;
   font-size: 30rpx;
