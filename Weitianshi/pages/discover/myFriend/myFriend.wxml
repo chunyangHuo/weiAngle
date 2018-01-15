@@ -5,7 +5,7 @@
 <view wx:if="{{nonet}}">
   <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
   <!--投资人  -->
-  <scroll-view style="height:1108rpx;margin-top:96rpx" scroll-y="true" bindscrolltolower='loadMore'>
+  <scroll-view style="height:1300rpx;margin-top:96rpx" scroll-y="true" bindscrolltolower='loadMore'>
     <block wx:for="{{myList}}" wx:key="{{myList}}">
       <view class='investorCard'>
         <view class="t-investorColor" hover-class='t-hoverColor'>

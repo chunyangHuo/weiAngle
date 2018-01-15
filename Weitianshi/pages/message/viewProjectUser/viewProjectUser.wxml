@@ -17,7 +17,7 @@
 
   <!--浏览我的项目的用户-->
   <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
-    <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
+    <scroll-view scroll-y="true" style="height:100%" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
       <view class="contacts">
         <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
           <view class='investorCard'>
@@ -103,7 +103,7 @@
             </view>
           </view>
         </block>
-        <template is="theBottom" wx:if="{{contacts!==''}}"></template>
+        <template is="theBottom" wx:if="{{jiandi==true}}"></template>
       </view>
     </scroll-view>
   </view>

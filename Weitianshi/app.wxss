@@ -1157,7 +1157,7 @@ textarea {
 }
 
 .t-history {
-  width: 61%;
+  width: 60%;
   padding-left: 32rpx;
   color: #333;
   font-size: 12px;
