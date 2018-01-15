@@ -123,7 +123,7 @@
       </scroll-view>
       <!--空状态-->
       <view wx:if="{{faList==''}}">
-        <image class="empty" src="/img/img-wujieguo@3x.png"></image>
+        <!-- <image class="empty" src="/img/img-wujieguo@3x.png"></image> -->
       </view>
     </swiper-item>
     <!--我的  -->
@@ -133,7 +133,7 @@
       <view wx:if="{{empty == 1}}">
         <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
           <view class="nullState_text">
-            <image src="/img/connection.png"></image>
+            <!-- <image src="/img/connection.png"></image> -->
             <view>暂无人脉</view>
             <view>分享我的名片，拓展我的人脉</view>
           </view>
