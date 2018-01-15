@@ -13,11 +13,7 @@ Page({
   onLoad: function (e) {
     let that = this;
     app.netWorkChange(that)
-  },
-  onShow: function (e) {
     // 我申请查看的项目
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let that = this;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     wx.showLoading({
       title: 'loading',
@@ -81,6 +77,7 @@ Page({
       }
     })
   },
+
   onShow: function (e) {
     // 我申请查看的项目
     var user_id = wx.getStorageSync('user_id');//获取我的user_id

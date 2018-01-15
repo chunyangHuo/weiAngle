@@ -4,45 +4,16 @@ var url_common = app.globalData.url_common;
 Page({
   data: {
     count: 0,
-    jiandi:false,
+    jiandi: false,
     nonet: true
   },
   onLoad: function (options) {
+    console.log(options)
     let that = this;
-    console.log(options);
-    app.netWorkChange(that)
-    if (options.id) {
-      let otherPerson_id = options.id;
-      this.setData({
-        otherPerson_id: otherPerson_id
-      })
-    }
-  },
-  onShow: function () {
-    var that = this;
+    var user_id = wx.getStorageSync('user_id')
     app.initPage(that);
-    let user_id = this.data.user_id;
-
-    // 获取浏览我的用户信息
-    if (options.id) {
-      let user_id = otherPerson_id;
-      this.browseMe(user_id)
-    } else if (user_id) {
-      this.browseMe(user_id)
-    }
-  },
-  onShow: function () {
-    // var that = this;
-    // app.initPage(that);
-    // let user_id = this.data.user_id;
-    // let otherPerson_id = this.data.otherPerson_id;
-    // 获取浏览我的用户信息
-    // if (otherPerson_id) {
-    //   let user_id = otherPerson_id;
-    //   this.browseMe(user_id)
-    // } else if (user_id) {
-    //   this.browseMe(user_id)
-    // }
+    app.netWorkChange(that)
+    this.browseMe(user_id)
   },
   // 项目推送
   projectPush(e) {
