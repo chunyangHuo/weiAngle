@@ -11,6 +11,7 @@
   font-weight: 800;
   font-size: 30rpx;
   background: #f5f5f5;
+  border-radius: 16rpx;
 }
 
 .checkCard {
@@ -46,6 +47,7 @@
 .activityCard {
   margin-top: 36rpx;
   font-size: 28rpx;
+  padding: 32rpx 32rpx;
   border-radius: 16rpx;
 }
 
@@ -75,6 +77,8 @@
 .activityCard .value {
   flex: 253;
 }
-.buttonHover{
-  background: #2D6BC9;
+
+.classHover{
+  background: #2D6BC9!important;
 }
+
