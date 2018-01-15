@@ -43,6 +43,7 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    console.log(options)
     var that = this;
     var id = options.id;//当前被查看用户的项目id
     var share_id = options.share_id;
@@ -1388,30 +1389,34 @@ Page({
   //跳转到历史融资
   toHistory: function () {
     let that = this;
+    let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id);
+    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
   },
   //跳转到核心团队
   toTeam: function () {
     let that = this;
+    let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id);
+    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
   },
   //跳转到产品
   toBrand: function () {
     let that = this;
+    let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id);
+    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
   },
   //跳转到里程碑
   mileStone: function () {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
+    let share_id = this.data.share_id;
     let id = this.data.id;
-    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
+    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
   },
   contactTap: function () {
     let that = this;

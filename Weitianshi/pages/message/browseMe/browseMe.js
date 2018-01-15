@@ -8,26 +8,30 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    console.log(options)
-    if (options.id) {
-      let otherPerson_id = options.id;
-      this.setData({
-        otherPerson_id: otherPerson_id
-      })
-    }
-  },
-  onShow: function () {
     var that = this;
     app.initPage(that);
     let user_id = this.data.user_id;
-    let otherPerson_id = this.data.otherPerson_id;
+
     // 获取浏览我的用户信息
-    if (otherPerson_id) {
+    if (options.id) {
       let user_id = otherPerson_id;
       this.browseMe(user_id)
     } else if (user_id) {
       this.browseMe(user_id)
     }
+  },
+  onShow: function () {
+    // var that = this;
+    // app.initPage(that);
+    // let user_id = this.data.user_id;
+    // let otherPerson_id = this.data.otherPerson_id;
+    // 获取浏览我的用户信息
+    // if (otherPerson_id) {
+    //   let user_id = otherPerson_id;
+    //   this.browseMe(user_id)
+    // } else if (user_id) {
+    //   this.browseMe(user_id)
+    // }
   },
   // 项目推送
   projectPush(e) {

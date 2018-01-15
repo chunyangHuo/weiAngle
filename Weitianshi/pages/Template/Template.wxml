@@ -1470,12 +1470,12 @@
   </view>
 </template>
 <!--网络状态  -->
-<template name="network">
+<!-- <template name="network">
   <scroll-view scroll-y style="height:1108rpx;">
     <view style="position:relative">
-      <image class="N-netWorkImg" src="/img/img-nonet.png"></image>
+      <image class="N-netWorkImg" src="/img/img-duanwang.png"></image>
       <view class="N-text">网络不给力</view>
       <view class="N-refresh" bindtap='refresh'>刷新试试</view>
     </view>
   </scroll-view>
-</template>
+</template> -->

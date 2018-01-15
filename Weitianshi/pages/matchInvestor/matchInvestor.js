@@ -8,7 +8,7 @@ Page({
     modalBox: 0,
     nonet: true
   },
-  onShow() {
+  onLoad(){
     let that = this;
     this.getMyProject();
     app.initPage(that);
@@ -19,6 +19,9 @@ Page({
         })
       }
     });
+  },
+  onShow() {
+
   },
   // 获取项目信息
   getMyProject() {

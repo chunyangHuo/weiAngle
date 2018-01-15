@@ -7,7 +7,8 @@ Page({
 
   data: {
     banner_organization: app.globalData.picUrl.banner_organization,
-    nonet: true
+    nonet: true,
+    show:false
   },
 
   onLoad: function (options) {
@@ -37,7 +38,8 @@ Page({
       let investment_list = investormentList.investment_list.list;
       that.setData({
         investormentList: investormentList,
-        investment_list: investment_list
+        investment_list: investment_list,
+        show : true
       })
       wx.hideLoading();
     })

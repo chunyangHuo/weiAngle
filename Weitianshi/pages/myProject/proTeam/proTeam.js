@@ -11,7 +11,8 @@ Page({
       index: options.index,
       id: options.project_id,
       currentTab: options.currentTab,
-      shareType: options.type
+      shareType: options.type,
+      share_id: options.share_id
     });
     console.log('pro_id', this.data.id);
   },
@@ -27,11 +28,14 @@ Page({
   projectDetailInfo() {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
+    let share_id = this.data.share_id;
     wx.request({
       url: url_common + '/api/project/getProjectDetail',
       data: {
         user_id: user_id,
-        project_id: this.data.id
+        project_id: this.data.id,
+        source: "share",
+        share_id: share_id
       },
       method: 'POST',
       success: function (res) {

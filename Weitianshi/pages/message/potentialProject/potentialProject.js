@@ -11,11 +11,8 @@ Page({
     nonet: true
   },
   onLoad: function (e) {
-  },
-  onShow: function (e) {
-    // 我申请查看的项目
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -77,6 +74,11 @@ Page({
         }
       }
     })
+  },
+  onShow: function (e) {
+    // 我申请查看的项目
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let that = this;
     // 取消红点 --推送给我的
     wx.request({
       url: url_common + '/api/message/setMessageToRead',
@@ -499,7 +501,7 @@ Page({
         this.contactProjectPerson(user_id, push_id, status, pushToList);
       }, 1000)
     })
-  }, 
+  },
   //加入项目库
   addProjectLibrary: function (e) {
     let user_id = wx.getStorageSync('user_id');
@@ -531,8 +533,8 @@ Page({
     })
   },
   //联系项目方后..改变样式
-  contactProjectPerson(user_id, push_id, status, pushToList){ 
-    let  that = this;
+  contactProjectPerson(user_id, push_id, status, pushToList) {
+    let that = this;
     wx.request({
       url: url_common + '/api/message/handlePushProjectMessage',
       data: {

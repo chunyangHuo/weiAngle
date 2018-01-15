@@ -1,7 +1,8 @@
 <import src="/pages/Template/Template.wxml" />
 <include src='/utils/wxml/netWork' />
-<view wx:if="{{nonet}}">
-  <scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+
+<scroll-view style='heigt:1000rpx;' scroll-y='true' bindscrolltolower='loadMore'>
+  <view wx:if="{{nonet}}">
     <!--筛选和搜索  -->
     <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
     <!--图片  -->
@@ -143,5 +144,5 @@
 
     <!--筛选无结果  -->
     <view class="hasNoThing" wx:if="{{notHave == 0}}">暂时没有符合该条件的项目</view>
-  </scroll-view>
-</view>
+  </view>
+</scroll-view>
