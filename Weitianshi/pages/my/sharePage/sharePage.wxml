@@ -58,7 +58,7 @@
       <view class='t-shopBlock' style="color:#cccccc">待通过</view>
     </view>
     <view class="t-flexBox" wx:if="{{button_type==1}}" data-telephone="{{user.user_mobile}}" catchtap="telephone" hover-class="t-hoverColor">
-      <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
+      <image src='/img/icon-dadianhua1.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>打电话</view>
     </view>
     <view class="t-line"></view>
@@ -69,7 +69,7 @@
      <view class="t-line"></view>
     <view bindtap="pushProject" class='t-creatProject' hover-class="t-redColor">提交项目</view>
   </view>
-  <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
+  <!-- <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
     <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
       <image src='/img/icon-shouye@2x.png' class="t-shopPic1"></image>
       <view class='t-shopBlock'>首页</view>
@@ -88,5 +88,5 @@
     <view class="t-line"></view>
     <view bindtap="pushProject" class='t-creatProject' hover-class="t-redColor">提交项目</view>
 
-  </view>
+  </view> -->
 </scroll-view>
