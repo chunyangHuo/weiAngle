@@ -7,8 +7,11 @@ Page({
     activity_id: '',
     activity: '',
     userInfo: '',
-    user_id:'',
-    signIndentityCard: app.globalData.picUrl.signIndentityCard
+    user_id: '',
+    signIndentityCard: app.globalData.picUrl.signIndentityCard,
+    investorList: [],
+    currentPage: 1,
+    page_end: false
   },
   onLoad(options) {
     let apply_id = options.apply_id;
@@ -47,17 +50,29 @@ Page({
   },
   // 获取签到名单
   getSignForm(activity_id, user_id) {
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
     app.httpPost({
       url: url_common + '/api/activity/getSignApply',
       data: {
         activity_id: activity_id,
-        user_id: user_id || 0
+        user_id: user_id || 0,
+        page: this.data.currentPage
       }
     }, this).then(res => {
-      console.log(res);
+      let currentPage = this.data.currentPage;
+      let investorList = this.data.investorList;
+      let newPage = res.data.data.list;
+      currentPage++;
+      investorList = investorList.concat(newPage);
       this.setData({
-        investorList: res.data.data.list
+        currentPage: currentPage,
+        investorList: investorList,
+        page_end: res.data.data.page_end
       })
+      wx.hideLoading();
     })
   },
   // 跳转到活动议程页面
@@ -65,7 +80,7 @@ Page({
     app.href('/activitySignIn/pages/activityAgenda/activityAgenda');
   },
   // 跳转用户详情
-  userDetail(e){
+  userDetail(e) {
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
@@ -139,5 +154,14 @@ Page({
   //跳转微天使首页
   goToIndex() {
     app.href('/pages/discoverProject/discoverProject');
+  },
+  //加载更多
+  loadMore() {
+    console.log(this.data.page_end)
+    if (this.data.page_end) {
+      app.errorHide(this, '没有更多了')
+    } else {
+      this.getSignForm(this.data.activity_id, this.data.user_id)
+    }
   }
 })
