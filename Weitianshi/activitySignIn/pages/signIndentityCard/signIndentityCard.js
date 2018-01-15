@@ -7,7 +7,8 @@ Page({
     apply_id: '',
     activity_id: '',
     activity: '',
-    userInfo: ''
+    userInfo: '',
+    user_id:'',
   },
   onLoad(options) {
     let apply_id = options.apply_id;
@@ -17,6 +18,9 @@ Page({
       activity_id: activity_id
     })
     app.loginPage(user_id => {
+      this.setData({
+        user_id
+      })
       this.getActivityDetail(apply_id, activity_id, user_id);
     })
   },
@@ -56,9 +60,19 @@ Page({
       })
     })
   },
-  //跳转到活动议程页面
+  // 跳转到活动议程页面
   goToActivityAgenda() {
     app.href('/activitySignIn/pages/activityAgenda/activityAgenda');
+  },
+  // 跳转用户详情
+  userDetail(e){
+    let id = e.currentTarget.dataset.id
+    var user_id = wx.getStorageSync("user_id");//用戶id
+    if (id == user_id) {
+      app.href('/pages/my/myNew/myNew');
+    } else {
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+    }
   },
   // 直接加人脉
   contactsAddDirect(e) {
@@ -108,6 +122,13 @@ Page({
     } else {
       app.errorHide(that, res.data.error_Msg, 3000)
     }
+  },
+  // 一键拔号
+  telephone(e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
   },
   // 提交项目
   projectPush(e) {

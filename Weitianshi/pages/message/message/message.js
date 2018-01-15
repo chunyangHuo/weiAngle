@@ -94,5 +94,17 @@ Page({
   //测试一键尽调
   testOneKey() {
     app.href('/pages/oneKeyResearch/oneKeyResearch?id=RpAQ5jpx')
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 })

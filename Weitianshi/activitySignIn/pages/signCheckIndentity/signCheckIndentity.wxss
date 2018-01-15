@@ -1,9 +1,11 @@
 #signCheckIndentity {
   padding: 38rpx 32rpx;
 }
-.shadow{
- box-shadow: 0 0 10rpx #999;
+
+.shadow {
+  box-shadow: 0 0 16rpx rgba(26, 46, 74, 0.1);
 }
+
 .title {
   padding: 24rpx 32rpx;
   font-weight: 800;
@@ -42,28 +44,41 @@
   font-size: 28rpx;
 }
 
-.activityCard{
+.activityCard {
   margin-top: 36rpx;
   font-size: 28rpx;
   padding: 32rpx 32rpx;
   border-radius: 16rpx;
 }
-.activityCard .cardItem{
-  margin-bottom: 64rpx;
+
+.activityCard .title {
+  padding-left: 32rpx;
+  padding-bottom: 24rpx;
 }
-.activityCard .cardItem:last-child{
+
+.activityCard .cardItem {
+  padding: 32rpx 32rpx;
+  background: white;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.activityCard .cardItem:last-child {
   margin-bottom: 0;
 }
-.activityCard .name{
+
+.activityCard .name {
   flex: 42;
   margin-right: 32rpx;
-  color:#999;
-  text-align:justify; 
+  color: #999;
+  text-align: justify;
   text-align-last: justify;
 }
-.activityCard .value{
+
+.activityCard .value {
   flex: 253;
 }
+
 .classHover{
   background: #2D6BC9!important;
 }
+

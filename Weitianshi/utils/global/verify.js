@@ -7,12 +7,27 @@ function mobile(that,value, callBack){
     return
   }
   if (!myreg.test(value)) {
-    app.errorHide(that,'手机号码格式不正确')
-  } else {
-    if (callBack) callBack();
+    app.errorHide(that,'手机号码格式不正确');
+    return
   }
+  
+  if (callBack) callBack();
+}
+// 邮箱格式
+function email(that,value,callBack){
+  var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+  if(!value){
+    app.errorHide(that,'请输入邮箱');
+    return
+  }
+  if(!myreg.test(value)){
+    app.errorHide(that,'邮箱模式不正确');
+    return 
+  }
+  if(callBack) callBack();
 }
 
 export {
-  mobile
+  mobile,
+  email
 }

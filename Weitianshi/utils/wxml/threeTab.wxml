@@ -394,7 +394,7 @@
     </swiper-item>
     <!--买家图谱  -->
     <swiper-item wx:if='{{show_company}}'>
-      <scroll-view style="height:100%" scroll-y="true">
+      <view>
         <view class="t-matchButton flex">
           <!--t-matchButton1  代表选中  -->
           <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}" bindtap='matchButt'>投资人(
@@ -404,7 +404,7 @@
             <label>{{investment_total_num}}</label>)</button>
         </view>
         <!--买家图谱  -->
-        <scroll-view wx:if="{{matchBut}}" scroll-y="true" style="height: 1108rpx;" bindscrolltolower="loadMore">
+        <scroll-view wx:if="{{matchBut}}" scroll-y="true" style="height: 900rpx;" bindscrolltolower="loadMore">
           <view class="buyerPage">
             <!-- <view id="matching">匹配推荐：
             <label>{{matchCount}}</label>个</view> -->
@@ -431,7 +431,7 @@
           </view>
         </scroll-view>
         <!--机构版买家图谱  -->
-        <scroll-view wx:if="{{matchBut1}}" style='height:1108rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
+        <scroll-view wx:if="{{matchBut1}}" style='height:900rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
           <view class="{{investment_list.length==0?'media123':'media12'}}">
             <view class="matchIntro">{{newPage.pro_intro}}</view>
             <view id="investment1" wx:if="{{investment_list.length!=0}}">
@@ -447,7 +447,7 @@
           <!-- <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> -->
 
         </scroll-view>
-      </scroll-view>
+      </view>
     </swiper-item>
     <!--一键尽调页面的内容-->
     <swiper-item wx:if='{{show_company}}'>

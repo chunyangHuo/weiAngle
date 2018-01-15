@@ -22,10 +22,10 @@ Page({
     let user_id = this.data.user_id;
     let otherPerson_id = this.data.otherPerson_id;
     // 获取浏览我的用户信息
-    if (otherPerson_id){
-      let user_id  = otherPerson_id;
-     this. browseMe(user_id)
-    }else if(user_id){
+    if (otherPerson_id) {
+      let user_id = otherPerson_id;
+      this.browseMe(user_id)
+    } else if (user_id) {
       this.browseMe(user_id)
     }
   },
@@ -172,46 +172,58 @@ Page({
     }
   },
   //列表加载
-  browseMe:function(user_id){
-    let  that = this;
-      wx.showLoading({
-        title: 'loading',
-        mask: true,
-      })
-      console.log(user_id)
-      wx.request({
-        url: url_common + '/api/message/viewCardMessage',
-        data: {
-          user_id: user_id,
-          page: 1,
-          type_id: 3
-        },
-        method: 'POST',
-        success: function (res) {
-          wx.hideLoading()
-          var contacts = res.data.data;
-          var count = res.data.count;
-          var page_end = res.data.page_end;
-          that.setData({
-            contacts: contacts,
-            page_end: page_end,
-            count: count
-          })
-        }
-      })
-      //向后台发送信息取消红点
-      wx.request({
-        url: url_common + '/api/message/setMessageToRead',
-        data: {
-          user_id: user_id,
-          type_id: 3
-        },
-        method: "POST",
-        success: function (res) {
-          console.log(res)
-        }
-      })
-    }
+  browseMe: function (user_id) {
+    let that = this;
+    wx.showLoading({
+      title: 'loading',
+      mask: true,
+    })
+    console.log(user_id)
+    wx.request({
+      url: url_common + '/api/message/viewCardMessage',
+      data: {
+        user_id: user_id,
+        page: 1,
+        type_id: 3
+      },
+      method: 'POST',
+      success: function (res) {
+        wx.hideLoading()
+        var contacts = res.data.data;
+        var count = res.data.count;
+        var page_end = res.data.page_end;
+        that.setData({
+          contacts: contacts,
+          page_end: page_end,
+          count: count
+        })
+      }
+    })
+    //向后台发送信息取消红点
+    wx.request({
+      url: url_common + '/api/message/setMessageToRead',
+      data: {
+        user_id: user_id,
+        type_id: 3
+      },
+      method: "POST",
+      success: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
+  }
 
 
 })

@@ -83,7 +83,7 @@ Page({
   position: function (e) {
     var that = this;
     var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
-    var rs = "";
+    var rs = ""; 
     var position = e.detail.value;
     for (var i = 0; i < position.length; i++) {
       rs = rs + position.substr(i, 1).replace(pattern, '');
@@ -251,5 +251,17 @@ Page({
         app.errorHide(that, "请正确填写邮箱", 1500)
       }
     }
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 });

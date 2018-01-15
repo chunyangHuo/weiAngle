@@ -696,7 +696,7 @@
     <view class='allReset' bindtap='allReset'>清空</view>
   </view>
 </template>
-
+ 
 <!--筛选结果展示横列(单个)  -->
 <template name='searchResult_single'>
   <!--有联动关系  -->
@@ -752,7 +752,7 @@
               <view class="t-user_image flex" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
             </view>
             <view>
-              <view class="t-userInfo flex">
+              <view class="t-userInfo flex"> 
                 <view class="t-userName">{{item.user.user_name}}</view>
                 <view class="t-userCareer">{{item.user.user_career}}</view>
                 <view class="t-userCompany" style="text-align:left">{{item.user.user_company}}</view>
@@ -806,7 +806,7 @@
         <view class="t-userPosition">{{item.investor_career}}</view>
         <view class="t-userCompany1" wx:if="{{item.investor_company}}">·{{item.investor_company}}</view>
       </view>
-      <view class='t-people flex' wx:if='{{item.user_id!=user_id}}'>
+      <view class='t-people flex' wx:if='{{item.user_id != user_id}}'>
         <view class='t-cardBottomItem t-add flex' wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
           <view class="t-addFri flex">
             <image class="t-addFriend" src="/img/icon-jia@2x.png"></image>
@@ -814,6 +814,7 @@
           </view>
         </view>
         <view class='t-cardBottomItem t-add  flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status==1}}' data-telephone="{{item.user_mobile}}" catchtap="telephone">
+
           <view>打电话</view>
         </view>
         <view class='t-cardBottomItem t-wait flex' wx:if='{{item.follow_status==2}}'>
@@ -826,7 +827,7 @@
           </view>
         </view>
       </view>
-      <view class='t-people flex' wx:if='{{item.user_id==user_id}}'></view>
+      <view class='t-people flex' wx:if='{{item.user_id == user_id}}'></view>
       <view class="t-roundGroupPush flex">
         <image class="t-roundGroupTitle" src="/img/icon-lunci@2x.png"></image>
         <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length !=0 }}">

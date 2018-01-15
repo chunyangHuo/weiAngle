@@ -15,10 +15,11 @@
           <template is='cardBottom1' data='{{item,user_id}}'></template>
         </view>
       </view>
-    </block>
-    <template is="theBottom" wx:if="{{faList!==''}}"></template>
-    <view class="high"></view>
-  </scroll-view>
-  <!--空状态-->
-  <template is="isEmpty" data="{{emptyNumber:faList}}"></template>
-</view>
+    </view>
+  </block>
+  <template is="theBottom" wx:if="{{jiandi==true}}"></template>
+  <view class="high"></view>
+</scroll-view>
+<!--空状态-->
+<template is="isEmpty"  data="{{emptyNumber:faList}}"></template>
+<!-- <image class="empty" src="/img/empty.png" wx:if="{{investorList==''}}"></image> -->

@@ -45,7 +45,7 @@ Page({
         mileStoneArray.forEach((x, index) => {
           mileStoneArray[index].dh_start_time = app.changeTimeStyle1(x.dh_start_time);
           mileStoneArray[index].dh_event = x.dh_event;
-        })  
+        })
         that.setData({
           mileStoneArray: mileStoneArray,
         })
@@ -60,6 +60,17 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
+  }
 
 });

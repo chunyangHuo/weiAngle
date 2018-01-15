@@ -4,7 +4,7 @@
   <view class='checkCard shadow'>
     <view class='title'>填写手机号</view>
     <view class='inputTel'>
-      <input value='{{mobile}}' placeholder='请输入活动报名填写的手机号' bindblur='mobile'></input>
+      <input type='number' value='{{mobile}}' placeholder='请输入活动报名填写的手机号' bindinput='mobile'></input>
     </view>
     <view class='footer'>
       <button bindtap='checkIndentity' hover-class='classHover'>确定</button>
@@ -12,7 +12,7 @@
   </view>
   <!--活动基本信息  -->
   <view class='activityCard shadow'>
-    <view class='title' style='padding-left:0;padding-bottom:56rpx;'>活动基本信息</view>
+    <view class='title'>活动基本信息</view>
     <block wx:for = '{{activityDetail}}' wx:key ='index'>
       <view class='cardItem flex'>
         <view class='name'>{{item.name}}</view>

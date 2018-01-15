@@ -1078,7 +1078,7 @@ page {
   border-radius: 4rpx;
   text-align: center;
   z-index: 666;
-  display: block!important;
+  display: block !important;
   background: #3378e0;
   margin-left: 38%;
   /* border-bottom: 4rpx solid #3378e0; */
@@ -1243,10 +1243,11 @@ page {
 }
 
 #projectBox .brightContentAfter {
-  height: auto;
+  display: inline;
+  /* height: 72rpx; */
   font-size: 26rpx;
   color: #666;
-  line-height: 39rpx;
+  line-height: 52rpx;
   text-align: left;
 }
 
@@ -2124,8 +2125,7 @@ page {
 .productImg {
   width: 104rpx;
   height: 104rpx;
-  /* background: red; */
-  /* margin-top: 10rpx; */
+  /* background: red; *//* margin-top: 10rpx; */
 }
 
 .productInside {
