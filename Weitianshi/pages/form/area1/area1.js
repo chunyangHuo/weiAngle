@@ -13,6 +13,7 @@ Page({
     let that = this;
     // 获取数据并标定check
     this._areaDeal();
+    app.netWorkChange(that)
   },
   _areaDeal() {
     let that = this;

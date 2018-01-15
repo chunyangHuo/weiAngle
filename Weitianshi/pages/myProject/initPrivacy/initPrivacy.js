@@ -67,7 +67,8 @@ Page({
           black_user: setPrivacy.black_user
         })
       }
-    }
+    };
+    app.netWorkChange(that)
   },
   //公开项目
   switchChange1: function (e) {

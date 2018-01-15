@@ -9,12 +9,14 @@ Page({
   onLoad: function (options) {
     let team_id = options.team_id;
     let that = this;
+    app.netWorkChange(that)
     that.setData({
       team_id: team_id,
     })
   },
 
   onShow: function () {
+    app.netWorkChange(that)
     let that = this;
     let team_id = this.data.team_id;
     let user_id = wx.getStorageSync('user_id');

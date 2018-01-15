@@ -8,10 +8,12 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
+    let that = this;
     let user_id = options.user_id;
     this.setData({
       user_id: user_id
-    })
+    });
+    app.netWorkChange(that)
   },
   onShow: function () {
     let user_id = this.data.user_id;

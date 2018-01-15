@@ -7,12 +7,15 @@ Page({
     disabled: false,
     nonet: true
   },
-
+  onLoad: function () {
+    let that = this;
+    app.netWorkChange(that)
+  },
   btnYes: function () {
     console.log(4544)
     wx.navigateBack({
       delta: 2
-    }) 
+    })
   },
   // 重新加载
   refresh() {

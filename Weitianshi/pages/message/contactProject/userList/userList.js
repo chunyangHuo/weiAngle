@@ -8,7 +8,8 @@ Page({
   },
 
   onLoad: function (options) {
-
+    let that = this;
+    app.netWorkChange(that)
   },
   onShow: function () {
     let user_id = wx.getStorageSync('user_id');//获取我的user_id

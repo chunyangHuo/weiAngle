@@ -12,7 +12,7 @@ Page({
     that.setData({
       user_id: user_id,
     })
-
+    app.netWorkChange(that)
     //获取用户信息
     wx.request({
       url: url_common + '/api/user/getUserAllInfo',

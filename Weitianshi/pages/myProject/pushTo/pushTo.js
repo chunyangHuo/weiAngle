@@ -14,7 +14,8 @@ Page({
         let that = this;
         that.setData({
             pushed_user_id: pushed_user_id
-        })
+        });
+        app.netWorkChange(that)
     },
     onShow: function () {
         var that = this;

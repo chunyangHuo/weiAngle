@@ -52,7 +52,8 @@ Page({
       position: position,
       email: email,
       type: type
-    })
+    });
+    app.netWorkChange(that)
   },
   //下拉刷新
   onPullDownRefresh: function () {

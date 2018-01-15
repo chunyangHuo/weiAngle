@@ -99,6 +99,6 @@
     </view>
   </template>
 </view>
-<view wx:if="{{!nonet}}">
+<!-- <view wx:if="{{!nonet}}">
   <template is="network"></template>
-</view>
+</view> -->

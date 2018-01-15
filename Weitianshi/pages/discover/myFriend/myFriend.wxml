@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <!--筛选和搜索  -->
 
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/netWork'/>
 <view wx:if="{{nonet}}">
   <template is="newSearch" data="{{text:searchText,searchTap:'searchSth',filter:'tagFilter'}}"></template>
   <!--投资人  -->
