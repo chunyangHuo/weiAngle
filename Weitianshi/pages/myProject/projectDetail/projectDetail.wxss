@@ -1258,15 +1258,15 @@ page {
 }
 
 #projectBox  .pro_sort {
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #293b55;
   border-radius: 56rpx;
   border: 1rpx solid #293b55;
   text-align: center;
-  height: 48rpx;
+  height: 46rpx;
   width: auto;
-  line-height: 48rpx;
-  padding: 4rpx 8rpx;
+  line-height: 46rpx;
+  padding: 0rpx 16rpx;
   margin-right: 24rpx;
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -1727,7 +1727,7 @@ page {
   background-color: #fff;
   border-radius: 4rpx;
   width: 100%;
-  padding: 40rpx 0rpx 30rpx 0;
+  padding: 40rpx 0rpx 0rpx 0;
   position: relative;
   /* margin-bottom: 16rpx; */
   height: 166rpx;
@@ -1750,7 +1750,7 @@ page {
 }
 
 #productBox .productContent {
-  margin-top: 20rpx;
+  margin-top: 31rpx;
   text-align: left;
   overflow: hidden;
   text-overflow: -o-ellipsis-lastline;
@@ -1765,10 +1765,18 @@ page {
 
 #productBox .projectTips {
   position: absolute;
-  right: 10rpx;
-  margin: 0;
-  height: 30rpx;
-  line-height: 30rpx;
+  right: -9rpx;
+  font-size: 22rpx;
+  color: #293b55;
+  border-radius: 56rpx;
+  border: 1rpx solid #293b55;
+  text-align: center;
+  height: 46rpx;
+  width: auto;
+  line-height: 46rpx;
+  padding: 0rpx 16rpx;
+  margin-right: 24rpx;
+  margin-bottom: 18rpx;
   top: 40rpx;
 }
 
@@ -2165,7 +2173,7 @@ page {
 }
 
 .pro_sorts {
-  margin-bottom: 40rpx;
+  margin-bottom: 8rpx;
   margin-top: 40rpx;
 }
 

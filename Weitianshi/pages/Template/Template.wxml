@@ -20,6 +20,7 @@
       </view>
     </view>
     <view class="editBottom">
+
       <view class="personCompany flex">
         <image class='bottomPic' src='/img/icon-C@2x.png'></image>
         <view class="personCompanyContent">
@@ -1304,7 +1305,7 @@
       <image src="/img/img-no@2x.png" class="productImg"></image>
       <view class="productInside">
         <view class="productTitle" wx:if="{{item.brand_name}}">{{item.brand_name}}</view>
-        <view class="pro_sort projectTips" wx:if="{{item.brand_type}}">{{item.brand_type}}</view>
+        <view class="projectTips" wx:if="{{item.brand_type}}">{{item.brand_type}}</view>
         <view class="productContent" wx:if="{{item.brand_desc}}">{{item.brand_desc}}</view>
       </view>
     </view>
@@ -1395,8 +1396,8 @@
         <view class="t-pipeidu">匹配度</view>
       </view>
       <view class="t-industryStage">
-        <view class="t-roundGroupPush flex" wx:if="{{item.industry_tag.length != 0}}">
-          <view class="t-roundGroupContent">
+        <view class="t-roundGroupPush flex">
+          <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length != 0}}">
             <block wx:for="{{item.industry_tag}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
               <label wx:if="{{index < item.industry_tag.length-1}}" class="{{industryItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">
                 {{industryItem.industry_name}}、
@@ -1406,14 +1407,16 @@
               </label>
             </block>
           </view>
+          <view class="t-roundGroupContent" wx:if="{{item.industry_tag.length == 0}}">暂未透露</view>
         </view>
-        <view class="t-roundGroupPush flex" wx:if="{{item.stage_tag.length != 0}}">
-          <view class="t-roundGroupContent">
+        <view class="t-roundGroupPush flex">
+          <view class="t-roundGroupContent" wx:if="{{item.stage_tag.length != 0}}">
             <block wx:for="{{item.stage_tag}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
               <label wx:if="{{index < item.stage_tag.length-1}}" class="{{stageItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">{{stageItem.stage_name}}、</label>
               <label wx:if="{{index ==item.stage_tag.length-1}}" class="{{stageItem.is_match == 1 ? 't-hightLight1':'t-noLight1'}}">{{stageItem.stage_name}}</label>
             </block>
           </view>
+          <view class="t-roundGroupContent" wx:if="{{item.stage_tag.length == 0}}">暂未透露</view>
         </view>
       </view>
     </view>

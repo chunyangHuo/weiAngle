@@ -67,12 +67,13 @@
 }
 
 .t-applyMyProject .t-careerCompany {
-  margin-left: 140rpx;
+  margin-left: 131rpx;
   margin-bottom: 0;
 }
 
 .t-applyMyProject {
   padding: 32rpx;
+  height: 104rpx;
 }
 .t-careerCompany{
   margin-bottom: 4rpx;
