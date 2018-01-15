@@ -39,7 +39,8 @@ Page({
       name: '名称',
       value: data.activity_title
     });
-    let start_time,end_time = '';
+    let end_time = '';
+    let start_time = '';
     if (data.start_time) start_time = data.start_time.substring(0, 16);
     if (data.end_time) end_time = data.end_time.substring(0, 16);
     activityDetail.push({

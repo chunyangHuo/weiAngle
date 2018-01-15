@@ -60,6 +60,15 @@ Page({
   goToActivityAgenda() {
     app.href('/activitySignIn/pages/activityAgenda/activityAgenda');
   },
+  // 直接加人脉
+  contactsAddDirect(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+      console.log('直接添加人脉完成', res)
+      that.contactsAddSuccessFunc(res, added_user_id, 1);
+    });
+  },
   // 加好友
   contactsAdd(e) {
     let id = e.currentTarget.dataset.id;
