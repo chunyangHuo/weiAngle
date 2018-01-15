@@ -955,7 +955,8 @@ Page({
                 data: {
                   open_session: wx.getStorageSync('open_session'),
                   user_id: user_id,
-                  project_id: project_id
+                  project_id: project_id,
+                  email: userEmail
                 },
                 method: 'POST',
                 success: function (res) {
@@ -1283,5 +1284,17 @@ Page({
         bindContact: false
       });
     }, 10000)
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 });

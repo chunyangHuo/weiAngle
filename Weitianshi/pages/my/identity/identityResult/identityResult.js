@@ -116,5 +116,17 @@ Page({
     let authenticate_id = this.data.authenticate_id;
     let group_id = this.data.group_id;
     app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 })

@@ -184,4 +184,16 @@ Page({
   linkCheckAll(e) {
     FilterModel.linkCheckAll(e, this);
   },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
+  }
 })
