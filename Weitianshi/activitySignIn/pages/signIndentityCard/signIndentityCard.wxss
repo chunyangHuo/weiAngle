@@ -1,5 +1,4 @@
 /* pages/activity_detailPreview/activity_detailPreview.wxss */
-
 .activityImg {
   width: 750rpx;
   height: 880rpx;
