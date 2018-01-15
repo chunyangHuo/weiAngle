@@ -38,6 +38,9 @@ Page({
         }
       })
     }
+  },
+  onShow: function () {
+    var user_id = this.data.user_id;
     //向后台发送信息取消红点
     wx.request({
       url: url_common + '/api/message/setMessageToRead',

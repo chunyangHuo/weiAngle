@@ -24,6 +24,9 @@ Page({
       }
     });
   },
+  onShow() {
+
+  },
   // 获取项目信息
   getMyProject() {
     let that = this;

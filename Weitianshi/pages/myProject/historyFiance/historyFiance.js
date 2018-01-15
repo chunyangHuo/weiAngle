@@ -11,7 +11,8 @@ Page({
       index: options.index,
       id: options.project_id,
       currentTab: options.currentTab,
-      shareType: options.type
+      shareType: options.type,
+      share_id: options.share_id
     });
     console.log('pro_id', this.data.id);
     let that = this;
@@ -29,11 +30,14 @@ Page({
   projectDetailInfo() {
     let that = this;
     let user_id = wx.getStorageSync('user_id');
+    let share_id = this.data.share_id;
     wx.request({
       url: url_common + '/api/project/getProjectDetail',
       data: {
         user_id: user_id,
-        project_id: this.data.id
+        project_id: this.data.id,
+        source: "share",
+        share_id: share_id
       },
       method: 'POST',
       success: function (res) {
@@ -41,7 +45,7 @@ Page({
         let project = res.data.data;
         that.setData({
           project: project,
-      
+
         });
         // 融资信息
         let pro_history_financeList = project.pro_history_finance;
@@ -55,13 +59,13 @@ Page({
         that.setData({
           pro_history_financeList: pro_history_financeList,//显示在详情的数据
         })
-    
+
       },
     })
   },
- 
 
- 
+
+
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()

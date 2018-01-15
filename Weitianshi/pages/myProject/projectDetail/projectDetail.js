@@ -72,7 +72,6 @@ Page({
     let pre = pages[pages.length - 2];
     if (pre) {
       pre.data.firstTime = false;
-
     }
     //  投资人数据
     let that = this;
@@ -161,6 +160,7 @@ Page({
             callBack1(res)
           } else {
             let share_id = that.data.share_id;
+            console.log("这是历史分享")
             if (!share_id) { }
             console.log('share_id', share_id)
             wx.redirectTo({

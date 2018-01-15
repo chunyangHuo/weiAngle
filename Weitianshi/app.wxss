@@ -532,7 +532,7 @@ textarea {
 .t-contactsPic {
   width: 750rpx;
   height: 280rpx;
-  background: url(https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/share_top.jpg) no-repeat;
+  background: url(https://cdn.weitianshi.cn/image/banner/share_top.jpg) no-repeat;
   background-size: 100%;
 }
 
