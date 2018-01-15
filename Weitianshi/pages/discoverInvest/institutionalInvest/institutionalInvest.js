@@ -69,5 +69,17 @@ Page({
     console.log(e)
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 })

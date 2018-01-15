@@ -52,5 +52,17 @@ Page({
   // 按钮一号
   buttonOne: function () {
     app.href('/pages/my/investCaseEdit/investCaseEdit')
+  },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
   }
 })

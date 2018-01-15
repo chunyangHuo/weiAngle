@@ -101,7 +101,7 @@
     </view>
     <view class="t-line"></view>
     <view class="t-flexBox" wx:if="{{button_type==1}}" data-telephone="{{user.user_mobile}}" catchtap="telephone" hover-class="t-hoverColor">
-      <image src='/img/icon-jiarenmai@2x.png' class='t-shopPic'></image>
+      <image src='/img/icon-dadianhua1.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>打电话</view>
     </view>
     <view class="t-line"></view>
@@ -136,7 +136,7 @@
     <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
     <view class="pushProjectAfter pushprojectm" bindtap="pushProjectTo">推送项目</view>
   </view> -->
-  <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
+  <!-- <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
     <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
       <image src='/img/icon-shouye@2x.png' class="t-shopPic1"></image>
       <view class='t-shopBlock'>首页</view>
@@ -154,7 +154,7 @@
     </view>
     <view class="t-line"></view>
     <view bindtap="pushProjectTo" class='t-creatProject' hover-class="t-redColor">提交项目</view>
-  </view>
+  </view> -->
   <!--错误提示  -->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
   <!-- 客服 -->

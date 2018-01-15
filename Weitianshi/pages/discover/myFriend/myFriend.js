@@ -5,6 +5,7 @@ import * as FilterModel from '../../../utils/filterModel';
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
+    jiandi:false,
     searchText: '请输入姓名、公司、品牌',
     firstTime: true,
     myList: '',
@@ -164,7 +165,12 @@ Page({
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "myList")
+    app.loadMore(that, request, "myList");
+    if (this.data.page_end == true) {
+      that.setData({
+        jiandi: true
+      })
+    }
 
   },
   // 分享当前页面
@@ -296,5 +302,17 @@ Page({
   onUnload: function () {
     app.initTran()
   },
+  // 重新加载
+  refresh() {
+    let timer = '';
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
+    timer = setTimeout(x => {
+      wx.hideLoading();
+      this.onShow();
+    }, 1500)
+  }
 })
 
