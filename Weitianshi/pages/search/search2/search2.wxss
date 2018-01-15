@@ -74,7 +74,9 @@
 .t-applyMyProject {
   padding: 32rpx;
 }
-
+.t-careerCompany{
+  margin-bottom: 4rpx;
+}
 /*项目店铺  */
 
 /*名片*/
