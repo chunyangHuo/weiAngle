@@ -189,18 +189,16 @@
                   <!-- <view class="proposal grayName" wx:if="{{project.pro_BP.length != 0}}">商业计划书：
                     <label class="materialContent">{{project.pro_BP.file_title}}</label>
                   </view> -->
-                  <view class="grayName" wx:if="{{project.pro_name != ''}}" wx:if='{{show_company==true}}'>项目名称
+                  <!-- wx:if='{{show_company==true}}' -->
+                  <view class="grayName" wx:if="{{project.pro_name != ''}}">项目名称
                     <label class="materialContent">{{project.pro_name}}</label>
                   </view>
-                  <!--&&show_company==true  -->
                   <view class="grayName" wx:if="{{project.pro_name == ''}}">项目名称
                     <label class="materialContent">暂未透露</label>
                   </view>
-                  <!--wx:if='{{show_company==true}}'  -->
                   <view class="grayName" wx:if="{{project.pro_company_name != ''}}">公司名称
                     <label class="materialContent byPass">{{project.pro_company_name}}</label>
                   </view>
-                  <!--&&show_company==true  -->
                   <view class="grayName" wx:if="{{project.pro_company_name == ''}}">公司名称
                     <label class="materialContent">暂未透露</label>
                   </view>
