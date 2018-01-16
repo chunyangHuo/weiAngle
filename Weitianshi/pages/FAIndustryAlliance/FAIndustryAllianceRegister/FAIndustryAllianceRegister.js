@@ -158,38 +158,24 @@ Page({
     let writeWeChat = this.data.user_info.user_wechat;
     let writeDescrible = this.data.user_info.user_intro;
     if (type == 0) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?name=' + writeNameValue + '&&type=0',
-      })
+      app.href('/pages/form/personInfo/personInfo?name=' + writeNameValue + '&&type=0')
     } else if (type == 2) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?brand=' + writeBrand + '&&type=2',
-      })
+      app.href('/pages/form/personInfo/personInfo?brand=' + writeBrand + '&&type=2')
     }
     else if (type == 3) {
       // 跳转公司模糊搜索
-      wx.navigateTo({
-        url: '/pages/search/search1/search1?company=' + writeCompany + '&&type=3'
-      })
+      app.href('/pages/search/search1/search1?company=' + writeCompany + '&&type=3')
     }
     else if (type == 4) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?career=' + writeCareer + '&&type=4',
-      })
+      app.href('/pages/form/personInfo/personInfo?career=' + writeCareer + '&&type=4')
     }
     else if (type == 5) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?email=' + writeEmail + '&&type=5',
-      })
+      app.href('/pages/form/personInfo/personInfo?email=' + writeEmail + '&&type=5')
     }
     else if (type == 6) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?writeWeChat=' + writeWeChat + '&&type=6',
-      })
+      app.href('/pages/form/personInfo/personInfo?writeWeChat=' + writeWeChat + '&&type=6')
     } else if (type == 7) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?writeDescrible=' + writeDescrible + '&&type=7',
-      })
+      app.href('/pages/form/personInfo/personInfo?writeDescrible=' + writeDescrible + '&&type=7')
     }
   },
   // 上传名片
@@ -234,27 +220,19 @@ Page({
   },
   // 跳转投资领域
   toIndustry: function () {
-    wx.navigateTo({
-      url: '/pages/form/industry/industry?current=1',
-    })
+    app.href('/pages/form/industry/industry?current=1')
   },
   // 跳转投资轮次
   toScale: function () {
-    wx.navigateTo({
-      url: '/pages/form/scale/scale',
-    })
+    app.href('/pages/form/scale/scale')
   },
   // 跳转投资金额
   toStage: function () {
-    wx.navigateTo({
-      url: '/pages/form/stage/stage',
-    })
+    app.href('/pages/form/stage/stage')
   },
   // 跳转投资地区
   toArea1: function () {
-    wx.navigateTo({
-      url: '/pages/form/area2/area2',
-    })
+    app.href('/pages/form/area2/area2')
   },
   // 申请加入FA行业联盟
   bindFAService: function (e) {
@@ -335,9 +313,7 @@ Page({
         success: function (res) {
           let statusCode = res.data.status_code;
           if (statusCode == 2000000) {
-            wx.navigateTo({
-              url: '/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification,
-            })
+            app.href('/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id + '&&recertification=' + recertification)
           }
         }
       })

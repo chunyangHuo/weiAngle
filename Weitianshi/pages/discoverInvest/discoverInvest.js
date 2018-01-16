@@ -371,9 +371,7 @@ Page({
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew',
-      })
+      app.href('/pages/my/myNew/myNew')
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }

@@ -23,9 +23,7 @@ function checkUserInfo(callBack) {
             content: "请先绑定个人信息",
             success: function (res) {
               if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '/pages/register/companyInfo/companyInfo?type = ' + 3
-                })
+                app.href('/pages/register/companyInfo/companyInfo?type = ' + 3)
               }
             }
           })
@@ -36,9 +34,7 @@ function checkUserInfo(callBack) {
           content: "请先绑定个人信息",
           success: function (res) {
             if (res.confirm == true) {
-              wx.navigateTo({
-                url: '/pages/register/personInfo/personInfo?type = ' + 2
-              })
+              app.href('/pages/register/personInfo/personInfo?type = ' + 2)
             }
           }
         })
@@ -76,9 +72,7 @@ function projectApply(pro_id, callBack) {
               confirmColor: "#333333",
               success: function (res) {
                 if (res.confirm) {
-                  wx.navigateTo({
-                    url: '/pages/my/identity/indentity/indentity'
-                  })
+                  app.href('/pages/my/identity/indentity/indentity')
                 } else if (res.cancel) {
                 }
               }
@@ -152,9 +146,7 @@ function projectApply(pro_id, callBack) {
               confirmText: "重新认证",
               showCancel: false,
               success: function (res) {
-                wx.navigateTo({
-                  url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
-                })
+                app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
               }
             })
           }
@@ -216,9 +208,7 @@ function projectPush(that, pushTo_user_id) {
   let user_id = wx.getStorageSync('user_id');
   checkUserInfo(x => {
     getPushProjectTimes(that, res => {
-      wx.navigateTo({
-        url: '/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id,
-      })
+      app.href('/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id)
     })
   })
 }

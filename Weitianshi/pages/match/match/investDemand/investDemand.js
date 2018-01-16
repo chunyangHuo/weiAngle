@@ -186,9 +186,7 @@ Page({
               delta: 1
             })
           } else {
-            wx.switchTab({
-              url: '/pages/discoverProject/discoverProject'
-            });
+            app.href('/pages/discoverProject/discoverProject')
           }
         }, 1000)
       })

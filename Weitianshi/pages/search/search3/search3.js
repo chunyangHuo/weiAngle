@@ -123,13 +123,9 @@ Page({
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
         } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
         }
       }
     })
@@ -139,13 +135,9 @@ Page({
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew',
-      })
+      app.href('/pages/my/myNew/myNew')
     } else {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
   },
   //上拉加载
