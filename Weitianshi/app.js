@@ -32,7 +32,7 @@ App({
                     encryptedData: encryptedData,
                     iv: iv
                   },
-                  method: "POST",
+                  method: 'POST',
                   success(res) {
                   }
                 })
