@@ -15,6 +15,7 @@ Page({
       share_id: options.share_id
     });
     console.log('pro_id', this.data.id);
+    console.log("share_id",this.share_id);
     let that = this;
     app.netWorkChange(that)
   },
