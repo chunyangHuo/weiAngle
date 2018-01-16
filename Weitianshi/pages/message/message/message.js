@@ -23,7 +23,7 @@ Page({
       {
         event: "beAddedContacts",
         iconPath: "/img/icon-tijiao123.png",
-        message_name: "人脉申请",
+        message_name: "好友申请",
         count: 0,
         type_id: 0
       }

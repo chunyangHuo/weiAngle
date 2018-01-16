@@ -99,3 +99,10 @@
     </view>
   </template>
 </view>
+
+
+<view class="b1" hidden="{{!showLoading}}">
+  <view class="t_image">
+    <image class="t_image1" src="{{loadingGif}}"></image>
+  </view>
+</view>

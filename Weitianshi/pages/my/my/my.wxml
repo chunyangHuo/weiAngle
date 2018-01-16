@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <include src='/utils/wxml/netWork' />
 <view wx:if="{{nonet}}">
-  <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
+  <!-- <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}"> -->
     <!--我的名片-->
     <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'加我为人脉',show : 1,IdentificationShow :1,playTime:0}}"></template>
     <view class="contactIcon flex">
@@ -59,7 +59,7 @@
         <view bindtap="addNetwork">加入人脉</view>
       </view>
     </view>
-  </scroll-view>
+  <!-- </scroll-view> -->
   <view class="showModal" hidden="{{modal==0}}" bindtap="hideModal">
     <image src="{{shareModal}}"></image>
   </view>

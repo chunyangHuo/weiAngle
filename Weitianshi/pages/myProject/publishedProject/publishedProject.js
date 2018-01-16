@@ -6,8 +6,8 @@ Page({
     disabled: false,//保存按钮是否禁用
     describe: "",
     area_title: "选择城市",
-    provinceNum: '',
-    cityNum: '',
+    provinceNum: 0,
+    cityNum: 0,
     // ---------------------picker----------------------
     stage: [],
     stage_index: 0,

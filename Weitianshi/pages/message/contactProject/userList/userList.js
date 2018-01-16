@@ -10,10 +10,7 @@ Page({
   onLoad: function (options) {
     let that = this;
     app.netWorkChange(that)
-  },
-  onShow: function () {
     let user_id = wx.getStorageSync('user_id');//获取我的user_id
-    let that = this;
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -38,6 +35,8 @@ Page({
         })
       }
     })
+  },
+  onShow: function () {
     this.setData({
       requestCheck: true,
       currentPage: 1,

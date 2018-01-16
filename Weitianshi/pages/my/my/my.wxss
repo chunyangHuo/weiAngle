@@ -173,6 +173,9 @@ page {
   top: 32rpx;
   right: 32rpx;
   position: absolute;
+  font-size: 48rpx;
+  color: #333;
+  line-height: 120rpx;
 }
 
 .Identification {
@@ -830,7 +833,7 @@ page {
   margin-left: 34rpx;
   position: absolute;
   right: 58rpx;
-  top: 226rpx;
+  top: 230rpx;
 }
 
 /*联系icon  */

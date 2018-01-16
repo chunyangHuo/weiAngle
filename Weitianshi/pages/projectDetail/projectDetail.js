@@ -691,6 +691,7 @@ Page({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
+        console.log(investor2,"投资人")
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -1102,6 +1103,8 @@ Page({
     let message = this.data.message;
     let project_id = this.data.id;//项目id
     // 防反复提交处理
+    console.log(project_id)
+    console.log(message)
     let submitData = {
       url: url_common + '/api/project/met',
       data: {
@@ -1394,7 +1397,11 @@ Page({
     let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id)
+    } else {
+      app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   //跳转到核心团队
   toTeam: function () {
@@ -1402,7 +1409,11 @@ Page({
     let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    } else {
+      app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   //跳转到产品
   toBrand: function () {
@@ -1410,7 +1421,11 @@ Page({
     let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    } else {
+      app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   //跳转到里程碑
   mileStone: function () {
@@ -1418,7 +1433,11 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let share_id = this.data.share_id;
     let id = this.data.id;
-    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    } else {
+      app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   contactTap: function () {
     let that = this;

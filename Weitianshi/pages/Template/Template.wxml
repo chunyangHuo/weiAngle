@@ -55,11 +55,11 @@
 
 <!--My寻找案源-->
 <template name="InvestInfo">
-  <view class="personDes" bindtap="findProjectEdit" wx:if="{{invest != ''}}">
+  <view class="personDes" bindtap="findProjectEdit" wx:if="{{invest.invest_industry.length != 0 ||invest.invest_stage.length != 0 || invest.invest_scale.length != 0 ||invest.invest_desc != null}}">
     <view class='flex shopBox'>
       <view class="personTitle">投资需求</view>
     </view>
-    <view class="requireBox" hidden="{{invest.invest_industry.length==0 }}">
+    <view class="requireBox" hidden="{{invest.invest_industry.length==0}}">
       <view class="requireTitle">· 投资领域</view>
       <view class='flex industryBox'>
         <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
