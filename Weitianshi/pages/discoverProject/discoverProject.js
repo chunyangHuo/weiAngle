@@ -26,7 +26,9 @@ Page({
     ],
     imgUrls1: app.globalData.picUrl.page_discoverProject,
     atBottom: false,
-    nonet: true
+    nonet: true,
+    loadingGif: app.globalData.picUrl.loadingGif,
+    showLoading:false
   },
   onLoad(options) {
     let that = this;
@@ -46,6 +48,9 @@ Page({
       that.selectProject();
     })
     app.netWorkChange(that)
+    // this.setData({
+    //   showLoading : true
+    // })
   },
   onShow() {
   },
@@ -165,6 +170,7 @@ Page({
       }
       that.setData({
         slectProject: slectProject,
+        // showLoading:false
       })
     })
   },

@@ -218,7 +218,7 @@ Page({
             }
           }
           //调用通用加载函数
-          app.loadMore(that, request,'myList')
+          app.loadMore(that, request, 'myList')
         }
         break;
     }
@@ -455,7 +455,13 @@ Page({
       })
     }
   },
-
+  // 一键拨号
+  telephone: function (e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
+  },
   // 新搜索逻辑
   newSearch(num) {
     let user_id = this.data.user_id;

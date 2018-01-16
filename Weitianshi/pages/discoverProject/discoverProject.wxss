@@ -462,3 +462,31 @@
   position: relative;
   top: 8rpx;
 }
+
+/*==============================loading  */
+.b1 {
+  position: fixed;
+  width: 100%;
+  height: 100%; 
+  top: 0px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.t_image {
+  width: 204rpx;
+  height: 200rpx;
+  position: absolute;
+  top: -26%;
+  left: 40%;
+}
+
+.t_image1 {
+  display: block;
+  width: 204rpx;
+  height: 200rpx;
+}
+
+.t_image1 {
+  margin-top: 548rpx;
+}

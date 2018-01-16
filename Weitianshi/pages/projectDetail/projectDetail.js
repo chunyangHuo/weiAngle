@@ -6,6 +6,7 @@ Page({
   data: {
     bindContact: false,
     jiandi: false,
+    jiandi1:false,
     competeList: [],
     taren: true,
     ziji: false,
@@ -109,7 +110,8 @@ Page({
     that.setData({
       newPage: '',
       requestCheck: true,
-      currentPage: 0,
+      currentPage: 1,
+      currentPage1: 0,
       page_end: false,
       investment_list: []
     })
@@ -691,6 +693,7 @@ Page({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
+        console.log(investor2,"投资人")
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -711,6 +714,7 @@ Page({
     let user_id = this.data.user_id;
     let id = this.data.id;
     let currentPage = this.data.currentPage;
+    console.log(currentPage);
     let request = {
       url: url_common + '/api/project/getProjectMatchInvestors',
       data: {
@@ -721,7 +725,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "investor2");
-    console.log(this.data.page_end);
+    console.log('投资人',this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -733,32 +737,40 @@ Page({
   loadMore1() {
     let that = this;
     let id = this.data.id;
-    let currentPage = this.data.currentPage;
+    let currentPage1 = this.data.currentPage1;
+    console.log(currentPage1);
     let investment_list = this.data.investment_list;
     let request = {
       url: url_common + '/api/investment/matchs',
       data: {
         project_id: id,
-        page: this.data.currentPage
+        page: this.data.currentPage1
       },
     }
-    app.loadMore2(that, request, res => {
+    app.loadMore23(that, request, res => {
       console.log("机构版买家图谱", res)
       let newPage = res.data.data;
       let list = res.data.data.investment_list;
-      let page_end = res.data.data.page_end;
+      let page_end1 = res.data.data.page_end;
       let investment_total_num = res.data.data.investment_total_num;
       if (list) {
         let newProject = investment_list.concat(list)
-        currentPage++;
+        currentPage1++;
         that.setData({
           newPage: newPage,
           investment_list: newProject,
-          page_end: page_end,
+          page_end1: page_end1,
           requestCheck: true,
-          currentPage: currentPage,
+          currentPage1: currentPage1,
           investment_total_num: investment_total_num
-        })
+        });
+        console.log('投资机构页数',this.data.currentPage1);
+        console.log('投资机构',this.data.page_end1);
+        if (this.data.page_end1 == true) {
+          that.setData({
+            jiandi1: true
+          })
+        }
       }
     })
   },
@@ -1102,6 +1114,8 @@ Page({
     let message = this.data.message;
     let project_id = this.data.id;//项目id
     // 防反复提交处理
+    console.log(project_id)
+    console.log(message)
     let submitData = {
       url: url_common + '/api/project/met',
       data: {
@@ -1394,7 +1408,11 @@ Page({
     let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id)
+    } else {
+      app.href('/pages/myProject/historyFiance/historyFiance?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   //跳转到核心团队
   toTeam: function () {
@@ -1402,15 +1420,24 @@ Page({
     let share_id = this.data.share_id;
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    } else {
+      app.href('/pages/myProject/proTeam/proTeam?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   //跳转到产品
   toBrand: function () {
     let that = this;
     let share_id = this.data.share_id;
+    console.log(share_id);
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
-    app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    } else {
+      app.href('/pages/myProject/proBrand/proBrand?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   //跳转到里程碑
   mileStone: function () {
@@ -1418,7 +1445,11 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let share_id = this.data.share_id;
     let id = this.data.id;
-    app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    if (share_id) {
+      app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id + '&&share_id=' + share_id);
+    } else {
+      app.href('/pages/myProject/proMilestone/proMilestone?user_id=' + user_id + '&&project_id=' + id);
+    }
   },
   contactTap: function () {
     let that = this;
