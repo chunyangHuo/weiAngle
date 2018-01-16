@@ -52,7 +52,8 @@ Page({
     type: 2,
     other: true,
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
-    nonet: true
+    nonet: true,
+    jiandi : false
   },
   onLoad: function (options) {
     this.setData({
@@ -613,6 +614,7 @@ Page({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
+        console.log(investor2,"投资人")
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
