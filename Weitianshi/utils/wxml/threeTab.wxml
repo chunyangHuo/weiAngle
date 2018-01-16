@@ -420,7 +420,7 @@
               </view>
             </block>
             <view style="height:32rpx;"></view>
-            <template is="theBottom" style="margin-bottom:92rpx" wx:if="{{jiandi==true&&investor2.length!=0}}"></template>
+            <template is="theBottom" style="margin-bottom:92rpx" wx:if="{{jiandi==true&&investor2.length!==0}}"></template>
             <view style="height:32rpx;"></view>
             <!-- <template is="hasNothing" data="{{emptyNumber:investor2}}"></template> -->
             <template is="isEmpty" data="{{emptyNumber:investor2}}"></template>
@@ -432,7 +432,7 @@
             <view class="matchIntro">{{newPage.pro_intro}}</view>
             <view id="investment1" wx:if="{{investment_list.length!=0}}">
               <template is='investment1' data='{{investment_list}}'></template>
-              <template is="theBottom" wx:if="{{investment_list.length!=0}}"></template>
+              <template is="theBottom" wx:if="{{jiandi1==true&&investment_list.length!==0}}"></template>
             </view>
             <!-- <view class="hasNothing" wx:if="{{investment_list.length ==0 }}">暂无数据</view> -->
             <template is="isEmpty" data="{{emptyNumber:investment_list}}"></template>
