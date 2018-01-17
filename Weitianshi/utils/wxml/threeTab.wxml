@@ -15,11 +15,7 @@
           <view class="projectDetailTop">
             <view class="projectDetailBox">
               <view>
-                <view class="flex">
-                  <view class="describle">
-                    {{project.pro_intro}}
-                  </view>
-                  <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+                <view class="flex"><view class="describle">{{project.pro_intro}}</view><image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
                   <!-- <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image> -->
                 </view>
                 <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
@@ -143,7 +139,6 @@
                     </view>
                   </view>
                 </block>
-
               </view>
               <!-- <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked2 == true && textBeyond2==true}}" data-check="{{2}}">收起</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked2== false && textBeyond2==true}}" data-check="{{2}}">全部</label> -->
@@ -395,7 +390,7 @@
       <view>
 
         <!--买家图谱  -->
-        <scroll-view wx:if="{{matchBut}}" scroll-y="true" style="height: 900rpx;" bindscrolltolower="loadMore">
+        <scroll-view wx:if="{{matchBut}}" scroll-y="true" style="height: 1254rpx;" bindscrolltolower="loadMore">
           <view class="t-matchButton flex">
             <!--t-matchButton1  代表选中  -->
             <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}" bindtap='matchButt'>投资人(
@@ -430,7 +425,7 @@
           </view>
         </scroll-view>
         <!--机构版买家图谱  -->
-        <scroll-view wx:if="{{matchBut1}}" style='height:900rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
+        <scroll-view wx:if="{{matchBut1}}" style='height:1254rpx;' scroll-y='true' scroll-top="{{scroll}}" bindscrolltolower='loadMore1'>
            <view class="t-matchButton flex">
           <!--t-matchButton1  代表选中  -->
           <button class="{{matchBut?'t-matchButton1':'t-matchButton3'}}" bindtap='matchButt'>投资人(<label>{{matchCount}}</label>)
