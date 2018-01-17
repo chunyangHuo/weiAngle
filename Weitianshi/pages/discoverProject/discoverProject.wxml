@@ -72,7 +72,7 @@
               <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
               <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-project-apply' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
               <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
-              <view class="refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+              <view class="refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">提交给我</view>
               <view wx:if="{{item.relationship_button == 5}}"></view>
               <view class="t-toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
             </view>

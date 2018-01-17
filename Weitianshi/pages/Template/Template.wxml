@@ -62,7 +62,7 @@
       <view class="personTitle">投资需求</view>
       <view class="allNum" wx:if="{{playTime == 1}}">编辑</view>
     </view>
-    <view class="requireBox" hidden="{{invest.invest_industry.length==0}}">
+    <view class="requireBox" hidden="{{invest.invest_industry.length==0 || invest.length == 0}}">
       <view class="requireTitle">· 投资领域</view>
       <view class='flex industryBox'>
         <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
@@ -70,7 +70,7 @@
         </block>
       </view>
     </view>
-    <view class="requireBox" wx:if="{{invest.invest_stage!=''}}" hidden="{{invest.invest_stage.length == 0}}">
+    <view class="requireBox" wx:if="{{invest.invest_stage!=''}}" hidden="{{invest.invest_stage.length == 0 || invest.length == 0}}">
       <view class="requireTitle">· 投资轮次</view>
       <view class='flex industryBox'>
         <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
@@ -78,7 +78,7 @@
         </block>
       </view>
     </view>
-    <view class="requireBox" wx:if="{{invest.invest_scale!=''}}" hidden="{{invest.invest_scale.length == 0}}">
+    <view class="requireBox" wx:if="{{invest.invest_scale!=''}}" hidden="{{invest.invest_scale.length == 0 || invest.length == 0}}">
       <view class="requireTitle">· 投资金额</view>
       <view class='flex industryBox'>
         <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
@@ -388,7 +388,7 @@
             <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
             <view class="toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" catchtap="matchApply" data-content="{{0}}" hover-class="t-other-button-hover">申请查看</view>
             <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
-            <view class="refuseToRead readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+            <view class="refuseToRead readed" wx:if="{{item.relationship_button == 3}}">提交给我</view>
             <view class="toAccreditation project-applicationm" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply" hover-class="t-hoverColor">重新申请</view>
           </view>
         </view>
@@ -776,7 +776,7 @@
             <view class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}" hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap="matchApply">申请查看</view>
             <!-- <button  class="t-toAccreditation project-applicationm" wx:if="{{item.relationship_button == 4}}" data-project="{{item.project_id}}">申请查看</button> -->
             <view class="t-refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
-            <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+            <view class="t-refuseToRead t-readed" wx:if="{{item.relationship_button == 3}}">提交给我</view>
             <view wx:if="{{item.relationship_button == 5}}"></view>
             <view class="t-toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
           </view>
@@ -973,11 +973,11 @@
     <view class="t-line"></view>
     <view class='t-cardBottomItem2 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
-      <span>推送项目</span>
+      <span>提交项目</span>
     </view>
     <!-- <view class='t-cardBottomItem flex'>
       <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
-      <span>已推送</span>
+      <span>已提交</span>
     </view>
     <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
       <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
@@ -1439,7 +1439,7 @@
     </view>
     <view class="flex" wx:if="{{item.push_status == 1}}">
       <!-- <image src="/img/icon-yituisong@2x.png" class="pushProject pushProject1"></image> -->
-      <view class="btnContented">已推送</view>
+      <view class="btnContented">已提交</view>
     </view>
   </view>
   <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>

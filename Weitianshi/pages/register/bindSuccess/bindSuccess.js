@@ -23,23 +23,12 @@ Page({
     console.log(type);
     if (type == 1) {
       let pages = getCurrentPages();
-<<<<<<< HEAD
-      console.log(pages)
-=======
-      console.log(pages);
->>>>>>> fa4490c8a11ce5ab85de35bc05fe4b89983f26f8
       wx.navigateBack({
         delta: 2
       });
     } else {
       if (type == 2) {
-<<<<<<< HEAD
         let pages = getCurrentPages()
-        console.log(pages)
-=======
-        let pages = getCurrentPages();
-        console.log(pages);
->>>>>>> fa4490c8a11ce5ab85de35bc05fe4b89983f26f8
         wx.navigateBack({
           delta: 3
         });

@@ -16,7 +16,7 @@ Page({
       {
         event: "projectPush",
         iconPath: "/img/icon-tijiao456.png",
-        message_name: "项目推送",
+        message_name: "项目提交",
         count: 0,
         type_id: 0
       },
@@ -26,7 +26,7 @@ Page({
         message_name: "好友申请",
         count: 0,
         type_id: 0
-      }
+      } 
     ],
     status: 0
   },
@@ -49,7 +49,6 @@ Page({
         method: 'POST',
         success: function (res) {
           var list = res.data.data;
-          console.log(list)
           list.forEach((x, index) => {
             messageList[index].message_name = x.message_name;
             messageList[index].count = x.count;
