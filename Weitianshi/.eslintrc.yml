@@ -5,16 +5,26 @@ env:
 extends: 'eslint:recommended'
 parserOptions:
   sourceType: module
+globals:
+  wx: true
+  App: true
+  getApp: true
+  x: true
+  res: true
 rules:
   indent:
     - error
     - 2
   linebreak-style:
-    - error
+    - off
     - windows
-  quotes:
-    - error
-    - single
   semi:
     - warn
     - always
+  "no-use-before-define":
+    - error
+    - { functions: false, classes: true }
+  "no-console": off
+  "no-unused-vars":
+    - error
+    - { vars: all, args: none, ignoreRestSiblings: false}
