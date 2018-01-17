@@ -388,10 +388,39 @@ App({
     }
   },
   // 买家图谱翻页
-  loadMore23(that, request, callback) {
+  // loadMore23(that, request, callback) {
+  //   let user_id = wx.getStorageSync("user_id");
+  //   if (that.data.requestCheck) {
+  //     if (that.data.page_end == false) {
+  //       wx.showToast({
+  //         title: 'loading...',
+  //         icon: 'loading'
+  //       })
+  //       request.data.page++;
+  //       that.setData({
+  //         currentPage1: request.data.page,
+  //         requestCheck: false
+  //       });
+  //       //请求加载数据
+  //       wx.request({
+  //         url: request.url,
+  //         data: request.data,
+  //         method: 'POST',
+  //         success: callback
+  //       })
+  //     } else {
+  //       // this.errorHide(that, "没有更多了", 3000)
+  //       that.setData({
+  //         requestCheck: true
+  //       });
+  //     }
+  //   }
+  // },
+  loadMoreM(that, request, str, dataStr) {
     let user_id = wx.getStorageSync("user_id");
+    let dataSum = that.data[str];
     if (that.data.requestCheck) {
-      if (that.data.page_end == false) {
+      if (that.data.page_end1 == false) {
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -399,17 +428,40 @@ App({
         request.data.page++;
         that.setData({
           currentPage1: request.data.page,
-          requestCheck: false
+          requestCheck: false,
+          atBottom: false
         });
         //请求加载数据
         wx.request({
           url: request.url,
           data: request.data,
           method: 'POST',
-          success: callback
+          success: function (res) {
+            let newPage = res.data.data.investment_list;
+            let page_end1 = res.data.data.page_end;
+            if (dataStr && typeof dataStr == "string") {
+              newPage = res.data[dataStr];
+            }
+            console.log(request.data.page, newPage, page_end1);
+            dataSum = dataSum.concat(newPage)
+            that.setData({
+              [str]: dataSum,
+              page_end1: page_end1,
+              requestCheck: true
+            })
+            if (page_end1) {
+              that.setData({
+                atBottom: true
+              })
+            }
+          },
+          complete() {
+            wx.hideLoading();
+          }
         })
       } else {
-        // this.errorHide(that, "没有更多了", 3000)
+        this.hasNothingMore(that);
+        wx.hideLoading();
         that.setData({
           requestCheck: true
         });
@@ -849,10 +901,10 @@ App({
     app_key: 'wxos_lt',
     open_session: '',
     delay_time: 0,
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
-    url: "https://wx.dev.weitianshi.cn",
-    url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.weitianshi.cn",
+    url_common: "https://wx.weitianshi.cn"
+    // url: "https://wx.dev.weitianshi.cn",
+    // url_common: "https://wx.dev.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
   },
