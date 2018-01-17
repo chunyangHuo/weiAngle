@@ -76,6 +76,7 @@ Page({
       this.myList();
     }
   },
+
   //我的人脉列表信息
   myList() {
     let user_id = this.data.user_id;
@@ -175,7 +176,7 @@ Page({
     return ShareModel.discoverInvestShare();
   },
   //  跳转到项目店铺筛选页面
-  tagFilter() {
+  tagFilter:function() {
     wx.navigateTo({
       url: '/pages/my/projectShop/tagFilter/tagFilter',
     })

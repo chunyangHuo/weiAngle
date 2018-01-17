@@ -112,40 +112,34 @@ Page({
   projectDetail: function (e) {
     var project_id = e.currentTarget.dataset.project;
     // 判斷項目是不是自己的
-    wx.request({
+    app.httpPost({
       url: url + '/api/project/projectIsMine',
       data: {
         project_id: project_id
       },
-      method: 'POST',
-      success: function (res) {
-        var that = this;
-        var userId = res.data.user_id;
-        var user = wx.getStorageSync('user_id');
-        if (userId == user) {
-          wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0
-          })
-        } else {
-          wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + project_id,
-          })
-        }
+    }, this).then(res => {
+      var that = this;
+      var userId = res.data.user_id;
+      var user = wx.getStorageSync('user_id');
+      if (userId == user) {
+        app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+      } else {
+        app.href('/pages/projectDetail/projectDetail?id=' + project_id)
       }
+    }).catch(res => {
+      app.errorHide(this, res.data.error_msg)
     })
+
+
   },
   //点击进入用户详情
   userDetail(e) {
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew',
-      })
+      app.href('/pages/my/myNew/myNew')
     } else {
-      wx.navigateTo({
-        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
-      })
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
   },
   //上拉加载
@@ -322,21 +316,21 @@ Page({
   // 最新
   newestProject() {
     let that = this;
-    wx.request({
+    app.httpPost({
       url: url_common + '/api/project/getMarketProjectList',
       data: {
         user_id: this.data.user_id,
         filter: this.data.SearchInit.searchData
       },
-      method: 'POST',
-      success: function (res) {
-        wx.hideLoading()
-        console.log('最新', res)
-        var financingNeed = res.data.data;
-        that.setData({
-          financingNeed: financingNeed,
-        })
-      }
+    }, this).then(res => {
+      wx.hideLoading()
+      console.log('最新', res)
+      var financingNeed = res.data.data;
+      that.setData({
+        financingNeed: financingNeed,
+      })
+    }).catch(res => {
+      app.errorHide(this, res.data.error_msg)
     })
   },
   // 精选
@@ -380,6 +374,12 @@ Page({
         }
       }
     });
+
+
+
+
+
+    
   },
   // FA(弃用)
   faList() {

@@ -835,6 +835,14 @@ App({
       atBottom: true
     })
   },
+  // console.log 显示
+  log(that, text, res){
+    if (this.globalData.url_common =='https://wx.dev.weitianshi.cn'){
+      console.log(text,res);
+    }else{
+       
+    }
+  },
   //初始本地缓存
   globalData: {
     routerPage:[],
@@ -844,10 +852,10 @@ App({
     app_key: 'wxos_lt',
     open_session: '',
     delay_time: 0,
-    url: "https://wx.weitianshi.cn",
-    url_common: "https://wx.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+    // url: "https://wx.weitianshi.cn",
+    // url_common: "https://wx.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
   },

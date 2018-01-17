@@ -5,7 +5,6 @@ Page({
   data: {},
   onLoad: function (options) {
     let that = this;
-    console.log(options);
     app.netWorkChange(that)
     let type = options.type;
 
@@ -28,7 +27,7 @@ Page({
     } 
     if (options.team_founder != "undefined") {
       let team_founder = options.team_founder;
-      console.log(team_founder)
+      app.log(that, 'team_founder', team_founder);
       that.setData({
         team_founder: team_founder
       })
@@ -50,9 +49,8 @@ Page({
   },
   //创始人信息填写
   createPersonEdit: function (e) {
-    console.log(e)
     let team_founder = e.detail.value;
-    console.log(team_founder)
+    app.log(that, 'team_founder', team_founder);
     let team_founderLength = e.detail.value.length;
     let that = this;
     if (team_founderLength <= 40) {
@@ -136,7 +134,6 @@ Page({
         app.errorHide(that, "战队名不能为空", 1500)
       }
     } else if (type == 3) {
-      console.log(type)
       if (team_founder != '') {
         prevPage.setData({
           team_founder: team_founder
