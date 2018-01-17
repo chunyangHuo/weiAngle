@@ -43,9 +43,7 @@ Component({
   methods: {
     _toIndex(){
       this.checkFunc('_toIndex')
-      wx.switchTab({
-        url: '/pages/discoverProject/discoverProject',
-      })
+      app.href('/pages/discoverProject/discoverProject')
       this.triggerEvent()
     },
     checkFunc(funcName){

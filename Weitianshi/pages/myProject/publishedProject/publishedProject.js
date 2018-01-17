@@ -508,14 +508,10 @@ Page({
             })
           }, 1000)
         } else if (that.data.pro_id && fromPublish == 3) {
-          wx.switchTab({
-            url: '/pages/discoverProject/discoverProject',
-          })
+          app.href('/pages/discoverProject/discoverProject')
         } else {
           setTimeout(x => {
-            wx.redirectTo({
-              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + type
-            })
+            app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
           }, 1000)
         }
       })

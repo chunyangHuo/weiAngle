@@ -211,9 +211,7 @@ Page({
   },
   //确定或稍后再试
   laterOn: function () {
-    wx.switchTab({
-      url: '/pages/my/myNew/myNew',
-    })
+    app.href('/pages/my/myNew/myNew')
     this.setData({
       modalBox: 0
     })

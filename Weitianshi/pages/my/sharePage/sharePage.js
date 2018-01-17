@@ -61,9 +61,7 @@ Page({
       console.log(share_id, followed_user_id, view_id)
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
-        wx.switchTab({
-          url: '/pages/my/myNew/myNew',
-        })
+        app.href('/pages/my/myNew/myNew')
       }
       that.setData({
         user_id: user_id,
@@ -90,9 +88,7 @@ Page({
   },
   // 回到首页
   moreProject: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   // 一键拨号
   telephone: function (e) {
@@ -212,9 +208,7 @@ Page({
                     confirmText: '去看看',
                     success: function (res) {
                       if (res.confirm) {
-                        wx.switchTab({
-                          url: '/pages/discoverInvest/discoverInvest',
-                        })
+                        app.href('/pages/discoverInvest/discoverInvest')
                       } else if (res.cancel) {
                         console.log('用户点击取消')
                       }
@@ -262,9 +256,7 @@ Page({
   },
   //跳转到我的人脉
   toContactsMy: function () {
-    wx.switchTab({
-      url: '/pages/my/myNew/myNew',
-    })
+    a00.href('/pages/my/myNew/myNew')
   },
   //跳转注册
   toContacts: function () {
