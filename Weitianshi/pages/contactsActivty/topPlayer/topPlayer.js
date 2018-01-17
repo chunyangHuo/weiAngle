@@ -63,9 +63,7 @@ Page({
   },
   //返回小程序
   backTo: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   //搜索战队
   searchSth(e) {
@@ -141,13 +139,10 @@ Page({
   //扩展我的人脉
   expandMyContacts: function () {
     let user_id = wx.getStorageSync('user_id');
-    wx.redirectTo({
-      url: '/pages/my/qrCode/qrCode?user_id=' + user_id + '&type=' + 1,
-    })
+    app.href('/pages/my/qrCode/qrCode?user_id=' + user_id + '&type=' + 1)
   },
   //个人加载更多
   moreThing: function () {
-    console.log(44444)
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let currentPage = this.data.currentPage;

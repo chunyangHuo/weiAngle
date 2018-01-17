@@ -32,9 +32,7 @@ Page({
     //分享至群打点准备
 
     if (user_id == view_id) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew',
-      })
+      app.href('/pages/my/myNew/myNew')
     }
     //用戶的个人信息
     wx.request({
@@ -256,9 +254,7 @@ Page({
     app.shareJump(index);
   },
   moreProject: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   // 二维码分享按钮
   shareSth: function (e) {

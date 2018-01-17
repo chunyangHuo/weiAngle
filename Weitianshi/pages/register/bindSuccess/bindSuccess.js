@@ -39,10 +39,7 @@ Page({
           delta: 3
         })
       } else {
-        console.log("主页")
-        wx.switchTab({
-          url: "/pages/discoverProject/discoverProject"
-        });
+        app.href("/pages/discoverProject/discoverProject")
       }
     }
   },
