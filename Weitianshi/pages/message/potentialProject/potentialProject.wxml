@@ -3,7 +3,7 @@
 <view wx:if="{{nonet}}">
   <view class="swiper-tab">
 
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推送给我的项目</view>
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">提交给我的项目</view>
 
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我申请查看的项目</view>
 
@@ -13,7 +13,7 @@
     <!--推送给我的项目  -->
     <swiper-item>
       <scroll-view scroll-y="true" bindscrolltolower="pushMore" scroll-top="{{scroll}}">
-        <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
+        <template is="allNumber" data="{{count:count1,text:'提交给我的项目'}}"></template>
         <template is="personModal" data="{{list:pushToList,type:0}}"></template>
         <template is="hasNothing" data="{{emptyNumber:pushToList}}"></template>
       </scroll-view>

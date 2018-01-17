@@ -2,7 +2,7 @@
 <include src='/utils/wxml/netWork' />
 <view wx:if="{{nonet}}">
   <view class="title">
-    今日剩余推送
+    今日剩余提交
     <label>{{pushTimes.remain_times}}</label>次(1个项目推给1个投资人计为1次)
   </view>
   <view class="s_frame">
@@ -46,7 +46,7 @@
   </view>
 
   <button disabled="{{clicked}}" class="floatBtn flex pushPro" bindtap="pushTo" hover-class='t-other-button-hover'>
-    <label class="pushProjectAfter">推送</label>
+    <label class="pushProjectAfter">提交</label>
   </button>
   <!-- 错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

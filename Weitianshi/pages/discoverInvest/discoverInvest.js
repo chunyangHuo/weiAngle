@@ -1,8 +1,5 @@
 var app = getApp();
-<<<<<<< HEAD
-=======
 var url = app.globalData.url;
->>>>>>> fa4490c8a11ce5ab85de35bc05fe4b89983f26f8
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/filterModel';
 import * as ShareModel from '../../utils/shareModel';
