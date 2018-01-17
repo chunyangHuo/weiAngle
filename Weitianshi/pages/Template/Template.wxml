@@ -57,7 +57,7 @@
 
 <!--My寻找案源-->
 <template name="InvestInfo">
-  <view class="personDes" bindtap="findProjectEdit" wx:if="{{invest.invest_industry.length != 0 ||invest.invest_stage.length != 0 || invest.invest_scale.length != 0 ||invest.invest_desc != null}}">
+  <view class="personDes" bindtap="findProjectEdit" wx:if="{{invest.invest_industry.length != 0 ||invest.invest_stage.length != 0 || invest.invest_scale.length != 0 ||invest.invest_desc != null|| playTime == 1}}">
     <view class='flex shopBox'>
       <view class="personTitle">投资需求</view>
       <view class="allNum" wx:if="{{playTime == 1}}">编辑</view>
@@ -131,7 +131,7 @@
 
 <!--项目店铺-->
 <template name="financingProject">
-  <view class='personDes' wx:if="{{count.project_count != 0}}">
+  <view class='personDes' wx:if="{{count.project_count != 0 || playTime == 1}}">
     <view class='flex shopBox' catchtap="projectFinance">
       <view class="personTitle">项目店铺</view>
       <view class="allNum" wx:if="{{count.project_count > 3}}">全部({{count.project_count}})</view>
@@ -166,7 +166,7 @@
 
 <!--成功案例-->
 <template name="investProject">
-  <view class="personDes" catchtap="investCase" wx:if="{{invest_case.length != 0}}" id="investProject">
+  <view class="personDes" catchtap="investCase" wx:if="{{invest_case.length != 0 || playTime == 1}}" id="investProject">
     <view class='flex shopBox'>
       <view class="personTitle">成功案例</view>
       <view class="allNum" wx:if="{{invest_case.length > 3}}">全部({{invest_case.length}})</view>
