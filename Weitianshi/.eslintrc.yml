@@ -11,6 +11,7 @@ globals:
   getApp: true
   x: true
   res: true
+  Page: true
 rules:
   indent:
     - error
