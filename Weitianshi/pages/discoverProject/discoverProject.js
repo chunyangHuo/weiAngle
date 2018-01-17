@@ -28,7 +28,7 @@ Page({
     atBottom: false,
     nonet: true,
     loadingGif: app.globalData.picUrl.loadingGif,
-    showLoading:false
+    showLoading: false
   },
   onLoad(options) {
     let that = this;
@@ -267,33 +267,23 @@ Page({
   },
   // 跳转投资机构
   jumpOrg() {
-    wx.navigateTo({
-      url: '/pages/discoverInvest/institutionalInvest/institutionalInvest',
-    })
+    app.href('/pages/discoverInvest/institutionalInvest/institutionalInvest')
   },
   //投资人
   jumpInvestor() {
-    wx.navigateTo({
-      url: '/pages/discover/discoverPerson/discoverPerson',
-    })
+    app.href('/pages/discover/discoverPerson/discoverPerson')
   },
   //FA融资顾问
   jumpFinancingAdvisor() {
-    wx.navigateTo({
-      url: '/pages/discover/financingAdvisor/financingAdvisor',
-    })
+    app.href('/pages/discover/financingAdvisor/financingAdvisor')
   },
   //潜在投资方
   potentialInvestor() {
-    wx.navigateTo({
-      url: '/pages/matchInvestor/matchInvestor',
-    })
+    app.href('/pages/matchInvestor/matchInvestor')
   },
   //跳转搜索页面
   searchMore() {
-    wx.navigateTo({
-      url: '/pages/search/search2/search2',
-    })
+    app.href('/pages/search/search2/search2')
   },
   // 重新加载
   refresh() {

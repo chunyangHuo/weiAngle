@@ -128,25 +128,18 @@ Page({
     let user_id = this.data.user_id;
     let str;
     str = 'investorList';
-    // app.href('/pages/search/search3/search3?user_id=' + user_id)
-    wx.navigateTo({
-      url: '/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str,
-    })
+    app.href('/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str)
   },
   //  跳转到项目店铺筛选页面
   tagFilter() {
-    wx.navigateTo({
-      url: '/pages/my/projectShop/tagFilter/tagFilter',
-    })
+      app.href('/pages/my/projectShop/tagFilter/tagFilter')
   },
   // 用户详情
   userDetail: function (e) {
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew',
-      })
+      app.href('/pages/my/myNew/myNew')
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }

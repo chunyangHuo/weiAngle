@@ -312,10 +312,7 @@ Page({
   },
   // 首页
   moreProject(){
-    console.log("首页")
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   // 重新加载
   refresh() {

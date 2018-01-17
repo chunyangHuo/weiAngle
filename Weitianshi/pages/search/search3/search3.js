@@ -117,6 +117,7 @@ Page({
       data: {
         project_id: project_id
       },
+
     }, this).then(res => {
       var that = this;
       var userId = res.data.user_id;

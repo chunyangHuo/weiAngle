@@ -40,7 +40,7 @@ Page({
         eventName: '_toIndex',
         picUrl: '/img/icon-fenxiang@2x.png',
         text: "首页",
-        func:function(){
+        func: function () {
           console.log(11111)
         }
       },
@@ -124,6 +124,7 @@ Page({
   },
   onShow: function () {
     if (!this.data.firstTime) {
+      console.log(999)
       this._getUserInfo();
       this.setData({
         requestCheck: true,
@@ -298,7 +299,7 @@ Page({
       }
       if (page_end == true) {
         this.setData({
-          atBottom:true
+          atBottom: true
         })
       }
     });
@@ -396,9 +397,8 @@ Page({
   },
   //  跳转到项目店铺筛选页面
   tagFilter() {
-    wx.navigateTo({
-      url: '/pages/my/projectShop/tagFilter/tagFilter',
-    })
+
+      app.href('/pages/my/projectShop/tagFilter/tagFilter')
   },
   //  身份验证
   _identity: function (targetUrl, num) {
@@ -447,7 +447,7 @@ Page({
   //  分享页面
   onShareAppMessage: function () {
     console.log(555)
-  if (res.from === 'button') {
+    if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
@@ -458,7 +458,7 @@ Page({
         console.log("res成功", res)
       },
       fail: function (res) {
-       console.log("res失败",res)
+        console.log("res失败", res)
       }
     }
   },

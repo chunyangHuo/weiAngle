@@ -5,7 +5,7 @@ import * as FilterModel from '../../../utils/filterModel';
 import * as ShareModel from '../../../utils/shareModel';
 Page({
   data: {
-    jiandi:false,
+    jiandi: false,
     searchText: '请输入姓名、公司、品牌',
     firstTime: true,
     myList: '',
@@ -141,9 +141,7 @@ Page({
     let id = e.currentTarget.dataset.id
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew',
-      })
+      app.href('/pages/my/myNew/myNew')
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
@@ -176,10 +174,9 @@ Page({
     return ShareModel.discoverInvestShare();
   },
   //  跳转到项目店铺筛选页面
-  tagFilter:function() {
-    wx.navigateTo({
-      url: '/pages/my/projectShop/tagFilter/tagFilter',
-    })
+
+  tagFilter() {
+    app.href('/pages/my/projectShop/tagFilter/tagFilter')
   },
   // 项目推送
   projectPush(e) {
