@@ -20,7 +20,6 @@
       </view>
     </view>
     <view class="editBottom">
-
       <view class="personCompany flex">
         <image class='bottomPic' src='/img/icon-C@2x.png'></image>
         <view class="personCompanyContent">
@@ -47,8 +46,11 @@
 
 <!--My个人描述-->
 <template name="userIntro">
-  <view class="personDes" bindtap="cardEdit" wx:if="{{user.user_intro!= ''}}">
-    <view class="personTitle">个人描述</view>
+  <view class="personDes" bindtap="cardEdit" wx:if="{{user.user_intro!= '' || playTime == 1}}">
+    <view class='flex shopBox'>
+      <view class="personTitle">个人描述</view>
+      <view class="allNum" wx:if="{{playTime == 1}}">编辑</view>
+    </view>
     <view class='personDesContent' wx:if="{{user.user_intro!= ''}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
   </view>
 </template>
@@ -58,6 +60,7 @@
   <view class="personDes" bindtap="findProjectEdit" wx:if="{{invest.invest_industry.length != 0 ||invest.invest_stage.length != 0 || invest.invest_scale.length != 0 ||invest.invest_desc != null}}">
     <view class='flex shopBox'>
       <view class="personTitle">投资需求</view>
+      <view class="allNum" wx:if="{{playTime == 1}}">编辑</view>
     </view>
     <view class="requireBox" hidden="{{invest.invest_industry.length==0}}">
       <view class="requireTitle">· 投资领域</view>
@@ -132,6 +135,7 @@
     <view class='flex shopBox' catchtap="projectFinance">
       <view class="personTitle">项目店铺</view>
       <view class="allNum" wx:if="{{count.project_count > 3}}">全部({{count.project_count}})</view>
+      <view class="allNum" wx:if="{{count.project_count <= 3 && playTime == 1}}">编辑</view>
     </view>
     <view class='outBox'>
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
@@ -166,6 +170,7 @@
     <view class='flex shopBox'>
       <view class="personTitle">成功案例</view>
       <view class="allNum" wx:if="{{invest_case.length > 3}}">全部({{invest_case.length}})</view>
+      <view class="allNum" wx:if="{{invest_case.length<= 3 && playTime == 1}}">编辑</view>
     </view>
     <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
       <view class="successProjcet flex" catchtap="investCase" data-id="{{item.case_id}}" data-index="{{index}}" hidden="{{index >= 3}}">
