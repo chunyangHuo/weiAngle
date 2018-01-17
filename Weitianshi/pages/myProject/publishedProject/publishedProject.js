@@ -403,9 +403,7 @@ Page({
   },
   //项目领域
   industryChoice() {
-    wx.navigateTo({
-      url: '/pages/form/industry/industry?current=0',
-    })
+    app.href('/pages/form/industry/industry?current=0')
   },
   //点击发布
   public: function () {

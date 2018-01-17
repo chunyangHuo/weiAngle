@@ -5,7 +5,8 @@ Page({
   data: {
     type_id: 2,
     count: 0,
-    nonet: true
+    nonet: true,
+    atBottom:false
   },
   onLoad:function(){
     let that=this;
@@ -48,7 +49,6 @@ Page({
       },
       method: "POST",
     })
-
   },
   // 项目推送
   projectPush(e) {
@@ -196,6 +196,11 @@ Page({
       },
     }
     app.loadMore(that, request, "contacts")
+    if (this.data.page_end == true) {
+      that.setData({
+        atBottom: true
+      })
+    }
   },
   // 重新加载
   refresh() {

@@ -188,9 +188,6 @@ Page({
               success: function (res) {
                 wx.setStorageSync('followed_user_id', followed_user_id)
                 if (res.confirm == true) {
-                  // wx.navigateTo({
-                  //   url: '/pages/register/companyInfo/companyInfo'
-                  // })
                   app.href('/pages/register/companyInfo/companyInfo')
                 }
               }

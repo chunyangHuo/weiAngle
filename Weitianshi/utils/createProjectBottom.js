@@ -1,6 +1,6 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
-var user_id=wx.getStorageSync('user_id');
+var user_id = wx.getStorageSync('user_id');
 
 // 创建项目
 function toCreateProject() {
@@ -15,31 +15,25 @@ function toCreateProject() {
       if (res.data.status_code == 2000000) {
         var complete = res.data.is_complete;
         if (complete == 1) {
-          wx.navigateTo({
-            url: '/pages/myProject/publishProject/publishProject'
-          })
+          app.href('/pages/myProject/publishProject/publishProject')
         } else if (complete == 0) {
-          wx.navigateTo({
-            url: '/pages/register/companyInfo/companyInfo?type=1'
-          })
+          app.href('/pages/register/companyInfo/companyInfo?type=1')
         }
       } else {
-        wx.navigateTo({
-          url: '/pages/register/personInfo/personInfo?type=2'
-        })
+        app.href('/pages/register/personInfo/personInfo?type=2')
       }
     },
   });
 }
 
 // 在电脑上创建
-function createProjectPc(){
+function createProjectPc() {
   wx.scanCode({
     success: function (res) {
       var user_id = wx.getStorageSync('user_id');
       var credential = res.result;//二维码扫描信息
       //发送扫描结果和项目相关数据到后台
-      wx.request({ 
+      wx.request({
         url: url_common + '/api/auth/writeUserInfo',
         data: {
           type: 'create',
@@ -50,9 +44,7 @@ function createProjectPc(){
         success: function (res) {
           console.log(res)
           if (res.data.status_code == 2000000) {
-            wx.navigateTo({
-              url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
-            })
+            app.href('/pages/scanCode/bpScanSuccess/bpScanSuccess')
           }
         }
       })
@@ -61,5 +53,5 @@ function createProjectPc(){
 }
 
 export {
-  toCreateProject,createProjectPc
+  toCreateProject, createProjectPc
 }
