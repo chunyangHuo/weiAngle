@@ -19,7 +19,6 @@ Page({
   },
   onShow: function () {
     let user_id = this.data.user_id;
-    console.log(user_id)
    let  share_id = this.data.share_id;
    let  that = this;
     this.getUserInfo();
@@ -33,7 +32,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           let net = res.data;
           let access_token = net.qrcode;
           that.setData({
@@ -42,12 +40,12 @@ Page({
           let filPath = wx.setStorageSync('access_token', access_token);
         },
         fail: function (res) {
-          console.log(res)
         }
       })
   },
   //保存小程序码
   savePic: function () {
+    let that=this;
     let filePath = wx.getStorageSync('access_token');
     wx.getImageInfo({
       src: filePath,
@@ -68,8 +66,7 @@ Page({
                       })
                     },
                     fail: function (res) {
-                      console.log(filePath)
-                      console.log(res)
+                      app.log(that,"filePath",filePath)
                     }
                   })
                 }

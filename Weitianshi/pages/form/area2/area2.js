@@ -20,7 +20,6 @@ Page({
     var that = this;
     app.netWorkChange(that)
     let area = wx.getStorageSync("hotCity");
-    console.log(area)
     let tran_hotCity = [];
     if (wx.getStorageSync("tran_hotCity").length != 0) {
       tran_hotCity = wx.getStorageSync("tran_hotCity");

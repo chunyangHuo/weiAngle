@@ -30,7 +30,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         wx.hideLoading()
         let contentList = res.data.data;
         let count = res.data.count;

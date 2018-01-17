@@ -27,7 +27,7 @@ Page({
         let list = res.data.data;
         let count = res.data.data.count;
         let projectList = res.data.data.projects;
-        console.log(projectList)
+        app.log(that,"projectList",projectList)
         that.setData({
           count: count,
           projectList: projectList,
@@ -45,9 +45,8 @@ Page({
   },
   //跳转项目详情
   projectDetail: function (e) {
-    console.log(e)
     let project_id = e.currentTarget.dataset.project;
-    console.log(project_id)
+    app.log(that,"project_id",project_id)
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',

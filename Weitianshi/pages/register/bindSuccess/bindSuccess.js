@@ -20,17 +20,17 @@ Page({
   },
   btnYes: function () {
     let type = this.data.type;
-    console.log(type);
+    // console.log(type);
     if (type == 1) {
       let pages = getCurrentPages();
-      console.log(pages);
+      // console.log(pages);
       wx.navigateBack({
         delta: 2
       });
     } else {
       if (type == 2) {
         let pages = getCurrentPages();
-        console.log(pages);
+        // console.log(pages);
         wx.navigateBack({
           delta: 3
         });

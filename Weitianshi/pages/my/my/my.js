@@ -43,7 +43,6 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
             var user = res.data.user_info;
             var count = res.data.count;
             var invest = res.data.invest_info;
@@ -81,7 +80,6 @@ Page({
             })
           },
           fail: function (res) {
-            console.log(res)
           },
         })
       } else {

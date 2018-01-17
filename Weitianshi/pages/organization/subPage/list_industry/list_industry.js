@@ -19,7 +19,6 @@ Page({
       url: url_common + '/api/investment/fieldlist',
       data: {}
     }).then(res => {
-      console.log(res)
       // status =2 是绿色降 status =1 是红色
       wx.hideLoading()
       let industry_list = res.data.data.industry_list.list;
@@ -65,7 +64,6 @@ Page({
   },
   //热门领域跳转搜索
   toIndustrySearch(e) {
-    console.log(e)
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   },

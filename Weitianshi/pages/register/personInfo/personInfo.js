@@ -263,7 +263,6 @@ Page({
   },
   //微信授权绑定
   getPhoneNumber(e) {
-    console.log(e)
     let encryptedData = e.detail.encryptedData;
     let iv = e.detail.iv;
     let that = this;

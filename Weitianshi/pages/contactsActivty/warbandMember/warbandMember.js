@@ -30,7 +30,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let follow_status = res.data.data.follow_status;
         let warMemberList = res.data.data.members;
         let team_name = res.data.data.team_name;
@@ -56,7 +55,6 @@ Page({
     let str = e.detail.value;
     let that = this;
     let timer = this.data.timer;
-    // console.log(str)
     //防止多次请求进行延时处理
     if (timer) {
       clearTimeout(timer)

@@ -26,7 +26,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         var complete = res.data.is_complete;
         if (res.data.status_code == 2000000 || res.data.status_code == 0) {
           that.setData({
@@ -34,18 +33,18 @@ Page({
             position: res.data.user_company_career,
             email: res.data.user_email,
             brand: res.data.user_brand
-          })
+          });
         }
       },
     });
     if (company == "null") {
-      company = ''
-    };
+      company = '';
+    }
     if (position == "null") {
-      position = ''
-    };
+      position = '';
+    }
     if (email == "null") {
-      email = ''
+      email = '';
     }
     that.setData({
       company: company,
@@ -53,11 +52,11 @@ Page({
       email: email,
       type: type
     });
-    app.netWorkChange(that)
+    app.netWorkChange(that);
   },
   //下拉刷新
   onPullDownRefresh: function () {
-    wx.stopPullDownRefresh()
+    wx.stopPullDownRefresh();
   },
   //公司项的特殊符号过滤和值的双向绑定
   company: function (e) {
@@ -75,10 +74,10 @@ Page({
       },
       method: 'POST',
       success: function (res) { }
-    })
+    });
     that.setData({
       company: rs
-    })
+    });
   },
   //职位项的特殊符号过滤和值的双向绑定
   position: function (e) {
@@ -91,7 +90,7 @@ Page({
     }
     that.setData({
       position: rs
-    })
+    });
   },
   //邮箱验证
   checkEmail: function (e) {
@@ -100,18 +99,18 @@ Page({
     var email = this.data.email;
     var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
     if (!myreg.test(temp) && temp !== '') {
-      console.log('请输入有效的E_mail！');
+      app.log(that,'请输入有效的E_mail！');
       that.setData({
         result: "0"
-      })
+      });
     } else {
       that.setData({
         result: "1"
-      })
+      });
     }
     that.setData({
       email: temp
-    })
+    });
   },
   //品牌验证
   checkBrand: function (e) {
@@ -124,8 +123,7 @@ Page({
     }
     that.setData({
       brand: rs
-    })
-    console.log(rs)
+    });
   },
   //点击跳转
   backHome: function () {
@@ -152,15 +150,13 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          let pages = getCurrentPages()
+          let pages = getCurrentPages();
           let num = pages.length - 1;
           if (res.data.status_code == 2000000) {
-            console.log(res)
             let followed_user_id = wx.getStorageSync('followed_user_id');
             if (followed_user_id) {
               let driectAdd = wx.getStorageSync("driectAdd");
               if (driectAdd) {
-                console.log(1)
                 //直接添加为好友
                 wx.request({
                   url: url + '/api/user/followUser',
@@ -170,7 +166,6 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
-                    console.log(res)
                     if (res.data.status_code == 2000000) {
                       wx.showModal({
                         title: "提示",
@@ -180,16 +175,16 @@ Page({
                         success: function () {
                           wx.switchTab({
                             url: '/pages/discoverInvest/discoverInvest',
-                          })
+                          });
                         }
-                      })
+                      });
                       wx.removeStorageSync("driectAdd");
                       wx.removeStorageSync('followed_user_id');
                     }else{
-                      app.errorHide(that, res.data.error_msg, 1500)
+                      app.errorHide(that, res.data.error_msg, 1500);
                     }
                   },
-                })
+                });
               } else {
                 //正常申请添加为好友
                 wx.request({
@@ -200,7 +195,6 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
-                    console.log(2)
                     if (res.data.status_code == 2000000) {
                       wx.showModal({
                         title: "提示",
@@ -211,20 +205,18 @@ Page({
                           wx.removeStorageSync('followed_user_id');
                           wx.switchTab({
                             url: '/pages/discoverInvest/discoverInvest',
-                          })
+                          });
                         }
-                      })
+                      });
                     }
                   },
-                })
+                });
               }
             } else {
               if (type) {
-                console.log(3)
-                app.href('/pages/register/bindSuccess/bindSuccess?type=' + type)
+                app.href('/pages/register/bindSuccess/bindSuccess?type=' + type);
               } else {
-                console.log(4)
-                app.href('/pages/register/bindSuccess/bindSuccess?type=' + 0)
+                app.href('/pages/register/bindSuccess/bindSuccess?type=' + 0);
               }
             }
           } else {
@@ -232,24 +224,24 @@ Page({
             wx.showModal({
               title: "错误提示",
               content: error_msg
-            })
+            });
           }
         },
-      })
+      });
       //取消错误提示
       that.setData({
         error: '0'
-      })
+      });
     } else {
       that.setData({
         error: '1'
       });
       if (company == '') {
-        app.errorHide(that, "公司不能为空", 1500)
+        app.errorHide(that, "公司不能为空", 1500);
       } else if (position == '') {
-        app.errorHide(that, "职位不能为空", 1500)
+        app.errorHide(that, "职位不能为空", 1500);
       } else {
-        app.errorHide(that, "请正确填写邮箱", 1500)
+        app.errorHide(that, "请正确填写邮箱", 1500);
       }
     }
   },
@@ -263,6 +255,6 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
 });

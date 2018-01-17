@@ -37,7 +37,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         wx.hideLoading();
         let myProject = res.data.data;
         // 拼接industryArry和otherTag用于展示
@@ -100,7 +99,7 @@ Page({
           
           })
         }
-        console.log('项目列表', myProject)
+        app.log(that,'项目列表', myProject)
         //刷新数据
         that.setData({
           myProject: myProject,
@@ -124,7 +123,6 @@ Page({
   },
   //申请查看
   applyPerson: function (e) {
-    console.log(e)
     let proid = e.currentTarget.dataset.proid;
     app.href('/pages/message/applyPerson/applyPerson?id=' + proid)
   },
@@ -153,7 +151,6 @@ Page({
       },
     }
     app.loadMore2(that, request, res => {
-      console.log(res)
       let newPage = res.data.data;
       let page_end = res.data.page_end;
       if (myProject) {

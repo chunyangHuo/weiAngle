@@ -35,7 +35,6 @@ Page({
     }).then(res => {
       wx.hideLoading()
       let investormentList = res.data.data;
-      console.log(investormentList)
       let investment_list = investormentList.investment_list.list;
       that.setData({
         investormentList: investormentList,
@@ -64,13 +63,11 @@ Page({
   },
   //投资风格跳转
   toStyle(e) {
-    console.log(e)
     let id = e.currentTarget.dataset.style;
     app.href('/pages/organization/org_library/org_library?label=label_style&&itemId=' + id)
   },
   //热门领域跳转搜索
   toIndustrySearch(e) {
-    console.log(e)
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   },

@@ -49,7 +49,6 @@ Page({
         method: 'POST',
         success: function (res) {
           var list = res.data.data;
-          console.log(list)
           list.forEach((x, index) => {
             messageList[index].message_name = x.message_name;
             messageList[index].count = x.count;

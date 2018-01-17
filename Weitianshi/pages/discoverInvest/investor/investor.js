@@ -69,7 +69,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log('身份状态获取', res)
+          app.log(that,'身份状态获取', res)
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -107,7 +107,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('投资人列表', res.data.data)
+          app.log(that,'投资人列表', res.data.data)
           wx.hideLoading();
           let investorList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -164,7 +164,7 @@ Page({
   searchCertain() {
     let that = this;
     let searchData = FilterModel.searchCertain(that);
-    console.log('筛选投资人', searchData);
+    app.log(that,'筛选投资人', searchData);
     this.investorList();
     // console.log('searchCertain()出错了')
   },
@@ -220,7 +220,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      console.log('申请添加人脉完成', res);
+      app.log(that,'申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -229,7 +229,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      console.log('直接添加人脉完成', res)
+      app.log(that,'直接添加人脉完成', res)
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },

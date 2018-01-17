@@ -93,7 +93,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log('身份状态获取', res)
+          app.log(that,"身份状态获取",res);
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -141,38 +141,38 @@ Page({
     // 如果切换前tab页进行过筛选则重置大部分tab页数据
     if (searchLength != 0) {
       switch (current) {
-        case 0: {
-          that.setData({
-            investorList: that.data.investorList2,
-            faList: that.data.faList2,
-            myList: that.data.myList2,
-            page_end: false
-          })
-          break;
-        }
-        case 1: {
-          that.setData({
-            faList: that.data.faList2,
-            myList: that.data.myList2,
-            page_end: false
-          })
-          break;
-        }
-        case 2: {
-          that.setData({
-            investorList: that.data.investorList2,
-            myList: that.data.myList2,
-            page_end: false
-          })
-          break;
-        }
-        case 3: {
-          that.setData({
-            investorList: that.data.investorList2,
-            faList: that.data.faList2,
-          })
-          break;
-        }
+      case 0: {
+        that.setData({
+          investorList: that.data.investorList2,
+          faList: that.data.faList2,
+          myList: that.data.myList2,
+          page_end: false
+        })
+        break;
+      }
+      case 1: {
+        that.setData({
+          faList: that.data.faList2,
+          myList: that.data.myList2,
+          page_end: false
+        })
+        break;
+      }
+      case 2: {
+        that.setData({
+          investorList: that.data.investorList2,
+          myList: that.data.myList2,
+          page_end: false
+        })
+        break;
+      }
+      case 3: {
+        that.setData({
+          investorList: that.data.investorList2,
+          faList: that.data.faList2,
+        })
+        break;
+      }
       }
     }
     // 如果当前tab页无数据则请求接口
@@ -256,7 +256,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('投资人列表', res.data.data)
+          app.log(that,"投资人列表",res.data.data);
           wx.hideLoading();
           let investorList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -295,7 +295,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('FA列表', res.data.data)
+          app.log(that,"FA",res.data.data);
           wx.hideLoading();
           let faList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -330,7 +330,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           that.setData({
             notIntegrity: res.data.is_complete,
             empty: 1
@@ -354,7 +353,7 @@ Page({
         method: 'POST',
         success: function (res) {
           wx.hideLoading();
-          console.log('我的人脉列表', res);
+          app.log(that,"我的人脉列表",res);
           if (res.data.status_code == '2000000') {
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
@@ -451,7 +450,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      console.log('申请添加人脉完成', res);
+      app.log(that,"申请添加人脉完成",res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -460,7 +459,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      console.log('直接添加人脉完成', res)
+      app.log(that,"直接添加人脉完成",res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -530,16 +529,16 @@ Page({
     let searchData = FilterModel.searchCertain(that);
     let current = this.data.currentTab;
     if (current == 1) {
-      console.log('筛选投资人', searchData);
+      app.log(that,"筛选投资人",searchData);
       this.investorList();
     } else if (current == 2) {
-      console.log('筛选FA', searchData);
+      app.log(that,"筛选FA",searchData);
       this.faList();
     } else if (current == 3) {
-      console.log('筛选我的', searchData);
+      app.log(that,"筛选我的",searchData);
       this.myList();
     } else {
-      console.log('searchCertain()出错了')
+      app.log(that,"searchCertain()出错了");
     }
   },
   // 点击modal层
@@ -656,13 +655,11 @@ Page({
   },
   //投资风格跳转
   toStyle(e) {
-    console.log(e)
     let id = e.currentTarget.dataset.style;
     app.href('/pages/organization/org_library/org_library?label=label_style&&itemId=' + id)
   },
   //热门领域跳转搜索
   toIndustrySearch(e) {
-    console.log(e)
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
   },

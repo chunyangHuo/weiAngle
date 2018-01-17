@@ -47,7 +47,7 @@ Page({
         competition_id: that.data.competition_id,
       },
       success: function (res) {
-        console.log('input填写', res);
+        app.log(that,'input填写', res);
         let score_list1 = res.data.data.list;
         // 历史消息接口没有这个最大值字段 需要人为添加到数组
         let view_id = [];
@@ -93,7 +93,7 @@ Page({
       },
 
       success: function (res) {
-        console.log('历史', res);
+        app.log(that,'历史', res);
         let list1 = res.data.data.score_list;
         let remark = res.data.data.remark;
         let competition_name = res.data.data.competition_name;
@@ -104,7 +104,7 @@ Page({
 
 
         let score_list1 = Object.assign(list1, that.data.name);
-        console.log(score_list1);
+        // console.log(score_list1);
         for (let i = 0; i < score_list1.length; i++) {
           score[i] = score_list1[i].index_score;
           history_id.push(score_list1[i].index_id);
@@ -131,7 +131,6 @@ Page({
           totalNum1: total,
           history_id: history_id
         })
-        console.log(that.data.history_id);
         if (that.data.totalNum1 == 0) {
           that.setData({
             totalNum1: '--'
@@ -186,7 +185,7 @@ Page({
       score: score,
       totalNum1: totalNum1
     })
-    console.log(that.data.score, that.data.totalNum1);
+    // console.log(that.data.score, that.data.totalNum1);
   },
   // 提交
   submit: function () {
@@ -207,7 +206,7 @@ Page({
         return
       }
       else if (score[i] > score_list1[i].index_score) {
-        console.log(score[i], score_list1[i].index_score)
+        // console.log(score[i], score_list1[i].index_score)
         app.errorHide(that, "请输入的值小于最大值", 1500);
         that.setData({
           score_list: []
@@ -228,8 +227,8 @@ Page({
     that.setData({
       score_list: score_list
     })
-    console.log('score_list', score_list);
-    console.log('score_list1', score_list1);
+    // console.log('score_list', score_list);
+    // console.log('score_list1', score_list1);
     if (score_list.length < score_list1.length) {
       app.errorHide(that, "请打分", 1500);
       return
