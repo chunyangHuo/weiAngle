@@ -1,4 +1,8 @@
 var app = getApp();
+<<<<<<< HEAD
+=======
+var url = app.globalData.url;
+>>>>>>> fa4490c8a11ce5ab85de35bc05fe4b89983f26f8
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/filterModel';
 import * as ShareModel from '../../utils/shareModel';
@@ -22,7 +26,7 @@ Page({
   },
   onLoad(options) {
     let that = this;
-    app.netWorkChange(that)
+    app.netWorkChange(that);
     let SearchInit = that.data.SearchInit;
     if (options.currentTab) {
       this.setData({
@@ -552,15 +556,15 @@ Page({
     let currentTab = this.data.currentTab;
     let str;
     switch (currentTab) {
-      case 1:
-        str = 'investorList';
-        break;
-      case 2:
-        str = 'faList';
-        break;
-      case 3:
-        str = 'myList';
-        break;
+    case 1:
+      str = 'investorList';
+      break;
+    case 2:
+      str = 'faList';
+      break;
+    case 3:
+      str = 'myList';
+      break;
     }
     FilterModel.searchSth(that, str)
   },
