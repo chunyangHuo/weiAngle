@@ -12,6 +12,7 @@ globals:
   x: true
   res: true
   Page: true
+  getCurrentPages: true
 rules:
   indent:
     - error

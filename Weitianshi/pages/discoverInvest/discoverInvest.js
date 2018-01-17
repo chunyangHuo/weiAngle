@@ -1,8 +1,8 @@
-var app = getApp(); 
-var url = app.globalData.url;
+var app = getApp();
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/filterModel';
 import * as ShareModel from '../../utils/shareModel';
+
 Page({
   data: {
     investorList: '',
@@ -24,7 +24,6 @@ Page({
     let that = this;
     app.netWorkChange(that)
     let SearchInit = that.data.SearchInit;
-    let tab = SearchInit.tab;
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
@@ -41,15 +40,25 @@ Page({
         success: function (res) {
           // console.log('getProjectCategory',res)
           let thisData = res.data.data;
-          thisData.area.forEach((x) => { x.check = false })
-          thisData.industry.forEach((x) => { x.check = false })
-          thisData.scale.forEach((x) => { x.check = false })
-          thisData.stage.forEach((x) => { x.check = false })
-          thisData.hotCity.forEach((x) => { x.check = false })
+          thisData.area.forEach((x) => {
+            x.check = false
+          })
+          thisData.industry.forEach((x) => {
+            x.check = false
+          })
+          thisData.scale.forEach((x) => {
+            x.check = false
+          })
+          thisData.stage.forEach((x) => {
+            x.check = false
+          })
+          thisData.hotCity.forEach((x) => {
+            x.check = false
+          })
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
-          wx.setStorageSync('hotCity', hotCity)
+          wx.setStorageSync('hotCity',thisData.hotCity)
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');
@@ -62,7 +71,6 @@ Page({
         },
       })
     }
-
 
 
     this.noSearch();
@@ -128,7 +136,7 @@ Page({
     app.initPage(that);
     this.noSearch();
     this.allReset();
-    that.setData({ currentTab: e.detail.current });
+    that.setData({currentTab: e.detail.current});
     // 如果切换前tab页进行过筛选则重置大部分tab页数据
     if (searchLength != 0) {
       switch (current) {
@@ -168,27 +176,27 @@ Page({
     }
     // 如果当前tab页无数据则请求接口
     switch (current) {
-      case 0: {
-        break;
+    case 0: {
+      break;
+    }
+    case 1: {
+      if (!that.data.investorList) {
+        this.investorList();
       }
-      case 1: {
-        if (!that.data.investorList) {
-          this.investorList();
-        }
-        break;
+      break;
+    }
+    case 2: {
+      if (!that.data.faList) {
+        this.faList();
       }
-      case 2: {
-        if (!that.data.faList) {
-          this.faList();
-        }
-        break;
+      break;
+    }
+    case 3: {
+      if (!that.data.myList) {
+        this.myList();
       }
-      case 3: {
-        if (!that.data.myList) {
-          this.myList();
-        }
-        break;
-      }
+      break;
+    }
     }
   },
   //下拉刷新
@@ -384,50 +392,47 @@ Page({
     let currentPage = this.data.currentPage;
     let currentTab = this.data.currentTab;
     switch (currentTab) {
-      case 1:
-        {
-          let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
-            data: {
-              user_id: user_id,
-              type: 'investor',
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "investorList")
+    case 1: {
+      let request = {
+        url: url_common + '/api/investor/getInvestorListByGroup',
+        data: {
+          user_id: user_id,
+          type: 'investor',
+          page: this.data.currentPage,
+          filter: this.data.SearchInit.searchData
         }
-        break;
-      case 2:
-        {
-          let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
-            data: {
-              user_id: user_id,
-              type: 'fa',
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "faList")
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "investorList")
+    }
+      break;
+    case 2: {
+      let request = {
+        url: url_common + '/api/investor/getInvestorListByGroup',
+        data: {
+          user_id: user_id,
+          type: 'fa',
+          page: this.data.currentPage,
+          filter: this.data.SearchInit.searchData
         }
-        break;
-      case 3:
-        {
-          let request = {
-            url: url_common + '/api/user/getMyFollowList',
-            data: {
-              user_id: user_id,
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "myList")
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "faList")
+    }
+      break;
+    case 3: {
+      let request = {
+        url: url_common + '/api/user/getMyFollowList',
+        data: {
+          user_id: user_id,
+          page: this.data.currentPage,
+          filter: this.data.SearchInit.searchData
         }
-        break;
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "myList")
+    }
+      break;
     }
   },
   // 分享当前页面
@@ -672,6 +677,6 @@ Page({
       this.onShow();
     }, 1500)
   }
-  
+
 })
 

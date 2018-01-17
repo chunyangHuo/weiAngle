@@ -25,7 +25,6 @@ Page({
     console.log(type)
     if (type == 1) {
       let pages = getCurrentPages();
-      let num = pages.length - 1;
       console.log(pages)
       wx.navigateBack({
         delta: 2
@@ -34,7 +33,6 @@ Page({
       if (type == 2) {
         let pages = getCurrentPages()
         console.log(pages)
-        let num = pages.length - 1;
         wx.navigateBack({
           delta: 3
         })

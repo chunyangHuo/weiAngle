@@ -1,15 +1,16 @@
 import * as httpModel from './utils/httpModel';
 import * as OperationModel from './utils/operationModel';
 import { picUrl } from './utils/picUrlModel';
+
+
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
     let url_common = this.globalData.url_common;
-
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
     if (options.shareTicket) {
-      //获取code
+      //获取codes
       wx.login({
         success: function (login) {
           let code = login.code;
@@ -841,10 +842,10 @@ App({
     app_key: 'wxos_lt',
     open_session: '',
     delay_time: 0,
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
-    url: "https://wx.dev.weitianshi.cn",
-    url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.weitianshi.cn",
+    url_common: "https://wx.weitianshi.cn"
+    // url: "https://wx.dev.weitianshi.cn",
+    // url_common: "https://wx.dev.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
   },
