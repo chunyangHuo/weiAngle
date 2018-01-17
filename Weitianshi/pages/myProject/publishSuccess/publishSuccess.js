@@ -7,8 +7,8 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-   let projectId = options.projectId;
-   console.log(projectId)
+    let projectId = options.projectId;
+    console.log(projectId)
     this.setData({
       type: options.type,
       projectId: projectId
@@ -28,10 +28,10 @@ Page({
       });
     }
   },
-  continueEdit(){
+  continueEdit() {
     let projectId = this.data.projectId;
     wx.redirectTo({
-      url: '/pages/myProject/publishedProject/publishedProject?pro_id='+ projectId +'&&fromPublish='+ 3,
+      url: '/pages/myProject/publishedProject/publishedProject?pro_id=' + projectId + '&&fromPublish=' + 3,
     })
   },
   // 重新加载

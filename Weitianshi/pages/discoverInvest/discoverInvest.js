@@ -22,7 +22,7 @@ Page({
   },
   onLoad(options) {
     let that = this;
-    app.netWorkChange(that)
+    app.netWorkChange(that);
     let SearchInit = that.data.SearchInit;
     let tab = SearchInit.tab;
     if (options.currentTab) {
@@ -177,27 +177,27 @@ Page({
     }
     // 如果当前tab页无数据则请求接口
     switch (current) {
-      case 0: {
-        break;
+    case 0: {
+      break;
+    }
+    case 1: {
+      if (!that.data.investorList) {
+        this.investorList();
       }
-      case 1: {
-        if (!that.data.investorList) {
-          this.investorList();
-        }
-        break;
+      break;
+    }
+    case 2: {
+      if (!that.data.faList) {
+        this.faList();
       }
-      case 2: {
-        if (!that.data.faList) {
-          this.faList();
-        }
-        break;
+      break;
+    }
+    case 3: {
+      if (!that.data.myList) {
+        this.myList();
       }
-      case 3: {
-        if (!that.data.myList) {
-          this.myList();
-        }
-        break;
-      }
+      break;
+    }
     }
   },
   //下拉刷新

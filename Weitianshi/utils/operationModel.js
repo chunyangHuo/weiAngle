@@ -15,7 +15,7 @@ function checkUserInfo(callBack) {
         var complete = res.data.is_complete;
         if (complete == 1) {
           if (callBack) {
-            callBack(res)
+            callBack(res);
           }
         } else if (complete == 0) {
           wx.showModal({
@@ -23,7 +23,7 @@ function checkUserInfo(callBack) {
             content: "请先绑定个人信息",
             success: function (res) {
               if (res.confirm == true) {
-                app.href('/pages/register/companyInfo/companyInfo?type = ' + 3)
+                app.href('/pages/register/companyInfo/companyInfo?type = ' + 3);
               }
             }
           })
@@ -34,7 +34,7 @@ function checkUserInfo(callBack) {
           content: "请先绑定个人信息",
           success: function (res) {
             if (res.confirm == true) {
-              app.href('/pages/register/personInfo/personInfo?type = ' + 2)
+              app.href('/pages/register/personInfo/personInfo?type = ' + 2);
             }
           }
         })
@@ -72,20 +72,19 @@ function projectApply(pro_id, callBack) {
               confirmColor: "#333333",
               success: function (res) {
                 if (res.confirm) {
-                  app.href('/pages/my/identity/indentity/indentity')
-                } else if (res.cancel) {
+                  app.href('/pages/my/identity/indentity/indentity');
                 }
               }
-            })
+            });
           } else if (status == 1) {
             wx.showModal({
               title: '友情提示',
               content: '您的身份正在审核中,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
-              success: function (res) {
+              success: function () {
               }
-            })
+            });
           } else if (status == 2) {
             if (group_id) {
               if (group_id == 18 || group_id == 6) {
@@ -96,7 +95,7 @@ function projectApply(pro_id, callBack) {
                   content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
                   confirmColor: "#333333;",
                   showCancel: false,
-                  success: function (res) {
+                  success: function () {
                   }
                 })
               } else if (group_id == 3) {
@@ -105,7 +104,7 @@ function projectApply(pro_id, callBack) {
                   content: '您的身份是创业者,只有投资人和买方FA才可申请查看项目',
                   confirmColor: "#333333;",
                   showCancel: false,
-                  success: function (res) {
+                  success: function () {
                   }
                 })
 

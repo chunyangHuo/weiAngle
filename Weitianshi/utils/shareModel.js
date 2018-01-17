@@ -4,9 +4,7 @@ function myCardShare(that) {
   let user_id = wx.getStorageSync('user_id');
   let share_id = wx.getStorageSync("user_id");
   let name = that.data.user.user_real_name;
-  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
-  let title = '投资名片—智能精准匹配投融资双方的神器';
-  return sharePage(user_id, share_id, name)
+  return sharePage(user_id, share_id, name);
 }
 //他人详情分享
 function networkDetailShare(that) {
@@ -21,8 +19,7 @@ function myProjectDetailShare(that) {
   let pro_intro = that.data.project.pro_intro;
   let id = that.data.id;
   let share_id = wx.getStorageSync('user_id');
-  let title = pro_intro;
-  console.log(share_id)
+  console.log(share_id);
   return {
     title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
     path: '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
@@ -172,8 +169,6 @@ function warbandMemberShare(that) {
 //分享名片详情(user_id为数据所有人ID,share_Id为分享人的ID,name为数据所有人的姓名)
 function sharePage(user_id, share_id, name) {
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
-  let url = app.globalData.url;
-  let url_common = app.globalData.url_common;
   let json = {
     title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
@@ -233,7 +228,7 @@ function shareLog(path) {
         }
       }
     }
-  })
+  });
 }
 /* --------------------------------------------------------------------- */
 
