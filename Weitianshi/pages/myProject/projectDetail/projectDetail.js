@@ -92,7 +92,7 @@ Page({
       newPage: '',
       requestCheck: true,
       currentPage: 1,
-      currentPage1: 0,
+      currentPage1: 1,
       page_end: false,
       investment_list: []
     })
@@ -122,6 +122,7 @@ Page({
             //项目详情,一键尽调,买家图谱数据载入
             that.projectDetailInfo(id);
             that.matchInvestorInfo(id);
+            that.matchInvestorInfo1();
           } else {
             wx.redirectTo({
               url: '/pages/projectDetail/projectDetail?id=' + id,
@@ -614,12 +615,40 @@ Page({
         console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
-        console.log(investor2,"投资人")
+        console.log(investor2, "投资人")
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
           matchCount: matchCount,
           page_end: res.data.page_end
+        });
+        wx.hideToast({
+          title: 'loading...',
+          icon: 'loading'
+        })
+      }
+    })
+  },
+  //机构版
+  matchInvestorInfo1() {
+    let that = this;
+    let id = this.data.id;
+    let user_id = wx.getStorageSync('user_id');
+    wx.request({
+      url: url_common + '/api/investment/matchs',
+      data: {
+        project_id: id,
+      },
+      method: 'POST',
+      success: function (res) {
+        wx.hideLoading()
+        let investment_list = res.data.data.investment_list;
+        console.log(investment_list, "投资机构")
+        let investment_total_num = res.data.data.investment_total_num;
+        that.setData({
+          investment_list: investment_list,
+          investment_total_num: investment_total_num,
+          page_end1: res.data.data.page_end
         });
         wx.hideToast({
           title: 'loading...',
@@ -653,51 +682,33 @@ Page({
     }
 
   },
-  //下拉刷新
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh()
-  },
   // 机构版买家图谱
   loadMore1() {
     let that = this;
     let id = this.data.id;
     let currentPage1 = this.data.currentPage1;
-    console.log(currentPage1);
-    let investment_list = this.data.investment_list;
+    console.log('currentPage1', currentPage1);
     let request = {
       url: url_common + '/api/investment/matchs',
       data: {
         project_id: id,
-        page: this.data.currentPage1
+        page: currentPage1
       },
     }
-    app.loadMore23(that, request, res => {
-      console.log("机构版买家图谱", res)
-      let newPage = res.data.data;
-      let list = res.data.data.investment_list;
-      let page_end1 = res.data.data.page_end;
-      let investment_total_num = res.data.data.investment_total_num;
-      if (list) {
-        let newProject = investment_list.concat(list)
-        currentPage1++;
-        that.setData({
-          newPage: newPage,
-          investment_list: newProject,
-          page_end1: page_end1,
-          requestCheck: true,
-          currentPage1: currentPage1,
-          investment_total_num: investment_total_num
-        });
-        console.log('投资机构页数', this.data.currentPage1);
-        console.log('投资机构', this.data.page_end1);
-        if (this.data.page_end1 == true) {
-          that.setData({
-            jiandi1: true
-          })
-        }
-      }
-    })
+    //调用通用加载函数
+    app.loadMoreM(that, request, "investment_list");
+    console.log('投资机构', this.data.page_end1);
+    if (this.data.page_end1 == true) {
+      that.setData({
+        jiandi1: true
+      })
+    }
   },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh()
+  },
+ 
   // 跳转详情页
   institutionalDetails1: function (e) {
     let thisData = e.currentTarget.dataset;

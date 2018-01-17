@@ -56,6 +56,12 @@
 					"name": "本人项目详情",
 					"pathName": "pages/myProject/projectDetail/projectDetail",
 					"query": "id=k0xlyx0v&index=undefined"
+				},
+				{
+					"id": -1,
+					"name": "他人项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=yrQVxM0v&index=undefined&share_id=6WGmVvLr"
 				}
 			]
 		}
