@@ -173,7 +173,7 @@
 }
 
 #investHistory .case_pic {
-  margin-top: 1rpx;
+  margin-top: 4rpx;
   width: 24rpx;
   height: 24rpx;
   margin-right: 24rpx;
@@ -187,7 +187,7 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 12rpx;
-  margin-top: 3rpx;
+  margin-top: 4rpx;
 }
 
 #investHistory .investContent {
@@ -196,6 +196,7 @@
   line-height: 40rpx;
   text-align: left;
   padding-left: 32rpx;
+  margin-top: 4rpx;
 }
 
 /*核心团队  */
@@ -378,7 +379,7 @@
 }
 
 #investHistory1 .case_pic {
-  margin-top: 1rpx;
+  margin-top: 4rpx;
   width: 24rpx;
   height: 24rpx;
   margin-right: 24rpx;
@@ -400,7 +401,7 @@
   line-height: 40rpx;
   text-align: left;
   padding-left: 32rpx;
-  margin-top: -30rpx;
+  margin-top: -29rpx;
 }
 
 /*加锁状态  */

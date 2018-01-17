@@ -832,6 +832,14 @@ App({
       atBottom: true
     })
   },
+  // console.log 显示
+  log(that, text, res){
+    if (this.globalData.url_common =='https://wx.dev.weitianshi.cn'){
+      console.log(text,res);
+    }else{
+       
+    }
+  },
   //初始本地缓存
   globalData: {
     routerPage:[],
