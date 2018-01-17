@@ -1,4 +1,4 @@
-var app = getApp(); 
+var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/filterModel';
@@ -41,11 +41,21 @@ Page({
         success: function (res) {
           // console.log('getProjectCategory',res)
           let thisData = res.data.data;
-          thisData.area.forEach((x) => { x.check = false })
-          thisData.industry.forEach((x) => { x.check = false })
-          thisData.scale.forEach((x) => { x.check = false })
-          thisData.stage.forEach((x) => { x.check = false })
-          thisData.hotCity.forEach((x) => { x.check = false })
+          thisData.area.forEach((x) => {
+            x.check = false
+          })
+          thisData.industry.forEach((x) => {
+            x.check = false
+          })
+          thisData.scale.forEach((x) => {
+            x.check = false
+          })
+          thisData.stage.forEach((x) => {
+            x.check = false
+          })
+          thisData.hotCity.forEach((x) => {
+            x.check = false
+          })
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
@@ -62,7 +72,6 @@ Page({
         },
       })
     }
-
 
 
     this.noSearch();
@@ -128,7 +137,7 @@ Page({
     app.initPage(that);
     this.noSearch();
     this.allReset();
-    that.setData({ currentTab: e.detail.current });
+    that.setData({currentTab: e.detail.current});
     // 如果切换前tab页进行过筛选则重置大部分tab页数据
     if (searchLength != 0) {
       switch (current) {
@@ -384,50 +393,47 @@ Page({
     let currentPage = this.data.currentPage;
     let currentTab = this.data.currentTab;
     switch (currentTab) {
-      case 1:
-        {
-          let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
-            data: {
-              user_id: user_id,
-              type: 'investor',
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "investorList")
+    case 1: {
+      let request = {
+        url: url_common + '/api/investor/getInvestorListByGroup',
+        data: {
+          user_id: user_id,
+          type: 'investor',
+          page: this.data.currentPage,
+          filter: this.data.SearchInit.searchData
         }
-        break;
-      case 2:
-        {
-          let request = {
-            url: url_common + '/api/investor/getInvestorListByGroup',
-            data: {
-              user_id: user_id,
-              type: 'fa',
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "faList")
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "investorList")
+    }
+      break;
+    case 2: {
+      let request = {
+        url: url_common + '/api/investor/getInvestorListByGroup',
+        data: {
+          user_id: user_id,
+          type: 'fa',
+          page: this.data.currentPage,
+          filter: this.data.SearchInit.searchData
         }
-        break;
-      case 3:
-        {
-          let request = {
-            url: url_common + '/api/user/getMyFollowList',
-            data: {
-              user_id: user_id,
-              page: this.data.currentPage,
-              filter: this.data.SearchInit.searchData
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "myList")
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "faList")
+    }
+      break;
+    case 3: {
+      let request = {
+        url: url_common + '/api/user/getMyFollowList',
+        data: {
+          user_id: user_id,
+          page: this.data.currentPage,
+          filter: this.data.SearchInit.searchData
         }
-        break;
+      }
+      //调用通用加载函数
+      app.loadMore(that, request, "myList")
+    }
+      break;
     }
   },
   // 分享当前页面
@@ -547,15 +553,15 @@ Page({
     let currentTab = this.data.currentTab;
     let str;
     switch (currentTab) {
-      case 1:
-        str = 'investorList';
-        break;
-      case 2:
-        str = 'faList';
-        break;
-      case 3:
-        str = 'myList';
-        break;
+    case 1:
+      str = 'investorList';
+      break;
+    case 2:
+      str = 'faList';
+      break;
+    case 3:
+      str = 'myList';
+      break;
     }
     FilterModel.searchSth(that, str)
   },
@@ -672,6 +678,6 @@ Page({
       this.onShow();
     }, 1500)
   }
-  
+
 })
 
