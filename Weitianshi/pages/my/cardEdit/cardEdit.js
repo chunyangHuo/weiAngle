@@ -143,9 +143,7 @@ Page({
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         app.errorHide(that,'名片修改成功' ,1000)
         setTimeout(x => {
-          wx.switchTab({
-            url: '/pages/my/myNew/myNew',
-          })
+          app.href('/pages/my/myNew/myNew')
         }, 1000)
       })
     }

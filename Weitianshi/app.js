@@ -5,7 +5,6 @@ import { picUrl } from './utils/picUrlModel';
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
-    let url = this.globalData.url;
     let url_common = this.globalData.url_common;
 
     //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
@@ -32,27 +31,25 @@ App({
                     encryptedData: encryptedData,
                     iv: iv
                   },
-                  method: "POST",
-                  success(res) {
+                  method: 'POST',
+                  success() {
                   }
-                })
+                });
               }
-            })
+            });
           }
         }
-      })
+      });
     }
   },
   onShow() {
     wx.onNetworkStatusChange(function (res) {
-      console.log(111)
-      console.log(res.isConnected)
-      console.log(res.networkType)
-    })
+      console.log(res.isConnected);
+      console.log(res.networkType);
+    });
   },
   //进入页面判断是否有open_session
   loginPage(cb) {
-    let that = this;
     //群分享打点准备
     /* wx.showShareMenu({
          withShareTicket: true
@@ -62,13 +59,13 @@ App({
       let session_time = this.globalData.session_time;
       let differenceTime = timeNow - session_time;
       if (differenceTime > 432000000) {//432000000代表2个小时
-        console.log("已超时")
-        this.getSession(cb)
+        console.log("已超时");
+        this.getSession(cb);
       } else {
-        typeof cb == "function" && cb(this.globalData.user_id)
+        typeof cb == 'function' && cb(this.globalData.user_id)
       }
     } else {
-      this.getSession(cb)//赋值 在这里
+      this.getSession(cb); // 赋值在这里;
     }
   },
 
@@ -96,18 +93,18 @@ App({
                 app_key: that.globalData.app_key
               }
             }, that).then(res => {
-              console.log("这里是用户授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
+              console.log('这里是用户授权后调用returnOauth,获取并设置了open_session,session_time,user_id')
               //在globalData里存入open_session,session_time,user_id;
               that.globalData.open_session = res.data.open_session;
-              wx.setStorageSync('open_session', res.data.open_session)
+              wx.setStorageSync('open_session', res.data.open_session);
               that.globalData.session_time = Date.now();
               that.globalData.user_id = res.data.user_id;
-              wx.setStorageSync("user_id", res.data.user_id)
-              typeof cb == "function" && cb(wx.getStorageSync("user_id"))
-            })
+              wx.setStorageSync("user_id", res.data.user_id);
+              typeof cb == "function" && cb(wx.getStorageSync("user_id"));
+            });
           },
           //用户不授权
-          fail: function (res) {
+          fail: function () {
             that.httpPost({
               url: that.globalData.url + '/api/wx/returnOauth',
               data: {
@@ -118,16 +115,16 @@ App({
               console.log("这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
               //在globalData里存入open_session,session_time,user_id;
               that.globalData.open_session = res.data.open_session;
-              wx.setStorageSync('open_session', res.data.open_session)
+              wx.setStorageSync('open_session', res.data.open_session);
               that.globalData.session_time = Date.now();
               that.globalData.user_id = res.data.user_id;
-              wx.setStorageSync("user_id", res.data.user_id)
-              typeof cb == "function" && cb(wx.getStorageSync("user_id"))
-            })
+              wx.setStorageSync("user_id", res.data.user_id);
+              typeof cb == "function" && cb(wx.getStorageSync("user_id"));
+            });
           },
-        })
+        });
       }
-    })
+    });
   },
 
   //进行授权验证
@@ -135,10 +132,10 @@ App({
     let that = this;
     //如果全局变量里有userInfo就去执行cb函数,如果全局变量里没有userInfo就去调用授权接口
     if (this.globalData.userInfo) {
-      console.log("全局变量userInfo存在")
-      typeof cb == "function" && cb(this.globalData.userInfo)
+      console.log("全局变量userInfo存在");
+      typeof cb == "function" && cb(this.globalData.userInfo);
     } else {
-      console.log("全局变量userInfo不存在")
+      console.log("全局变量userInfo不存在");
       //调用登录接口
       wx.login({
         success: function (login) {
@@ -147,27 +144,27 @@ App({
           //获取用户信息
           wx.getUserInfo({
             success: function (res) {
-              console.log("这里是wx.getUserInfo")
-              console.log(res)
+              console.log("这里是wx.getUserInfo");
+              console.log(res);
               that.globalData.userInfo = res.userInfo;
               that.globalData.encryptedData = res.encryptedData;
               that.globalData.iv = res.iv;
               typeof cb == "function" && cb(that.globalData.userInfo);
             },
             fail: function (res) {
-              console.log(res)
+              console.log(res);
             },
             complete: function () {
               //如果已经存在session_time就进行比较,如果不没有就建一个session_time;
               if (that.globalData.session_time) {
-                let timeNow = new (Date.now())
+
               } else {
                 that.checkLogin(that);
               }
             }
-          })
+          });
         }
-      })
+      });
     }
   },
 
@@ -180,14 +177,14 @@ App({
         if (res.confirm == true) {
           wx.navigateTo({
             url: '/pages/register/personInfo/personInfo',
-          })
+          });
         } else {
           wx.switchTab({
             url: '/pages/discoverProject/discoverProject',
-          })
+          });
         }
       }
-    })
+    });
   },
 
   //根据用户信息完整度跳转不同的页面/*注册且信息完善:targetUrl; 注册信息不完善:companyInfo; 未注册: personInfo;*/
@@ -207,17 +204,17 @@ App({
             if (targetUrl) {
               wx.navigateTo({
                 url: targetUrl
-              })
+              });
             }
           } else if (complete == 0) {
             wx.navigateTo({
               url: '/pages/register/companyInfo/companyInfo'
-            })
+            });
           }
         } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
           wx.navigateTo({
             url: '/pages/register/personInfo/personInfo'
-          })
+          });
         }
       },
     });
@@ -237,7 +234,7 @@ App({
           var complete = res.data.is_complete;
           if (complete == 1) {
             if (callBack) {
-              callBack(res)
+              callBack(res);
             }
           } else if (complete == 0) {
             wx.showModal({
@@ -247,10 +244,10 @@ App({
                 if (res.confirm == true) {
                   wx.navigateTo({
                     url: '/pages/register/companyInfo/companyInfo?type = ' + 2
-                  })
+                  });
                 }
               }
-            })
+            });
           }
         } else {
           wx.showModal({
@@ -260,14 +257,14 @@ App({
               if (res.confirm == true) {
                 wx.navigateTo({
                   url: '/pages/register/personInfo/personInfo?type =' + 1
-                })
+                });
               }
             }
-          })
+          });
         }
         console.log('checkUserInfo', res);
       }
-    })
+    });
   },
 
   //industry多选标签数据预处理
@@ -278,13 +275,13 @@ App({
       newIndustry.forEach(x => {
         data.forEach(y => {
           if (x.industry_name == y.industry_name) {
-            x.check = true
+            x.check = true;
           }
-        })
-      })
-      return newIndustry
+        });
+      });
+      return newIndustry;
     } else {
-      return data
+      return data;
     }
   },
 
@@ -295,17 +292,17 @@ App({
       dataCard.id = [];
       data.forEach((x) => {
         if (x.check == true) {
-          dataCard.id.push(x[itemId])
-          dataCard.value.push(x[itemValue])
+          dataCard.id.push(x[itemId]);
+          dataCard.value.push(x[itemValue]);
         }
-      })
+      });
     }
     if (dataCard.value != "选择领域") {
-      dataCard.css = "checkOn"
+      dataCard.css = "checkOn";
     } else {
-      dataCard.css = ""
+      dataCard.css = "";
     }
-    console.log(dataCard.value, dataCard.id)
+    console.log(dataCard.value, dataCard.id);
   },
 
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)

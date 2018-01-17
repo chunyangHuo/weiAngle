@@ -101,7 +101,7 @@
             </view>
           </view>
         </block>
-        <template is="theBottom" wx:if="{{investorList!==''}}"></template>
+        <template is="theBottom" wx:if="{{investorList!=='' && atBottom == true}}"></template>
       </view>
     </scroll-view>
   </view>

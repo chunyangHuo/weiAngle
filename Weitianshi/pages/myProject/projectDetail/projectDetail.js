@@ -738,9 +738,7 @@ Page({
   },
   //跳转到我的页面
   toMy: function () {
-    wx.switchTab({
-      url: '/pages/my/myNew/myNew',
-    })
+    app.href('/pages/my/myNew/myNew')
   },
   //更新数据
   updateData: function () {
@@ -1259,9 +1257,7 @@ Page({
   },
   // 跳转到首页
   moreProject: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   //跳转到历史融资
   toHistory: function () {

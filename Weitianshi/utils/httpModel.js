@@ -1,8 +1,8 @@
-export let requestList = {} //api请求记录
+export let requestList = {}; //api请求记录
 
 //判断是否为对象
 function isObject(x) {
-  return typeof x == 'object' ? true : false;
+  return typeof x == 'object';
 }
 
 // 将当前请求的api记录起来
@@ -83,7 +83,7 @@ export function http(data, that,callBack) {
           }
         } else {
           if(that){
-             app.errorHide(that, '请求接口失败', 3000)
+            app.errorHide(that, '请求接口失败', 3000)
           }
         }
         return reject(res)

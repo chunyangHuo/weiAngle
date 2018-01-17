@@ -148,9 +148,7 @@ Page({
   },
   //项目领域
   industryChoice() {
-    wx.navigateTo({
-      url: '/pages/form/industry/industry?current=0',
-    })
+    app.href('/pages/form/industry/industry?current=0')
   },
 
   //是否独家的效果实现
@@ -213,9 +211,7 @@ Page({
   },
   //地区跳转
   areaJump(){
-    wx.navigateTo({
-      url: '/pages/form/area1/area1?current=0',
-    })
+    app.href('/pages/form/area1/area1?current=0')
   },
   //私密性处理(辅助函数)
   privacyDeal() {

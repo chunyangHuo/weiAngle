@@ -171,6 +171,10 @@ Page({
                 that.setData({
                   button_type: 1
                 })
+                wx.setStorageSync('followed_user_id', followed_user_id)
+                if (res.confirm == true) {
+                  app.href('/pages/register/companyInfo/companyInfo')
+                }
               }
             })
           }
