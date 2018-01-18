@@ -167,9 +167,7 @@ Page({
             confirmText: '去看看',
             success: function (res) {
               if (res.confirm) {
-                wx.redirectTo({
-                  url: '/pages/discover/myFriend/myFriend',
-                })
+                app.href('/pages/discover/myFriend/myFriend')
               } else if (res.cancel) {
               }
             }

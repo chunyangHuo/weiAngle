@@ -124,9 +124,7 @@ Page({
             that.matchInvestorInfo(id);
             that.matchInvestorInfo1();
           } else {
-            wx.redirectTo({
-              url: '/pages/projectDetail/projectDetail?id=' + id,
-            })
+            app.href('/pages/projectDetail/projectDetail?id=' + id)
           }
         });
       }
@@ -167,9 +165,7 @@ Page({
             console.log("这是历史分享")
             if (!share_id) { }
             console.log('share_id', share_id)
-            wx.redirectTo({
-              url: '/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id,
-            })
+            app.href('/pages/projectDetail/projectDetail?id=' + id + '&&share_id=' + share_id)
             if (callBack2) {
               callBack2(res)
             }

@@ -113,13 +113,9 @@ Page({
                             confirmColor: '#333',
                             success: function(res) {
                                 if(res.confirm===true){
-                                    wx.redirectTo({
-                                        url: '/pages/my/qrCode/qrCode?type=1&&user_id='+user_id,
-                                    })
+                                    app.href('/pages/my/qrCode/qrCode?type=1&&user_id=' + user_id)
                                 }else if(res.cancel===true){
-                                    wx.redirectTo({
-                                        url: '/pages/contactsActivty/activtyDetail/activtyDetail',
-                                    })
+                                  app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
                                 }
                             },
                         })

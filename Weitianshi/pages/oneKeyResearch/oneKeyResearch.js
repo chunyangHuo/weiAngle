@@ -1262,9 +1262,7 @@ Page({
   },
   // 跳转到首页
   moreProject: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   //跳转到历史融资
   toHistory: function () {

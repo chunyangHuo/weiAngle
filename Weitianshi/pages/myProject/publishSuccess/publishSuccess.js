@@ -23,16 +23,12 @@ Page({
         delta: 2
       })
     } else {
-      wx.redirectTo({
-        url: '/pages/matchInvestor/matchInvestor'
-      });
+      app.href('/pages/matchInvestor/matchInvestor')
     }
   },
   continueEdit() {
     let projectId = this.data.projectId;
-    wx.redirectTo({
-      url: '/pages/myProject/publishedProject/publishedProject?pro_id=' + projectId + '&&fromPublish=' + 3,
-    })
+    app.href('/pages/myProject/publishedProject/publishedProject?pro_id=' + projectId + '&&fromPublish=' + 3)
   },
   // 重新加载
   refresh() {

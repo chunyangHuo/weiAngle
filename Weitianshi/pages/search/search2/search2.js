@@ -352,9 +352,7 @@ Page({
     let userDetailId = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == userDetailId) {
-      wx.switchTab({
-        url: '/pages/my/myNew/myNew'
-      })
+      app.href('/pages/my/myNew/myNew')
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + userDetailId)
     }

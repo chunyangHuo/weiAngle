@@ -70,9 +70,7 @@ Page({
         let ownerId = res.data.user_id;
         app.loginPage(function (user_id) {
           if (ownerId === user_id) {
-            wx.redirectTo({
-              url: '/pages/myProject/projectDetail/projectDetail?id=' + id,
-            })
+            app.href('/pages/myProject/projectDetail/projectDetail?id=' + id)
           } else {
             that.setData({
               other: false
@@ -1406,9 +1404,7 @@ Page({
   },
   // 跳转到首页
   moreProject: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   //跳转到历史融资
   toHistory: function () {

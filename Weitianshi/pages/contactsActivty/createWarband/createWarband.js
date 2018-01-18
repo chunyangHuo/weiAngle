@@ -87,9 +87,7 @@ Page({
                         confirmColor: "#333333",
                         showCancel: false,
                         success: function (res) {
-                            wx.redirectTo({
-                                url: '/pages/contactsActivty/activtyRegister/activtyRegister'
-                            })
+                          app.href('/pages/contactsActivty/activtyRegister/activtyRegister')
                         }
                     })
                 } else if (res.data.status_code == 411001) {

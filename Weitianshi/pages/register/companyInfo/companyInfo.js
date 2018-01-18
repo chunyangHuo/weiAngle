@@ -178,9 +178,7 @@ Page({
                         showCancel: false,
                         confirmText: "到人脉库",
                         success: function () {
-                          wx.switchTab({
-                            url: '/pages/discoverInvest/discoverInvest',
-                          })
+                          app.href('/pages/discoverInvest/discoverInvest')
                         }
                       })
                       wx.removeStorageSync("driectAdd");
@@ -209,9 +207,7 @@ Page({
                         confirmText: "到人脉库",
                         success: function () {
                           wx.removeStorageSync('followed_user_id');
-                          wx.switchTab({
-                            url: '/pages/discoverInvest/discoverInvest',
-                          })
+                          app.href('/pages/discoverInvest/discoverInvest')
                         }
                       })
                     }

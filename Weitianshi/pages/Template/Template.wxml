@@ -14,7 +14,7 @@
         <view wx:if="{{user.identify_status == 2 && playTime == 1}}">
           <image wx:if="{{user.authentication[0].group_id == 3}}" src="/img/img-rzchuangyezhe@2x.png" class='user_identifyContent'></image>
           <image wx:if="{{user.authentication[0].group_id == 18}}" src="/img/img-rzfa@2x.png" class='user_identifyContent'></image>
-          <image wx:if="{{user.authentication[0].group_id == 19}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
+          <image wx:if="{{user.authentication[0].group_id == 21}}" src="/img/img-rzfa2@2x.png" class='user_identifyContent'></image>
           <image wx:if="{{user.authentication[0].group_id == 6}}" src="/img/img-rztouziren@2x.png" class='user_identifyContent'></image>
         </view>
       </view>
@@ -1337,7 +1337,7 @@
   <view id="detailTeam">
     <view class="memberInfo flex">
       <view class="memberInfoLeft">
-        <view class="memberInfoLeft">李</view>
+         <view class="memberInfoLeft">{{item.ct_member_avatar}}</view> 
       </view>
       <view class="memberInfoRight">
         <view class="flex memberInfoTop">

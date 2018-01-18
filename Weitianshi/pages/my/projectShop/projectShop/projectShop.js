@@ -383,9 +383,7 @@ Page({
   },
   //  更多精选项目
   moreProject: function () {
-    wx.switchTab({
-      url: '/pages/discoverProject/discoverProject',
-    })
+    app.href('/pages/discoverProject/discoverProject')
   },
   //  跳转用户详情
   toPersonDetail: function () {
@@ -398,7 +396,7 @@ Page({
   //  跳转到项目店铺筛选页面
   tagFilter() {
 
-      app.href('/pages/my/projectShop/tagFilter/tagFilter')
+    app.href('/pages/my/projectShop/tagFilter/tagFilter')
   },
   //  身份验证
   _identity: function (targetUrl, num) {
@@ -418,9 +416,7 @@ Page({
                 url: targetUrl
               })
             } else if (targetUrl && num == 2) {
-              wx.redirectTo({
-                url: targetUrl
-              })
+              app.href(targetUrl)
             }
           } else if (complete == 0) {
             wx.removeStorageSync('followed_user_id')
