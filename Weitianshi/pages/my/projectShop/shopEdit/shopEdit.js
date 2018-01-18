@@ -28,7 +28,6 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         let userInfo = res.data.user_info;
         that.setData({
           userInfo: userInfo
@@ -61,9 +60,7 @@ Page({
               user_id: user_id,
             },
             success: function (res) {
-              console.log(res)
               if (res.statusCode == 200) {
-                console.log(200000)
                 wx.hideLoading();
                 let data = JSON.parse(res.data);
                 let image_id = data.image_id;

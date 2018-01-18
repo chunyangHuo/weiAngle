@@ -9,7 +9,7 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    console.log('this is sharePage')
+    app.log(that,'this is sharePage')
     let that = this;
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
@@ -33,7 +33,7 @@ Page({
         success: function (res) {
           let user = res.data.user_info;
           let count = res.data.count;
-          console.log(count)
+          app.log(that,"count",count)
           let invest = res.data.invest_info;
           let resource = res.data.resource_info;
           let project_info = res.data.project_info;
@@ -54,11 +54,11 @@ Page({
           })
         },
         fail: function (res) {
-          console.log(res)
         },
       })
-      console.log("分享者", "数据显示的人", "查看的人")
-      console.log(share_id, followed_user_id, view_id)
+      app.log(that,"分享者",share_id);
+      app.log(that,"数据显示的人",followed_user_id);
+      app.log(that,"查看的人",view_id);
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
         app.href('/pages/my/myNew/myNew')
@@ -103,7 +103,7 @@ Page({
     let user_id = this.data.user_id;//我的id,查看者的id
     let followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
     let button_type = this.data.button_type;
-    console.log(button_type)
+    app.log(that,"button_type",button_type)
     let view_id = this.data.view_id;
     // button_type==0  0.申请加人脉按钮 1.不显示任何按钮  2.待验证   3.同意加为人脉  4.加为单方人脉
     //直接可添加好友的情况
@@ -144,9 +144,9 @@ Page({
         },
       });
     } else if (button_type == 1) {
-      console.log("互為好友或單方人脈")
+      app.log(that,"互為好友或單方人脈")
     } else if (button_type == 2) {
-      console.log("待驗證")
+      app.log(that,"待驗證")
     } else if (button_type == 3) {
       wx.request({
         url: url + '/api/user/handleApplyFollowUser',
@@ -208,7 +208,7 @@ Page({
                       if (res.confirm) {
                         app.href('/pages/discoverInvest/discoverInvest')
                       } else if (res.cancel) {
-                        console.log('用户点击取消')
+                        app.log(that,'用户点击取消')
                       }
                     }
                   })

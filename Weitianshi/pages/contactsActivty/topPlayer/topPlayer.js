@@ -70,7 +70,6 @@ Page({
     let str = e.detail.value;
     let that = this;
     let timer = this.data.timer;
-    // console.log(str)
     //防止多次请求进行延时处理
     if (timer) {
       clearTimeout(timer)
@@ -102,7 +101,6 @@ Page({
         method: 'POST',
         success(res) {
           if (res.data.status_code === 2000000) {
-            console.log(res)
             wx.hideLoading();
             let team_rank_list = res.data.data.teams;
             that.setData({
@@ -127,7 +125,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('战队排行', res)
+        app.log(that,'战队排行', res)
         wx.hideLoading();
         let team_rank_list = res.data.data.rank_list;
         that.setData({

@@ -3,14 +3,14 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
     data: {
-        user_info: {
-            user_avatar_url: '',
-            user_mobile: '',
-            user_real_name: '',
-            user_company_name: '',
-            user_brand: '',
-            user_company_career: '',
-        },
+    user_info: {
+        user_avatar_url: '',
+        user_mobile: '',
+        user_real_name: '',
+        user_company_name: '',
+        user_brand: '',
+        user_company_career: '',
+    },
     },
     onLoad: function (options) {
         var that = this;

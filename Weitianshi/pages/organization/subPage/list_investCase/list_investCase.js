@@ -16,7 +16,7 @@ Page({
     this.setData({
       investment_id: options.investment_id,
     });
-    console.log(this.data.investment_id);
+    app.log(that,"investment_id",this.data.investment_id);
     //更改搜索模块初始化设置
     FilterModel.reInitSearch(that, {
       tab: [

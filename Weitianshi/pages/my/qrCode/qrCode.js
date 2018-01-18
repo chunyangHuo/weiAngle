@@ -46,7 +46,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           let user = res.data.user_info;
           that.setData({
             user: user,
@@ -73,7 +72,6 @@ Page({
           let filPath = wx.setStorageSync('access_token', access_token);
         },
         fail: function (res) {
-          console.log(res)
         }
       })
     })
@@ -81,6 +79,7 @@ Page({
 
   //保存小程序码
   savePic: function () {
+    let that=this;
     let filePath = wx.getStorageSync('access_token');
     wx.getImageInfo({
       src: filePath,
@@ -101,7 +100,7 @@ Page({
                       })
                     },
                     fail: function (res) {
-                      console.log(filePath)
+                      app.log(that,"filePath",filePath)
                       console.log(res)
                     }
                   })

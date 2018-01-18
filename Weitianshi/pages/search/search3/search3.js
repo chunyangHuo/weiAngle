@@ -226,7 +226,6 @@ Page({
     let financingNeed = that.data.financingNeed;
     let entrance = that.data.entrance;
     app.operationModel('projectApply', pro_id, res => {
-      console.log(res)
       if (entrance == 'selected') {
         slectProject.forEach(x => {
           if (x.project_id == pro_id) {
@@ -254,11 +253,11 @@ Page({
   },
   // 申请加人脉
   contactsAdd(e) {
+    let that=this;
     let added_user_id = e.currentTarget.dataset.id;
-    console.log(added_user_id)
-    let that = this;
+    app.log(that,"add_user",added_user_id)
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      console.log('申请添加人脉完成', res);
+      app.log(that,'申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -267,7 +266,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      console.log('直接添加人脉完成', res)
+      app.log(that,'直接添加人脉完成', res)
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -325,7 +324,7 @@ Page({
       },
     }, this).then(res => {
       wx.hideLoading()
-      console.log('最新', res)
+      app.log(that,'最新', res)
       var financingNeed = res.data.data;
       that.setData({
         financingNeed: financingNeed,
@@ -346,7 +345,7 @@ Page({
     }).then(res => {
       wx.hideLoading();
       var slectProject = res.data.data;
-      console.log('精选', res)
+      app.log(that,'精选', res)
       that.setData({
         slectProject: slectProject,
       })
@@ -366,7 +365,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('投资人列表', res.data.data)
+          app.log(that,'投资人列表', res.data.data)
           wx.hideLoading();
           var investorList = res.data.data;
           that.setData({
@@ -396,7 +395,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          console.log('FA列表', res.data.data)
+          app.log(that,'FA列表', res.data.data)
           wx.hideLoading();
           var faList = res.data.data;
           that.setData({
@@ -443,7 +442,7 @@ Page({
         method: 'POST',
         success: function (res) {
           wx.hideLoading();
-          console.log('我的人脉列表', res);
+          app.log(that,'我的人脉列表', res);
           if (res.data.status_code == '2000000') {
             var myList = res.data.data;//所有的用户
             var page_end = res.data.page_end;
@@ -480,7 +479,7 @@ Page({
         if (res.data.status_code == 2000000) {
           switch (num) {
             case 0: {
-              console.log('投资人列表', res.data.data)
+              app.log(that,'投资人列表', res.data.data)
               wx.hideLoading();
               var investorList = res.data.data;
               that.setData({
@@ -489,7 +488,7 @@ Page({
               break;
             }
             case 1: {
-              console.log('FA列表', res.data.data)
+              app.log(that,'FA列表', res.data.data)
               wx.hideLoading();
               var faList = res.data.data;
               that.setData({
@@ -501,7 +500,7 @@ Page({
               wx.hideLoading();
               var myList = res.data.data;//所有的用户
               var page_end = res.data.page_end;
-              console.log("myList", myList)
+              app.log(that,"myList", myList)
               that.setData({
                 myList: myList,
                 page_end: page_end,

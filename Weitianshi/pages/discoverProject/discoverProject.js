@@ -65,11 +65,21 @@ Page({
         success: function (res) {
           // console.log('getProjectCategory',res)
           let thisData = res.data.data;
-          thisData.area.forEach((x) => { x.check = false })
-          thisData.industry.forEach((x) => { x.check = false })
-          thisData.scale.forEach((x) => { x.check = false })
-          thisData.stage.forEach((x) => { x.check = false })
-          thisData.hotCity.forEach((x) => { x.check = false })
+          thisData.area.forEach((x) => {
+            x.check = false
+          })
+          thisData.industry.forEach((x) => {
+            x.check = false
+          })
+          thisData.scale.forEach((x) => {
+            x.check = false
+          })
+          thisData.stage.forEach((x) => {
+            x.check = false
+          })
+          thisData.hotCity.forEach((x) => {
+            x.check = false
+          })
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
@@ -239,7 +249,7 @@ Page({
     let financingNeed = that.data.financingNeed;
     let currentTab = that.data.currentTab;
     app.operationModel('projectApply', pro_id, res => {
-      app.log(that,'matchApply',res);
+      app.log(that, 'matchApply', res);
       if (currentTab == 0) {
         slectProject.forEach(x => {
           if (x.project_id == pro_id) {

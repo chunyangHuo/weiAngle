@@ -23,13 +23,13 @@ Page({
     that.getInfo('', 1);
     app.netWorkChange(that)
   },
-  onShow() { },
+  onShow() {
+  },
   //搜索战队
   searchSth(e) {
     let str = e.detail.value;
     let that = this;
     let timer = this.data.timer;
-    // console.log(str)
     //防止多次请求进行延时处理
     if (timer) {
       clearTimeout(timer)
@@ -49,13 +49,13 @@ Page({
   },
   //所有战队勾选框
   checkbox1(e) {
+    let that=this;
     let team = e.currentTarget.dataset.team;
     let index = e.currentTarget.dataset.index;
     let joinedWarband = this.data.joinedWarband;
     let warband = this.data.warband;
     let offsetTop = e.currentTarget.offsetTop;
-    console.log(team)
-    // console.log(this.data.warband)
+    app.log(that, "team", team);
     this.setData({
       scrollTop: offsetTop - 92
     })
@@ -135,7 +135,7 @@ Page({
           page_end: page_end,
           requestCheck: true
         })
-        console.log(that.data.warband)
+        app.log(that,"warBand",that.data.warband);
       });
     }
   },
@@ -153,7 +153,6 @@ Page({
       method: 'POST',
       success(res) {
         if (res.data.status_code === 2000000) {
-          console.log(res)
           wx.hideLoading();
           let thisData = res.data.data;
           let teams = thisData.teams;
@@ -205,8 +204,8 @@ Page({
         arr.push(x.team_id);
         parameter.push(arr)
       })
-      console.log(joinedWarband)
-      console.log(parameter)
+      app.log(that,"joinedWarband",joinedWarband)
+      app.log(that,"parameter",parameter);
       wx.showLoading({
         title: 'loading',
         mask: true
@@ -218,7 +217,6 @@ Page({
           teams: parameter
         },
         success(res) {
-          console.log(res)
           wx.hideLoading()
           if (res.data.status_code === 2000000) {
             app.href('/pages/contactsActivty/activtyRegister/activtyRegister')

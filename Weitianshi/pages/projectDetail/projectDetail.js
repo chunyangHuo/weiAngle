@@ -45,7 +45,6 @@ Page({
     projectImg: app.globalData.picUrl.projectBac,
   },
   onLoad: function (options) {
-    console.log(options)
     var that = this;
     var id = options.id;//当前被查看用户的项目id
     var share_id = options.share_id;
@@ -79,14 +78,6 @@ Page({
         });
       }
     })
-
-
-    // 网络判断
-    wx.onNetworkStatusChange(function (res) {
-      console.log(res.isConnected)
-      console.log(res.networkType)
-    })
-
     this.identityInfo(that);
 
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
@@ -168,7 +159,8 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        console.log(show_detail, show_company)
+        app.log(that,"show_detail",show_detail);
+        app.log(that,"show_company",show_company);
         that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
@@ -192,8 +184,8 @@ Page({
         that.setData({
           competition_id: res.data.data.competition_id,
         })
-        console.log(user_id, id, is_share)
-        console.log("bp", res)
+        // console.log(user_id, id, is_share)
+        app.log(that,"bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -217,7 +209,7 @@ Page({
           for (let i = 0; i < pro_goodness.length; i++) {
             arr.push(pro_goodness[i].goodness_desc.length)
           }
-          console.log(Math.max(arr), Math.max.apply(null, arr), arr)
+          // console.log(Math.max(arr), Math.max.apply(null, arr), arr)
           if (Math.max.apply(null, arr) > 250) {
             that.setData({
               textBeyond0: true,
@@ -688,10 +680,9 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
         wx.hideLoading()
         let investor2 = res.data.data;
-        console.log(investor2,"投资人")
+        app.log(that,"投资人",investor2)
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -719,7 +710,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investment_list = res.data.data.investment_list;
-        console.log(investment_list, "投资机构")
+        app.log(that,"投资机构",investment_list)
         let investment_total_num = res.data.data.investment_total_num;
         that.setData({
           investment_list: investment_list,
@@ -739,7 +730,6 @@ Page({
     let user_id = this.data.user_id;
     let id = this.data.id;
     let currentPage = this.data.currentPage;
-    console.log(currentPage);
     let request = {
       url: url_common + '/api/project/getProjectMatchInvestors',
       data: {
@@ -750,7 +740,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "investor2");
-    console.log('投资人',this.data.page_end);
+    app.log(that,'投资人',this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -763,7 +753,6 @@ Page({
     let that = this;
     let id = this.data.id;
     let currentPage1 = this.data.currentPage1;
-    console.log('currentPage1',currentPage1);
     let request = {
       url: url_common + '/api/investment/matchs',
       data: {
@@ -773,7 +762,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMoreM(that, request, "investment_list");
-    console.log('投资机构', this.data.page_end1);
+    app.log(that,'投资机构', this.data.page_end1);
     if (this.data.page_end1 == true) {
       that.setData({
         jiandi1: true
@@ -790,10 +779,7 @@ Page({
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id;
     let pages = getCurrentPages();
-    console.log(getCurrentPages())
-    console.log(pages.length)
     pages.splice(0, 1)
-    console.log(pages)
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   // 项目详情-里程碑 展开收起
@@ -918,7 +904,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                  console.log(res)
                   if (res.data.status_code == 2000000) {
                     app.errorHide(that, 'BP文件发送邮箱成功', 3000)
                     wx.request({
@@ -931,7 +916,6 @@ Page({
                       },
                       method: 'POST',
                       success: function (res) {
-                        console.log(res)
                       }
                     })
                   } else {
@@ -988,7 +972,6 @@ Page({
         wx.showActionSheet({
           itemList: ['直接预览', '发送到邮箱'],
           success: function (res) {
-            console.log(res)
             if (res.tapIndex == 1) {
               wx.request({
                 url: url_common + '/api/user/checkUserInfo',
@@ -997,7 +980,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                  console.log(res)
                   let userEmail = res.data.user_email;
                   if (userEmail) {
                     that.setData({
@@ -1018,17 +1000,16 @@ Page({
                 title: 'loading',
                 mask: true,
               })
-              console.log(BPath)
+              app.log(that,"BP",BPath)
               wx.downloadFile({
                 url: BPath,
                 success: function (res) {
-                  console.log(res)
                   var filePath = res.tempFilePath;
-                  console.log("bp", filePath)
+                  app.log(that,"bp", filePath)
                   wx.openDocument({
                     filePath: filePath,
                     success: function (res) {
-                      console.log('打开文档成功')
+                      app.log(that,'打开文档成功')
                       wx.hideLoading();
                       wx.request({
                         url: url_common + '/api/project/insertViewBpRecord',
@@ -1040,7 +1021,7 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                          console.log(res)
+
                         },
                       })
                     }
@@ -1101,7 +1082,6 @@ Page({
   },
   //约谈
   contentProject: function (e) {
-    console.log(e)
     let message = e.detail.value;
     let message_length = e.detail.value.length;
     let that = this;
@@ -1120,8 +1100,6 @@ Page({
     let message = this.data.message;
     let project_id = this.data.id;//项目id
     // 防反复提交处理
-    console.log(project_id)
-    console.log(message)
     let submitData = {
       url: url_common + '/api/project/met',
       data: {
@@ -1190,7 +1168,6 @@ Page({
   },
   noBrightPoint: function (e) {
     let check = e.currentTarget.dataset.check;
-    console.log(check)
     if (check == 0) {
       this.setData({
         isChecked0: true
@@ -1218,9 +1195,7 @@ Page({
   },
   // 立即认证
   toAccreditation: function () {
-    console.log(1)
     let status = this.data.status;
-    console.log(status);
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/user/checkUserInfo',
@@ -1434,7 +1409,6 @@ Page({
   toBrand: function () {
     let that = this;
     let share_id = this.data.share_id;
-    console.log(share_id);
     let user_id = wx.getStorageSync('user_id');
     let id = this.data.id;
     if (share_id) {

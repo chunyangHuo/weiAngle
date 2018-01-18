@@ -20,7 +20,7 @@ Page({
   },
   btnYes: function () {
     let type = this.data.type;
-    console.log(type);
+    // console.log(type);
     if (type == 1) {
       let pages = getCurrentPages();
       wx.navigateBack({
@@ -28,7 +28,8 @@ Page({
       });
     } else {
       if (type == 2) {
-        let pages = getCurrentPages()
+        let pages = getCurrentPages();
+        // console.log(pages);
         wx.navigateBack({
           delta: 3
         });

@@ -178,7 +178,7 @@ Page({
                 page_end: page_end,
                 requestCheck: true
               });
-              console.log(that.data.page_end);
+              app.log(that,"page_end",that.data.page_end);
               if (that.data.page_end == true) {
                 that.setData({
                   jiandi: true,
@@ -209,7 +209,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      console.log('申请添加人脉完成', res);
+      app.log(that,'申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -218,7 +218,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      console.log('直接添加人脉完成', res)
+      app.log(that,'直接添加人脉完成', res)
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },

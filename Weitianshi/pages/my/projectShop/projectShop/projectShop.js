@@ -41,7 +41,6 @@ Page({
         picUrl: '/img/icon-fenxiang@2x.png',
         text: "首页",
         func: function () {
-          console.log(11111)
         }
       },
       {
@@ -104,7 +103,6 @@ Page({
           })
           node_list.forEach(x => {
             if (x.is_select == 1) {
-              console.log(1)
               searchData.schedule = [x.schedule_id]
             }
           })
@@ -124,7 +122,6 @@ Page({
   },
   onShow: function () {
     if (!this.data.firstTime) {
-      console.log(999)
       this._getUserInfo();
       this.setData({
         requestCheck: true,
@@ -146,7 +143,7 @@ Page({
       method: 'POST',
       success: function (res) {
         let myProject = res.data.data;
-        console.log(myProject)
+        app.log(that,"myProject",myProject)
         wx.hideLoading();
         //刷新数据
         that.setData({
@@ -237,7 +234,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('getMyProjectList', res);
+        app.log(that,'getMyProjectList', res);
         wx.hideLoading();
         if (res.data.data.length == 0) {
           that.setData({
@@ -283,10 +280,8 @@ Page({
       },
     }
     app.loadMore2(that, request, res => {
-      console.log(res)
       let newPage = res.data.data;
       let page_end = res.data.page_end;
-      console.log(page_end)
       if (myProject) {
         myProject = myProject.concat(newPage)
         currentPage++;
@@ -442,19 +437,19 @@ Page({
   },
   //  分享页面
   onShareAppMessage: function () {
-    console.log(555)
+    let that=this;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      console.log(res.target)
+      app.log(that,"target",res.target)
     }
     return {
       title: '自定义转发标题',
       path: '/page/user?id=123',
       success: function (res) {
-        console.log("res成功", res)
+        app.log(that,"res成功", res)
       },
       fail: function (res) {
-        console.log("res失败", res)
+        app.log(that,"res失败", res)
       }
     }
   },

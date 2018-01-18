@@ -33,7 +33,7 @@ Page({
       }).then(res => {
         wx.hideLoading()
         let searchData = res.data.data;
-        console.log(searchData)
+        app.log(that,"searchData",searchData)
         let investment_list = [];
         let memberList = [];
         let industry_list = [];
@@ -65,7 +65,6 @@ Page({
 
   // 点击tab切换
   swichNav: function (e) {
-    console.log(e)
     let that = this;
     let current = e.target.dataset.current;
     that.setData({
@@ -139,7 +138,6 @@ Page({
   },
   //机构成员跳转
   findMember(e) {
-    console.log(e)
     let investment_id = e.currentTarget.dataset.memberid;
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + investment_id)
   },
