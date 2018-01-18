@@ -45,7 +45,7 @@ Page({
     // 页面间跳转传值筛选
     if (label) {
       FilterModel.detialItemSearch(label, itemId, that, searchData => {
-        console.log(searchData)
+        app.log(that,"searchData",searchData)
       })
     }
     this.applyList();
@@ -61,7 +61,6 @@ Page({
   },
   // 上拉加载
   loadMore: function () {
-    console.log("loadMore")
     let that = this;
     let investment_list = this.data.investment_list;
     let currentPage = this.data.currentPage;
@@ -84,13 +83,12 @@ Page({
           page_end: page_end,
           requestCheck: true
         })
-        console.log(investment_list)
+        app.log(that,"investment_list",investment_list)
       }
       if (page_end == true) {
         app.errorHide(that, '没有更多了', 3000)
       }
     })
-    console.log(investment_list)
   },
 
   //跳转机构详情
@@ -153,7 +151,8 @@ Page({
   },
   // 一级联动选择
   linkFirstStair(e){
-    console.log(this.data.label_industry)
+    let that=this;
+    app.log(that,"industry",this.data.label_industry)
     FilterModel.linkFirstStair(e,this)
   },
   // 二级联动选择
@@ -189,7 +188,6 @@ Page({
         filter: this.data.SearchInit.searchData
       },
       success: function (res) {
-        console.log(res)
         wx.hideLoading()
         let investormentList = res.data.data;
         let investment_list = investormentList.investment_list.list;

@@ -8,7 +8,6 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    console.log(options)
     let that = this;
     var user_id = wx.getStorageSync('user_id')
     app.initPage(that);
@@ -25,7 +24,7 @@ Page({
   contactsAddSuccessFunc(res, added_user_id, num) {
     let that = this;
     var contacts = this.data.contacts;
-    console.log(contacts);
+    app.log(that,"contacts",contacts);
     if (res.data.status_code == 2000000) {
       //更改投资人和FA列表中该人的加人脉按钮的字段
       if (contacts) {
@@ -47,7 +46,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      console.log('申请添加人脉完成', res);
+      app.log(that,'申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -56,7 +55,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      console.log('直接添加人脉完成', res)
+      app.log(that,'直接添加人脉完成', res)
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -150,7 +149,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "contacts")
-    console.log(this.data.page_end);
+    app.log(that,"page_end",this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -164,7 +163,6 @@ Page({
       title: 'loading',
       mask: true,
     })
-    console.log(user_id)
     wx.request({
       url: url_common + '/api/message/viewCardMessage',
       data: {
@@ -194,7 +192,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        console.log(res)
       }
     })
   },

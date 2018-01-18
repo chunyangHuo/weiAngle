@@ -96,12 +96,12 @@ Page({
   },
   //点击进入项目详情
   detail: function (e) {
-    console.log(e)
+    let that=this;
     let id = e.currentTarget.dataset.id;
     let user_id = this.data.user_id;
     let currentUser = wx.getStorageSync('user_id');
-    console.log(user_id)
-    console.log(currentUser)
+    app.log(that,"user_id",user_id)
+    app.log(that,"currentUser",currentUser)
     if (user_id == currentUser) {
       app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0)
     } else if (user_id != currentUser){
@@ -143,7 +143,6 @@ Page({
   },
   //上拉加载
   myPublicProject: function () {
-    console.log(11111)
     //请求上拉加载接口所需要的参数
     var that = this;
     var user_id = this.data.user_id;

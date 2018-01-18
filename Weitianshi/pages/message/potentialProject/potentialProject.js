@@ -405,7 +405,6 @@ Page({
             pushToList: pushToList
           })
         } else {
-          console.log(statusCode)
         }
       }
     })
@@ -511,7 +510,7 @@ Page({
     let project_id = e.currentTarget.dataset.project;
     let pushToList = this.data.pushToList;
     let that = this;
-    console.log(pushToList)
+    app.log(that,"pushList",pushToList)
     wx.request({
       url: url_common + '/api/project/importProject',
       data: {
@@ -530,7 +529,6 @@ Page({
             })
           })
         } else {
-          console.log(res.data.error_msg)
         }
       }
     })
@@ -563,7 +561,6 @@ Page({
             pushToList: pushToList
           })
         } else {
-          console.log(statusCode)
         }
       }
     })

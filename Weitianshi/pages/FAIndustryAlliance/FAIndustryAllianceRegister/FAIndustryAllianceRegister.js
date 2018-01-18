@@ -441,7 +441,6 @@ Page({
   },
   // input获取焦点时停止倒计时
   personNo: function (e) {
-    console.log(1);
     var that = this;
     clearTimeout(stop),
       that.setData({
