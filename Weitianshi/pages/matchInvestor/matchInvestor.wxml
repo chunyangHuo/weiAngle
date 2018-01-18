@@ -18,7 +18,7 @@
         <view class="inPadding">
           <view class="flex cardTop">
             <view>匹配推荐: {{item.match_count}}人</view>
-            <button class='pushBtn' data-pro-id='{{item.project_id}}' hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap='goToMatchInvestor'>一键推送</button>
+            <button class='pushBtn' data-pro-id='{{item.project_id}}' hover-class='t-other-button-hover' hover-stop-propagation='true' catchtap='goToMatchInvestor'>一键提交</button>
           </view>
           <view class="line" wx:if="{{item.match_count!=0}}"></view>
           <!--匹配到的投资人  -->

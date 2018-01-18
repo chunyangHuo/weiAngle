@@ -87,7 +87,7 @@ Page({
             } else {
                 if (checkedNum > overTime) {
                     dataList[index].check = !dataList[index].check;
-                    app.errorHide(that, "超过了推送限制", 1000)
+                    app.errorHide(that, "超过了提交限制", 1000)
                 } else {
                     that.setData({
                         dataList: dataList
@@ -95,7 +95,7 @@ Page({
                 }
             }
         } else if (overTime == 0) {
-            app.errorHide(that, "今日推送次数已用完", 1000)
+            app.errorHide(that, "今日提交次数已用完", 1000)
         }
         dataList.forEach((x) => {
             if (x.check == true) {
@@ -106,7 +106,7 @@ Page({
             checkObject: checkObject
         })
     },
-    //推送
+    //提交
     pushTo: function () {
         let user_id = wx.getStorageSync('user_id');
         let pushed_user_id = this.data.pushed_user_id;
@@ -121,7 +121,7 @@ Page({
             })
         }
         if(remainTimes===0){
-            app.errorHide(that, "今日推送次数已用完", 1000)
+            app.errorHide(that, "今日提交次数已用完", 1000)
         } else if (!checkObject){
             app.errorHide(that, "没有选择任何项目", 1000)
         }else{

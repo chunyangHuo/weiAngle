@@ -3,6 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/filterModel';
 import * as ShareModel from '../../utils/shareModel';
+
 Page({
   data: {
     investorList: '',
@@ -24,7 +25,6 @@ Page({
     let that = this;
     app.netWorkChange(that);
     let SearchInit = that.data.SearchInit;
-    let tab = SearchInit.tab;
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
@@ -59,7 +59,7 @@ Page({
           wx.setStorageSync("industry", thisData.industry)
           wx.setStorageSync("scale", thisData.scale)
           wx.setStorageSync("stage", thisData.stage)
-          wx.setStorageSync('hotCity', hotCity)
+          wx.setStorageSync('hotCity',thisData.hotCity)
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');

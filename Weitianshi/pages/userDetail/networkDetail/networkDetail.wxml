@@ -112,7 +112,7 @@
   <!-- <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3||button_type == 4}}">
     <view class="flex pushProjectBox" hover-class='t-other-button-hover'>
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
+      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">提交项目</view>
     </view>
     <view class="t-line"></view>
     <view class="flex addPersonBox" hover-class='t-other-button-hover'>
@@ -124,7 +124,7 @@
   <!-- <view class="floatBtn flex addPerson" wx:if="{{button_type==2}}">
     <view class="flex pushProjectBox" data-id="{{user.user_id}}" hover-class='t-other-button-hover'>
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">推送项目</view>
+      <view class="pushProjectTo pushprojectm" bindtap="pushProjectTo">提交项目</view>
     </view>
     <view class="t-line"></view>
     <view class="flex addPersonBox">
@@ -134,7 +134,7 @@
   </view> -->
   <!-- <view class="floatBtn flex pushPro" wx:if="{{button_type==1}}" data-id="{{user.user_id}}" hover-class='t-other-button-hover'>
     <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
-    <view class="pushProjectAfter pushprojectm" bindtap="pushProjectTo">推送项目</view>
+    <view class="pushProjectAfter pushprojectm" bindtap="pushProjectTo">提交项目</view>
   </view> -->
   <!-- <view class="flex t-aboutNetwork" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
     <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">

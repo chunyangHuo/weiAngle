@@ -23,7 +23,6 @@ Page({
     // console.log(type);
     if (type == 1) {
       let pages = getCurrentPages();
-      // console.log(pages);
       wx.navigateBack({
         delta: 2
       });

@@ -2,14 +2,14 @@
  <include src='/utils/wxml/netWork' />
  <view wx:if="{{nonet}}">
 <view class="swiper-tab">
-  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推送给我的项目</view>
-  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我推送的项目</view>
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">提交给我的项目</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我提交的项目</view>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
   <!--推送给我的项目  -->
   <swiper-item>
     <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
-      <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
+      <template is="allNumber" data="{{count:count1,text:'提交给我的项目'}}"></template>
       <block wx:for="{{pushToList}}" wx:key="{{index}}">
         <view wx:if="{{item.handle_status != 2}}">
           <view class="outBox" data-project="{{item.project_id}}" catchtap="projectDetail">
@@ -70,7 +70,7 @@
   <!--我推送的项目 -->
   <swiper-item>
     <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply">
-      <template is="allNumber" data="{{count:count,text:'我推送的项目'}}"></template>
+      <template is="allNumber" data="{{count:count,text:'我提交的项目'}}"></template>
       <template is="pushProjectTo" data="{{contentList:pushProjectList,record_id:0,type:1}}"></template>
       <template is="hasNothing" data="{{emptyNumber:pushProjectList}}"></template>
     </scroll-view>
