@@ -353,9 +353,7 @@ Page({
         app.errorHide(that, successText, 1000)
         // 提交中过渡态处理
           setTimeout(x => {
-            wx.redirectTo({
-              url: '/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' +projectId
-            })
+            app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId)
           }, 1000)
       })
     }

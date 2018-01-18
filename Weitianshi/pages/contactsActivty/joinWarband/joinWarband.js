@@ -219,9 +219,7 @@ Page({
         success(res) {
           wx.hideLoading()
           if (res.data.status_code === 2000000) {
-            wx.redirectTo({
-              url: '/pages/contactsActivty/activtyRegister/activtyRegister',
-            })
+            app.href('/pages/contactsActivty/activtyRegister/activtyRegister')
           } else {
             app.errorHide(that, res.data.error_msg, 3000)
           }
