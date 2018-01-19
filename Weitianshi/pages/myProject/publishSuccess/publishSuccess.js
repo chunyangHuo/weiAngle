@@ -8,7 +8,6 @@ Page({
   },
   onLoad: function (options) {
     let projectId = options.projectId;
-    console.log(projectId)
     this.setData({
       type: options.type,
       projectId: projectId

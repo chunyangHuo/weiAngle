@@ -60,7 +60,7 @@ App({
       let session_time = this.globalData.session_time;
       let differenceTime = timeNow - session_time;
       if (differenceTime > 432000000) {//432000000代表2个小时
-        this.log(this,"已超时");
+        // this.log(this,"已超时");
         this.getSession(cb);
       } else {
         typeof cb == 'function' && cb(this.globalData.user_id)
@@ -113,7 +113,7 @@ App({
                 app_key: that.globalData.app_key
               }
             }, that).then(res => {
-              this.log(this,"这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
+              // this.log(this,"这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
               //在globalData里存入open_session,session_time,user_id;
               that.globalData.open_session = res.data.open_session;
               wx.setStorageSync('open_session', res.data.open_session);
@@ -133,10 +133,10 @@ App({
     let that = this;
     //如果全局变量里有userInfo就去执行cb函数,如果全局变量里没有userInfo就去调用授权接口
     if (this.globalData.userInfo) {
-      this.log(this,"全局变量userInfo存在");
+      // this.log(this,"全局变量userInfo存在");
       typeof cb == "function" && cb(this.globalData.userInfo);
     } else {
-      this.log(this,"全局变量userInfo不存在");
+      // this.log(this,"全局变量userInfo不存在");
       //调用登录接口
       wx.login({
         success: function (login) {
@@ -145,15 +145,15 @@ App({
           //获取用户信息
           wx.getUserInfo({
             success: function (res) {
-              this.log(this,"这里是wx.getUserInfo");
-              this.log(this,res);
+              // this.log(this,"这里是wx.getUserInfo");
+              // this.log(this,res);
               that.globalData.userInfo = res.userInfo;
               that.globalData.encryptedData = res.encryptedData;
               that.globalData.iv = res.iv;
               typeof cb == "function" && cb(that.globalData.userInfo);
             },
             fail: function (res) {
-              this.log(this,res);
+              // this.log(this,res);
             },
             complete: function () {
               //如果已经存在session_time就进行比较,如果不没有就建一个session_time;
@@ -263,7 +263,7 @@ App({
             }
           });
         }
-        this.log(this,'checkUserInfo', res);
+        // this.log(this,'checkUserInfo', res);
       }
     });
   },
@@ -303,8 +303,8 @@ App({
     } else {
       dataCard.css = "";
     }
-    this.log(this, dataCard.value);
-    this.log(this, dataCard.id)
+    // this.log(this, dataCard.value);
+    // this.log(this, dataCard.id)
   },
 
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)
@@ -388,35 +388,7 @@ App({
       }
     }
   },
-  // 买家图谱翻页
-  // loadMore23(that, request, callback) {
-  //   let user_id = wx.getStorageSync("user_id");
-  //   if (that.data.requestCheck) {
-  //     if (that.data.page_end == false) {
-  //       wx.showToast({
-  //         title: 'loading...',
-  //         icon: 'loading'
-  //       })
-  //       request.data.page++;
-  //       that.setData({
-  //         currentPage1: request.data.page,
-  //         requestCheck: false
-  //       });
-  //       //请求加载数据
-  //       wx.request({
-  //         url: request.url,
-  //         data: request.data,
-  //         method: 'POST',
-  //         success: callback
-  //       })
-  //     } else {
-  //       // this.errorHide(that, "没有更多了", 3000)
-  //       that.setData({
-  //         requestCheck: true
-  //       });
-  //     }
-  //   }
-  // },
+// 买家图谱翻页
   loadMoreM(that, request, str, dataStr) {
     let user_id = wx.getStorageSync("user_id");
     let dataSum = that.data[str];
@@ -443,10 +415,7 @@ App({
             if (dataStr && typeof dataStr == "string") {
               newPage = res.data[dataStr];
             }
-            this.log(this, request.data.page);
-            this.log(this, request.data.newPage);
-            this.log(this, request.data.page);
-            dataSum = dataSum.concat(page_end1)
+            dataSum = dataSum.concat(newPage)
             that.setData({
               [str]: dataSum,
               page_end1: page_end1,
@@ -512,7 +481,7 @@ App({
         }
       })
     } else {
-      this.log(this,"addType写错了")
+      // this.log(this,"addType写错了")
     }
   },
 
@@ -521,7 +490,7 @@ App({
     if (this.globalData.url == 'https://wx.weitianshi.cn') {
 
     } else {
-      this.log(this,x)
+      // this.log(this,x)
     }
   },
   //展开
@@ -683,7 +652,7 @@ App({
     let func = arguments[0];
     let parameter = [];
     if (typeof func != 'string') {
-      this.log(this,'第一个参数必需为调用函数名')
+      // this.log(this,'第一个参数必需为调用函数名')
       return
     }
     for (let i = 0; i < arguments.length; i++) {
@@ -723,7 +692,7 @@ App({
         });
         break;
       default:
-        this.log(this,'app.shareJump()参数错数');
+        // this.log(this,'app.shareJump()参数错数');
         break;
     }
   },
@@ -771,7 +740,7 @@ App({
   buttonSubmit(that, submitData, buttonOneText, callBack) {
     this.disableButton(that);
     this.httpPost(submitData, that).then(res => {
-      this.log(this,'res', res)
+      // this.log(this,'res', res)
       if (res.data.status_code == 2000000) {
         wx.hideLoading();
         callBack(res);
@@ -802,10 +771,10 @@ App({
 
   //非表单提交按钮防连续点击处理
   delayDeal(callBack) {
-    this.log(this,this.globalData.delay_time)
+    // this.log(this,this.globalData.delay_time)
     if (this.globalData.delay_time == 0) {
       this.globalData.delay_time == 1000;
-      this.log(this,this.globalData.delay_time)
+      // this.log(this,this.globalData.delay_time)
       setTimeout(x => {
         this.globalData.delay_time == 0
       }, 1000)
@@ -824,10 +793,10 @@ App({
     if (!routerPage.includes(url)) {
       // 记录路由
       routerPage.push(url);
-      this.log(this, this.globalData.url);
+      // this.log(this, this.globalData.url);
       setTimeout(rex => {
         routerPage.pop();
-        this.log(this, this.globalData.url);
+        // this.log(this, this.globalData.url);
       }, 1000)
       if (indexList.includes(url)) wx.switchTab({ url: url })
       else wx.navigateTo({ url: url })
@@ -892,7 +861,7 @@ App({
     if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
       console.log(text, res);
     } else {
-
+     
     }
   },
   //初始本地缓存

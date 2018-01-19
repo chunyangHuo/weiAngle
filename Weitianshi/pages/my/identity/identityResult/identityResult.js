@@ -57,6 +57,7 @@ Page({
   },
   // 点击确定返回原页面
   btnYes: function (options) {
+    let that=this;
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;
     let user_id = wx.getStorageSync('user_id');
