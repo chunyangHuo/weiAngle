@@ -194,7 +194,6 @@ function move(e, that) {
 
   // 清除未保存的选中标签
   if (label == 'label_industry') {
-    console.log(_linkDataShow)
     linkDataShow = Object.assign({}, _linkDataShow);
     linkDataShow.secondStair.forEach(x => {
       x.check = false;
@@ -341,7 +340,7 @@ function tagsCheck(e, that) {
   // 有联动关系的下拉表
   if (item[0].child) {
     let linkItem = item[firstIndex].child[secondIndex];
-    console.log(linkItem)
+    app.log(that,linkItem)
     if (linkItem.check == false) {
       linkItem.check = true;
       linkItem.firstIndex = firstIndex;
@@ -492,7 +491,6 @@ function searchCertain(that) {
     },
     method: 'POST',
     success: function (res) {
-      console.log(res)
       this.initData(that);
       let SerachInit = that.data.SearchInit;
       SearchInit.currentInit = 99;
@@ -557,7 +555,6 @@ function detialItemSearch(label, itemId, that, callBack) {
     SearchInit: SearchInit,
     linkDataShow: linkDataShow
   })
-  console.log(SearchInit.searchData)
   callBack(SearchInit.searchData);
 }
 // 点击modal层
@@ -777,7 +774,7 @@ function page_certain(that) {
     })
     searchData[x.name] = arry;
   })
-  console.log("tagFilterSearchData", searchData)
+  app.log(that,"tagFilterSearchData", searchData)
   prePage.setData({
     searchData: searchData,
     firstTime: false

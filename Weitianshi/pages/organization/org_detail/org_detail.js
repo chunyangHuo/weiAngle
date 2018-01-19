@@ -41,7 +41,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("机构详情", res);
+        app.log(that,"机构详情", res);
         let orgDetail = res.data.data;
         let info = res.data.data.info;
         let investment_events = res.data.data.investment_events;

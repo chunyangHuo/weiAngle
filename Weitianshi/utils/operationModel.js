@@ -1,5 +1,6 @@
 //验校用户注册信息
 function checkUserInfo(callBack) {
+  let that=this;
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
@@ -39,7 +40,7 @@ function checkUserInfo(callBack) {
           }
         })
       }
-      console.log('checkUserInfo', res);
+      app.log(that,'checkUserInfo', res);
     }
   })
 }
@@ -58,7 +59,7 @@ function projectApply(pro_id, callBack) {
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          console.log('getUserGroupByStatus', res);
+          app.log(that,'getUserGroupByStatus', res);
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -268,7 +269,7 @@ function getPushProjectTimes(that, callBack) {
     },
     method: "POST",
     success(res) {
-      console.log('getPushProjectTimes', res);
+      app.log(that,'getPushProjectTimes', res);
       let remain_time = res.data.data.remain_times;
       if (remain_time < 1) {
         app.errorHide(that, "您今日的提交次数已经用光了", 3000)
@@ -309,7 +310,7 @@ function projectApplyDirect(pro_id, callBack) {
         if (callBack) {
           callBack(res)
         }
-        console.log('applyProject', res)
+        app.log(that,'applyProject', res)
       } else if (statusCode == 5005005) {
         wx.showToast({
           title: '请勿重复申请',

@@ -44,8 +44,6 @@ Page({
       },
     }, this).then(res => {
       wx.hideLoading()
-      console.log(res)
-      console.log(res.data.count.project_count)
       var user = res.data.user_info;
       var count = res.data.count;
       var invest = res.data.invest_info;
@@ -58,7 +56,7 @@ Page({
       wx.setNavigationBarTitle({
         title: user_name + "的投资名片",
       })
-      console.log(user.active_status)
+      app.log(that,user.active_status)
       if (tel.indexOf("*") != -1) {
         that.setData({
           blue: 1
@@ -131,16 +129,16 @@ Page({
               },
               method: 'POST',
               success: function (res) {
-                console.log("正常申请添加人脉")
+                app.log(that,"正常申请添加人脉")
                 that.setData({
                   button_type: 2
                 })
               }
             })
           } else if (button_type == 1) {
-            console.log("我的人脉--不显示内容")
+            app.log(that,"我的人脉--不显示内容")
           } else if (button_type == 2) {
-            console.log("待验证===显示待验证")
+            app.log(that,"待验证===显示待验证")
           } else if (button_type == 3) {
             wx.request({
               url: url + '/api/user/handleApplyFollowUser',
@@ -152,7 +150,7 @@ Page({
               },
               method: 'POST',
               success: function (res) {
-                console.log("同意申請")
+                app.log(that,"同意申請")
                 that.setData({
                   button_type: 1
                 })

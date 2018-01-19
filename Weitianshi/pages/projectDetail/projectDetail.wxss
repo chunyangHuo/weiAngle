@@ -12,7 +12,7 @@ scroll-view {
 .theBottomBox {
   justify-content: center;
   margin-top: 32rpx;
-  margin-bottom: 127rpx;
+  margin-bottom: 386rpx;
 }
 
 .investGroupBlock {

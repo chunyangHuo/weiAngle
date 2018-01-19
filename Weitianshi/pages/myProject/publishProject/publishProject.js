@@ -68,7 +68,6 @@ Page({
     this._privacyData();
   },
   onReady() {
-    console.log(this.data)
   },
   //picker数据预处理
   _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
@@ -121,7 +120,7 @@ Page({
   //私密性取值
   _privacyData() {
     let setPrivacy = wx.getStorageSync('setPrivacy');
-    console.log(setPrivacy)
+    app.log(that,setPrivacy)
     if (setPrivacy) {
       this.setData({
         open_status: setPrivacy.open_status,
@@ -153,7 +152,6 @@ Page({
 
   //是否独家的效果实现
   tipsOn: function (e) {
-    console.log(e.detail.value)
     this.setData({
       tips_index: e.detail.value
     })
@@ -283,7 +281,6 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
             if (res.data.status_code == 2000000) {
               //清除数据
               wx.setStorageSync('tran_industry', []);
