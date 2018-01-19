@@ -45,8 +45,8 @@ App({
   },
   onShow() {
     wx.onNetworkStatusChange(function (res) {
-      app.log(this,res.isConnected);
-      app.log(this,res.networkType);
+      this.log(this,res.isConnected);
+      this.log(this,res.networkType);
     });
   },
   //进入页面判断是否有open_session
@@ -841,8 +841,6 @@ App({
   //判断网络状态
   netWorkChange(that) {
     wx.onNetworkStatusChange(function (res) {
-      app.log(this,res.isConnected)
-      app.log(this,res.networkType)
       if (res.networkType == "none") {
         that.setData({ nonet: false })
       } else {
