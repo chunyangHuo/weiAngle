@@ -45,8 +45,6 @@ App({
   },
   onShow() {
     wx.onNetworkStatusChange(function (res) {
-      this.log(this,res.isConnected);
-      this.log(this,res.networkType);
     });
   },
   //进入页面判断是否有open_session
