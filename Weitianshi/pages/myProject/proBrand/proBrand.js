@@ -16,7 +16,7 @@ Page({
     });
     console.log('pro_id', this.data.id);
     let that = this;
-    app.netWorkChange(that)
+    app.netWorkChange(that);
   },
   onShow: function () {
     //  投资人数据
@@ -41,36 +41,35 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log('projectDetail', res)
+        console.log('projectDetail', res);
         let project = res.data.data;
         let brandList = res.data.data.brand;
-        console.log(brandList)
+        console.log(brandList);
         that.setData({
           project: project,
           brandList: brandList
         });
-        console.log(this.data.brandList)
+        console.log(this.data.brandList);
       },
-    })
+    });
   },
 
 
 
   //下拉刷新
   onPullDownRefresh: function () {
-    wx.stopPullDownRefresh()
+    wx.stopPullDownRefresh();
   },
   // 重新加载
   refresh() {
-    let timer = '';
     wx.showLoading({
       title: 'loading',
       mask: true
     });
-    timer = setTimeout(x => {
+    setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
 
 

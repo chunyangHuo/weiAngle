@@ -1,5 +1,4 @@
 var app = getApp();
-var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/filterModel';
 import * as ShareModel from '../../utils/shareModel';
@@ -24,11 +23,11 @@ Page({
   onLoad(options) {
     let that = this;
     app.netWorkChange(that);
-    let SearchInit = that.data.SearchInit;
+    // let SearchInit = that.data.SearchInit;
     if (options.currentTab) {
       this.setData({
         currentTab: options.currentTab
-      })
+      });
     }
 
     // ------------下面获取缓存是必要的,不要删除--------------------------------------------------
@@ -42,24 +41,24 @@ Page({
           // console.log('getProjectCategory',res)
           let thisData = res.data.data;
           thisData.area.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.industry.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.scale.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.stage.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.hotCity.forEach((x) => {
-            x.check = false
-          })
-          wx.setStorageSync("industry", thisData.industry)
-          wx.setStorageSync("scale", thisData.scale)
-          wx.setStorageSync("stage", thisData.stage)
-          wx.setStorageSync('hotCity',thisData.hotCity)
+            x.check = false;
+          });
+          wx.setStorageSync("industry", thisData.industry);
+          wx.setStorageSync("scale", thisData.scale);
+          wx.setStorageSync("stage", thisData.stage);
+          wx.setStorageSync('hotCity',thisData.hotCity);
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');
@@ -68,18 +67,18 @@ Page({
           SearchInit.hotCity = wx.getStorageSync('hotCity');
           that.setData({
             SearchInit: SearchInit
-          })
+          });
         },
-      })
+      });
     }
 
 
     this.noSearch();
-    app.initPage(that)
+    app.initPage(that);
     wx.showLoading({
       title: 'loading',
       mask: true,
-    })
+    });
     //请求精选项目数据
     app.loginPage(function (user_id) {
       that.setData({
@@ -100,33 +99,33 @@ Page({
             let group_id = res.data.group.group_id;
             that.setData({
               group_id: group_id
-            })
+            });
           }
           that.setData({
             status: status
-          })
+          });
         }
-      })
+      });
       that.investment();
-    })
+    });
   },
   // 控制投资机构不显示筛选项(辅助函数)
   noSearch() {
     if (this.data.currentTab == 0) {
       this.setData({
         hidden: false
-      })
+      });
     } else {
       this.setData({
         hidden: true
-      })
+      });
     }
   },
   // 点击tab切换
   swichNav: function (e) {
     this.setData({
       currentTab: e.target.dataset.current
-    })
+    });
   },
   // 滑动切换tab
   bindChange: function (e) {
@@ -147,7 +146,7 @@ Page({
           faList: that.data.faList2,
           myList: that.data.myList2,
           page_end: false
-        })
+        });
         break;
       }
       case 1: {
@@ -155,7 +154,7 @@ Page({
           faList: that.data.faList2,
           myList: that.data.myList2,
           page_end: false
-        })
+        });
         break;
       }
       case 2: {
@@ -163,14 +162,14 @@ Page({
           investorList: that.data.investorList2,
           myList: that.data.myList2,
           page_end: false
-        })
+        });
         break;
       }
       case 3: {
         that.setData({
           investorList: that.data.investorList2,
           faList: that.data.faList2,
-        })
+        });
         break;
       }
       }
@@ -223,20 +222,20 @@ Page({
     wx.showLoading({
       title: 'loading',
       mask: true,
-    })
+    });
     app.httpPost({
       url: url_common + '/api/investment',
       data: {}
     }).then(res => {
-      wx.hideLoading()
+      wx.hideLoading();
       let investormentList = res.data.data;
       let investment_list = investormentList.investment_list.list;
       that.setData({
         investormentList: investormentList,
         investment_list: investment_list
-      })
+      });
       wx.hideLoading();
-    })
+    });
   },
   //投资人列表信息
   investorList() {
@@ -245,7 +244,7 @@ Page({
     wx.showLoading({
       title: 'loading',
       mask: true,
-    })
+    });
     wx.request({
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
@@ -264,16 +263,16 @@ Page({
           if (!that.data.investorList) {
             that.setData({
               investorList2: investorList
-            })
+            });
           }
           that.setData({
             investorList: investorList,
             SearchInit: SearchInit
-          })
+          });
         }
       },
       complete() {
-        wx.hideLoading()
+        wx.hideLoading();
       }
     });
   },
@@ -284,7 +283,7 @@ Page({
     wx.showLoading({
       title: 'loading',
       mask: true,
-    })
+    });
     wx.request({
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
@@ -303,12 +302,12 @@ Page({
           if (!that.data.faList) {
             that.setData({
               faList2: faList
-            })
+            });
           }
           that.setData({
             faList: faList,
             SearchInit: SearchInit
-          })
+          });
         }
       },
       complete() {
@@ -333,16 +332,16 @@ Page({
           that.setData({
             notIntegrity: res.data.is_complete,
             empty: 1
-          })
+          });
         },
-      })
+      });
     }
     // 获取人脉库信息
     if (user_id) {
       wx.showLoading({
         title: 'loading',
         mask: true,
-      })
+      });
       wx.request({
         url: url_common + '/api/user/getMyFollowList',
         data: {
@@ -362,26 +361,26 @@ Page({
             if (!that.data.myList) {
               that.setData({
                 myList2: myList
-              })
+              });
             }
             that.setData({
               myList: myList,
               page_end: page_end,
               SearchInit: SearchInit
-            })
+            });
           }
         }
-      })
+      });
     }
   },
   // 用户详情
   userDetail: function (e) {
-    let id = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id;
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      app.href('/pages/my/myNew/myNew')
+      app.href('/pages/my/myNew/myNew');
     } else {
-      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
     }
   },
   // 上拉加载
@@ -401,9 +400,9 @@ Page({
           page: this.data.currentPage,
           filter: this.data.SearchInit.searchData
         }
-      }
+      };
       //调用通用加载函数
-      app.loadMore(that, request, "investorList")
+      app.loadMore(that, request, "investorList");
     }
       break;
     case 2: {
@@ -415,9 +414,9 @@ Page({
           page: this.data.currentPage,
           filter: this.data.SearchInit.searchData
         }
-      }
+      };
       //调用通用加载函数
-      app.loadMore(that, request, "faList")
+      app.loadMore(that, request, "faList");
     }
       break;
     case 3: {
@@ -428,9 +427,9 @@ Page({
           page: this.data.currentPage,
           filter: this.data.SearchInit.searchData
         }
-      }
+      };
       //调用通用加载函数
-      app.loadMore(that, request, "myList")
+      app.loadMore(that, request, "myList");
     }
       break;
     }
@@ -467,56 +466,56 @@ Page({
   contactsAddSuccessFunc(res, added_user_id, num) {
     let that = this;
     let investorList = this.data.investorList;
-    let faList = this.data.faList
+    let faList = this.data.faList;
     if (res.data.status_code == 2000000) {
       //更改投资人和FA列表中该人的加人脉按钮的字段
       if (investorList) {
         investorList.forEach(x => {
           if (x.user_id == added_user_id) {
-            x.follow_status = num
+            x.follow_status = num;
           }
-        })
+        });
         that.setData({
           investorList: investorList
-        })
+        });
       }
       if (faList) {
         faList.forEach(x => {
           if (x.user_id == added_user_id) {
-            x.follow_status = num
+            x.follow_status = num;
           }
-        })
+        });
         that.setData({
           faList: faList
-        })
+        });
       }
     } else {
-      app.errorHide(that, res.data.error_Msg, 3000)
+      app.errorHide(that, res.data.error_Msg, 3000);
     }
   },
   //找项目投资人
   matchInvestor() {
-    app.href('/pages/matchInvestor/matchInvestor')
+    app.href('/pages/matchInvestor/matchInvestor');
   },
   //活动详情
   goTo() {
-    app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail');
   },
   // ------------------------------------筛选搜索-------------------------------------
   // 下拉框
   move(e) {
     let that = this;
-    FilterModel.move(e, that)
+    FilterModel.move(e, that);
   },
   // 标签选择
   tagsCheck(e) {
     let that = this;
-    FilterModel.tagsCheck(e, that)
+    FilterModel.tagsCheck(e, that);
   },
   // 筛选重置
   reset() {
     let that = this;
-    FilterModel.reset(that)
+    FilterModel.reset(that);
   },
   // 全部筛选重置
   allReset() {
@@ -544,7 +543,7 @@ Page({
   // 点击modal层
   modal() {
     let that = this;
-    FilterModel.modal(that)
+    FilterModel.modal(that);
   },
   //搜索
   searchSth() {
@@ -562,11 +561,11 @@ Page({
       str = 'myList';
       break;
     }
-    FilterModel.searchSth(that, str)
+    FilterModel.searchSth(that, str);
   },
   // 展示项删除
   labelDelete(e) {
-    FilterModel.labelDelete(e, this)
+    FilterModel.labelDelete(e, this);
   },
   // 一级联动选择
   firstLinkCheck(e) {
@@ -583,7 +582,7 @@ Page({
     let telephone = e.currentTarget.dataset.telephone;
     wx.makePhoneCall({
       phoneNumber: telephone,
-    })
+    });
   },
   // -----------------------------------立即认证
   // 立即认证
@@ -602,7 +601,7 @@ Page({
           if (complete == 1) {
             //如果信息完整就可以显示去认证
             if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity')
+              app.href('/pages/my/identity/indentity/indentity');
             } else if (status == 3) {
               wx.showModal({
                 title: '友情提示',
@@ -619,49 +618,49 @@ Page({
                     method: 'POST',
                     success: function (res) {
                       let group_id = res.data.group.group_id;
-                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
+                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
                     }
-                  })
+                  });
                 }
-              })
+              });
             }
           } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id')
-            app.href('/pages/register/companyInfo/companyInfo?type=1')
+            wx.removeStorageSync('followed_user_id');
+            app.href('/pages/register/companyInfo/companyInfo?type=1');
           }
         } else {
-          wx.removeStorageSync('followed_user_id')
-          app.href('/pages/register/personInfo/personInfo?type=2')
+          wx.removeStorageSync('followed_user_id');
+          app.href('/pages/register/personInfo/personInfo?type=2');
         }
       },
     });
   },
   // 搜索跳转
   allSearch: function () {
-    app.href('/pages/organization/org_search/org_search')
+    app.href('/pages/organization/org_search/org_search');
   },
   //跳转热门领域全部
   toGoIndustry: function () {
-    app.href('/pages/organization/subPage/list_industry/list_industry')
+    app.href('/pages/organization/subPage/list_industry/list_industry');
   },
   //投资机构全部
   toGoInvestment: function () {
-    app.href('/pages/organization/org_library/org_library')
+    app.href('/pages/organization/org_library/org_library');
   },
   //投资机构跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
-    app.href('/pages/organization/org_detail/org_detail?investment_id=' + id)
+    app.href('/pages/organization/org_detail/org_detail?investment_id=' + id);
   },
   //投资风格跳转
   toStyle(e) {
     let id = e.currentTarget.dataset.style;
-    app.href('/pages/organization/org_library/org_library?label=label_style&&itemId=' + id)
+    app.href('/pages/organization/org_library/org_library?label=label_style&&itemId=' + id);
   },
   //热门领域跳转搜索
   toIndustrySearch(e) {
     let id = e.currentTarget.dataset.id;
-    app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id)
+    app.href('/pages/organization/org_library/org_library?label=label_industry&&itemId=' + id);
   },
   // 重新加载
   refresh() {
@@ -673,8 +672,8 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
 
-})
+});
 

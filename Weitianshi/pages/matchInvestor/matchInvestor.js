@@ -1,7 +1,6 @@
-var app = getApp()
-var url = app.globalData.url;
+var app = getApp();
 var url_common = app.globalData.url_common;
-import * as CreateProject from '../../utils/createProjectBottom'
+import * as CreateProject from '../../utils/createProjectBottom';
 Page({
   data: {
     imgUrls: app.globalData.picUrl.page_matchInvestorEmpty,
@@ -16,10 +15,10 @@ Page({
       if (user_id == 0) {
         that.setData({
           noUserId: true
-        })
+        });
       }
     });
-    app.netWorkChange(that)
+    app.netWorkChange(that);
 
   },
   // 获取项目信息
@@ -28,7 +27,7 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     wx.showLoading({
       title: 'loading',
-    })
+    });
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -47,11 +46,11 @@ Page({
             if (x.pro_industry.length != 0) {
               x.pro_industry.forEach((y, index) => {
                 if (index != x.pro_industry.length - 1) {
-                  x.industryArr += y.industry_name + '、'
+                  x.industryArr += y.industry_name + '、';
                 } else {
-                  x.industryArr += y.industry_name
+                  x.industryArr += y.industry_name;
                 }
-              })
+              });
             }
 
             let money = x.pro_scale.scale_money + '、';
@@ -64,9 +63,9 @@ Page({
               x.pro_finance_stock_after = x.pro_finance_stock_after;
             }//投后指数为空处理
             let after = x.pro_finance_stock_after + '%、';
-            let after1 = x.pro_finance_stock_after + '%'
+            let after1 = x.pro_finance_stock_after + '%';
             if (x.pro_area == '' && x.pro_stage == '') {
-              stockAfter = after1
+              stockAfter = after1;
             } else {
               stockAfter = after;
             }//判断投后指数是不是最后一项（显示样式问题）
@@ -95,17 +94,17 @@ Page({
               area = x.pro_area.area_title;
             }//投资地区为空判断
                  
-            x.otherTag = money + stockAfter + stage + area
+            x.otherTag = money + stockAfter + stage + area;
           
-          })
+          });
         }
-        app.log(that,'项目列表', myProject)
+        app.log(that,'项目列表', myProject);
         //刷新数据
         that.setData({
           myProject: myProject,
-        })
+        });
       }
-    })
+    });
   },
   //发布融资项目
   publicBtn: function () {
@@ -114,27 +113,27 @@ Page({
   //一键推送
   goToMatchInvestor(e) {
     let id = e.currentTarget.dataset.proId;
-    app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1)
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 1);
   },
   // 浏览
   viewProject: function (e) {
     let project_id = e.currentTarget.dataset.proid;
-    app.href('/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id)
+    app.href('/pages/message/viewProjectUser/viewProjectUser?project_id=' + project_id);
   },
   //申请查看
   applyPerson: function (e) {
     let proid = e.currentTarget.dataset.proid;
-    app.href('/pages/message/applyPerson/applyPerson?id=' + proid)
+    app.href('/pages/message/applyPerson/applyPerson?id=' + proid);
   },
   //约谈
   hasMeeting: function (e) {
     let projectId = e.currentTarget.dataset.proid;
-    app.href('/pages/message/contactProject/projectList/projectList?id=' + projectId)
+    app.href('/pages/message/contactProject/projectList/projectList?id=' + projectId);
   },
   //项目详情
   projectDetail(e) {
     let pro_id = e.currentTarget.dataset.id;
-    app.href('/pages/myProject/projectDetail/projectDetail?id=' + pro_id)
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + pro_id);
   },
   //加载更多
   loadMore() {
@@ -149,24 +148,24 @@ Page({
         type: 'match',
         page: currentPage
       },
-    }
+    };
     app.loadMore2(that, request, res => {
       let newPage = res.data.data;
       let page_end = res.data.page_end;
       if (myProject) {
-        myProject = myProject.concat(newPage)
+        myProject = myProject.concat(newPage);
         currentPage++;
         that.setData({
           myProject: myProject,
           page_end: page_end,
           requestCheck: true,
           currentPage: currentPage
-        })
+        });
       }
       if (page_end == true) {
-        app.errorHide(that, '没有更多了', 3000)
+        app.errorHide(that, '没有更多了', 3000);
       }
-    })
+    });
   },
 
   //----------------------创建项目引导------------------------------------------------ 
@@ -182,13 +181,13 @@ Page({
   toPc: function () {
     this.setData({
       modalBox: 1
-    })
+    });
   },
   //关闭模态框
   closeModal: function () {
     this.setData({
       modalBox: 0
-    })
+    });
   },
   // 重新加载
   refresh() {
@@ -200,6 +199,6 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
-})
+});
