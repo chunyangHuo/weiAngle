@@ -1,5 +1,5 @@
 // pages/projectScale/projectEvaluation.js
-var rqj = require('../../Template/Template.js')
+var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -28,7 +28,7 @@ Page({
       competition_id: options.competition_id
     });
     let that = this;
-    app.netWorkChange(that)
+    app.netWorkChange(that);
   },
   onShow: function () {
     let that = this;
@@ -61,7 +61,7 @@ Page({
           viewId.push(score_list1[i].index_id);
 
           if (viewId[i] != that.data.history_id[i]) {
-            name.push(score_list1[i])
+            name.push(score_list1[i]);
             view_id.push(viewId[i]);
           }
         }
@@ -75,10 +75,10 @@ Page({
           view_id: view_id,
           competition_name: competition_name,
           name: name
-        })
+        });
 
       }
-    })
+    });
   },
   // 获取历史评分
   history() {
@@ -114,12 +114,12 @@ Page({
           let slider = 6;
           that.setData({
             slider: 6
-          })
+          });
         } else {
           let slider = res.data.data.invest_score;
           that.setData({
             slider: slider
-          })
+          });
         }
         that.setData({
           score_list1: score_list1,
@@ -130,23 +130,23 @@ Page({
           slivalue: that.data.slider,
           totalNum1: total,
           history_id: history_id
-        })
+        });
         if (that.data.totalNum1 == 0) {
           that.setData({
             totalNum1: '--'
-          })
+          });
         }
         that.content();
       }
 
-    })
+    });
   },
   // 滑块滑动
   sliderchange(e) {
     let that = this;
     that.setData({
       sliderValue: e.detail.value
-    })
+    });
   },
   // 描述
   leaveMessage: function (e) {
@@ -156,9 +156,9 @@ Page({
     if (leaveMessage_length <= 500) {
       this.setData({
         leaveMessage: leaveMessage
-      })
+      });
     } else {
-      app.errorHide(that, "不能超过500个数字", 1000)
+      app.errorHide(that, "不能超过500个数字", 1000);
     }
   },
   // 相加取值
@@ -184,7 +184,7 @@ Page({
     that.setData({
       score: score,
       totalNum1: totalNum1
-    })
+    });
     // console.log(that.data.score, that.data.totalNum1);
   },
   // 提交
@@ -202,36 +202,36 @@ Page({
         app.errorHide(that, "请打分", 1500);
         that.setData({
           score_list: []
-        })
-        return
+        });
+        return;
       }
       else if (score[i] > score_list1[i].index_score) {
         // console.log(score[i], score_list1[i].index_score)
         app.errorHide(that, "请输入的值小于最大值", 1500);
         that.setData({
           score_list: []
-        })
-        return
+        });
+        return;
 
       } else if (that.data.leaveMessage.length > 500) {
-        app.errorHide(that, "不能超过500个数字", 1000)
-        return
+        app.errorHide(that, "不能超过500个数字", 1000);
+        return;
       } else {
         jsonArry.push([score[i], score_list1[i].index_id]);
         score_list.push({
           index_score: jsonArry[i][0],
           index_id: jsonArry[i][1]
-        })
+        });
       }
     }
     that.setData({
       score_list: score_list
-    })
+    });
     // console.log('score_list', score_list);
     // console.log('score_list1', score_list1);
     if (score_list.length < score_list1.length) {
       app.errorHide(that, "请打分", 1500);
-      return
+      return;
     }
     // if (score_list1.length != 0) {
     //   if (that.data.score_list.length == 0) {    
@@ -261,12 +261,12 @@ Page({
         setTimeout(function () {
           wx.navigateBack({
             delta: 1 // 回退前 delta(默认为1) 页面
-          })
-        }, 2000)
+          });
+        }, 2000);
       }
     }).catch(err => {
-      app.errorHide(that, "提交失败", 3000)
-    })
+      app.errorHide(that, "提交失败", 3000);
+    });
   },
   // 重新加载
   refresh() {
@@ -278,6 +278,6 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
-})
+});
