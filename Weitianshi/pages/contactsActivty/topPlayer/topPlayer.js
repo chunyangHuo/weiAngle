@@ -177,7 +177,7 @@ Page({
     let id = e.currentTarget.dataset.applyid;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
-      app.href('/pages/my/my/my')
+      app.href('/pages/my/myCard/myCard')
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }

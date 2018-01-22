@@ -4,7 +4,7 @@
     "pages/discoverInvest/discoverInvest",
     "pages/discoverInvest/institutionalInvest/institutionalInvest",
     "pages/discoverInvest/investor/investor",
-    "pages/my/my/my",
+    "pages/my/myCard/myCard",
     "pages/match/match/investDemand/investDemand",
     "pages/match/match/resourceDemand/resourceDemand",
     "pages/matchInvestor/matchInvestor",
@@ -53,7 +53,7 @@
     "pages/my/identity/indentity/indentity",
     "pages/my/identity/identityEdit/identityEdit",
     "pages/my/identity/identityResult/identityResult",
-    "pages/my/myNew/myNew",
+    "pages/my/my/my",
     "pages/oneKeyResearch/oneKeyResearch",
     "pages/contactsActivty/activtyDetail/activtyDetail",
     "pages/contactsActivty/joinWarband/joinWarband",
@@ -124,7 +124,7 @@
       {
         "iconPath": "img/icon-wode-n@2x.png",
         "selectedIconPath": "img/icon-wode-s@2x.png",
-        "pagePath": "pages/my/myNew/myNew",
+        "pagePath": "pages/my/my/my",
         "text": "我的"
       }
     ],

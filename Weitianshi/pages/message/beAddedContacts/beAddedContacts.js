@@ -147,7 +147,7 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm == true) {
-                app.href('/pages/my/my/my')
+                app.href('/pages/my/myCard/myCard')
               }
             }
           })

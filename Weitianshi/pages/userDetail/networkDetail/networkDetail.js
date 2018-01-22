@@ -32,7 +32,7 @@ Page({
     //分享至群打点准备
 
     if (user_id == view_id) {
-      app.href("/pages/my/myNew/myNew")
+      app.href("/pages/my/my/my")
     }
     //用戶的个人信息
     app.httpPost({

@@ -142,7 +142,7 @@ Page({
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         app.errorHide(that,'名片修改成功' ,1000)
         setTimeout(x => {
-          app.href('/pages/my/myNew/myNew')
+          app.href('/pages/my/my/my')
         }, 1000)
       })
     }

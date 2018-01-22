@@ -61,7 +61,7 @@ Page({
       app.log(that,"查看的人",view_id);
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
-        app.href('/pages/my/myNew/myNew')
+        app.href('/pages/my/my/my')
       }
       that.setData({
         user_id: user_id,
@@ -254,7 +254,7 @@ Page({
   },
   //跳转到我的人脉
   toContactsMy: function () {
-    a00.href('/pages/my/myNew/myNew')
+    a00.href('/pages/my/my/my')
   },
   //跳转注册
   toContacts: function () {

@@ -752,7 +752,7 @@ Page({
   },
   //跳转到我的页面
   toMy: function () {
-    app.href('/pages/my/myNew/myNew')
+    app.href('/pages/my/my/my')
   },
   //更新数据
   updateData: function () {
