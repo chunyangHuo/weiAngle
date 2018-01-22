@@ -841,8 +841,6 @@ App({
   //判断网络状态
   netWorkChange(that) {
     wx.onNetworkStatusChange(function (res) {
-      app.log(this,res.isConnected)
-      app.log(this,res.networkType)
       if (res.networkType == "none") {
         that.setData({ nonet: false })
       } else {
