@@ -24,39 +24,39 @@ Page({
     });
     app.initPage(that);
     switch (entrance) {
-      case 'selected':
-        wx.setNavigationBarTitle({
-          title: '项目搜索',
-        })
-        that.setData({
-          placeHold: "请输入项目名称，公司名称"
-        })
-        break;
-      case 'newest':
-        wx.setNavigationBarTitle({
-          title: '项目搜索',
-        })
-        that.setData({
-          placeHold: "请输入项目名称，公司名称"
-        })
-        break;
-      case "investorList":
-        wx.setNavigationBarTitle({
-          title: '搜索投资人',
-        })
-        break;
-      case "faList":
-        wx.setNavigationBarTitle({
-          title: '搜索融资顾问',
-        })
-        break;
-      case "myList":
-        wx.setNavigationBarTitle({
-          title: '搜索好友',
-        })
-        break;
-    };
-    app.netWorkChange(that)
+    case 'selected':
+      wx.setNavigationBarTitle({
+        title: '项目搜索',
+      });
+      that.setData({
+        placeHold: "请输入项目名称，公司名称"
+      });
+      break;
+    case 'newest':
+      wx.setNavigationBarTitle({
+        title: '项目搜索',
+      });
+      that.setData({
+        placeHold: "请输入项目名称，公司名称"
+      });
+      break;
+    case "investorList":
+      wx.setNavigationBarTitle({
+        title: '搜索投资人',
+      });
+      break;
+    case "faList":
+      wx.setNavigationBarTitle({
+        title: '搜索融资顾问',
+      });
+      break;
+    case "myList":
+      wx.setNavigationBarTitle({
+        title: '搜索好友',
+      });
+      break;
+    }
+    app.netWorkChange(that);
   },
   //搜索事件
   searchSth: function (e) {
@@ -70,43 +70,43 @@ Page({
     SearchInit.searchData.search = str;
     this.setData({
       SearchInit: SearchInit
-    })
+    });
     //防止多次请求进行延时处理
     if (timer) {
-      clearTimeout(timer)
+      clearTimeout(timer);
     }
     timer = setTimeout(x => {
       wx.showLoading({
         title: 'loading',
         mask: true
-      })
+      });
       switch (entrance) {
-        case 'selected':
-          this.selectedProject();
-          break;
-        case 'newest':
-          this.newestProject();
-          break;
-        case "investorList":
-          this.newSearch(0);
-          break;
-        case "faList":
-          this.newSearch(1);
-          break;
-        case "myList":
-          this.newSearch(2);
-          break;
+      case 'selected':
+        this.selectedProject();
+        break;
+      case 'newest':
+        this.newestProject();
+        break;
+      case "investorList":
+        this.newSearch(0);
+        break;
+      case "faList":
+        this.newSearch(1);
+        break;
+      case "myList":
+        this.newSearch(2);
+        break;
       }
-    }, 1500)
+    }, 1500);
     this.setData({
       timer: timer,
-    })
+    });
   },
   // 取消
   searchEsc: function () {
     wx.navigateBack({
       delta: 1
-    })
+    });
   },
   //点击进入项目详情
   projectDetail: function (e) {
@@ -123,24 +123,24 @@ Page({
       var userId = res.data.user_id;
       var user = wx.getStorageSync('user_id');
       if (userId == user) {
-        app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+        app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0);
       } else {
-        app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+        app.href('/pages/projectDetail/projectDetail?id=' + project_id);
       }
     }).catch(res => {
-      app.errorHide(this, res.data.error_msg)
-    })
+      app.errorHide(this, res.data.error_msg);
+    });
 
 
   },
   //点击进入用户详情
   userDetail(e) {
-    let id = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id;
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-      app.href('/pages/my/myNew/myNew')
+      app.href('/pages/my/myNew/myNew');
     } else {
-      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
     }
   },
   //上拉加载
@@ -148,74 +148,74 @@ Page({
     let entrance = this.data.entrance;
     let that = this;
     let user_id = wx.getStorageSync('user_id');
-    let search = this.data.SearchInit.searchData.search
+    let search = this.data.SearchInit.searchData.search;
     let request;
     switch (entrance) {
-      case 'newest':
-        request = {
-          url: url_common + '/api/project/getMarketProjectList',
-          data: {
-            user_id: this.data.user_id,
-            filter: this.data.SearchInit.searchData,
-            page: this.data.currentPage
-          }
+    case 'newest':
+      request = {
+        url: url_common + '/api/project/getMarketProjectList',
+        data: {
+          user_id: this.data.user_id,
+          filter: this.data.SearchInit.searchData,
+          page: this.data.currentPage
         }
-        app.loadMore(that, request, "financingNeed")
-        break;
-      case 'selected':
+      };
+      app.loadMore(that, request, "financingNeed");
+      break;
+    case 'selected':
+      request = {
+        url: url_common + '/api/project/getSelectedProjectList',
+        data: {
+          user_id: user_id,
+          filter: this.data.SearchInit.searchData,
+          page: this.data.currentPage,
+        }
+      };
+      //调用通用加载函数
+      app.loadMore(that, request, "slectProject");
+      break;
+    case 'investorList':
+      {
         request = {
-          url: url_common + '/api/project/getSelectedProjectList',
+          url: url_common + '/api/user/searchUser',
           data: {
             user_id: user_id,
-            filter: this.data.SearchInit.searchData,
+            page: this.data.currentPage,
+            search: search
+          }
+        };
+        //调用通用加载函数
+        app.loadMore(that, request, "investorList");
+      }
+      break;
+    case 'faList':
+      {
+        request = {
+          url: url_common + '/api/user/searchUser',
+          data: {
+            user_id: user_id,
+            search: search,
             page: this.data.currentPage,
           }
-        }
+        };
         //调用通用加载函数
-        app.loadMore(that, request, "slectProject")
-        break;
-      case 'investorList':
-        {
-          request = {
-            url: url_common + '/api/user/searchUser',
-            data: {
-              user_id: user_id,
-              page: this.data.currentPage,
-              search: search
-            }
+        app.loadMore(that, request, "faList");
+      }
+      break;
+    case 'myList':
+      {
+        request = {
+          url: url_common + '/api/user/searchUser',
+          data: {
+            user_id: user_id,
+            search: search,
+            page: that.data.currentPage,
           }
-          //调用通用加载函数
-          app.loadMore(that, request, "investorList")
-        }
-        break;
-      case 'faList':
-        {
-          request = {
-            url: url_common + '/api/user/searchUser',
-            data: {
-              user_id: user_id,
-              search: search,
-              page: this.data.currentPage,
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, "faList")
-        }
-        break;
-      case 'myList':
-        {
-          request = {
-            url: url_common + '/api/user/searchUser',
-            data: {
-              user_id: user_id,
-              search: search,
-              page: that.data.currentPage,
-            }
-          }
-          //调用通用加载函数
-          app.loadMore(that, request, 'myList')
-        }
-        break;
+        };
+        //调用通用加载函数
+        app.loadMore(that, request, 'myList');
+      }
+      break;
     }
   },
   //申请查看
@@ -231,18 +231,18 @@ Page({
           if (x.project_id == pro_id) {
             x.relationship_button = 0;
           }
-        })
+        });
       } else if (entrance == 'newest') {
         financingNeed.forEach(x => {
           if (x.project_id == pro_id) {
             x.relationship_button = 0;
           }
-        })
+        });
       }
       that.setData({
         slectProject: slectProject,
         financingNeed: financingNeed
-      })
+      });
     });
   },
   // 项目推送
@@ -255,7 +255,7 @@ Page({
   contactsAdd(e) {
     let that=this;
     let added_user_id = e.currentTarget.dataset.id;
-    app.log(that,"add_user",added_user_id)
+    app.log(that,"add_user",added_user_id);
     app.operationModel('contactsAdd', added_user_id, function (res) {
       app.log(that,'申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
@@ -266,7 +266,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      app.log(that,'直接添加人脉完成', res)
+      app.log(that,'直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -281,35 +281,35 @@ Page({
       if (investorList) {
         investorList.forEach(x => {
           if (x.user_id == added_user_id) {
-            x.follow_status = num
+            x.follow_status = num;
           }
-        })
+        });
         that.setData({
           investorList: investorList
-        })
+        });
       }
       if (faList) {
         faList.forEach(x => {
           if (x.user_id == added_user_id) {
-            x.follow_status = num
+            x.follow_status = num;
           }
-        })
+        });
         that.setData({
           faList: faList
-        })
+        });
       }
       if (myList) {
         myList.forEach(x => {
           if (x.user_id == added_user_id) {
-            x.follow_status = num
+            x.follow_status = num;
           }
-        })
+        });
         that.setData({
           myList: myList
-        })
+        });
       }
     } else {
-      app.errorHide(that, res.data.error_Msg, 3000)
+      app.errorHide(that, res.data.error_Msg, 3000);
     }
   },
   // ----------------------------------获取搜索结果---------------------------------------------------
@@ -323,15 +323,15 @@ Page({
         filter: this.data.SearchInit.searchData
       },
     }, this).then(res => {
-      wx.hideLoading()
-      app.log(that,'最新', res)
+      wx.hideLoading();
+      app.log(that,'最新', res);
       var financingNeed = res.data.data;
       that.setData({
         financingNeed: financingNeed,
-      })
+      });
     }).catch(res => {
-      app.errorHide(this, res.data.error_msg)
-    })
+      app.errorHide(this, res.data.error_msg);
+    });
   },
   // 精选
   selectedProject() {
@@ -345,11 +345,11 @@ Page({
     }).then(res => {
       wx.hideLoading();
       var slectProject = res.data.data;
-      app.log(that,'精选', res)
+      app.log(that,'精选', res);
       that.setData({
         slectProject: slectProject,
-      })
-    })
+      });
+    });
   },
   // 投资人(弃用)
   investorList() {
@@ -365,12 +365,12 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log(that,'投资人列表', res.data.data)
+          app.log(that,'投资人列表', res.data.data);
           wx.hideLoading();
           var investorList = res.data.data;
           that.setData({
             investorList: investorList,
-          })
+          });
         }
       }
     });
@@ -395,12 +395,12 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log(that,'FA列表', res.data.data)
+          app.log(that,'FA列表', res.data.data);
           wx.hideLoading();
           var faList = res.data.data;
           that.setData({
             faList: faList,
-          })
+          });
         }
       }
     });
@@ -422,16 +422,16 @@ Page({
           that.setData({
             notIntegrity: res.data.is_complete,
             empty: 1
-          })
+          });
         },
-      })
+      });
     }
     // 获取人脉库信息
     if (user_id) {
       wx.showLoading({
         title: 'loading',
         mask: true,
-      })
+      });
       wx.request({
         url: url_common + '/api/user/getMyFollowList',
         data: {
@@ -449,10 +449,10 @@ Page({
             that.setData({
               myList: myList,
               page_end: page_end,
-            })
+            });
           }
         }
-      })
+      });
     }
   },
   // 一键拨号
@@ -460,7 +460,7 @@ Page({
     let telephone = e.currentTarget.dataset.telephone;
     wx.makePhoneCall({
       phoneNumber: telephone,
-    })
+    });
   },
   // 新搜索逻辑
   newSearch(num) {
@@ -478,42 +478,42 @@ Page({
       success(res) {
         if (res.data.status_code == 2000000) {
           switch (num) {
-            case 0: {
-              app.log(that,'投资人列表', res.data.data)
-              wx.hideLoading();
-              var investorList = res.data.data;
-              that.setData({
-                investorList: investorList,
-              })
-              break;
-            }
-            case 1: {
-              app.log(that,'FA列表', res.data.data)
-              wx.hideLoading();
-              var faList = res.data.data;
-              that.setData({
-                faList: faList,
-              })
-              break;
-            }
-            case 2: {
-              wx.hideLoading();
-              var myList = res.data.data;//所有的用户
-              var page_end = res.data.page_end;
-              app.log(that,"myList", myList)
-              that.setData({
-                myList: myList,
-                page_end: page_end,
-              })
-              break;
-            }
+          case 0: {
+            app.log(that,'投资人列表', res.data.data);
+            wx.hideLoading();
+            var investorList = res.data.data;
+            that.setData({
+              investorList: investorList,
+            });
+            break;
+          }
+          case 1: {
+            app.log(that,'FA列表', res.data.data);
+            wx.hideLoading();
+            var faList = res.data.data;
+            that.setData({
+              faList: faList,
+            });
+            break;
+          }
+          case 2: {
+            wx.hideLoading();
+            var myList = res.data.data;//所有的用户
+            var page_end = res.data.page_end;
+            app.log(that,"myList", myList);
+            that.setData({
+              myList: myList,
+              page_end: page_end,
+            });
+            break;
+          }
           }
         } else {
           wx.hideLoading();
-          app.errorHide(that, res.data.error_msg, 3000)
+          app.errorHide(that, res.data.error_msg, 3000);
         }
       }
-    })
+    });
   },
   // 重新加载
   refresh() {
@@ -525,6 +525,6 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
-})
+});
