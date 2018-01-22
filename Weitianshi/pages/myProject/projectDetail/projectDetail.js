@@ -53,7 +53,7 @@ Page({
     other: true,
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
     nonet: true,
-    jiandi : false
+    jiandi: false
   },
   onLoad: function (options) {
     this.setData({
@@ -704,7 +704,7 @@ Page({
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   },
- 
+
   // 跳转详情页
   institutionalDetails1: function (e) {
     let thisData = e.currentTarget.dataset;
@@ -726,6 +726,13 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  // 用户详情
+  userDetail: function (e) {
+    var id = e.currentTarget.dataset.id;
+    let pages = getCurrentPages();
+    pages.splice(0, 1)
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //进入投资人用户详情
   detail(e) {
