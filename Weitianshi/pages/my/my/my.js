@@ -9,20 +9,21 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    let that=this;
-    app.netWorkChange(that)
+    if (options) {
+      this.setData({
+        modal: options.modal
+      });
+    }
+    let that = this;
+    app.netWorkChange(that);
   },
 
   onShow: function () {
-    var that = this
+    var that = this;
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id,
-      })
-      //分享至群打点准备
-      /* wx.showShareMenu({
-         withShareTicket: true,
-       })*/
+      });
       if (user_id != 0) {
         wx.showLoading({
           title: 'loading',
@@ -38,128 +39,155 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.log(that,'myInfo', res)
-            wx.hideLoading()
-            var user = res.data.data.user;
-            var count = res.data.data.count;
-            // var invest = res.data.data.invest_info;
-            // var resource = res.data.data.resource_info;
-            // var project_info = res.data.data.project_info;
-            var user_name = res.data.data.user.user_real_name;
-            let user_company_name = res.data.data.user.user_company_name;
+            var user = res.data.user_info;
+            var count = res.data.count;
+            var invest = res.data.invest_info;
+            var resource = res.data.resource_info;
+            var project_info = res.data.project_info;
+            var invest_case = res.data.invest_case;
+            var status_code = res.data.status_code;
+            var financingProject = that.data.financingProject;
+            var user_name = res.data.user_info.user_real_name;
+            //设置缓存==========
+            wx.setStorageSync("resource_find", res.data.resource_info.res_find);
+            wx.setStorageSync("resource_give", res.data.resource_info.res_give);
+            wx.setStorage({
+              key: 'resource_data',
+              data: res.data.resource_info
+            });
+            if (invest_case) {
+              if (invest_case.length > 3) {
+                invest_case = invest_case.slice(0, 3);
+              }
+            }
 
+            wx.setNavigationBarTitle({
+              title: user_name + "的投资名片",
+            });
             that.setData({
               user: user,
-              // invest: invest,
-              // resource: resource,
-              // project_info: project_info,
-              count: count,
-              user_company_name: user_company_name
-            })
+              invest: invest,
+              resource: resource,
+              project_info: project_info,
+              invest_case: invest_case,
+              status_code: status_code,
+              financingProject: financingProject,
+              count: count
+            });
           },
           fail: function (res) {
           },
-        })
-      } 
- 
-     wx.request({
-       url: url_common + '/api/user/getUserGroupByStatus',
-       data: {
-         user_id: user_id
-       },
-       method: 'POST',
-       success: function (res) {
-
-         // 0:未认证1:待审核 2 审核通过 3审核未通过
-         let status = res.data.status;
-         if (status != 0) {
-           let group_id = res.data.group.group_id;
-           that.setData({
-             group_id: group_id
-           })
-         }
-         that.setData({
-           status: status
-         })
-       }
-     })
- 
-    })
+        });
+      } else {
+        app.noUserId();
+        wx.setNavigationBarTitle({
+          title: user_name + "的投资名片",
+        });
+      }
+    });
+  },
+  onLaunch(options) {
 
   },
-  //登录
-  entry(){
-    app.noUserId()
-  },
-  //进入我的名片
-  toMyCard: function () {
-    app.href('/pages/my/myCard/myCard')
+  //编辑名片
+  cardEdit: function () {
+    if (!this.data.options) {
+      app.href('/pages/my/cardEdit/cardEdit');
+    }
   },
   //人气
   popularity: function () {
-    app.href('/pages/message/browseMe/browseMe')
+    app.href('/pages/message/browseMe/browseMe');
+  },
+  // 加我为人脉
+  attention: function () {
+    app.href('/pages/message/beAddedContacts/beAddedContacts');
+  },
+  pushTo: function () {
+    app.href('/pages/message/potentialProject/potentialProject');
   },
   //头像编辑
   avatarEdit() {
-    app.href('/pages/my/cardEdit/cardEdit')
+    app.href('/pages/my/cardEdit/cardEdit');
   },
-  //加我为人脉
-  attention: function () {
-    app.href('/pages/message/beAddedContacts/beAddedContacts')
+  //寻找案源
+  findProjectEdit: function () {
+    app.href('/pages/match/match/investDemand/investDemand?current=' + 1);
+    if (!this.data.options) {
+    }
   },
-  //潜在项目
-  pushTo: function () {
-    app.href('/pages/message/potentialProject/potentialProject')
+  //资源对接
+  resourceEnchangeEdit: function () {
+    if (!this.data.options) {
+      app.href('/pages/match/match/resourceDemand/resourceDemand?current=' + 1);
+    }
   },
-  //身份验证
-  identity: function (e) {
-    let status = this.data.status;
-    var user_id = wx.getStorageSync('user_id');
-    // 0未认证 1待审核 2 认证成功 3 拒绝
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          // if (complete == 1) {
-          //   //如果信息完整就可以显示去认证
-          if (status == 0) {
-            app.href('/pages/my/identity/indentity/indentity')
-          } else if (status == 1) {
-            app.href('/pages/my/identity/identityResult/identityResult?type=' + 1)
-          } else if (status == 2) {
-            app.href('/pages/my/identity/identityResult/identityResult?type=' + 2)
-          } else if (status == 3) {
-            app.href('/pages/my/identity/identityResult/identityResult?type=' + 3)
-          }
-        } else if (complete == 0) {
-          app.href('/pages/register/companyInfo/companyInfo?type=1')
+  //项目融资
+  projectFinance: function () {
+    if (!this.data.options) {
+      app.href('/pages/my/projectShop/projectShop/projectShop');
+    }
+  }, 
+  //融资项目详情
+  financingDetail: function (e) {
+    var id = e.currentTarget.dataset.id;
+    var index = e.currentTarget.dataset.index;
+    app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0);
+  },
+  //投资案例
+  investCase: function () {
+    if (!this.data.options) {
+      app.href('/pages/my/investCase/investCase');
+    }
+  },
+  //交换名片
+  cardChange: function () {
+    var that = this;
+    var user_id = this.data.user_id;
+    var modal = this.data.modal;
+    var status_code = this.data.status_code;
+    if (status_code == 2000000) {
+      that.setData({
+        modal: 1
+      });
+      setTimeout(function () {
+        that.setData({
+          modal: 0
+        });
+      }, 2000);
+    } else {
+      wx.showModal({
+        title: "友情提示",
+        content: "交换名片之前,请先完善自己的名片",
+        success: function () {
+          app.href('/pages/my/cardEdit/cardEdit');
         }
-      },
+      });
+    }
+  },
+  //点击modal后消失
+  hideModal() {
+    let modal = this.data.modal;
+    this.setData({
+      modal: 0
     });
   },
-  //项目店铺
-  projectShop: function () {
-    app.href('/pages/my/projectShop/projectShop/projectShop')
-  },
-  //约谈的项目
-  contactProject: function () {
-    app.href('/pages/message/contactProject/userList/userList')
-  },
-  //收藏的项目
-  collectProject: function () {
-    // app.href('/pages/message/collectProject/collectProject')
-    let that = this;
-    app.errorHide(that, "收藏项目近期开放", 3000);
+  // 二维码分享按钮
+  shareSth: function (e) {
+    var QR_id = e.currentTarget.dataset.clickid;
+    wx.setStorageSync('QR_id', QR_id);
+    app.href('/pages/my/qrCode/qrCode');
   },
   //分享页面
   onShareAppMessage: function () {
     let that = this;
     return ShareModel.myCardShare(that);
+  },
+  //取消分享
+  cancelShare: function () {
+    this.setData({
+      modal: 0
+    });
   },
   // 查税号
   searchIdentification: function (e) {
@@ -182,12 +210,12 @@ Page({
           that.setData({
             modalStyle: 1,
             modalBox: 1
-          })
+          });
         } else if (data.status_code == 2000000) {
           that.setData({
             modalStyle: 0,
             modalBox: 1
-          })
+          });
           let data = res.data.data;
           let com_name = data.com_name;
           var tax_member = data.tax_mumber;
@@ -196,24 +224,24 @@ Page({
             com_name: com_name,
             tax_member: tax_member,
             modalStyle: 0
-          })
+          });
         }
       }
-    })
+    });
   },
   //完善公司信息
   writeInformation: function () {
-    app.href('/pages/my/cardEdit/cardEdit')
+    app.href('/pages/my/cardEdit/cardEdit');
     this.setData({
       modalBox: 0
-    })
+    });
   },
   //确定或稍后再试
   laterOn: function () {
     app.href('/pages/my/my/my')
     this.setData({
       modalBox: 0
-    })
+    });
   },
   //复制税号
   copyNum: function () {
@@ -223,30 +251,63 @@ Page({
       success: function (res) {
         wx.showToast({
           title: '复制成功',
-          icon: 'success'
-        })
+          icon: 'success',
+        });
         wx.getClipboardData({
           success: function (res) {
           }
-        })
+        });
       }
-    })
+    });
   },
-  //点击modal后消失
-  hideModal() {
-    let modal = this.data.modal;
-    this.setData({
-      modal: 0
-    })
+  //去认证  status =0:未认证过  status = 1 认证中 status =2 认证成功 status =3 认证失败.需要重新认证
+  authentication: function (e) {
+    let status = e.currentTarget.dataset.identitystatus;
+    let user_id = this.data.user_id;
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以显示去认证
+            if (status == 0) {
+              app.href('/pages/my/identity/indentity/indentity');
+            } else if (status == 3) {
+              wx.request({
+                url: url_common + '/api/user/getUserGroupByStatus',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST',
+                success: function (res) {
+                  let user_id = wx.getStorageSync('user_id');
+                  let authenticate_id = res.data.authenticate_id;
+                  let group_id = res.data.group_id;
+                  app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id);
+                }
+              });
+            }
+          } else if (complete == 0) {
+            app.href('/pages/register/companyInfo/companyInfo?type=1');
+          }
+        } else {
+          app.href('/pages/register/personInfo/personInfo?type=2');
+        }
+      }
+    });
   },
-  // 二维码分享按钮
-  shareSth: function (e) {
-    var QR_id = e.currentTarget.dataset.clickid;
-    wx.setStorageSync('QR_id', QR_id)
-    app.href('/pages/my/qrCode/qrCode')
+  //人脉大赛
+  competitor: function () {
+    app.href('/pages/contactsActivty/activtyDetail/activtyDetail');
   },
-  myFri:function(){
-    app.href('/pages/discover/myFriend/myFriend')
+  // 首页
+  moreProject(){
+    app.href('/pages/discoverProject/discoverProject');
   },
   // 重新加载
   refresh() {
@@ -259,6 +320,5 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
-    wx.hideLoading();
   }
 })

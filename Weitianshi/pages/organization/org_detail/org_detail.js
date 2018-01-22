@@ -18,7 +18,7 @@ Page({
       investment_id: options.investment_id,
     });
     let that = this;
-    app.netWorkChange(that)
+    app.netWorkChange(that);
   },
 
   onShow: function () {
@@ -57,7 +57,7 @@ Page({
           let httpstr = that.cusstr(x.news_url, "/", 3);
           let str = x.news_url.indexOf('//');
           x.news_url = httpstr.substring(str, httpstr.length).substr(2);
-        })
+        });
         that.setData({
           media_list1: media_list1,
           investId: investId,
@@ -68,20 +68,20 @@ Page({
           memberList: memberList,
           leave_member_list: leave_member_list,
           leaveList: leaveList
-        })
+        });
         wx.setNavigationBarTitle({
           title: info.investment_name
-        })
+        });
         // 机构介绍
         if (info.investment_introduce) {
           if (info.investment_introduce.length > 88) {
             that.setData({
               longMore: true
-            })
+            });
           } else {
             that.setData({
               longMore: false
-            })
+            });
           }
         }
         // 领域
@@ -90,12 +90,12 @@ Page({
             that.setData({
               textBeyond3: true,
               aisChecked3: true,
-            })
+            });
           } else {
             that.setData({
               textBeyond3: false,
               aisChecked3: false,
-            })
+            });
           }
         }
         // 轮次
@@ -104,16 +104,16 @@ Page({
             that.setData({
               textBeyond4: true,
               aisChecked4: true,
-            })
+            });
           } else {
             that.setData({
               textBeyond4: false,
               aisChecked4: false,
-            })
+            });
           }
         }
       }
-    })
+    });
   },
   //查看全部
   checkMore: function (e) {
@@ -121,7 +121,7 @@ Page({
     if (id == 5) {
       this.setData({
         industrialChangeMore: 5
-      })
+      });
     }
   },
   // 折叠
@@ -130,7 +130,7 @@ Page({
     if (id == 5) {
       this.setData({
         industrialChangeMore: 0
-      })
+      });
     }
   },
   // 领域，轮次中的展开和收起
@@ -139,25 +139,25 @@ Page({
     if (check == 3) {
       this.setData({
         aisChecked3: false
-      })
+      });
     } else if (check == 4) {
       this.setData({
         aisChecked4: false
-      })
+      });
     }
 
   },
   noBrightPoint: function (e) {
     let check = e.currentTarget.dataset.check;
-    console.log(check)
+    console.log(check);
     if (check == 3) {
       this.setData({
         aisChecked3: true
-      })
+      });
     } else if (check == 4) {
       this.setData({
         aisChecked4: true
-      })
+      });
     }
 
   },
@@ -176,19 +176,19 @@ Page({
   },
   // 投资案例跳转
   toCase: function () {
-    app.href('/pages/organization/subPage/list_investCase/list_investCase?investment_id=' + this.data.investId)
+    app.href('/pages/organization/subPage/list_investCase/list_investCase?investment_id=' + this.data.investId);
   },
   // 媒体跳转
   toMedia: function () {
-    app.href('/pages/organization/subPage/list_media/list_media?investment_id=' + this.data.investId)
+    app.href('/pages/organization/subPage/list_media/list_media?investment_id=' + this.data.investId);
   },
   // 在职跳转
   toMember: function () {
-    app.href('/pages/organization/subPage/list_orgMember/list_orgMember?investment_id=' + this.data.investId)
+    app.href('/pages/organization/subPage/list_orgMember/list_orgMember?investment_id=' + this.data.investId);
   },
   // 离职成员跳转
   toLeave: function () {
-    app.href('/pages/organization/subPage/list_leaveMember/list_leaveMember?investment_id=' + this.data.investId)
+    app.href('/pages/organization/subPage/list_leaveMember/list_leaveMember?investment_id=' + this.data.investId);
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -228,14 +228,13 @@ Page({
   },
   // 重新加载
   refresh() {
-    let timer = '';
     wx.showLoading({
       title: 'loading',
       mask: true
     });
-    timer = setTimeout(x => {
+    setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
-})
+});

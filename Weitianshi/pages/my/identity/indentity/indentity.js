@@ -1,5 +1,4 @@
 var app = getApp();
-var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
@@ -42,7 +41,7 @@ Page({
     let old_group_id = options.group_id;
     let old_authenticate_id = options.authenticate_id;
     let that = this;
-    app.netWorkChange(that)
+    app.netWorkChange(that);
     wx.request({
       url: url_common + '/api/category/getGroupIdentify',
       data: {
@@ -54,16 +53,16 @@ Page({
         groupIdentityList.forEach((x, index) => {
           messageList[index].sort = x.sort;
           messageList[index].group_id = x.group_id;
-        })
+        });
         that.setData({
           messageList: messageList
-        })
+        });
       }
-    })
+    });
     that.setData({
       old_group_id: old_group_id,
       old_authenticate_id: old_authenticate_id
-    })
+    });
   },
 
   onShow: function () {
@@ -90,12 +89,12 @@ Page({
           let isUpdate = res.data.is_update;
           var authenticate_id = res.data.authenticate_id;
           if (old_group_id != group_id) {
-            app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate)
+            app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate);
           } else if (old_group_id == group_id) {
-            app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate)
+            app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate);
           }
         }
-      })
+      });
     } else {
       wx.request({
         url: url_common + '/api/user/setUserGroup',
@@ -107,9 +106,9 @@ Page({
         success: function (res) {
           let authenticate_id = res.data.authenticate_id;
           let isUpdate = res.data.is_update;
-          app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate)
+          app.href('/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate);
         }
-      })
+      });
     }
   },
   // 重新加载
@@ -122,6 +121,6 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
-})
+});

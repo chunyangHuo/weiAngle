@@ -38,6 +38,7 @@ Page({
   },
   //报名
   enroll: function (e) {
+    let that=this;
     let xxx = e.currentTarget.dataset.url;
     let user_id = wx.getStorageSync('user_id');
     wx.request({
@@ -67,7 +68,7 @@ Page({
   },
   // 重新加载
   refresh() {
-    let timer = '';
+    let timer ;
     wx.showLoading({
       title: 'loading',
       mask: true
