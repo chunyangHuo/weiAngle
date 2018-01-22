@@ -1157,11 +1157,7 @@ Page({
     if (id != user_id) {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
     } else if (id == user_id) {
-<<<<<<< HEAD
       app.href('/pages/my/myCard/myCard')
-=======
-      app.href('/pages/my/my/my');
->>>>>>> pr/438
     }
   },
   // 一键尽调页面展开

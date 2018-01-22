@@ -378,11 +378,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     var user_id = wx.getStorageSync("user_id");//用戶id
     if (id == user_id) {
-<<<<<<< HEAD
       app.href('/pages/my/my/my')
-=======
-      app.href('/pages/my/myNew/myNew');
->>>>>>> pr/438
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
     }
