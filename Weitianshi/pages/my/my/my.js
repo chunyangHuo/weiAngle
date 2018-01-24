@@ -19,7 +19,7 @@ Page({
       that.setData({
         user_id: user_id,
       });
-      //分享至群打点准备
+      // 分享至群打点准备
       /* wx.showShareMenu({
          withShareTicket: true,
        })*/
@@ -28,7 +28,7 @@ Page({
           title: 'loading',
           mask: true,
         });
-        //载入我的个人信息
+        // 载入我的个人信息
         wx.request({
           url: url_common + '/api/user/myInfo',
           data: {
@@ -61,7 +61,7 @@ Page({
           },
         });
       }
-
+      // 获得我的身份状态
       wx.request({
         url: url_common + '/api/user/getUserGroupByStatus',
         data: {
@@ -83,9 +83,7 @@ Page({
           });
         }
       });
-
     });
-
   },
   //登录
   entry() {
@@ -93,7 +91,7 @@ Page({
   },
   //进入我的名片
   toMyCard: function () {
-    app.href('/pages/my/my/my');
+    app.href('/pages/my/myCard/myCard');
   },
   //人气
   popularity: function () {
@@ -210,7 +208,7 @@ Page({
   },
   //确定或稍后再试
   laterOn: function () {
-    app.href('/pages/my/myNew/myNew');
+    app.href('/pages/my/my/my');
     this.setData({
       modalBox: 0
     });

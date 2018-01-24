@@ -24,62 +24,60 @@ Page({
       mask: true,
     })
     var user_id = options.id;
-    var view_id = wx.getStorageSync('user_id');
-    that.setData({
-      user_id: user_id,
-      view_id: view_id
-    })
-    //分享至群打点准备
-
-    if (user_id == view_id) {
-      app.href("/pages/my/my/my")
-    }
-    //用戶的个人信息
-    app.httpPost({
-      url: url_common + '/api/user/getUserAllInfo',
-      data: {
-        share_id: 0,
-        user_id: user_id,
-        view_id: view_id,
-      },
-    }, this).then(res => {
-      wx.hideLoading()
-      var user = res.data.user_info;
-      var count = res.data.count;
-      var invest = res.data.invest_info;
-      var resource = res.data.resource_info;
-      var project_info = res.data.project_info;
-      var invest_case = res.data.invest_case;
-      var tel = user.user_mobile;
-      var button_type = res.data.button_type;
-      let user_name = user.user_real_name;
-      wx.setNavigationBarTitle({
-        title: user_name + "的投资名片",
-      })
-      app.log(that,user.active_status)
-      if (tel.indexOf("*") != -1) {
-        that.setData({
-          blue: 1
-        })
-      }
-      if (invest_case) {
-        if (invest_case.length > 3) {
-          invest_case = invest_case.slice(0, 3);
-        }
-      }
+    app.loginPage(view_id => {
       that.setData({
-        user: user,
-        invest: invest,
-        resource: resource,
-        project_info: project_info,
-        invest_case: invest_case,
-        button_type: button_type,
-        count: count
+        user_id: user_id,
+        view_id: view_id
       })
-    }).catch(res => {
-      app.errorHide(this, res.data.error_msg)
+      if (user_id == view_id) {
+        app.href("/pages/my/my/my")
+      }
+      //用戶的个人信息
+      app.httpPost({
+        url: url_common + '/api/user/getUserAllInfo',
+        data: {
+          share_id: 0,
+          user_id: user_id,
+          view_id: view_id,
+        },
+      }, this).then(res => {
+        wx.hideLoading()
+        var user = res.data.user_info;
+        var count = res.data.count;
+        var invest = res.data.invest_info;
+        var resource = res.data.resource_info;
+        var project_info = res.data.project_info;
+        var invest_case = res.data.invest_case;
+        var tel = user.user_mobile;
+        var button_type = res.data.button_type;
+        let user_name = user.user_real_name;
+        wx.setNavigationBarTitle({
+          title: user_name + "的投资名片",
+        })
+        app.log(that, user.active_status)
+        if (tel.indexOf("*") != -1) {
+          that.setData({
+            blue: 1
+          })
+        }
+        if (invest_case) {
+          if (invest_case.length > 3) {
+            invest_case = invest_case.slice(0, 3);
+          }
+        }
+        that.setData({
+          user: user,
+          invest: invest,
+          resource: resource,
+          project_info: project_info,
+          invest_case: invest_case,
+          button_type: button_type,
+          count: count
+        })
+      }).catch(res => {
+        app.errorHide(this, res.data.error_msg)
+      })
     })
-
   },
   //进入个人详情
   userInfo: function () {
