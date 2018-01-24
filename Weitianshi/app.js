@@ -1,8 +1,6 @@
 import * as httpModel from './utils/httpModel';
 import * as OperationModel from './utils/operationModel';
 import { picUrl } from './utils/picUrlModel';
-
-
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -388,7 +386,7 @@ App({
       }
     }
   },
-// 买家图谱翻页
+  // 买家图谱翻页
   loadMoreM(that, request, str, dataStr) {
     let user_id = wx.getStorageSync("user_id");
     let dataSum = that.data[str];
