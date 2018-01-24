@@ -21,17 +21,17 @@ Page({
     if (options) {
       this.setData({
         modal: options.modal
-      })
-    };
+      });
+    }
     let that = this;
     app.netWorkChange(that);
   },
   onShow: function () {
-    var that = this
+    var that = this;
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id,
-      })
+      });
       if (user_id != 0) {
         //载入我的个人信息
         wx.request({
