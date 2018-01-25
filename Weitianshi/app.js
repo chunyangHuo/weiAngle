@@ -1,7 +1,6 @@
 import * as httpModel from './utils/model/httpModel';
 import * as OperationModel from './utils/model/operationModel';
 import { picUrl } from './utils/model/picUrlModel';
-let redPackets = require('./utils/model/redPackets');
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -124,47 +123,6 @@ App({
         });
       }
     });
-  },
-
-  //进行授权验证
-  getUserInfo(cb) {
-    let that = this;
-    //如果全局变量里有userInfo就去执行cb函数,如果全局变量里没有userInfo就去调用授权接口
-    if (this.globalData.userInfo) {
-      // this.log(this,"全局变量userInfo存在");
-      typeof cb == "function" && cb(this.globalData.userInfo);
-    } else {
-      // this.log(this,"全局变量userInfo不存在");
-      //调用登录接口
-      wx.login({
-        success: function (login) {
-          let code = login.code;
-          that.globalData.code = code;
-          //获取用户信息
-          wx.getUserInfo({
-            success: function (res) {
-              // this.log(this,"这里是wx.getUserInfo");
-              // this.log(this,res);
-              that.globalData.userInfo = res.userInfo;
-              that.globalData.encryptedData = res.encryptedData;
-              that.globalData.iv = res.iv;
-              typeof cb == "function" && cb(that.globalData.userInfo);
-            },
-            fail: function (res) {
-              // this.log(this,res);
-            },
-            complete: function () {
-              //如果已经存在session_time就进行比较,如果不没有就建一个session_time;
-              if (that.globalData.session_time) {
-
-              } else {
-                that.checkLogin(that);
-              }
-            }
-          });
-        }
-      });
-    }
   },
 
   //弹框--跳转首页或者完善信息页面(user_id为0)

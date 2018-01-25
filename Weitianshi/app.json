@@ -98,6 +98,15 @@
         "pages/signIndentityCard/signIndentityCard",
         "pages/signNoIndentity/signNoIndentity"
       ]
+    },
+    {
+      "root": "redPackets/",
+      "pages": [
+        "pages/publishHB/publishHB",
+        "pages/openHB/openHB",
+        "pages/myHB/myHB",
+        "pages/moreHB/moreHB"
+      ]
     }
   ],
   "window": {

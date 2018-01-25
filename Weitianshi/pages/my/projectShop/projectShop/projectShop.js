@@ -74,6 +74,7 @@ Page({
     this.setData({
       followed_user_id: followed_user_id,
     });
+    
     app.loginPage(user_id => {
       app.initPage(that);
       //判断是不是分享页面,并判断分享者和查看者是不是本人 
