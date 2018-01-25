@@ -59,7 +59,6 @@ function projectApply(pro_id, callBack) {
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          app.log(that,'getUserGroupByStatus', res);
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -310,7 +309,6 @@ function projectApplyDirect(pro_id, callBack) {
         if (callBack) {
           callBack(res)
         }
-        app.log(that,'applyProject', res)
       } else if (statusCode == 5005005) {
         wx.showToast({
           title: '请勿重复申请',
