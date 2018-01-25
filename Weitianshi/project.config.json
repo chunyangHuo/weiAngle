@@ -65,15 +65,22 @@
 				},
 				{
 					"id": -1,
-					"name": "他人详情",
-					"pathName": "pages/userDetail/networkDetail/networkDetail",
-					"query": "id=q0oxdoqW"
+					"name": "项目详情",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=q0oXEQWe"
 				},
 				{
 					"id": 7,
-					"name": "发红包",
-					"pathName": "redPackets/pages/publishHB/publishHB",
-					"query": ""
+					"name": "一键尽调",
+					"pathName": "pages/oneKeyResearch/oneKeyResearch",
+					"query": "id=JWLV6Lr5&share_id=dW48yzLW"
+				},
+				{
+					"id": 8,
+					"name": "投资名片",
+					"pathName": "pages/userDetail/networkDetail/networkDetail",
+					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
+
 				}
 			]
 		}

@@ -6,7 +6,7 @@ Page({
   data: {
     bindContact: false,
     jiandi: false,
-    jiandi1:false,
+    jiandi1: false,
     competeList: [],
     taren: true,
     ziji: false,
@@ -159,8 +159,8 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        app.log(that,"show_detail",show_detail);
-        app.log(that,"show_company",show_company);
+        app.log(that, "show_detail", show_detail);
+        app.log(that, "show_company", show_company);
         that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
@@ -185,7 +185,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         // console.log(user_id, id, is_share)
-        app.log(that,"bp", res)
+        app.log(that, "bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -682,7 +682,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investor2 = res.data.data;
-        app.log(that,"投资人",investor2)
+        app.log(that, "投资人", investor2)
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -710,7 +710,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investment_list = res.data.data.investment_list;
-        app.log(that,"投资机构",investment_list)
+        app.log(that, "投资机构", investment_list)
         let investment_total_num = res.data.data.investment_total_num;
         that.setData({
           investment_list: investment_list,
@@ -740,7 +740,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "investor2");
-    app.log(that,'投资人',this.data.page_end);
+    app.log(that, '投资人', this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -757,12 +757,12 @@ Page({
       url: url_common + '/api/investment/matchs',
       data: {
         project_id: id,
-        page:currentPage1
+        page: currentPage1
       },
     }
     //调用通用加载函数
     app.loadMoreM(that, request, "investment_list");
-    app.log(that,'投资机构', this.data.page_end1);
+    app.log(that, '投资机构', this.data.page_end1);
     if (this.data.page_end1 == true) {
       that.setData({
         jiandi1: true
@@ -966,77 +966,89 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
+    let aa = BPath;
+    let one = aa.lastIndexOf(".");
+    let bb = aa.substring((one + 1), aa.length);
+    console.log(bb);
+    console.log(BPath)
     app.checkUserInfo(x => {
       if (BPath) {
-        wx.showActionSheet({
-          itemList: ['直接预览', '发送到邮箱'],
-          success: function (res) {
-            if (res.tapIndex == 1) {
-              wx.request({
-                url: url_common + '/api/user/checkUserInfo',
-                data: {
-                  user_id: user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  let userEmail = res.data.user_email;
-                  if (userEmail) {
-                    that.setData({
-                      userEmail: userEmail,
-                      sendPc: 1,
-                      checkEmail: true,
-                    })
-                  } else {
-                    that.setData({
-                      sendPc: 1,
-                      checkEmail: false
-                    })
-                  }
-                }
-              })
-            } else if (res.tapIndex == 0) {
-              wx.showLoading({
-                title: 'loading',
-                mask: true,
-              })
-              app.log(that,"BP",BPath)
-              wx.downloadFile({
-                url: BPath,
-                success: function (res) {
-                  var filePath = res.tempFilePath;
-                  app.log(that,"bp", filePath)
-                  wx.openDocument({
-                    filePath: filePath,
-                    success: function (res) {
-                      app.log(that,'打开文档成功')
-                      wx.hideLoading();
-                      wx.request({
-                        url: url_common + '/api/project/insertViewBpRecord',
-                        data: {
-                          type: 'preview',
-                          open_session: wx.getStorageSync('open_session'),
-                          user_id: user_id,
-                          project_id: project_id
-                        },
-                        method: 'POST',
-                        success: function (res) {
-
-                        },
+        if (bb == 'zip' || bb == 'rar'){
+          wx.showModal({
+            title: '提示',
+            content: '小程序暂不支持当前文件格式预览',
+          })
+        } else {
+          wx.showActionSheet({
+            itemList: ['直接预览', '发送到邮箱'],
+            success: function (res) {
+              if (res.tapIndex == 1) {
+                wx.request({
+                  url: url_common + '/api/user/checkUserInfo',
+                  data: {
+                    user_id: user_id
+                  },
+                  method: 'POST',
+                  success: function (res) {
+                    let userEmail = res.data.user_email;
+                    if (userEmail) {
+                      that.setData({
+                        userEmail: userEmail,
+                        sendPc: 1,
+                        checkEmail: true,
+                      })
+                    } else {
+                      that.setData({
+                        sendPc: 1,
+                        checkEmail: false
                       })
                     }
-                  })
-                },
-                fail() {
-                  wx.hideLoading();
-                  app.errorHide(that, '预览文件过大,请发送到邮箱查看', 3000)
-                }
-              })
+                  }
+                })
+              } else if (res.tapIndex == 0) {
+                wx.showLoading({
+                  title: 'loading',
+                  mask: true,
+                })
+                app.log(that, "BP", BPath)
+                wx.downloadFile({
+                  url: BPath,
+                  success: function (res) {
+                    var filePath = res.tempFilePath;
+                    app.log(that, "bp", filePath)
+                    wx.openDocument({
+                      filePath: filePath,
+                      success: function (res) {
+                        app.log(that, '打开文档成功')
+                        wx.hideLoading();
+                        wx.request({
+                          url: url_common + '/api/project/insertViewBpRecord',
+                          data: {
+                            type: 'preview',
+                            open_session: wx.getStorageSync('open_session'),
+                            user_id: user_id,
+                            project_id: project_id
+                          },
+                          method: 'POST',
+                          success: function (res) {
+
+                          },
+                        })
+                      }
+                    })
+                  },
+                  fail() {
+                    wx.hideLoading();
+                    app.errorHide(that, '预览文件过大,请发送到邮箱查看', 3000)
+                  }
+                })
+              }
+            },
+            fail: function (res) {
+              app.errorHide(that, res.errMsg, 3000)
             }
-          },
-          fail: function (res) {
-            app.errorHide(that, res.errMsg, 3000)
-          }
-        })
+          })
+        }
       } else {
         wx.showModal({
           title: '提示',

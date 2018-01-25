@@ -6,8 +6,8 @@ Page({
   data: {
     competeList: [],
     taren: true,
-    jiandi:false,
-    jiandi1:false,
+    jiandi: false,
+    jiandi1: false,
     ziji: false,
     matchBut: true,//显示投资人/投资机构
     matchBut1: false,
@@ -356,7 +356,7 @@ Page({
         // 如果显示一键尽调和买家图谱则调用数据
         that.oneKeyRearchInfo(company_name);
         that.matchInvestorInfo(id);
-        that.matchInvestorInfo();
+        that.matchInvestorInfo1();
       },
     });
   },
@@ -489,7 +489,13 @@ Page({
                 historyFinance[index].history_financing_rounds = x.history_financing_rounds;
                 historyFinance[index].history_financing_who = x.history_financing_who;
                 historyFinance[index].history_financing_time = app.changeTimeStyle(x.history_financing_time);
-              });
+
+                if (x.history_financing_time != null){
+                  historyFinance[index].history_financing_time = app.changeTimeStyle(x.history_financing_time);
+                }else{
+                  historyFinance[index].history_financing_time = '';
+                }
+              })
               that.setData({
                 historyFinance: historyFinance
               });
@@ -504,10 +510,15 @@ Page({
             method: 'POST',
             success: function (res) {
               let mileStone = res.data.data;
-              mileStone.forEach((x, index) => {
+              res.data.data.forEach((x, index) => {
+                console.log(x)
                 mileStone[index].milestone_event = x.milestone_event;
-                mileStone[index].milestone_time = app.changeTimeStyle(x.milestone_time);
-              });
+                if (x.milestone_time != null) {
+                  mileStone[index].milestone_time = app.changeTimeStyle(x.milestone_time);
+                }else{
+                  mileStone[index].milestone_time = '';
+                }
+              })
               that.setData({
                 mileStone: mileStone
               });
@@ -525,9 +536,13 @@ Page({
               newsList.forEach((x, index) => {
                 newsList[index].project_news_label = x.project_news_label;
                 newsList[index].source = x.source;
-                newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
                 newsList[index].project_news_title = x.project_news_title;
-              });
+                if(x.project_news_time != null){
+                  newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
+                }else{
+                  newsList[index].project_news_time = '';
+                }
+              })
               that.setData({
                 newsList: newsList
               });
