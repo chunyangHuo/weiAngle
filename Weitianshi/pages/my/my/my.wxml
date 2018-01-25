@@ -77,7 +77,7 @@
         <view class="flex">
             <image src="/img/icon-xiangmudianpu@2x.png" class="shopPic"></image>
             <view style="align-items:center">
-                <view class="shopTitle">项目店铺</view>
+                <view class="shopTitle">我的项目店铺</view>
                 <label class="shopShow">FA专属 · 项目展示 · 案源收集</label>
             </view>
         </view>
