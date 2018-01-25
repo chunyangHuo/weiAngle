@@ -1,7 +1,7 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as FilterModel from '../../../utils/filterModel';
+import * as FilterModel from '../../../utils/model/filterModel';
 Page({
   data: {
     SearchInit: FilterModel.data,

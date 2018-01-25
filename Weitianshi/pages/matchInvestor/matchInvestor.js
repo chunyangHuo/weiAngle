@@ -1,6 +1,6 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
-import * as CreateProject from '../../utils/createProjectBottom';
+import * as CreateProject from '../../utils/model/createProjectBottom';
 Page({
   data: {
     imgUrls: app.globalData.picUrl.page_matchInvestorEmpty,

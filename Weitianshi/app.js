@@ -1,6 +1,7 @@
-import * as httpModel from './utils/httpModel';
-import * as OperationModel from './utils/operationModel';
-import { picUrl } from './utils/picUrlModel';
+import * as httpModel from './utils/model/httpModel';
+import * as OperationModel from './utils/model/operationModel';
+import { picUrl } from './utils/model/picUrlModel';
+let redPackets = require('./utils/model/redPackets');
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)

@@ -1,7 +1,7 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as ShareModel from '../../../utils/shareModel';
+import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
     modalBox: 0,

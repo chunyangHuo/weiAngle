@@ -1,7 +1,7 @@
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
-import * as ShareModel from '../../../utils/shareModel';
+import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
     nonet: true

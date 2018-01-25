@@ -1,6 +1,6 @@
-import * as FilterModel from '../../utils/filterModel';
-import * as CreateProject from '../../utils/createProjectBottom';
-import * as ShareModel from '../../utils/shareModel';
+import * as FilterModel from '../../utils/model/filterModel';
+import * as CreateProject from '../../utils/model/createProjectBottom';
+import * as ShareModel from '../../utils/model/shareModel';
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
