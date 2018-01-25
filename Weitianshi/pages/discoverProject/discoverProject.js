@@ -1,6 +1,6 @@
-import * as FilterModel from '../../utils/filterModel';
-import * as CreateProject from '../../utils/createProjectBottom';
-import * as ShareModel from '../../utils/shareModel';
+import * as FilterModel from '../../utils/model/filterModel';
+import * as CreateProject from '../../utils/model/createProjectBottom';
+import * as ShareModel from '../../utils/model/shareModel';
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -32,22 +32,21 @@ Page({
   },
   onLoad(options) {
     let that = this;
-    let user_id = this.data.user_id;
     this.noSearch();
     //初始化数据
-    app.initPage(that)
+    app.initPage(that);
     wx.showLoading({
       title: 'loading',
       mask: true,
-    })
+    });
     //请求精选项目数据
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id
       });
       that.selectProject();
-    })
-    app.netWorkChange(that)
+    });
+    app.netWorkChange(that);
     // this.setData({
     //   showLoading : true
     // })
@@ -66,24 +65,24 @@ Page({
           // console.log('getProjectCategory',res)
           let thisData = res.data.data;
           thisData.area.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.industry.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.scale.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.stage.forEach((x) => {
-            x.check = false
-          })
+            x.check = false;
+          });
           thisData.hotCity.forEach((x) => {
-            x.check = false
-          })
-          wx.setStorageSync("industry", thisData.industry)
-          wx.setStorageSync("scale", thisData.scale)
-          wx.setStorageSync("stage", thisData.stage)
-          wx.setStorageSync('hotCity', thisData.hotCity)
+            x.check = false;
+          });
+          wx.setStorageSync("industry", thisData.industry);
+          wx.setStorageSync("scale", thisData.scale);
+          wx.setStorageSync("stage", thisData.stage);
+          wx.setStorageSync('hotCity', thisData.hotCity);
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');
@@ -92,10 +91,10 @@ Page({
           SearchInit.hotCity = wx.getStorageSync('hotCity');
           that.setData({
             SearchInit: SearchInit
-          })
-          app.log(that, "SearchInit", SearchInit)
+          });
+          app.log(that, "SearchInit", SearchInit);
         },
-      })
+      });
     }
   },
   // 不显示项目库的筛选项(辅助函数)
@@ -103,17 +102,17 @@ Page({
     if (this.data.currentTab == 2) {
       this.setData({
         hidden: false
-      })
+      });
     } else {
       this.setData({
         hidden: true
-      })
+      });
     }
   },
   // 轮播图跳转
   bannerLink(e) {
     let index = e.currentTarget.dataset.index + 1;
-    app.href('/pages/activtyPage/activtyPage/activtyPage?index=' + index)
+    app.href('/pages/activtyPage/activtyPage/activtyPage?index=' + index);
   },
   // 下拉刷新
   onPullDownRefresh() {
@@ -126,7 +125,7 @@ Page({
       wx.showLoading({
         title: 'loading',
         mask: true,
-      })
+      });
     }
     wx.request({
       url: url_common + '/api/project/getMarketProjectList',
@@ -142,16 +141,16 @@ Page({
         if (!that.data.financingNeed) {
           that.setData({
             financingNeed2: financingNeed
-          })
+          });
         }
         that.setData({
           financingNeed: financingNeed,
-        })
+        });
       },
       complete() {
         wx.hideLoading();
       }
-    })
+    });
   },
   // 请求精选tab页面数据(辅助函数)
   selectProject() {
@@ -160,7 +159,7 @@ Page({
       wx.showLoading({
         title: 'loading',
         mask: true,
-      })
+      });
     }
     app.httpPost({
       url: url_common + '/api/project/getSelectedAndMarketProjectList',
@@ -169,27 +168,27 @@ Page({
         filter: this.data.SearchInit.searchData
       }
     }, that).then(res => {
-      wx.hideLoading()
+      wx.hideLoading();
       var slectProject = res.data.data;
       app.log(that, '精选', slectProject);
       // 将无筛选条件的精选列表存入变量以备使用
       if (!that.data.financingNeed) {
         that.setData({
           slectedProject2: slectProject
-        })
+        });
       }
       that.setData({
         slectProject: slectProject,
         // showLoading:false
-      })
-    })
+      });
+    });
   },
   // 上拉加载
   loadMore: function () {
     //请求上拉加载接口所需要的参数
     let that = this;
     let user_id = this.data.user_id;
-    let currentPage = this.data.currentPage;
+    // let currentPage = this.data.currentPage;
     let request = {
       url: url_common + '/api/project/getSelectedAndMarketProjectList',
       data: {
@@ -197,14 +196,14 @@ Page({
         filter: this.data.SearchInit.searchData,
         page: this.data.currentPage,
       }
-    }
+    };
     //调用通用加载函数
-    app.loadMore(that, request, "slectProject")
+    app.loadMore(that, request, "slectProject");
   },
   loadMore2() {
     let that = this;
-    let user_id = this.data.user_id;
-    let currentPage = this.data.currentPage;
+    // let user_id = this.data.user_id;
+    // let currentPage = this.data.currentPage;
     let request = {
       url: url_common + '/api/project/getMarketProjectList',
       data: {
@@ -212,8 +211,8 @@ Page({
         filter: this.data.SearchInit.searchData,
         page: this.data.currentPage
       }
-    }
-    app.loadMore(that, request, "financingNeed")
+    };
+    app.loadMore(that, request, "financingNeed");
   },
   // 项目详情
   projectDetail: function (e) {
@@ -226,16 +225,15 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        var that = this;
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
-          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0)
+          app.href('/pages/myProject/projectDetail/projectDetail?id=' + project_id + '&&index=' + 0);
         } else {
-          app.href('/pages/projectDetail/projectDetail?id=' + project_id)
+          app.href('/pages/projectDetail/projectDetail?id=' + project_id);
         }
       }
-    })
+    });
   },
   // 分享当前页面
   onShareAppMessage: function () {
@@ -255,18 +253,18 @@ Page({
           if (x.project_id == pro_id) {
             x.relationship_button = 0;
           }
-        })
+        });
       } else {
         financingNeed.forEach(x => {
           if (x.project_id == pro_id) {
             x.relationship_button = 0;
           }
-        })
+        });
       }
       that.setData({
         slectProject: slectProject,
         financingNeed: financingNeed
-      })
+      });
     });
   },
 
@@ -277,23 +275,23 @@ Page({
   },
   // 跳转投资机构
   jumpOrg() {
-    app.href('/pages/discoverInvest/institutionalInvest/institutionalInvest')
+    app.href('/pages/discoverInvest/institutionalInvest/institutionalInvest');
   },
   //投资人
   jumpInvestor() {
-    app.href('/pages/discover/discoverPerson/discoverPerson')
+    app.href('/pages/discover/discoverPerson/discoverPerson');
   },
   //FA融资顾问
   jumpFinancingAdvisor() {
-    app.href('/pages/discover/financingAdvisor/financingAdvisor')
+    app.href('/pages/discover/financingAdvisor/financingAdvisor');
   },
   //潜在投资方
   potentialInvestor() {
-    app.href('/pages/matchInvestor/matchInvestor')
+    app.href('/pages/matchInvestor/matchInvestor');
   },
   //跳转搜索页面
   searchMore() {
-    app.href('/pages/search/search2/search2')
+    app.href('/pages/search/search2/search2');
   },
   // 重新加载
   refresh() {
@@ -305,7 +303,7 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
 
   }
-})
+});

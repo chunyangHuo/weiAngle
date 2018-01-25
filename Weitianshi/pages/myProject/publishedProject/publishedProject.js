@@ -47,7 +47,7 @@ Page({
     nonet: true
   },
   onLoad: function (options) {
-    console.log(options)
+    console.log(options);
     let that = this;
     let editProId = options.pro_id;
     let edit = options.edit;
@@ -60,11 +60,11 @@ Page({
     this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
     // 如果是编辑项目入口
-    if (editProId) { this._editProject(editProId) }
+    if (editProId) { this._editProject(editProId); }
     this.setData({
       fromPublish: fromPublish
     });
-    app.netWorkChange(that)
+    app.netWorkChange(that);
   },
   //页面显示
   onShow: function () {
@@ -74,22 +74,22 @@ Page({
     this._privacyData();
   },
   onReady() {
-    console.log(this.data)
+    console.log(this.data);
   },
   //picker数据预处理
   _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
     if (string_itemArr == 'stage_arry') {
-      item.unshift({ stage_name: '选择阶段' })
+      item.unshift({ stage_name: '选择阶段' });
     } else {
-      item.unshift({ scale_money: '选择金额' })
+      item.unshift({ scale_money: '选择金额' });
     }
     item.forEach(x => {
-      itemArr.push(x[itemName])
-    })
+      itemArr.push(x[itemName]);
+    });
     this.setData({
       [string_item]: item,
       [string_itemArr]: itemArr
-    })
+    });
   },
   //tran_industry取值处理
   _tranIndustryDeal() {
@@ -99,9 +99,9 @@ Page({
       industryCard.value = [];
       industryCard.id = [];
       tran_industry.forEach(x => {
-        industryCard.value.push(x.industry_name)
-        industryCard.id.push(x.industry_id)
-      })
+        industryCard.value.push(x.industry_name);
+        industryCard.id.push(x.industry_id);
+      });
       //字体颜色改变
       industryCard.css = 'black';
     } else {
@@ -111,7 +111,7 @@ Page({
     }
     this.setData({
       industryCard: industryCard
-    })
+    });
   },
   //tran_area取值处理
   _tranAreaDeal() {
@@ -121,13 +121,13 @@ Page({
         area_title: tran_area[1].area_title,
         provinceNum: tran_area[0].area_id,
         cityNum: tran_area[1].area_id
-      })
+      });
     }
   },
   //私密性取值
   _privacyData() {
     let setPrivacy = wx.getStorageSync('setPrivacy');
-    console.log(setPrivacy)
+    console.log(setPrivacy);
     if (setPrivacy) {
       this.setData({
         open_status: setPrivacy.open_status,
@@ -139,7 +139,7 @@ Page({
         black_company: setPrivacy.black_company,
         black_user: setPrivacy.black_user,
         subscribe: setPrivacy.subscribe
-      })
+      });
     }
   },
   // 编辑项目入口,数据获取
@@ -154,22 +154,22 @@ Page({
       method: 'POST',
       success: function (res) {
         let projectEditInfo = res.data.data;
-        console.log('projectEditInfo', res.data.data)
+        console.log('projectEditInfo', res.data.data);
         // 编辑-industry处理
         let industryCard = that.data.industryCard;
         industryCard.value = _industryDeal(projectEditInfo.pro_industry).industryValue;
         industryCard.id = _industryDeal(projectEditInfo.pro_industry).industryId;
         industryCard.css = 'black';
         if (industryCard.value.length == 0) {
-          industryCard.value = '选择领域'
-          industryCard.css = ''
+          industryCard.value = '选择领域';
+          industryCard.css = '';
         }
-        wx.setStorageSync('tran_industry', projectEditInfo.pro_industry)
+        wx.setStorageSync('tran_industry', projectEditInfo.pro_industry);
         // 编辑-stage和scale处理
-        _editPickerDeal(that, projectEditInfo.pro_stage, projectEditInfo.pro_scale)
+        _editPickerDeal(that, projectEditInfo.pro_stage, projectEditInfo.pro_scale);
         // 编辑-area处理
         let editArea = projectEditInfo.pro_area;
-        wx.setStorageSync('tran_area', [{ area_id: editArea.pid, area_title: '' }, { area_id: editArea.area_id, area_title: editArea.area_title }])
+        wx.setStorageSync('tran_area', [{ area_id: editArea.pid, area_title: '' }, { area_id: editArea.area_id, area_title: editArea.area_title }]);
         that.setData({
           pro_id: editProId,
           projectName: projectEditInfo.pro_name,
@@ -186,9 +186,9 @@ Page({
           service_ps_bp: projectEditInfo.service_ps_bp,
           service_yun: projectEditInfo.service_yun,
           buttonOneText: '维护项目'
-        })
+        });
       }
-    })
+    });
     // 编辑-industry处理
     let _industryDeal = (pro_industry) => {
       let industryValue = [];
@@ -196,11 +196,11 @@ Page({
       pro_industry.forEach(x => {
         industryValue.push(x.industry_name);
         industryId.push(x.industry_id);
-      })
+      });
       return {
         industryValue, industryId
-      }
-    }
+      };
+    };
     // 编辑-stage和scale处理
     function _editPickerDeal(that, pro_stage, pro_scale) {
       let stage = that.data.stage;
@@ -209,57 +209,57 @@ Page({
         if (x.stage_id == pro_stage.stage_id) {
           that.setData({
             stage_index: index
-          })
+          });
         }
-      })
+      });
       scale.forEach((x, index) => {
         if (x.scale_id == pro_scale.scale_id) {
           that.setData({
             scale_index: index
-          })
+          });
         }
-      })
+      });
     }
   },
   //下拉刷新
   onPullDownRefresh: function () {
-    wx.stopPullDownRefresh()
+    wx.stopPullDownRefresh();
   },
   //项目名称
   projectName: function (e) {
     this.setData({
       projectName: e.detail.value
-    })
+    });
   },
   //公司名称
   companyName: function (e) {
     this.setData({
       companyName: e.detail.value
-    })
+    });
   },
   //项目介绍
   bindTextAreaBlur: function (e) {
     this.setData({
       describe: e.detail.value
-    })
+    });
   },
   //投后股份
   projectFinance: function (e) {
     this.setData({
       pro_finance_stock_after: e.detail.value
-    })
+    });
   },
   //项目亮点
   slectInput: function (e) {
     this.setData({
       pro_goodness: e.detail.value
-    })
+    });
   },
   //是否独家的效果实现
   tipsOn: function (e) {
     this.setData({
       tips_index: e.detail.value
-    })
+    });
   },
   //项目阶段
   stage: function (e) {
@@ -277,61 +277,61 @@ Page({
   closeModal: function () {
     this.setData({
       modalBox: 0
-    })
+    });
   },
   //去电脑上传
   toPc: function () {
     this.setData({
       modalBox: 1
-    })
+    });
   },
   //需要Bp美化
   switchChange1: function (e) {
     this.setData({
       service_ps_bp: e.detail.value
-    })
+    });
   },
   //需要融资股份(FA)服务
   switchChange2: function (e) {
     this.setData({
       service_fa: e.detail.value
-    })
+    });
   },
   //是否需要云投行服务
   switchChange3: function (e) {
     this.setData({
       service_yun: e.detail.value
-    })
+    });
   },
   //私密性跳转
   initPrivacy: function () {
     let project = this.data.pro_id;
     if (project) {
-      app.href('/pages/myProject/initPrivacy/initPrivacy?project=' + project)
+      app.href('/pages/myProject/initPrivacy/initPrivacy?project=' + project);
     } else {
-      app.href('/pages/myProject/initPrivacy/initPrivacy')
+      app.href('/pages/myProject/initPrivacy/initPrivacy');
     }
   },
   //私密性处理(辅助函数)
   privacyDeal() {
     let subscribe = this.data.subscribe;
-    Number(subscribe.white_company)
-    Number(subscribe.white_user)
+    Number(subscribe.white_company);
+    Number(subscribe.white_user);
     this.setData({
       subscribe: subscribe
-    })
-    this.totalScore(this.data.projectName)
-    this.totalScore(this.data.pro_company_name)
-    this.totalScore(this.data.pro_finance_stock_after)
-    this.totalScore(this.data.service_yun)
-    this.totalScore(this.data.service_fa)
-    this.totalScore(this.data.service_ps_bp)
+    });
+    this.totalScore(this.data.projectName);
+    this.totalScore(this.data.pro_company_name);
+    this.totalScore(this.data.pro_finance_stock_after);
+    this.totalScore(this.data.service_yun);
+    this.totalScore(this.data.service_fa);
+    this.totalScore(this.data.service_ps_bp);
     return {
       open_status: this.data.open_status,
       power_share_status: this.data.power_share_status,
       power_investor_status: this.data.power_investor_status,
       company_open_status: this.data.company_open_status,
-    }
+    };
 
   },
   //完整度(辅助函数)
@@ -341,16 +341,16 @@ Page({
       pro_total_score = pro_total_score + 2.4;
       this.setData({
         pro_total_score: pro_total_score
-      })
+      });
     }
   },
   //到电脑
   upLoadPc: function () {
     let that = this;
     let privacy = this.privacyDeal();
-    let type = 'create'
+    let type = 'create';
     if (that.data.pro_id) {
-      type = 'update'
+      type = 'update';
     }
     wx.scanCode({
       success: function (res) {
@@ -391,19 +391,19 @@ Page({
               wx.setStorageSync('tran_industry', []);
               wx.setStorageSync('tran_area', []);
               wx.removeStorageSync('setPrivacy');
-              app.href('/pages/myProject/bpScanSuccess/bpScanSuccess')
+              app.href('/pages/myProject/bpScanSuccess/bpScanSuccess');
               that.setData({
                 modalBox: 0
-              })
+              });
             }
           }
-        })
+        });
       },
-    })
+    });
   },
   //项目领域
   industryChoice() {
-    app.href('/pages/form/industry/industry?current=0')
+    app.href('/pages/form/industry/industry?current=0');
   },
   //点击发布
   public: function () {
@@ -434,7 +434,7 @@ Page({
       } else if (pro_finance_stock_after > 100) {
         app.errorHide(that, '投后股份项应该为小于等于100的小数位不超过两位的数字', 3000);
       } else if (typeof pro_finance_stock_after != 'number') {
-        console.log(pro_finance_stock_after)
+        console.log(pro_finance_stock_after);
         app.errorHide(that, '投后股份项应该为数字', 3000);
       }
       return;
@@ -457,14 +457,14 @@ Page({
     //   app.errorHide(that, '请填写项目亮点', 3000)
     // } 
     if (!projectName) {
-      app.errorHide(that, '请填写项目名称', 3000)
+      app.errorHide(that, '请填写项目名称', 3000);
     } else {
       // 区别处理创建项目和维护项目
       let httpUrl = '/api/project/createProject';
       let successText = '成功创建融资项目';
       if (that.data.pro_id) {
         httpUrl = '/api/project/updateProject';
-        successText = '维护项目成功'
+        successText = '维护项目成功';
       }
       // 防反复提交处理
       let submitData = {
@@ -493,32 +493,32 @@ Page({
           power_investor_status: privacy.power_investor_status,
           company_open_status: Number(!privacy.company_open_status),
         },
-      }
+      };
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
         wx.removeStorageSync('setPrivacy');
-        app.errorHide(that, successText, 1000)
+        app.errorHide(that, successText, 1000);
         // 提交中过渡态处理
         if (that.data.pro_id && fromPublish != 3) {
           setTimeout(x => {
             wx.navigateBack({
               delta: 1
-            })
-          }, 1000)
+            });
+          }, 1000);
         } else if (that.data.pro_id && fromPublish == 3) {
-          app.href('/pages/discoverProject/discoverProject')
+          app.href('/pages/discoverProject/discoverProject');
         } else {
           setTimeout(x => {
-            app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type)
-          }, 1000)
+            app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + type);
+          }, 1000);
         }
-      })
+      });
     }
   },
   onUnload: function () {
-    app.initTran()
+    app.initTran();
   },
   // 重新加载
   refresh() {
@@ -530,6 +530,6 @@ Page({
     timer = setTimeout(x => {
       wx.hideLoading();
       this.onShow();
-    }, 1500)
+    }, 1500);
   }
 });

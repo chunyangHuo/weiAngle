@@ -1,45 +1,4 @@
-@import "/pages/my/my/my.wxss";
-
-/*加入人脉按钮*/
-
-/*.aboutNetwork view{
-    width: 100%;
-    text-align: center;
-    color: white;
-    background:#40587a;
-    font-size: 30rpx;
-    height: 98rpx;
-    line-height: 98rpx;
-}
-.addPerson {
-  background: #2b405e;
-  border: 0;
-  width: 100%;
-  height: 98rpx;
-}
-.addPersonBtn {
-  font-family: PingFangSC-Regular;
-  font-size: 30rpx;
-  padding-top: 34rpx;
-  line-height: 30rpx;
-  text-align: center;
-}
-
-.waitPerson {
-  background: #f2f2f2;
-  width: 100%;
-  height: 98rpx;
-}
-
-.waitPersonBtn {
-  font-family: PingFangSC-Regular;
-  font-size: 30rpx;
-  padding-top: 34rpx;
-  line-height: 30rpx;
-  text-align: center;
-  height:98rpx;
-}*/
-
+@import "/pages/my/myCard/myCard.wxss";
 .sharePageButton {
   width: 100%;
   height: 88rpx;

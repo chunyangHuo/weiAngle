@@ -1,7 +1,7 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as ShareModel from '../../utils/shareModel';
+import * as ShareModel from '../../utils/model/shareModel';
 Page({
   data: {
     bindContact: false,
@@ -1279,7 +1279,7 @@ Page({
     if (id != user_id) {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     } else if (id == user_id) {
-      app.href('/pages/my/my/my')
+      app.href('/pages/my/myCard/myCard')
     }
   },
   // 一键尽调页面展开
