@@ -963,7 +963,6 @@ Page({
   //商业计划书
   businessBook: function () {
     let BPath = this.data.BPath;
-
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
