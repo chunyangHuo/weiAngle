@@ -171,9 +171,9 @@ Page({
     })
   },
   // 绑定名片
-  bindUserInfo: function () {
-    app.infoJump()
-  },
+  // bindUserInfo: function () {
+  //   app.infoJump()
+  // },
   // 一键拨号
   telephone: function (e) {
     var telephone = e.currentTarget.dataset.telephone;
