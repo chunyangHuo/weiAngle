@@ -1,2 +1,2 @@
-<!--pages/publishHB/publishHB.wxml-->
+<include src='/utils/wxml/netWork' />
 <text>pages/publishHB/publishHB.wxml</text>

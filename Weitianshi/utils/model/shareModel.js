@@ -172,6 +172,9 @@ function sharePage(user_id, share_id, name) {
   let json = {
     title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
+    success: (res) => {
+      this.shareLog(path);
+    }
   }
   return json
 }
