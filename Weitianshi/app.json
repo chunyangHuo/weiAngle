@@ -103,7 +103,9 @@
       "root": "redPackets/",
       "pages": [
         "pages/publishHB/publishHB",
+        "pages/publishedHB/publishedHB",
         "pages/openHB/openHB",
+        "pages/openedHB/openedHB",
         "pages/myHB/myHB",
         "pages/crowdDetail/crowdDetail",
         "pages/allCrowdHB/allCrowdHB"
@@ -140,7 +142,7 @@
     ],
     "selectedColor": "#40587A",
     "backgroundColor": "#fafafa",
-    "borderStyle":"white",
+    "borderStyle": "white",
     "color": "#999999"
   },
   "networkTimeout": {
