@@ -4,6 +4,7 @@
 @import '/utils/wxss/organization.wxss';
 @import '/utils/wxss/filterTag.wxss';
 @import '/utils/wxss/oneadd.wxss';
+@import '/utils/wxss/HB.wxss';
 
 scroll-view {
   height: 100%;

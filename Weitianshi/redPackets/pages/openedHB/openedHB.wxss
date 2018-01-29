@@ -1,1 +1,10 @@
 /* pages/openHB/openHB.wxss */
+.HBrecordTitile {
+  width: 100%;
+  font-size: 34rpx;
+  color: #f7c660;
+  text-align: center;
+  padding: 32rpx 0 0 0;
+  justify-content: center;
+  align-items: center;
+}
