@@ -4,7 +4,7 @@
 </template>
 <!--红包领取记录  -->
 <template name="HBrecord">
-  <view id="HBrecord">
+  <view id="HBrecord" hover-class='HBrecord1'>
     <view class="HBrecord flex">
       <image src="" class="HBrecordImg"></image>
       <view class="recordText">
@@ -24,7 +24,6 @@
     </view>
   </view>
 </template>
-
 <!--群红包  -->
 <template name="groupBox">
   <view class="flex outsideBox">
@@ -37,4 +36,47 @@
     </view>
   </view>
   <view class="aline"></view>
+</template>
+<!--开红包  -->
+<template name="openHB">
+  <view id="openHB">
+    <image src="{{bg_hongbao2}}" class="openHB">
+      <view class="openTitle">这里是他写的标题字数可能会有点长但他写的标题字数可能会字数</view>
+      <image src="" class="openImg"></image>
+      <image src="/img/img-rzchuangyezhe@2x.png" class="openRen"></image>
+      <view class="openName">张三丰</view>
+      <view class="openCareer">
+        <label>投资经理</label>
+        <label> · 杭州投着乐杭州投着乐网络科技有限公司</label>
+      </view>
+      <form report-submit='true' bindsubmit='formsubmit'>
+        <button form-type='submit'>
+          <image src="../../img/kai.png" class="{{kaiStyle == true ?'openKai':'openKai1'}}" bindtap='kai'></image>
+        </button>
+      </form>
+       <view class="opentishi">每个用户可领取一次红包，金额将直接存入微信零钱包 本红包仅限发布者自己转发才可领取
+      </view> 
+    </image>
+  </view>
+</template>
+<!--开过红包  -->
+<template name="openHB1">
+  <view id="openHB">
+    <image src="{{bg_hongbao2}}" class="openHB">
+      <view class="openTitle">这里是他写的标题字数可能会有点长但他写的标题字数可能会字数</view>
+      <image src="" class="openImg"></image>
+      <image src="/img/img-rzchuangyezhe@2x.png" class="openRen"></image>
+      <view class="openName">张三丰</view>
+      <view class="openCareer">
+        <label>投资经理</label>
+        <label> · 杭州投着乐杭州投着乐网络科技有限公司</label>
+      </view>
+      <!-- <view class="openEnd">很可惜，红包已派完</view> -->
+      <!-- <view class="openEnd">红包已过期失效</view>  -->
+      <view class="openMoney">￥100.50</view>
+      <view class="openSave">已存入微信零钱包</view>
+      <view class="opentishi1">红包池：14/16个，12.12/100元
+      </view>
+    </image>
+  </view>
 </template>
