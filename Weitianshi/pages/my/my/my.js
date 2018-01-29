@@ -258,5 +258,13 @@ Page({
       this.onShow();
     }, 1500);
     wx.hideLoading();
+  },
+  //发送红包
+  sendBag(){
+    app.href('/redPackets/pages/publishHB/publishHB')
+  },
+  //已发红包
+  sendedBag(){
+    app.href('/redPackets/pages/myHB/myHB')
   }
 });

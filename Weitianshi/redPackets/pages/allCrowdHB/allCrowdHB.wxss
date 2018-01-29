@@ -1,1 +1,42 @@
-/* pages/morHB/moreHB.wxss */
+page {
+  background: #f14b50;
+}
+
+.outsideBox {
+  padding: 32rpx;
+}
+
+.groupPic {
+  background: #f0f0f0;
+  width: 104rpx;
+  height: 104rpx;
+  margin-right: 24rpx;
+}
+
+.groupInfo {
+}
+
+.groupName {
+  font-size: 32rpx;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 12rpx;
+}
+
+.groupNum {
+  font-size: 24rpx;
+  color: #fff;
+  text-align: left;
+}
+
+.number {
+  color: #f7c660;
+}
+
+.aline {
+  opacity: 0.2;
+  background: #fff;
+  width: 686rpx;
+  height: 1rpx;
+  margin: 0 32rpx;
+}

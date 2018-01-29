@@ -21,4 +21,17 @@
       <view class="recordadd">加好友</view>
     </view>
   </view>
+
+<!--群红包  -->
+<template name="groupBox">
+  <view class="flex outsideBox">
+    <view class="groupPic"></view>
+    <view class="groupInfo">
+      <view class="groupName">这里是群的名称</view>
+      <view class="groupNum">已领
+        <label class="number">10</label>个红包，还有
+        <label class="number">3</label>个红包未领取 </view>
+    </view>
+  </view>
+  <view class="aline"></view>
 </template>
