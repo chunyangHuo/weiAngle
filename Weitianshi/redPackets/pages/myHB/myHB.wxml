@@ -1,2 +1,13 @@
-<!--pages/myHB/myHB.wxml-->
-<text>pages/myHB/myHB.wxml</text>
+<view class='outBox'>
+  <view class="whoGet">
+    <view class="flex upBox">
+      <view class="des">红包的描述,最多款多160.很长怎么办呢的艰苦奋斗了</view>
+      <view class="getTime">2019-01-01</view>
+    </view>
+    <view class='flex downBox'>
+      <view class="getNum">￥100.00*4个</view>
+      <view class="getPerson">3人领取</view>
+    </view>
+  </view>
+</view>
+<button>发布红包</button>
