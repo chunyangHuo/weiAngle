@@ -105,7 +105,8 @@
         "pages/publishHB/publishHB",
         "pages/openHB/openHB",
         "pages/myHB/myHB",
-        "pages/moreHB/moreHB"
+        "pages/crowdDetail/crowdDetail",
+        "pages/allCrowdHB/allCrowdHB"
       ]
     }
   ],
