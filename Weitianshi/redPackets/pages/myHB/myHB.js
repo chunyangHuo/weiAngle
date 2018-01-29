@@ -1,11 +1,13 @@
-// pages/myHB/myHB.js
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    imgUrls1: app.globalData.picUrl.page_discoverProject,
   },
 
   /**

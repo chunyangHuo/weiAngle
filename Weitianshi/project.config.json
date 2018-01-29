@@ -25,8 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
-
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -115,7 +114,25 @@
 				{
 					"id": -1,
 					"name": "我的页面",
-					"pathName": "pages/my/my/my"
+					"pathName": "pages/my/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群红包",
+					"pathName": "redPackets/pages/allCrowdHB/allCrowdHB",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群红包",
+					"pathName": "/redPackets/pages/myHB/myHB",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群红包",
+					"pathName": "redPackets/pages/myHB/myHB"
 				}
 			]
 		}

@@ -1,2 +1,2 @@
-<!--pages/morHB/moreHB.wxml-->
-<text>pages/morHB/moreHB.wxml</text>
+<import src="/redPackets/resource/Template/Template.wxml" />
+<template is="groupBox"></template>
