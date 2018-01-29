@@ -126,6 +126,7 @@
   height: 1rpx;
   margin: 0 32rpx;
 
+}
 /*点击领取记录  */
 
 .HBrecord1 {

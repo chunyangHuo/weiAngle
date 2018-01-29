@@ -2,7 +2,6 @@ let app = getApp();
 let RP = require('../../../utils/model/redPackets.js')
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
-let RP = require('../../../utils/model/redPackets.js')
 let rp = new RP.redPackets();
 Page({
   data: {
