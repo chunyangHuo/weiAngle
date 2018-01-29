@@ -7,18 +7,13 @@ Page({
   data: {
     imgUrls: app.globalData.picUrl.bg_hongbao,
     imgUrls2: app.globalData.picUrl.shengcheng,
-    nonet:true
+    nonet: true
   },
   onLoad() {
     let rp = new RP.redPackets();
     console.log(rp)
     app.loginPage(user_id => {
 
-    })
-  },
-  formSubmit(e) {     
-    this.setData({
-      formId: e.detail.formId
     })
   },
 
@@ -32,7 +27,18 @@ Page({
     let bagNum = e.detail.value;
   },
   // 发布红包
-  createRedBag() {
-   rp.publishHB.call(this,user_id,number,money,title)
-  }
+  formSubmit(e) {
+    let user_id = wx.getStorageInfoSync('user_id');
+    app.httpPost({
+      url: url_common +'/api/wx/saveFormId',
+      data:{
+        open_session: app.globalData.open_session,
+        form_id: e.detail.formId
+      }
+    },this).then(res =>{
+      console.log(res)
+    })
+    
+    rp.publishHB.call(this, user_id, number, money, title)
+  },
 })
