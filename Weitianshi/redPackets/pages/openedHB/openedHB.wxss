@@ -1,5 +1,10 @@
 /* pages/openHB/openHB.wxss */
-.HBrecordTitile {
+
+page {
+  background: #f14b50;
+}
+
+.HBrecordTitile, .moreHB {
   width: 100%;
   font-size: 34rpx;
   color: #f7c660;
@@ -7,4 +12,51 @@
   padding: 32rpx 0 0 0;
   justify-content: center;
   align-items: center;
+}
+
+.moreHB {
+  font-size: 30rpx;
+}
+
+.seeMore {
+  font-size: 24rpx;
+  color: #f7c560;
+  text-align: center;
+  margin: 8rpx 0 40rpx 0;
+}
+
+.jumpFirst, .sendHB {
+  font-size: 30rpx;
+  color: #f7c660;
+  text-align: center;
+  border: 2rpx solid #f7c660;
+  border-radius: 96rpx;
+  width: 154rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #f14b50;
+  margin-right: 30rpx;
+}
+
+.jumpFirst {
+  margin-left: 32rpx;
+}
+
+.shareMore {
+  background: #f7c660;
+  border-radius: 96rpx;
+  width: 312rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+.buttonBox{
+  position: fixed;
+  bottom: 32rpx;
+}
+.waitSure{
+  color:#ffffff;
+  text-align: center;
+  opacity:0.5;
 }

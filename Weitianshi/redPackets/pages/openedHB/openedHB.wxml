@@ -2,11 +2,26 @@
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <scroll-view scroll-y style="background:#f14b50;height:1200rpx;">
+  <view class="moreHB flex">
+    <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
+    更多群红包
+    <label style="width:96rpx;height:1rpx;background:#f7c660;margin-left:16rpx;"></label>
+  </view>
+  <template is="groupBox"></template>
+  <view class="seeMore" bindtap='seeMore'>查看更多</view>
   <view class="HBrecordTitile flex">
-    <label style="width:96rpx;height:1px;background:#f7c660;margin-right:16rpx;"></label>
+    <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
     红包领取记录
-    <label style="width:96rpx;height:1px;background:#f7c660;margin-left:16rpx;"></label>
+    <label style="width:96rpx;height:1rpx;background:#f7c660;margin-left:16rpx;"></label>
   </view>
   <!--领取记录  -->
   <template is="HBrecord"></template>
+  <view class="buttonBox flex">
+    <button class='jumpFirst' bindtap='toFirst'>首页</button>
+    <button class="sendHB" bindtap='sendHB'>发红包</button>
+    <!-- <button class="shareMore" bindtap='sendMoreGroup'>转发到更多群</button> -->
+    <!-- <button class="shareMore" bindtap='addPerson'>加Ta为好友</button> -->
+    <view class="shareMore waitSure">待通过</view>
+    <!-- <button class="shareMore" bindtap='sendMoreGroup'>查看Ta的投资名片</button> -->
+  </view>
 </scroll-view>

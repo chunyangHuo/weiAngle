@@ -1,4 +1,4 @@
-<view class='outBox'>
+<view class='outBox' wx:if="{{redHB}}">
   <view class="whoGet">
     <view class="flex upBox">
       <view class="des">红包的描述,最多款多160.很长怎么办呢的艰苦奋斗了</view>
@@ -10,4 +10,9 @@
     </view>
   </view>
 </view>
-<button>发布红包</button>
+<image src='{{imgUrls}}' wx:if="{{!redHB}}" class='noHB'></image>
+<form report-submit='true' bindsubmit='formSubmit'>
+  <button form-type='submit' bindtap='createRedBag'>
+    <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
+  </button>
+</form>

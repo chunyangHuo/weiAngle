@@ -87,7 +87,7 @@
     <!--已发红包  -->
     <view class="blockInfo flex" hover-class="t-hoverColor" bindtap='sendedBag'>
       <view class="flex">
-        <image src="/img/icon-haoyou@2x.png" class="blockPic"></image>
+        <image src="/img/icon-hongbao@2x.png" class="blockPic"></image>
         <view class="blockTitle redBox">已发红包</view>
       </view>
       <view class="flex">

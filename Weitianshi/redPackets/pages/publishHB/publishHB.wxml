@@ -1,2 +1,37 @@
-<!--pages/publishHB/publishHB.wxml-->
-<text>pages/publishHB/publishHB.wxml</text>
+<image src="{{imgUrls}}" class="imgBg"></image>
+<view class="redInfo">
+  <view class="bagTitle">红包标题</view>
+  <input class="bagName" placeholder='如：给大家拜年了，投资名片换起来' bindinput="redBagName"></input>
+  <view class="flex">
+    <view class="bagLeft">
+      <view class="bagTitle">红包金额</view>
+      <input class="redBagMoney" placeholder='建议不低于1元' bindinput="redBagMoney"></input>
+    </view>
+    <view class="bagRight">
+      <view class="bagTitle">红包个数</view>
+      <input class="redBagNum" placeholder='请输入' bindinput="redBagNum"></input>
+    </view>
+  </view>
+  <view class="point">由于微信限制，红包金额须大于红包个数，否则影响领取者取现</view>
+  <view class="point">24小时后未领取，金额将自动返还到您的微信零钱包</view>
+
+</view>
+<view class='rgInfo flex'>
+  <view class="left">
+    <view class="rgInfoNum">1200</view>
+    <view class="rgInfoTitle">发红包人数</view>
+  </view>
+  <view class="center">
+    <view class="rgInfoNum">116</view>
+    <view class="rgInfoTitle">金额</view>
+  </view>
+  <view class="right">
+    <view class="rgInfoNum">999</view>
+    <view class="rgInfoTitle">领取次数</view>
+  </view>
+</view>
+<form report-submit='true' bindsubmit='formSubmit'>
+  <button form-type='submit' bindtap='createRedBag'>
+    <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
+  </button>
+</form>
