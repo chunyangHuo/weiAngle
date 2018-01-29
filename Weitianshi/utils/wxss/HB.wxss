@@ -1,0 +1,79 @@
+/*红包领取记录  */
+
+#HBrecord .HBrecord {
+  width: 91%;
+  margin: 0 32rpx;
+  height: 108rpx;
+  border-bottom: 1rpx solid #fff;
+  padding: 32rpx 0;
+  align-items: center;
+}
+
+#HBrecord .HBrecordImg {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  background: #fff;
+}
+
+#HBrecord .recordText {
+  width: 490rpx;
+  max-width: 490rpx;
+  margin-left: 22rpx;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-top: 7rpx;
+}
+#HBrecord .recordText1 {
+ align-items: center
+}
+
+#HBrecord .recordName {
+  font-size: 32rpx;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+  margin-right: 12rpx;
+}
+
+#HBrecord .recordCareer {
+  font-size: 24rpx;
+  color: #fff;
+}
+
+#HBrecord .recordCompany {
+  font-size: 24rpx;
+  color: #fff;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#HBrecord .recordTime {
+  font-size: 24rpx;
+  color: #fff;
+  margin-right: 12rpx;
+}
+
+#HBrecord .recordMoney {
+  font-size: 24rpx;
+  color: #fff;
+}
+#HBrecord .recordMartop{
+  margin-top: 12rpx;
+}
+#HBrecord .recordMoney1 {
+  color: #f7c660;
+}
+
+#HBrecord .recordadd {
+  border: 1rpx solid #f7c660;
+  border-radius: 48rpx;
+  width: 110rpx;
+  height: 54rpx;
+  font-size: 24rpx;
+  color: #f7c660;
+  text-align: center;
+  line-height: 54rpx;
+}

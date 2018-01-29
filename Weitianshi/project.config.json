@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -65,51 +65,9 @@
 				},
 				{
 					"id": -1,
-					"name": "项目详情",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=q0oXEQWe"
-				},
-				{
-					"id": 7,
-					"name": "一键尽调",
-					"pathName": "pages/oneKeyResearch/oneKeyResearch",
-					"query": "id=JWLV6Lr5&share_id=dW48yzLW"
-				},
-				{
-					"id": 8,
-					"name": "投资名片",
-					"pathName": "pages/userDetail/networkDetail/networkDetail",
-					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
-				},
-				{
-					"id": -1,
-					"name": "DD ",
-					"pathName": "pages/myHB/myHB",
-					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
-				},
-				{
-					"id": -1,
-					"name": "DD ",
-					"pathName": "redPackets/pages/myHB/myHB",
-					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
-				},
-				{
-					"id": -1,
-					"name": "DD ",
-					"pathName": "pages/discoverProject/discoverProject",
-					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
-				},
-				{
-					"id": -1,
-					"name": "红包",
-					"pathName": "/redPackets/pages/myHB/myHB",
-					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
-				},
-				{
-					"id": -1,
-					"name": "红包",
-					"pathName": "redPackets/pages/myHB/myHB",
-					"query": "id=6WGmVvLr&user_id=\"6pBNJJYp\""
+					"name": "开过红包",
+					"pathName": "redPackets/pages/openedHB/openedHB",
+					"query": ""
 				}
 			]
 		}

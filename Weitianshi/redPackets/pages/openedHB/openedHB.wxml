@@ -1,2 +1,12 @@
-<!--pages/openHB/openHB.wxml-->
-<text>pages/openHB/openHB.wxml</text>
+<import src="/redPackets/resource/Template/Template.wxml" />
+<!--错误提示  -->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<scroll-view scroll-y style="background:#f14b50;height:1200rpx;">
+  <view class="HBrecordTitile flex">
+    <label style="width:96rpx;height:1px;background:#f7c660;margin-right:16rpx;"></label>
+    红包领取记录
+    <label style="width:96rpx;height:1px;background:#f7c660;margin-left:16rpx;"></label>
+  </view>
+  <!--领取记录  -->
+  <template is="HBrecord"></template>
+</scroll-view>

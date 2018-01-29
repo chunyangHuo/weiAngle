@@ -1,4 +1,24 @@
 <!--提示  -->
-<template name = 'error'>
+<template name='error'>
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</template>
+<!--红包领取记录  -->
+<template name="HBrecord">
+  <view id="HBrecord">
+    <view class="HBrecord flex">
+      <image src="" class="HBrecordImg"></image>
+      <view class="recordText">
+        <view class="recordText1 flex">
+          <view class="recordName">中国FA行业联盟</view>
+          <view class="recordCareer">投资总监</view><view class="recordCompany">·杭州偷着乐网络科技有限公司</view>
+        </view>
+         <view class="recordText1 recordMartop flex">
+          <view class="recordTime">01-21 10:23</view>
+          <view class="recordMoney">领取了 <label class="recordMoney1">3.12</label> 元钱</view>
+        </view>
+        <view class="recordText2 flex"></view>
+      </view>
+      <view class="recordadd">加好友</view>
+    </view>
+  </view>
 </template>
