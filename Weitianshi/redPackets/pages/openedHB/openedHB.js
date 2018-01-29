@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
   },
 
   /**

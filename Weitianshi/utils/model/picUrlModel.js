@@ -28,7 +28,15 @@ const picUrl = {
   projectDetailpotential: "https://cdn.weitianshi.cn/image/banner/match-project-list.png",
   projectBac: "https://cdn.weitianshi.cn/image/banner/img-lock.png",
   signIndentityCard: 'https://cdn.weitianshi.cn/image/banner/img-ticket.png',
-  loadingGif: "https://cdn.weitianshi.cn/image/banner/loading.gif"
+  loadingGif: "https://cdn.weitianshi.cn/image/banner/loading.gif",
+  bg_hongbao: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/bg-hongbao.png",
+  bg_hongbao2: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/bg-hongbao2.png",
+  queding_1: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-queding-n.png",
+  shengcheng: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-shengcheng-n.png",
+  shengcheng2: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-shengcheng2-n.png",
+  zhuanfa: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-zhuanfa-n.png",
+  meifaguo: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-meifaguo.png",
+  tankuang: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-tankuang.png"
 }
 
 export {
