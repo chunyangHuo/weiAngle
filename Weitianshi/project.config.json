@@ -71,8 +71,8 @@
 				},
 				{
 					"id": -1,
-					"name": "开红包",
-					"pathName": "redPackets/pages/openHB/openHB",
+					"name": "发布红包",
+					"pathName": "redPackets/pages/publishHB/publishHB",
 					"query": ""
 				}
 			]
