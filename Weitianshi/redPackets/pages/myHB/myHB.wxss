@@ -1,1 +1,49 @@
-/* pages/myHB/myHB.wxss */
+page {
+  background: #f14b50;
+  width: 100%;
+  height: 100%;
+  margin: 48rpx 32rpx 0 32rpx;
+}
+
+.outBox {
+  background: #ffefe9;
+  width: 688rpx;
+}
+
+.whoGet {
+  padding: 36rpx 44rpx 34rpx 32rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.upBox {
+  margin-bottom: 12rpx;
+}
+
+.upBox, .downBox {
+  justify-content: space-between;
+}
+
+.des {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 320rpx;
+}
+
+.getTime {
+  font-size: 20rpx;
+  color: #999;
+  position: relative;
+  top: 15rpx;
+}
+
+.getNum {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.getPerson {
+  font-size: 24rpx;
+  color: #f7c660;
+}
