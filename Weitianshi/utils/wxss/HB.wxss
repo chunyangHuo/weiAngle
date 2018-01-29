@@ -80,6 +80,51 @@
   text-align: center;
   line-height: 54rpx;
 }
+/*群红包记录  */
+#groupHB{
+  padding: 32rpx;
+}
+
+#groupHB .groupPic {
+  background: #f0f0f0;
+  width: 104rpx;
+  height: 104rpx;
+  margin-right: 24rpx;
+}
+ .aline{
+  opacity: 0.2;
+  background: #fff;
+  width: 686rpx;
+  height: 2rpx;
+  margin: 0 32rpx;
+}
+#groupHB .groupName {
+  font-size: 32rpx;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 12rpx;
+  width: 543rpx;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space: nowrap;
+}
+
+#groupHB .groupNum {
+  font-size: 24rpx;
+  color: #fff;
+  text-align: left;
+}
+
+#groupHB .number {
+  color: #f7c660;
+}
+
+#groupHB .aline {
+  opacity: 0.2;
+  background: #fff;
+  width: 686rpx;
+  height: 1rpx;
+  margin: 0 32rpx;
 
 /*点击领取记录  */
 

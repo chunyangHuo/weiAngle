@@ -26,10 +26,10 @@
 </template>
 <!--群红包  -->
 <template name="groupBox">
-  <view class="flex outsideBox">
+  <view class="flex outsideBox" id="groupHB">
     <view class="groupPic"></view>
     <view class="groupInfo">
-      <view class="groupName">这里是群的名称</view>
+      <view class="groupName">这里是群的名称,可能很长所以查好了监控啦了</view>
       <view class="groupNum">已领
         <label class="number">10</label>个红包，还有
         <label class="number">3</label>个红包未领取 </view>

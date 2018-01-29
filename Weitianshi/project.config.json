@@ -64,9 +64,21 @@
 					"query": "id=yrQVxM0v&index=undefined&share_id=6WGmVvLr"
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "开过红包",
 					"pathName": "redPackets/pages/openedHB/openedHB",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发过的列表",
+					"pathName": "redPackets/pages/myHB/myHB",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布红宝",
+					"pathName": "redPackets/pages/publishHB/publishHB",
 					"query": ""
 				},
 				{
