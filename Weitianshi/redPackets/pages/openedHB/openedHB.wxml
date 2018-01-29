@@ -9,6 +9,7 @@
   </view>
   <template is="groupBox"></template>
   <view class="seeMore" bindtap='seeMore'>查看更多</view>
+  <template is="openHB1" data="{{bg_hongbao2:bg_hongbao2}}"></template>
   <view class="HBrecordTitile flex">
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
     红包领取记录

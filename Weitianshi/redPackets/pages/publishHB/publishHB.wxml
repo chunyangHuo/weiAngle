@@ -1,3 +1,4 @@
+<include src='/utils/wxml/netWork' />
 <image src="{{imgUrls}}" class="imgBg"></image>
 <view class="redInfo">
   <view class="bagTitle">红包标题</view>
@@ -35,3 +36,4 @@
     <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
   </button>
 </form>
+

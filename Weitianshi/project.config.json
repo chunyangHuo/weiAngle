@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -83,8 +83,8 @@
 				},
 				{
 					"id": -1,
-					"name": "打开红包后",
-					"pathName": "redPackets/pages/openedHB/openedHB",
+					"name": "发布红包",
+					"pathName": "redPackets/pages/publishHB/publishHB",
 					"query": ""
 				}
 			]

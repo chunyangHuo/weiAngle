@@ -3,7 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-
+    bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
   },
   onLoad: function (options) {
 
