@@ -7,17 +7,12 @@ Page({
   data: {
     imgUrls: app.globalData.picUrl.bg_hongbao,
     imgUrls2: app.globalData.picUrl.shengcheng,
-    nonet:true
+    nonet: true
   },
   onLoad() {
     console.log(rp)
     app.loginPage(user_id => {
 
-    })
-  },
-  formSubmit(e) {     
-    this.setData({
-      formId: e.detail.formId
     })
   },
 
@@ -55,12 +50,13 @@ Page({
     }
   },
   // 发布红包
-  createRedBag() {
+  createRedBag(e) {
     let user_id = wx.getStorageSync('user_id');
     let number = this.data.number;
     let money = this.data.money;
     let title = this.data.title;
-   rp.publishHB.call(this,user_id,number,money,title)
+    app.formIdSubmit(e);     
+    rp.publishHB.call(this,user_id,number,money,title)
   },
   //获取全部文字
   getAll(bagMoney){

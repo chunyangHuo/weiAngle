@@ -41,7 +41,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          app.log(that,'身份状态获取', res);
+          app.log('身份状态获取', res);
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -113,7 +113,7 @@ Page({
         method: 'POST',
         success: function (res) {
           wx.hideLoading();
-          app.log(that,'我的人脉列表', res);
+          app.log('我的人脉列表', res);
           if (res.data.status_code == '2000000') {
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
@@ -187,7 +187,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      app.log(that,'申请添加人脉完成', res);
+      app.log('申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -196,7 +196,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      app.log(that,'直接添加人脉完成', res);
+      app.log('直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },

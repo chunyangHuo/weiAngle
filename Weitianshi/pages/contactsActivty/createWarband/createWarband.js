@@ -34,7 +34,7 @@ Page({
         var tempFilePaths = res.tempFilePaths;
         // let avatar = tempFilePaths[0];
         let size = res.tempFiles[0].size;
-        app.log(that, "size", size);
+        app.log("size", size);
         if (size <= 1048576) {
           wx.uploadFile({
             url: url_common + '/api/team/uploadLogo', //仅为示例，非真实的接口地址
@@ -112,12 +112,12 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
-                    app.log(that,"res",res);
+                    app.log("res",res);
                   }
                 });
                 app.href('/pages/contactsActivty/activtyRegister/activtyRegister');
               } else if (res.cancel) {
-                app.log(that,"用户点击取消");
+                app.log("用户点击取消");
               }
             }
           });
@@ -132,7 +132,7 @@ Page({
               if (res.confirm) {
                 app.href('/pages/contactsActivty/activtyRegister/activtyRegister');
               } else if (res.cancel) {
-                app.log(that,"用户点击取消");
+                app.log("用户点击取消");
               }
             }
           });

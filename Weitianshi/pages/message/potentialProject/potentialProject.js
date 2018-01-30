@@ -510,7 +510,7 @@ Page({
     let project_id = e.currentTarget.dataset.project;
     let pushToList = this.data.pushToList;
     let that = this;
-    app.log(that,"pushList",pushToList);
+    app.log("pushList",pushToList);
     wx.request({
       url: url_common + '/api/project/importProject',
       data: {

@@ -92,7 +92,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          app.log(that,"身份状态获取",res);
+          app.log("身份状态获取",res);
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -255,7 +255,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log(that,"投资人列表",res.data.data);
+          app.log("投资人列表",res.data.data);
           wx.hideLoading();
           let investorList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -294,7 +294,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log(that,"FA",res.data.data);
+          app.log("FA",res.data.data);
           wx.hideLoading();
           let faList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -352,7 +352,7 @@ Page({
         method: 'POST',
         success: function (res) {
           wx.hideLoading();
-          app.log(that,"我的人脉列表",res);
+          app.log("我的人脉列表",res);
           if (res.data.status_code == '2000000') {
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
@@ -449,7 +449,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      app.log(that,"申请添加人脉完成",res);
+      app.log("申请添加人脉完成",res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -458,7 +458,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      app.log(that,"直接添加人脉完成",res);
+      app.log("直接添加人脉完成",res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -528,16 +528,16 @@ Page({
     let searchData = FilterModel.searchCertain(that);
     let current = this.data.currentTab;
     if (current == 1) {
-      app.log(that,"筛选投资人",searchData);
+      app.log("筛选投资人",searchData);
       this.investorList();
     } else if (current == 2) {
-      app.log(that,"筛选FA",searchData);
+      app.log("筛选FA",searchData);
       this.faList();
     } else if (current == 3) {
-      app.log(that,"筛选我的",searchData);
+      app.log("筛选我的",searchData);
       this.myList();
     } else {
-      app.log(that,"searchCertain()出错了");
+      app.log("searchCertain()出错了");
     }
   },
   // 点击modal层

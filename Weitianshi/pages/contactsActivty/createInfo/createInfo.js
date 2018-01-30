@@ -25,7 +25,7 @@ Page({
     } 
     if (options.team_founder != "undefined") {
       let team_founder = options.team_founder;
-      app.log(that, 'team_founder', team_founder);
+      app.log('team_founder', team_founder);
       that.setData({
         team_founder: team_founder
       });
@@ -49,7 +49,7 @@ Page({
   createPersonEdit: function (e) {
     let that=this;
     let team_founder = e.detail.value;
-    app.log(that, 'team_founder', team_founder);
+    app.log('team_founder', team_founder);
     let team_founderLength = e.detail.value.length;
     if (team_founderLength <= 40) {
       this.setData({
