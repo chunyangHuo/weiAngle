@@ -125,7 +125,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.log(that,'战队排行', res);
+        app.log('战队排行', res);
         wx.hideLoading();
         let team_rank_list = res.data.data.rank_list;
         that.setData({

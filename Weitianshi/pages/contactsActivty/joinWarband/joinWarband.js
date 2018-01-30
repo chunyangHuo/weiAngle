@@ -54,7 +54,7 @@ Page({
     let joinedWarband = this.data.joinedWarband;
     let warband = this.data.warband;
     let offsetTop = e.currentTarget.offsetTop;
-    app.log(that, "team", team);
+    app.log("team", team);
     this.setData({
       scrollTop: offsetTop - 92
     });
@@ -134,7 +134,7 @@ Page({
           page_end: page_end,
           requestCheck: true
         });
-        app.log(that,"warBand",that.data.warband);
+        app.log("warBand",that.data.warband);
       });
     }
   },
@@ -203,8 +203,8 @@ Page({
         arr.push(x.team_id);
         parameter.push(arr);
       });
-      app.log(that,"joinedWarband",joinedWarband);
-      app.log(that,"parameter",parameter);
+      app.log("joinedWarband",joinedWarband);
+      app.log("parameter",parameter);
       wx.showLoading({
         title: 'loading',
         mask: true

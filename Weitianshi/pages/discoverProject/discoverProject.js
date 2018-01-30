@@ -92,7 +92,7 @@ Page({
           that.setData({
             SearchInit: SearchInit
           });
-          app.log(that, "SearchInit", SearchInit);
+          app.log("SearchInit", SearchInit);
         },
       });
     }
@@ -136,7 +136,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var financingNeed = res.data.data;
-        app.log(that, '最新', financingNeed);
+        app.log('最新', financingNeed);
         // 将无筛选条件的最新列表存入变量以备使用
         if (!that.data.financingNeed) {
           that.setData({
@@ -170,7 +170,7 @@ Page({
     }, that).then(res => {
       wx.hideLoading();
       var slectProject = res.data.data;
-      app.log(that, '精选', slectProject);
+      app.log('精选', slectProject);
       // 将无筛选条件的精选列表存入变量以备使用
       if (!that.data.financingNeed) {
         that.setData({
@@ -247,7 +247,7 @@ Page({
     let financingNeed = that.data.financingNeed;
     let currentTab = that.data.currentTab;
     app.operationModel('projectApply', pro_id, res => {
-      app.log(that, 'matchApply', res);
+      app.log('matchApply', res);
       if (currentTab == 0) {
         slectProject.forEach(x => {
           if (x.project_id == pro_id) {

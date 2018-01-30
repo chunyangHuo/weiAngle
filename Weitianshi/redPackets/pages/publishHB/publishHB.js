@@ -29,16 +29,7 @@ Page({
   // 发布红包
   formSubmit(e) {
     let user_id = wx.getStorageInfoSync('user_id');
-    app.httpPost({
-      url: url_common +'/api/wx/saveFormId',
-      data:{
-        open_session: app.globalData.open_session,
-        form_id: e.detail.formId
-      }
-    },this).then(res =>{
-      console.log(res)
-    })
-    
+    app.formIdSubmit(e);      
     rp.publishHB.call(this, user_id, number, money, title)
   },
 })

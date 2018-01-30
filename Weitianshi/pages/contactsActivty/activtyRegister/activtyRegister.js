@@ -33,7 +33,7 @@ Page({
       success: function (res) {
         wx.hideLoading();
         let user_info = res.data.user_info;
-        app.log(that, '用户信息', user_info);
+        app.log('用户信息', user_info);
         that.setData({
           user_id: user_id,
           user_info: user_info,
@@ -86,7 +86,7 @@ Page({
     } else if (user_company_career.length === 0) {
       app.errorHide(that, '请填写职位名称', 3000);
     } else {
-      app.log(that, 'image_id', image_id);
+      app.log('image_id', image_id);
       wx.request({
         url: url_common + '/api/user/updateUser',
         data: {
@@ -127,7 +127,7 @@ Page({
           }
         },
         fail: function (res) {
-          app.log(that,'fail',res);
+          app.log('fail',res);
         },
       });
     }

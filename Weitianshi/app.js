@@ -811,12 +811,26 @@ App({
     });
   },
   // console.log 显示
-  log(that, text, res) {
+  log( text, res) {
     if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
       console.log(text, res);
     } else {
      
     }
+  },
+  // 传formID到后台
+  formIdSubmit(e){
+    this.httpPost({
+      url: this.globalData.url_common + '/api/wx/saveFormId',
+      data: {
+        open_session: this.globalData.open_session,
+        form_id: e.detail.formId
+      }
+    }, this).then(res => {
+      if(res.data.status_code != 2000000){
+        app.log(res.data)
+      }
+    })
   },
   //初始本地缓存
   globalData: {
