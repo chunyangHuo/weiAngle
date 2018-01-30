@@ -51,6 +51,7 @@ Page({
     var page = this.data.page;
     var view_id = '';
     var user_id = wx.getStorageSync('user_id');
+    
     that.setData({
       user_id: user_id,
       id: id,

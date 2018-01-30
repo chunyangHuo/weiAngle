@@ -1,4 +1,5 @@
 let app = getApp();
+let _this = this;
 //我的名片分享
 function myCardShare(that) {
   let user_id = wx.getStorageSync('user_id');
@@ -167,14 +168,15 @@ function warbandMemberShare(that) {
 
 //红包分享
 function redPacketsShare(name, num) {
-  let user_id,share_id = wx.getStorageSync('user_id');
-  app.log(user_id,share_id)
+  let _this = this;
+  let user_id, share_id = wx.getStorageSync('user_id');
+  app.log(user_id, share_id)
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true;
-   let json = {
+  let json = {
     title: name + '发了' + num + '元钱红包,点击领取',
     path: path,
     success: (res) => {
-      this.shareLog(path);
+      _this.shareLog(res,path);
     }
   }
   return json
@@ -188,15 +190,16 @@ function sharePage(user_id, share_id, name) {
     title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
     success: (res) => {
+      console.log(111111111,res)
       console.log(path)
-      _this.shareLog(res,path);
+      // _this.shareLog(res, path);
     }
   }
   return json
 }
 
 //分享打点
-function shareLog(res,path) {
+function shareLog(res, path) {
   app.log("path", path)
   let shareTicket;
   if (res.shareTickets) {
@@ -206,6 +209,7 @@ function shareLog(res,path) {
   wx.login({
     success(res) {
       let code = res.code;
+      console.log(shareTicket)
       if (code) {
         //如果是分享到群里
         if (shareTicket) {

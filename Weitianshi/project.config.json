@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
-	"appid": "wx29c97aaa8a58aedb",
-	"projectname": "%E5%A4%A7%E6%B9%BE%E5%8C%BA",
+	"appid": "wxca0abf6f55deb8d8",
+	"projectname": "%E7%BB%BF%E6%9F%A5%E5%A6%B9",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,

@@ -14,6 +14,9 @@ Page({
   },
   onLoad: function (options) {
     console.log(this.data.kai);
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
   formsubmit: function () {
 
@@ -36,13 +39,14 @@ Page({
       });
     }, 1000)
   },
-  //打开红包后,点击确定跳转
+  // 打开红包后,点击确定跳转
   makeSure() {
     this.setData({
       show: false
     })
     app.href("/redPackets/pages/openedHB/openedHB")
   },
+  // 分享页面
   onShareAppMessage(){
     return shareModel.redPacketsShare('阮千军',1000000)
   }

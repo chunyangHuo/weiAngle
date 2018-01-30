@@ -16,6 +16,9 @@ Page({
     app.loginPage(user_id => {
       rp.recordHB.call(this)
     })
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   redBagName(e) {
