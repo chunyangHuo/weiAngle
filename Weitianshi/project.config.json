@@ -44,6 +44,12 @@
 					"name": "publishHB",
 					"pathName": "redPackets/pages/publishHB/publishHB",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "publishedHB",
+					"pathName": "redPackets/pages/publishedHB/publishedHB",
+					"query": ""
 				}
 			]
 		}
