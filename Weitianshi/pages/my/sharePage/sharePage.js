@@ -6,21 +6,28 @@ Page({
   data: {
     user: "",
     followed_user_id: "",
-    nonet: true
+    nonet: true,
+    bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
+    kaiStyle: true,
   },
   onLoad: function (options) {
-    app.log(that,'this is sharePage');
+    console.log(options)
     let that = this;
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
+    let is_redPackets = options.is_redPackets;
+    console.log(followed_user_id, share_id)
     that.setData({
       followed_user_id: followed_user_id,
-      share_id: share_id
+      share_id: share_id,
+      is_redPackets: is_redPackets
     });
     //登录态维护
     app.loginPage(function (user_id) {
       let view_id = user_id;
-      wx.setStorageSync('user_id', user_id);
+      if(!user_id){
+        wx.setStorageSync('user_id', user_id);
+      }
       //载入被分享者的个人信息
       wx.request({
         url: url_common + '/api/user/getUserAllInfo',
@@ -33,7 +40,7 @@ Page({
         success: function (res) {
           let user = res.data.user_info;
           let count = res.data.count;
-          app.log(that,"count",count);
+          app.log("count", count);
           let invest = res.data.invest_info;
           let resource = res.data.resource_info;
           let project_info = res.data.project_info;
@@ -56,9 +63,9 @@ Page({
         fail: function (res) {
         },
       });
-      app.log(that,"分享者",share_id);
-      app.log(that,"数据显示的人",followed_user_id);
-      app.log(that,"查看的人",view_id);
+      app.log("分享者", share_id);
+      app.log("数据显示的人", followed_user_id);
+      app.log("查看的人", view_id);
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
         app.href('/pages/my/my/my')
@@ -103,7 +110,7 @@ Page({
     let user_id = this.data.user_id;//我的id,查看者的id
     let followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
     let button_type = this.data.button_type;
-    app.log(that,"button_type",button_type);
+    app.log("button_type", button_type);
     let view_id = this.data.view_id;
     // button_type==0  0.申请加人脉按钮 1.不显示任何按钮  2.待验证   3.同意加为人脉  4.加为单方人脉
     //直接可添加好友的情况
@@ -144,9 +151,9 @@ Page({
         },
       });
     } else if (button_type == 1) {
-      app.log(that,"互為好友或單方人脈");
+      app.log("互為好友或單方人脈");
     } else if (button_type == 2) {
-      app.log(that,"待驗證");
+      app.log("待驗證");
     } else if (button_type == 3) {
       wx.request({
         url: url + '/api/user/handleApplyFollowUser',
@@ -208,7 +215,7 @@ Page({
                       if (res.confirm) {
                         app.href('/pages/discoverInvest/discoverInvest');
                       } else if (res.cancel) {
-                        app.log(that,'用户点击取消');
+                        app.log('用户点击取消');
                       }
                     }
                   });

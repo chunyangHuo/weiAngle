@@ -1,7 +1,8 @@
 <import src="/pages/Template/Template.wxml" />
 <include src='/utils/wxml/netWork' />
 <view wx:if="{{nonet}}">
-  <template is="topBlock"></template>
+  <template wx:if='{{is_redPackets}}' is="openHB" data="{{bg_hongbao2,kaiStyle}}"></template>
+  <template wx:else is="topBlock"></template>
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,count:count,text:'加他为人脉',show:0,IdentificationShow:0,playTime:1}}"></template>
   <view class="downBox">
@@ -19,7 +20,6 @@
 
     <!--资源需求-->
     <view class="whiteSpace"></view>
-    <template is="forButton"></template>
   </view>
   <!--按钮  -->
   <!--加人脉按钮-->

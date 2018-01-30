@@ -25,85 +25,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "活动签到",
-					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
-					"query": "apply_id=2081&&activity_id=26"
-				},
-				{
-					"id": 1,
-					"name": "活动签到确认",
-					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
-					"query": "apply_id=8&&activity_id=1"
-				},
-				{
-					"id": -1,
-					"name": "投资人不可卡",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=aWJxKMrY"
-				},
-				{
-					"id": -1,
-					"name": "产品",
-					"pathName": "pages/myProject/proBrand/proBrand",
-					"query": "user_id=vrny6QAp&project_id=2rzVKYr3"
-				},
-				{
-					"id": -1,
-					"name": "本人项目详情",
-					"pathName": "pages/myProject/projectDetail/projectDetail",
-					"query": "id=k0xlyx0v&index=undefined"
-				},
-				{
-					"id": -1,
-					"name": "他人项目详情",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=yrQVxM0v&index=undefined&share_id=6WGmVvLr"
-				},
-				{
-					"id": 6,
-					"name": "开过的红包",
-					"pathName": "redPackets/pages/openedHB/openedHB",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "发过的列表",
-					"pathName": "redPackets/pages/myHB/myHB",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "发布红宝",
-					"pathName": "redPackets/pages/publishHB/publishHB",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "发布红包",
-					"pathName": "redPackets/pages/publishHB/publishHB",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "群红包详情",
-					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "打开红包",
-					"pathName": "redPackets/pages/openHB/openHB",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "群详情",
-					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
-					"query": ""
+					"name": "名片分享页面",
+					"pathName": "pages/my/sharePage/sharePage",
+					"query": "share_id=e0qk38gp&user_id=vrny6QAp&is_redPackets=true"
 				}
 			]
 		}
