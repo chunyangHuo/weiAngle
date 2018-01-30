@@ -8,6 +8,7 @@ Page({
     queding: app.globalData.picUrl.queding_1,
     zhuanfa: app.globalData.picUrl.zhuanfa,
     tankuang: app.globalData.picUrl.tankuang,
+    open: app.globalData.picUrl.open,
     show: true,
     kai: true,
   },
@@ -17,6 +18,12 @@ Page({
   formsubmit: function () {
 
   },
+  hidemodel: function () {
+    let that = this;
+    that.setData({
+      show: true
+    });
+  },
   kai: function () {
     let that = this;
     that.setData({
@@ -24,7 +31,8 @@ Page({
     })
     setTimeout(() => {
       that.setData({
-        show: false
+        show: false,
+        kai: true,
       });
     }, 1000)
   },

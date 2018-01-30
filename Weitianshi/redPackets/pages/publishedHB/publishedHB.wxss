@@ -15,6 +15,7 @@
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 999;
 }
 
 .tankuang {
@@ -37,3 +38,20 @@
   top: 470rpx;
   left: 238rpx;
 }
+
+button {
+  background: none;
+}
+
+.buttonOne {
+  background: none;
+}
+
+.getName {
+  top: 770rpx;
+  left: 252rpx;
+  position: absolute;
+  font-size: 24rpx;
+  color: #f14b50;
+}
+

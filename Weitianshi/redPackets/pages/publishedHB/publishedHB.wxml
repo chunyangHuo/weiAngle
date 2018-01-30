@@ -2,19 +2,22 @@
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <scroll-view scroll-y style="height:1200rpx;">
-  <view wx:if="{{show}}">
-    <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai}}"></template>
-    <form report-submit='true' bindsubmit='formsubmit'>
+  <view>
+    <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai,open}}"></template>
+    <form report-submit='true' bindsubmit='formsubmit' wx:if="{{show}}">
       <button form-type='submit'>
         <image class="openZhuan" src="{{zhuanfa}}"></image>
       </button>
     </form>
   </view>
-  <view class="modalBox" wx:if="{{!show}}">
+  <view class="modalBox" wx:if="{{!show}}" bindtap='hidemodel'>
     <image class="tankuang" src="{{tankuang}}"></image>
     <view class="getMoney">￥105.11</view>
+    <view class="getName">
+      <checkbox class="checkM" checked/> 添加xxx投资名片
+    </view>
     <form report-submit='true' bindsubmit='makeSure'>
-      <button form-type='submit'>
+      <button form-type='submit' hover-class='buttonOne'>
         <image class="btnSure" src="{{queding}}"></image>
       </button>
     </form>

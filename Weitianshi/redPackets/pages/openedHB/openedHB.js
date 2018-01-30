@@ -6,6 +6,7 @@ let rp = new RP.redPackets();
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
+    open: app.globalData.picUrl.open,
   },
   onLoad: function (options) {
     app.getWxGroupInfo(options, res => {

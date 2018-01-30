@@ -4,11 +4,15 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
+    queding: app.globalData.picUrl.queding_1,
+    tankuang: app.globalData.picUrl.tankuang,
+    show: true,
     user: "",
     followed_user_id: "",
     nonet: true,
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
-    kaiStyle: true,
+    kai: true,
+    open: app.globalData.picUrl.open,
   },
   onLoad: function (options) {
     let that = this;
@@ -88,7 +92,32 @@ Page({
       });
     })
   },
-
+  hidemodel: function () {
+    let that = this;
+    that.setData({
+      show: true
+    });
+  },
+  // 开红包
+  kai: function () {
+    let that = this;
+    that.setData({
+      kai: false,
+    })
+    setTimeout(() => {
+      that.setData({
+        show: false,
+        kai: true,
+      });
+    }, 1000)
+  },
+  //打开红包后,点击确定跳转
+  makeSure() {
+    this.setData({
+      show: false
+    })
+    app.href("/redPackets/pages/openedHB/openedHB")
+  },
   // 回到首页
   moreProject: function () {
     app.href('/pages/discoverProject/discoverProject');
