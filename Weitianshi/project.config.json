@@ -65,7 +65,7 @@
 				},
 				{
 					"id": 6,
-					"name": "开过红包",
+					"name": "开过的红包",
 					"pathName": "redPackets/pages/openedHB/openedHB",
 					"query": ""
 				},
@@ -85,6 +85,30 @@
 					"id": -1,
 					"name": "发布红包",
 					"pathName": "redPackets/pages/publishHB/publishHB",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "开过红包",
+					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群红包详情",
+					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打开红包",
+					"pathName": "redPackets/pages/openHB/openHB",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打开红包",
+					"pathName": "redPackets/pages/openHB/openHB",
 					"query": ""
 				}
 			]

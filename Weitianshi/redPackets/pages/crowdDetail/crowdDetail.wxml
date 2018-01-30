@@ -1,2 +1,3 @@
-<!--pages/morHB/moreHB.wxml-->
-<text>pages/morHB/moreHB.wxml</text>
+<view class="groupName"></view>
+<view class="HBPerson"></view>
+<image src='{{imgUrls}}' class='noHB'></image>

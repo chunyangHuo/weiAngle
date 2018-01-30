@@ -2,10 +2,21 @@
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <scroll-view scroll-y style="height:1200rpx;">
-  <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai}}"></template>
-  <form report-submit='true' bindsubmit='formsubmit'>
-    <button form-type='submit'>
-     <image class="openZhuan" src="{{zhuanfa}}"></image>
-    </button>
-  </form>
+  <view wx:if="{{show}}">
+    <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai}}"></template>
+    <form report-submit='true' bindsubmit='formsubmit'>
+      <button form-type='submit'>
+        <image class="openZhuan" src="{{zhuanfa}}"></image>
+      </button>
+    </form>
+  </view>
+  <view class="modalBox" wx:if="{{!show}}">
+    <image class="tankuang" src="{{tankuang}}"></image>
+    <view class="getMoney">￥105.11</view>
+    <form report-submit='true' bindsubmit='makeSure'>
+      <button form-type='submit'>
+        <image class="btnSure" src="{{queding}}"></image>
+      </button>
+    </form>
+  </view>
 </scroll-view>

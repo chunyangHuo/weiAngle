@@ -2,6 +2,7 @@
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <scroll-view scroll-y style="background:#f14b50;height:1200rpx;">
+  <template is="openHB1" data="{{bg_hongbao2:bg_hongbao2}}"></template>
   <view class="moreHB flex">
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
     更多群红包
@@ -9,7 +10,7 @@
   </view>
   <template is="groupBox"></template>
   <view class="seeMore" bindtap='seeMore'>查看更多</view>
-  <template is="openHB1" data="{{bg_hongbao2:bg_hongbao2}}"></template>
+
   <view class="HBrecordTitile flex">
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
     红包领取记录
