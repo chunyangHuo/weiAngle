@@ -4,14 +4,19 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
+    queding: app.globalData.picUrl.queding_1,
+    tankuang: app.globalData.picUrl.tankuang,
+    show: true,
     user: "",
     followed_user_id: "",
     nonet: true,
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
-    kaiStyle: true,
+    kai: true,
+    open: app.globalData.picUrl.open,
   },
   onLoad: function (options) {
-    console.log(options)
+    console.log(options);
+    console.log(this.data);
     let that = this;
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
@@ -25,7 +30,7 @@ Page({
     //登录态维护
     app.loginPage(function (user_id) {
       let view_id = user_id;
-      if(!user_id){
+      if (!user_id) {
         wx.setStorageSync('user_id', user_id);
       }
       //载入被分享者的个人信息
@@ -92,6 +97,32 @@ Page({
     });
     app.netWorkChange(that);
 
+  },
+  hidemodel: function () {
+    let that = this;
+    that.setData({
+      show: true
+    });
+  },
+  // 开红包
+  kai: function () {
+    let that = this;
+    that.setData({
+      kai: false,
+    })
+    setTimeout(() => {
+      that.setData({
+        show: false,
+        kai: true,
+      });
+    }, 1000)
+  },
+  //打开红包后,点击确定跳转
+  makeSure() {
+    this.setData({
+      show: false
+    })
+    app.href("/redPackets/pages/openedHB/openedHB")
   },
   // 回到首页
   moreProject: function () {

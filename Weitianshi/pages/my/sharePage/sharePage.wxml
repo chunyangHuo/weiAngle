@@ -1,7 +1,24 @@
 <import src="/pages/Template/Template.wxml" />
 <include src='/utils/wxml/netWork' />
 <view wx:if="{{nonet}}">
-  <template wx:if='{{is_redPackets}}' is="openHB" data="{{bg_hongbao2,kaiStyle}}"></template>
+  <view wx:if='{{is_redPackets}}'>
+    <!--弹框 提示 -->
+    <view>
+      <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai,open:open}}"></template>
+    </view>
+    <view class="modalBox" wx:if="{{!show}}" bindtap='hidemodel'>
+      <image class="tankuang" src="{{tankuang}}"></image>
+      <view class="getMoney">￥105.11</view>
+      <view class="getName">
+        <checkbox class="checkM" checked/> 添加xxx投资名片
+      </view>
+      <form report-submit='true' bindsubmit='makeSure'>
+        <button form-type='submit' hover-class='buttonnone'>
+          <image class="btnSure" src="{{queding}}"></image>
+        </button>
+      </form>
+    </view>
+  </view>
   <template wx:else is="topBlock"></template>
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,count:count,text:'加他为人脉',show:0,IdentificationShow:0,playTime:1}}"></template>
