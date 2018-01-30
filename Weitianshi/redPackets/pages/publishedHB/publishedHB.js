@@ -1,12 +1,14 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+let shareModel = require('../../../utils/model/shareModel.js')
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     queding: app.globalData.picUrl.queding_1,
     zhuanfa: app.globalData.picUrl.zhuanfa,
     tankuang: app.globalData.picUrl.tankuang,
+    open: app.globalData.picUrl.open,
     show: true,
     kai: true,
   },
@@ -16,6 +18,12 @@ Page({
   formsubmit: function () {
 
   },
+  hidemodel: function () {
+    let that = this;
+    that.setData({
+      show: true
+    });
+  },
   kai: function () {
     let that = this;
     that.setData({
@@ -23,7 +31,8 @@ Page({
     })
     setTimeout(() => {
       that.setData({
-        show: false
+        show: false,
+        kai: true,
       });
     }, 1000)
   },
@@ -33,5 +42,8 @@ Page({
       show: false
     })
     app.href("/redPackets/pages/openedHB/openedHB")
+  },
+  onShareAppMessage(){
+    return shareModel.redPacketsShare('阮千军',1000000)
   }
 })

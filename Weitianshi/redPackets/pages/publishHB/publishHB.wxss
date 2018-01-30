@@ -22,7 +22,6 @@
   border-radius: 8rpx;
   height: 104rpx;
   font-size: 28rpx;
-  color: #ccc;
 }
 
 .bagName {

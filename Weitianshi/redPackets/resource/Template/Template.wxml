@@ -54,7 +54,7 @@
       </view>
       <form report-submit='true' bindsubmit='formsubmit'>
         <button form-type='submit'>
-          <image src="../../img/kai.png" class="{{kaiStyle == true ?'openKai':'openKai1'}}" bindtap='kai'></image>
+          <image src="{{open}}" class="{{kaiStyle == true ?'openKai':'openKai1'}}" bindtap='kai'></image>
         </button>
       </form>
       <view class="opentishi">每个用户可领取一次红包，金额将直接存入微信零钱包 本红包仅限发布者自己转发才可领取

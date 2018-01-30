@@ -4,19 +4,21 @@ let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
+    queding: app.globalData.picUrl.queding_1,
+    tankuang: app.globalData.picUrl.tankuang,
+    show: true,
     user: "",
     followed_user_id: "",
     nonet: true,
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
-    kaiStyle: true,
+    kai: true,
+    open: app.globalData.picUrl.open,
   },
   onLoad: function (options) {
-    console.log(options)
     let that = this;
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
-    console.log(followed_user_id, share_id)
     that.setData({
       followed_user_id: followed_user_id,
       share_id: share_id,
@@ -25,73 +27,96 @@ Page({
     //登录态维护
     app.loginPage(function (user_id) {
       let view_id = user_id;
-      if(!user_id){
-        wx.setStorageSync('user_id', user_id);
-      }
-      //载入被分享者的个人信息
-      wx.request({
-        url: url_common + '/api/user/getUserAllInfo',
-        data: {
-          share_id: share_id,
-          user_id: followed_user_id,
-          view_id: view_id,
-        },
-        method: 'POST',
-        success: function (res) {
-          let user = res.data.user_info;
-          let count = res.data.count;
-          app.log("count", count);
-          let invest = res.data.invest_info;
-          let resource = res.data.resource_info;
-          let project_info = res.data.project_info;
-          let invest_case = res.data.invest_case;
-          let button_type = res.data.button_type;
-          that.setData({
-            user: user,
-            invest: invest,
-            resource: resource,
-            project_info: project_info,
-            invest_case: invest_case,
-            button_type: button_type,
-            count: count,
-            view_id: view_id
-          });
-          wx.setNavigationBarTitle({
-            title: res.data.user_info.user_real_name + "的投资名片",
-          });
-        },
-        fail: function (res) {
-        },
-      });
       app.log("分享者", share_id);
       app.log("数据显示的人", followed_user_id);
       app.log("查看的人", view_id);
+
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
-        app.href('/pages/my/my/my')
+        app.href('/pages/my/my/my');
+        return
       }
-      that.setData({
-        user_id: user_id,
-      });
-      //查看是否注册
-      wx.request({
-        url: url_common + '/api/user/checkUserInfo',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status_code == 2000000) {
-            let complete = res.data.is_complete;
-            that.setData({
-              complete: complete
-            });
-          }
-        },
-      });
+
+      that.getShareIdInfo(share_id, followed_user_id, view_id);
+      that.checkRegisterComplete(user_id);
     });
     app.netWorkChange(that);
+  },
+  // 载入被分享者的个人信息
+  getShareIdInfo(share_id, followed_user_id, view_id) {
+    let that = this;
+    app.httpPost({
+      url: url_common + '/api/user/getUserAllInfo',
+      data: {
+        share_id: share_id,
+        user_id: followed_user_id,
+        view_id: view_id,
+      }
+    }, this).then(res => {
+      let user = res.data.user_info;
+      let count = res.data.count;
+      app.log("count", count);
+      let invest = res.data.invest_info;
+      let resource = res.data.resource_info;
+      let project_info = res.data.project_info;
+      let invest_case = res.data.invest_case;
+      let button_type = res.data.button_type;
+      that.setData({
+        user: user,
+        invest: invest,
+        resource: resource,
+        project_info: project_info,
+        invest_case: invest_case,
+        button_type: button_type,
+        count: count,
+        view_id: view_id,
+        user_id: view_id
+      });
+      wx.setNavigationBarTitle({
+        title: res.data.user_info.user_real_name + "的投资名片",
+      });
+    })
+  },
 
+  // 检查注册信息是否完整
+  checkRegisterComplete(user_id) {
+    let that = this
+    app.httpPost({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id
+      }
+    }, this).then(res => {
+      that.setData({
+        complete: res.data.is_complete
+      });
+    })
+  },
+  hidemodel: function () {
+    let that = this;
+    that.setData({
+      show: true
+    });
+  },
+  // 开红包
+  kai: function () {
+    let that = this;
+    that.setData({
+      kai: false,
+    })
+    setTimeout(() => {
+      that.setData({
+        show: false,
+        kai: true,
+      });
+    }, 1000)
+  },
+  //打开红包后,点击确定跳转
+  makeSure() {
+    this.setData({
+      show: false
+    })
+    app.href("/redPackets/pages/openedHB/openedHB")
   },
   // 回到首页
   moreProject: function () {

@@ -40,6 +40,7 @@ const picUrl = {
   packetlist:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-packet-list.png",
   packetover:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-drawed-over.png",
   sendHB:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-give-packets.png"
+  open:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/open-packets.png"
 }
 
 export {
