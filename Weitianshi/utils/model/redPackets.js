@@ -1,4 +1,5 @@
 let app = getApp();
+let _this = this;
 let url_common = app.globalData.url_common
 let url_publishHB = url_common + '/api/payment/unifyOrder'
 let url_publishedHB = url_common + '/api/payment/getUserRedPacket'
@@ -19,7 +20,7 @@ export class redPackets {
   }
 
   // 发布红包
-  publishHB(user_id, number, money, title,cb1,cb2) {
+  publishHB(user_id, number, money, title, cb1, cb2) {
     return app.httpPost({
       url: url_publishHB,
       data: {
@@ -28,13 +29,13 @@ export class redPackets {
         money: money,
         title: title
       }
-    },this).then(res => {
-      if(cb1 && cb1 != null){
+    }, this).then(res => {
+      if (cb1 && cb1 != null) {
         cb1()
-      }else{
-        if(cb2){
+      } else {
+        if (cb2) {
           cb2()
-        }else{
+        } else {
           let that = this;
           wx.requestPayment({
             timeStamp: res.data.data.timeStamp,
@@ -43,10 +44,10 @@ export class redPackets {
             signType: res.data.data.signType,
             paySign: res.data.data.paySign,
             complete: function (response) {
-              if (response.errMsg =='requestPayment:ok'){
+              if (response.errMsg == 'requestPayment:ok') {
                 app.href('/redPackets/pages/publishedHB/publishedHB');
-              }else{
-                app.errorHide(that,response.errMsg);
+              } else {
+                app.errorHide(that, response.errMsg);
               }
             }
           })
@@ -55,14 +56,14 @@ export class redPackets {
     })
   }
 
-  //发布红包的列表
-  publishedHBList(user_id){
+  // 已发布红包的列表
+  publishedHBList(user_id) {
     return app.httpPost({
       url: url_publishedHB,
       data: {
         user_id: user_id
       }
-    },this).then(res => {
+    }, this).then(res => {
       wx.hideLoading();
       console.log(res.data.data)
       this.setData({
@@ -70,4 +71,25 @@ export class redPackets {
       })
     });
   }
+
+  // 更多群红包信息
+  otherGroupHB(openGId) {
+    let user_id = wx.getStorageInfoSync('user_id');
+    if (!user_id) {
+      app.loginPage(user_id => {
+        _this.otherGroupHB(openGId)
+      })
+      return;
+    }
+    app.httpPost({
+      url: url_common + '/api/payment/getMoreGroup',
+      data: {
+        user_id,
+        openGId
+      }
+    }, this).then(res => {
+      console.log(res)
+    })
+  }
+  // 具体某个群里的红包
 }

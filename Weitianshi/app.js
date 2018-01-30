@@ -810,6 +810,7 @@ App({
       atBottom: true
     });
   },
+
   // console.log 显示
   log( text, res) {
     if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
@@ -818,6 +819,7 @@ App({
      
     }
   },
+
   // 传formID到后台
   formIdSubmit(e){
     this.httpPost({
@@ -832,6 +834,18 @@ App({
       }
     })
   },
+
+  // 获取当前微信群信息
+  getWxGroupInfo(options, cb) {
+    wx.getShareInfo({
+      shareTicket: options.shareTicket,
+      complete(res) {
+        console.log(res)
+        cb();
+      }
+    })
+  },
+
   //初始本地缓存
   globalData: {
     routerPage: [],

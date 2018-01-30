@@ -17,7 +17,6 @@
   left: 14%;
   top: 300rpx;
 }
-
 .noHB {
   width: 514rpx;
   height: 290rpx;

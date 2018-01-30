@@ -1,12 +1,16 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+let RP = require('../../../utils/model/redPackets.js');
+let rp = new RP.redPackets();
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
   },
   onLoad: function (options) {
-
+    app.getWxGroupInfo(options,res=>{
+      // rp.otherGroupHB.call(this,openGId)
+    })
   },
   // 跳转到群详情
   redDetail(){

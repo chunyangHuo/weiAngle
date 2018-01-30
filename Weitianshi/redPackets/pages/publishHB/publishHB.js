@@ -12,7 +12,7 @@ Page({
   onLoad() {
     console.log(rp)
     app.loginPage(user_id => {
-
+  
     })
   },
 

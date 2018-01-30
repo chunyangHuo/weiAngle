@@ -165,6 +165,17 @@ function warbandMemberShare(that) {
   }
 }
 
+//红包分享
+function redPacketsShare(user_id, share_id, name, num) {
+  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true;
+  return json = {
+    title: name + '发了' + num + '元钱红包,点击领取',
+    path: path,
+    success: (res) => {
+      this.shareLog(path);
+    }
+  }
+}
 /* -------------------------------------------------------------------- */
 //分享名片详情(user_id为数据所有人ID,share_Id为分享人的ID,name为数据所有人的姓名)
 function sharePage(user_id, share_id, name) {
@@ -233,8 +244,8 @@ function shareLog(path) {
     }
   });
 }
-/* --------------------------------------------------------------------- */
 
+/* --------------------------------------------------------------------- */
 export {
   match1,
   orgDetail,
