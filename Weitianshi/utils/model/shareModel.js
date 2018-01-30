@@ -166,22 +166,12 @@ function warbandMemberShare(that) {
 }
 
 //红包分享
-function redPacketsShare(user_id, share_id, name, num) {
+function redPacketsShare(name, num) {
+  let user_id,share_id = wx.getStorageSync('user_id');
+  app.log(user_id,share_id)
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true;
-  return json = {
+   let json = {
     title: name + '发了' + num + '元钱红包,点击领取',
-    path: path,
-    success: (res) => {
-      this.shareLog(path);
-    }
-  }
-}
-/* -------------------------------------------------------------------- */
-//分享名片详情(user_id为数据所有人ID,share_Id为分享人的ID,name为数据所有人的姓名)
-function sharePage(user_id, share_id, name) {
-  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
-  let json = {
-    title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
     success: (res) => {
       this.shareLog(path);
@@ -189,9 +179,25 @@ function sharePage(user_id, share_id, name) {
   }
   return json
 }
+/* -------------------------------------------------------------------- */
+//分享名片详情(user_id为数据所有人ID,share_Id为分享人的ID,name为数据所有人的姓名)
+function sharePage(user_id, share_id, name) {
+  let _this = this;
+  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+  let json = {
+    title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
+    path: path,
+    success: (res) => {
+      console.log(path)
+      _this.shareLog(res,path);
+    }
+  }
+  return json
+}
 
 //分享打点
-function shareLog(path) {
+function shareLog(res,path) {
+  app.log("path", path)
   let shareTicket;
   if (res.shareTickets) {
     shareTicket = res.shareTickets[0];
@@ -210,7 +216,7 @@ function shareLog(path) {
               let iv = res.iv;
               //发送请求到后台
               wx.request({
-                url: url_common + '/api/log/shareLogRecord',
+                url: app.globalData.url_common + '/api/log/shareLogRecord',
                 method: "POST",
                 data: {
                   app_key: app.globalData.app_key,
@@ -229,7 +235,7 @@ function shareLog(path) {
           console.log(code, path)
           //发送请求到后台
           wx.request({
-            url: url_common + '/api/log/shareLogRecord',
+            url: app.globalData.url_common + '/api/log/shareLogRecord',
             method: "POST",
             data: {
               code: code,
@@ -262,6 +268,8 @@ export {
   activtyShare,
   topPlayerShare,
   warbandMemberShare,
-  projectListShare
+  projectListShare,
+  redPacketsShare,
+  shareLog
 }
 

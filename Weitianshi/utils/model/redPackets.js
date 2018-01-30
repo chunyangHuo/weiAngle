@@ -30,8 +30,10 @@ export class redPackets {
         title: title
       }
     }, this).then(res => {
+      let unique_id = res.data.data.packet_unique_id;
+      let prepay_id = res.data.data.prepay_id;
       if (cb1 && cb1 != null) {
-        cb1()
+        cb1(unique_id,prepay_id)
       } else {
         if (cb2) {
           cb2()
@@ -45,7 +47,8 @@ export class redPackets {
             paySign: res.data.data.paySign,
             complete: function (response) {
               if (response.errMsg == 'requestPayment:ok') {
-                app.href('/redPackets/pages/publishedHB/publishedHB');
+                app.formIdSubmit(prepay_id);
+                app.href('/redPackets/pages/publishedHB/publishedHB?unique_id=' + unique_id);
               } else {
                 app.errorHide(that, response.errMsg);
               }
