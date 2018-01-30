@@ -30,8 +30,10 @@ export class redPackets {
         title: title
       }
     }, this).then(res => {
+      let unique_id = res.data.data.packet_unique_id;
+      let prepay_id = res.data.data.prepay_id;
       if (cb1 && cb1 != null) {
-        cb1()
+        cb1(unique_id,prepay_id)
       } else {
         if (cb2) {
           cb2()
@@ -45,7 +47,8 @@ export class redPackets {
             paySign: res.data.data.paySign,
             complete: function (response) {
               if (response.errMsg == 'requestPayment:ok') {
-                app.href('/redPackets/pages/publishedHB/publishedHB');
+                app.formIdSubmit(prepay_id);
+                app.href('/redPackets/pages/publishedHB/publishedHB?unique_id=' + unique_id);
               } else {
                 app.errorHide(that, response.errMsg);
               }
@@ -73,8 +76,8 @@ export class redPackets {
   }
 
   // 更多群红包信息
-  otherGroupHB(openGId) {
-    let user_id = wx.getStorageInfoSync('user_id');
+  otherGroupHB(openGId,cb) {
+    let user_id = '8W1ERo3W';
     if (!user_id) {
       app.loginPage(user_id => {
         _this.otherGroupHB(openGId)
@@ -88,8 +91,20 @@ export class redPackets {
         openGId
       }
     }, this).then(res => {
-      console.log(res)
+      cb()
     })
   }
+
   // 具体某个群里的红包
+  groupInsideHB(openGId,cb) {
+    let user_id = wx.getStorageInfoSync('user_id');
+    app.httpPost({
+      url: url_common + '/api/payment/getMoreGroupPacket',
+      data:{
+        user_id,openGId
+      }
+    },this).then(res=>{
+      cb()
+    })
+  }
 }

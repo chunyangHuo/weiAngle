@@ -1,6 +1,7 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
+let shareModel = require('../../../utils/model/shareModel.js')
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
@@ -41,5 +42,8 @@ Page({
       show: false
     })
     app.href("/redPackets/pages/openedHB/openedHB")
+  },
+  onShareAppMessage(){
+    return shareModel.redPacketsShare('阮千军',1000000)
   }
 })

@@ -822,12 +822,23 @@ App({
 
   // 传formID到后台
   formIdSubmit(e){
-    this.httpPost({
-      url: this.globalData.url_common + '/api/wx/saveFormId',
-      data: {
+    let data;
+    if(e.detail){
+      data = {
         open_session: this.globalData.open_session,
         form_id: e.detail.formId
       }
+    }else{
+      data = {
+        open_session: this.globalData.open_session,
+        form_id: e,
+        scene: "payment"
+      }
+    }
+
+    this.httpPost({
+      url: this.globalData.url_common + '/api/wx/saveFormId',
+      data: data
     }, this).then(res => {
       if(res.data.status_code != 2000000){
         app.log(res.data)
