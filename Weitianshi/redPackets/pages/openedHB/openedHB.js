@@ -8,15 +8,15 @@ Page({
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
   },
   onLoad: function (options) {
-    app.getWxGroupInfo(options,res=>{
-      // rp.otherGroupHB.call(this,openGId)
+    app.getWxGroupInfo(options, res => {
+      rp.otherGroupHB.call(this,options.shareTicket)
     })
   },
   // 跳转到群详情
-  redDetail(){
+  redDetail() {
     app.href('/redPackets/pages/crowdDetail/crowdDetail')
   },
-  seeMore() { 
+  seeMore() {
     app.href('/redPackets/pages/allCrowdHB/allCrowdHB')
   },
   // 跳转到首页
@@ -32,8 +32,8 @@ Page({
 
   },
   //加他为好友
-  addPerson() { 
-    
+  addPerson() {
+
   },
   //看看Ta的投资名片
   sendMoreGroup() {

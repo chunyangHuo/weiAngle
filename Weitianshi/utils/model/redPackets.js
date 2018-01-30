@@ -73,8 +73,8 @@ export class redPackets {
   }
 
   // 更多群红包信息
-  otherGroupHB(openGId) {
-    let user_id = wx.getStorageInfoSync('user_id');
+  otherGroupHB(openGId,cb) {
+    let user_id = '8W1ERo3W';
     if (!user_id) {
       app.loginPage(user_id => {
         _this.otherGroupHB(openGId)
@@ -88,8 +88,20 @@ export class redPackets {
         openGId
       }
     }, this).then(res => {
-      console.log(res)
+      cb()
     })
   }
+
   // 具体某个群里的红包
+  groupInsideHB(openGId,cb) {
+    let user_id = wx.getStorageInfoSync('user_id');
+    app.httpPost({
+      url: url_common + '/api/payment/getMoreGroupPacket',
+      data:{
+        user_id,openGId
+      }
+    },this).then(res=>{
+      cb()
+    })
+  }
 }
