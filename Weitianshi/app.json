@@ -104,7 +104,6 @@
       "pages": [
         "pages/publishHB/publishHB",
         "pages/publishedHB/publishedHB",
-        "pages/openHB/openHB",
         "pages/openedHB/openedHB",
         "pages/myHB/myHB",
         "pages/crowdDetail/crowdDetail",
