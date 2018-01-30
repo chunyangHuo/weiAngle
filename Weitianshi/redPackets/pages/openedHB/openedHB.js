@@ -8,26 +8,28 @@ Page({
   onLoad: function (options) {
 
   },
-  seeMore() { 
+  seeMore() {
     app.href('/redPackets/pages/allCrowdHB/allCrowdHB')
   },
   // 跳转到首页
-  toFirst(){
+  toFirst() {
     app.href("/pages/discoverProject/discoverProject")
   },
   //发红包
-  sendHB(){
+  sendHB() {
     app.href("/redPackets/pages/publishHB/publishHB")
   },
   //转发到更多群
-  sendMoreGroup(){
+  sendMoreGroup() {
 
   },
   //加他为好友
-  addPerson(){},
-  //看看Ta的投资名片
-  sendMoreGroup(){
+  addPerson() { 
     
+  },
+  //看看Ta的投资名片
+  sendMoreGroup() {
+
   }
 
 })

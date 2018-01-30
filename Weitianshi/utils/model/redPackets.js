@@ -1,9 +1,10 @@
 let app = getApp();
 let url_common = app.globalData.url_common
 let url_publishHB = url_common + '/api/payment/unifyOrder'
-
+let url_publishedHB = url_common + '/api/payment/getUserRedPacket'
 export class redPackets {
   constructor() { }
+
   name() {
     console.log(1)
   }
@@ -52,5 +53,21 @@ export class redPackets {
         }
       }
     })
+  }
+
+  //发布红包的列表
+  publishedHBList(user_id){
+    return app.httpPost({
+      url: url_publishedHB,
+      data: {
+        user_id: user_id
+      }
+    },this).then(res => {
+      wx.hideLoading();
+      console.log(res.data.data)
+      this.setData({
+        HBInfo: res.data.data
+      })
+    });
   }
 }
