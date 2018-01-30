@@ -26,7 +26,7 @@
 </template>
 <!--群红包  -->
 <template name="groupBox">
-  <view class="flex outsideBox" id="groupHB">
+  <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1'>
     <view class="groupPic"></view>
     <view class="groupInfo">
       <view class="groupName">这里是群的名称,可能很长所以查好了监控啦了</view>
@@ -54,8 +54,8 @@
           <image src="../../img/kai.png" class="{{kaiStyle == true ?'openKai':'openKai1'}}" bindtap='kai'></image>
         </button>
       </form>
-       <view class="opentishi">每个用户可领取一次红包，金额将直接存入微信零钱包 本红包仅限发布者自己转发才可领取
-      </view> 
+      <view class="opentishi">每个用户可领取一次红包，金额将直接存入微信零钱包 本红包仅限发布者自己转发才可领取
+      </view>
     </image>
   </view>
 </template>
@@ -76,6 +76,27 @@
       <view class="openMoney">￥100.50</view>
       <view class="openSave">已存入微信零钱包</view>
       <view class="opentishi1">红包池：14/16个，12.12/100元
+      </view>
+    </image>
+  </view>
+</template>
+<!--群详情  -->
+<template name="crowDetail">
+  <view id="crowDetail">
+    <image class="crowImg" src="{{packetlist}}">
+      <view class="HBrecord flex">
+        <image src="" class="HBrecordImg"></image>
+        <view class="recordText">
+          <view class="recordText1 flex">
+            <view class="recordName">中国FA行业联盟</view>
+            <view class="recordCareer">投资总监</view>
+            <view class="recordCompany">·杭州偷着乐网络科技有限公司</view>
+          </view>
+        </view>
+        <view class="recordTime">领取12/100个</view>
+        <progress percent="80" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
+        <!-- <view class="recordadd">已领取</view> -->
+        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true'>未领取</view>
       </view>
     </image>
   </view>

@@ -36,7 +36,9 @@ const picUrl = {
   shengcheng2: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-shengcheng2-n.png",
   zhuanfa: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-zhuanfa-n.png",
   meifaguo: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-meifaguo.png",
-  tankuang: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-tankuang.png"
+  tankuang: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-tankuang.png",
+  packetlist:"https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-packet-list.png",
+  packetover:"http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/img-drawed-over.png"
 }
 
 export {

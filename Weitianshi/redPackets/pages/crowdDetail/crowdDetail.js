@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    packetlist: app.globalData.picUrl.packetlist,
+    packetover: app.globalData.picUrl.packetover,
   },
 
   /**

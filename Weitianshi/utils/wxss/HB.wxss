@@ -80,8 +80,10 @@
   text-align: center;
   line-height: 54rpx;
 }
+
 /*群红包记录  */
-#groupHB{
+
+#groupHB {
   padding: 32rpx;
 }
 
@@ -91,21 +93,23 @@
   height: 104rpx;
   margin-right: 24rpx;
 }
- .aline{
+
+.aline {
   opacity: 0.2;
   background: #fff;
   width: 686rpx;
   height: 2rpx;
   margin: 0 32rpx;
 }
+
 #groupHB .groupName {
   font-size: 32rpx;
   color: #fff;
   text-align: left;
   margin-bottom: 12rpx;
   width: 543rpx;
-  text-overflow:ellipsis;
-  overflow:hidden;
+  text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -125,8 +129,8 @@
   width: 686rpx;
   height: 1rpx;
   margin: 0 32rpx;
-
 }
+
 /*点击领取记录  */
 
 .HBrecord1 {
@@ -326,4 +330,124 @@
   100% {
     transform: rotateY(360deg);
   }
+}
+
+/*群详情  */
+
+#crowDetail .crowImg {
+  margin:16rpx 32rpx;
+  width: 91%;
+  height: 168rpx;
+  position: relative;
+}
+
+#crowDetail .HBrecord {
+  align-items: center;
+  position: absolute;
+  left: 32rpx;
+  top: 32rpx;
+}
+
+#crowDetail .HBrecordImg {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#crowDetail .recordText {
+  width: 450rpx;
+  max-width: 450rpx;
+  margin-left: 22rpx;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-top: 7rpx;
+  position: absolute;
+  left: 155rpx;
+  top: -5rpx;
+}
+
+#crowDetail .recordText1 {
+  align-items: center;
+}
+
+#crowDetail .recordName {
+  font-size: 32rpx;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+  margin-right: 12rpx;
+}
+
+#crowDetail .recordCareer {
+  font-size: 24rpx;
+  color: #fff;
+}
+
+#crowDetail .recordCompany {
+  font-size: 24rpx;
+  color: #fff;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#crowDetail .recordTime {
+  font-size: 24rpx;
+  color: #fff;
+  margin-right: 12rpx;
+  position: absolute;
+  left: 180rpx;
+  top: 70rpx;
+  width: 200rpx;
+}
+
+#crowDetail progress {
+  position: absolute;
+  left: 176rpx;
+  top: 119rpx;
+  width: 280rpx;
+  border-radius: 4rpx;
+}
+
+#crowDetail .recordMartop {
+  margin-top: 12rpx;
+}
+
+#crowDetail .recordMoney1 {
+  color: #f7c660;
+}
+
+#crowDetail .recordadd {
+  border: 1rpx solid #f7c660;
+  border-radius: 48rpx;
+  width: 110rpx;
+  height: 54rpx;
+  font-size: 24rpx;
+  color: #f7c660;
+  text-align: center;
+  line-height: 54rpx;
+  position: absolute;
+  left: 501rpx;
+  top: 65rpx;
+}
+#crowDetail .recordadd1 {
+  background: #f7c660;
+  border-radius: 48rpx;
+  width: 110rpx;
+  height: 54rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 54rpx;
+  position: absolute;
+  left: 501rpx;
+  top: 65rpx;
+}
+#crowDetail .recordadd2{
+  background: #ddb156;
 }
