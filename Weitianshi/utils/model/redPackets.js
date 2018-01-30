@@ -76,7 +76,7 @@ export class redPackets {
   }
 
   // 更多群红包信息
-  otherGroupHB(openGId,cb) {
+  otherGroupHB(openGId) {
     let user_id = '8W1ERo3W';
     if (!user_id) {
       app.loginPage(user_id => {
@@ -91,20 +91,70 @@ export class redPackets {
         openGId
       }
     }, this).then(res => {
-      cb()
+      this.setData({
+        groupInfo: res.data.data
+      })
     })
   }
 
   // 具体某个群里的红包
-  groupInsideHB(openGId,cb) {
-    let user_id = wx.getStorageInfoSync('user_id');
+  groupInsideHB(openGId) {
+    let user_id = '8W1ERo3W';
     app.httpPost({
       url: url_common + '/api/payment/getMoreGroupPacket',
-      data:{
-        user_id,openGId
+      data: {
+        user_id, openGId
       }
-    },this).then(res=>{
-      cb()
+    }, this).then(res => {
+    })
+  }
+
+  //红包领取记录
+  getHBRecord() {
+    let user_id = '8W1ERo3W';
+    let unique_id = "60942418540858321814246979"
+    app.httpPost({
+      url: url_common + '/api/payment/getDrawedRecord',
+      data: {
+        user_id, unique_id
+      }
+    }, this).then(res => {
+      this.setData({
+        whoGet: res.data.data
+      })
+    })
+  }
+
+  //平台红包统计
+  recordHB() {
+    let user_id = "8W1ERo3W"
+    app.httpPost({
+      url: url_common + '/api/payment/getPacketStatistic',
+      data: {
+        user_id
+      }
+    }, this).then(res => {
+      this.setData({
+        recordHB: res.data.data
+      })
+    })
+  }
+
+  //发布红包的用户
+  pushHBPerson() {
+    let user_id = '8W1ERo3W';
+    let unique_id = "60942418540858321814246979";
+    app.httpPost({
+      url: url_common + '/api/payment/getPacketUser',
+      data: {
+        user_id, unique_id
+      }
+    }, this).then(res => {
+      console.log(res)
+      this.setData({
+        personInfo : res.data.data,
+        
+      })
     })
   }
 }

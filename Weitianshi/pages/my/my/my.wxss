@@ -536,9 +536,9 @@ page {
 
 .redBag {
   background: #fd354c;
-  border-radius: 8px;
-  width: 343px;
-  height: 84px;
+  border-radius: 12rpx;
+  width: 686rpx;
+  height: 168rpx;
   margin: 32rpx 0 0 32rpx;
 }
 

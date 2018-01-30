@@ -10,15 +10,24 @@ Page({
   },
   onLoad: function (options) {
     app.getWxGroupInfo(options, res => {
-      rp.otherGroupHB.call(this,options.shareTicket)
+      rp.otherGroupHB.call(this, options.shareTicket)
+    })
+    rp.getHBRecord.call(this)
+    rp.pushHBPerson.call(this)
+    this.setData({
+      shareTicket: options.shareTicket || "",
+      user_id :wx.getStorageSync("user_id")
     })
   },
   // 跳转到群详情
-  redDetail() {
-    app.href('/redPackets/pages/crowdDetail/crowdDetail')
+  redDetail(e) {
+    let groupId = e.currentTarget.dataset.groupid;
+    app.href('/redPackets/pages/crowdDetail/crowdDetail?groupId=' + groupId)
   },
+  // 查看更多群红包
   seeMore() {
-    app.href('/redPackets/pages/allCrowdHB/allCrowdHB')
+    let shareTicket = this.data.shareTicket;
+    app.href('/redPackets/pages/allCrowdHB/allCrowdHB?shareTicket=' + shareTicket)
   },
   // 跳转到首页
   toFirst() {

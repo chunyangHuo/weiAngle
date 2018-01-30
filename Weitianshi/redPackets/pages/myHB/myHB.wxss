@@ -15,7 +15,9 @@ page {
   font-size: 32rpx;
   color: #333;
 }
-
+.whoGet:nth-child(2n){
+  background:#fff5f1;
+}
 .upBox {
   margin-bottom: 12rpx;
 }

@@ -6,7 +6,8 @@ Page({
   data: {
     modalBox: 0,
     modal: 0,
-    nonet: true
+    nonet: true,
+    sendHB: app.globalData.picUrl.sendHB,
   },
   onLoad: function (options) {
     let that = this;
