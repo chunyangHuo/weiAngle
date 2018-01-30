@@ -8,7 +8,7 @@ Page({
     imgUrls: app.globalData.picUrl.meifaguo,
   },
   onLoad: function (options) {
-  
+    let  groupId = options.groupId;
   },
 
 })

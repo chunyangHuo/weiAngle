@@ -6,33 +6,36 @@
 <template name="HBrecord">
   <view id="HBrecord" hover-class='HBrecord1'>
     <view class="HBrecord flex">
-      <image src="" class="HBrecordImg"></image>
+      <image src="{{item.user.avatarUrl}}" class="HBrecordImg"></image>
       <view class="recordText">
         <view class="recordText1 flex">
-          <view class="recordName">中国FA行业联盟</view>
-          <view class="recordCareer">投资总监</view>
-          <view class="recordCompany">·杭州偷着乐网络科技有限公司</view>
+          <view class="recordName">{{item.user.user_real_name}}</view>
+          <view class="recordCareer">{{item.useruser_company_career}}</view>
+          <view class="recordCompany">·{{item.user.user_brand}}</view>
         </view>
         <view class="recordText1 recordMartop flex">
-          <view class="recordTime">01-21 10:23</view>
+          <view class="recordTime">{{item.payment_time}}</view>
           <view class="recordMoney">领取了
-            <label class="recordMoney1">3.12</label> 元钱</view>
+            <label class="recordMoney1">{{item.draw_money}}</label> 元钱</view>
         </view>
         <view class="recordText2 flex"></view>
       </view>
-      <view class="recordadd">加好友</view>
+      <view class="recordadd" wx:if="{{item.is_card == 2}}" data-id="{{item.user.user_id}}">加好友</view>
+      <view class="recordadd" wx:if="{{item.is_card == 0}}">待验证</view>
     </view>
   </view>
 </template>
 <!--群红包  -->
 <template name="groupBox">
-  <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1'>
+  <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
     <view class="groupPic"></view>
     <view class="groupInfo">
-      <view class="groupName">这里是群的名称,可能很长所以查好了监控啦了</view>
+      <view class="groupName">
+        <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
+      </view>
       <view class="groupNum">已领
-        <label class="number">10</label>个红包，还有
-        <label class="number">3</label>个红包未领取 </view>
+        <label class="number">{{item.count}}</label>个红包，还有
+        <label class="number">{{item.drawed_count}}</label>个红包未领取 </view>
     </view>
   </view>
   <view class="aline"></view>
@@ -63,19 +66,19 @@
 <template name="openHB1">
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
-      <view class="openTitle">这里是他写的标题字数可能会有点长但他写的标题字数可能会字数</view>
-      <image src="" class="openImg"></image>
+      <view class="openTitle">{{personInfo.packet.title}}</view>
+      <image src="{{personInfo.user.avatarUrl}}" class="openImg"></image>
       <image src="/img/img-rzchuangyezhe@2x.png" class="openRen"></image>
-      <view class="openName">张三丰</view>
+      <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
-        <label>投资经理</label>
-        <label> · 杭州投着乐杭州投着乐网络科技有限公司</label>
+        <label>{{personInfo.user.user_company_career}}</label>
+        <label> · {{personInfo.user.user_brand}}</label>
       </view>
       <!-- <view class="openEnd">很可惜，红包已派完</view> -->
       <!-- <view class="openEnd">红包已过期失效</view>  -->
       <view class="openMoney">￥100.50</view>
       <view class="openSave">已存入微信零钱包</view>
-      <view class="opentishi1">红包池：14/16个，12.12/100元
+      <view class="opentishi1">红包池： <label>{{personInfo.packet.drawed_num}}</label>   / <label>{{personInfo.packet.number}}</label>个，<label>{{personInfo.packet.drawed_money}}</label>/<label>{{personInfo.packet.money}}</label>元
       </view>
     </image>
   </view>

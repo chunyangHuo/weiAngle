@@ -1,6 +1,6 @@
-<block wx:for="{{HBInfo}}" wx:key="{{index}}">
-  <view class='outBox' wx:if="{{HBInfo.length != 0}}" data-uniqueId="{{item.unique_id}}">
-    <view class="whoGet">
+<view class='outBox' wx:if="{{HBInfo.length != 0}}" >
+  <block wx:for="{{HBInfo}}" wx:key="{{index}}">
+    <view class="whoGet" data-uniqueId="{{item.unique_id}}">
       <view class="flex upBox">
         <view class="des">{{item.title}}</view>
         <view class="getTime">{{item.created_At}}</view>
@@ -13,8 +13,9 @@
           <label>{{item.drawed_num}}</label> 人领取</view>
       </view>
     </view>
-  </view>
-</block>
+  </block>
+</view>
+
 <image src='{{imgUrls}}' wx:if="{{HBInfo.length == 0}}" class='noHB'></image>
 <form report-submit='true' bindsubmit='formSubmit'>
   <button form-type='submit' bindtap='createHB'>

@@ -68,8 +68,8 @@
     </view>
   </view>
   <!--红包页面  -->
-  <view class="redBag" bindtap='sendBag'>
-
+  <view  bindtap='sendBag'>
+    <image src="{{sendHB}}" class='redBag'></image>
   </view>
   <!--项目店铺  -->
   <view class="shopBlock flex" bindtap="projectShop" hover-class="t-hoverColor">
