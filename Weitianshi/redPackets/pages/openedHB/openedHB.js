@@ -8,7 +8,11 @@ Page({
   onLoad: function (options) {
 
   },
-  seeMore() {
+  // 跳转到群详情
+  redDetail(){
+    app.href('/redPackets/pages/crowdDetail/crowdDetail')
+  },
+  seeMore() { 
     app.href('/redPackets/pages/allCrowdHB/allCrowdHB')
   },
   // 跳转到首页

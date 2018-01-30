@@ -1,3 +1,9 @@
-<view class="groupName"></view>
-<view class="HBPerson"></view>
-<image src='{{imgUrls}}' class='noHB'></image>
+<import src="/redPackets/resource/Template/Template.wxml" />
+<!--错误提示  -->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<scroll-view scroll-y style="height:1200rpx;">
+  <view class="crowText">这里是群的名称，就显示一行最大宽度这里是群的名称，就显示一行最大宽度这里是群的名称，就显示一行最大宽度</view>
+  <template is="crowDetail" data="{{packetlist:packetlist}}"></template>
+<!--无内容显示  -->
+  <image src="{{packetover}}" class="packetover"></image>
+</scroll-view>
