@@ -9,12 +9,15 @@
   white-space: nowrap;
   padding: 32rpx;
 }
-.packetover{
+
+.packetover {
   position: relative;
   width: 514rpx;
   height: 290rpx;
   left: 14%;
   top: 300rpx;
+}
+
 .noHB {
   width: 514rpx;
   height: 290rpx;
