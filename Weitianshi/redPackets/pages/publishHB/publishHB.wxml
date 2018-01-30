@@ -29,10 +29,10 @@
   <view class="right">
     <view class="rgInfoNum">999</view>
     <view class="rgInfoTitle">领取次数</view>
-  </view>
+  </view> 
 </view>
-<form report-submit='true' bindsubmit='formSubmit'>
-  <button form-type='submit' bindtap='createRedBag'>
+<form report-submit='true' bindsubmit='createRedBag'>
+  <button form-type='submit'>
     <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
   </button>
 </form>
