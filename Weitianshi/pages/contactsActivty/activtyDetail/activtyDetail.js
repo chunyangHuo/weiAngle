@@ -21,7 +21,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          app.log(that,'res',res);
+          app.log('res',res);
           let status = res.data.data.button_type;
           let activtyData = res.data.data;
           that.setData({
@@ -48,7 +48,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.log(that,'报名',res);
+        app.log('报名',res);
         if (res.data.status_code == 2000000) {
           let complete = res.data.is_complete;
           if (complete == 1) {

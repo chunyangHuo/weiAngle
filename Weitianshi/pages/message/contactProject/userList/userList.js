@@ -27,7 +27,7 @@ Page({
         let list = res.data.data;
         let count = res.data.data.count;
         let projectList = res.data.data.projects;
-        app.log(that,"projectList",projectList);
+        app.log("projectList",projectList);
         that.setData({
           count: count,
           projectList: projectList,
@@ -47,7 +47,7 @@ Page({
   projectDetail: function (e) {
     let that=this;
     let project_id = e.currentTarget.dataset.project;
-    app.log(that,"project_id",project_id);
+    app.log("project_id",project_id);
     // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',

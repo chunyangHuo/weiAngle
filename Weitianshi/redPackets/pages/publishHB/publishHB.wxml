@@ -2,7 +2,7 @@
 <image src="{{imgUrls}}" class="imgBg"></image>
 <view class="redInfo">
   <view class="bagTitle">红包标题</view>
-  <input class="bagName" placeholder='如：给大家拜年了，投资名片换起来' bindinput="redBagName"></input>
+  <input class="bagName" placeholder='如：给大家拜年了，投资名片换起来' bindinput="redBagName" maxlength='100'></input>
   <view class="flex">
     <view class="bagLeft">
       <view class="bagTitle">红包金额</view>
@@ -36,4 +36,5 @@
     <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
   </button>
 </form>
-
+<!--错误提示  -->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

@@ -98,7 +98,7 @@ Page({
           
           });
         }
-        app.log(that,'项目列表', myProject);
+        app.log('项目列表', myProject);
         //刷新数据
         that.setData({
           myProject: myProject,
