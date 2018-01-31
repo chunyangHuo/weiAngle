@@ -1,6 +1,6 @@
 <view class='outBox' wx:if="{{HBInfo.length != 0}}" >
   <block wx:for="{{HBInfo}}" wx:key="{{index}}">
-    <view class="whoGet" data-uniqueId="{{item.unique_id}}">
+    <view class="whoGet" data-uniqueId="{{item.unique_id}}" bindtap='findHB'>
       <view class="flex upBox">
         <view class="des">{{item.title}}</view>
         <view class="getTime">{{item.created_At}}</view>

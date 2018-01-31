@@ -26,7 +26,7 @@
     <button class='jumpFirst' bindtap='toFirst' hover-class='hoverHB'>首页</button>
     <button hover-class='hoverHB' class="sendHB" bindtap='sendHB' >发红包</button>
     <button class="shareMore" bindtap='sendMoreGroup' wx:if="{{personInfo.user_id == user_id}}">转发到更多群</button>
-    <button class="shareMore" bindtap='addPerson' wx:if="{{personInfo.is_card == 2 }}">加Ta为好友</button>
+    <button class="shareMore" bindtap='contactsAdd' wx:if="{{personInfo.is_card == 2 }}"  data-id="{{personInfo.user_id}}">加Ta为好友</button>
     <view class="shareMore waitSure" wx:if="{{personInfo.is_card ==0 }}">待通过</view>
     <button class="shareMore" bindtap='userCard' data-id="{{personInfo.user_id}}" wx:if="{{personInfo.is_card}}" wx:if="{{personInfo.is_card == 1 }}">查看Ta的投资名片</button>
   </view>
