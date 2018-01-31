@@ -115,9 +115,7 @@ export class redPackets {
   }
 
   // 红包领取记录
-  getHBRecord() {
-    let user_id = '8W1ERo3W';
-    let unique_id = "60942418540858321814246979"
+  getHBRecord(user_id,unique_id) {
     app.httpPost({
       url: url_common + '/api/payment/getDrawedRecord',
       data: {
@@ -146,8 +144,7 @@ export class redPackets {
   }
 
   // 发布红包的用户相关信息
-  pushHBPerson(unique_id, cb) {
-    let user_id = wx.getStorageSync('user_id');
+  pushHBPerson(user_id,unique_id, cb) {
     app.httpPost({
       url: url_common + '/api/payment/getPacketUser',
       data: {
