@@ -43,9 +43,35 @@ Page({
   sendMoreGroup() {
 
   },
-  //加他为好友
-  addPerson() {
-
+  // 加人脉成功后处理(辅助函数)
+  contactsAddSuccessFunc(res, added_user_id, num) {
+    let that = this;
+    var contacts = this.data.contacts;
+    app.log("contacts", contacts);
+    if (res.data.status_code == 2000000) {
+      //更改投资人和FA列表中该人的加人脉按钮的字段
+      if (contacts) {
+        contacts.forEach(x => {
+          if (x.user_id == added_user_id) {
+            x.follow_status = num;
+          }
+        });
+        that.setData({
+          contacts: contacts
+        });
+      }
+    } else {
+      app.errorHide(that, res.data.error_Msg, 3000);
+    }
+  },
+  // 申请加人脉
+  contactsAdd(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let that = this;
+    app.operationModel('contactsAdd', added_user_id, function (res) {
+      app.log('申请添加人脉完成', res);
+      that.contactsAddSuccessFunc(res, added_user_id, 2);
+    });
   },
   //看看Ta的投资名片
   sendMoreGroup(e) {

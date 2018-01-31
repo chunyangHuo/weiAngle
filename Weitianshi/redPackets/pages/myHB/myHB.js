@@ -22,5 +22,12 @@ Page({
   //跳转生成红包页面
   createHB(){
     app.href("/redPackets/pages/publishHB/publishHB")
+  },
+  //发红包详情
+  findHB(e){
+    console.log(e)
+    let uniqueId = e.currentTarget.dataset.uniqueid;
+    let  user_id = wx.getStorageSync("user_id");
+    app.href("/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + user_id + "&&unique_id=" + uniqueId)
   }
 })

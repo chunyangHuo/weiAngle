@@ -262,6 +262,7 @@ Page({
   },
   //发送红包
   sendBag(){
+    app.noUserId();   
     app.href('/redPackets/pages/publishHB/publishHB')
   },
   //已发红包
