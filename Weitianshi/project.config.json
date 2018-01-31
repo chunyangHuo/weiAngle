@@ -56,6 +56,18 @@
 					"name": "publishedHB",
 					"pathName": "redPackets/pages/publishedHB/publishedHB",
 					"query": "shareTicket=GblEJ0dKCN5Q5b2lBxp_pqtzN3Kw"
+				},
+				{
+					"id": -1,
+					"name": "openHB",
+					"pathName": "redPackets/pages/openHB/openHB",
+					"query": "shareTicket=GblEJ0dKCN5Q5b2lBxp_pqtzN3Kw"
+				},
+				{
+					"id": -1,
+					"name": "crowdDetail",
+					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
+					"query": "shareTicket=GblEJ0dKCN5Q5b2lBxp_pqtzN3Kw"
 				}
 			]
 		}

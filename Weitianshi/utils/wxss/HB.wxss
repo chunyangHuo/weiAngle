@@ -8,6 +8,9 @@
   padding: 32rpx 0;
   align-items: center;
 }
+#HBrecord:last-child{
+  border-bottom: none;
+}
 
 #HBrecord .HBrecordImg {
   width: 104rpx;
@@ -172,7 +175,7 @@
   text-align: center;
   line-height: 104rpx;
   font-size: 40rpx;
-  background: #fff;
+  /* background: #fff; */
 }
 
 #openHB .openRen {
@@ -335,10 +338,19 @@
 /*群详情  */
 
 #crowDetail .crowImg {
-  margin:16rpx 32rpx;
+  margin: 16rpx 32rpx;
   width: 91%;
   height: 168rpx;
   position: relative;
+}
+
+#crowDetail .openRen {
+  position: absolute;
+  top: 88rpx;
+  left: 40.5%;
+  width: 124rpx;
+  height: 34rpx;
+  z-index: 888;
 }
 
 #crowDetail .HBrecord {
@@ -352,7 +364,7 @@
   width: 104rpx;
   height: 104rpx;
   border-radius: 50%;
-  background: #fff;
+  /* background: #fff; */
   position: absolute;
   left: 0;
   top: 0;
@@ -435,6 +447,7 @@
   left: 501rpx;
   top: 65rpx;
 }
+
 #crowDetail .recordadd1 {
   background: #f7c660;
   border-radius: 48rpx;
@@ -448,9 +461,11 @@
   left: 501rpx;
   top: 65rpx;
 }
-#crowDetail .recordadd2{
+
+#crowDetail .recordadd2 {
   background: #ddb156;
 }
-.hoverHB{
-  background:#D84347!important;
+
+.hoverHB {
+  background: #d84347 !important;
 }

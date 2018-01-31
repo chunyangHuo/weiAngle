@@ -16,7 +16,7 @@ Page({
     rp.pushHBPerson.call(this)
     this.setData({
       shareTicket: options.shareTicket || "",
-      user_id :wx.getStorageSync("user_id")
+      user_id: wx.getStorageSync("user_id")
     })
   },
   // 跳转到群详情
@@ -46,8 +46,14 @@ Page({
 
   },
   //看看Ta的投资名片
-  sendMoreGroup() {
-
-  }
+  sendMoreGroup(e) {
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+  },
+  //查看个人名片
+  userDetail(e) {
+    let id = e.currentTarget.dataset.id;
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+  },
 
 })
