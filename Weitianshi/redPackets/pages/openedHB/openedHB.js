@@ -9,11 +9,15 @@ Page({
     open: app.globalData.picUrl.open,
   },
   onLoad: function (options) {
+    //红包分享人的id
+    let sharePerson = options.user_id;
+    let unique_id = options.unique_id;
+    console.log(options)
     app.getWxGroupInfo(options, res => {
       rp.otherGroupHB.call(this, options.shareTicket)
     })
-    rp.getHBRecord.call(this)
-    rp.pushHBPerson.call(this)
+    rp.getHBRecord.call(this, sharePerson, unique_id)
+    rp.pushHBPerson.call(this, sharePerson, unique_id)
     this.setData({
       shareTicket: options.shareTicket || "",
       user_id: wx.getStorageSync("user_id")

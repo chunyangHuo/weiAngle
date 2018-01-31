@@ -47,10 +47,10 @@ Page({
       // 检查注册信息是否完整
       that.checkRegisterComplete(user_id);
       // 发布红包的用户相关信息
-      rp.pushHBPerson.call(that,unique_id,res =>{
+      rp.pushHBPerson.call(that,share_id,unique_id,res =>{
         console.log(res)
         let status = res.data.data.packet.drawed_user.drawed_status;
-        if(status != 0) app.href('/redPackets/pages/openedHB/openedHB');
+        if (status != 0) app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id);
       });
     });
     app.netWorkChange(that);
