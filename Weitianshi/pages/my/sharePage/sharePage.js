@@ -1,6 +1,8 @@
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
+let RP = require('../../../utils/model/redPackets.js');
+let rp = new RP.redPackets();
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
@@ -16,13 +18,16 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
+    console.log(options);
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
+    let unique_id = options.unique_id;
     that.setData({
-      followed_user_id: followed_user_id,
-      share_id: share_id,
-      is_redPackets: is_redPackets
+      followed_user_id: options.user_id,
+      share_id: options.share_id,
+      is_redPackets: options.is_redPackets,
+      unique_id: options.unique_id
     });
     //登录态维护
     app.loginPage(function (user_id) {
@@ -32,13 +37,21 @@ Page({
       app.log("查看的人", view_id);
 
       //如果进入的是自己的名片里
-      if (user_id == followed_user_id) {
+      if (user_id == followed_user_id && !is_redPackets) {
         app.href('/pages/my/my/my');
         return
       }
 
+      // 载入被分享者的个人信息
       that.getShareIdInfo(share_id, followed_user_id, view_id);
+      // 检查注册信息是否完整
       that.checkRegisterComplete(user_id);
+      // 发布红包的用户相关信息
+      rp.pushHBPerson.call(that,unique_id,res =>{
+        console.log(res)
+        let status = res.data.data.packet.drawed_user.drawed_status;
+        if(status != 0) app.href('/redPackets/pages/openedHB/openedHB');
+      });
     });
     app.netWorkChange(that);
   },
@@ -77,7 +90,6 @@ Page({
       });
     })
   },
-
   // 检查注册信息是否完整
   checkRegisterComplete(user_id) {
     let that = this
@@ -92,6 +104,7 @@ Page({
       });
     })
   },
+  // 隐藏model
   hidemodel: function () {
     let that = this;
     that.setData({
@@ -101,17 +114,18 @@ Page({
   // 开红包
   kai: function () {
     let that = this;
+    let unique_id = this.data.unique_id;
     that.setData({
       kai: false,
     })
     setTimeout(() => {
+      rp.openHB.call(this,unique_id)
       that.setData({
-        show: false,
         kai: true,
       });
     }, 1000)
   },
-  //打开红包后,点击确定跳转
+  // 打开红包后,点击确定跳转
   makeSure() {
     this.setData({
       show: false
@@ -269,26 +283,26 @@ Page({
     wx.setStorageSync('QR_id', QR_id);
     app.href('/pages/my/qrCode/qrCode');
   },
-  //分享页面部分
+  // 分享页面部分
   onShareAppMessage: function () {
     let that = this;
     return ShareModel.sharePageShare(that);
   },
-  //项目融资
+  // 项目融资
   projectFinance: function () {
     let followed_user_id = this.data.followed_user_id;
     app.href('/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id);
   },
-  //融资项目详情
+  // 融资项目详情
   financingDetail: function (e) {
     let id = e.currentTarget.dataset.id;
     app.href('/pages/projectDetail/projectDetail?id=' + id);
   },
-  //跳转到我的人脉
+  // 跳转到我的人脉
   toContactsMy: function () {
     a00.href('/pages/my/my/my')
   },
-  //跳转注册
+  // 跳转注册
   toContacts: function () {
     //走正常申请流程
     let user_id = this.data.user_id;//我的id,查看者的id

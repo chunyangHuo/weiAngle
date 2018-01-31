@@ -7,7 +7,7 @@ function myCardShare(that) {
   let name = that.data.user.user_real_name;
   return sharePage(user_id, share_id, name);
 }
-//他人详情分享
+//他人详情分享 
 function networkDetailShare(that) {
   var user_id = that.data.user_id;
   var share_id = wx.getStorageSync("user_id");
@@ -167,11 +167,12 @@ function warbandMemberShare(that) {
 }
 
 //红包分享
-function redPacketsShare(name, num) {
+function redPacketsShare(name, num , unique_id) {
   let _this = this;
-  let user_id, share_id = wx.getStorageSync('user_id');
+  let user_id = wx.getStorageSync('user_id');
+  let share_id = wx.getStorageSync('user_id');
   app.log(user_id, share_id)
-  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true;
+  let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true + '&&unique_id=' + unique_id;
   let json = {
     title: name + '发了' + num + '元钱红包,点击领取',
     path: path,

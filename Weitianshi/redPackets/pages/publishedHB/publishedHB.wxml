@@ -6,7 +6,7 @@
     <open-data type='groupName' open-gid='G6zcd0WFWnIXAEjI4CQAzZbAsrn4'></open-data>
     <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai,open,personInfo:personInfo}}"></template>
     <form report-submit='true' bindsubmit='formsubmit' wx:if="{{show}}">
-      <button form-type='submit'>
+      <button form-type='submit' open-type="share">
         <image class="openZhuan" src="{{zhuanfa}}"></image>
       </button>
     </form>

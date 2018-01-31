@@ -15,8 +15,11 @@ Page({
     kai: true,
   },
   onLoad: function (options) {
-    console.log(this.data.kai);
-    rp.pushHBPerson.call(this)
+    let unique_id = options.unique_id;
+    this.setData({
+      unique_id
+    })
+    rp.pushHBPerson.call(this,unique_id)
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -51,6 +54,8 @@ Page({
   },
   // 分享页面
   onShareAppMessage(){
-    return shareModel.redPacketsShare('阮千军',1000000)
+    let unique_id = this.data.unique_id;
+    let personInfo = this.data.personInfo;
+    return shareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
   }
 })

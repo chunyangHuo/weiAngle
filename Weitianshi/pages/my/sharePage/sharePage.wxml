@@ -4,13 +4,13 @@
   <view wx:if='{{is_redPackets}}'>
     <!--弹框 提示 -->
     <view>
-      <template is="openHB" data="{{bg_hongbao2:bg_hongbao2,kaiStyle:kai,open:open}}"></template>
+      <template is="openHB" data="{{bg_hongbao2,kaiStyle:kai,open,personInfo}}"></template>
     </view>
     <view class="modalBox" wx:if="{{!show}}" bindtap='hidemodel'>
       <image class="tankuang" src="{{tankuang}}"></image>
       <view class="getMoney">￥105.11</view>
       <view class="getName">
-        <checkbox class="checkM" checked/> 添加xxx投资名片
+        <checkbox class="checkM" checked/> 添加{{personInfo.user.user_real_name}}投资名片
       </view>
       <form report-submit='true' bindsubmit='makeSure'>
         <button form-type='submit' hover-class='buttonnone'>

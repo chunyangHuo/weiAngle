@@ -7,10 +7,10 @@ export class redPackets {
   constructor() { }
 
   name() {
-    console.log(1)
+
   }
 
-  // 获取用户信息
+  // 获取用户信息 
   getUserInfo() {
     return app.httpPost({
       url: app.globalData.common_url + ''
@@ -33,7 +33,7 @@ export class redPackets {
       let unique_id = res.data.data.packet_unique_id;
       let prepay_id = res.data.data.prepay_id;
       if (cb1 && cb1 != null) {
-        cb1(unique_id,prepay_id)
+        cb1(unique_id, prepay_id)
       } else {
         if (cb2) {
           cb2()
@@ -109,7 +109,7 @@ export class redPackets {
     })
   }
 
-  //红包领取记录
+  // 红包领取记录
   getHBRecord() {
     let user_id = '8W1ERo3W';
     let unique_id = "60942418540858321814246979"
@@ -125,7 +125,7 @@ export class redPackets {
     })
   }
 
-  //平台红包统计
+  // 平台红包统计
   recordHB() {
     let user_id = "8W1ERo3W"
     app.httpPost({
@@ -140,21 +140,41 @@ export class redPackets {
     })
   }
 
-  //发布红包的用户
-  pushHBPerson() {
-    let user_id = '8W1ERo3W';
-    let unique_id = "60942418540858321814246979";
+  // 发布红包的用户相关信息
+  pushHBPerson(unique_id, cb) {
+    let user_id = wx.getStorageSync('user_id');
     app.httpPost({
       url: url_common + '/api/payment/getPacketUser',
       data: {
         user_id, unique_id
       }
     }, this).then(res => {
-      console.log(res)
+      app.log('发红包者和红包信息', res)
       this.setData({
-        personInfo : res.data.data,
-        
-      })
+        personInfo: res.data.data,
+      });
+      if (cb) cb(res);
     })
+  }
+
+  // 开红包动作
+  openHB(unique_id) {
+    let user_id = wx.getStorageSync('user_id');
+    if (!unique_id) return app.errorHide(this, 'unique_id不存在');
+    app.httpPost({
+      url: url_common + '/api/payment/toBalance',
+      data: {
+        user_id,
+        packet_unique_id: unique_id
+      }
+    }, this).then(res => {
+      console.log(res);
+      let bounce_money = res.data.data.bounce_money;
+      this.setData({
+        show: false,
+        bounce_money
+      });
+    })
+
   }
 }

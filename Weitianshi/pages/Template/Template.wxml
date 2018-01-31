@@ -1495,13 +1495,17 @@
 <template name="openHB">
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
-      <view class="openTitle">这里是他写的标题字数可能会有点长但他写的标题字数可能会字数</view>
-      <image src="" class="openImg"></image>
-      <image src="/img/img-rzchuangyezhe@2x.png" class="openRen"></image>
-      <view class="openName">张三丰</view>
+      <view class="openTitle">{{personInfo.packet.title}}</view>
+      <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}"></image>
+      <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
+      <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{personInfo.user.group[0].group_title == '创业者'}}"></image>
+      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
+      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa1@2x.png"></image>
+      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
+      <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
-        <label>投资经理</label>
-        <label> · 杭州投着乐杭州投着乐网络科技有限公司</label>
+        <label>{{personInfo.user.user_company_career}}</label>
+        <label> · {{personInfo.user.user_brand}}</label>
       </view>
       <form report-submit='true' bindsubmit='formsubmit'>
         <button form-type='submit'>
