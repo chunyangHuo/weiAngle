@@ -64,8 +64,9 @@ Page({
     }else if(number == 0){
       app.errorHide(that, "请输入红包个数", 1500);
     }else if(money/number >= 1){
-      rp.publishHB.call(this, user_id, number, money, title)
+      
     }
+    rp.publishHB.call(this, user_id, number, money, title)
   },
   //获取全部文字
   getAll(bagMoney) {

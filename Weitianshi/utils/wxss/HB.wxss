@@ -451,3 +451,6 @@
 #crowDetail .recordadd2{
   background: #ddb156;
 }
+.hoverHB{
+  background:#D84347!important;
+}
