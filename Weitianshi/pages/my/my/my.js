@@ -261,8 +261,7 @@ Page({
     wx.hideLoading();
   },
   //发送红包
-  sendBag(){
-    app.noUserId();   
+  sendBag(){ 
     app.href('/redPackets/pages/publishHB/publishHB')
   },
   //已发红包

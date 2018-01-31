@@ -16,18 +16,38 @@ Page({
         title: 'loading',
         mask: true,
       });
-      rp.publishedHBList.call(this, user_id)
+      // 请求已发红包数据
+      rp.publishedHBList.call(this, user_id);
+      app.initPage(this);
     })
   },
   //跳转生成红包页面
-  createHB(){
+  createHB() {
     app.href("/redPackets/pages/publishHB/publishHB")
   },
   //发红包详情
-  findHB(e){
+  findHB(e) {
     console.log(e)
     let uniqueId = e.currentTarget.dataset.uniqueid;
-    let  user_id = wx.getStorageSync("user_id");
-    app.href("/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + user_id + "&&unique_id=" + uniqueId)
+    let user_id = wx.getStorageSync("user_id");
+    let status = e.currentTarget.dataset.status;
+    if(status == 0 ){
+      app.href("/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + user_id + "&&unique_id=" + uniqueId + '&&is_redPackets=' + true);
+    }else{
+      app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + uniqueId);
+    }
+  },
+  //加载更多
+  loadMore() {
+    let currentPage = this.data.currentPage;
+    let page_end = this.data.page_end;
+    if (page_end == true) {
+      app.errorHide(this, '没有更多了');
+    }
+    currentPage++;
+    this.setData({
+      currentPage
+    })
+    rp.publishedHBList.call(this, wx.getStorageSync('user_id'), currentPage);
   }
 })

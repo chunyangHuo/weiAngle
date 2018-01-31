@@ -48,7 +48,9 @@ export class redPackets {
             complete: function (response) {
               if (response.errMsg == 'requestPayment:ok') {
                 app.formIdSubmit(prepay_id);
-                app.href('/redPackets/pages/publishedHB/publishedHB?unique_id=' + unique_id);
+                wx.redirectTo({
+                  url: '/redPackets/pages/publishedHB/publishedHB?unique_id=' + unique_id
+                })
               } else {
                 app.errorHide(that, response.errMsg);
               }
@@ -60,23 +62,35 @@ export class redPackets {
   }
 
   // 已发布红包的列表
-  publishedHBList(user_id) {
-    return app.httpPost({
+  publishedHBList(user_id, currentPage) {
+    app.httpPost({
       url: url_publishedHB,
       data: {
-        user_id: user_id
+        user_id: user_id,
+        page: currentPage
       }
     }, this).then(res => {
       wx.hideLoading();
       console.log(res.data.data)
-      this.setData({
-        HBInfo: res.data.data
-      })
+      if (!currentPage) {
+        this.setData({
+          HBInfo: res.data.data,
+          page_end: res.data.page_end
+        })
+      } else {
+        let hbInfo = this.data.HBInfo;
+        let newPage = res.data.data;
+        hbInfo = hbInfo.concat(newPage);
+        this.setData({
+          HBInfo: hbInfo,
+          page_end: res.data.page_end
+        })
+      }
     });
   }
 
   // 更多群红包信息
-  otherGroupHB(openGId='') {
+  otherGroupHB(openGId = '') {
     let user_id = wx.getStorageSync('user_id');
     if (!user_id) {
       app.loginPage(user_id => {
@@ -108,14 +122,14 @@ export class redPackets {
     }, this).then(res => {
       console.log(res)
       this.setData({
-        insideHB : res.data.data,
+        insideHB: res.data.data,
         flag: res.data.flag
       })
     })
   }
 
   // 红包领取记录
-  getHBRecord(user_id,unique_id) {
+  getHBRecord(user_id, unique_id) {
     app.httpPost({
       url: url_common + '/api/payment/getDrawedRecord',
       data: {
@@ -144,7 +158,7 @@ export class redPackets {
   }
 
   // 发布红包的用户相关信息
-  pushHBPerson(user_id,unique_id, cb) {
+  pushHBPerson(user_id, unique_id, cb) {
     app.httpPost({
       url: url_common + '/api/payment/getPacketUser',
       data: {

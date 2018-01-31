@@ -404,7 +404,7 @@ App({
       requestCheck: true,
       currentPage: 1,
       page_end: false
-    });
+    }); 
     if (others) {
       that.setData(others);
     }
@@ -738,7 +738,7 @@ App({
     }
   },
 
-  //页栈超出处理
+  //页面跳转
   href(url = '/pages/discoverProject/discoverProject') {
     let indexList = [
       '/pages/discoverProject/discoverProject',
@@ -757,6 +757,13 @@ App({
       if (indexList.includes(url)) wx.switchTab({ url: url });
       else wx.navigateTo({ url: url });
     }
+  },
+
+  // 页面重定向
+  redirectTo(url){
+    wx.redirectTo({
+      url: url,
+    })
   },
 
   //多选

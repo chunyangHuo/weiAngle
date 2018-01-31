@@ -3,6 +3,7 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 let RP = require('../../../utils/model/redPackets.js');
 let rp = new RP.redPackets();
+import * as ShareModel from '../../../utils/model/shareModel.js';
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
@@ -39,10 +40,6 @@ Page({
   sendHB() {
     app.href("/redPackets/pages/publishHB/publishHB")
   },
-  //转发到更多群
-  sendMoreGroup() {
-
-  },
   // 加人脉成功后处理(辅助函数)
   contactsAddSuccessFunc(res, added_user_id, num) {
     let that = this;
@@ -73,15 +70,27 @@ Page({
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
-  //看看Ta的投资名片
+  // 看看Ta的投资名片
   sendMoreGroup(e) {
     let id = e.currentTarget.dataset.id;
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
-  //查看个人名片
+  // 查看个人名片
   userDetail(e) {
     let id = e.currentTarget.dataset.id;
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
-
+  // 分享页面
+  onShareAppMessage(){
+    let that = this;
+    let user_id = this.data.user_id;
+    let user = this.data.personInfo.user;
+    this.setData({
+      user_id,
+      user,
+      share_id:user_id
+    })
+    console.log(this.data)
+    return ShareModel.sharePageShare(that);
+  }
 })

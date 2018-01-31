@@ -11,7 +11,7 @@ Page({
     show: true,
     user: "",
     followed_user_id: "",
-    nonet: true,
+    nonet: true, 
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     kai: true,
     open: app.globalData.picUrl.open,
@@ -51,7 +51,7 @@ Page({
       rp.pushHBPerson.call(that, share_id, unique_id, res => {
         console.log(res)
         let status = res.data.data.packet.drawed_user.drawed_status;
-        if (status != 0) app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
+        if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
       });
     });
     app.netWorkChange(that);
@@ -361,7 +361,7 @@ Page({
       },
     });
   },
-  //分享引导跳转
+  // 分享引导跳转
   shareJump(e) {
     let index = e.currentTarget.dataset.index;
     app.shareJump(index);

@@ -9,7 +9,7 @@
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-left:16rpx;"></label>
   </view>
   <block wx:for="{{groupInfo}}" wx:key="{{index}}">
-    <template is="groupBox" data="{{item:item}}"></template>
+    <template is="groupBox" wx:if='{{index < 3}}' data="{{item:item}}"></template>
   </block>
   <view class="seeMore" bindtap='seeMore' wx:if="{{groupInfo.length>=3}}">查看更多</view>
   <view class="HBrecordTitile flex">
@@ -25,7 +25,7 @@
   <view class="buttonBox flex">
     <button class='jumpFirst' bindtap='toFirst' hover-class='hoverHB'>首页</button>
     <button hover-class='hoverHB' class="sendHB" bindtap='sendHB' >发红包</button>
-    <button class="shareMore" bindtap='sendMoreGroup' wx:if="{{personInfo.user_id == user_id}}">转发到更多群</button>
+    <button class="shareMore" open-type='share'  wx:if="{{personInfo.user.user_id == user_id}}">转发到更多群</button>
     <button class="shareMore" bindtap='contactsAdd' wx:if="{{personInfo.is_card == 2 }}"  data-id="{{personInfo.user_id}}">加Ta为好友</button>
     <view class="shareMore waitSure" wx:if="{{personInfo.is_card ==0 }}">待通过</view>
     <button class="shareMore" bindtap='userCard' data-id="{{personInfo.user_id}}" wx:if="{{personInfo.is_card}}" wx:if="{{personInfo.is_card == 1 }}">查看Ta的投资名片</button>
