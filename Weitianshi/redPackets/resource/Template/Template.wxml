@@ -4,7 +4,7 @@
 </template>
 <!--红包领取记录  -->
 <template name="HBrecord">
-  <view id="HBrecord" hover-class='HBrecord1'>
+  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userDetail'>
     <view class="HBrecord flex">
       <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
       <image src="/img/img-touxiang@2x.png" class="HBrecordImg" wx:if="{{!item.user.avatarUrl}}"></image>
@@ -31,7 +31,6 @@
   <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
     <view class="groupPic">
       <block wx:for="{{item.user}}" wx:key="{{index}}" wx:for-item="{{groupImage}}">
-        <view>{{item.user[0].avatarUrl}}</view>
         <image src="{{groupImage.avatarUrl}}" class='fourImage'></image>
         <!-- <image src="{{group.avatarUrl}}" class='fiveImage'></image> -->
       </block>
@@ -89,9 +88,11 @@
         <label>{{personInfo.user.user_company_career}}</label>
         <label> · {{personInfo.user.user_brand}}</label>
       </view>
-      <!-- <view class="openEnd">很可惜，红包已派完</view> -->
-      <!-- <view class="openEnd">红包已过期失效</view>  -->
-      <view class="openMoney">￥100.50</view>
+      <view class="openEnd" wx:if="{{personInfo.packet.drawed_user.drawed_status == 2}}">很可惜，红包已派完</view>
+      <view class="openEnd" wx:if="{{personInfo.packet.drawed_user.drawed_status == 3}}">红包已过期失效</view>
+      <view class="openMoney" wx:if="{{personInfo.packet.drawed_user.drawed_status == 1}}">￥
+        <label>{{personInfo.packet.drawed_user.drawed_money}}</label>
+      </view>
       <view class="openSave">已存入微信零钱包</view>
       <view class="opentishi1">红包池：
         <label>{{personInfo.packet.drawed_num}}</label> /
@@ -105,20 +106,25 @@
 <!--群详情  -->
 <template name="crowDetail">
   <view id="crowDetail">
-    <image class="crowImg" src="{{packetlist}}">
+    <image class="crowImg" src="{{packetlist}}" bindtap="userDetail" data-id="{{item.user.user_id}}">
       <view class="HBrecord flex">
-        <image src="" class="HBrecordImg"></image>
+        <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
+        <image class="HBrecordImg" src="/img/img-touxiang@2x.png" wx:if="{{!item.user.avatarUrl}}"></image>
+         <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{item.user.group[0].group_title == '创业者'}}"></image>
+      <image class="openRen" wx:if="{{item.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
+      <image class="openRen" wx:if="{{item.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa1@2x.png"></image>
+      <image class="openRen" wx:if="{{item.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
         <view class="recordText">
           <view class="recordText1 flex">
-            <view class="recordName">中国FA行业联盟</view>
-            <view class="recordCareer">投资总监</view>
-            <view class="recordCompany">·杭州偷着乐网络科技有限公司</view>
+            <view class="recordName">{{item.user.user_real_name}}</view>
+            <view class="recordCareer">{{item.user.user_company_career}}</view>
+            <view class="recordCompany">·{{item.user.user_brand}}</view>
           </view>
         </view>
-        <view class="recordTime">领取12/100个</view>
+        <view class="recordTime">领取<label>{{item.packet.drawed_num}}</label>/<label>{{item.packet.number}}</label>个</view>
         <progress percent="80" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
-        <!-- <view class="recordadd">已领取</view> -->
-        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true'>未领取</view>
+         <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view> 
+        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}" bindtap='getHB'>未领取</view>
       </view>
     </image>
   </view>
