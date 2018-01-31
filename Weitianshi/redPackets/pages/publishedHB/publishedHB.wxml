@@ -13,7 +13,7 @@
   </view>
   <view class="modalBox" wx:if="{{!show}}" bindtap='hidemodel'>
     <image class="tankuang" src="{{tankuang}}"></image>
-    <view class="getMoney">￥ <label>{{personInfo.packet.drawed_user.drawed_money}}</label> </view>
+    <view class="getMoney">￥ <label>{{bounce_money}}</label> </view>
     <view class="getName" wx:if="{{personInfo.is_card == 2}}">
       <checkbox class="checkM" checked/> 添加
       <label>{{personInfo.user.user_real_name}}</label>  

@@ -76,8 +76,8 @@ export class redPackets {
   }
 
   // 更多群红包信息
-  otherGroupHB(openGId) {
-    let user_id = '8W1ERo3W';
+  otherGroupHB(openGId='') {
+    let user_id = wx.getStorageSync('user_id');
     if (!user_id) {
       app.loginPage(user_id => {
         _this.otherGroupHB(openGId)

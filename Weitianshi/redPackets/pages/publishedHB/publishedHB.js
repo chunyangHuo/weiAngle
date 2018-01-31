@@ -36,22 +36,24 @@ Page({
   },
   kai: function () {
     let that = this;
+    let unique_id = this.data.unique_id;
     that.setData({
       kai: false,
     })
     setTimeout(() => {
+      rp.openHB.call(this, unique_id)
       that.setData({
-        show: false,
         kai: true,
       });
     }, 1000)
   },
   // 打开红包后,点击确定跳转
   makeSure() {
+    let unique_id = this.data.unique_id;
     this.setData({
       show: false
     })
-    app.href("/redPackets/pages/openedHB/openedHB")
+    app.href("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id);
   },
   // 分享页面
   onShareAppMessage(){
