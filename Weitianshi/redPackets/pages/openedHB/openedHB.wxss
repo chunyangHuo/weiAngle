@@ -25,7 +25,7 @@ page {
   margin: 8rpx 0 40rpx 0;
 }
 
-.jumpFirst, .sendHB {
+ .sendHB {
   font-size: 30rpx;
   color: #f7c660;
   text-align: center;
@@ -40,6 +40,16 @@ page {
 
 .jumpFirst {
   margin-left: 32rpx;
+   font-size: 30rpx;
+  color: #f7c660;
+  text-align: center;
+  border: 2rpx solid #f7c660;
+  border-radius: 96rpx;
+  width: 154rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #f14b50;
+  margin-right: 30rpx;
 }
 
 .shareMore {
@@ -51,12 +61,24 @@ page {
   font-size: 30rpx;
   color: #fff;
 }
-.buttonBox{
+
+.buttonBox {
+  background: #f14b50;
   position: fixed;
   bottom: 32rpx;
+  width: 100%;
 }
-.waitSure{
-  color:#ffffff;
+
+.waitSure {
+  color: #fff;
   text-align: center;
-  opacity:0.5;
+  opacity: 0.5;
+}
+.fourImage{
+  width: 40rpx;
+  height:40rpx;
+}
+.fiveImage{
+  width:24rpx;
+  height: 24rpx;
 }

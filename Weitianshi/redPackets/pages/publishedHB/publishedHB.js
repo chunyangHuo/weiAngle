@@ -2,6 +2,8 @@ let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 let shareModel = require('../../../utils/model/shareModel.js')
+let RP = require('../../../utils/model/redPackets.js')
+let rp = new RP.redPackets();
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
@@ -14,6 +16,7 @@ Page({
   },
   onLoad: function (options) {
     console.log(this.data.kai);
+    rp.pushHBPerson.call(this)
     wx.showShareMenu({
       withShareTicket: true
     })
