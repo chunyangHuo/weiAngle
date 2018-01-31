@@ -177,7 +177,7 @@ function redPacketsShare(name, num , unique_id) {
     title: name + '发了' + num + '元钱红包,点击领取',
     path: path,
     success: (res) => {
-      _this.shareLog(res,path);
+      _this.shareLog(res, path, unique_id);
     }
   }
   return json
@@ -200,7 +200,7 @@ function sharePage(user_id, share_id, name) {
 }
 
 //分享打点
-function shareLog(res, path) {
+function shareLog(res, path, unique_id) {
   app.log("path", path)
   let shareTicket;
   if (res.shareTickets) {
@@ -228,7 +228,8 @@ function shareLog(res, path) {
                   code: code,
                   path: path,
                   encryptedData: encryptedData,
-                  iv: iv
+                  iv: iv,
+                  packet_unique_id: unique_id
                 },
                 success(res) {
                   console.log('分享页面后台记录成功', res)
@@ -245,6 +246,7 @@ function shareLog(res, path) {
             data: {
               code: code,
               path: path,
+              packet_unique_id: unique_id
             },
             success(res) {
               console.log('分享页面后台记录成功', res)

@@ -16,10 +16,11 @@ Page({
   },
   onLoad: function (options) {
     let unique_id = options.unique_id;
+    let user_id = wx.getStorageSync('user_id');
     this.setData({
       unique_id
     })
-    rp.pushHBPerson.call(this,unique_id)
+    rp.pushHBPerson.call(this,user_id,unique_id)
     wx.showShareMenu({
       withShareTicket: true
     })

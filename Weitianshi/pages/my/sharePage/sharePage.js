@@ -23,11 +23,14 @@ Page({
     let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
     let unique_id = options.unique_id;
+    let shareTicket = options.shareTicket;
+
     that.setData({
-      followed_user_id: options.user_id,
-      share_id: options.share_id,
-      is_redPackets: options.is_redPackets,
-      unique_id: options.unique_id
+      followed_user_id,
+      share_id,
+      is_redPackets,
+      unique_id,
+      shareTicket
     });
     //登录态维护
     app.loginPage(function (user_id) {
@@ -38,19 +41,17 @@ Page({
 
       //如果进入的是自己的名片里
       if (user_id == followed_user_id && !is_redPackets) {
-        app.href('/pages/my/my/my');
-        return
+        return app.href('/pages/my/my/my');
       }
-
       // 载入被分享者的个人信息
       that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 检查注册信息是否完整
       that.checkRegisterComplete(user_id);
       // 发布红包的用户相关信息
-      rp.pushHBPerson.call(that,share_id,unique_id,res =>{
+      rp.pushHBPerson.call(that, share_id, unique_id, res => {
         console.log(res)
         let status = res.data.data.packet.drawed_user.drawed_status;
-        if (status != 0) app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id);
+        if (status != 0) app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
       });
     });
     app.netWorkChange(that);
@@ -119,7 +120,7 @@ Page({
       kai: false,
     })
     setTimeout(() => {
-      rp.openHB.call(this,unique_id)
+      rp.openHB.call(this, unique_id)
       that.setData({
         kai: true,
       });
@@ -127,10 +128,12 @@ Page({
   },
   // 打开红包后,点击确定跳转
   makeSure() {
+    let unique_id = this.data.unique_id;
+    let shareTicket = this.data.shareTicket;
     this.setData({
       show: false
     })
-    app.href("/redPackets/pages/openedHB/openedHB")
+    app.href("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket);
   },
   // 回到首页
   moreProject: function () {

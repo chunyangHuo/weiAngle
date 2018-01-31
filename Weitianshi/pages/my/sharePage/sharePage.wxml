@@ -8,8 +8,8 @@
     </view>
     <view class="modalBox" wx:if="{{!show}}" bindtap='hidemodel'>
       <image class="tankuang" src="{{tankuang}}"></image>
-      <view class="getMoney">￥105.11</view>
-      <view class="getName">
+      <view class="getMoney">￥{{bounce_money}}</view>
+      <view class="getName" wx:if='{{share_id != user_id}}'>
         <checkbox class="checkM" checked/> 添加{{personInfo.user.user_real_name}}投资名片
       </view>
       <form report-submit='true' bindsubmit='makeSure'>
