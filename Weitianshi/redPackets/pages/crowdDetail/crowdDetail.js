@@ -10,9 +10,8 @@ Page({
     imgUrls: app.globalData.picUrl.meifaguo,
   },
   onLoad: function (options) {
-    let groupId = options.groupId;
-    let openGId = "GblEJ0dKCN5Q5b2lBxp_pqtzN3Kw"
-    rp.groupInsideHB.call(this, openGId)
+    let groupId = options.groupId;groupId
+    rp.groupInsideHB.call(this, groupId)
   },
   //跳转用户详情
   userDetail(e) {

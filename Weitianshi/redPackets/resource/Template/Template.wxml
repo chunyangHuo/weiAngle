@@ -27,7 +27,7 @@
   </view>
 </template>
 <!--群红包  -->
-<template name="groupBox">
+<template name="groupBox"> 
   <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
     <view class="groupPic">
       <block wx:for="{{item.user}}" wx:key="{{index}}" wx:for-item="{{groupImage}}">

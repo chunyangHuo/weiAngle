@@ -42,7 +42,7 @@ Page({
     let currentPage = this.data.currentPage;
     let page_end = this.data.page_end;
     if (page_end == true) {
-      app.errorHide(this, '没有更多了');
+      return app.errorHide(this, '没有更多了');
     }
     currentPage++;
     this.setData({

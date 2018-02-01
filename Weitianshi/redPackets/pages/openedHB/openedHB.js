@@ -3,7 +3,7 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 let RP = require('../../../utils/model/redPackets.js');
 let rp = new RP.redPackets();
-import * as ShareModel from '../../../utils/model/shareModel.js';
+import * as shareModel from '../../../utils/model/shareModel.js';
 Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
@@ -24,7 +24,7 @@ Page({
   },
   // 跳转到群详情
   redDetail(e) {
-    let groupId = e.currentTarget.dataset.groupid;
+    let groupId = e.currentTarget.dataset.groupid; 
     app.href('/redPackets/pages/crowdDetail/crowdDetail?groupId=' + groupId)
   },
   // 查看更多群红包
@@ -82,15 +82,8 @@ Page({
   },
   // 分享页面
   onShareAppMessage(){
-    let that = this;
-    let user_id = this.data.user_id;
-    let user = this.data.personInfo.user;
-    this.setData({
-      user_id,
-      user,
-      share_id:user_id
-    })
-    console.log(this.data)
-    return ShareModel.sharePageShare(that);
+    let unique_id = this.data.unique_id;
+    let personInfo = this.data.personInfo;
+    return shareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
   }
 })
