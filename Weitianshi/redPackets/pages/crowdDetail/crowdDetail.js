@@ -12,7 +12,7 @@ Page({
   onLoad: function (options) {
     let groupId = options.groupId;
     this.setData({
-      groupId
+      groupId: groupId
     })
     app.initPage(this);
     // 群里红包信息

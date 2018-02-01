@@ -19,12 +19,12 @@
 </view>
 <view class='rgInfo flex'>
   <view class="left">
-    <view class="rgInfoNum">{{recordHB.packet_count}}</view>
-    <view class="rgInfoTitle">红包个数</view>
+    <view class="rgInfoNum">{{recordHB.user_count}}</view>
+    <view class="rgInfoTitle">发红包的人</view>
   </view>
   <view class="center">
-    <view class="rgInfoNum">{{recordHB.money}}</view>
-    <view class="rgInfoTitle">金额</view>
+    <view class="rgInfoNum">{{recordHB.card_count}}</view>
+    <view class="rgInfoTitle">人脉拓展</view>
   </view>
   <view class="right">
     <view class="rgInfoNum">{{recordHB.drawed_count}}</view>

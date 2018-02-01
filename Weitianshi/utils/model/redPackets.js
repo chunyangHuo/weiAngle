@@ -105,6 +105,7 @@ export class redPackets {
         openGId
       }
     }, this).then(res => {
+      console.log(res.data.data)
       this.setData({
         groupInfo: res.data.data
       })
@@ -119,13 +120,12 @@ export class redPackets {
       data: {
         user_id,
         openGId,
-        page:currentPage
+        page: currentPage
       }
     }, this).then(res => {
       if (!currentPage) {
         this.setData({
-          insideHB: res.data.data,
-          flag: res.data.flag
+          insideHB: res.data.data
         })
       } else {
         let insideHB = this.data.insideHB;
@@ -155,7 +155,7 @@ export class redPackets {
 
   // 平台红包统计
   recordHB() {
-    let user_id = "8W1ERo3W"
+    let user_id = wx.getStorageSync('user_id');
     app.httpPost({
       url: url_common + '/api/payment/getPacketStatistic',
       data: {
@@ -209,5 +209,21 @@ export class redPackets {
       });
     })
 
+  }
+
+  //红包发布个数及人脉信息
+  packetStatic() {
+    let user_id = wx.getStorageSync('user_id');
+    app.httpPost({
+      url: url_common + '/api/payment/getUserPacketStatistic',
+      data: {
+        user_id
+      }
+    }, this).then(res => {
+      console.log(res)
+      this.setData({
+        packetStatic: res.data.data
+      })
+    })
   }
 }

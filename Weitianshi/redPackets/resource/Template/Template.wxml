@@ -4,7 +4,7 @@
 </template>
 <!--红包领取记录  -->
 <template name="HBrecord">
-  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userDetail'> 
+  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userDetail'>
     <view class="HBrecord flex">
       <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
       <image src="/img/img-touxiang@2x.png" class="HBrecordImg" wx:if="{{!item.user.avatarUrl}}"></image>
@@ -22,13 +22,13 @@
         <view class="recordText2 flex"></view>
       </view>
       <view class="recordadd" wx:if="{{item.is_card == 3}}" data-id="{{item.user.user_id}}" catchtap='contactsAddDirect'>加好友</view>
-      <view class="recordadd" wx:if="{{item.is_card == 0}}" data-id="{{item.user.user_id}}" catchtap='contactsAdd'>加好友</view>
+      <view class="recordadd" wx:if="{{item.is_card == 0}}" data-id="{{item.user.user_id}}" catchtap='contactsAdd' data-status="{{item.is_card}}">加好友</view>
       <view class="recordadd" wx:if="{{item.is_card == 2}}">待验证</view>
     </view>
   </view>
 </template>
 <!--群红包  -->
-<template name="groupBox"> 
+<template name="groupBox">
   <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
     <view class="groupPic">
       <block wx:for="{{item.user}}" wx:key="{{index}}" wx:for-item="{{groupImage}}">
@@ -94,7 +94,7 @@
       <view class="openMoney" wx:if="{{personInfo.packet.drawed_user.drawed_status == 1}}">￥
         <label>{{personInfo.packet.drawed_user.drawed_money}}</label>
       </view>
-      <view class="openSave">已存入微信零钱包</view>
+      <!-- <view class="openSave">已存入微信零钱包</view> -->
       <view class="opentishi1">红包池：
         <label>{{personInfo.packet.drawed_num}}</label> /
         <label>{{personInfo.packet.number}}</label>个，
@@ -128,8 +128,8 @@
         <progress percent="80" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
         <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view>
         <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}" data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
-        <view class="recordadd1" wx:if="{{item.packet.drawed_user.drawed_status == 2}}">红包已派完</view>
-        <view class="recordadd1" wx:if="{{item.packet.drawed_user.drawed_status == 3}}">红包已过期</view>
+        <view class="recordadd3" wx:if="{{item.packet.drawed_user.drawed_status == 2}}">红包已派完</view>
+        <view class="recordadd3" wx:if="{{item.packet.drawed_user.drawed_status == 3}}">红包已过期</view>
       </view>
     </image>
   </view>

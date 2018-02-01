@@ -369,5 +369,9 @@ Page({
   shareJump(e) {
     let index = e.currentTarget.dataset.index;
     app.shareJump(index);
+  },
+  //个人信息编辑
+  avatarEdit() {
+    app.href('/pages/my/cardEdit/cardEdit');
   }
 }); 

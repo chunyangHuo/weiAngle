@@ -6,9 +6,9 @@
     <view>
       <template is="openHB" data="{{bg_hongbao2,kaiStyle:kai,open,personInfo}}"></template>
     </view>
-    <view class="modalBox" wx:if="{{!show}}" bindtap='hidemodel'>
+    <view class="modalBox"  bindtap='hidemodel' wx:if="{{!show}}">
       <image class="tankuang" src="{{tankuang}}"></image>
-      <view class="getMoney">￥{{bounce_money}}</view>
+      <view class="getMoney">￥<label>{{bounce_money}}</label></view>
       <view class="getName" wx:if='{{share_id != user_id}}'>
         <checkbox class="checkM" checked/> 添加{{personInfo.user.user_real_name}}投资名片
       </view>
@@ -17,7 +17,7 @@
           <image class="btnSure" src="{{queding}}"></image>
         </button>
       </form>
-    </view> 
+    </view>
   </view>
   <template wx:else is="topBlock"></template>
   <!--我的名片-->
@@ -40,7 +40,7 @@
   </view>
   <!--按钮  -->
   <!--加人脉按钮-->
-  <view class="flex t-aboutNetwork">
+  <view class="flex t-aboutNetwork" wx:if="{{followed_user_id != view_id}}">
     <view class="t-flexBox" hover-class="t-hoverColor" bindtap="moreProject">
       <image src='/img/icon-shouye@2x.png' class='t-shopPic'></image>
       <view class='t-shopBlock'>首页</view>
@@ -75,6 +75,27 @@
       <view class='t-shopBlock'>加好友</view>
     </view>
     <view class="t-line"></view>
-    <view bindtap="pushProject" class='t-creatProject' hover-class="t-redColor">提交项目</view>
+    <view bindtap="pushProject" class='t-creatProject' hover-class="t-redColor" wx:if="{{followed_user_id != view_id}}">提交项目</view>
+  </view>
+
+
+  <view class="flex t-aboutNetwork" wx:if="{{followed_user_id == view_id}}">
+    <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
+      <image src='/img/icon-shouye@2x.png' class="t-shopPic1"></image>
+      <view class='t-shopBlock'>首页</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox1" plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
+      <view class='t-shopBlock' hover-class="t-hoverColor">
+        <image src='/img/icon-erweima12.png' class="t-shopPic1"></image>
+        二维码</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox1" bindtap="avatarEdit" hover-class="t-hoverColor">
+      <image src='/img/icon-bianji1@2x.png' class="t-shopPic1"></image>
+      <view class='t-shopBlock'>编辑</view>
+    </view>
+    <view class="t-line"></view>
+    <button open-type='share' class='t-creatProject' hover-class="t-redColor">分享名片</button>
   </view>
 </view>

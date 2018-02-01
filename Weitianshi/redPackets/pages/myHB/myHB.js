@@ -18,6 +18,7 @@ Page({
       });
       // 请求已发红包数据
       rp.publishedHBList.call(this, user_id);
+      rp.packetStatic.call(this)
       app.initPage(this);
     })
   },
