@@ -14,12 +14,16 @@ Page({
     let unique_id = options.unique_id;
     let user_id = wx.getStorageSync('user_id');
     console.log(options)
+    // 更多群红包信息
     rp.otherGroupHB.call(this, options.shareTicket)
+    // 其他领取人信息
     rp.getHBRecord.call(this, user_id, unique_id)
+    // 发红包人和红包信息
     rp.pushHBPerson.call(this, unique_id)
     this.setData({
       shareTicket: options.shareTicket || "",
-      user_id: wx.getStorageSync("user_id")
+      user_id: wx.getStorageSync("user_id"),
+      unique_id
     })
   },
   // 跳转到群详情
@@ -87,15 +91,15 @@ Page({
       that.contactsAddSuccessFunc(res, added_user_id, 1, onlyPerson);
     });
   },
-  // 看看Ta的投资名片
-  sendMoreGroup(e) {
-    let id = e.currentTarget.dataset.id;
-    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
-  },
   // 查看个人名片
   userDetail(e) {
     let id = e.currentTarget.dataset.id;
-    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+    let user_id = wx.getStorageSync('user_id');
+    if(user_id == id){
+      app.href('/pages/my/my/my')
+    }else{
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+    }
   },
   // 分享页面
   onShareAppMessage(){

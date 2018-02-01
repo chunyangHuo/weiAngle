@@ -112,19 +112,30 @@ export class redPackets {
   }
 
   // 具体某个群里的红包
-  groupInsideHB(openGId) {
+  groupInsideHB(openGId, currentPage) {
     let user_id = wx.getStorageSync('user_id');
     app.httpPost({
       url: url_common + '/api/payment/getMoreGroupPacket',
       data: {
-        user_id, openGId
+        user_id,
+        openGId,
+        page:currentPage
       }
     }, this).then(res => {
-      console.log(res.data.flag)
-      this.setData({
-        insideHB: res.data.data,
-        flag: res.data.flag
-      })
+      if (!currentPage) {
+        this.setData({
+          insideHB: res.data.data,
+          flag: res.data.flag
+        })
+      } else {
+        let insideHB = this.data.insideHB;
+        let newPage = res.data.data;
+        insideHB = insideHB.concat(newPage);
+        this.setData({
+          insideHB: insideHB,
+          page_end: res.data.page_end
+        })
+      }
     })
   }
 

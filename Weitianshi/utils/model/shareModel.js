@@ -176,6 +176,7 @@ function redPacketsShare(name, num , unique_id) {
   let json = {
     title: name + '给您拜年了，抢红包换名片',
     path: path,
+    imageUrl: '/img/HBshare.png',
     success: (res) => {
       _this.shareLog(res, path, unique_id);
     }

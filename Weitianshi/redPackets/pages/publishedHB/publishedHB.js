@@ -56,7 +56,7 @@ Page({
     })
     app.href("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id);
   },
-  // 分享页面
+  // 分享页面 
   onShareAppMessage(){
     let unique_id = this.data.unique_id;
     let personInfo = this.data.personInfo;

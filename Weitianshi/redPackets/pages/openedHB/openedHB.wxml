@@ -9,7 +9,7 @@
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-left:16rpx;"></label>
   </view>
   <block wx:for="{{groupInfo}}" wx:key="{{index}}">
-    <template is="groupBox" wx:if='{{index < 3}}' data="{{item:item}}"></template>
+    <template is="groupBox" wx:if='{{index < 1}}' data="{{item:item}}"></template>
   </block> 
   <view class="seeMore" bindtap='seeMore' wx:if="{{groupInfo.length>=3}}">查看更多</view>
   <view class="HBrecordTitile flex">
@@ -31,4 +31,4 @@
     <view class="shareMore waitSure" wx:if="{{personInfo.is_card == 2 }}">待通过</view>
     <button class="shareMore" bindtap='userCard' data-id="{{personInfo.user.user_id}}" wx:if="{{personInfo.is_card == 1 }}">查看Ta的投资名片</button>
   </view>
-</scroll-view>
+</scroll-view> 

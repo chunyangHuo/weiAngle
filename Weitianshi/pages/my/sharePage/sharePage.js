@@ -22,7 +22,7 @@ Page({
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
-    let unique_id = options.unique_id; 
+    let unique_id = options.unique_id;
     let shareTicket = options.shareTicket;
 
     that.setData({
@@ -117,15 +117,18 @@ Page({
     let that = this;
     let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_id;
-    that.setData({
-      kai: false,
-    })
-    setTimeout(() => {
-      rp.openHB.call(this, unique_id, added_user_id)
+    let user_id = wx.getStorageSync('user_id');
+    app.checkUserInfo(res => {
       that.setData({
-        kai: true,
-      });
-    }, 1000)
+        kai: false,
+      })
+      setTimeout(() => {
+        rp.openHB.call(this, unique_id, added_user_id)
+        that.setData({
+          kai: true,
+        });
+      }, 1000)
+    })
   },
   // 打开红包后,点击确定跳转
   makeSure() {

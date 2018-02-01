@@ -1,7 +1,7 @@
 <import src="/redPackets/resource/Template/Template.wxml" />
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-<scroll-view scroll-y style="height:1200rpx;">
+<scroll-view scroll-y="true" style="height: 1334rpx;" bindscrolltolower="loadMore" >
   <view wx:if="{{flag == 1}}">
     <view class="crowText">
       <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>

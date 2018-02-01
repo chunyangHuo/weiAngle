@@ -4,7 +4,7 @@
 </template>
 <!--红包领取记录  -->
 <template name="HBrecord">
-  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userDetail'>
+  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userDetail'> 
     <view class="HBrecord flex">
       <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
       <image src="/img/img-touxiang@2x.png" class="HBrecordImg" wx:if="{{!item.user.avatarUrl}}"></image>
@@ -42,7 +42,7 @@
       </view>
       <view class="groupNum">已领
         <label class="number">{{item.count}}</label>个红包，还有
-        <label class="number">{{item.drawed_count}}</label>个红包未领取 </view>
+        <label class="number">{{item.count-item.drawed_count}}</label>个红包未领取 </view>
     </view>
   </view>
   <view class="aline"></view>
@@ -107,7 +107,7 @@
 <!--群详情  -->
 <template name="crowDetail">
   <view id="crowDetail">
-    <image class="crowImg" src="{{packetlist}}" bindtap="userDetail" data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}">
+    <image class="crowImg" src="{{packetlist}}" bindtap="getHB" data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">
       <view class="HBrecord flex">
         <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
         <image class="HBrecordImg" src="/img/img-touxiang@2x.png" wx:if="{{!item.user.avatarUrl}}"></image>
@@ -125,7 +125,7 @@
         <view class="recordTime">领取<label>{{item.packet.drawed_num}}</label>/<label>{{item.packet.number}}</label>个</view>
         <progress percent="80" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
          <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view> 
-        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}" bindtap='getHB'  data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
+        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}"  data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
       </view>
     </image>
   </view>
