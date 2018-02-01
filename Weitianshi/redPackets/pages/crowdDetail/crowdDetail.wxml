@@ -2,12 +2,14 @@
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <scroll-view scroll-y style="height:1200rpx;">
-  <view class="crowText" wx:if="{{flag == 1}}">
-    <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
+  <view wx:if="{{flag == 1}}">
+    <view class="crowText">
+      <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
+    </view>
+    <block wx:for="{{insideHB}}" wx:key="{{index}}">
+      <template is="crowDetail" data="{{packetlist:packetlist,item:item}}"></template>
+    </block>
   </view>
-  <block wx:for="{{insideHB}}" wx:key="{{index}}">
-    <template is="crowDetail" data="{{packetlist:packetlist,item:item}}"></template>
-  </block>
   <!--无内容显示  -->
   <image src="{{packetover}}" class="packetover" wx:if="{{flag == 0}}"></image>
 </scroll-view>

@@ -15,12 +15,18 @@ Page({
   },
   //跳转用户详情
   userDetail(e) {
-    let id = e.currentTarget.dataset.id; 
+    let id = e.currentTarget.dataset.id;
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
   },
   //领取红包
   getHB(e) {
-    let user_id = e.currentTarget.dataset.id; 
-    app.href("/pages/my/sharePage/sharePage")
+    let unique_id = e.currentTarget.dataset.uniqueid;
+    let user_id = e.currentTarget.dataset.id;
+    let status = e.currentTarget.dataset.status;
+    if (status == 0) {
+      app.href("/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + user_id + "&&unique_id=" + uniqueId + '&&is_redPackets=' + true);
+    } else {
+      app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + uniqueId);
+    }
   }
 }) 

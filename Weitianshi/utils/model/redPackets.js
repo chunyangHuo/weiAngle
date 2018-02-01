@@ -120,7 +120,7 @@ export class redPackets {
         user_id, openGId
       }
     }, this).then(res => {
-      console.log(res)
+      console.log(res.data.flag)
       this.setData({
         insideHB: res.data.data,
         flag: res.data.flag

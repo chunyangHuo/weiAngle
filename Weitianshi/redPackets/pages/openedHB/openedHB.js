@@ -41,33 +41,50 @@ Page({
     app.href("/redPackets/pages/publishHB/publishHB")
   },
   // 加人脉成功后处理(辅助函数)
-  contactsAddSuccessFunc(res, added_user_id, num) {
+  contactsAddSuccessFunc(res, added_user_id, num, onlyPerson) {
     let that = this;
-    var contacts = this.data.contacts;
-    app.log("contacts", contacts);
-    if (res.data.status_code == 2000000) {
-      //更改投资人和FA列表中该人的加人脉按钮的字段
-      if (contacts) {
-        contacts.forEach(x => {
-          if (x.user_id == added_user_id) {
-            x.follow_status = num;
-          }
-        });
-        that.setData({
-          contacts: contacts
-        });
+    if (onlyPerson) {
+      let personInfo = this.data.personInfo;
+      personInfo.is_card = num;
+      this.setData({
+        personInfo: personInfo
+      })
+    } else if (!onlyPerson) {
+      let whoGet = this.data.whoGet;
+      if (res.data.status_code == 2000000) {
+        if (whoGet) {
+          whoGet.forEach(x => {
+            if (x.user.user_id == added_user_id) {
+              x.is_card = num;
+            }
+          });
+          that.setData({
+            whoGet: whoGet
+          });
+        }
+      } else {
+        app.errorHide(that, res.data.error_Msg, 3000);
       }
-    } else {
-      app.errorHide(that, res.data.error_Msg, 3000);
     }
   },
   // 申请加人脉
   contactsAdd(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
+    let onlyPerson = e.currentTarget.dataset.only;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      app.log('申请添加人脉完成', res);
-      that.contactsAddSuccessFunc(res, added_user_id, 2);
+      console.log('申请添加人脉完成', res);
+      that.contactsAddSuccessFunc(res, added_user_id, 2, onlyPerson);
+    });
+  },
+  // 直接加人脉
+  contactsAddDirect(e) {
+    let added_user_id = e.currentTarget.dataset.id;
+    let onlyPerson = e.currentTarget.dataset.only;
+    let that = this;
+    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+      app.log("直接添加人脉完成", res);
+      that.contactsAddSuccessFunc(res, added_user_id, 1, onlyPerson);
     });
   },
   // 看看Ta的投资名片
