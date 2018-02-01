@@ -370,7 +370,7 @@ Page({
   //个人信息编辑
   avatarEdit() {
     app.href('/pages/my/cardEdit/cardEdit');
-  }
+  },
   // 分享页面部分
   onShareAppMessage: function () {
     let that = this;
