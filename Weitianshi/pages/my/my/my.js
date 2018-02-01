@@ -261,11 +261,15 @@ Page({
     wx.hideLoading();
   },
   //发送红包
-  sendBag(){ 
-    app.href('/redPackets/pages/publishHB/publishHB')
+  sendBag() {
+    app.loginPage(function (user_id) {
+      console.log("user_id")
+      app.href('/redPackets/pages/publishHB/publishHB')
+    })
+
   },
   //已发红包
-  sendedBag(){
+  sendedBag() {
     app.href('/redPackets/pages/myHB/myHB')
   }
 });

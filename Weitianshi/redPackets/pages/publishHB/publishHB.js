@@ -32,10 +32,10 @@ Page({
     this.setData({
       money: bagMoney
     })
-    // clearTimeout(A)
-    // let A = setTimeout(x => {
-    //   this.getAll(bagMoney);
-    // }, 1000);
+    clearTimeout(A)
+    let A = setTimeout(x => {
+      this.getAll(bagMoney);
+    }, 1000);
   },
   redBagNum(e) {
     let that = this;
@@ -64,9 +64,9 @@ Page({
     } else if (number == 0) {
       app.errorHide(that, "请输入红包个数", 1500);
     } else if (money / number >= 1) {
-
+      rp.publishHB.call(this, user_id, number, money, title)
     }
-    rp.publishHB.call(this, user_id, number, money, title)
+  
   },
   //获取全部文字
   getAll(bagMoney) {
