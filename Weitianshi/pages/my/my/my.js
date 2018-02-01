@@ -143,11 +143,15 @@ Page({
   },
   //项目店铺
   projectShop: function () {
-    app.href('/pages/my/projectShop/projectShop/projectShop');
+    app.checkUserInfo(res => {
+      app.href('/pages/my/projectShop/projectShop/projectShop')
+    })
   },
   //约谈的项目
   contactProject: function () {
-    app.href('/pages/message/contactProject/userList/userList');
+    app.checkUserInfo(res => {
+      app.href('/pages/message/contactProject/userList/userList')
+    })
   },
   //收藏的项目
   collectProject: function () {
@@ -262,14 +266,14 @@ Page({
   },
   //发送红包
   sendBag() {
-    app.loginPage(function (user_id) {
-      console.log("user_id")
+    app.checkUserInfo(res=>{
       app.href('/redPackets/pages/publishHB/publishHB')
     })
-
   },
   //已发红包
   sendedBag() {
-    app.href('/redPackets/pages/myHB/myHB')
+    app.checkUserInfo(res => {
+      app.href('/redPackets/pages/myHB/myHB')
+    })
   }
 });

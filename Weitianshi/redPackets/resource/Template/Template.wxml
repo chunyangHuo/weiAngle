@@ -21,7 +21,7 @@
         </view>
         <view class="recordText2 flex"></view>
       </view>
-      <view class="recordadd" wx:if="{{item.is_card == 2}}" data-id="{{item.user.user_id}}">加好友</view>
+      <view class="recordadd" wx:if="{{item.is_card == 2}}" data-id="{{item.user.user_id}}" catchtap='addPerson'>加好友</view>
       <view class="recordadd" wx:if="{{item.is_card == 0}}">待验证</view>
     </view>
   </view>
