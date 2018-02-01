@@ -1,3 +1,5 @@
 {
-    "navigationBarTitleText": "名片分享"
+    "navigationBarTitleText": "名片分享",
+      "navigationBarBackgroundColor": "#f14b50",
+      "navigationBarTextStyle": "#ffe2b1"
 }

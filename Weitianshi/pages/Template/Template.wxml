@@ -1337,7 +1337,7 @@
   <view id="detailTeam">
     <view class="memberInfo flex">
       <view class="memberInfoLeft">
-         <view class="memberInfoLeft">{{item.ct_member_avatar}}</view> 
+        <view class="memberInfoLeft">{{item.ct_member_avatar}}</view>
       </view>
       <view class="memberInfoRight">
         <view class="flex memberInfoTop">
@@ -1496,11 +1496,13 @@
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
       <view class="openTitle">{{personInfo.packet.title}}</view>
-      <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}"></image>
-      <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
+      <view class="openImgBox">
+        <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}"></image>
+        <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
+      </view>
       <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{personInfo.user.group[0].group_title == '创业者'}}"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
-      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa1@2x.png"></image>
+      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa@2x.png"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">

@@ -1,6 +1,10 @@
 <import src="/redPackets/resource/Template/Template.wxml" />
 <scroll-view scroll-y="true" bindscrolltolower='loadMore'>
   <view class='outBox' wx:if="{{HBInfo.length != 0}}">
+    <view>您累计发放了
+      <label>{{packetStatic.packet_count}}</label>个名片红包，总金额
+      <label>{{packetStatic.packet_money}}</label>元，累计获得了
+      <label>{{packetStatic.drawed_count}}</label>个新创投圈人脉。</view>
     <block wx:for="{{HBInfo}}" wx:key="{{index}}">
       <view class="whoGet" data-uniqueId="{{item.unique_id}}" data-status='{{item.drawed_user.drawed_status}}' bindtap='findHB'>
         <view class="flex upBox">
@@ -10,7 +14,7 @@
         <view class='flex downBox'>
           <view class="getNum">
             ￥
-            <label>{{item.money}}</label> · 
+            <label>{{item.money}}</label> ·
             <label>{{item.number}}</label> 个</view>
           <view class="getPerson">
             <label>{{item.drawed_num}}</label> 人领取</view>

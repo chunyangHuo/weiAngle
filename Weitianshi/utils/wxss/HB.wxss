@@ -8,20 +8,21 @@
   padding: 32rpx 0;
   align-items: center;
 }
-#HBrecord:last-child{
-  border-bottom: none;
+
+#HBrecord:nth-last-child(3) .HBrecord {
+  border-bottom: none !important;
 }
 
 #HBrecord .HBrecordImg {
   width: 104rpx;
   height: 104rpx;
   border-radius: 50%;
-  /* background: #fff; */
+  border: 2rpx solid #fff;
 }
 
 #HBrecord .recordText {
-  width: 490rpx;
-  max-width: 490rpx;
+  width: 450rpx;
+  max-width: 450rpx;
   margin-left: 22rpx;
   text-overflow: ellipsis !important;
   overflow: hidden;
@@ -101,10 +102,12 @@
   opacity: 0.2;
   background: #fff;
   width: 686rpx;
-  height: 2rpx;
+  height: 1rpx;
   margin: 0 32rpx;
 }
-
+.aline:last-child{
+  background: none;
+}
 #groupHB .groupName {
   font-size: 32rpx;
   color: #fff;
@@ -164,6 +167,7 @@
   overflow: hidden;
 }
 
+
 #openHB .openImg {
   width: 104rpx;
   height: 104rpx;
@@ -175,7 +179,7 @@
   text-align: center;
   line-height: 104rpx;
   font-size: 40rpx;
-  /* background: #fff; */
+  border: 2rpx solid #fff;
 }
 
 #openHB .openRen {
@@ -245,6 +249,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: bold;
 }
 
 #openHB .openSave {
@@ -452,6 +457,19 @@
   background: #f7c660;
   border-radius: 48rpx;
   width: 110rpx;
+  height: 54rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 54rpx;
+  position: absolute;
+  left: 501rpx;
+  top: 65rpx;
+}
+#crowDetail .recordadd3{
+    background: #f7c660;
+  border-radius: 48rpx;
+  width: 146rpx;
   height: 54rpx;
   font-size: 24rpx;
   color: #fff;
