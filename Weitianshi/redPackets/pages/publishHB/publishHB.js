@@ -10,7 +10,7 @@ Page({
     nonet: true,
     number: 0,
     money: 0,
-    title: ""
+    title: "给大家拜年了，投资名片换起来"
   },
   onLoad() {
     app.loginPage(user_id => {
@@ -57,13 +57,13 @@ Page({
     let money = this.data.money;
     let title = this.data.title;
     app.formIdSubmit(e);
-    if (title == '') {
-      app.errorHide(that, "请填写标题", 1500);
-    } else if (money == 0) {
+    if (money == 0) {
       app.errorHide(that, "请输入金额", 1500);
     } else if (number == 0) {
       app.errorHide(that, "请输入红包个数", 1500);
-    } else if (money / number >= 1) {
+    } else if (money / number < 1) {
+      app.errorHide(that, "红包领取金额不能小于1", 1500);
+    } else if (money / number >= 1){
       rp.publishHB.call(this, user_id, number, money, title)
     }
   
@@ -75,7 +75,7 @@ Page({
     if (!moneyReg.test(bagMoney)) {
       app.errorHide(that, "需要大于1元", 1500);
     } else {
-      if (bagMoney <= 2018) {
+      if (bagMoney >= 2018) {
         app.errorHide(that, "不能大于2018", 1500);
       } else {
         this.setData({

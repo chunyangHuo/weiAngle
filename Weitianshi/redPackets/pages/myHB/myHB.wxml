@@ -17,8 +17,8 @@
         </view>
       </view>
     </block>
-    <view style='height:108rpx;'></view>
   </view>
+  <view style='height:108rpx;'></view>
 </scroll-view>
 
 
