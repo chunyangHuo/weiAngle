@@ -43,10 +43,11 @@ Page({
       if (user_id == followed_user_id && !is_redPackets) {
         return app.href('/pages/my/my/my');
       }
-      // 载入被分享者的个人信息
-      that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 检查注册信息是否完整
       that.checkRegisterComplete(user_id);
+      app.checkUserInfo();
+      // 载入被分享者的个人信息
+      that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 发布红包的用户相关信息
       rp.pushHBPerson.call(that, unique_id, res => { 
         console.log(res)
