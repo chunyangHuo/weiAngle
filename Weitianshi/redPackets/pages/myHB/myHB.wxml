@@ -5,12 +5,12 @@
       <view class="whoGet" data-uniqueId="{{item.unique_id}}" data-status='{{item.drawed_user.drawed_status}}' bindtap='findHB'>
         <view class="flex upBox">
           <view class="des">{{item.title}}</view>
-          <view class="getTime">{{item.created_At}}</view>
+          <view class="getTime">{{item.created_at}}</view>
         </view>
         <view class='flex downBox'>
           <view class="getNum">
             ￥
-            <label>{{item.money}}</label> *
+            <label>{{item.money}}</label> · 
             <label>{{item.number}}</label> 个</view>
           <view class="getPerson">
             <label>{{item.drawed_num}}</label> 人领取</view>
