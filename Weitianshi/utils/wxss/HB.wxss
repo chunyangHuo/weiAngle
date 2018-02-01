@@ -16,7 +16,7 @@
   width: 104rpx;
   height: 104rpx;
   border-radius: 50%;
-  background: #fff;
+  /* background: #fff; */
 }
 
 #HBrecord .recordText {

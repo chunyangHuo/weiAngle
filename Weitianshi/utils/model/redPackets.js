@@ -113,14 +113,14 @@ export class redPackets {
 
   // 具体某个群里的红包
   groupInsideHB(openGId) {
-    let user_id = '8W1ERo3W';
+    let user_id = wx.getStorageSync("user_id");
     app.httpPost({
       url: url_common + '/api/payment/getMoreGroupPacket',
       data: {
         user_id, openGId
       }
     }, this).then(res => {
-      console.log(res)
+      console.log(res.data.flag)
       this.setData({
         insideHB: res.data.data,
         flag: res.data.flag
