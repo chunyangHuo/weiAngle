@@ -11,7 +11,7 @@
   <block wx:for="{{groupInfo}}" wx:key="{{index}}">
     <template is="groupBox" wx:if='{{index < 1}}' data="{{item:item}}"></template>
   </block> 
-  <view class="seeMore" bindtap='seeMore' wx:if="{{groupInfo.length>=3}}">查看更多</view>
+  <view class="seeMore" bindtap='seeMore' wx:if="{{groupInfo.length>=1}}">查看更多</view>
   <view class="HBrecordTitile flex">
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
     红包领取记录

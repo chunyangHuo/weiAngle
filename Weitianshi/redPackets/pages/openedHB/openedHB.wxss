@@ -78,8 +78,8 @@ page {
   opacity: 0.5;
 }
 .fourImage{
-  width: 40rpx;
-  height:40rpx;
+  width: 35rpx;
+  height:35rpx;
 }
 .fiveImage{
   width:24rpx;

@@ -48,11 +48,13 @@ Page({
       // 检查注册信息是否完整
       that.checkRegisterComplete(user_id);
       // 发布红包的用户相关信息
-      rp.pushHBPerson.call(that, unique_id, res => {
+      rp.pushHBPerson.call(that, unique_id, res => { 
         console.log(res)
         let status = res.data.data.packet.drawed_user.drawed_status;
         if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
       });
+      // 向后台传群信息和红包信息
+      app.clickLog(options);
     });
     app.netWorkChange(that);
   },
@@ -290,11 +292,6 @@ Page({
     wx.setStorageSync('QR_id', QR_id);
     app.href('/pages/my/qrCode/qrCode');
   },
-  // 分享页面部分
-  onShareAppMessage: function () {
-    let that = this;
-    return ShareModel.sharePageShare(that);
-  },
   // 项目融资
   projectFinance: function () {
     let followed_user_id = this.data.followed_user_id;
@@ -374,4 +371,15 @@ Page({
   avatarEdit() {
     app.href('/pages/my/cardEdit/cardEdit');
   }
+  // 分享页面部分
+  onShareAppMessage: function () {
+    let that = this;
+    if (this.data.unique_id) {
+      let unique_id = this.data.unique_id;
+      let personInfo = this.data.personInfo;
+      return ShareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
+    } else {
+      return ShareModel.sharePageShare(that);
+    }
+  },
 }); 

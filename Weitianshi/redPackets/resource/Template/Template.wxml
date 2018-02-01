@@ -31,8 +31,8 @@
 <template name="groupBox">
   <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
     <view class="groupPic">
-      <block wx:for="{{item.user}}" wx:key="{{index}}" wx:for-item="{{groupImage}}">
-        <image src="{{groupImage.avatarUrl}}" class='fourImage'></image>
+      <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
+        <image wx:if='{{idx < 9}}' src="{{groupImage.avatarUrl}}" class='fourImage'></image>
         <!-- <image src="{{group.avatarUrl}}" class='fiveImage'></image> -->
       </block>
     </view>
@@ -41,8 +41,8 @@
         <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
       </view>
       <view class="groupNum">已领
-        <label class="number">{{item.count}}</label>个红包，还有
-        <label class="number">{{item.count-item.drawed_count}}</label>个红包未领取 </view>
+        <label class="number">{{item.drawed_count}}</label>个红包，还有
+        <label class="number">{{item.wait_count}}</label>个红包未领取 </view>
     </view>
   </view>
   <view class="aline"></view>

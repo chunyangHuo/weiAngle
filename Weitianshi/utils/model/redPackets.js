@@ -88,7 +88,7 @@ export class redPackets {
       }
     });
   }
-
+ 
   // 更多群红包信息
   otherGroupHB(openGId = '') {
     let user_id = wx.getStorageSync('user_id');
@@ -181,6 +181,13 @@ export class redPackets {
       this.setData({
         personInfo: res.data.data,
       });
+      // 如果不是红包拥有人,则禁止分享
+      if (res.data.data.user.user_id != user_id){
+        wx.hideShareMenu()
+      }
+      wx.showShareMenu({
+        withShareTicket: true
+      })
       if (cb) cb(res);
     })
   }
