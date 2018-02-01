@@ -10,20 +10,23 @@ App({
   onShow(options) {
     if (options.shareTicket) {
       this.globalData.shareTicket = options.shareTicket;
+      this.globalData.path = options.path;
     }
   },
   // 在群里点击进入小程序时向后台传群信息和红包信息
   clickLog(options) {
-    let url_common = app.globalData.url_common;
+    let _this = this;
+    let url_common = this.globalData.url_common;
     // 向后台传群信息和红包信息
     wx.login({
       success: function (login) {
         let code = login.code;
         if (code) {
-          let path = options.path;
-          let shareTicket = app.globalData.shareTicket;
+          let path = _this.globalData.path;
+          let shareTicket = _this.globalData.shareTicket;
           let unique_id = options.unique_id || '';
           //获取群ID
+          if (!shareTicket) return 
           wx.getShareInfo({
             shareTicket: shareTicket,
             success(res) {
@@ -181,7 +184,8 @@ App({
     });
   },
   // 检查用户信息,信息完整刚进行回调
-  checkUserInfo(callBack) {
+  checkUserInfo(callBack,that) {
+    let _this = this;
     let user_id = wx.getStorageSync('user_id');
     wx.getStorageSync('user_id');
     wx.request({
@@ -192,7 +196,7 @@ App({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             if (callBack) {
               callBack(res);
@@ -219,6 +223,11 @@ App({
                 wx.navigateTo({
                   url: '/pages/register/personInfo/personInfo?type =' + 1
                 });
+              }else{
+                _this.errorHide(that,'必须是注册用户才能领红包哦',3000);
+                setTimeout(res=>{
+                  _this.href();
+                },3000)
               }
             }
           });
@@ -877,6 +886,9 @@ App({
     app_key: 'wxos_lt',
     open_session: '',
     delay_time: 0,
+    shareTicket: '',// app.onShow时options中的shareTicket
+    path:'',// app.onShow时option中的path
+
     // url: "https://wx.weitianshi.cn",
     // url_common: "https://wx.weitianshi.cn"
     url: "https://wx.dev.weitianshi.cn",

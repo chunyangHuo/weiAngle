@@ -44,8 +44,9 @@ Page({
         return app.href('/pages/my/my/my');
       }
       // 检查注册信息是否完整
-      that.checkRegisterComplete(user_id);
-      app.checkUserInfo();
+      if (!is_redPackets){
+        that.checkRegisterComplete(user_id);
+      }
       // 载入被分享者的个人信息
       that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 发布红包的用户相关信息
@@ -131,7 +132,7 @@ Page({
           kai: true,
         });
       }, 1000)
-    })
+    },that)
   },
   // 打开红包后,点击确定跳转
   makeSure() {
