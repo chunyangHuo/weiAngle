@@ -20,7 +20,7 @@ Page({
     this.setData({
       unique_id
     })
-    rp.pushHBPerson.call(this,user_id,unique_id)
+    rp.pushHBPerson.call(this,unique_id)
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -37,11 +37,12 @@ Page({
   kai: function () {
     let that = this;
     let unique_id = this.data.unique_id;
+    let added_user_id = this.data.personInfo.user.user_info;
     that.setData({
       kai: false,
     })
     setTimeout(() => {
-      rp.openHB.call(this, unique_id)
+      rp.openHB.call(this, unique_id, added_user_id);
       that.setData({
         kai: true,
       });

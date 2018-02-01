@@ -174,7 +174,7 @@ function redPacketsShare(name, num , unique_id) {
   app.log(user_id, share_id)
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true + '&&unique_id=' + unique_id;
   let json = {
-    title: name + '发了' + num + '元钱红包,点击领取',
+    title: name + '给您拜年了，抢红包换名片',
     path: path,
     success: (res) => {
       _this.shareLog(res, path, unique_id);

@@ -19,7 +19,6 @@
       <label>{{personInfo.user.user_real_name}}</label>  
       投资名片
     </view>
-
     <form report-submit='true' bindsubmit='makeSure'>
       <button form-type='submit' hover-class='buttonOne'>
         <image class="btnSure" src="{{queding}}"></image>

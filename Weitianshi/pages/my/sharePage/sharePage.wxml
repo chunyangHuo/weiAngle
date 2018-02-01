@@ -17,7 +17,7 @@
           <image class="btnSure" src="{{queding}}"></image>
         </button>
       </form>
-    </view>
+    </view> 
   </view>
   <template wx:else is="topBlock"></template>
   <!--我的名片-->

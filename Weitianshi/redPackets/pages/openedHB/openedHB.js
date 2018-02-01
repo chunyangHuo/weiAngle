@@ -16,7 +16,7 @@ Page({
     console.log(options)
     rp.otherGroupHB.call(this, options.shareTicket)
     rp.getHBRecord.call(this, user_id, unique_id)
-    rp.pushHBPerson.call(this, user_id, unique_id)
+    rp.pushHBPerson.call(this, unique_id)
     this.setData({
       shareTicket: options.shareTicket || "",
       user_id: wx.getStorageSync("user_id")

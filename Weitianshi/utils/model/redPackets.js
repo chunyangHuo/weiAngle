@@ -158,7 +158,8 @@ export class redPackets {
   }
 
   // 发布红包的用户相关信息
-  pushHBPerson(user_id, unique_id, cb) {
+  pushHBPerson(unique_id, cb) {
+    let user_id = wx.getStorageSync('user_id');
     app.httpPost({
       url: url_common + '/api/payment/getPacketUser',
       data: {
@@ -174,7 +175,7 @@ export class redPackets {
   }
 
   // 开红包动作
-  openHB(unique_id) {
+  openHB(unique_id, added_user_id) {
     let user_id = wx.getStorageSync('user_id');
     if (!unique_id) return app.errorHide(this, 'unique_id不存在');
     app.httpPost({
@@ -186,6 +187,11 @@ export class redPackets {
     }, this).then(res => {
       console.log(res);
       let bounce_money = res.data.data.bounce_money;
+      if (added_user_id != user_id) {
+        app.operationModel('contactsAdd', added_user_id, res => {
+
+        })
+      }
       this.setData({
         show: false,
         bounce_money

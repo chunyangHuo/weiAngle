@@ -29,8 +29,9 @@
   <view class="right">
     <view class="rgInfoNum">{{recordHB.drawed_count}}</view>
     <view class="rgInfoTitle">领取次数</view>
-  </view> 
+  </view>
 </view>
+<view style='height:108rpx;'></view>
 <form report-submit='true' bindsubmit='createRedBag'>
   <button form-type='submit'>
     <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
