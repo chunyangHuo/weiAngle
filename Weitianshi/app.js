@@ -5,47 +5,51 @@ import { picUrl } from './utils/model/picUrlModel';
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch(options) {
-    let url_common = this.globalData.url_common;
-    //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
+
+  },
+  onShow(options) {
     if (options.shareTicket) {
-      //获取codes
-      wx.login({
-        success: function (login) {
-          let code = login.code;
-          if (code) {
-            let path = options.path;
-            let shareTicket = options.shareTicket;
-            //获取群ID
-            wx.getShareInfo({
-              shareTicket: shareTicket,
-              success(res) {
-                let encryptedData = res.encryptedData;
-                let iv = res.iv;
-                //向后台发送信息
-                wx.request({
-                  url: url_common + '/api/log/clickLogRecord',
-                  data: {
-                    code: code,
-                    path: path,
-                    encryptedData: encryptedData,
-                    iv: iv
-                  },
-                  method: 'POST',
-                  success() {
-                  }
-                });
-              }
-            });
-          }
-        }
-      });
+      this.globalData.shareTicket = options.shareTicket;
     }
   },
-  onShow() {
-    wx.onNetworkStatusChange(function (res) {
-
+  // 在群里点击进入小程序时向后台传群信息和红包信息
+  clickLog(options) {
+    let url_common = app.globalData.url_common;
+    // 向后台传群信息和红包信息
+    wx.login({
+      success: function (login) {
+        let code = login.code;
+        if (code) {
+          let path = options.path;
+          let shareTicket = app.globalData.shareTicket;
+          let unique_id = options.unique_id || '';
+          //获取群ID
+          wx.getShareInfo({
+            shareTicket: shareTicket,
+            success(res) {
+              let encryptedData = res.encryptedData;
+              let iv = res.iv;
+              //向后台发送信息
+              wx.request({
+                url: url_common + '/api/log/clickLogRecord',
+                data: {
+                  code: code,
+                  path: path,
+                  encryptedData: encryptedData,
+                  iv: iv,
+                  packet_unique_id: unique_id
+                },
+                method: 'POST',
+                success() {
+                }
+              });
+            }
+          });
+        }
+      }
     });
   },
+
   //进入页面判断是否有open_session
   loginPage(cb) {
     //群分享打点准备
@@ -89,7 +93,7 @@ App({
                 encryptedData: res.encryptedData,
                 iv: res.iv,
                 app_key: that.globalData.app_key
-              }                                                   
+              }
             }, that).then(res => {
               console.log('这里是用户授权后调用returnOauth,获取并设置了open_session,session_time,user_id');
               //在globalData里存入open_session,session_time,user_id;
@@ -404,7 +408,7 @@ App({
       requestCheck: true,
       currentPage: 1,
       page_end: false
-    }); 
+    });
     if (others) {
       that.setData(others);
     }
@@ -617,39 +621,39 @@ App({
       }
     }
     switch (parameter.length) {
-    case 0:
-      OperationModel[func]();
-      break;
-    case 1:
-      OperationModel[func](parameter[0]);
-      break;
-    default:
-      OperationModel[func](...parameter);
-      break;
+      case 0:
+        OperationModel[func]();
+        break;
+      case 1:
+        OperationModel[func](parameter[0]);
+        break;
+      default:
+        OperationModel[func](...parameter);
+        break;
     }
   },
 
   //分享引导模块跳转
   shareJump(num) {
     switch (num) {
-    case '0':
-      wx.switchTab({
-        url: '/pages/discoverProject/discoverProject',
-      });
-      break;
-    case '1':
-      wx.switchTab({
-        url: '/pages/discoverProject/discoverProject',
-      });
-      break;
-    case '2':
-      wx.switchTab({
-        url: '/pages/discoverProject/discoverProject',
-      });
-      break;
-    default:
-      // this.log(this,'app.shareJump()参数错数');
-      break;
+      case '0':
+        wx.switchTab({
+          url: '/pages/discoverProject/discoverProject',
+        });
+        break;
+      case '1':
+        wx.switchTab({
+          url: '/pages/discoverProject/discoverProject',
+        });
+        break;
+      case '2':
+        wx.switchTab({
+          url: '/pages/discoverProject/discoverProject',
+        });
+        break;
+      default:
+        // this.log(this,'app.shareJump()参数错数');
+        break;
     }
   },
 
@@ -760,7 +764,7 @@ App({
   },
 
   // 页面重定向
-  redirectTo(url){
+  redirectTo(url) {
     wx.redirectTo({
       url: url,
     })
@@ -819,23 +823,23 @@ App({
   },
 
   // console.log 显示
-  log( text, res) {
+  log(text, res) {
     if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
       console.log(text, res);
     } else {
-     
+
     }
   },
 
   // 传formID到后台
-  formIdSubmit(e){
+  formIdSubmit(e) {
     let data;
-    if(e.detail){
+    if (e.detail) {
       data = {
         open_session: this.globalData.open_session,
         form_id: e.detail.formId
       }
-    }else{
+    } else {
       data = {
         open_session: this.globalData.open_session,
         form_id: e,
@@ -847,7 +851,7 @@ App({
       url: this.globalData.url_common + '/api/wx/saveFormId',
       data: data
     }, this).then(res => {
-      if(res.data.status_code != 2000000){
+      if (res.data.status_code != 2000000) {
         app.log(res.data)
       }
     })

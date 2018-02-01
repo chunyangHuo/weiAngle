@@ -10,7 +10,7 @@ Page({
   },
   onLoad: function (options) {
     app.getWxGroupInfo(options, res => {
-      rp.otherGroupHB.call(this, options.shareTicket)
+      rp.otherGroupHB.call(this)
     })
   },
   // 跳转到群详情

@@ -59,7 +59,7 @@ Page({
   // 分享页面 
   onShareAppMessage(){
     let unique_id = this.data.unique_id;
-    let personInfo = this.data.personInfo;
+    let personInfo = this.data.personInfo; 
     return shareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
   }
 })

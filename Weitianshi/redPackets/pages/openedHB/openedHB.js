@@ -15,13 +15,12 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     console.log(options)
     // 更多群红包信息
-    rp.otherGroupHB.call(this, options.shareTicket)
+    rp.otherGroupHB.call(this)
     // 其他领取人信息
     rp.getHBRecord.call(this, user_id, unique_id)
     // 发红包人和红包信息
     rp.pushHBPerson.call(this, unique_id)
     this.setData({
-      shareTicket: options.shareTicket || "",
       user_id: wx.getStorageSync("user_id"),
       unique_id
     })
@@ -33,10 +32,9 @@ Page({
   },
   // 查看更多群红包
   seeMore() {
-    let shareTicket = this.data.shareTicket;
-    app.href('/redPackets/pages/allCrowdHB/allCrowdHB?shareTicket=' + shareTicket)
+    app.href('/redPackets/pages/allCrowdHB/allCrowdHB')
   },
-  // 跳转到首页
+  // 跳转到首页 
   toFirst() {
     app.href("/pages/discoverProject/discoverProject")
   },

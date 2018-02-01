@@ -10,3 +10,7 @@ page {
   height: 1rpx;
   margin: 0 32rpx;
 }
+.fourImage{
+  width: 35rpx;
+  height:35rpx;
+}
