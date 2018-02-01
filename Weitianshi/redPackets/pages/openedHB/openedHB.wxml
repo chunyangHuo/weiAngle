@@ -19,7 +19,7 @@
   </view>
   <!--领取记录  -->
   <block wx:for="{{whoGet}}" wx:key="{{index}}">
-    <template is="HBrecord" data="{{item:item,user_id :user_id}}"></template>
+    <template is="HBrecord" data="{{item:item}}"></template>
   </block>
   <view style="height:100rpx"></view>
   <view class="buttonBox flex">

@@ -10,7 +10,7 @@ Page({
     nonet: true,
     number: 0,
     money: 0,
-    title: "给大家拜年了，投资名片换起来"
+    title: "恭喜发财，投资名片换起来！"
   },
   onLoad() {
     app.loginPage(user_id => {

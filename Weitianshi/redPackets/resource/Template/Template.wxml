@@ -11,7 +11,7 @@
       <view class="recordText">
         <view class="recordText1 flex">
           <view class="recordName">{{item.user.user_real_name}}</view>
-          <view class="recordCareer">{{item.useruser_company_career}}</view>
+          <view class="recordCareer">{{item.user.user_company_career}}</view>
           <view class="recordCompany">·{{item.user.user_brand}}</view>
         </view>
         <view class="recordText1 recordMartop flex">
@@ -21,9 +21,9 @@
         </view>
         <view class="recordText2 flex"></view>
       </view>
-      <view class="recordadd" wx:if="{{item.is_card == 3&& user_id != item.user.user_id}}" data-id="{{item.user.user_id}}" catchtap='contactsAddDirect'>加好友</view>
-            <view class="recordadd" wx:if="{{item.is_card == 0&& user_id != item.user.user_id}}" data-id="{{item.user.user_id}}" catchtap='contactsAdd'>加好友</view>
-      <view class="recordadd" wx:if="{{item.is_card == 2 && user_id != item.user.user_id}}">待验证</view>
+      <view class="recordadd" wx:if="{{item.is_card == 3}}" data-id="{{item.user.user_id}}" catchtap='contactsAddDirect'>加好友</view>
+      <view class="recordadd" wx:if="{{item.is_card == 0}}" data-id="{{item.user.user_id}}" catchtap='contactsAdd'>加好友</view>
+      <view class="recordadd" wx:if="{{item.is_card == 2}}">待验证</view>
     </view>
   </view>
 </template>
@@ -56,7 +56,7 @@
       <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
       <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{personInfo.user.group[0].group_title == '创业者'}}"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
-      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa1@2x.png"></image>
+      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa@2x.png"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
@@ -82,7 +82,7 @@
       <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
       <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{personInfo.user.group[0].group_title == '创业者'}}"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
-      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa1@2x.png"></image>
+      <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa@2x.png"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
@@ -111,10 +111,10 @@
       <view class="HBrecord flex">
         <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
         <image class="HBrecordImg" src="/img/img-touxiang@2x.png" wx:if="{{!item.user.avatarUrl}}"></image>
-         <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{item.user.group[0].group_title == '创业者'}}"></image>
-      <image class="openRen" wx:if="{{item.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
-      <image class="openRen" wx:if="{{item.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa1@2x.png"></image>
-      <image class="openRen" wx:if="{{item.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
+        <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{item.user.group[0].group_title == '创业者'}}"></image>
+        <image class="openRen" wx:if="{{item.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
+        <image class="openRen" wx:if="{{item.user.group[0].group_title=='买方FA'}}" src="/img/img-rzfa@2x.png"></image>
+        <image class="openRen" wx:if="{{item.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
         <view class="recordText">
           <view class="recordText1 flex">
             <view class="recordName">{{item.user.user_real_name}}</view>
@@ -122,10 +122,14 @@
             <view class="recordCompany">·{{item.user.user_brand}}</view>
           </view>
         </view>
-        <view class="recordTime">领取<label>{{item.packet.drawed_num}}</label>/<label>{{item.packet.number}}</label>个</view>
+        <view class="recordTime">领取
+          <label>{{item.packet.drawed_num}}</label>/
+          <label>{{item.packet.number}}</label>个</view>
         <progress percent="80" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
-         <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view> 
-        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}"  data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
+        <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view>
+        <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}" data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
+        <view class="recordadd1" wx:if="{{item.packet.drawed_user.drawed_status == 2}}">红包已派完</view>
+        <view class="recordadd1" wx:if="{{item.packet.drawed_user.drawed_status == 3}}">红包已过期</view>
       </view>
     </image>
   </view>
