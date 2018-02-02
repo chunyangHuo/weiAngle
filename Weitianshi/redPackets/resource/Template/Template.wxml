@@ -24,7 +24,7 @@
       </view>
       <view class="recordadd" wx:if="{{item.is_card == 3}}" data-id="{{item.user.user_id}}" catchtap='contactsAddDirect'>加好友</view>
       <view class="recordadd" wx:if="{{item.is_card == 0}}" data-id="{{item.user.user_id}}" catchtap='contactsAdd' data-status="{{item.is_card}}">加好友</view>
-      <view class="recordadd" wx:if="{{item.is_card == 2}}">待验证</view>
+      <view class="recordadd" wx:if="{{item.is_card == 2}}">待通过</view>
     </view>
   </view>
 </template>
@@ -32,10 +32,16 @@
 <template name="groupBox">
   <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
     <view class="groupPic">
-      <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
-        <image wx:if='{{idx < 9}}' src="{{groupImage.avatarUrl}}" class='fourImage'></image>
-        <!-- <image src="{{group.avatarUrl}}" class='fiveImage'></image> -->
-      </block>
+      <view wx:if="{{item.user.length >4}}">
+        <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
+          <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='nineImage'></image>
+        </block>
+      </view>
+      <view wx:if="{{item.user.length <4}}">
+       <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
+          <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='fourImage'></image>
+        </block>
+      </view>
     </view>
     <view class="groupInfo">
       <view class="groupName">
@@ -126,7 +132,7 @@
         <view class="recordTime">领取
           <label>{{item.packet.drawed_num}}</label>/
           <label>{{item.packet.number}}</label>个</view>
-        <progress percent="80" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
+        <progress percent="{{per}}" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
         <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view>
         <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}" data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
         <view class="recordadd3" wx:if="{{item.packet.drawed_user.drawed_status == 2}}">红包已派完</view>

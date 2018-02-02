@@ -2,10 +2,10 @@
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <scroll-view scroll-y="true" style="height: 1334rpx;" bindscrolltolower="loadMore">
-  <view class="crowText">
+  <view class="crowText">群名称：
     <open-data type="groupName" open-gid="{{groupId}}"></open-data>
   </view>
   <block wx:for="{{insideHB}}" wx:key="{{index}}">
-    <template is="crowDetail" data="{{packetlist:packetlist,item:item}}"></template>
+    <template is="crowDetail" data="{{packetlist:packetlist,item:item,per:per}}"></template>
   </block>
 </scroll-view>

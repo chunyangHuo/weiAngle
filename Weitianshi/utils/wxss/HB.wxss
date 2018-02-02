@@ -93,9 +93,10 @@
 
 #groupHB .groupPic {
   background: #f0f0f0;
-  width: 104rpx;
-  height: 104rpx;
+  width: 108rpx;
+  height: 108rpx;
   margin-right: 24rpx;
+  font-size: 0;
 }
 
 .aline {
@@ -468,12 +469,12 @@
   top: 65rpx;
 }
 #crowDetail .recordadd3{
-    background: #f7c660;
+  border: 1rpx solid #f7c660;
   border-radius: 48rpx;
   width: 146rpx;
   height: 54rpx;
   font-size: 24rpx;
-  color: #fff;
+  color: #f7c660;
   text-align: center;
   line-height: 54rpx;
   position: absolute;
@@ -487,4 +488,15 @@
 
 .hoverHB {
   background: #d84347 !important;
+}
+#groupHB .fourImage {
+  width: 50rpx;
+  height: 50rpx;
+  border: 1rpx solid white;
+}
+
+#groupHB .nineImage {
+  width: 33rpx;
+  height: 33rpx;
+  border: 1rpx solid white;
 }
