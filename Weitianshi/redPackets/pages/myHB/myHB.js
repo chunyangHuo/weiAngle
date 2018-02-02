@@ -28,12 +28,12 @@ Page({
   },
   //发红包详情
   findHB(e) {
-    console.log(e)
+    console.log(e) 
     let uniqueId = e.currentTarget.dataset.uniqueid;
     let user_id = wx.getStorageSync("user_id");
     let status = e.currentTarget.dataset.status;
     if(status == 0 ){
-      app.href("/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + user_id + "&&unique_id=" + uniqueId + '&&is_redPackets=' + true);
+      app.href('/redPackets/pages/publishedHB/publishedHB?unique_id=' + uniqueId);
     }else{
       app.href('/redPackets/pages/openedHB/openedHB?unique_id=' + uniqueId);
     }

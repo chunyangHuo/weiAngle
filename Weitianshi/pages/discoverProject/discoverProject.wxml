@@ -1,4 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
+
 <include src='/utils/wxml/netWork' />
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -100,9 +101,9 @@
   </template>
 </view>
 
-
 <view class="b1" hidden="{{!showLoading}}">
   <view class="t_image">
     <image class="t_image1" src="{{loadingGif}}"></image>
   </view>
 </view>
+
