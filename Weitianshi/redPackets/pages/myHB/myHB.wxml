@@ -1,10 +1,22 @@
 <import src="/redPackets/resource/Template/Template.wxml" />
 <scroll-view scroll-y="true" bindscrolltolower='loadMore'>
+  <view class='rgInfo' wx:if="{{HBInfo.length != 0}}">
+    <view class="dot"></view>
+    <view class="dot1"></view>
+    <view class="dot3"></view>
+    <view class="dot4"></view>
+    <image src="/redPackets/img/img-wodehongbao@2x.png" class='cardImg'></image>
+    <view class="rgInfoContent">
+      我发了
+      <label class="rgInfoNum">{{packetStatic.packet_count}}</label> 个名片红包，共计
+      <label class="rgInfoNum">{{packetStatic.packet_money}}</label> 元，
+    </view>
+    <view class="rgInfoContent">
+      累计获得了
+      <label class="rgInfoNum">{{packetStatic.drawed_count}}</label> 个新创投圈好友。
+    </view>
+  </view>
   <view class='outBox' wx:if="{{HBInfo.length != 0}}">
-    <view>您累计发放了
-      <label>{{packetStatic.packet_count}}</label>个名片红包，总金额
-      <label>{{packetStatic.packet_money}}</label>元，累计获得了
-      <label>{{packetStatic.drawed_count}}</label>个新创投圈人脉。</view>
     <block wx:for="{{HBInfo}}" wx:key="{{index}}">
       <view class="whoGet" data-uniqueId="{{item.unique_id}}" data-status='{{item.drawed_user.drawed_status}}' bindtap='findHB'>
         <view class="flex upBox">
@@ -22,11 +34,11 @@
       </view>
     </block>
   </view>
+  <image src='{{imgUrls}}' wx:if="{{packetStatic.packet_count == 0}}" class='noHB'></image>
   <view style='height:108rpx;'></view>
 </scroll-view>
 
 
-<image src='{{imgUrls}}' wx:if="{{HBInfo.length == 0}}" class='noHB'></image>
 <form report-submit='true' bindsubmit='formSubmit'>
   <button form-type='submit' bindtap='createHB'>
     <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>

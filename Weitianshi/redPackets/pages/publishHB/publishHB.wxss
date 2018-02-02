@@ -60,27 +60,27 @@
 
 .rgInfo {
   background: #fef4db;
-  width: 608rpx;
-  height: 88rpx;
-  justify-content: space-between;
-  padding: 40rpx 78rpx 40rpx 66rpx;
-}
-
-.rgInfoNum {
-  font-size: 36rpx;
-  color: #333;
-}
-
-.rgInfoTitle {
-  font-size: 24rpx;
-  color: #999;
-  margin-bottom: 4rpx;
-}
-
-.left, .right, .center {
+  border-radius: 8rpx;
+  width: 686rpx;
+  padding-bottom: 20rpx;
+  margin: 32rpx 32rpx;
+  font-size: 32rpx;
+  color: #875244;
   text-align: center;
 }
-
+.rgInfoNum{
+  font-size: 44rpx;
+  font-weight: bold;
+}
+.cardImg {
+  height: 74rpx;
+  width: 380rpx;
+  margin-top: 46rpx;
+  margin-bottom: 44rpx;
+}
+.rgInfo view{
+  margin-bottom: 20rpx;
+}
 /*按钮  */
 
 .btn1 {

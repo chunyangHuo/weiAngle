@@ -7,7 +7,7 @@ page {
 .outBox {
   background: #ffefe9;
   width: 688rpx;
-  margin: 48rpx 32rpx 0 32rpx;
+  margin: 0 32rpx;
 }
 
 .whoGet {
@@ -15,9 +15,11 @@ page {
   font-size: 32rpx;
   color: #333;
 }
-.whoGet:nth-child(2n){
-  background:#fff5f1;
+
+.whoGet:nth-child(2n) {
+  background: #fff5f1;
 }
+
 .upBox {
   margin-bottom: 12rpx;
 }
@@ -60,4 +62,72 @@ page {
   width: 626rpx;
   height: 118rpx;
   left: 52rpx;
+}
+
+/*信息  */
+
+.rgInfo {
+  background: #fef4db;
+  border-radius: 8rpx;
+  width: 686rpx;
+  padding-bottom: 20rpx;
+  margin: 32rpx 32rpx;
+  font-size: 30rpx;
+  color: #875244;
+  text-align: center;
+  position: relative;
+}
+
+.rgInfoNum {
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.cardImg {
+  height: 74rpx;
+  width: 380rpx;
+  margin-top: 46rpx;
+  margin-bottom: 44rpx;
+}
+
+.rgInfoContent {
+  margin: 0 36rpx 20rpx 36rpx;
+}
+
+.dot {
+  background: #f14b50;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 100%;
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+}
+
+.dot1 {
+  background: #f14b50;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 100%;
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+}
+.dot3 {
+  background: #f14b50;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 8rpx;
+  left: 8rpx;
+}
+.dot4 {
+  background: #f14b50;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 8rpx;
+  right: 8rpx;
 }

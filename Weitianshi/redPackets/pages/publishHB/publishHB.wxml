@@ -6,7 +6,7 @@
   <view class="flex">
     <view class="bagLeft">
       <view class="bagTitle">红包金额</view>
-      <input type='number' class="redBagMoney" placeholder='建议不低于1元' bindinput="redBagMoney"></input>
+      <input type='digit' class="redBagMoney" placeholder='建议不低于1元' bindinput="redBagMoney"></input>
     </view>
     <view class="bagRight">
       <view class="bagTitle">红包个数</view>
@@ -15,22 +15,32 @@
   </view>
   <view class="point">由于微信限制，红包金额须大于红包个数，否则影响领取者取现</view>
   <view class="point">24小时后未领取，金额将自动返还到您的微信零钱包</view>
+</view>
 
+<view class='rgInfo'>
+  <image src="/redPackets/img/img-mingphongbao@2x.png" class='cardImg'></image>
+  <view>已有
+    <label class="rgInfoNum">{{recordHB.user_count}}</label>人通过名片红包</view>
+  <view>拓展了
+    <label class="rgInfoNum">{{recordHB.card_count}}</label>个创投圈好友 </view>
+  <view>累计领取
+    <label class="rgInfoNum">{{recordHB.drawed_count}}</label>次红包 </view>
 </view>
-<view class='rgInfo flex'>
-  <view class="left">
-    <view class="rgInfoNum">{{recordHB.user_count}}</view>
-    <view class="rgInfoTitle">发红包的人</view>
-  </view>
-  <view class="center">
-    <view class="rgInfoNum">{{recordHB.card_count}}</view>
-    <view class="rgInfoTitle">人脉拓展</view>
-  </view>
-  <view class="right">
-    <view class="rgInfoNum">{{recordHB.drawed_count}}</view>
-    <view class="rgInfoTitle">领取次数</view>
-  </view>
-</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <view style='height:108rpx;'></view>
 <form report-submit='true' bindsubmit='createRedBag'>
   <button form-type='submit'>

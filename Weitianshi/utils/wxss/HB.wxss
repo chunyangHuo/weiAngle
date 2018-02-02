@@ -4,7 +4,7 @@
   width: 91%;
   margin: 0 32rpx;
   height: 108rpx;
-  border-bottom: 1rpx solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.2);
   padding: 32rpx 0;
   align-items: center;
 }
@@ -352,7 +352,8 @@
 #crowDetail .openRen {
   position: absolute;
   top: 88rpx;
-  left: 40.5%;
+  /* left: 40.5%; */
+  left: 0rpx;
   width: 124rpx;
   height: 34rpx;
   z-index: 888;
@@ -369,10 +370,10 @@
   width: 104rpx;
   height: 104rpx;
   border-radius: 50%;
-  /* background: #fff; */
   position: absolute;
   left: 0;
   top: 0;
+  border:2rpx solid #fff;
 }
 
 #crowDetail .recordText {
