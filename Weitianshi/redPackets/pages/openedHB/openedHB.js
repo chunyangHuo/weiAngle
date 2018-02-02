@@ -45,14 +45,15 @@ Page({
   // 加人脉成功后处理(辅助函数)
   contactsAddSuccessFunc(res, added_user_id, num, onlyPerson) {
     let that = this;
+    let whoGet = this.data.whoGet;
+    let personInfo = this.data.personInfo;
     if (onlyPerson) {
-      let personInfo = this.data.personInfo;
       personInfo.is_card = num;
       this.setData({
-        personInfo: personInfo
+        personInfo: personInfo,
+           whoGet: whoGet,
       })
     } else if (!onlyPerson) {
-      let whoGet = this.data.whoGet;
       if (res.data.status_code == 2000000) {
         if (whoGet) {
           whoGet.forEach(x => {
@@ -61,7 +62,8 @@ Page({
             }
           });
           that.setData({
-            whoGet: whoGet
+            whoGet: whoGet,
+            personInfo:personInfo
           });
         }
       } else {
