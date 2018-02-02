@@ -19,7 +19,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-  },
+  }, 
 
   redBagName(e) {
     let bagName = e.detail.value;
@@ -66,7 +66,6 @@ Page({
     } else if (money / number >= 1){
       rp.publishHB.call(this, user_id, number, money, title)
     }
-  
   },
   //获取全部文字
   getAll(bagMoney) {

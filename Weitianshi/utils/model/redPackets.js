@@ -4,20 +4,6 @@ let url_common = app.globalData.url_common
 let url_publishHB = url_common + '/api/payment/unifyOrder'
 let url_publishedHB = url_common + '/api/payment/getUserRedPacket'
 export class redPackets {
-  constructor() { }
-
-  name() {
-
-  }
-
-  // 获取用户信息 
-  getUserInfo() {
-    return app.httpPost({
-      url: app.globalData.common_url + ''
-    }, this).then(res => {
-      console.log(res)
-    })
-  }
 
   // 发布红包
   publishHB(user_id, number, money, title, cb1, cb2) {
@@ -52,7 +38,7 @@ export class redPackets {
                   url: '/redPackets/pages/publishedHB/publishedHB?unique_id=' + unique_id
                 })
               } else {
-                app.errorHide(that, response.errMsg);
+                // app.errorHide(that, response.errMsg);
               }
             }
           })
@@ -206,9 +192,7 @@ export class redPackets {
       console.log(res);
       let bounce_money = res.data.data.bounce_money;
       if (added_user_id != user_id) {
-        app.operationModel('contactsAdd', added_user_id, res => {
-
-        })
+        app.operationModel('contactsAdd', added_user_id, res => {})
       }
       this.setData({
         show: false,
@@ -216,6 +200,15 @@ export class redPackets {
       });
     })
 
+  }
+  // 开完红包后跳转
+  openedHB(){
+    let unique_id = this.data.unique_id;
+    let shareTicket = this.data.shareTicket;
+    this.setData({
+      show: false
+    })
+    app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
   }
 
   //红包发布个数及人脉信息

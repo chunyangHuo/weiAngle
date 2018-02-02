@@ -184,7 +184,7 @@ App({
     });
   },
   // 检查用户信息,信息完整刚进行回调
-  checkUserInfo(callBack,that) {
+  checkUserInfo(callBack) {
     let _this = this;
     let user_id = wx.getStorageSync('user_id');
     wx.getStorageSync('user_id');
@@ -223,11 +223,6 @@ App({
                 wx.navigateTo({
                   url: '/pages/register/personInfo/personInfo?type =' + 1
                 });
-              }else{
-                _this.errorHide(that,'必须是注册用户才能领红包哦',3000);
-                setTimeout(res=>{
-                  _this.href();
-                },3000)
               }
             }
           });
