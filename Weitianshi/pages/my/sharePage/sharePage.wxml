@@ -6,7 +6,7 @@
     <view>
       <template is="openHB" data="{{bg_hongbao2,kaiStyle:kai,open,personInfo}}"></template>
     </view>
-    <view class="modalBox"  bindtap='hidemodel' wx:if="{{!show}}">
+    <view class="modalBox" wx:if="{{!show}}">
       <image class="tankuang" src="{{tankuang}}"></image>
       <view class="getMoney">￥<label>{{bounce_money}}</label></view>
       <view class="getName" wx:if='{{share_id != user_id}}'>

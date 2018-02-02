@@ -8,7 +8,7 @@ Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     open: app.globalData.picUrl.open,
-  },
+  }, 
   onLoad: function (options) {
     //红包分享人的id
     let unique_id = options.unique_id;
@@ -94,7 +94,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if(user_id == id){
-      app.href('/pages/my/my/my')
+      app.href('/pages/my/myCard/myCard')
     }else{
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }

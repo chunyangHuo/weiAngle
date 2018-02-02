@@ -25,15 +25,7 @@ Page({
       withShareTicket: true
     })
   },
-  formsubmit: function () {
-
-  },
-  hidemodel: function () {
-    let that = this;
-    that.setData({
-      show: true
-    });
-  },
+  // 开红包
   kai: function () {
     let that = this;
     let unique_id = this.data.unique_id;
