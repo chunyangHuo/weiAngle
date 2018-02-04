@@ -373,4 +373,4 @@ Page({
       return ShareModel.sharePageShare(that);
     }
   },
-}); 
+});  

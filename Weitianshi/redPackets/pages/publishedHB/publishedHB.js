@@ -20,10 +20,7 @@ Page({
     this.setData({
       unique_id
     })
-    rp.pushHBPerson.call(this,unique_id)
-    wx.showShareMenu({
-      withShareTicket: true
-    })
+    rp.pushHBPerson.call(this,unique_id);
   },
   // 开红包
   kai: function () {

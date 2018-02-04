@@ -73,7 +73,7 @@ export class redPackets {
         })
       }
     });
-  }
+  } 
  
   // 更多群红包信息
   otherGroupHB(openGId = '') {
@@ -174,7 +174,8 @@ export class redPackets {
 
   // 发布红包的用户相关信息
   pushHBPerson(unique_id, cb) {
-    let user_id = wx.getStorageSync('user_id');
+    // let user_id = wx.getStorageSync('user_id');
+    let user_id = 'vrny6QAp';
     app.httpPost({
       url: url_common + '/api/payment/getPacketUser',
       data: {
@@ -186,12 +187,14 @@ export class redPackets {
         personInfo: res.data.data,
       });
       // 如果不是红包拥有人,则禁止分享
+      console.log(1111, res.data.data.user.user_id, user_id)
       if (res.data.data.user.user_id != user_id){
         wx.hideShareMenu()
+      }else{
+        wx.showShareMenu({
+          withShareTicket: true
+        })
       }
-      wx.showShareMenu({
-        withShareTicket: true
-      })
       if (cb) cb(res);
     })
   }
@@ -199,6 +202,7 @@ export class redPackets {
   // 开红包动作
   openHB(unique_id, added_user_id) {
     let user_id = wx.getStorageSync('user_id');
+    let shareTicket = this.data.shareTicket;
     if (!unique_id) return app.errorHide(this, 'unique_id不存在');
     app.httpPost({
       url: url_common + '/api/payment/toBalance',
@@ -206,8 +210,11 @@ export class redPackets {
         user_id,
         packet_unique_id: unique_id
       }
-    }, this).then(res => {
-      console.log(res);
+    }, this,res=>{
+      if (res.data.error_msg == '红包已被领完'){
+        app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
+      }
+    }).then(res => {
       let bounce_money = res.data.data.bounce_money;
       if (added_user_id != user_id) {
         app.operationModel('contactsAdd', added_user_id, res => {})
