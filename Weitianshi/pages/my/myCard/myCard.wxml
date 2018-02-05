@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <!--我的名片-->
   <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'加我为人脉',show : 1,IdentificationShow :1,playTime:0}}"></template>

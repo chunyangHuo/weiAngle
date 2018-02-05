@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
- <include src='/utils/wxml/netWork' />
+ <include src='/utils/wxml/common' />
  <view wx:if="{{nonet}}">
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">提交给我的项目</view>

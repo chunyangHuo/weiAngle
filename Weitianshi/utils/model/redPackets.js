@@ -198,7 +198,7 @@ export class redPackets {
   }
 
   // 开红包动作
-  openHB(unique_id, added_user_id) {
+  openHB(unique_id) {
     let user_id = wx.getStorageSync('user_id');
     let shareTicket = this.data.shareTicket;
     if (!unique_id) return app.errorHide(this, 'unique_id不存在');
@@ -214,16 +214,13 @@ export class redPackets {
       }
     }).then(res => {
       let bounce_money = res.data.data.bounce_money;
-      if (added_user_id != user_id) {
-        app.operationModel('contactsAdd', added_user_id, res => { })
-      }
       this.setData({
         show: false,
         bounce_money
       });
     })
 
-  }
+  } 
   // 开完红包后跳转
   openedHB(added_user_id, is_card) {
     let unique_id = this.data.unique_id;

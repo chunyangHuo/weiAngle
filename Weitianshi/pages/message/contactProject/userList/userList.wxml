@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <view class="s_frame" hidden="{{projectList=='' || !projectList}}">
     <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" style="height:1334rpx;">

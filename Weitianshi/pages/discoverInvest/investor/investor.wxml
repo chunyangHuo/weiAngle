@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <template is='search' data='{{SearchInit,currentTab,hidden}}'></template>
   <scroll-view scroll-y="true" scroll-top="1668" bindscrolltolower='loadMore' style='height:570px'>

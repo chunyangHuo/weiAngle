@@ -31,7 +31,7 @@ Page({
       kai: false,
     })
     setTimeout(() => {
-      rp.openHB.call(this, unique_id, added_user_id);
+      rp.openHB.call(this, unique_id);
       that.setData({
         kai: true,
       });

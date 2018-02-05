@@ -1,4 +1,4 @@
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 
 <view id="companyInfo" wx:if="{{nonet}}">
   <form>

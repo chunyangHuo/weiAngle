@@ -28,7 +28,7 @@ App({
           let shareTicket = _this.globalData.shareTicket;
           let unique_id = options.unique_id || '';
           //获取群ID
-          if (!shareTicket) return 
+          if (!shareTicket) return
           wx.getShareInfo({
             shareTicket: shareTicket,
             success(res) {
@@ -866,7 +866,7 @@ App({
   },
 
   // 获取当前页面路径
-  getCurrentRouter(){
+  getCurrentRouter() {
     let pages = getCurrentPages();
     let currentPage = pages[pages.length - 1];
     let prePage = pages[pages.length - 2];
@@ -882,10 +882,11 @@ App({
     app_key: 'wxos_lt',
     open_session: '',
     delay_time: 0,
-    shareTicket: '',// app.onShow时options中的shareTicket
-    path:'',// app.onShow时option中的path
-    registerInitPage:'',// 记录进入注册时的页面
-    verify: verify,
+    shareTicket: '', // app.onShow时options中的shareTicket
+    path: '', // app.onShow时option中的path
+    registerInitPage: '', // 记录进入注册时的页面
+    verify: verify, // 验证文件
+    registerModalShow: false, // 是否显示注册弹框
 
     // url: "https://wx.weitianshi.cn",
     // url_common: "https://wx.weitianshi.cn"

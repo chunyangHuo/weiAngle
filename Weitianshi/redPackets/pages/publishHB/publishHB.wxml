@@ -1,4 +1,4 @@
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <image src="{{imgUrls}}" class="imgBg"></image>
 <view class="redInfo">
   <view class="bagTitle">红包标题</view>

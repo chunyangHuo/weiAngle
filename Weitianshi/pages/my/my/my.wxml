@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml" />
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <view class="entryBox flex" wx:if="{{!user}}" bindtap='entry' hover-class='t-hoverColor'>
     <view class="user_left">

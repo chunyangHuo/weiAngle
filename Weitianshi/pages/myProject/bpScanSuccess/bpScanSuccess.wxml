@@ -1,4 +1,4 @@
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view id="scanCodeSuccess" wx:if="{{nonet}}">
   <view class="flex">
     <image class="pic" src="/img/img-computer.png"></image>
