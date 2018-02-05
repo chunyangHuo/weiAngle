@@ -8,6 +8,8 @@ Page({
     imgUrls: app.globalData.picUrl.meifaguo,
     redHB: true,
     imgUrls2: app.globalData.picUrl.shengcheng2,
+    openHover2: app.globalData.picUrl.openHover2,
+    bindContact: false
   },
   onShow() {
     let that = this;
@@ -24,6 +26,14 @@ Page({
   },
   //跳转生成红包页面
   createHB() {
+    this.setData({
+      bindContact: true
+    });
+    setTimeout(() => {
+      this.setData({
+        bindContact: false
+      });
+    }, 1000);
     app.href("/redPackets/pages/publishHB/publishHB")
   },
   //发红包详情

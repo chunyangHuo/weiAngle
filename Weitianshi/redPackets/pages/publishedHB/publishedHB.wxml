@@ -13,15 +13,18 @@
   </view>
   <view class="modalBox" wx:if="{{!show}}">
     <image class="tankuang" src="{{tankuang}}"></image>
-    <view class="getMoney">￥ <label>{{bounce_money}}</label> </view>
+    <view class="getMoney">￥
+      <label>{{bounce_money}}</label>
+    </view>
     <view class="getName" wx:if="{{personInfo.is_card == 2}}">
       <checkbox class="checkM" checked/> 添加
-      <label>{{personInfo.user.user_real_name}}</label>  
+      <label>{{personInfo.user.user_real_name}}</label>
       投资名片
     </view>
     <form report-submit='true' bindsubmit='makeSure'>
       <button form-type='submit' hover-class='buttonOne'>
-        <image class="btnSure" src="{{queding}}"></image>
+        <image class="btnSure" src="{{queding}}"  wx:if="{{bindContact == false}}"></image>
+        <image src="{{openHover}}" class="btnSure" wx:if="{{bindContact == true}}"></image>
       </button>
     </form>
   </view>

@@ -13,6 +13,8 @@ Page({
     open: app.globalData.picUrl.open,
     show: true,
     kai: true,
+    openHover: app.globalData.picUrl.zhanfaHover,
+    bindContact: false
   },
   onLoad: function (options) {
     let unique_id = options.unique_id;
@@ -36,8 +38,14 @@ Page({
   makeSure() {
     let unique_id = this.data.unique_id;
     this.setData({
-      show: false
+      show: false,
+      bindContact: true
     })
+    setTimeout(() => {
+      this.setData({
+        bindContact: false
+      });
+    }, 1000);
     app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id)
   },
   // 分享页面 

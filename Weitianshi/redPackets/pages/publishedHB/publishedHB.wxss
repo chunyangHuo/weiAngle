@@ -48,7 +48,7 @@ button {
 }
 
 .getName {
-  top: 770rpx;
+  top: 734rpx;
   left: 252rpx;
   position: absolute;
   font-size: 24rpx;

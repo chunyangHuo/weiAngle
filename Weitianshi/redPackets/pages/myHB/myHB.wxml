@@ -39,6 +39,7 @@
 
 <form report-submit='true' bindsubmit='formSubmit'>
   <button form-type='submit' bindtap='createHB'>
-    <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
+    <image src="{{imgUrls2}}" class="btn1 floatBtn"  wx:if="{{bindContact == false}}"></image>
+    <image src="{{openHover2}}" class="btn1 floatBtn"  wx:if="{{bindContact == true}}"></image>
   </button>
 </form>

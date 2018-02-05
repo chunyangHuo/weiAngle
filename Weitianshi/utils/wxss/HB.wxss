@@ -32,6 +32,7 @@
 
 #HBrecord .recordText1 {
   align-items: center;
+  color: #fff;
 }
 
 #HBrecord .recordName {
