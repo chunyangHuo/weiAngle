@@ -92,7 +92,7 @@ Page({
     });
   },
   // 查看个人名片
-  userDetail(e) {
+  userCard(e) {
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if(user_id == id){

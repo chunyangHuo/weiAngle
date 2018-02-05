@@ -9,7 +9,7 @@
     <view class="modalBox" wx:if="{{!show}}">
       <image class="tankuang" src="{{tankuang}}"></image>
       <view class="getMoney">￥<label>{{bounce_money}}</label></view>
-      <view class="getName" wx:if='{{share_id != user_id}}'>
+      <view class="getName" wx:if='{{share_id != user_id && personInfo.is_card == 0}}'>
         <checkbox class="checkM" checked/> 添加{{personInfo.user.user_real_name}}投资名片
       </view>
       <form report-submit='true' bindsubmit='makeSure'>
