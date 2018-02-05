@@ -1,6 +1,8 @@
 import * as FilterModel from '../../utils/model/filterModel';
 import * as CreateProject from '../../utils/model/createProjectBottom';
 import * as ShareModel from '../../utils/model/shareModel';
+let RG = require('../../utils/model/register.js');
+let register = new RG.register();
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -305,5 +307,16 @@ Page({
       this.onShow();
     }, 1500);
 
+  },
+
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    console.log(11);
+    register.getPhoneNumber.call(this,e);
+  },
+  // 手机号码绑定
+  telephoneRegister(){
+    console.log(22);
+    register.telephoneRegister();
   }
 });

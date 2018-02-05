@@ -1,6 +1,8 @@
 import * as httpModel from './utils/model/httpModel';
 import * as OperationModel from './utils/model/operationModel';
 import { picUrl } from './utils/model/picUrlModel';
+let _this = this;
+let verify = require('./utils/global/verify.js');
 //app.js
 App({
   // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
@@ -872,6 +874,14 @@ App({
     })
   },
 
+  // 获取当前页面路径
+  getCurrentRouter(){
+    let pages = getCurrentPages();
+    let currentPage = pages[pages.length - 1];
+    let prePage = pages[pages.length - 2];
+    this.globalData.registerInitPage = currentPage.route;
+  },
+
   //初始本地缓存
   globalData: {
     routerPage: [],
@@ -883,6 +893,8 @@ App({
     delay_time: 0,
     shareTicket: '',// app.onShow时options中的shareTicket
     path:'',// app.onShow时option中的path
+    registerInitPage:'',// 记录进入注册时的页面
+    verify: verify,
 
     // url: "https://wx.weitianshi.cn",
     // url_common: "https://wx.weitianshi.cn"
