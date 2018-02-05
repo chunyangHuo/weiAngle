@@ -1,5 +1,5 @@
 <!--pages/message/browseMe/browseMe.wxml-->
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <import src="/pages/Template/Template.wxml" />
 <view wx:if="{{nonet}}">
   <view class="browseMeTitle flex" style="justify-content: space-between;">

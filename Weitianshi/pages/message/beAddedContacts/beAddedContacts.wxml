@@ -1,5 +1,5 @@
 <!--pages/message/beAddedContacts/beAddedContacts.wxml-->
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <import src="/pages/Template/Template.wxml" />
   <view class="browseMeTitle flex" style="justify-content: space-between;">

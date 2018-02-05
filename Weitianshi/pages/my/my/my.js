@@ -20,10 +20,6 @@ Page({
       that.setData({
         user_id: user_id,
       });
-      // 分享至群打点准备
-      /* wx.showShareMenu({
-         withShareTicket: true,
-       })*/
       if (user_id != 0) {
         wx.showLoading({
           title: 'loading',
@@ -61,34 +57,36 @@ Page({
           fail: function (res) {
           },
         });
-      }
-      // 获得我的身份状态
-      wx.request({
-        url: url_common + '/api/user/getUserGroupByStatus',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
+        // 获得我的身份状态
+        wx.request({
+          url: url_common + '/api/user/getUserGroupByStatus',
+          data: {
+            user_id: user_id
+          },
+          method: 'POST',
+          success: function (res) {
 
-          // 0:未认证1:待审核 2 审核通过 3审核未通过
-          let status = res.data.status;
-          if (status != 0) {
-            let group_id = res.data.group.group_id;
+            // 0:未认证1:待审核 2 审核通过 3审核未通过
+            let status = res.data.status;
+            if (status != 0) {
+              let group_id = res.data.group.group_id;
+              that.setData({
+                group_id: group_id
+              });
+            }
             that.setData({
-              group_id: group_id
+              status: status
             });
           }
-          that.setData({
-            status: status
-          });
-        }
-      });
+        });
+      }
     });
   },
   //登录
-  entry() {
-    app.noUserId();
+  entry() { 
+    app.checkUserInfo(this,res => {
+      app.href('/pages/register/personInfo/personInfo')
+    })
   },
   //进入我的名片
   toMyCard: function () {
@@ -143,13 +141,13 @@ Page({
   },
   //项目店铺
   projectShop: function () {
-    app.checkUserInfo(res => {
+    app.checkUserInfo(this,res => {
       app.href('/pages/my/projectShop/projectShop/projectShop')
     })
   },
   //约谈的项目
   contactProject: function () {
-    app.checkUserInfo(res => {
+    app.checkUserInfo(this,res => {
       app.href('/pages/message/contactProject/userList/userList')
     })
   },
@@ -266,13 +264,13 @@ Page({
   },
   //发送红包
   sendBag() {
-    app.checkUserInfo(res=>{
+    app.checkUserInfo(this,res => {
       app.href('/redPackets/pages/publishHB/publishHB')
     })
   },
   //已发红包
   sendedBag() {
-    app.checkUserInfo(res => {
+    app.checkUserInfo(this,res => {
       app.href('/redPackets/pages/myHB/myHB')
     })
   }

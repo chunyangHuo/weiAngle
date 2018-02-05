@@ -1,5 +1,5 @@
-<include src='/utils/wxml/netWork' />
 <import src="/pages/Template/Template.wxml" />
+<include src='/utils/wxml/common' />
 <view id="companyInfo" wx:if="{{nonet}}">
   <view class='title'>请尽可能的填写真实信息，有助于高效对接</view>
   <!--姓名  -->

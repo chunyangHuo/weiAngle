@@ -1,6 +1,6 @@
 <!--pages/message/viewProjectUser/viewProjectUser.wxml-->
 <import src="/pages/Template/Template.wxml" />
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <!--pages/message/viewProjectUser/viewProjectUser.wxml-->
   <import src="/pages/Template/Template.wxml" />

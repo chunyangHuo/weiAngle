@@ -1,6 +1,6 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
+let app = getApp();
+let url = app.globalData.url;
+let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
@@ -14,7 +14,7 @@ Page({
     modalBox: 0,
     IdentificationShow: 1,
     shareModal: app.globalData.picUrl.share_modal,
-    nonet: true  
+    nonet: true
   },
   onLoad: function (options) {
 
@@ -27,67 +27,58 @@ Page({
     app.netWorkChange(that);
   },
   onShow: function () {
-    var that = this;
+    let that = this;
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id,
       });
-      if (user_id != 0) {
-        //载入我的个人信息
-        wx.request({
+      app.checkUserInfo(this,response => {
+        // 载入我的个人信息
+        app.httpPost({
           url: url_common + '/api/user/getUserAllInfo',
           data: {
             share_id: 0,
             user_id: user_id,
             view_id: user_id,
-          },
-          method: 'POST',
-          success: function (res) {
-            var user = res.data.user_info;
-            var count = res.data.count;
-            var invest = res.data.invest_info;
-            var resource = res.data.resource_info;
-            var project_info = res.data.project_info;
-            var invest_case = res.data.invest_case;
-            var status_code = res.data.status_code;
-            var financingProject = that.data.financingProject;
-            var user_name = res.data.user_info.user_real_name;
-            //设置缓存==========
-            wx.setStorageSync("resource_find", res.data.resource_info.res_find);
-            wx.setStorageSync("resource_give", res.data.resource_info.res_give);
-            wx.setStorage({
-              key: 'resource_data',
-              data: res.data.resource_info
-            })
-            if (invest_case) {
-              if (invest_case.length > 3) {
-                invest_case = invest_case.slice(0, 3);
-              }
+          }
+        }, that).then(res => {
+          let user = res.data.user_info;
+          let count = res.data.count;
+          let invest = res.data.invest_info;
+          let resource = res.data.resource_info;
+          let project_info = res.data.project_info;
+          let invest_case = res.data.invest_case;
+          let status_code = res.data.status_code;
+          let financingProject = that.data.financingProject;
+          let user_name = res.data.user_info.user_real_name;
+          //设置缓存==========
+          wx.setStorageSync("resource_find", res.data.resource_info.res_find);
+          wx.setStorageSync("resource_give", res.data.resource_info.res_give);
+          wx.setStorage({
+            key: 'resource_data',
+            data: res.data.resource_info
+          })
+          if (invest_case) {
+            if (invest_case.length > 3) {
+              invest_case = invest_case.slice(0, 3);
             }
+          }
 
-            wx.setNavigationBarTitle({
-              title: user_name + "的投资名片",
-            })
-            that.setData({
-              user: user,
-              invest: invest,
-              resource: resource,
-              project_info: project_info,
-              invest_case: invest_case,
-              status_code: status_code,
-              financingProject: financingProject,
-              count: count
-            })
-          },
-          fail: function (res) {
-          },
+          wx.setNavigationBarTitle({
+            title: user_name + "的投资名片",
+          })
+          that.setData({
+            user: user,
+            invest: invest,
+            resource: resource,
+            project_info: project_info,
+            invest_case: invest_case,
+            status_code: status_code,
+            financingProject: financingProject,
+            count: count
+          })
         })
-      } else {
-        app.noUserId()
-        wx.setNavigationBarTitle({
-          title: user_name + "的投资名片",
-        })
-      }
+      })
     })
   },
   onLaunch(options) {
@@ -131,11 +122,11 @@ Page({
     if (!this.data.options) {
       app.href('/pages/my/projectShop/projectShop/projectShop')
     }
-  }, 
+  },
   //融资项目详情
   financingDetail: function (e) {
-    var id = e.currentTarget.dataset.id;
-    var index = e.currentTarget.dataset.index
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index
     app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0)
   },
   //投资案例
@@ -146,10 +137,10 @@ Page({
   },
   //交换名片
   cardChange: function () {
-    var that = this;
-    var user_id = this.data.user_id;
-    var modal = this.data.modal;
-    var status_code = this.data.status_code;
+    let that = this;
+    let user_id = this.data.user_id;
+    let modal = this.data.modal;
+    let status_code = this.data.status_code;
     if (status_code == 2000000) {
       that.setData({
         modal: 1
@@ -178,7 +169,7 @@ Page({
   },
   // 二维码分享按钮
   shareSth: function (e) {
-    var QR_id = e.currentTarget.dataset.clickid;
+    let QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
     app.href('/pages/my/qrCode/qrCode')
   },
@@ -196,11 +187,11 @@ Page({
   },
   // 查税号
   searchIdentification: function (e) {
-    var that = this;
-    var user_id = this.data.user_id;
-    var modal = this.data.modal;
-    var com_name = this.data.user.user_company_name;
-    var status_code = this.data.status_code;
+    let that = this;
+    let user_id = this.data.user_id;
+    let modal = this.data.modal;
+    let com_name = this.data.user.user_company_name;
+    let status_code = this.data.status_code;
     wx.request({
       url: url_common + '/api/dataTeam/taxNumber',
       data: {
@@ -222,7 +213,7 @@ Page({
           })
           let data = res.data.data;
           let com_name = data.com_name;
-          var tax_member = data.tax_mumber;
+          let tax_member = data.tax_mumber;
           that.setData({
             data: data,
             com_name: com_name,
@@ -275,7 +266,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
+          let complete = res.data.is_complete;
           if (complete == 1) {
             //如果信息完整就可以显示去认证
             if (status == 0) {
@@ -309,7 +300,7 @@ Page({
     app.href('/pages/contactsActivty/activtyDetail/activtyDetail')
   },
   // 首页
-  moreProject(){
+  moreProject() {
     app.href('/pages/discoverProject/discoverProject')
   },
   // 重新加载

@@ -7,8 +7,6 @@ export class register {
     let encryptedData = e.detail.encryptedData;
     let iv = e.detail.iv;
     let that = this;
-    console.log('getPhoneNumber');
-    app.getCurrentRouter();
     wx.login({
       success: function (login) {
         let code = login.code;
@@ -25,6 +23,8 @@ export class register {
           that.setData({
             telephone: telephone,
           })
+          app.getCurrentRouter();
+          _this.globalData.registerModalShow = false;
         })
       }
     })
@@ -33,6 +33,7 @@ export class register {
   // 手机验证注册
   telephoneRegister(){
     app.getCurrentRouter();
+    _this.globalData.registerModalShow = false;
     app.href('/pages/register/personInfo/personInfo');
   }
 }

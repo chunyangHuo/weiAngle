@@ -1,4 +1,4 @@
-<include src='/utils/wxml/netWork' />
+<include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
