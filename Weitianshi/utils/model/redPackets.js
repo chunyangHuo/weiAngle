@@ -45,7 +45,7 @@ export class redPackets {
         }
       }
     })
-  }
+  } 
 
   // 已发布红包的列表
   publishedHBList(user_id, currentPage) {
@@ -186,7 +186,6 @@ export class redPackets {
         personInfo: res.data.data,
       });
       // 如果不是红包拥有人,则禁止分享
-      console.log(1111, res.data.data.user.user_id, user_id)
       if (res.data.data.user.user_id != user_id){
         wx.hideShareMenu()
       }else{

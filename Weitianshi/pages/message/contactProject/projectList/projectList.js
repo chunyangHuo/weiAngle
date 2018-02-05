@@ -88,7 +88,6 @@ Page({
   //点击跳转到用户详情
   personDetail: function (e) {
     var id = e.currentTarget.dataset.id;
-    app.console(id);
     app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
   },
   //推送项目

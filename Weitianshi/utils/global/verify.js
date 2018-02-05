@@ -16,13 +16,13 @@ function errorHide(target, errorText, time = 3000) {
 
 // 手机号码格式   {1开头的11位数字}
 function mobile(that,value, callBack){
-  console.log('this',this);
+  console.log(value)
   var myreg = /^(1+\d{10})|(159+\d{8})|(153+\d{8})$/;
   if(!value){
     this.errorHide(that,'请输入手机号');
     return
   }
-  if (myreg.test(value)) {
+  if (!myreg.test(value)) {
     this.errorHide(that,'手机号码格式不正确');
     return
   }
@@ -42,9 +42,23 @@ function email(that,value,callBack){
   }
   if(callBack) callBack();
 }
+// 去除特殊符号
+function deleteSymbol(value){
+  if(typeof value != 'string'){
+    this.errorHide(that,'去除特殊符号函数的参数必须是字符串');
+    return value
+  }
+  let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+  let rs = "";
+  for (let i = 0; i < value.length; i++) {
+    rs = rs + value.substr(i, 1).replace(pattern, '');
+  }
+  return rs;
+}
 
 export {
   mobile,
   email,
+  deleteSymbol,
   errorHide
 }

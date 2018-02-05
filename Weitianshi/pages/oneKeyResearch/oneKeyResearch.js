@@ -800,11 +800,9 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.console(res);
             that.setData({
               userEmail: userEmail
             });
-            app.console(userEmail);
             if (res.data.status_code == 2000000) {
               wx.request({
                 url: url_common + '/api/mail/sendBp',

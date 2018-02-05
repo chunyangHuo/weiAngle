@@ -890,7 +890,6 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.console(res)
             that.setData({
               userEmail: userEmail
             })
