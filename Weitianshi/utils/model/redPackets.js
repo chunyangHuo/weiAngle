@@ -174,8 +174,7 @@ export class redPackets {
 
   // 发布红包的用户相关信息
   pushHBPerson(unique_id, cb) {
-    // let user_id = wx.getStorageSync('user_id');
-    let user_id = 'vrny6QAp';
+    let user_id = wx.getStorageSync('user_id');
     app.httpPost({
       url: url_common + '/api/payment/getPacketUser',
       data: {

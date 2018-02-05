@@ -1,4 +1,4 @@
-<import src="/pages/Template/Template.wxml"/>
+<import src="/pages/Template/Template.wxml" />
 <!--提示  -->
 <template name='error'>
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -13,7 +13,8 @@
         <view class="recordText1 flex">
           <view class="recordName">{{item.user.user_real_name}}</view>
           <view class="recordCareer">{{item.user.user_company_career}}</view>
-          <view class="recordCompany">·{{item.user.user_brand}}</view>
+          <view class="recordCompany" wx:if="{{item.user.user_brand}}"> · {{item.user.user_brand}}</view>
+          <view class="recordCompany" wx:if="{{item.user.user_company_name}}"> · {{item.user.user_company_name}}</view>
         </view>
         <view class="recordText1 recordMartop flex">
           <view class="recordTime">{{item.payment_time}}</view>
@@ -38,7 +39,7 @@
         </block>
       </view>
       <view wx:if="{{item.user.length <4}}">
-       <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
+        <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
           <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='fourImage'></image>
         </block>
       </view>
@@ -67,8 +68,8 @@
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
-        <label>{{personInfo.user.user_company_career}}</label>
-        <label> · {{personInfo.user.user_brand}}</label>
+        <label wX:if="{{personInfo.user.user_company_career}}">{{personInfo.user.user_company_career}}</label>
+        <label wx:if="{{personInfo.user.user_company_nam}}"> · {{personInfo.user.user_company_nam}}</label>
       </view>
       <form report-submit='true' bindsubmit='formsubmit'>
         <button form-type='submit'>
@@ -94,7 +95,9 @@
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
         <label>{{personInfo.user.user_company_career}}</label>
-        <label> · {{personInfo.user.user_brand}}</label>
+        <label wx:if="{{personInfo.user.user_brand}}"> · {{personInfo.user.user_brand}}</label>
+        <label wx:if="{{personInfo.user.user_company_name}}"> · {{personInfo.user.user_company_name}}</label>
+
       </view>
       <view class="openEnd" wx:if="{{personInfo.packet.drawed_user.drawed_status == 2}}">很可惜，红包已派完</view>
       <view class="openEnd" wx:if="{{personInfo.packet.drawed_user.drawed_status == 3}}">红包已过期失效</view>
@@ -126,7 +129,8 @@
           <view class="recordText1 flex">
             <view class="recordName">{{item.user.user_real_name}}</view>
             <view class="recordCareer">{{item.user.user_company_career}}</view>
-            <view class="recordCompany">·{{item.user.user_brand}}</view>
+            <view class="recordCompany" wx:if="{{item.user.user_brand}}"> · {{item.user.user_brand}}</view>
+            <view class="recordCompany" wx:if=" {{item.user.user_company_name}}"> · {{item.user.user_company_name}}</view>
           </view>
         </view>
         <view class="recordTime">领取

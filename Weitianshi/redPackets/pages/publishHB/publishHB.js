@@ -19,7 +19,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-  }, 
+  },
 
   redBagName(e) {
     let bagName = e.detail.value;
@@ -41,13 +41,20 @@ Page({
     let that = this;
     let bagNum = e.detail.value;
     let regNum = /^[+]{0,1}(\d+)$/;
-    if (!regNum.test(bagNum)) {
-      app.errorHide(that, "需要是整数哦", 1500);
+    console.log(!regNum.test(bagNum));
+    console.log(bagNum)
+    if (bagNum == 0) {
+      app.errorHide(that, "请输入红包个数", 1500);
     } else {
-      this.setData({
-        number: bagNum
-      })
+      if (!regNum.test(bagNum)) {
+        app.errorHide(that, "需要是整数哦", 1500);
+      } else if (bagNum == "") {
+        app.errorHide(that, "请输入红包个数", 1500);
+      }
     }
+    this.setData({
+      number: bagNum
+    })
   },
   // 发布红包
   createRedBag(e) {
@@ -56,7 +63,7 @@ Page({
     let number = this.data.number;
     let money = this.data.money;
     let title = this.data.title;
-    console.log(money)
+    console.log(number)
     app.formIdSubmit(e);
     if (money == 0) {
       app.errorHide(that, "请输入金额", 1500);
@@ -71,23 +78,25 @@ Page({
   //获取全部文字
   getAll(bagMoney) {
     let that = this;
-    let moneyReg = /^[1-9]+(.[0-9]{0,2})?$/;
-    if (moneyReg.test(bagMoney)) {
-      if (bagMoney > 2018) {
-        app.errorHide(that, "不能大于2018元", 1500);
-      } else if (1 <= bagMoney <= 2018) {
-        if (!moneyReg.test(bagMoney)) {
-          app.errorHide(that, "红包金额最多只能是两位小数", 1500);
-        } else {
-          this.setData({
-            money: bagMoney
-          })
-        }
+    let money = bagMoney * 1;
+    // let moneyReg = /^[1-9]+(.[0-9]{0,2})?$/;
+    let moneyReg = /^([1-9]\d*|0)(\.\d{1,2})?$/;
+    if (money == 0) {
+      app.errorHide(that, "红包金额不能为0", 1500);
+    } else if (0 < money && money < 1) {
+      app.errorHide(that, "红包金额不能小于1元", 1500);
+    } else if (1 <= money && money <= 2018) {
+      console.log(money)
+      console.log(moneyReg.test(money))
+      if (!moneyReg.test(money)) {
+        app.errorHide(that, "红包金额最多只能是两位小数", 1500);
+      } else {
+        this.setData({
+          money: bagMoney
+        })
       }
-    } else {
-      if (bagMoney < 1) {
-        app.errorHide(that, "红包金额不能小于1元", 1500);
-      }
+    } else if (money > 2018) {
+      app.errorHide(that, "不能大于2018元", 1500);
     }
   }
 })
