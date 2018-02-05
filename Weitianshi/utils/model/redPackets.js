@@ -4,7 +4,7 @@ let url_common = app.globalData.url_common
 let url_publishHB = url_common + '/api/payment/unifyOrder'
 let url_publishedHB = url_common + '/api/payment/getUserRedPacket'
 export class redPackets {
-
+ 
   // 发布红包
   publishHB(user_id, number, money, title, cb1, cb2) {
     return app.httpPost({
@@ -45,7 +45,7 @@ export class redPackets {
         }
       }
     })
-  } 
+  }
 
   // 已发布红包的列表
   publishedHBList(user_id, currentPage) {
@@ -186,7 +186,7 @@ export class redPackets {
         personInfo: res.data.data,
       });
       // 如果不是红包拥有人,则禁止分享
-      if (res.data.data.user.user_id != user_id){
+      if (res.data.data.user.user_id != user_id) {
         wx.hideShareMenu()
       } else {
         wx.showShareMenu({
@@ -216,11 +216,12 @@ export class redPackets {
       let bounce_money = res.data.data.bounce_money;
       this.setData({
         show: false,
-        bounce_money
+        bounce_money,
+        kai: true
       });
     })
 
-  } 
+  }
   // 开完红包后跳转
   openedHB(added_user_id, is_card) {
     let unique_id = this.data.unique_id;
@@ -229,19 +230,11 @@ export class redPackets {
       show: false
     })
     if (is_card == 0) {
-      app.operationModel('contactsAdd', added_user_id, res => {
-        if (res.data.status_code == 2000000) {
-          app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
-        }
-      })
+      app.operationModel('contactsAdd', added_user_id)
     } else if (is_card == 3) {
-      app.operationModel('contactsAddDirect', added_user_id, res => {
-        if (res.data.status_code == 2000000) {
-          app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
-        }
-      });
+      app.operationModel('contactsAddDirect', added_user_id);
     }
-
+    app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
   }
 
   //红包发布个数及人脉信息

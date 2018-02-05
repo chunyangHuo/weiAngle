@@ -969,9 +969,7 @@ Page({
     let aa = BPath;
     let one = aa.lastIndexOf(".");
     let bb = aa.substring((one + 1), aa.length);
-    console.log(bb);
-    console.log(BPath)
-    app.checkUserInfo(x => {
+    app.checkUserInfo(this,x => {
       if (BPath) {
         if (bb == 'zip' || bb == 'rar'){
           wx.showModal({

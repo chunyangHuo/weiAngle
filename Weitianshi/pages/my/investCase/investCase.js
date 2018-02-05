@@ -2,14 +2,14 @@ var app = getApp();
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    disabled:false,
+    disabled: false,
     buttonOne: {
       text: "添加案例"
     },
-    buttonOneText:'添加案例',
+    buttonOneText: '添加案例',
     nonet: true
   },
-  onLoad:function(){
+  onLoad: function () {
     let that = this;
     app.netWorkChange(that);
   },
@@ -21,29 +21,22 @@ Page({
     });
     // 初始化案例编辑时的领域和地区
     wx.removeStorageSync('addcase_belongArea');
-    // 载入我的个人信息
-    if (user_id) {
-      wx.request({
+    app.checkUserInfo(this,response => {
+      app.httpPost({
         url: url_common + '/api/user/getUserAllInfo',
         data: {
           share_id: 0,
           user_id: user_id,
           view_id: user_id
         },
-        method: 'POST',
-        success: function (res) {
-          var invest_case = res.data.invest_case;
-          wx.setStorageSync('invest_case', invest_case);
-          that.setData({
-            invest_case: invest_case,
-          });
-        },
-        fail: function (res) {
-        },
-      });
-    } else {
-      app.noUserId();
-    }
+      }, that).then(res => {
+        let invest_case = res.data.invest_case;
+        wx.setStorageSync('invest_case', invest_case);
+        that.setData({
+          invest_case: invest_case,
+        });
+      })
+    })
   },
   //编辑案例
   detail: function (e) {

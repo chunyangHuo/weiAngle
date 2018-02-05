@@ -110,21 +110,16 @@ Page({
     })
   },
   // 开红包
-  kai: function () {
+  kai() {
     let that = this;
     let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_id;
     let user_id = wx.getStorageSync('user_id');
-    app.checkUserInfo(res => {
+    app.checkUserInfo(this,res => {
       // 开红包动效
       that.setData({
         kai: false,
       })
-      setTimeout(() => {
-        that.setData({
-          kai: true, 
-        });
-      }, 1000)
       rp.openHB.call(this, unique_id)
     })
   },

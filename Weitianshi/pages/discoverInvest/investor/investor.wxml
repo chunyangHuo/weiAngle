@@ -26,7 +26,7 @@
 
 
   <template name="searchNothing">
-    <view class="searchNothing" wx:if="{{empty.length == 0}}">
+    <view class="searchNothing" wx:if="{{empty.length == 0}}"> registerModalShow : true
       <view class="searchLine"></view>
       <view class="classname">暂时没有符合该条件的数据</view>
     </view>

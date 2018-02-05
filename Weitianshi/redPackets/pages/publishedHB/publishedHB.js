@@ -20,22 +20,17 @@ Page({
     this.setData({
       unique_id
     })
-    rp.pushHBPerson.call(this,unique_id);
+    rp.pushHBPerson.call(this, unique_id);
   },
   // 开红包
-  kai: function () {
+  kai() {
     let that = this;
     let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_info;
     that.setData({
       kai: false,
     })
-    setTimeout(() => {
-      rp.openHB.call(this, unique_id);
-      that.setData({
-        kai: true,
-      });
-    }, 1000)
+    rp.openHB.call(this, unique_id);
   },
   // 打开红包后,点击确定跳转
   makeSure() {
@@ -46,9 +41,9 @@ Page({
     app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id)
   },
   // 分享页面 
-  onShareAppMessage(){
+  onShareAppMessage() {
     let unique_id = this.data.unique_id;
-    let personInfo = this.data.personInfo; 
+    let personInfo = this.data.personInfo;
     return shareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
   }
 })

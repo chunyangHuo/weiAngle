@@ -134,25 +134,6 @@ App({
     });
   },
 
-  //弹框--跳转首页或者完善信息页面(user_id为0)
-  noUserId() {
-    wx.showModal({
-      title: "提示",
-      content: "请先绑定个人信息",
-      success: function (res) {
-        if (res.confirm == true) {
-          wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo',
-          });
-        } else {
-          wx.switchTab({
-            url: '/pages/discoverProject/discoverProject',
-          });
-        }
-      }
-    });
-  },
-
   //根据用户信息完整度跳转不同的页面/*注册且信息完善:targetUrl; 注册信息不完善:companyInfo; 未注册: personInfo;*/
   infoJump(targetUrl) {
     let user_id = wx.getStorageSync('user_id');
@@ -185,18 +166,18 @@ App({
       },
     });
   },
+
   // 检查用户信息,信息完整刚进行回调
-  checkUserInfo(callBack) {
+  checkUserInfo(that,callBack) {
     let _this = this;
     let user_id = wx.getStorageSync('user_id');
-    wx.getStorageSync('user_id');
     wx.request({
-      url: this.globalData.url_common + '/api/user/checkUserInfo',
+      url: _this.globalData.url_common + '/api/user/checkUserInfo',
       data: {
         user_id: user_id
       },
       method: 'POST',
-      success: function (res) {
+      complete: function (res) {
         if (res.data.status_code == 2000000) {
           let complete = res.data.is_complete;
           if (complete == 1) {
@@ -204,32 +185,15 @@ App({
               callBack(res);
             }
           } else if (complete == 0) {
-            wx.showModal({
-              title: "提示",
-              content: "请先绑定个人信息",
-              success: function (res) {
-                if (res.confirm == true) {
-                  wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo?type = ' + 2
-                  });
-                }
-              }
-            });
+            that.setData({
+              registerModalShow : true
+            })
           }
         } else {
-          wx.showModal({
-            title: "提示",
-            content: "请先绑定个人信息",
-            success: function (res) {
-              if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '/pages/register/personInfo/personInfo?type =' + 1
-                });
-              }
-            }
-          });
+          that.setData({
+            registerModalShow: true
+          })
         }
-        // this.log(this,'checkUserInfo', res);
       }
     });
   },
@@ -604,6 +568,7 @@ App({
   httpPost(data, that, callBack) {
     return httpModel.httpPost(data, that, callBack);
   },
+
   //用户操作模块(util/operationModel)
   operationModel() {
     let func = arguments[0];
@@ -802,6 +767,7 @@ App({
     wx.setStorageSync('tran_hotCity', []);
     wx.removeStorageSync('projectShopFilterCache');
   },
+  
   //判断网络状态
   netWorkChange(that) {
     wx.onNetworkStatusChange(function (res) {

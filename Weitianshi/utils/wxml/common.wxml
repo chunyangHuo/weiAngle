@@ -13,7 +13,7 @@
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
 <!--注册方式选择弹框  -->
-<view id='registerModal' wx:if='{{app.globalData.registerModalShow}}'>
+<view id='registerModal' wx:if='{{registerModalShow}}'>
   <view class='modalBox'></view>
   <view class='registerFrame'>
     <view class='title tc'>
