@@ -1,13 +1,11 @@
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
-// let verify = require('../../../utils/global/verify.js');
 Page({
   data: {
     name: '',
     telephone: '',
     checkCode: '',
-    result: "0",//手机号码验证是否正确
     checking: "0",//获取验证码请求是否发送
     time: "0",//获取验证码按钮是否可点
     loading: "0",//加载动画控制
@@ -42,18 +40,12 @@ Page({
         time: "0"
       })
     }
-  }, 
+  },
   //手机号码验证
   checkPhone: function (e) {
-    let temp = e.detail.value;
-    let myreg = /^(1+\d{10})|(159+\d{8})|(153+\d{8})$/;
-    let that = this;
-
-    app.globalData.verify.mobile(this, temp,res=>{
-      that.setData({
-        result: "1",
-        telephone: temp
-      });
+    let telephone = e.detail.value;
+    this.setData({
+      telephone
     })
   },
   //获取验证码按钮倒计时动效
@@ -64,49 +56,35 @@ Page({
     let that = this;
     let endTime = this.data.endTime
     endTime = 60;
-    that.setData({
-      checking: "1",
-      time: "1",
-    });
-    wx.request({
-      url: url_common + '/api/auth/authCaptcha',
-      data: {
-        user_mobile: telephone
-      },
-      method: 'POST',
-      success: function (res) {
-        that.setData({
-          checking: "0"
-        });
-        if (res.data.status_code === 2000000) {
-          let _time = setInterval(function () {
-            if (endTime > 1) {
-              endTime--;
-              that.setData({
-                getCode: endTime + 's后重新获取'
-              })
-            }
-          }, 1000)
+    app.globalData.verify.mobile(this, telephone, res => {
+      that.setData({
+        checking: "1",
+        time: "1",
+      });
+      // 请求验证码
+      wx.request({
+        url: url_common + '/api/auth/authCaptcha',
+        data: {
+          user_mobile: telephone
+        },
+        method: 'POST',
+        success: function (res) {
           that.setData({
-            _time: _time
-          })
-          setTimeout(function () {
-            that.setData({
-              time: "0",
-              getCode: "获取验证码"
-            });
-            clearInterval(_time)
-          }, 60000);
-        } else {
+            checking: "0"
+          });
+          if (res.data.status_code === 2000000) {
+
+          } else {
+            app.errorHide(that, res.data.error_msg, 3000)
+          }
+        },
+        fail: function () {
           app.errorHide(that, res.data.error_msg, 3000)
+        },
+        complete: function () {
+          // complete
         }
-      },
-      fail: function () {
-        app.errorHide(that, res.data.error_msg, 3000)
-      },
-      complete: function () {
-        // complete
-      }
+      })
     })
   },
   //获取验证码的值 
@@ -124,15 +102,12 @@ Page({
       success: function (res) {
         let name = that.data.name;
         let telephone = that.data.telephone;
-        let result = that.data.result;
         let error = that.data.error;
         let error_text = that.data.error_text;
         let checkCode = that.data.checkCode;
         let code = res.code;
         let open_session = wx.getStorageSync('open_session');
-        if (!name) {
-          app.errorHide(that, '姓名不能为空', 3000)
-        } else if (!telephone) {
+        if (!telephone) {
           app.errorHide(that, '手机号码不能为空', 3000)
         } else if (!checkCode) {
           app.errorHide(that, '验证码不能为空', 3000)

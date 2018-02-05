@@ -450,15 +450,6 @@ App({
       // this.log(this,"addType写错了")
     }
   },
-
-  //重新封装console.log
-  console(x) {
-    if (this.globalData.url == 'https://wx.weitianshi.cn') {
-
-    } else {
-      // this.log(this,x)
-    }
-  },
   //展开
   allPoint(that, i, n = 7) {
     if (i == 0) {

@@ -76,7 +76,7 @@ export function http(data, that,callBack) {
           if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
             return resolve(res)
           } else {
-            if (callBack) callBack(res);
+            if (callBack) callBack(res); 
             if(that){
               app.errorHide(that,res.data.error_msg, 3000)
             }

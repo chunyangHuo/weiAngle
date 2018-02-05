@@ -9,7 +9,7 @@ Page({
     redHB: true,
     imgUrls2: app.globalData.picUrl.shengcheng2,
   },
-  onLoad() {
+  onShow() {
     let that = this;
     app.loginPage(user_id => {
       wx.showLoading({
