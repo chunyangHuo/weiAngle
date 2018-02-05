@@ -27,24 +27,11 @@
     <label class="rgInfoNum">{{recordHB.drawed_count}}</label>次红包 </view>
 </view>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <view style='height:108rpx;'></view>
 <form report-submit='true' bindsubmit='createRedBag'>
   <button form-type='submit'>
-    <image src="{{imgUrls2}}" class="btn1 floatBtn"></image>
+    <image src="{{imgUrls2}}" class="btn1 floatBtn" wx:if="{{bindContact == false}}"></image>
+    <image src="{{openHover}}" class="btn1 floatBtn" wx:if="{{bindContact == true}}"></image>
   </button>
 </form>
 <!--错误提示  -->

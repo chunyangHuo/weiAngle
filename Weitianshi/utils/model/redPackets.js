@@ -115,10 +115,10 @@ export class redPackets {
     }, this).then(res => {
       wx.hideLoading()
       if (!currentPage) {
-        console.log(111)
         let percent = res.data.data;
         percent.forEach((x) => {
-          let per = (x.packet.drawed_num) / (x.packet.number);
+          let per = (x.packet.drawed_num) / (x.packet.number) *100;
+          console.log(per)
           this.setData({
             per: per
           })

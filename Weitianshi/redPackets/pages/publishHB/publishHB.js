@@ -7,10 +7,13 @@ Page({
   data: {
     imgUrls: app.globalData.picUrl.bg_hongbao,
     imgUrls2: app.globalData.picUrl.shengcheng,
+    openHover: app.globalData.picUrl.openHover,
     nonet: true,
     number: 0,
     money: 0,
-    title: "恭喜发财，投资名片换起来！"
+    title: "恭喜发财，投资名片换起来！",
+    showButton:true,
+    bindContact:false
   },
   onLoad() {
     app.loginPage(user_id => {
@@ -73,14 +76,22 @@ Page({
       app.errorHide(that, "红包领取金额不能小于1", 1500);
     } else if (money / number >= 1) {
       rp.publishHB.call(this, user_id, number, money, title)
+      this.setData({
+        bindContact: true
+      });
+      setTimeout(() => {
+        this.setData({
+          bindContact: false
+        });
+      }, 1000);
     }
   },
   //获取全部文字
   getAll(bagMoney) {
     let that = this;
     let money = bagMoney * 1;
-    // let moneyReg = /^[1-9]+(.[0-9]{0,2})?$/;
     let moneyReg = /^([1-9]\d*|0)(\.\d{1,2})?$/;
+    console.log(typeof money)
     if (money == 0) {
       app.errorHide(that, "红包金额不能为0", 1500);
     } else if (0 < money && money < 1) {
@@ -97,6 +108,8 @@ Page({
       }
     } else if (money > 2018) {
       app.errorHide(that, "不能大于2018元", 1500);
+    }else{
+      app.errorHide(that, "请输入数字", 1500);
     }
   }
 })
