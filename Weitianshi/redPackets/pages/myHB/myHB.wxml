@@ -23,9 +23,7 @@
           <view class="des">{{item.title}}</view>
           <view class="getTime">{{item.created_at}}</view>
         </view>
-        <view class='flex downBox'>
-          <view class="getNum">
-            ￥
+        <view class='flex downBox'><view class="getNum">￥
             <label>{{item.money}}</label> ·
             <label>{{item.number}}</label> 个</view>
           <view class="getPerson">

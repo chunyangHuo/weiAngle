@@ -21,7 +21,7 @@
   <block wx:for="{{whoGet}}" wx:key="{{index}}">
     <template is="HBrecord" data="{{item:item}}"></template>
   </block>
-  <view style="height:100rpx"></view>
+  <view style="height:110rpx"></view>
   <view class="buttonBox flex">
     <button class='jumpFirst' bindtap='toFirst' hover-class='hoverHB'>首页</button>
     <button hover-class='hoverHB' class="sendHB" bindtap='sendHB'>发红包</button>

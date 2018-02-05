@@ -73,8 +73,8 @@ export class redPackets {
         })
       }
     });
-  } 
- 
+  }
+
   // 更多群红包信息
   otherGroupHB(openGId = '') {
     let user_id = wx.getStorageSync('user_id');
@@ -116,16 +116,16 @@ export class redPackets {
       wx.hideLoading()
       if (!currentPage) {
         console.log(111)
-        let percent= res.data.data;
+        let percent = res.data.data;
         percent.forEach((x) => {
-          let per = (x.packet.drawed_num )/ (x.packet.number);
+          let per = (x.packet.drawed_num) / (x.packet.number);
           this.setData({
             per: per
           })
         });
         this.setData({
           insideHB: res.data.data,
-      
+
         })
       } else {
         console.log(222)
@@ -188,7 +188,7 @@ export class redPackets {
       // 如果不是红包拥有人,则禁止分享
       if (res.data.data.user.user_id != user_id){
         wx.hideShareMenu()
-      }else{
+      } else {
         wx.showShareMenu({
           withShareTicket: true
         })
@@ -208,14 +208,14 @@ export class redPackets {
         user_id,
         packet_unique_id: unique_id
       }
-    }, this,res=>{
-      if (res.data.error_msg == '红包已被领完'){
+    }, this, res => {
+      if (res.data.error_msg == '红包已被领完') {
         app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
       }
     }).then(res => {
       let bounce_money = res.data.data.bounce_money;
       if (added_user_id != user_id) {
-        app.operationModel('contactsAdd', added_user_id, res => {})
+        app.operationModel('contactsAdd', added_user_id, res => { })
       }
       this.setData({
         show: false,
@@ -225,13 +225,26 @@ export class redPackets {
 
   }
   // 开完红包后跳转
-  openedHB(){
+  openedHB(added_user_id, is_card) {
     let unique_id = this.data.unique_id;
     let shareTicket = this.data.shareTicket;
     this.setData({
       show: false
     })
-    app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
+    if (is_card == 0) {
+      app.operationModel('contactsAdd', added_user_id, res => {
+        if (res.data.status_code == 2000000) {
+          app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
+        }
+      })
+    } else if (is_card == 3) {
+      app.operationModel('contactsAddDirect', added_user_id, res => {
+        if (res.data.status_code == 2000000) {
+          app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
+        }
+      });
+    }
+
   }
 
   //红包发布个数及人脉信息
