@@ -1,21 +1,20 @@
 <include src='/utils/wxml/netWork' />
 <view wx:if="{{nonet}}">
   <view id="personInfo">
-    <form>
-      <view class="flex title">手机号是投资人/项目方联系您的重要线索</view>
-      <view id="telephone" class="flex">
-        <input class='telephoneText' placeholder="手机号" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telphone}}" />
-      </view>
-      <view id="checkCode" class="flex">
-        <input placeholder="验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" />
-        <button class="clear {{time=='1'?'clearOn':''}}" bindtap="checkCode" disabled="{{time==1}}" loading="{{checking==1}}">{{getCode}}</button>
-      </view>
-      <view>
-        <button form-type="submit" class="nextBtn complete-phone-binding" hover-class='t-other-button-hover' bindtap="nextPage" loading="{{loading=='1'}}">下一步</button>
-      </view>
-    </form>
 
+    <view class="registerPhone flex">
+      <image src='/img/icon-shojji@2x.png' class="registerImg"></image>
+      <input class='telephoneText' placeholder="手机号" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telphone}}" />
+    </view>
+    <view class="registerNum flex">
+      <image src='/img/icon-yanzhengma@2x.png' class="registerImg"></image>
+      <input placeholder="请输入验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" class='telephoneText' />
+      <button class="clear {{time=='1'?'clearOn':''}}" bindtap="checkCode" disabled="{{time==1}}" loading="{{checking==1}}">{{getCode}}</button>
+    </view>
+    <view class="btnBox">
+      <button form-type="submit" class="nextBtn complete-phone-binding" hover-class='t-other-button-hover' bindtap="nextPage" loading="{{loading=='1'}}">下一步</button>
+    </view>
     <!--错误提示-->
     <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
   </view>
-</view> 
+</view>
