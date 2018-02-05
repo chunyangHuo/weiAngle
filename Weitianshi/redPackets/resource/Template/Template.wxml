@@ -5,7 +5,7 @@
 </template>
 <!--红包领取记录  -->
 <template name="HBrecord">
-  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userDetail'>
+  <view id="HBrecord" hover-class='HBrecord1' data-id="{{item.user.user_id}}" bindtap='userCard'>
     <view class="HBrecord flex">
       <image src="{{item.user.avatarUrl}}" class="HBrecordImg" wx:if="{{item.user.avatarUrl}}"></image>
       <image src="/img/img-touxiang@2x.png" class="HBrecordImg" wx:if="{{!item.user.avatarUrl}}"></image>
@@ -13,8 +13,11 @@
         <view class="recordText1 flex">
           <view class="recordName">{{item.user.user_real_name}}</view>
           <view class="recordCareer">{{item.user.user_company_career}}</view>
-          <view class="recordCompany" wx:if="{{item.user.user_brand}}"> · {{item.user.user_brand}}</view>
-          <view class="recordCompany" wx:if="{{item.user.user_company_name}}"> · {{item.user.user_company_name}}</view>
+          <label wx:if="{{item.user.user_company_career && item.user.user_brand}}"> · </label>
+          <view class="recordCompany" wx:if="{{item.user.user_brand}}">{{item.user.user_brand}}</view>
+          <view class="recordCompany" wx:if="{{item.user.user_company_name && !item.user.user_brand}}">
+            <label class="recordCompany" wx:if="{{item.user.user_company_career && !item.user.user_company_name}}"> · </label>
+            {{item.user.user_company_name}}</view>
         </view>
         <view class="recordText1 recordMartop flex">
           <view class="recordTime">{{item.payment_time}}</view>
@@ -69,7 +72,12 @@
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
         <label wX:if="{{personInfo.user.user_company_career}}">{{personInfo.user.user_company_career}}</label>
-        <label wx:if="{{personInfo.user.user_company_nam}}"> · {{personInfo.user.user_company_nam}}</label>
+        <label wx:if="{{personInfo.user.user_brand}}">
+          <label wx:if="{{personInfo.user.user_brand && personInfo.user.user_company_career}}"> · </label>
+          {{personInfo.user.user_brand}}</label>
+        <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}">
+          <label wx:if="{{personInfo.user.user_company_name && personInfo.user.user_brand}}"> · </label>
+          {{personInfo.user.user_company_name}}</label>
       </view>
       <form report-submit='true' bindsubmit='formsubmit'>
         <button form-type='submit'>
@@ -86,7 +94,7 @@
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
       <view class="openTitle">{{personInfo.packet.title}}</view>
-      <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}"></image>
+      <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}" catchtap='toUserDetail' data-id="{{personInfo.user.user_id}}"></image>
       <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
       <image src="/img/img-rzchuangyezhe@2x.png" class="openRen" wx:if="{{personInfo.user.group[0].group_title == '创业者'}}"></image>
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='投资人'}}" src="/img/img-rztouziren@2x.png"></image>
@@ -95,8 +103,12 @@
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
         <label>{{personInfo.user.user_company_career}}</label>
-        <label wx:if="{{personInfo.user.user_brand}}"> · {{personInfo.user.user_brand}}</label>
-        <label wx:if="{{personInfo.user.user_company_name}}"> · {{personInfo.user.user_company_name}}</label>
+        <label wx:if="{{personInfo.user.user_company_career && personInfo.user.user_brand}}"> · </label>
+        <label wx:if="{{personInfo.user.user_brand}}">{{personInfo.user.user_brand}}</label>
+
+        <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}">
+          <label wx:if="{{personInfo.user.user_company_career && personInfo.user.user_company_name}}"> · </label>
+          {{personInfo.user.user_company_name}}</label>
 
       </view>
       <view class="openEnd" wx:if="{{personInfo.packet.drawed_user.drawed_status == 2}}">很可惜，红包已派完</view>
@@ -129,8 +141,13 @@
           <view class="recordText1 flex">
             <view class="recordName">{{item.user.user_real_name}}</view>
             <view class="recordCareer">{{item.user.user_company_career}}</view>
-            <view class="recordCompany" wx:if="{{item.user.user_brand}}"> · {{item.user.user_brand}}</view>
-            <view class="recordCompany" wx:if=" {{item.user.user_company_name}}"> · {{item.user.user_company_name}}</view>
+            <view class="recordCompany" wx:if="{{item.user.user_brand}}">
+              <label class="recordCompany" wx:if="{{item.user.user_brand && item.user.user_brand}}"> · </label>
+              {{item.user.user_brand}}</view>
+            <view class="recordCompany" wx:if=" {{item.user.user_company_name && !item.user.user_brand}} ">
+              <label class="recordCompany" wx:if="{{item.user.user_brand && item.user.user_company_name}}"> · </label>
+              {{item.user.user_company_name}}</view>
+
           </view>
         </view>
         <view class="recordTime">领取

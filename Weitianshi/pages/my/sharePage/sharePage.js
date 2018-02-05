@@ -50,11 +50,11 @@ Page({
       // 载入被分享者的个人信息
       that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 发布红包的用户相关信息
-      rp.pushHBPerson.call(that, unique_id, res => {
-        console.log(res)
-        let status = res.data.data.packet.drawed_user.drawed_status;
-        if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
-      });
+      // rp.pushHBPerson.call(that, unique_id, res => {
+      //   console.log(res)
+      //   let status = res.data.data.packet.drawed_user.drawed_status;
+      //   if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
+      // });
       // 向后台传群信息和红包信息
       app.clickLog(options);
     });
@@ -122,14 +122,18 @@ Page({
       })
       setTimeout(() => {
         that.setData({
-          kai: true,
+          kai: true, 
         });
       }, 1000)
-      rp.openHB.call(this, unique_id, added_user_id)
+    
     })
   },
   // 打开红包后,点击确定跳转
-  makeSure() {
+  makeSure(e) {
+    let is_card = e.currentTarget.dataset.cardid;
+    let unique_id = this.data.unique_id;
+    let added_user_id = this.data.personInfo.user.user_id;
+    rp.openHB.call(this, unique_id, added_user_id,is_card)
     rp.openedHB.call(this)
   },
   // 回到首页

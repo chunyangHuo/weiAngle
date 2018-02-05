@@ -19,8 +19,8 @@
 }
 
 .tankuang {
-  height: 614rpx;
-  width: 562rpx;
+  height: 574rpx;
+  width: 522rpx;
   margin: 252rpx 0 64rpx 114rpx;
 }
 
@@ -54,4 +54,3 @@ button {
   font-size: 24rpx;
   color: #f14b50;
 }
-

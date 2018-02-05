@@ -106,5 +106,15 @@ Page({
     let unique_id = this.data.unique_id;
     let personInfo = this.data.personInfo;
     return shareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
+  },
+  //查看当前发红包的人
+  toUserDetail(e){
+    let id = e.currentTarget.dataset.id;
+    let user_id = wx.getStorageSync('user_id');
+    if (user_id == id) {
+      app.href('/pages/my/myCard/myCard')
+    } else {
+      app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
+    }
   }
 })
