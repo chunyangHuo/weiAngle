@@ -16,7 +16,7 @@
           <label wx:if="{{item.user.user_company_career && item.user.user_brand}}"> · </label>
           <view class="recordCompany" wx:if="{{item.user.user_brand}}">{{item.user.user_brand}}</view>
           <view class="recordCompany" wx:if="{{item.user.user_company_name && !item.user.user_brand}}">
-            <label class="recordCompany" wx:if="{{item.user.user_company_career && !item.user.user_company_name}}"> · </label>
+            <label class="recordCompany" wx:if="{{item.user.user_company_career && item.user.user_company_name}}"> · </label>
             {{item.user.user_company_name}}</view>
         </view>
         <view class="recordText1 recordMartop flex">
@@ -72,12 +72,12 @@
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
         <label wX:if="{{personInfo.user.user_company_career}}">{{personInfo.user.user_company_career}}</label>
-        <label wx:if="{{personInfo.user.user_brand}}">
-          <label wx:if="{{personInfo.user.user_brand && personInfo.user.user_company_career}}"> · </label>
-          {{personInfo.user.user_brand}}</label>
+        <label wx:if="{{personInfo.user.user_brand && personInfo.user.user_company_career}}"> · </label>
+        <label wx:if="{{personInfo.user.user_brand}}">{{personInfo.user.user_brand}}</label>
         <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}">
-          <label wx:if="{{personInfo.user.user_company_name && personInfo.user.user_brand}}"> · </label>
-          {{personInfo.user.user_company_name}}</label>
+          <label wx:if="{{personInfo.user.user_company_name && personInfo.user.user_company_career}}"> · </label>
+          {{personInfo.user.user_company_name}}
+        </label>
       </view>
       <form report-submit='true' bindsubmit='formsubmit'>
         <button form-type='submit'>
@@ -142,10 +142,10 @@
             <view class="recordName">{{item.user.user_real_name}}</view>
             <view class="recordCareer">{{item.user.user_company_career}}</view>
             <view class="recordCompany" wx:if="{{item.user.user_brand}}">
-              <label class="recordCompany" wx:if="{{item.user.user_brand && item.user.user_brand}}"> · </label>
+              <label class="recordCompany" wx:if="{{item.user.user_company_career && item.user.user_brand}}"> · </label>
               {{item.user.user_brand}}</view>
             <view class="recordCompany" wx:if=" {{item.user.user_company_name && !item.user.user_brand}} ">
-              <label class="recordCompany" wx:if="{{item.user.user_brand && item.user.user_company_name}}"> · </label>
+              <label class="recordCompany" wx:if="{{item.user.user_company_career && item.user.user_company_name}}"> · </label>
               {{item.user.user_company_name}}</view>
 
           </view>
@@ -153,11 +153,11 @@
         <view class="recordTime">领取
           <label>{{item.packet.drawed_num}}</label>/
           <label>{{item.packet.number}}</label>个</view>
-        <progress percent="{{per}}" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
+        <progress percent="{{item.per}}" stroke-width="2" activeColor="#f7c660" backgroundColor="#ccc" />
         <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status ==1}}">已领取</view>
         <view class="recordadd1" hover-class='recordadd2' hover-stop-propagation='true' wx:if="{{item.packet.drawed_user.drawed_status == 0}}" data-id="{{item.user.user_id}}" data-uniqueid="{{item.packet.unique_id}}" data-status="{{item.packet.drawed_user.drawed_status}}">未领取</view>
-        <view class="recordadd3" wx:if="{{item.packet.drawed_user.drawed_status == 2}}">红包已派完</view>
-        <view class="recordadd3" wx:if="{{item.packet.drawed_user.drawed_status == 3}}">红包已过期</view>
+        <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status == 2}}">已派完</view>
+        <view class="recordadd" wx:if="{{item.packet.drawed_user.drawed_status == 3}}">已过期</view>
       </view>
     </image>
   </view>

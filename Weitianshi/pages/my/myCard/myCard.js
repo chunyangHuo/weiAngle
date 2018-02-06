@@ -1,7 +1,9 @@
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
-import * as ShareModel from '../../../utils/model/shareModel';
+import * as ShareModel from '../../../utils/model/shareModel'; 
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     integrity: 30,
@@ -314,5 +316,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500)
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });
