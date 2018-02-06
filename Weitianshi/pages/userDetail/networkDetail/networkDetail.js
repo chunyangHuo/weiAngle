@@ -2,6 +2,8 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     bindContact: false,
@@ -108,78 +110,59 @@ Page({
     let button_type = this.data.button_type;
     // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
     //判断用户信息是否完整
-    app.httpPost({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: view_id
-      },
-    }, this).then(res => {
-      if (res.data.status_code == 2000000) {
-        var complete = res.data.is_complete;
-        if (complete == 1) {
-          //信息完整
-          if (button_type == 0) {
-            wx.request({
-              url: url + '/api/user/UserApplyFollowUser',
-              data: {
-                user_id: view_id,
-                applied_user_id: followed_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                app.log(that,"正常申请添加人脉")
-                that.setData({
-                  button_type: 2
-                })
-              }
-            })
-          } else if (button_type == 1) {
-            app.log(that,"我的人脉--不显示内容")
-          } else if (button_type == 2) {
-            app.log(that,"待验证===显示待验证")
-          } else if (button_type == 3) {
-            wx.request({
-              url: url + '/api/user/handleApplyFollowUser',
-              data: {
-                // 当前登录者的
-                user_id: view_id,
-                // 当前申请的用户
-                apply_user_id: followed_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                app.log(that,"同意申請")
-                that.setData({
-                  button_type: 1
-                })
-              }
-            })
-          } else if (button_type == 4) {
-            // 单方人脉添加
-            wx.request({
-              url: url + '/api/user/followUser',
-              data: {
-                user_id: user_id,
-                followed_user_id: followed_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                that.setData({
-                  button_type: 1
-                })
-                wx.setStorageSync('followed_user_id', followed_user_id)
-                if (res.confirm == true) {
-                  app.href('/pages/register/companyInfo/companyInfo')
-                }
-              }
-            })
-          }
-        } else if (complete == 0) {
-          //有user_id但信息不全
-          wx.showModal({
-            title: "提示",
-            content: "请先绑定个人信息",
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //信息完整
+        if (button_type == 0) {
+          wx.request({
+            url: url + '/api/user/UserApplyFollowUser',
+            data: {
+              user_id: view_id,
+              applied_user_id: followed_user_id
+            },
+            method: 'POST',
             success: function (res) {
+              app.log(that, "正常申请添加人脉")
+              that.setData({
+                button_type: 2
+              })
+            }
+          })
+        } else if (button_type == 1) {
+          app.log(that, "我的人脉--不显示内容")
+        } else if (button_type == 2) {
+          app.log(that, "待验证===显示待验证")
+        } else if (button_type == 3) {
+          wx.request({
+            url: url + '/api/user/handleApplyFollowUser',
+            data: {
+              // 当前登录者的
+              user_id: view_id,
+              // 当前申请的用户
+              apply_user_id: followed_user_id
+            },
+            method: 'POST',
+            success: function (res) {
+              app.log(that, "同意申請")
+              that.setData({
+                button_type: 1
+              })
+            }
+          })
+        } else if (button_type == 4) {
+          // 单方人脉添加
+          wx.request({
+            url: url + '/api/user/followUser',
+            data: {
+              user_id: user_id,
+              followed_user_id: followed_user_id
+            },
+            method: 'POST',
+            success: function (res) {
+              that.setData({
+                button_type: 1
+              })
               wx.setStorageSync('followed_user_id', followed_user_id)
               if (res.confirm == true) {
                 app.href('/pages/register/companyInfo/companyInfo')
@@ -187,31 +170,26 @@ Page({
             }
           })
         }
-      } else {
-        //没有user_id
+      } else if (complete == 0) {
+        //有user_id但信息不全
         wx.showModal({
           title: "提示",
           content: "请先绑定个人信息",
           success: function (res) {
             wx.setStorageSync('followed_user_id', followed_user_id)
             if (res.confirm == true) {
-              app.href('/pages/register/personInfo/personInfo')
+              app.href('/pages/register/companyInfo/companyInfo')
             }
           }
         })
       }
-    }).catch(res => {
-      app.errorHide(this, res.data.error_msg)
     })
-
-
   },
   // 二维码分享页面
   shareSth: function (e) {
     var QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
     app.href('/pages/my/qrCode/qrCode')
-
   },
   //分享页面
   onShareAppMessage: function () {
@@ -283,5 +261,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500)
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

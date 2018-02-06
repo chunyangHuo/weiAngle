@@ -51,6 +51,8 @@ page {
   top: 132rpx;
   width: 124rpx;
   height: 34rpx;
+  /* left: -5rpx;
+  top: 100rpx; */
 }
 
 .user_left .user_pic {

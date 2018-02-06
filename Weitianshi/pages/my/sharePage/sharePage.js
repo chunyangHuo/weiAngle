@@ -98,16 +98,11 @@ Page({
   // 检查注册信息是否完整
   checkRegisterComplete(user_id) {
     let that = this
-    app.httpPost({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id
-      }
-    }, this).then(res => {
+    app.checkUserInfo(this, res => {
       that.setData({
         complete: res.data.is_complete
       });
-    })
+    });
   },
   // 开红包
   kai() {
@@ -121,7 +116,7 @@ Page({
         kai: false,
       })
       rp.openHB.call(this, unique_id)
-    })
+    });
   },
   // 打开红包后,点击确定跳转
   makeSure(e) {
@@ -153,40 +148,28 @@ Page({
     //直接可添加好友的情况
     if (button_type == 0) {
       //走正常申请流程
-      wx.request({
-        url: url_common + '/api/user/checkUserInfo',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status_code == 2000000) {
-            let complete = res.data.is_complete;
-            if (complete == 1) {
-              //如果信息完整就正常申请添加人脉
-              wx.request({
-                url: url + '/api/user/UserApplyFollowUser',
-                data: {
-                  user_id: user_id,
-                  applied_user_id: followed_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  that.setData({
-                    button_type: 2
-                  });
-                }
+      app.checkUserInfo(this, res => {
+        let complete = res.data.is_complete;
+        if (complete == 1) {
+          //如果信息完整就正常申请添加人脉
+          wx.request({
+            url: url + '/api/user/UserApplyFollowUser',
+            data: {
+              user_id: user_id,
+              applied_user_id: followed_user_id
+            },
+            method: 'POST',
+            success: function (res) {
+              that.setData({
+                button_type: 2
               });
-            } else if (complete == 0) {
-              wx.setStorageSync('followed_user_id', followed_user_id);
-              app.href('/pages/register/companyInfo/companyInfo');
             }
-          } else {
-            wx.setStorageSync('followed_user_id', followed_user_id);
-            app.href('/pages/register/personInfo/personInfo');
-          }
-        },
-      });
+          });
+        } else if (complete == 0) {
+          wx.setStorageSync('followed_user_id', followed_user_id);
+          app.href('/pages/register/companyInfo/companyInfo');
+        }
+      })
     } else if (button_type == 1) {
       app.log("互為好友或單方人脈");
     } else if (button_type == 2) {
@@ -205,69 +188,34 @@ Page({
           that.setData({
             button_type: 1
           });
-          // wx.showModal({
-          //   title: '提示',
-          //   content: '去小程序查看我的人脉库',
-          //   confirmText: '去看看',
-          //   success: function (res) {
-          //     if (res.confirm) {
-          //       app.href('/pages/discover/myFriend/myFriend');
-          //     } else if (res.cancel) {
-          //     }
-          //   }
-          // });
         }
       });
     } else if (button_type == 4) {
       wx.setStorageSync('followed_user_id', followed_user_id);
       wx.setStorageSync("driectAdd", 1);
       //判断用户信息是否完整
-      wx.request({
-        url: url_common + '/api/user/checkUserInfo',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status_code == 2000000) {
-            let complete = res.data.is_complete;
-            if (complete == 1) {
-              //如果信息完整就直接添加人脉
-              wx.request({
-                url: url + '/api/user/followUser',
-                data: {
-                  user_id: user_id,
-                  followed_user_id: followed_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  that.setData({
-                    button_type: 1
-                  });
-                  // wx.showModal({
-                  //   title: '提示',
-                  //   content: '去小程序查看我的人脉库',
-                  //   confirmText: '去看看',
-                  //   success: function (res) {
-                  //     if (res.confirm) {
-                  //       app.href('/pages/discoverInvest/discoverInvest');
-                  //     } else if (res.cancel) {
-                  //       app.log('用户点击取消');
-                  //     }
-                  //   }
-                  // });
-                }
+      app.checkUserInfo(this, res => {
+        let complete = res.data.is_complete;
+        if (complete == 1) {
+          //如果信息完整就直接添加人脉
+          wx.request({
+            url: url + '/api/user/followUser',
+            data: {
+              user_id: user_id,
+              followed_user_id: followed_user_id
+            },
+            method: 'POST',
+            success: function (res) {
+              that.setData({
+                button_type: 1
               });
-            } else if (complete == 0) {
-              //如果有user_id但信息不全则跳companyInfo页面
-              app.href('/pages/register/companyInfo/companyInfo');
             }
-          } else {
-            //如果没有user_id则跳personInfo
-            app.href('/pages/register/personInfo/personInfo');
-          }
-        },
-      });
+          });
+        } else if (complete == 0) {
+          //如果有user_id但信息不全则跳companyInfo页面
+          app.href('/pages/register/companyInfo/companyInfo');
+        }
+      })
     } else {
       showModal({
         title: "错误提示",
@@ -300,27 +248,14 @@ Page({
     //走正常申请流程
     let user_id = this.data.user_id;//我的id,查看者的id
     let followed_user_id = this.data.followed_user_id;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          let complete = res.data.is_complete;
-          if (complete == 1) {
-
-          } else if (complete == 0) {
-            wx.setStorageSync('followed_user_id', followed_user_id);
-            app.href('/pages/register/companyInfo/companyInfo');
-          }
-        } else {
-          wx.setStorageSync('followed_user_id', followed_user_id);
-          app.href('/pages/register/personInfo/personInfo');
-        }
-      },
-    });
+    app.checkUserInfo(this, res => {
+      let complete = res.data.is_complete;
+      if (complete == 1) {
+      } else if (complete == 0) {
+        wx.setStorageSync('followed_user_id', followed_user_id);
+        app.href('/pages/register/companyInfo/companyInfo');
+      }
+    })
   },
   // 跳转到推送项目页面
   pushProject: function () {
@@ -330,26 +265,15 @@ Page({
     let share_id = this.data.share_id;
     let view_id = this.data.view_id;
     let push_id = this.data.followed_user_id;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: view_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          let complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就正常申请添加人脉
-            app.href('/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id);
-          } else if (complete == 0) {
-            app.href('/pages/register/companyInfo/companyInfo');
-          }
-        } else {
-          app.href('/pages/register/personInfo/personInfo');
-        }
-      },
-    });
+    app.checkUserInfo(this, res => {
+      let complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就正常申请添加人脉
+        app.href('/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id);
+      } else if (complete == 0) {
+        app.href('/pages/register/companyInfo/companyInfo');
+      }
+    })
   },
   // 分享引导跳转
   shareJump(e) {

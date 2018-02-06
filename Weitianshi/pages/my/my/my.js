@@ -115,31 +115,20 @@ Page({
     let status = this.data.status;
     var user_id = wx.getStorageSync('user_id');
     // 0未认证 1待审核 2 认证成功 3 拒绝
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          // if (complete == 1) {
-          //   //如果信息完整就可以显示去认证
-          if (status == 0) {
-            app.href('/pages/my/identity/indentity/indentity');
-          } else if (status == 1) {
-            app.href('/pages/my/identity/identityResult/identityResult?type=' + 1);
-          } else if (status == 2) {
-            app.href('/pages/my/identity/identityResult/identityResult?type=' + 2);
-          } else if (status == 3) {
-            app.href('/pages/my/identity/identityResult/identityResult?type=' + 3);
-          }
-        } else if (complete == 0) {
-          app.href('/pages/register/companyInfo/companyInfo?type=1');
-        }
-      },
-    });
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      // if (complete == 1) {
+      //   //如果信息完整就可以显示去认证
+      if (status == 0) {
+        app.href('/pages/my/identity/indentity/indentity');
+      } else if (status == 1) {
+        app.href('/pages/my/identity/identityResult/identityResult?type=' + 1);
+      } else if (status == 2) {
+        app.href('/pages/my/identity/identityResult/identityResult?type=' + 2);
+      } else if (status == 3) {
+        app.href('/pages/my/identity/identityResult/identityResult?type=' + 3);
+      }
+     })  
   },
   //项目店铺
   projectShop: function () {

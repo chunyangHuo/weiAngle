@@ -3,6 +3,8 @@ var app = getApp();
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../../utils/model/filterModel';
 import * as ShareModel from '../../../utils/model/shareModel';
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     // 筛选搜索
@@ -277,51 +279,39 @@ Page({
   toAccreditation: function () {
     let status = this.data.status;
     let user_id = wx.getStorageSync('user_id');
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以显示去认证
-            if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity');
-            } else if (status == 3) {
-              wx.showModal({
-                title: '友情提示',
-                content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-                confirmColor: "#333333;",
-                confirmText: "重新认证",
-                showCancel: false,
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以显示去认证
+        if (status == 0) {
+          app.href('/pages/my/identity/indentity/indentity');
+        } else if (status == 3) {
+          wx.showModal({
+            title: '友情提示',
+            content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+            confirmColor: "#333333;",
+            confirmText: "重新认证",
+            showCancel: false,
+            success: function (res) {
+              wx.request({
+                url: url_common + '/api/user/getUserGroupByStatus',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST',
                 success: function (res) {
-                  wx.request({
-                    url: url_common + '/api/user/getUserGroupByStatus',
-                    data: {
-                      user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      let group_id = res.data.group.group_id;
-                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
-                    }
-                  });
+                  let group_id = res.data.group.group_id;
+                  app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
                 }
               });
             }
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id');
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/personInfo/personInfo?type=2');
+          });
         }
-      },
-    });
+      } else if (complete == 0) {
+        wx.removeStorageSync('followed_user_id');
+        app.href('/pages/register/companyInfo/companyInfo?type=1');
+      }
+    })
   },
   // 重新加载
   refresh() {
@@ -334,5 +324,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

@@ -2,7 +2,8 @@ var app = getApp();
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../utils/model/filterModel';
 import * as ShareModel from '../../utils/model/shareModel';
-
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     investorList: '',
@@ -58,7 +59,7 @@ Page({
           wx.setStorageSync("industry", thisData.industry);
           wx.setStorageSync("scale", thisData.scale);
           wx.setStorageSync("stage", thisData.stage);
-          wx.setStorageSync('hotCity',thisData.hotCity);
+          wx.setStorageSync('hotCity', thisData.hotCity);
           // 筛选的初始缓存
           let SearchInit = that.data.SearchInit;
           SearchInit.industry = wx.getStorageSync('industry');
@@ -92,7 +93,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          app.log("身份状态获取",res);
+          app.log("身份状态获取", res);
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
           if (status != 0) {
@@ -136,67 +137,67 @@ Page({
     app.initPage(that);
     this.noSearch();
     this.allReset();
-    that.setData({currentTab: e.detail.current});
+    that.setData({ currentTab: e.detail.current });
     // 如果切换前tab页进行过筛选则重置大部分tab页数据
     if (searchLength != 0) {
       switch (current) {
-      case 0: {
-        that.setData({
-          investorList: that.data.investorList2,
-          faList: that.data.faList2,
-          myList: that.data.myList2,
-          page_end: false
-        });
-        break;
-      }
-      case 1: {
-        that.setData({
-          faList: that.data.faList2,
-          myList: that.data.myList2,
-          page_end: false
-        });
-        break;
-      }
-      case 2: {
-        that.setData({
-          investorList: that.data.investorList2,
-          myList: that.data.myList2,
-          page_end: false
-        });
-        break;
-      }
-      case 3: {
-        that.setData({
-          investorList: that.data.investorList2,
-          faList: that.data.faList2,
-        });
-        break;
-      }
+        case 0: {
+          that.setData({
+            investorList: that.data.investorList2,
+            faList: that.data.faList2,
+            myList: that.data.myList2,
+            page_end: false
+          });
+          break;
+        }
+        case 1: {
+          that.setData({
+            faList: that.data.faList2,
+            myList: that.data.myList2,
+            page_end: false
+          });
+          break;
+        }
+        case 2: {
+          that.setData({
+            investorList: that.data.investorList2,
+            myList: that.data.myList2,
+            page_end: false
+          });
+          break;
+        }
+        case 3: {
+          that.setData({
+            investorList: that.data.investorList2,
+            faList: that.data.faList2,
+          });
+          break;
+        }
       }
     }
     // 如果当前tab页无数据则请求接口
     switch (current) {
-    case 0: {
-      break;
-    }
-    case 1: {
-      if (!that.data.investorList) {
-        this.investorList();
+      case 0: {
+        break;
       }
-      break;
-    }
-    case 2: {
-      if (!that.data.faList) {
-        this.faList();
+      case 1: {
+        if (!that.data.investorList) {
+          this.investorList();
+        }
+        break;
       }
-      break;
-    }
-    case 3: {
-      if (!that.data.myList) {
-        this.myList();
+      case 2: {
+        if (!that.data.faList) {
+          this.faList();
+        }
+        break;
       }
-      break;
-    }
+      case 3: {
+        if (!that.data.myList) {
+          this.myList();
+        }
+        break;
+      }
     }
   },
   //下拉刷新
@@ -255,7 +256,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log("投资人列表",res.data.data);
+          app.log("投资人列表", res.data.data);
           wx.hideLoading();
           let investorList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -294,7 +295,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log("FA",res.data.data);
+          app.log("FA", res.data.data);
           wx.hideLoading();
           let faList = res.data.data;
           SearchInit.currentIndex = 99;
@@ -322,19 +323,12 @@ Page({
     let SearchInit = this.data.SearchInit;
     // 检查个人信息全不全
     if (user_id == 0) {
-      wx.request({
-        url: url_common + '/api/user/checkUserInfo',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          that.setData({
-            notIntegrity: res.data.is_complete,
-            empty: 1
-          });
-        },
-      });
+      app.checkUserInfo(this, res => {
+        that.setData({
+          notIntegrity: res.data.is_complete,
+          empty: 1
+        });
+      })
     }
     // 获取人脉库信息
     if (user_id) {
@@ -352,7 +346,7 @@ Page({
         method: 'POST',
         success: function (res) {
           wx.hideLoading();
-          app.log("我的人脉列表",res);
+          app.log("我的人脉列表", res);
           if (res.data.status_code == '2000000') {
             let myList = res.data.data;//所有的用户
             let page_end = res.data.page_end;
@@ -391,47 +385,47 @@ Page({
     let currentPage = this.data.currentPage;
     let currentTab = this.data.currentTab;
     switch (currentTab) {
-    case 1: {
-      let request = {
-        url: url_common + '/api/investor/getInvestorListByGroup',
-        data: {
-          user_id: user_id,
-          type: 'investor',
-          page: this.data.currentPage,
-          filter: this.data.SearchInit.searchData
-        }
-      };
-      //调用通用加载函数
-      app.loadMore(that, request, "investorList");
-    }
-      break;
-    case 2: {
-      let request = {
-        url: url_common + '/api/investor/getInvestorListByGroup',
-        data: {
-          user_id: user_id,
-          type: 'fa',
-          page: this.data.currentPage,
-          filter: this.data.SearchInit.searchData
-        }
-      };
-      //调用通用加载函数
-      app.loadMore(that, request, "faList");
-    }
-      break;
-    case 3: {
-      let request = {
-        url: url_common + '/api/user/getMyFollowList',
-        data: {
-          user_id: user_id,
-          page: this.data.currentPage,
-          filter: this.data.SearchInit.searchData
-        }
-      };
-      //调用通用加载函数
-      app.loadMore(that, request, "myList");
-    }
-      break;
+      case 1: {
+        let request = {
+          url: url_common + '/api/investor/getInvestorListByGroup',
+          data: {
+            user_id: user_id,
+            type: 'investor',
+            page: this.data.currentPage,
+            filter: this.data.SearchInit.searchData
+          }
+        };
+        //调用通用加载函数
+        app.loadMore(that, request, "investorList");
+      }
+        break;
+      case 2: {
+        let request = {
+          url: url_common + '/api/investor/getInvestorListByGroup',
+          data: {
+            user_id: user_id,
+            type: 'fa',
+            page: this.data.currentPage,
+            filter: this.data.SearchInit.searchData
+          }
+        };
+        //调用通用加载函数
+        app.loadMore(that, request, "faList");
+      }
+        break;
+      case 3: {
+        let request = {
+          url: url_common + '/api/user/getMyFollowList',
+          data: {
+            user_id: user_id,
+            page: this.data.currentPage,
+            filter: this.data.SearchInit.searchData
+          }
+        };
+        //调用通用加载函数
+        app.loadMore(that, request, "myList");
+      }
+        break;
     }
   },
   // 分享当前页面
@@ -449,7 +443,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      app.log("申请添加人脉完成",res);
+      app.log("申请添加人脉完成", res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -458,7 +452,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      app.log("直接添加人脉完成",res);
+      app.log("直接添加人脉完成", res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -528,13 +522,13 @@ Page({
     let searchData = FilterModel.searchCertain(that);
     let current = this.data.currentTab;
     if (current == 1) {
-      app.log("筛选投资人",searchData);
+      app.log("筛选投资人", searchData);
       this.investorList();
     } else if (current == 2) {
-      app.log("筛选FA",searchData);
+      app.log("筛选FA", searchData);
       this.faList();
     } else if (current == 3) {
-      app.log("筛选我的",searchData);
+      app.log("筛选我的", searchData);
       this.myList();
     } else {
       app.log("searchCertain()出错了");
@@ -551,15 +545,15 @@ Page({
     let currentTab = this.data.currentTab;
     let str;
     switch (currentTab) {
-    case 1:
-      str = 'investorList';
-      break;
-    case 2:
-      str = 'faList';
-      break;
-    case 3:
-      str = 'myList';
-      break;
+      case 1:
+        str = 'investorList';
+        break;
+      case 2:
+        str = 'faList';
+        break;
+      case 3:
+        str = 'myList';
+        break;
     }
     FilterModel.searchSth(that, str);
   },
@@ -589,51 +583,39 @@ Page({
   toAccreditation: function () {
     let status = this.data.status;
     let user_id = wx.getStorageSync('user_id');
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以显示去认证
-            if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity');
-            } else if (status == 3) {
-              wx.showModal({
-                title: '友情提示',
-                content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-                confirmColor: "#333333;",
-                confirmText: "重新认证",
-                showCancel: false,
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以显示去认证
+        if (status == 0) {
+          app.href('/pages/my/identity/indentity/indentity');
+        } else if (status == 3) {
+          wx.showModal({
+            title: '友情提示',
+            content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+            confirmColor: "#333333;",
+            confirmText: "重新认证",
+            showCancel: false,
+            success: function (res) {
+              wx.request({
+                url: url_common + '/api/user/getUserGroupByStatus',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST',
                 success: function (res) {
-                  wx.request({
-                    url: url_common + '/api/user/getUserGroupByStatus',
-                    data: {
-                      user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      let group_id = res.data.group.group_id;
-                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
-                    }
-                  });
+                  let group_id = res.data.group.group_id;
+                  app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
                 }
               });
             }
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id');
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/personInfo/personInfo?type=2');
+          });
         }
-      },
-    });
+      } else if (complete == 0) {
+        wx.removeStorageSync('followed_user_id');
+        app.href('/pages/register/companyInfo/companyInfo?type=1');
+      }
+    })
   },
   // 搜索跳转
   allSearch: function () {
@@ -673,7 +655,18 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
-  }
-
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
+  },
 });
 

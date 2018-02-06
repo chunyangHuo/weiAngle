@@ -5,25 +5,14 @@ var user_id = wx.getStorageSync('user_id');
 // 创建项目
 function toCreateProject() {
   var user_id = wx.getStorageSync('user_id');//获取我的user_id
-  wx.request({
-    url: url_common + '/api/user/checkUserInfo',
-    data: {
-      user_id: user_id
-    },
-    method: 'POST',
-    success: function (res) {
-      if (res.data.status_code == 2000000) {
-        var complete = res.data.is_complete;
-        if (complete == 1) {
-          app.href('/pages/myProject/publishProject/publishProject')
-        } else if (complete == 0) {
-          app.href('/pages/register/companyInfo/companyInfo?type=1')
-        }
-      } else {
-        app.href('/pages/register/personInfo/personInfo?type=2')
-      }
-    },
-  });
+  app.checkUserInfo(this, res => {
+    var complete = res.data.is_complete;
+    if (complete == 1) {
+      app.href('/pages/myProject/publishProject/publishProject')
+    } else if (complete == 0) {
+      app.href('/pages/register/companyInfo/companyInfo?type=1')
+    }
+  })
 }
 
 // 在电脑上创建
