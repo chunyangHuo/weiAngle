@@ -41,30 +41,22 @@ Page({
     let that=this;
     let xxx = e.currentTarget.dataset.url;
     let user_id = wx.getStorageSync('user_id');
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        app.log('报名',res);
-        if (res.data.status_code == 2000000) {
-          let complete = res.data.is_complete;
-          if (complete == 1) {
-            wx.navigateTo({
-              url: xxx
-            });
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id');
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
+    app.checkUserInfo(this,res=>{
+      if (res.data.status_code == 2000000) {
+        let complete = res.data.is_complete;
+        if (complete == 1) {
+          wx.navigateTo({
+            url: xxx
+          });
+        } else if (complete == 0) {
           wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/personInfo/personInfo?type=2');
+          app.href('/pages/register/companyInfo/companyInfo?type=1');
         }
+      } else {
+        wx.removeStorageSync('followed_user_id');
+        app.href('/pages/register/personInfo/personInfo?type=2');
       }
-    });
+    })
   },
   // 重新加载
   refresh() {
