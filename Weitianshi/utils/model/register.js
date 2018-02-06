@@ -24,7 +24,7 @@ export class register {
             telephone: telephone,
           })
           app.getCurrentRouter();
-          _this.globalData.registerModalShow = false;
+          app.globalData.registerModalShow = false;
         })
       }
     })
@@ -33,7 +33,7 @@ export class register {
   // 手机验证注册
   telephoneRegister(){
     app.getCurrentRouter();
-    _this.globalData.registerModalShow = false;
+    app.globalData.registerModalShow = false;
     app.href('/pages/register/personInfo/personInfo');
   }
 }

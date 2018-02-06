@@ -2,6 +2,8 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     modalBox: 0,
@@ -83,8 +85,8 @@ Page({
     });
   },
   //登录
-  entry() { 
-    app.checkUserInfo(this,res => {
+  entry() {
+    app.checkUserInfo(this, res => {
       app.href('/pages/register/personInfo/personInfo')
     })
   },
@@ -141,13 +143,13 @@ Page({
   },
   //项目店铺
   projectShop: function () {
-    app.checkUserInfo(this,res => {
+    app.checkUserInfo(this, res => {
       app.href('/pages/my/projectShop/projectShop/projectShop')
     })
   },
   //约谈的项目
   contactProject: function () {
-    app.checkUserInfo(this,res => {
+    app.checkUserInfo(this, res => {
       app.href('/pages/message/contactProject/userList/userList')
     })
   },
@@ -264,14 +266,23 @@ Page({
   },
   //发送红包
   sendBag() {
-    app.checkUserInfo(this,res => {
+    app.checkUserInfo(this, res => {
       app.href('/redPackets/pages/publishHB/publishHB')
     })
   },
   //已发红包
   sendedBag() {
-    app.checkUserInfo(this,res => {
+    app.checkUserInfo(this, res => {
       app.href('/redPackets/pages/myHB/myHB')
     })
+  },
+
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister();
   }
 });

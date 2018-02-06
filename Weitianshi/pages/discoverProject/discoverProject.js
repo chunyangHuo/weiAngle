@@ -311,12 +311,10 @@ Page({
 
   // 微信授权绑定
   getPhoneNumber(e) {
-    console.log(11);
     register.getPhoneNumber.call(this,e);
   },
   // 手机号码绑定
   telephoneRegister(){
-    console.log(22);
     register.telephoneRegister();
   }
 });
