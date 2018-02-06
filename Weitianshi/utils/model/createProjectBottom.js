@@ -6,12 +6,7 @@ var user_id = wx.getStorageSync('user_id');
 function toCreateProject() {
   var user_id = wx.getStorageSync('user_id');//获取我的user_id
   app.checkUserInfo(this, res => {
-    var complete = res.data.is_complete;
-    if (complete == 1) {
-      app.href('/pages/myProject/publishProject/publishProject')
-    } else if (complete == 0) {
-      app.href('/pages/register/companyInfo/companyInfo?type=1')
-    }
+    app.href('/pages/myProject/publishProject/publishProject')
   })
 }
 

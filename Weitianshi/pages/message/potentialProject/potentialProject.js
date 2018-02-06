@@ -441,14 +441,10 @@ Page({
     let that = this;
     app.checkUserInfo(this, res => {
       var complete = res.data.is_complete;
-      if (complete == 1) {
-        //如果信息完整就可以联系项目方
-        that.setData({
-          modalBox: 1
-        });
-      } else if (complete == 0) {
-        app.href('/pages/register/companyInfo/companyInfo?type=1');
-      }
+      //如果信息完整就可以联系项目方
+      that.setData({
+        modalBox: 1
+      });
     })
   },
   //关闭模态框

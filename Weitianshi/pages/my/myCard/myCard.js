@@ -262,27 +262,23 @@ Page({
     let user_id = this.data.user_id;
     app.checkUserInfo(this, res => {
       let complete = res.data.is_complete;
-      if (complete == 1) {
-        //如果信息完整就可以显示去认证
-        if (status == 0) {
-          app.href('/pages/my/identity/indentity/indentity')
-        } else if (status == 3) {
-          wx.request({
-            url: url_common + '/api/user/getUserGroupByStatus',
-            data: {
-              user_id: user_id
-            },
-            method: 'POST',
-            success: function (res) {
-              let user_id = wx.getStorageSync('user_id');
-              let authenticate_id = res.data.authenticate_id;
-              let group_id = res.data.group_id;
-              app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
-            }
-          })
-        }
-      } else if (complete == 0) {
-        app.href('/pages/register/companyInfo/companyInfo?type=1')
+      //如果信息完整就可以显示去认证
+      if (status == 0) {
+        app.href('/pages/my/identity/indentity/indentity')
+      } else if (status == 3) {
+        wx.request({
+          url: url_common + '/api/user/getUserGroupByStatus',
+          data: {
+            user_id: user_id
+          },
+          method: 'POST',
+          success: function (res) {
+            let user_id = wx.getStorageSync('user_id');
+            let authenticate_id = res.data.authenticate_id;
+            let group_id = res.data.group_id;
+            app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
+          }
+        })
       }
     }) 
   },

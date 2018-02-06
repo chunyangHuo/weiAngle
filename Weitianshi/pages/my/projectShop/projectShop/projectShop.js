@@ -401,17 +401,12 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     app.checkUserInfo(this, res => {
       let complete = res.data.is_complete;
-      if (complete == 1) {
-        if (targetUrl && num == 1) {
-          wx.navigateTo({
-            url: targetUrl
-          });
-        } else if (targetUrl && num == 2) {
-          app.href(targetUrl);
-        }
-      } else if (complete == 0) {
-        wx.removeStorageSync('followed_user_id');
-        app.href('/pages/register/companyInfo/companyInfo?type=1');
+      if (targetUrl && num == 1) {
+        wx.navigateTo({
+          url: targetUrl
+        });
+      } else if (targetUrl && num == 2) {
+        app.href(targetUrl);
       }
     })  
   },
