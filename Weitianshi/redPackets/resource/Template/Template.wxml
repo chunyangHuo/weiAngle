@@ -35,14 +35,12 @@
 <!--群红包  -->
 <template name="groupBox">
   <view class="flex outsideBox" id="groupHB" bindtap='redDetail' hover-class='HBrecord1' data-groupid="{{item.openGId}}">
-    <view class="groupPic" wx:if="{{item.user.length >4}}">
+    <view class="groupPic">
       <view wx:if="{{item.user.length >4}}">
         <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
           <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='nineImage'></image>
         </block>
       </view>
-    </view>
-    <view class="groupPicLittle" wx:if="{{item.user.length <= 4}}">
       <view wx:if="{{item.user.length <= 4}}">
         <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
           <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='fourImage'></image>
