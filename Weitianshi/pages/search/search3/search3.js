@@ -2,6 +2,8 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as FilterModel from '../../../utils/model/filterModel';
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     SearchInit: FilterModel.data,
@@ -24,37 +26,37 @@ Page({
     });
     app.initPage(that);
     switch (entrance) {
-    case 'selected':
-      wx.setNavigationBarTitle({
-        title: '项目搜索',
-      });
-      that.setData({
-        placeHold: "请输入项目名称，公司名称"
-      });
-      break;
-    case 'newest':
-      wx.setNavigationBarTitle({
-        title: '项目搜索',
-      });
-      that.setData({
-        placeHold: "请输入项目名称，公司名称"
-      });
-      break;
-    case "investorList":
-      wx.setNavigationBarTitle({
-        title: '搜索投资人',
-      });
-      break;
-    case "faList":
-      wx.setNavigationBarTitle({
-        title: '搜索融资顾问',
-      });
-      break;
-    case "myList":
-      wx.setNavigationBarTitle({
-        title: '搜索好友',
-      });
-      break;
+      case 'selected':
+        wx.setNavigationBarTitle({
+          title: '项目搜索',
+        });
+        that.setData({
+          placeHold: "请输入项目名称，公司名称"
+        });
+        break;
+      case 'newest':
+        wx.setNavigationBarTitle({
+          title: '项目搜索',
+        });
+        that.setData({
+          placeHold: "请输入项目名称，公司名称"
+        });
+        break;
+      case "investorList":
+        wx.setNavigationBarTitle({
+          title: '搜索投资人',
+        });
+        break;
+      case "faList":
+        wx.setNavigationBarTitle({
+          title: '搜索融资顾问',
+        });
+        break;
+      case "myList":
+        wx.setNavigationBarTitle({
+          title: '搜索好友',
+        });
+        break;
     }
     app.netWorkChange(that);
   },
@@ -81,21 +83,21 @@ Page({
         mask: true
       });
       switch (entrance) {
-      case 'selected':
-        this.selectedProject();
-        break;
-      case 'newest':
-        this.newestProject();
-        break;
-      case "investorList":
-        this.newSearch(0);
-        break;
-      case "faList":
-        this.newSearch(1);
-        break;
-      case "myList":
-        this.newSearch(2);
-        break;
+        case 'selected':
+          this.selectedProject();
+          break;
+        case 'newest':
+          this.newestProject();
+          break;
+        case "investorList":
+          this.newSearch(0);
+          break;
+        case "faList":
+          this.newSearch(1);
+          break;
+        case "myList":
+          this.newSearch(2);
+          break;
       }
     }, 1500);
     this.setData({
@@ -151,71 +153,71 @@ Page({
     let search = this.data.SearchInit.searchData.search;
     let request;
     switch (entrance) {
-    case 'newest':
-      request = {
-        url: url_common + '/api/project/getMarketProjectList',
-        data: {
-          user_id: this.data.user_id,
-          filter: this.data.SearchInit.searchData,
-          page: this.data.currentPage
-        }
-      };
-      app.loadMore(that, request, "financingNeed");
-      break;
-    case 'selected':
-      request = {
-        url: url_common + '/api/project/getSelectedProjectList',
-        data: {
-          user_id: user_id,
-          filter: this.data.SearchInit.searchData,
-          page: this.data.currentPage,
-        }
-      };
-      //调用通用加载函数
-      app.loadMore(that, request, "slectProject");
-      break;
-    case 'investorList':
-      {
+      case 'newest':
         request = {
-          url: url_common + '/api/user/searchUser',
+          url: url_common + '/api/project/getMarketProjectList',
           data: {
-            user_id: user_id,
-            page: this.data.currentPage,
-            search: search
+            user_id: this.data.user_id,
+            filter: this.data.SearchInit.searchData,
+            page: this.data.currentPage
           }
         };
-        //调用通用加载函数
-        app.loadMore(that, request, "investorList");
-      }
-      break;
-    case 'faList':
-      {
+        app.loadMore(that, request, "financingNeed");
+        break;
+      case 'selected':
         request = {
-          url: url_common + '/api/user/searchUser',
+          url: url_common + '/api/project/getSelectedProjectList',
           data: {
             user_id: user_id,
-            search: search,
+            filter: this.data.SearchInit.searchData,
             page: this.data.currentPage,
           }
         };
         //调用通用加载函数
-        app.loadMore(that, request, "faList");
-      }
-      break;
-    case 'myList':
-      {
-        request = {
-          url: url_common + '/api/user/searchUser',
-          data: {
-            user_id: user_id,
-            search: search,
-            page: that.data.currentPage,
-          }
-        };
-        //调用通用加载函数
-        app.loadMore(that, request, 'myList');
-      }
-      break;
+        app.loadMore(that, request, "slectProject");
+        break;
+      case 'investorList':
+        {
+          request = {
+            url: url_common + '/api/user/searchUser',
+            data: {
+              user_id: user_id,
+              page: this.data.currentPage,
+              search: search
+            }
+          };
+          //调用通用加载函数
+          app.loadMore(that, request, "investorList");
+        }
+        break;
+      case 'faList':
+        {
+          request = {
+            url: url_common + '/api/user/searchUser',
+            data: {
+              user_id: user_id,
+              search: search,
+              page: this.data.currentPage,
+            }
+          };
+          //调用通用加载函数
+          app.loadMore(that, request, "faList");
+        }
+        break;
+      case 'myList':
+        {
+          request = {
+            url: url_common + '/api/user/searchUser',
+            data: {
+              user_id: user_id,
+              search: search,
+              page: that.data.currentPage,
+            }
+          };
+          //调用通用加载函数
+          app.loadMore(that, request, 'myList');
+        }
+        break;
     }
   },
   //申请查看
@@ -253,11 +255,11 @@ Page({
   },
   // 申请加人脉
   contactsAdd(e) {
-    let that=this;
+    let that = this;
     let added_user_id = e.currentTarget.dataset.id;
-    app.log(that,"add_user",added_user_id);
+    app.log(that, "add_user", added_user_id);
     app.operationModel('contactsAdd', added_user_id, function (res) {
-      app.log(that,'申请添加人脉完成', res);
+      app.log(that, '申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -266,7 +268,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect', added_user_id, function (res) {
-      app.log(that,'直接添加人脉完成', res);
+      app.log(that, '直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -324,7 +326,7 @@ Page({
       },
     }, this).then(res => {
       wx.hideLoading();
-      app.log(that,'最新', res);
+      app.log(that, '最新', res);
       var financingNeed = res.data.data;
       that.setData({
         financingNeed: financingNeed,
@@ -345,7 +347,7 @@ Page({
     }).then(res => {
       wx.hideLoading();
       var slectProject = res.data.data;
-      app.log(that,'精选', res);
+      app.log(that, '精选', res);
       that.setData({
         slectProject: slectProject,
       });
@@ -365,7 +367,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log(that,'投资人列表', res.data.data);
+          app.log(that, '投资人列表', res.data.data);
           wx.hideLoading();
           var investorList = res.data.data;
           that.setData({
@@ -379,7 +381,7 @@ Page({
 
 
 
-    
+
   },
   // FA(弃用)
   faList() {
@@ -395,7 +397,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log(that,'FA列表', res.data.data);
+          app.log(that, 'FA列表', res.data.data);
           wx.hideLoading();
           var faList = res.data.data;
           that.setData({
@@ -412,19 +414,12 @@ Page({
     let SearchInit = this.data.SearchInit;
     // 检查个人信息全不全
     if (user_id != 0) {
-      wx.request({
-        url: url_common + '/api/user/checkUserInfo',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          that.setData({
-            notIntegrity: res.data.is_complete,
-            empty: 1
-          });
-        },
-      });
+      app.checkUserInfo(this, res => {
+        that.setData({
+          notIntegrity: res.data.is_complete,
+          empty: 1
+        });
+      })
     }
     // 获取人脉库信息
     if (user_id) {
@@ -442,7 +437,7 @@ Page({
         method: 'POST',
         success: function (res) {
           wx.hideLoading();
-          app.log(that,'我的人脉列表', res);
+          app.log(that, '我的人脉列表', res);
           if (res.data.status_code == '2000000') {
             var myList = res.data.data;//所有的用户
             var page_end = res.data.page_end;
@@ -478,35 +473,35 @@ Page({
       success(res) {
         if (res.data.status_code == 2000000) {
           switch (num) {
-          case 0: {
-            app.log(that,'投资人列表', res.data.data);
-            wx.hideLoading();
-            var investorList = res.data.data;
-            that.setData({
-              investorList: investorList,
-            });
-            break;
-          }
-          case 1: {
-            app.log(that,'FA列表', res.data.data);
-            wx.hideLoading();
-            var faList = res.data.data;
-            that.setData({
-              faList: faList,
-            });
-            break;
-          }
-          case 2: {
-            wx.hideLoading();
-            var myList = res.data.data;//所有的用户
-            var page_end = res.data.page_end;
-            app.log(that,"myList", myList);
-            that.setData({
-              myList: myList,
-              page_end: page_end,
-            });
-            break;
-          }
+            case 0: {
+              app.log(that, '投资人列表', res.data.data);
+              wx.hideLoading();
+              var investorList = res.data.data;
+              that.setData({
+                investorList: investorList,
+              });
+              break;
+            }
+            case 1: {
+              app.log(that, 'FA列表', res.data.data);
+              wx.hideLoading();
+              var faList = res.data.data;
+              that.setData({
+                faList: faList,
+              });
+              break;
+            }
+            case 2: {
+              wx.hideLoading();
+              var myList = res.data.data;//所有的用户
+              var page_end = res.data.page_end;
+              app.log(that, "myList", myList);
+              that.setData({
+                myList: myList,
+                page_end: page_end,
+              });
+              break;
+            }
           }
         } else {
           wx.hideLoading();
@@ -526,5 +521,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

@@ -85,6 +85,7 @@ Page({
     } else {
       app.errorHide(that, "请输入金额", 1500);
     }
+
   },
   //获取全部文字
   getAll(bagMoney) {

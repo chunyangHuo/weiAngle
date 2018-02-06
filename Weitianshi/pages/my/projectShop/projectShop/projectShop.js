@@ -2,6 +2,8 @@ let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/model/shareModel';
+let RG = require('../../../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     isChecked1: false,
@@ -397,33 +399,21 @@ Page({
   //  身份验证
   _identity: function (targetUrl, num) {
     let user_id = wx.getStorageSync('user_id');
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          let complete = res.data.is_complete;
-          if (complete == 1) {
-            if (targetUrl && num == 1) {
-              wx.navigateTo({
-                url: targetUrl
-              });
-            } else if (targetUrl && num == 2) {
-              app.href(targetUrl);
-            }
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id');
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/personInfo/personInfo?type=2');
+    app.checkUserInfo(this, res => {
+      let complete = res.data.is_complete;
+      if (complete == 1) {
+        if (targetUrl && num == 1) {
+          wx.navigateTo({
+            url: targetUrl
+          });
+        } else if (targetUrl && num == 2) {
+          app.href(targetUrl);
         }
+      } else if (complete == 0) {
+        wx.removeStorageSync('followed_user_id');
+        app.href('/pages/register/companyInfo/companyInfo?type=1');
       }
-    });
+    })  
   },
   // -----------------------分享------------------------------------------
   //  分享页面
@@ -468,5 +458,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

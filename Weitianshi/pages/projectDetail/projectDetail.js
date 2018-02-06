@@ -1,9 +1,9 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as ShareModel from '../../utils/model/shareModel'; 
+import * as ShareModel from '../../utils/model/shareModel';
 let RG = require('../../utils/model/register.js');
-let register = new RG.register(); 
+let register = new RG.register();
 Page({
   data: {
     bindContact: false,
@@ -53,7 +53,7 @@ Page({
     var page = this.data.page;
     var view_id = '';
     var user_id = wx.getStorageSync('user_id');
-    
+
     that.setData({
       user_id: user_id,
       id: id,
@@ -381,7 +381,7 @@ Page({
           that.setData({
             core_memberArray: core_memberArray,
             core_memberArray1: core_memberArray1
-          }) 
+          })
         }
         // 标签 type:0; 项目标签 type:1 团队标签
         let infoTagArray = project.tag;
@@ -833,26 +833,19 @@ Page({
   sendBp: function () {
     let that = this;
     let user_id = wx.getStorageSync("user_id");
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        let userEmail = res.data.user_email;
-        if (userEmail) {
-          that.setData({
-            userEmail: userEmail,
-            sendPc: 1,
-            checkEmail: true,
-          })
-        } else {
-          that.setData({
-            sendPc: 1,
-            checkEmail: false
-          })
-        }
+    app.checkUserInfo(this, res => {
+      let userEmail = res.data.user_email;
+      if (userEmail) {
+        that.setData({
+          userEmail: userEmail,
+          sendPc: 1,
+          checkEmail: true,
+        })
+      } else {
+        that.setData({
+          sendPc: 1,
+          checkEmail: false
+        })
       }
     })
   },
@@ -971,9 +964,9 @@ Page({
     let aa = BPath;
     let one = aa.lastIndexOf(".");
     let bb = aa.substring((one + 1), aa.length);
-    app.checkUserInfo(this,x => {
+    app.checkUserInfo(this, x => {
       if (BPath) {
-        if (bb == 'zip' || bb == 'rar'){
+        if (bb == 'zip' || bb == 'rar') {
           wx.showModal({
             title: '提示',
             content: '小程序暂不支持当前文件格式预览',
@@ -983,26 +976,19 @@ Page({
             itemList: ['直接预览', '发送到邮箱'],
             success: function (res) {
               if (res.tapIndex == 1) {
-                wx.request({
-                  url: url_common + '/api/user/checkUserInfo',
-                  data: {
-                    user_id: user_id
-                  },
-                  method: 'POST',
-                  success: function (res) {
-                    let userEmail = res.data.user_email;
-                    if (userEmail) {
-                      that.setData({
-                        userEmail: userEmail,
-                        sendPc: 1,
-                        checkEmail: true,
-                      })
-                    } else {
-                      that.setData({
-                        sendPc: 1,
-                        checkEmail: false
-                      })
-                    }
+                app.checkUserInfo(this, res => {
+                  let userEmail = res.data.user_email;
+                  if (userEmail) {
+                    that.setData({
+                      userEmail: userEmail,
+                      sendPc: 1,
+                      checkEmail: true,
+                    })
+                  } else {
+                    that.setData({
+                      sendPc: 1,
+                      checkEmail: false
+                    })
                   }
                 })
               } else if (res.tapIndex == 0) {
@@ -1061,29 +1047,17 @@ Page({
   contactPerson: function () {
     let user_id = wx.getStorageSync('user_id');
     let that = this;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以联系项目方
-            that.setData({
-              modalBox: 1
-            })
-          } else if (complete == 0) {
-            app.href('/pages/register/companyInfo/companyInfo?type=1')
-          }
-        } else {
-          app.href('/pages/register/personInfo/personInfo?type=2')
-        }
-      },
-    });
-
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以联系项目方
+        that.setData({
+          modalBox: 1
+        })
+      } else if (complete == 0) {
+        app.href('/pages/register/companyInfo/companyInfo?type=1')
+      }
+    })
   },
   //关闭模态框
   closeModal: function () {
@@ -1208,51 +1182,39 @@ Page({
   toAccreditation: function () {
     let status = this.data.status;
     let user_id = wx.getStorageSync('user_id');
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以显示去认证
-            if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity')
-            } else if (status == 3) {
-              wx.showModal({
-                title: '友情提示',
-                content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-                confirmColor: "#333333;",
-                confirmText: "重新认证",
-                showCancel: false,
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以显示去认证
+        if (status == 0) {
+          app.href('/pages/my/identity/indentity/indentity')
+        } else if (status == 3) {
+          wx.showModal({
+            title: '友情提示',
+            content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+            confirmColor: "#333333;",
+            confirmText: "重新认证",
+            showCancel: false,
+            success: function (res) {
+              wx.request({
+                url: url_common + '/api/user/getUserGroupByStatus',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST',
                 success: function (res) {
-                  wx.request({
-                    url: url_common + '/api/user/getUserGroupByStatus',
-                    data: {
-                      user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      let group_id = res.data.group.group_id;
-                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
-                    }
-                  })
+                  let group_id = res.data.group.group_id;
+                  app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
                 }
               })
             }
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id')
-            app.href('/pages/register/companyInfo/companyInfo?type=1')
-          }
-        } else {
-          wx.removeStorageSync('followed_user_id')
-          app.href('/pages/register/personInfo/personInfo?type=2')
+          })
         }
-      },
-    });
+      } else if (complete == 0) {
+        wx.removeStorageSync('followed_user_id')
+        app.href('/pages/register/companyInfo/companyInfo?type=1')
+      }
+    })
   },
   // 申请查看
   applyProject: function (e) {

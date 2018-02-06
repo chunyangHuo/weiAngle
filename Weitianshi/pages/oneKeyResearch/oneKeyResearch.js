@@ -2,6 +2,8 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as ShareModel from '../../utils/model/shareModel';
+let RG = require('../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     competeList: [],
@@ -490,9 +492,9 @@ Page({
                 historyFinance[index].history_financing_who = x.history_financing_who;
                 historyFinance[index].history_financing_time = app.changeTimeStyle(x.history_financing_time);
 
-                if (x.history_financing_time != null){
+                if (x.history_financing_time != null) {
                   historyFinance[index].history_financing_time = app.changeTimeStyle(x.history_financing_time);
-                }else{
+                } else {
                   historyFinance[index].history_financing_time = '';
                 }
               })
@@ -515,7 +517,7 @@ Page({
                 mileStone[index].milestone_event = x.milestone_event;
                 if (x.milestone_time != null) {
                   mileStone[index].milestone_time = app.changeTimeStyle(x.milestone_time);
-                }else{
+                } else {
                   mileStone[index].milestone_time = '';
                 }
               })
@@ -537,9 +539,9 @@ Page({
                 newsList[index].project_news_label = x.project_news_label;
                 newsList[index].source = x.source;
                 newsList[index].project_news_title = x.project_news_title;
-                if(x.project_news_time != null){
+                if (x.project_news_time != null) {
                   newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
-                }else{
+                } else {
                   newsList[index].project_news_time = '';
                 }
               })
@@ -740,28 +742,21 @@ Page({
   sendBp: function () {
     let that = this;
     let user_id = wx.getStorageSync("user_id");
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        let userEmail = res.data.user_email;
-        if (userEmail) {
-          that.setData({
-            userEmail: userEmail,
-            sendPc: 1,
-            checkEmail: true,
-          });
-        } else {
-          that.setData({
-            sendPc: 1,
-            checkEmail: false
-          });
-        }
+    app.checkUserInfo(this, res => {
+      let userEmail = res.data.user_email;
+      if (userEmail) {
+        that.setData({
+          userEmail: userEmail,
+          sendPc: 1,
+          checkEmail: true,
+        });
+      } else {
+        that.setData({
+          sendPc: 1,
+          checkEmail: false
+        });
       }
-    });
+    })
   },
   // 更改邮箱
   writeBpEmail: function (e) {
@@ -883,29 +878,21 @@ Page({
         success: function (res) {
           console.log(res.tapIndex);
           if (res.tapIndex == 1) {
-            wx.request({
-              url: url_common + '/api/user/checkUserInfo',
-              data: {
-                user_id: user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log(res);
-                let userEmail = res.data.user_email;
-                if (userEmail) {
-                  that.setData({
-                    userEmail: userEmail,
-                    sendPc: 1,
-                    checkEmail: true,
-                  });
-                } else {
-                  that.setData({
-                    sendPc: 1,
-                    checkEmail: false
-                  });
-                }
+            app.checkUserInfo(this, res => {
+              let userEmail = res.data.user_email;
+              if (userEmail) {
+                that.setData({
+                  userEmail: userEmail,
+                  sendPc: 1,
+                  checkEmail: true,
+                });
+              } else {
+                that.setData({
+                  sendPc: 1,
+                  checkEmail: false
+                });
               }
-            });
+            })
           } else if (res.tapIndex == 0) {
             wx.downloadFile({
               url: BPath,
@@ -953,29 +940,17 @@ Page({
   contactPerson: function () {
     let user_id = wx.getStorageSync('user_id');
     let that = this;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以联系项目方
-            that.setData({
-              modalBox: 1
-            });
-          } else if (complete == 0) {
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
-          app.href('/pages/register/personInfo/personInfo?type=2');
-        }
-      },
-    });
-
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以联系项目方
+        that.setData({
+          modalBox: 1
+        });
+      } else if (complete == 0) {
+        app.href('/pages/register/companyInfo/companyInfo?type=1');
+      }
+    })
   },
   //关闭模态框
   closeModal: function () {
@@ -1100,51 +1075,39 @@ Page({
   toAccreditation: function () {
     let status = this.data.status;
     let user_id = wx.getStorageSync('user_id');
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以显示去认证
-            if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity');
-            } else if (status == 3) {
-              wx.showModal({
-                title: '友情提示',
-                content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-                confirmColor: "#333333;",
-                confirmText: "重新认证",
-                showCancel: false,
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以显示去认证
+        if (status == 0) {
+          app.href('/pages/my/identity/indentity/indentity');
+        } else if (status == 3) {
+          wx.showModal({
+            title: '友情提示',
+            content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+            confirmColor: "#333333;",
+            confirmText: "重新认证",
+            showCancel: false,
+            success: function (res) {
+              wx.request({
+                url: url_common + '/api/user/getUserGroupByStatus',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST',
                 success: function (res) {
-                  wx.request({
-                    url: url_common + '/api/user/getUserGroupByStatus',
-                    data: {
-                      user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      let group_id = res.data.group.group_id;
-                      app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
-                    }
-                  });
+                  let group_id = res.data.group.group_id;
+                  app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
                 }
               });
             }
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id');
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/personInfo/personInfo?type=2');
+          });
         }
-      },
-    });
+      } else if (complete == 0) {
+        wx.removeStorageSync('followed_user_id');
+        app.href('/pages/register/companyInfo/companyInfo?type=1');
+      }
+    })
   },
   // 申请查看
   applyProject: function (e) {
@@ -1310,5 +1273,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 }); 

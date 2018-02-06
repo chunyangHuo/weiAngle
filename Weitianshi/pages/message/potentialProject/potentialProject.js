@@ -1,6 +1,8 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     winWidth: 0,//选项卡
@@ -424,7 +426,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        if (status == 1){
+        if (status == 1) {
         } else if (status == 2) {
           that.setData({
             record_id: record_id
@@ -437,28 +439,17 @@ Page({
   contactPerson: function () {
     let user_id = wx.getStorageSync('user_id');
     let that = this;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          var complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以联系项目方
-            that.setData({
-              modalBox: 1
-            });
-          } else if (complete == 0) {
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
-          }
-        } else {
-          app.href('/pages/register/personInfo/personInfo?type=2');
-        }
-      },
-    });
+    app.checkUserInfo(this, res => {
+      var complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以联系项目方
+        that.setData({
+          modalBox: 1
+        });
+      } else if (complete == 0) {
+        app.href('/pages/register/companyInfo/companyInfo?type=1');
+      }
+    })
   },
   //关闭模态框
   closeModal: function () {
@@ -510,7 +501,7 @@ Page({
     let project_id = e.currentTarget.dataset.project;
     let pushToList = this.data.pushToList;
     let that = this;
-    app.log("pushList",pushToList);
+    app.log("pushList", pushToList);
     wx.request({
       url: url_common + '/api/project/importProject',
       data: {
@@ -579,5 +570,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

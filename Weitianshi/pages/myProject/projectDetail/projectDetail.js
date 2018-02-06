@@ -2,6 +2,8 @@ let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     bindContact: false,
@@ -842,28 +844,21 @@ Page({
   sendBp: function () {
     let that = this;
     let user_id = wx.getStorageSync("user_id");
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        let userEmail = res.data.user_email;
-        if (userEmail) {
-          that.setData({
-            userEmail: userEmail,
-            sendPc: 1,
-            checkEmail: true,
-          });
-        } else {
-          that.setData({
-            sendPc: 1,
-            checkEmail: false
-          });
-        }
+    app.checkUserInfo(this, res => {
+      let userEmail = res.data.user_email;
+      if (userEmail) {
+        that.setData({
+          userEmail: userEmail,
+          sendPc: 1,
+          checkEmail: true,
+        });
+      } else {
+        that.setData({
+          sendPc: 1,
+          checkEmail: false
+        });
       }
-    });
+    })
   },
   //商业计划书
   businessBook: function () {
@@ -878,34 +873,22 @@ Page({
         success: function (res) {
           console.log(res.tapIndex);
           if (res.tapIndex == 1) {
-            wx.request({
-              url: url_common + '/api/user/checkUserInfo',
-              data: {
-                user_id: user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log(res);
-                let userEmail = res.data.user_email;
-                if (userEmail) {
-                  that.setData({
-                    userEmail: userEmail,
-                    sendPc: 1,
-                    checkEmail: true,
-                  });
-                } else {
-                  that.setData({
-                    sendPc: 1,
-                    checkEmail: false
-                  });
-                }
+            app.checkUserInfo(this, res => {
+              let userEmail = res.data.user_email;
+              if (userEmail) {
+                that.setData({
+                  userEmail: userEmail,
+                  sendPc: 1,
+                  checkEmail: true,
+                });
+              } else {
+                that.setData({
+                  sendPc: 1,
+                  checkEmail: false
+                });
               }
-            });
+            })
           } else if (res.tapIndex == 0) {
-            // wx.showLoading({
-            //   title: 'loading',
-            //   mask: true,
-            // })
             wx.downloadFile({
               url: BPath,
               success: function (res) {
@@ -1317,5 +1300,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

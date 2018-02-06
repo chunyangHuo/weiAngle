@@ -259,43 +259,32 @@ Page({
   //去认证  status =0:未认证过  status = 1 认证中 status =2 认证成功 status =3 认证失败.需要重新认证
   authentication: function (e) {
     let status = e.currentTarget.dataset.identitystatus;
-    let user_id = this.data.user_id
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          let complete = res.data.is_complete;
-          if (complete == 1) {
-            //如果信息完整就可以显示去认证
-            if (status == 0) {
-              app.href('/pages/my/identity/indentity/indentity')
-            } else if (status == 3) {
-              wx.request({
-                url: url_common + '/api/user/getUserGroupByStatus',
-                data: {
-                  user_id: user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  let user_id = wx.getStorageSync('user_id');
-                  let authenticate_id = res.data.authenticate_id;
-                  let group_id = res.data.group_id;
-                  app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
-                }
-              })
+    let user_id = this.data.user_id;
+    app.checkUserInfo(this, res => {
+      let complete = res.data.is_complete;
+      if (complete == 1) {
+        //如果信息完整就可以显示去认证
+        if (status == 0) {
+          app.href('/pages/my/identity/indentity/indentity')
+        } else if (status == 3) {
+          wx.request({
+            url: url_common + '/api/user/getUserGroupByStatus',
+            data: {
+              user_id: user_id
+            },
+            method: 'POST',
+            success: function (res) {
+              let user_id = wx.getStorageSync('user_id');
+              let authenticate_id = res.data.authenticate_id;
+              let group_id = res.data.group_id;
+              app.href('/pages/my/identity/indentity/indentity?authenticate_id=' + authenticate_id + '&&group_id=' + group_id)
             }
-          } else if (complete == 0) {
-            app.href('/pages/register/companyInfo/companyInfo?type=1')
-          }
-        } else {
-          app.href('/pages/register/personInfo/personInfo?type=2')
+          })
         }
+      } else if (complete == 0) {
+        app.href('/pages/register/companyInfo/companyInfo?type=1')
       }
-    })
+    }) 
   },
   //人脉大赛
   competitor: function () {
