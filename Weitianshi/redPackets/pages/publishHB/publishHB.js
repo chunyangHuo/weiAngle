@@ -83,23 +83,6 @@ Page({
     } else {
       app.errorHide(that, "请输入金额", 1500);
     }
-    // if (money == 0) {
-    //   app.errorHide(that, "请输入金额", 1500);
-    // } else if (number == 0 || number == "") {
-    //   app.errorHide(that, "请输入红包个数", 1500);
-    // } else if (money / number < 1) {
-    //   app.errorHide(that, "平均每个红包不小于1元", 1500);
-    // } else if (money / number >= 1) {
-    //   rp.publishHB.call(this, user_id, number, money, title)
-    //   this.setData({
-    //     bindContact: true
-    //   });
-    //   setTimeout(() => {
-    //     this.setData({
-    //       bindContact: false
-    //     });
-    //   }, 1000);
-    // }
   },
   //获取全部文字
   getAll(bagMoney) {

@@ -118,70 +118,62 @@ Page({
     // let follow_status = this.data.follow_status;
     let warMemberList = this.data.warMemberList;
     let that = this;
-    wx.request({
-      url: url_common + '/api/user/checkUserInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == 2000000) {
-          let complete = res.data.is_complete;
-          if (complete == 1) {
-            let user_id = wx.getStorageSync('user_id');
-            let applied_user_id = e.currentTarget.dataset.applyid;
-            let follow_status = e.currentTarget.dataset.status;
-            if (follow_status == 0) {
-              wx.request({
-                url: url + '/api/user/UserApplyFollowUser',
-                data: {
-                  user_id: user_id,
-                  applied_user_id: applied_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  warMemberList.forEach((x) => {
-                    if (x.user_id == applied_user_id) {
-                      x.follow_status = 2;
-                    }
-                  });
-                  that.setData({
-                    warMemberList: warMemberList
-                  });
-                }
-              });
-            } else if (follow_status == 3) {
-              wx.request({
-                url: url + '/api/user/handleApplyFollowUser',
-                data: {
-                  user_id: user_id,
-                  apply_user_id: applied_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  //将状态改为"已互为人脉
-                  warMemberList.forEach((x) => {
-                    if (x.user_id == applied_user_id) {
-                      x.follow_status = 1;
-                    }
-                  });
-                  that.setData({
-                    warMemberList: warMemberList
-                  });
-                }
-              });
-            }
-          } else if (complete == 0) {
-            wx.removeStorageSync('followed_user_id');
-            app.href('/pages/register/companyInfo/companyInfo?type=1');
+    app.checkUserInfo(this, res => {
+      if (res.data.status_code == 2000000) {
+        let complete = res.data.is_complete;
+        if (complete == 1) {
+          let user_id = wx.getStorageSync('user_id');
+          let applied_user_id = e.currentTarget.dataset.applyid;
+          let follow_status = e.currentTarget.dataset.status;
+          if (follow_status == 0) {
+            wx.request({
+              url: url + '/api/user/UserApplyFollowUser',
+              data: {
+                user_id: user_id,
+                applied_user_id: applied_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                warMemberList.forEach((x) => {
+                  if (x.user_id == applied_user_id) {
+                    x.follow_status = 2;
+                  }
+                });
+                that.setData({
+                  warMemberList: warMemberList
+                });
+              }
+            });
+          } else if (follow_status == 3) {
+            wx.request({
+              url: url + '/api/user/handleApplyFollowUser',
+              data: {
+                user_id: user_id,
+                apply_user_id: applied_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                //将状态改为"已互为人脉
+                warMemberList.forEach((x) => {
+                  if (x.user_id == applied_user_id) {
+                    x.follow_status = 1;
+                  }
+                });
+                that.setData({
+                  warMemberList: warMemberList
+                });
+              }
+            });
           }
-        } else {
+        } else if (complete == 0) {
           wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/personInfo/personInfo?type=2');
+          app.href('/pages/register/companyInfo/companyInfo?type=1');
         }
+      } else {
+        wx.removeStorageSync('followed_user_id');
+        app.href('/pages/register/personInfo/personInfo?type=2');
       }
-    });
-
+    })
   },
   //分享页面
   onShareAppMessage: function () {

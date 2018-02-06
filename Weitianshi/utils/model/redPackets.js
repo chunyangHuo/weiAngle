@@ -13,7 +13,8 @@ export class redPackets {
         user_id: user_id,
         number: number,
         money: money,
-        title: title
+        title: title,
+        open_session: app.globalData.open_session
       }
     }, this).then(res => {
       let unique_id = res.data.data.packet_unique_id;

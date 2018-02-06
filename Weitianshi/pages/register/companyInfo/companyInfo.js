@@ -3,8 +3,8 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 Page({
   data: {
-    name:'',
-    brand:'',
+    name: '',
+    brand: '',
     company: "",
     position: "",
     email: "",
@@ -13,15 +13,11 @@ Page({
   //onLoad
   onLoad(options) {
     let that = this;
-    let type = options.type;
     let company = options.user_company;
     let position = options.user_career;
     let email = options.user_email;
     let user_id = wx.getStorageSync('user_id');
     this.getUserInfo(user_id);
-    that.setData({
-      type: type
-    });
     app.netWorkChange(that);
   },
   //请求用户信息
@@ -105,7 +101,6 @@ Page({
     let error_text = this.data.error_text;
     let email = this.data.email;
     let user_id = wx.getStorageSync('user_id');
-    let type = this.data.type;
     if (company !== "" && position !== "") {
       //向后台发送公司信息
       wx.request({
@@ -178,11 +173,7 @@ Page({
                 });
               }
             } else {
-              if (type) {
-                app.href('/pages/register/bindSuccess/bindSuccess?type=' + type);
-              } else {
-                app.href('/pages/register/bindSuccess/bindSuccess?type=' + 0);
-              }
+              app.href('/pages/register/bindSuccess/bindSuccess');
             }
           } else {
             let error_msg = res.data.error_msg;
@@ -191,7 +182,7 @@ Page({
               content: error_msg
             });
           }
-        },
+        }, 
       });
       //取消错误提示
       that.setData({
