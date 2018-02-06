@@ -79,6 +79,7 @@ export class redPackets {
   // 更多群红包信息
   otherGroupHB(openGId = '') {
     let user_id = wx.getStorageSync('user_id');
+    let open_ss
     if (!user_id) {
       app.loginPage(user_id => {
         _this.otherGroupHB(openGId)
@@ -89,7 +90,8 @@ export class redPackets {
       url: url_common + '/api/payment/getMoreGroup',
       data: {
         user_id,
-        openGId
+        openGId,
+        open_session: app.globalData.open_session
       }
     }, this).then(res => {
       console.log(res.data.data)
@@ -207,7 +209,8 @@ export class redPackets {
       url: url_common + '/api/payment/toBalance',
       data: {
         user_id,
-        packet_unique_id: unique_id
+        packet_unique_id: unique_id,
+        open_session: app.globalData.open_session
       }
     }, this, res => {
       if (res.data.error_msg == '红包已被领完') {

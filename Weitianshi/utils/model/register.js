@@ -84,7 +84,7 @@ export class register {
   }
 
   // 手机验证码绑定 - 注册(personInfo)
-  telephoneRegister() {
+  personInfoRegister() {
     let _this = this;
     wx.login({
       success: function (res) {
@@ -131,7 +131,19 @@ export class register {
     }else if(!position){
       app.errorHide(this,'职位不能为空')
     }else{
-      
+      app.httpPost({
+        url: url_common + '/api/user/updateUser',
+        data: {
+          user_real_name:name,
+          user_id: user_id,
+          user_company_name: company,
+          user_company_career: position,
+          user_email: email,
+          user_brand: brand
+        },
+      },this).then(res=>{
+
+      })
     }
 
     if (company !== "" && position !== "") {
@@ -217,7 +229,6 @@ export class register {
           }
         },
       });
-
     } else {
       that.setData({
         error: '1'

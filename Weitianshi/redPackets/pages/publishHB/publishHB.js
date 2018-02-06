@@ -90,6 +90,5 @@ Page({
     let money = bagMoney * 1;
     let moneyReg = /^([1-9]\d*|0)(\.\d{1,2})?$/;
     console.log(typeof money)
-
   }
 })

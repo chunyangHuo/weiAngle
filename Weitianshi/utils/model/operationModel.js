@@ -1,46 +1,31 @@
 //验校用户注册信息
-function checkUserInfo(callBack) {
-  let that=this;
-  let app = getApp();
-  let url_common = app.globalData.url_common;
+function checkUserInfo(that, callBack) {
+  let _this = this;
   let user_id = wx.getStorageSync('user_id');
-  wx.getStorageSync('user_id');
+  let app = getApp();
   wx.request({
-    url: url_common + '/api/user/checkUserInfo',
+    url: app.globalData.url_common + '/api/user/checkUserInfo',
     data: {
       user_id: user_id
     },
     method: 'POST',
-    success: function (res) {
+    complete: function (res) {
       if (res.data.status_code == 2000000) {
-        var complete = res.data.is_complete;
+        let complete = res.data.is_complete;
         if (complete == 1) {
           if (callBack) {
             callBack(res);
           }
         } else if (complete == 0) {
-          wx.showModal({
-            title: "提示",
-            content: "请先绑定个人信息",
-            success: function (res) {
-              if (res.confirm == true) {
-                app.href('/pages/register/companyInfo/companyInfo?type = ' + 3);
-              }
-            }
+          that.setData({
+            registerModalShow: true
           })
         }
       } else {
-        wx.showModal({
-          title: "提示",
-          content: "请先绑定个人信息",
-          success: function (res) {
-            if (res.confirm == true) {
-              app.href('/pages/register/personInfo/personInfo?type = ' + 2);
-            }
-          }
+        that.setData({
+          registerModalShow: true
         })
       }
-      app.log(that,'checkUserInfo', res);
     }
   })
 }
@@ -50,7 +35,7 @@ function projectApply(pro_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-  checkUserInfo(x => {
+  checkUserInfo(this,x => {
     wx.request({
       url: url_common + '/api/user/getUserGroupByStatus',
       data: {
@@ -165,7 +150,7 @@ function projectOneKeyPush(that, pushTo_user_id, pushed_project_id, callback) {
     mask: true,
   })
   let user_id = wx.getStorageSync('user_id');
-  checkUserInfo(x => {
+  checkUserInfo(this,x => {
     getPushProjectTimes(that, pushRequest())
     // 实现推送
     function pushRequest() {
@@ -205,7 +190,7 @@ function projectPush(that, pushTo_user_id) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-  checkUserInfo(x => {
+  checkUserInfo(that,x => {
     getPushProjectTimes(that, res => {
       app.href('/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id)
     })
@@ -217,7 +202,7 @@ function contactsAdd(added_user_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-  checkUserInfo(x => {
+  checkUserInfo(this,x => {
     wx.request({
       url: url_common + '/api/user/UserApplyFollowUser',
       data: {
@@ -239,7 +224,7 @@ function contactsAddDirect(added_user_id, callBack) {
   let app = getApp();
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
-  checkUserInfo(x => {
+  checkUserInfo(this,x => {
     wx.request({
       url: url_common + '/api/user/handleApplyFollowUser',
       data: {

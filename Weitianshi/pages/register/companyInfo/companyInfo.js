@@ -47,7 +47,7 @@ Page({
   //姓名
   name(e) {
     this.setData({
-      name
+      name:e.detail.value
     })
   },
   //品牌验证

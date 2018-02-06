@@ -177,7 +177,7 @@ Page({
   projectPush(e) {
     let that = this;
     let pushTo_user_id = e.currentTarget.dataset.id;
-    app.operationModel('projectPush', that, pushTo_user_id);
+    app.operationModel.call(this,'projectPush', that, pushTo_user_id);
   },
   // 申请加人脉
   contactsAdd(e) {

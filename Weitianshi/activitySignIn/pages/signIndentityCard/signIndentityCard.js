@@ -154,7 +154,7 @@ Page({
   projectPush(e) {
     let pushed_id = e.currentTarget.dataset.id;
     console.log(pushed_id);
-    app.operationModel('projectPush', this, pushed_id)
+    app.operationModel.call(this,'projectPush', this, pushed_id)
   },
   //跳转微天使首页
   goToIndex() {

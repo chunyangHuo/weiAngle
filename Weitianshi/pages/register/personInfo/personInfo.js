@@ -52,17 +52,30 @@ Page({
         checking: "1",
         time: "1",
       });
-      that.getCaptcha(telephone);
+      that.getCaptcha(that,telephone, endTime);
     })
   },
   // 请求验证码
-  getCaptcha(user_mobile) {
+  getCaptcha(that,user_mobile, endTime) {
     app.httpPost({
       url: url_common + '/api/auth/authCaptcha',
       data: {
         user_mobile
       },
-    }, this).then(res => { })
+    }, this, res => {
+      this.setData({
+        checking: "0"
+      });
+    }).then(res => {
+      let _time = setInterval(function () {
+        if (endTime > 1) {
+          endTime--;
+          that.setData({
+            getCode: endTime + 's后重新获取'
+          })
+        }
+      }, 1000)
+    })
   },
   //获取验证码的值 
   checkCode2(e) {
