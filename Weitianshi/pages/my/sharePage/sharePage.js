@@ -41,7 +41,7 @@ Page({
 
       //如果进入的是自己的名片里
       if (user_id == followed_user_id && !is_redPackets) {
-        return app.href('/pages/my/my/my');
+        return app.href('/pages/my/myCard/myCard');
       }
       // 检查注册信息是否完整
       if (!is_redPackets) {
@@ -115,7 +115,7 @@ Page({
     let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_id;
     let user_id = wx.getStorageSync('user_id');
-    app.checkUserInfo(this,res => {
+    app.checkUserInfo(this, res => {
       // 开红包动效
       that.setData({
         kai: false,
@@ -125,7 +125,7 @@ Page({
   },
   // 打开红包后,点击确定跳转
   makeSure(e) {
-let unique_id = this.data.unique_id;
+    let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_id;
     let is_card = e.currentTarget.dataset.cardid;
     rp.openedHB.call(this, added_user_id, is_card)
@@ -244,18 +244,18 @@ let unique_id = this.data.unique_id;
                   that.setData({
                     button_type: 1
                   });
-                  wx.showModal({
-                    title: '提示',
-                    content: '去小程序查看我的人脉库',
-                    confirmText: '去看看',
-                    success: function (res) {
-                      if (res.confirm) {
-                        app.href('/pages/discoverInvest/discoverInvest');
-                      } else if (res.cancel) {
-                        app.log('用户点击取消');
-                      }
-                    }
-                  });
+                  // wx.showModal({
+                  //   title: '提示',
+                  //   content: '去小程序查看我的人脉库',
+                  //   confirmText: '去看看',
+                  //   success: function (res) {
+                  //     if (res.confirm) {
+                  //       app.href('/pages/discoverInvest/discoverInvest');
+                  //     } else if (res.cancel) {
+                  //       app.log('用户点击取消');
+                  //     }
+                  //   }
+                  // });
                 }
               });
             } else if (complete == 0) {

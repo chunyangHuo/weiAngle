@@ -8,7 +8,7 @@ Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     open: app.globalData.picUrl.open,
-  }, 
+  },
   onLoad: function (options) {
     //红包分享人的id
     let unique_id = options.unique_id;
@@ -27,7 +27,7 @@ Page({
   },
   // 跳转到群详情
   redDetail(e) {
-    let groupId = e.currentTarget.dataset.groupid; 
+    let groupId = e.currentTarget.dataset.groupid;
     app.href('/redPackets/pages/crowdDetail/crowdDetail?groupId=' + groupId)
   },
   // 查看更多群红包
@@ -46,15 +46,22 @@ Page({
   contactsAddSuccessFunc(res, added_user_id, num, onlyPerson) {
     let that = this;
     let whoGet = this.data.whoGet;
+    console.log(whoGet)
     let personInfo = this.data.personInfo;
     if (onlyPerson) {
       personInfo.is_card = num;
+      whoGet.forEach(x => {
+        if (x.user.user_id == added_user_id) {
+          x.is_card = num;
+        }
+      });
       this.setData({
         personInfo: personInfo,
-           whoGet: whoGet,
+        whoGet: whoGet,
       })
     } else if (!onlyPerson) {
       if (res.data.status_code == 2000000) {
+        personInfo.is_card = num;
         if (whoGet) {
           whoGet.forEach(x => {
             if (x.user.user_id == added_user_id) {
@@ -63,7 +70,7 @@ Page({
           });
           that.setData({
             whoGet: whoGet,
-            personInfo:personInfo
+            personInfo: personInfo
           });
         }
       } else {
@@ -95,20 +102,20 @@ Page({
   userCard(e) {
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
-    if(user_id == id){
+    if (user_id == id) {
       app.href('/pages/my/myCard/myCard')
-    }else{
+    } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
   },
   // 分享页面
-  onShareAppMessage(){
+  onShareAppMessage() {
     let unique_id = this.data.unique_id;
     let personInfo = this.data.personInfo;
     return shareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
   },
   //查看当前发红包的人
-  toUserDetail(e){
+  toUserDetail(e) {
     let id = e.currentTarget.dataset.id;
     let user_id = wx.getStorageSync('user_id');
     if (user_id == id) {
