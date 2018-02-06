@@ -144,7 +144,7 @@
             <view class="recordCompany" wx:if="{{item.user.user_brand}}">
               <label class="recordCompany" wx:if="{{item.user.user_company_career && item.user.user_brand}}"> · </label>
               {{item.user.user_brand}}</view>
-            <view class="recordCompany" wx:if=" {{item.user.user_company_name && !item.user.user_brand}} ">
+            <view class="recordCompany" wx:if="{{item.user.user_company_name && !item.user.user_brand}}">
               <label class="recordCompany" wx:if="{{item.user.user_company_career && item.user.user_company_name}}"> · </label>
               {{item.user.user_company_name}}</view>
 

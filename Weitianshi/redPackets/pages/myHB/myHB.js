@@ -22,6 +22,8 @@ Page({
       rp.publishedHBList.call(this, user_id);
       rp.packetStatic.call(this)
       app.initPage(this);
+      // 确认红包可以生成
+      rp.makeSureHB.call(this)
     })
   },
   //跳转生成红包页面

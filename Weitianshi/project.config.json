@@ -110,6 +110,18 @@
 					"name": "注册-公司信息",
 					"pathName": "pages/register/companyInfo/companyInfo",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "多个红包",
+					"pathName": "redPackets/pages/openedHB/openedHB",
+					"query": "unique_id=60952447941767761813912087"
+				},
+				{
+					"id": -1,
+					"name": "多个红包",
+					"pathName": "pages/register/companyInfo/companyInfo",
+					"query": "unique_id=60952447941767761813912087"
 				}
 			]
 		}
