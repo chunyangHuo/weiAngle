@@ -69,7 +69,7 @@ Page({
       });
     }).then(res => {
       let _time = setInterval(function () {
-        this.setData({
+        that.setData({
           checking: "0"
         });
         if (endTime > 1) {
@@ -89,7 +89,7 @@ Page({
     }).catch(res => {
       this.setData({
         checking: "0",
-        time: '1'
+        time: '0'
       });
     })
   },

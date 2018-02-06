@@ -273,7 +273,7 @@ Page({
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
   toCreateProject: function () {
-    CreateProject.toCreateProject();
+    CreateProject.toCreateProject.call(this);
   },
   // 跳转投资机构
   jumpOrg() {
@@ -311,10 +311,14 @@ Page({
 
   // 微信授权绑定
   getPhoneNumber(e) {
-    register.getPhoneNumber.call(this,e);
+    register.getPhoneNumber.call(this, e);
   },
   // 手机号码绑定
-  telephoneRegister(){
-    register.telephoneRegister();
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });

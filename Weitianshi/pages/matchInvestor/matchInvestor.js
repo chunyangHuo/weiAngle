@@ -108,7 +108,7 @@ Page({
   },
   //发布融资项目
   publicBtn: function () {
-    CreateProject.toCreateProject();
+    CreateProject.toCreateProject.call(this);
   },
   //一键推送
   goToMatchInvestor(e) {
@@ -171,7 +171,7 @@ Page({
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
   toCreateProject: function () {
-    CreateProject.toCreateProject();
+    CreateProject.toCreateProject.call(this);
   },
   // 在电脑上创建
   createProjectPc() {

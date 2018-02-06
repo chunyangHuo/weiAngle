@@ -21,7 +21,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          app.log('res',res);
+          app.log('res', res);
           let status = res.data.data.button_type;
           let activtyData = res.data.data;
           that.setData({
@@ -38,29 +38,19 @@ Page({
   },
   //报名
   enroll: function (e) {
-    let that=this;
+    let that = this;
     let xxx = e.currentTarget.dataset.url;
     let user_id = wx.getStorageSync('user_id');
-    app.checkUserInfo(this,res=>{
-      if (res.data.status_code == 2000000) {
-        let complete = res.data.is_complete;
-        if (complete == 1) {
-          wx.navigateTo({
-            url: xxx
-          });
-        } else if (complete == 0) {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/companyInfo/companyInfo?type=1');
-        }
-      } else {
-        wx.removeStorageSync('followed_user_id');
-        app.href('/pages/register/personInfo/personInfo?type=2');
-      }
+    app.checkUserInfo(this, res => {
+      let complete = res.data.is_complete;
+      wx.navigateTo({
+        url: xxx
+      });
     })
   },
   // 重新加载
   refresh() {
-    let timer ;
+    let timer;
     wx.showLoading({
       title: 'loading',
       mask: true

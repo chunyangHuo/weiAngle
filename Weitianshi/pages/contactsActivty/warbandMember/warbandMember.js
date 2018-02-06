@@ -3,7 +3,7 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 let RG = require('../../../utils/model/register.js');
-let register = new RG.register(); 
+let register = new RG.register();
 Page({
   data: {
 
@@ -122,60 +122,8 @@ Page({
     let that = this;
     app.checkUserInfo(this, res => {
       if (res.data.status_code == 2000000) {
-        let complete = res.data.is_complete;
-        if (complete == 1) {
-          let user_id = wx.getStorageSync('user_id');
-          let applied_user_id = e.currentTarget.dataset.applyid;
-          let follow_status = e.currentTarget.dataset.status;
-          if (follow_status == 0) {
-            wx.request({
-              url: url + '/api/user/UserApplyFollowUser',
-              data: {
-                user_id: user_id,
-                applied_user_id: applied_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                warMemberList.forEach((x) => {
-                  if (x.user_id == applied_user_id) {
-                    x.follow_status = 2;
-                  }
-                });
-                that.setData({
-                  warMemberList: warMemberList
-                });
-              }
-            });
-          } else if (follow_status == 3) {
-            wx.request({
-              url: url + '/api/user/handleApplyFollowUser',
-              data: {
-                user_id: user_id,
-                apply_user_id: applied_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                //将状态改为"已互为人脉
-                warMemberList.forEach((x) => {
-                  if (x.user_id == applied_user_id) {
-                    x.follow_status = 1;
-                  }
-                });
-                that.setData({
-                  warMemberList: warMemberList
-                });
-              }
-            });
-          }
-        } else if (complete == 0) {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/companyInfo/companyInfo?type=1');
-        }
-      } else {
-        wx.removeStorageSync('followed_user_id');
-        app.href('/pages/register/personInfo/personInfo?type=2');
-      }
-    })
+
+      })
   },
   //分享页面
   onShareAppMessage: function () {
@@ -190,40 +138,30 @@ Page({
     // let follow_status = this.data.follow_status;
     let that = this;
     app.checkUserInfo(this, res => {
-      if (res.data.status_code == 2000000) {
-        let complete = res.data.is_complete;
-        if (complete == 1) {
-          //添加战队
-          let user_id = wx.getStorageSync('user_id');
-          let arr = [];
-          let parameter = [];
-          arr.push(user_id);
-          arr.push(team_id);
-          parameter.push(arr);
-          wx.request({
-            url: url_common + '/api/team/join',
-            data: {
-              teams: parameter
-            },
-            method: 'POST',
-            success: function (res) {
-              if (res.data.status_code == 2000000) {
-                that.setData({
-                  follow_status: 1
-                });
-              } else {
-                app.errorHide(that, res.data.error_msg, 3000);
-              }
-            }
-          });
-        } else if (complete == 0) {
-          wx.removeStorageSync('followed_user_id');
-          app.href('/pages/register/companyInfo/companyInfo?type=1');
+      //添加战队
+      let complete = res.data.is_complete;
+      let user_id = wx.getStorageSync('user_id');
+      let arr = [];
+      let parameter = [];
+      arr.push(user_id);
+      arr.push(team_id);
+      parameter.push(arr);
+      wx.request({
+        url: url_common + '/api/team/join',
+        data: {
+          teams: parameter
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            that.setData({
+              follow_status: 1
+            });
+          } else {
+            app.errorHide(that, res.data.error_msg, 3000);
+          }
         }
-      } else {
-        wx.removeStorageSync('followed_user_id');
-        app.href('/pages/register/personInfo/personInfo?type=2');
-      }
+      });
     })
   },
   // 重新加载

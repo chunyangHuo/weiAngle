@@ -836,7 +836,7 @@ App({
     let pages = getCurrentPages();
     let currentPage = pages[pages.length - 1];
     let prePage = pages[pages.length - 2];
-    this.globalData.registerInitPage = currentPage.route;
+    this.globalData.registerInitPage = '/'+currentPage.route;
   },
 
   //初始本地缓存
