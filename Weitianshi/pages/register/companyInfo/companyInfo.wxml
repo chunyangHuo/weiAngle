@@ -3,7 +3,7 @@
 <view id="companyInfo" wx:if="{{nonet}}">
   <view class='title'>请尽可能的填写真实信息，有助于高效对接</view>
   <!--姓名  -->
-  <view class="boxStyle bottomStyle">
+  <view class="boxStyle bottomStyle" style="margin-top:106rpx">
     <view class="projectBoxContent flex noBorder">
       <view class="projectTitle">姓名*</view>
       <input placeholder="请输入真实的姓名" placeholder-style='color:#ccc' class="newBox" bindblur="name" maxlength="40" value="{{name}}" />

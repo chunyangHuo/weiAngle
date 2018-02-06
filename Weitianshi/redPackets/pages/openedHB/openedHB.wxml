@@ -12,7 +12,7 @@
   <template is="groupBox" wx:if='{{index < 1}}' data="{{item:item}}"></template>
 </block>
 <view class="seeMore" bindtap='seeMore' wx:if="{{groupInfo.length > 1}}">查看更多</view>
-<scroll-view scroll-y="true" bindscrolltolower='loadMore'>
+<scroll-view scroll-y="true" bindscrolltolower='loadMore' style="height:500rpx;">
   <view class="HBrecordTitile flex">
     <label style="width:96rpx;height:1rpx;background:#f7c660;margin-right:16rpx;"></label>
     红包领取记录
@@ -26,10 +26,10 @@
 <view style="height:136rpx"></view>
 <view class="buttonBox flex">
   <button class='jumpFirst' bindtap='toFirst' hover-class='hoverHB'>首页</button>
-  <button hover-class='hoverHB' class="sendHB" bindtap='sendHB'>发红包</button>
+  <button hover-class='hoverHB' class="sendHB" bindtap='sendHB'  wx:if="{{packetStatus == 'SUCCESS'}}">发红包</button>
   <button class="shareMore" open-type='share' wx:if="{{personInfo.user.user_id == user_id}}">转发到更多群</button>
   <button class="shareMore" bindtap='contactsAdd' wx:if="{{personInfo.is_card == 0}}" data-id="{{personInfo.user.user_id}}" data-only="1">加Ta为好友</button>
-  <button class="shareMore" bindtap='contactsAddDirect' wx:if="{{personInfo.is_card == 3 }}" data-id="{{personInfo.user.user_id}}" data-only="1">加Ta为好友</button>
-  <view class="shareMore waitSure" wx:if="{{personInfo.is_card == 2 }}">待通过</view>
-  <button class="shareMore" bindtap='userCard' data-id="{{personInfo.user.user_id}}" wx:if="{{personInfo.is_card == 1 }}">查看Ta的投资名片</button>
+  <button class="shareMore" bindtap='contactsAddDirect' wx:if="{{personInfo.is_card == 3}}" data-id="{{personInfo.user.user_id}}" data-only="1">加Ta为好友</button>
+  <view class="shareMore waitSure" wx:if="{{personInfo.is_card == 2 || personInfo.user.user_id != user_id}}">待通过</view>
+  <button class="shareMore" bindtap='userCard' data-id="{{personInfo.user.user_id}}" wx:if="{{personInfo.is_card == 1}}">查看Ta的投资名片</button>
 </view>

@@ -4,6 +4,8 @@ var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 let RG = require('../../../utils/model/register.js');
 let register = new RG.register(); 
+let RP = require('../../../utils/model/redPackets.js');
+let rp = new RP.redPackets();
 Page({
   data: {
     modalBox: 0,
@@ -14,6 +16,7 @@ Page({
   onLoad: function (options) {
     let that = this;
     app.netWorkChange(that);
+    rp.makeSureHB.call(this)
   },
 
   onShow: function () {
@@ -262,10 +265,10 @@ Page({
     })
   },
   //已发红包
-  sendedBag() {
+  sendedBag(e) {
     app.checkUserInfo(this, res => {
       app.href('/redPackets/pages/myHB/myHB')
-      // RP.makeSureHB.call(this)
+    
     })
   },
 

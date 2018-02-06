@@ -68,7 +68,7 @@
     </view>
   </view>
   <!--红包页面  -->
-  <view  bindtap='sendBag'>
+  <view  bindtap='sendBag' wx:if="{{packetStatus == 'SUCCESS'}}">
     <image src="{{sendHB}}" class='redBag'></image>
   </view>
   <!--项目店铺  -->
@@ -91,7 +91,6 @@
         <view class="blockTitle redBox">已发红包</view>
       </view>
       <view class="flex">
-        <!-- <view class="number">{{count.my_friends}}</view> -->
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
       </view>
     </view>
