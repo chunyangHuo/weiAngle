@@ -52,40 +52,57 @@ Page({
         checking: "1",
         time: "1",
       });
-      that.getCaptcha(that,telephone, endTime);
+      that.getCaptcha(that, telephone, endTime);
     })
   },
   // 请求验证码
-  getCaptcha(that,user_mobile, endTime) {
+  getCaptcha(that, user_mobile, endTime) {
     app.httpPost({
       url: url_common + '/api/auth/authCaptcha',
       data: {
         user_mobile
       },
     }, this, res => {
-      this.setData({
-        checking: "0"
+      that.setData({
+        checking: "0",
+        time: '0'
       });
     }).then(res => {
       let _time = setInterval(function () {
+        this.setData({
+          checking: "0"
+        });
         if (endTime > 1) {
           endTime--;
           that.setData({
             getCode: endTime + 's后重新获取'
           })
         }
+        setTimeout(function () {
+          that.setData({
+            time: "0",
+            getCode: "获取验证码"
+          });
+          clearInterval(_time)
+        }, 60000);
       }, 1000)
+    }).catch(res => {
+      this.setData({
+        checking: "0",
+        time: '1'
+      });
     })
   },
-  //获取验证码的值 
+
+  // 获取验证码的值 
   checkCode2(e) {
     let that = this;
     that.setData({
       checkCode: e.detail.value
     });
   },
-  //personInfo点击跳转
+  // personInfo点击跳转
   nextPage() {
     register.telephoneRegister.call(this);
-  }
+  },
 });

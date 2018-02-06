@@ -1,8 +1,7 @@
 <include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
   <view id="personInfo">
-
-    <view class="registerPhone flex">
+    <view class="registerPhone flex"> 
       <image src='/img/icon-shojji@2x.png' class="registerImg"></image>
       <input class='telephoneText' placeholder="手机号" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telphone}}" />
     </view>
