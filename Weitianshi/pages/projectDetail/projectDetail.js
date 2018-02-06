@@ -1048,15 +1048,10 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     app.checkUserInfo(this, res => {
-      var complete = res.data.is_complete;
-      if (complete == 1) {
-        //如果信息完整就可以联系项目方
-        that.setData({
-          modalBox: 1
-        })
-      } else if (complete == 0) {
-        app.href('/pages/register/companyInfo/companyInfo?type=1')
-      }
+      //如果信息完整就可以联系项目方
+      that.setData({
+        modalBox: 1
+      })
     })
   },
   //关闭模态框
@@ -1183,36 +1178,30 @@ Page({
     let status = this.data.status;
     let user_id = wx.getStorageSync('user_id');
     app.checkUserInfo(this, res => {
-      var complete = res.data.is_complete;
-      if (complete == 1) {
-        //如果信息完整就可以显示去认证
-        if (status == 0) {
-          app.href('/pages/my/identity/indentity/indentity')
-        } else if (status == 3) {
-          wx.showModal({
-            title: '友情提示',
-            content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-            confirmColor: "#333333;",
-            confirmText: "重新认证",
-            showCancel: false,
-            success: function (res) {
-              wx.request({
-                url: url_common + '/api/user/getUserGroupByStatus',
-                data: {
-                  user_id: user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                  let group_id = res.data.group.group_id;
-                  app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
-                }
-              })
-            }
-          })
-        }
-      } else if (complete == 0) {
-        wx.removeStorageSync('followed_user_id')
-        app.href('/pages/register/companyInfo/companyInfo?type=1')
+      //如果信息完整就可以显示去认证
+      if (status == 0) {
+        app.href('/pages/my/identity/indentity/indentity')
+      } else if (status == 3) {
+        wx.showModal({
+          title: '友情提示',
+          content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+          confirmColor: "#333333;",
+          confirmText: "重新认证",
+          showCancel: false,
+          success: function (res) {
+            wx.request({
+              url: url_common + '/api/user/getUserGroupByStatus',
+              data: {
+                user_id: user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                let group_id = res.data.group.group_id;
+                app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
+              }
+            })
+          }
+        })
       }
     })
   },

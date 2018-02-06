@@ -88,7 +88,7 @@ export class register {
     wx.login({
       success: function (res) {
         let user_mobile = _this.data.telephone;
-        let captcha = that.data.checkCode;
+        let captcha = _this.data.checkCode;
         let code = res.code;
         let open_session = wx.getStorageSync('open_session');
         if (!user_mobile) {

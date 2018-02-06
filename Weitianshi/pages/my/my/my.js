@@ -83,12 +83,10 @@ Page({
         });
       }
     });
-  },
+  }, 
   //登录
   entry() {
-    app.checkUserInfo(this, res => {
-      app.href('/pages/register/personInfo/personInfo')
-    })
+    app.checkUserInfo(this, res => {})
   },
   //进入我的名片
   toMyCard: function () {

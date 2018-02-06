@@ -168,7 +168,7 @@ App({
   },
 
   // 检查用户信息,信息完整刚进行回调
-  checkUserInfo(that,callBack) {
+  checkUserInfo(that, callBack) {
     let _this = this;
     let user_id = wx.getStorageSync('user_id');
     wx.request({
@@ -186,7 +186,7 @@ App({
             }
           } else if (complete == 0) {
             that.setData({
-              registerModalShow : true
+              registerModalShow: true
             })
           }
         } else {
@@ -767,7 +767,7 @@ App({
     wx.setStorageSync('tran_hotCity', []);
     wx.removeStorageSync('projectShopFilterCache');
   },
-  
+
   //判断网络状态
   netWorkChange(that) {
     wx.onNetworkStatusChange(function (res) {
@@ -836,7 +836,22 @@ App({
     let pages = getCurrentPages();
     let currentPage = pages[pages.length - 1];
     let prePage = pages[pages.length - 2];
-    this.globalData.registerInitPage = '/'+currentPage.route;
+    console.log(currentPage)
+    // 把options里的参数重新拼回url后面
+    let options = currentPage.options;
+    let str = '';
+    let key = Object.keys(options);
+    let value = Object.values(options);
+    key.forEach((x, index) => {
+      if (index == 0) {
+        str = '?';
+        str += key[0] + '=' + value[0]
+      } else {
+        str += '&&' + key[index] + '=' + value[index]
+      }
+    })
+    console.log('/' + currentPage.route + str);
+    this.globalData.registerInitPage = '/' + currentPage.route;
   },
 
   //初始本地缓存

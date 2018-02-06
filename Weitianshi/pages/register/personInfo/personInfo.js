@@ -103,6 +103,6 @@ Page({
   },
   // personInfo点击跳转
   nextPage() {
-    register.telephoneRegister.call(this);
+    register.personInfoRegister.call(this);
   },
 });
