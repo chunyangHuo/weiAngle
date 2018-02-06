@@ -41,7 +41,7 @@
           <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='nineImage'></image>
         </block>
       </view>
-      <view wx:if="{{item.user.length <4}}">
+      <view wx:if="{{item.user.length <= 4}}">
         <block wx:for="{{item.user}}" wx:key="idx" wx:for-index='idx' wx:for-item="groupImage">
           <image wx:if='{{idx < 9 }}' src="{{groupImage.avatarUrl}}" class='fourImage'></image>
         </block>

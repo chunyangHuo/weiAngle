@@ -4,7 +4,7 @@ let url_common = app.globalData.url_common
 let url_publishHB = url_common + '/api/payment/unifyOrder'
 let url_publishedHB = url_common + '/api/payment/getUserRedPacket'
 export class redPackets {
- 
+
   // 发布红包
   publishHB(user_id, number, money, title, cb1, cb2) {
     return app.httpPost({
@@ -119,12 +119,12 @@ export class redPackets {
       wx.hideLoading()
       if (!currentPage) {
         let insideHB = res.data.data;
-        insideHB.forEach((x,index) => {
-          insideHB[index].per = (x.packet.drawed_num) / (x.packet.number) *100;
+        insideHB.forEach((x, index) => {
+          insideHB[index].per = (x.packet.drawed_num) / (x.packet.number) * 100;
         });
-console.log(insideHB)
+        console.log(insideHB)
         this.setData({
-          insideHB:insideHB
+          insideHB: insideHB
         })
       } else {
         console.log(222)
@@ -250,6 +250,15 @@ console.log(insideHB)
       this.setData({
         packetStatic: res.data.data
       })
+    })
+  }
+  // 确认红包功能状态
+  makeSureHB(){
+    app.httpPost({
+      url: url_common + '/api/payment/getUserPacketStatistic',
+      data:{},
+    },this).then(res =>{
+      console.log(res)
     })
   }
 }

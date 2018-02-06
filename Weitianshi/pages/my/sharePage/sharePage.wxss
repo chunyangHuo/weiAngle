@@ -82,7 +82,7 @@
   position: absolute;
   top: 470rpx;
   /* left: 38.06%; */
-  margin-left: 40.06%;
+  margin-left: 35.06%;
   font-weight: bold;
 }
 
