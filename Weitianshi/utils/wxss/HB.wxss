@@ -94,10 +94,12 @@
 
 #groupHB .groupPic {
   background: #f0f0f0;
-  width: 109rpx;
-  height: 109rpx;
+  width: 100rpx;
+  height: 100rpx;
   margin-right: 24rpx;
   font-size: 0;
+  padding-top: 4rpx;
+  padding-left: 4rpx;
 }
 
 .aline {
@@ -107,15 +109,17 @@
   height: 1rpx;
   margin: 0 32rpx;
 }
-.aline:last-child{
+
+.aline:last-child {
   background: none;
 }
+
 #groupHB .groupName {
   font-size: 32rpx;
   color: #fff;
   text-align: left;
   margin-bottom: 12rpx;
-  width: 543rpx;
+  /* width: 543rpx; */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -168,7 +172,6 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
-
 
 #openHB .openImg {
   width: 104rpx;
@@ -375,7 +378,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  border:2rpx solid #fff;
+  border: 2rpx solid #fff;
 }
 
 #crowDetail .recordText {
@@ -469,7 +472,8 @@
   left: 501rpx;
   top: 65rpx;
 }
-#crowDetail .recordadd3{
+
+#crowDetail .recordadd3 {
   border: 1rpx solid #f7c660;
   border-radius: 48rpx;
   width: 146rpx;
@@ -490,14 +494,15 @@
 .hoverHB {
   background: #d84347 !important;
 }
+
 #groupHB .fourImage {
   width: 50rpx;
   height: 50rpx;
-  border: 1rpx solid white;
+  /* border: 1rpx solid white;  */
 }
 
 #groupHB .nineImage {
   width: 33rpx;
   height: 33rpx;
-  border: 1rpx solid white;
+  /* border: 1rpx solid white;  */
 }
