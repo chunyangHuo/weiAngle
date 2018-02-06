@@ -18,7 +18,7 @@
   <view class='registerFrame'>
     <view class='title tc'>
       登录/注册
-      <button hover-class="closeIconClass" class="closeClass">
+      <button hover-class="closeIconClass" class="closeClass" bindtap='closeRegisterModal'>
         <image class='closeIcon' src='/img/register-guanbi@2x.png'></image>
       </button>
     </view>

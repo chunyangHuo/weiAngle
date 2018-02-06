@@ -283,6 +283,10 @@ Page({
   },
   // 手机号码绑定
   telephoneRegister() {
-    register.telephoneRegister();
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal(){
+    register.closeRegisterModal.call(this);
   }
 });
