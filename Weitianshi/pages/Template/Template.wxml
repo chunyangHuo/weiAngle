@@ -1506,8 +1506,15 @@
       <image class="openRen" wx:if="{{personInfo.user.group[0].group_title=='卖方FA'}}" src="/img/img-rzfa2@2x.png"></image>
       <view class="openName">{{personInfo.user.user_real_name}}</view>
       <view class="openCareer">
-        <label>{{personInfo.user.user_company_career}}</label>
-        <label> · {{personInfo.user.user_brand}}</label>
+        <label wX:if="{{personInfo.user.user_company_career}}">{{personInfo.user.user_company_career}}</label>
+        <label wx:if="{{personInfo.user.user_brand}}">
+          <label wx:if="{{personInfo.user.user_brand && personInfo.user.user_company_career}}"> · </label>
+          {{personInfo.user.user_brand}}
+        </label>
+        <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}">
+          <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}"> · </label>
+          {{personInfo.user.user_company_name}}
+        </label>
       </view>
       <form report-submit='true' bindsubmit='formsubmit'>
         <button form-type='submit'>
@@ -1519,4 +1526,3 @@
     </image>
   </view>
 </template>
-

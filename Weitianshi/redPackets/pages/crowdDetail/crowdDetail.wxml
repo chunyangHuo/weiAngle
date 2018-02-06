@@ -6,6 +6,6 @@
     <open-data type="groupName" open-gid="{{groupId}}"></open-data>
   </view>
   <block wx:for="{{insideHB}}" wx:key="{{index}}">
-    <template is="crowDetail" data="{{packetlist:packetlist,item:item,per:per}}"></template>
+    <template is="crowDetail" data="{{packetlist:packetlist,item:item}}"></template>
   </block>
 </scroll-view>

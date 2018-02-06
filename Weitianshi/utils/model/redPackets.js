@@ -94,7 +94,7 @@ export class redPackets {
         open_session: app.globalData.open_session
       }
     }, this).then(res => {
-      console.log(res.data.data)
+      console.log(res.data.data.length)
       this.setData({
         groupInfo: res.data.data
       })
@@ -118,17 +118,13 @@ export class redPackets {
     }, this).then(res => {
       wx.hideLoading()
       if (!currentPage) {
-        let percent = res.data.data;
-        percent.forEach((x) => {
-          let per = (x.packet.drawed_num) / (x.packet.number) *100;
-          console.log(per)
-          this.setData({
-            per: per
-          })
+        let insideHB = res.data.data;
+        insideHB.forEach((x,index) => {
+          insideHB[index].per = (x.packet.drawed_num) / (x.packet.number) *100;
         });
+console.log(insideHB)
         this.setData({
-          insideHB: res.data.data,
-
+          insideHB:insideHB
         })
       } else {
         console.log(222)

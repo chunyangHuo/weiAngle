@@ -41,7 +41,7 @@ Page({
 
       //如果进入的是自己的名片里
       if (user_id == followed_user_id && !is_redPackets) {
-        return app.href('/pages/my/my/my');
+        return app.href('/pages/my/myCard/myCard');
       }
       // 检查注册信息是否完整
       if (!is_redPackets) {
@@ -244,18 +244,18 @@ Page({
                   that.setData({
                     button_type: 1
                   });
-                  wx.showModal({
-                    title: '提示',
-                    content: '去小程序查看我的人脉库',
-                    confirmText: '去看看',
-                    success: function (res) {
-                      if (res.confirm) {
-                        app.href('/pages/discoverInvest/discoverInvest');
-                      } else if (res.cancel) {
-                        app.log('用户点击取消');
-                      }
-                    }
-                  });
+                  // wx.showModal({
+                  //   title: '提示',
+                  //   content: '去小程序查看我的人脉库',
+                  //   confirmText: '去看看',
+                  //   success: function (res) {
+                  //     if (res.confirm) {
+                  //       app.href('/pages/discoverInvest/discoverInvest');
+                  //     } else if (res.cancel) {
+                  //       app.log('用户点击取消');
+                  //     }
+                  //   }
+                  // });
                 }
               });
             } else if (complete == 0) {
@@ -371,4 +371,16 @@ Page({
       return ShareModel.sharePageShare(that);
     }
   },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
+  }
 });  

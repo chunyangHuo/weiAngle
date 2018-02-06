@@ -61,12 +61,12 @@
 .rgInfo {
   background: #fef4db;
   border-radius: 8rpx;
-  width: 686rpx;
   padding-bottom: 20rpx;
-  margin: 32rpx 32rpx;
   font-size: 32rpx;
   color: #875244;
   text-align: center;
+  height: 360rpx;
+  padding-top: 20rpx;
 }
 .rgInfoNum{
   font-size: 44rpx;

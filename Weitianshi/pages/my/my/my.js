@@ -3,7 +3,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 let RG = require('../../../utils/model/register.js');
-let register = new RG.register();
+let register = new RG.register(); 
 Page({
   data: {
     modalBox: 0,

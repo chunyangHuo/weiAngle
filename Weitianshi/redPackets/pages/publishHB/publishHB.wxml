@@ -18,7 +18,6 @@
 </view>
 
 <view class='rgInfo'>
-  <image src="/redPackets/img/img-mingphongbao@2x.png" class='cardImg'></image>
   <view>已有
     <label class="rgInfoNum">{{recordHB.user_count}}</label>人通过名片红包</view>
   <view>拓展了
@@ -27,7 +26,7 @@
     <label class="rgInfoNum">{{recordHB.drawed_count}}</label>次红包 </view>
 </view>
 
-<view style='height:108rpx;'></view>
+
 <form report-submit='true' bindsubmit='createRedBag'>
   <button form-type='submit'>
     <image src="{{imgUrls2}}" class="btn1 floatBtn" wx:if="{{bindContact == false}}"></image>

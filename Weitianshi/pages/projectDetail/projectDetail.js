@@ -1,7 +1,9 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-import * as ShareModel from '../../utils/model/shareModel';
+import * as ShareModel from '../../utils/model/shareModel'; 
+let RG = require('../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     bindContact: false,
@@ -379,7 +381,7 @@ Page({
           that.setData({
             core_memberArray: core_memberArray,
             core_memberArray1: core_memberArray1
-          })
+          }) 
         }
         // 标签 type:0; 项目标签 type:1 团队标签
         let infoTagArray = project.tag;
@@ -1460,5 +1462,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500)
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 }) 

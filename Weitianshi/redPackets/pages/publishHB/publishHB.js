@@ -56,9 +56,7 @@ Page({
     console.log(number)
     app.formIdSubmit(e);
     let moneyReg = /^([1-9]\d*|0)(\.\d{1,2})?$/;
-    if (number == 0 || number == "") {
-      app.errorHide(that, "请输入红包个数", 1500);
-    } else if (0 < money && money < 1) {
+    if (0 < money && money < 1) {
       app.errorHide(that, "红包金额不能小于1元", 1500);
     } else if (1 <= money && money <= 2018) {
       if (!moneyReg.test(money)) {
@@ -80,6 +78,10 @@ Page({
       }
     } else if (money > 2018) {
       app.errorHide(that, "金额请小于2018", 1500);
+    } else if (money == 0) {
+      app.errorHide(that, "请输入金额", 1500);
+    }else if (number == 0 || number == "") {
+      app.errorHide(that, "请输入红包个数", 1500);
     } else {
       app.errorHide(that, "请输入金额", 1500);
     }
