@@ -205,17 +205,17 @@ let unique_id = this.data.unique_id;
           that.setData({
             button_type: 1
           });
-          wx.showModal({
-            title: '提示',
-            content: '去小程序查看我的人脉库',
-            confirmText: '去看看',
-            success: function (res) {
-              if (res.confirm) {
-                app.href('/pages/discover/myFriend/myFriend');
-              } else if (res.cancel) {
-              }
-            }
-          });
+          // wx.showModal({
+          //   title: '提示',
+          //   content: '去小程序查看我的人脉库',
+          //   confirmText: '去看看',
+          //   success: function (res) {
+          //     if (res.confirm) {
+          //       app.href('/pages/discover/myFriend/myFriend');
+          //     } else if (res.cancel) {
+          //     }
+          //   }
+          // });
         }
       });
     } else if (button_type == 4) {
