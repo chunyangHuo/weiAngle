@@ -1512,7 +1512,7 @@
           {{personInfo.user.user_brand}}
         </label>
         <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}">
-          <label wx:if="{{personInfo.user.user_company_name && !personInfo.user.user_brand}}"> · </label>
+          <label wx:if="{{personInfo.user.user_company_name && personInfo.user.user_company_career}}"> · </label>
           {{personInfo.user.user_company_name}}
         </label>
       </view>

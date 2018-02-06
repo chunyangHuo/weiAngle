@@ -233,12 +233,16 @@ Page({
   },
   // 二维码分享按钮
   shareSth: function (e) {
-    var QR_id = e.currentTarget.dataset.clickid;
-    wx.setStorageSync('QR_id', QR_id);
-    app.href('/pages/my/qrCode/qrCode');
+    app.checkUserInfo(this, res => {
+      var QR_id = e.currentTarget.dataset.clickid;
+      wx.setStorageSync('QR_id', QR_id);
+      app.href('/pages/my/qrCode/qrCode');
+    })
   },
   myFri: function () {
-    app.href('/pages/discover/myFriend/myFriend');
+    app.checkUserInfo(this, res => {
+      app.href('/pages/discover/myFriend/myFriend');
+    })
   },
   // 重新加载
   refresh() {
@@ -263,6 +267,7 @@ Page({
   sendedBag() {
     app.checkUserInfo(this, res => {
       app.href('/redPackets/pages/myHB/myHB')
+      // RP.makeSureHB.call(this)
     })
   },
 

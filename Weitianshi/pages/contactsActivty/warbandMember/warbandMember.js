@@ -120,10 +120,7 @@ Page({
     // let follow_status = this.data.follow_status;
     let warMemberList = this.data.warMemberList;
     let that = this;
-    app.checkUserInfo(this, res => {
-      if (res.data.status_code == 2000000) {
-
-      })
+    app.checkUserInfo(this, res => {})
   },
   //分享页面
   onShareAppMessage: function () {

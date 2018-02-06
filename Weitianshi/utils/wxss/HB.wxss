@@ -101,6 +101,15 @@
   padding-top: 4rpx;
   padding-left: 4rpx;
 }
+#groupHB .groupPicLittle{
+  background: #f0f0f0;
+  width: 104rpx;
+  height: 104rpx;
+  margin-right: 24rpx;
+  font-size: 0;
+  padding-top: 4rpx;
+  padding-left: 4rpx;
+}
 
 .aline {
   opacity: 0.2;
