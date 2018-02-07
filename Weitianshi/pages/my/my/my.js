@@ -90,7 +90,9 @@ Page({
   },
   //进入我的名片
   toMyCard: function () {
-    app.href('/pages/my/myCard/myCard');
+    app.checkUserInfo(this, res => { 
+      app.href('/pages/my/myCard/myCard');
+    })
   },
   //人气
   popularity: function () {

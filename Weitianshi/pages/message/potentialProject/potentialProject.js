@@ -321,7 +321,7 @@ Page({
     let that = this;
     let getMatchList = this.data.getMatchList;
     let pro_id = e.currentTarget.dataset.project;
-    app.operationModel('projectApply', pro_id, res => {
+    app.operationModel('projectApply',this, pro_id, res => {
       getMatchList.forEach((x) => {
         if (x.project_id == pro_id) {
           x.relationship_button = 0;

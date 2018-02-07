@@ -83,7 +83,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     let onlyPerson = e.currentTarget.dataset.only;
-    app.operationModel('contactsAdd', added_user_id, function (res) {
+    app.operationModel('contactsAdd', this, added_user_id, function (res) {
       console.log('申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2, onlyPerson);
     });
@@ -93,7 +93,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let onlyPerson = e.currentTarget.dataset.only;
     let that = this;
-    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+    app.operationModel('contactsAddDirect', this, added_user_id, function (res) {
       app.log("直接添加人脉完成", res);
       that.contactsAddSuccessFunc(res, added_user_id, 1, onlyPerson);
     });

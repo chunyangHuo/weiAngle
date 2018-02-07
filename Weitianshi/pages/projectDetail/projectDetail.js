@@ -1210,7 +1210,7 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
     let pro_id = this.data.id;
-    app.operationModel('projectApply', pro_id, res => {
+    app.operationModel('projectApply',this, pro_id, res => {
       if (res.data.status_code = 2000000) {
         this.setData({
           button_type: 0

@@ -227,7 +227,7 @@ Page({
     let slectProject = that.data.slectProject;
     let financingNeed = that.data.financingNeed;
     let entrance = that.data.entrance;
-    app.operationModel('projectApply', pro_id, res => {
+    app.operationModel('projectApply', this, pro_id, res => {
       if (entrance == 'selected') {
         slectProject.forEach(x => {
           if (x.project_id == pro_id) {
@@ -258,7 +258,7 @@ Page({
     let that = this;
     let added_user_id = e.currentTarget.dataset.id;
     app.log(that, "add_user", added_user_id);
-    app.operationModel('contactsAdd', added_user_id, function (res) {
+    app.operationModel('contactsAdd', this, added_user_id, function (res) {
       app.log(that, '申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
@@ -267,7 +267,7 @@ Page({
   contactsAddDirect(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+    app.operationModel('contactsAddDirect', this, added_user_id, function (res) {
       app.log(that, '直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });

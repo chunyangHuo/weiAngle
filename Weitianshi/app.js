@@ -171,6 +171,12 @@ App({
   checkUserInfo(that, callBack) {
     let _this = this;
     let user_id = wx.getStorageSync('user_id');
+    if(user_id == 0){
+      that.setData({
+        registerModalShow: true
+      })
+      return;
+    }
     wx.request({
       url: _this.globalData.url_common + '/api/user/checkUserInfo',
       data: {
@@ -185,14 +191,10 @@ App({
               callBack(res);
             }
           } else if (complete == 0) {
-            that.setData({
-              registerModalShow: true
-            })
+            console.log(111111)
+            _this.getCurrentRouter();
+            _this.href('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email)
           }
-        } else {
-          that.setData({
-            registerModalShow: true
-          })
         }
       }
     });

@@ -248,7 +248,7 @@ Page({
     let slectProject = that.data.slectProject;
     let financingNeed = that.data.financingNeed;
     let currentTab = that.data.currentTab;
-    app.operationModel('projectApply', pro_id, res => {
+    app.operationModel('projectApply', this,pro_id, res => {
       app.log('matchApply', res);
       if (currentTab == 0) {
         slectProject.forEach(x => {

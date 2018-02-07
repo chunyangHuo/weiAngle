@@ -180,13 +180,13 @@ Page({
   projectPush(e) {
     let that = this;
     let pushTo_user_id = e.currentTarget.dataset.id;
-    app.operationModel.call(this,'projectPush', that, pushTo_user_id);
+    app.operationModel('projectPush', that, pushTo_user_id);
   },
   // 申请加人脉
   contactsAdd(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAdd', added_user_id, function (res) {
+    app.operationModel('contactsAdd',this, added_user_id, function (res) {
       app.log('申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
@@ -195,7 +195,7 @@ Page({
   contactsAddDirect(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+    app.operationModel('contactsAddDirect',this, added_user_id, function (res) {
       app.log('直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });

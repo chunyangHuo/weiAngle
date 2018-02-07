@@ -230,9 +230,9 @@ export class redPackets {
       show: false
     })
     if (is_card == 0) {
-      app.operationModel('contactsAdd', added_user_id)
+      app.operationModel('contactsAdd', this, added_user_id)
     } else if (is_card == 3) {
-      app.operationModel('contactsAddDirect', added_user_id);
+      app.operationModel('contactsAddDirect', this, added_user_id);
     }
     app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
   }
@@ -253,11 +253,11 @@ export class redPackets {
     })
   }
   // 确认红包功能状态
-  makeSureHB(){
+  makeSureHB() {
     app.httpPost({
       url: url_common + '/api/payment/getUserPacketStatistic',
-      data:{},
-    },this).then(res =>{
+      data: {},
+    }, this).then(res => {
       console.log(res)
     })
   }

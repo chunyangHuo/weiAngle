@@ -6,10 +6,10 @@ Page({
     type_id: 2,
     count: 0,
     nonet: true,
-    atBottom:false
+    atBottom: false
   },
-  onLoad:function(){
-    let that=this;
+  onLoad: function () {
+    let that = this;
     app.netWorkChange(that);
     app.initPage(that);
     var user_id = wx.getStorageSync('user_id');
@@ -59,7 +59,7 @@ Page({
   contactsAddSuccessFunc(res, added_user_id, num) {
     let that = this;
     var contacts = this.data.contacts;
-    app.log("contacts",contacts);
+    app.log("contacts", contacts);
     if (res.data.status_code == 2000000) {
       //更改投资人和FA列表中该人的加人脉按钮的字段
       if (contacts) {
@@ -80,7 +80,7 @@ Page({
   contactsAdd(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAdd', added_user_id, function (res) {
+    app.operationModel('contactsAdd', this, added_user_id, function (res) {
       app.log('申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
@@ -89,7 +89,7 @@ Page({
   contactsAddDirect(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAddDirect', added_user_id, function (res) {
+    app.operationModel('contactsAddDirect', this, added_user_id, function (res) {
       app.log('直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
