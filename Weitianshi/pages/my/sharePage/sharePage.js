@@ -233,15 +233,7 @@ Page({
   // 融资项目详情
   financingDetail: function (e) {
     let id = e.currentTarget.dataset.id;
-    let followed_user_id = this.data.followed_user_id;
-    let user_id = wx.getStorageSync("user_id");
-    console.log(followed_user_id)
-    console.log("user_id", user_id)
-    if (followed_user_id != user_id) {
-      app.href('/pages/projectDetail/projectDetail?id=' + id);
-    } else {
-      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 0)
-    }
+    app.href('/pages/projectDetail/projectDetail?id=' + id);
   },
   // 跳转到我的人脉
   toContactsMy: function () {
@@ -282,7 +274,6 @@ Page({
       let unique_id = this.data.unique_id;
       let personInfo = this.data.personInfo;
       let user_id = wx.getStorageSync('user_id');
-      console.log(user_id, personInfo.user.user_id)
       if (user_id == personInfo.user.user_id) {
         return ShareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
       } else {
