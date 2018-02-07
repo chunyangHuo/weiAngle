@@ -56,8 +56,8 @@ Page({
         that.getShareIdInfo(share_id, followed_user_id, view_id);
         // 发布红包的用户相关信息
         rp.pushHBPerson.call(that, unique_id, res => {
-          let status = res.data.data.packet.drawed_user.drawed_status;
-          if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
+          // let status = res.data.data.packet.drawed_user.drawed_status;
+          // if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
         });
         // 向后台传群信息和红包信息
         app.clickLog(options);
@@ -225,14 +225,22 @@ Page({
     app.href('/pages/my/qrCode/qrCode');
   },
   // 项目融资
-  projectFinance: function () {
+  projectFinance: function () { 
     let followed_user_id = this.data.followed_user_id;
     app.href('/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id);
   },
   // 融资项目详情
   financingDetail: function (e) {
     let id = e.currentTarget.dataset.id;
-    app.href('/pages/projectDetail/projectDetail?id=' + id);
+    let followed_user_id = this.data.followed_user_id;
+    let user_id = wx.getStorageSync("user_id");
+    console.log(followed_user_id)
+    console.log("user_id",user_id)
+    if (followed_user_id != user_id){
+      app.href('/pages/projectDetail/projectDetail?id=' + id);
+    }else{
+      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id +  "&&currentTab=" + 0)
+    }
   },
   // 跳转到我的人脉
   toContactsMy: function () {
