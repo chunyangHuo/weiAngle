@@ -6,3 +6,11 @@ page {
 #activtyPage image {
   width: 750rpx;
 }
+
+
+ #activtyPage button image {
+  position: fixed;
+  width: 626rpx;
+  height: 118rpx;
+  left: 8%;
+}

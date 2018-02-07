@@ -17,18 +17,18 @@
   <view class='modalBox'></view>
   <view class='registerFrame'>
     <view class='title tc'>
-      登录/注册
+      登录/注册微天使
       <button hover-class="closeIconClass" class="closeClass" bindtap='closeRegisterModal'>
         <image class='closeIcon' src='/img/register-guanbi@2x.png'></image>
       </button>
     </view>
     <button class='wxSign tc' open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber" hover-class='wxSignClass'>
       <view>
-        <image class='wxSignIcon' src='/img/register-weixin@2x.png'></image>微信授权登录</view>
+        <image class='wxSignIcon' src='/img/register-weixin@2x.png'></image>微信账号快速登录</view>
     </button>
     <button class='telephoneSign' bindtap='telephoneRegister' hover-class='telephoneClass'>
       <view>
-        <image class='wxSignIcon' src='/img/register-dadianhua@2x.png'></image>手机验证登录</view>
+        <image class='wxSignIcon' src='/img/register-dadianhua@2x.png'></image>手机号注册/登录</view>
     </button>
   </view>
 </view>

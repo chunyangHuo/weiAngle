@@ -22,6 +22,7 @@ Page({
     insideColor: true,
     imgUrls: [
       app.globalData.picUrl.banner_1,
+      app.globalData.picUrl.banner_2,
       app.globalData.picUrl.banner_3,
       app.globalData.picUrl.banner_4,
       app.globalData.picUrl.banner_5,
@@ -248,7 +249,7 @@ Page({
     let slectProject = that.data.slectProject;
     let financingNeed = that.data.financingNeed;
     let currentTab = that.data.currentTab;
-    app.operationModel('projectApply', this,pro_id, res => {
+    app.operationModel('projectApply', this, pro_id, res => {
       app.log('matchApply', res);
       if (currentTab == 0) {
         slectProject.forEach(x => {
