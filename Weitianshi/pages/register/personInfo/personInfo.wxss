@@ -12,11 +12,6 @@ page {
   color: #3378e0;
 }
 
-.registerNum  .clearOn {
-  background: #f2f2f2;
-  color: grey;
-}
-
 .nextBtn {
   background: #40587a;
   position: relative;
@@ -100,7 +95,7 @@ button::after {
 
 .telephoneText {
   font-size: 32rpx;
-  color: #ccc;
+  color: #333;
   border-bottom: 1rpx solid #f0f0f0;
   padding: 16rpx 0;
   line-height: 44rpx;
@@ -134,9 +129,13 @@ button::after {
 }
 
 .registerNum  .clearOn {
-  background: #f2f2f2;
+  background: #fff;
   color: grey;
 }
+button[disabled][type="default"], wx-button[disabled]:not([type]) {
+  background: #fff;
+}
+
 .btnBox{
   margin: 0 48rpx;
 }
