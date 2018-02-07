@@ -3,6 +3,8 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 let RP = require('../../../utils/model/redPackets.js');
 let rp = new RP.redPackets();
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register(); 
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
