@@ -6,7 +6,7 @@ let RG = require('../../../utils/model/register.js');
 let register = new RG.register(); 
 let RP = require('../../../utils/model/redPackets.js');
 let rp = new RP.redPackets();
-Page({
+Page({ 
   data: {
     modalBox: 0,
     modal: 0,

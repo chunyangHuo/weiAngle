@@ -1,6 +1,8 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
 import * as CreateProject from '../../utils/model/createProjectBottom';
+let RG = require('../../utils/model/register.js');
+let register = new RG.register(); 
 Page({
   data: {
     imgUrls: app.globalData.picUrl.page_matchInvestorEmpty,
@@ -179,9 +181,11 @@ Page({
   },
   //去电脑上传
   toPc: function () {
-    this.setData({
-      modalBox: 1
-    });
+    app.checkUserInfo(this, res => {
+      this.setData({
+        modalBox: 1
+      });
+    })
   },
   //关闭模态框
   closeModal: function () {
@@ -200,5 +204,17 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 微信授权绑定
+  getPhoneNumber(e) {
+    register.getPhoneNumber.call(this, e);
+  },
+  // 手机号码绑定
+  telephoneRegister() {
+    register.telephoneRegister.call(this);
+  },
+  // 关闭绑定方式选择弹框
+  closeRegisterModal() {
+    register.closeRegisterModal.call(this);
   }
 });
