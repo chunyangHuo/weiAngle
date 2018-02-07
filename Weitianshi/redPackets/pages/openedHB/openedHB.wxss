@@ -4,9 +4,9 @@ page {
   background: #f14b50;
 }
 
-.HBrecordTitile, .moreHB {
+.HBrecordTitile, .moreHB { 
   width: 100%;
-  font-size: 34rpx;
+  font-size: 30rpx;
   color: #f7c660;
   text-align: center;
   padding: 32rpx 0 0 0;
