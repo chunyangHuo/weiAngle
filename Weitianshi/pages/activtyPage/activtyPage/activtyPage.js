@@ -34,15 +34,17 @@ Page({
   },
   //跳转生成红包页面
   createHB() {
-    this.setData({
-      bindContact: true
-    });
-    setTimeout(() => {
+    app.checkUserInfo(this, res => {
       this.setData({
-        bindContact: false
+        bindContact: true
       });
-    }, 1000);
-    app.href("/redPackets/pages/publishHB/publishHB")
+      setTimeout(() => {
+        this.setData({
+          bindContact: false
+        });
+      }, 1000);
+      app.href("/redPackets/pages/publishHB/publishHB")
+    })
   },
 
   // 微信授权绑定
