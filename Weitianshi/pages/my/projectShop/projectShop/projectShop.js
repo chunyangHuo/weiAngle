@@ -3,7 +3,7 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/model/shareModel';
 let RG = require('../../../../utils/model/register.js');
-let register = new RG.register(); 
+let register = new RG.register();
 Page({
   data: {
     isChecked1: false,
@@ -76,7 +76,7 @@ Page({
     this.setData({
       followed_user_id: followed_user_id,
     });
-    
+
     app.loginPage(user_id => {
       app.initPage(that);
       //判断是不是分享页面,并判断分享者和查看者是不是本人 
@@ -146,7 +146,7 @@ Page({
       method: 'POST',
       success: function (res) {
         let myProject = res.data.data;
-        app.log(that,"myProject",myProject);
+        app.log(that, "myProject", myProject);
         wx.hideLoading();
         //刷新数据
         that.setData({
@@ -237,7 +237,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.log(that,'getMyProjectList', res);
+        app.log(that, 'getMyProjectList', res);
         wx.hideLoading();
         if (res.data.data.length == 0) {
           that.setData({
@@ -308,7 +308,7 @@ Page({
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
     let index = thisData.index;
-    let user_id = this.data.user_id;
+    let user_id = wx.getStorageSync("user_id");
     let followed_user_id = this.data.followed_user_id;
     // followed_user_id 存在:他人的店铺详情;不存在:自己的店铺详情
     if (followed_user_id && followed_user_id != user_id) {
@@ -408,7 +408,7 @@ Page({
       } else if (targetUrl && num == 2) {
         app.href(targetUrl);
       }
-    })  
+    })
   },
   // -----------------------分享------------------------------------------
   //  分享页面
@@ -423,19 +423,19 @@ Page({
   },
   //  分享页面
   onShareAppMessage: function () {
-    let that=this;
+    let that = this;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      app.log(that,"target",res.target);
+      app.log(that, "target", res.target);
     }
     return {
       title: '自定义转发标题',
       path: '/page/user?id=123',
       success: function (res) {
-        app.log(that,"res成功", res);
+        app.log(that, "res成功", res);
       },
       fail: function (res) {
-        app.log(that,"res失败", res);
+        app.log(that, "res失败", res);
       }
     };
   },
