@@ -961,11 +961,11 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
-    let aa = BPath;
-    let one = aa.lastIndexOf(".");
-    let bb = aa.substring((one + 1), aa.length);
     app.checkUserInfo(this, x => {
       if (BPath) {
+        let aa = BPath;
+        let one = aa.lastIndexOf(".");
+        let bb = aa.substring((one + 1), aa.length);
         if (bb == 'zip' || bb == 'rar') {
           wx.showModal({
             title: '提示',

@@ -17,7 +17,6 @@ Page({
   },
   onShow() {
     app.netWorkChange(this)
-    this.clearTime();
   },
   // 清除记时器(辅助函数)
   clearTime() {

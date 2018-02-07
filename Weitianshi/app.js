@@ -857,7 +857,7 @@ App({
       }
     })
     console.log('/' + currentPage.route + str);
-    this.globalData.registerInitPage = '/' + currentPage.route;
+    this.globalData.registerInitPage = '/' + currentPage.route + str;
   },
 
   //初始本地缓存

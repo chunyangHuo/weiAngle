@@ -1,9 +1,9 @@
 let app = getApp();
 let url = app.globalData.url;
 let url_common = app.globalData.url_common;
-import * as ShareModel from '../../../utils/model/shareModel'; 
+import * as ShareModel from '../../../utils/model/shareModel';
 let RG = require('../../../utils/model/register.js');
-let register = new RG.register(); 
+let register = new RG.register();
 Page({
   data: {
     integrity: 30,
@@ -34,51 +34,49 @@ Page({
       that.setData({
         user_id: user_id,
       });
-      app.checkUserInfo(this,response => {
-        // 载入我的个人信息
-        app.httpPost({
-          url: url_common + '/api/user/getUserAllInfo',
-          data: {
-            share_id: 0,
-            user_id: user_id,
-            view_id: user_id,
+      // 载入我的个人信息
+      app.httpPost({
+        url: url_common + '/api/user/getUserAllInfo',
+        data: {
+          share_id: 0,
+          user_id: user_id,
+          view_id: user_id,
+        }
+      }, that).then(res => {
+        let user = res.data.user_info;
+        let count = res.data.count;
+        let invest = res.data.invest_info;
+        let resource = res.data.resource_info;
+        let project_info = res.data.project_info;
+        let invest_case = res.data.invest_case;
+        let status_code = res.data.status_code;
+        let financingProject = that.data.financingProject;
+        let user_name = res.data.user_info.user_real_name;
+        //设置缓存==========
+        wx.setStorageSync("resource_find", res.data.resource_info.res_find);
+        wx.setStorageSync("resource_give", res.data.resource_info.res_give);
+        wx.setStorage({
+          key: 'resource_data',
+          data: res.data.resource_info
+        })
+        if (invest_case) {
+          if (invest_case.length > 3) {
+            invest_case = invest_case.slice(0, 3);
           }
-        }, that).then(res => {
-          let user = res.data.user_info;
-          let count = res.data.count;
-          let invest = res.data.invest_info;
-          let resource = res.data.resource_info;
-          let project_info = res.data.project_info;
-          let invest_case = res.data.invest_case;
-          let status_code = res.data.status_code;
-          let financingProject = that.data.financingProject;
-          let user_name = res.data.user_info.user_real_name;
-          //设置缓存==========
-          wx.setStorageSync("resource_find", res.data.resource_info.res_find);
-          wx.setStorageSync("resource_give", res.data.resource_info.res_give);
-          wx.setStorage({
-            key: 'resource_data',
-            data: res.data.resource_info
-          })
-          if (invest_case) {
-            if (invest_case.length > 3) {
-              invest_case = invest_case.slice(0, 3);
-            }
-          }
+        }
 
-          wx.setNavigationBarTitle({
-            title: user_name + "的投资名片",
-          })
-          that.setData({
-            user: user,
-            invest: invest,
-            resource: resource,
-            project_info: project_info,
-            invest_case: invest_case,
-            status_code: status_code,
-            financingProject: financingProject,
-            count: count
-          })
+        wx.setNavigationBarTitle({
+          title: user_name + "的投资名片",
+        })
+        that.setData({
+          user: user,
+          invest: invest,
+          resource: resource,
+          project_info: project_info,
+          invest_case: invest_case,
+          status_code: status_code,
+          financingProject: financingProject,
+          count: count
         })
       })
     })
@@ -280,7 +278,7 @@ Page({
           }
         })
       }
-    }) 
+    })
   },
   //人脉大赛
   competitor: function () {

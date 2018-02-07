@@ -107,7 +107,7 @@ export class register {
           }, _this).then(res => {
             wx.setStorageSync('user_id', res.data.user_id);
             app.globalData.user_id = res.data.user_id;
-            app.href('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email + '&&user_real_name=' + res.data.user_real_name)
+            app.redirectTo('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email + '&&user_real_name=' + res.data.user_real_name)
           })
         }
       }
@@ -189,6 +189,7 @@ export class register {
           }
         } else {
           let path = app.globalData.registerInitPage;
+          console.log(path)
           app.href(path);
         }
       })
