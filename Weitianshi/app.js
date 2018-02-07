@@ -842,20 +842,22 @@ App({
     // 把options里的参数重新拼回url后面
     let options = currentPage.options;
     let str = '';
-    let key = Object.keys(options);
-    let value = Object.values(options);
-    key.forEach((x, index) => {
-      if (index == 0) {
-        str = '?';
-        if (key[0] == ''){
-          str+= 'hello=hello'
-        }else{
-          str += key[0] + '=' + value[0]
+    if (options){
+      let key = Object.keys(options);
+      let value = Object.values(options);
+      key.forEach((x, index) => {
+        if (index == 0) {
+          str = '?';
+          if (key[0] == '') {
+            str += 'hello=hello'
+          } else {
+            str += key[0] + '=' + value[0]
+          }
+        } else {
+          str += '&&' + key[index] + '=' + value[index]
         }
-      } else {
-        str += '&&' + key[index] + '=' + value[index]
-      }
-    })
+      }) 
+    }
     console.log('/' + currentPage.route + str);
     this.globalData.registerInitPage = '/' + currentPage.route + str;
   },

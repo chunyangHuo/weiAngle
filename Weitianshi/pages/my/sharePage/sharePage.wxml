@@ -8,7 +8,8 @@
     </view>
     <view class="modalBox" wx:if="{{!show}}">
       <image class="tankuang" src="{{tankuang}}"></image>
-      <view class="getMoney">￥<label>{{bounce_money}}</label>
+      <view class="getMoney">￥
+        <label>{{bounce_money}}</label>
       </view>
       <view wx:if='{{share_id != user_id}}'>
         <view class="getName" wx:if='{{personInfo.is_card == 3 || personInfo.is_card == 0}}'>
@@ -57,7 +58,9 @@
     <view class="t-line"></view>
     <view class="t-flexBox" hover-class="t-hoverColor">
       <image src='/img/icon-fenxiang@2x.png' class='t-shopPic'></image>
-      <button open-type='share' class='t-shopBlock'>分享</button>
+      <button class='t-shopBlock' bindtap='message' wx:if="{{is_redPackets && user_id != personInfo.user.user_id}}">分享</button>
+      <button open-type='share' class='t-shopBlock' wx:else>分享</button>
+
     </view>
     <view class="t-line"></view>
     <view class="t-flexBox" wx:if="{{button_type==0}}" bindtap="addNetwork" hover-class="t-hoverColor">

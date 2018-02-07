@@ -4,7 +4,7 @@ let url_common = app.globalData.url_common;
 let RP = require('../../../utils/model/redPackets.js');
 let rp = new RP.redPackets();
 let RG = require('../../../utils/model/register.js');
-let register = new RG.register(); 
+let register = new RG.register();
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
   data: {
@@ -17,10 +17,10 @@ Page({
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     kai: true,
     open: app.globalData.picUrl.open,
+    preventQuickClick: true
   },
   onLoad: function (options) {
     let that = this;
-    console.log(options);
     let followed_user_id = options.user_id;
     let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
@@ -32,7 +32,8 @@ Page({
       share_id,
       is_redPackets,
       unique_id,
-      shareTicket
+      shareTicket,
+      user_id: wx.getStorageSync('user_id')
     });
     //登录态维护
     app.loginPage(function (user_id) {
@@ -49,12 +50,10 @@ Page({
       that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 查看是红包还是名片
       if (is_redPackets) {
-        // 载入被分享者的个人信息
-        that.getShareIdInfo(share_id, followed_user_id, view_id);
         // 发布红包的用户相关信息
         rp.pushHBPerson.call(that, unique_id, res => {
-          // let status = res.data.data.packet.drawed_user.drawed_status;
-          // if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
+          let status = res.data.data.packet.drawed_user.drawed_status;
+          if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
         });
         // 向后台传群信息和红包信息
         app.clickLog(options);
@@ -112,13 +111,18 @@ Page({
     let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_id;
     let user_id = wx.getStorageSync('user_id');
-    app.checkUserInfo(this, res => {
-      // 开红包动效
-      that.setData({
-        kai: false,
+    if (this.data.preventQuickClick){
+      this.setData({
+        preventQuickClick:false
       })
-      rp.openHB.call(this, unique_id)
-    });
+      app.checkUserInfo(this, res => {
+        // 开红包动效
+        that.setData({
+          kai: false,
+        })
+        rp.openHB.call(this, unique_id)
+      });
+    }  
   },
   // 打开红包后,点击确定跳转
   makeSure(e) {
@@ -222,7 +226,7 @@ Page({
     app.href('/pages/my/qrCode/qrCode');
   },
   // 项目融资
-  projectFinance: function () { 
+  projectFinance: function () {
     let followed_user_id = this.data.followed_user_id;
     app.href('/pages/my/projectShop/projectShop/projectShop?currentTab=1' + '&&followed_user_id=' + followed_user_id);
   },
@@ -232,11 +236,11 @@ Page({
     let followed_user_id = this.data.followed_user_id;
     let user_id = wx.getStorageSync("user_id");
     console.log(followed_user_id)
-    console.log("user_id",user_id)
-    if (followed_user_id != user_id){
+    console.log("user_id", user_id)
+    if (followed_user_id != user_id) {
       app.href('/pages/projectDetail/projectDetail?id=' + id);
-    }else{
-      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id +  "&&currentTab=" + 0)
+    } else {
+      app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&currentTab=" + 0)
     }
   },
   // 跳转到我的人脉
@@ -278,14 +282,19 @@ Page({
       let unique_id = this.data.unique_id;
       let personInfo = this.data.personInfo;
       let user_id = wx.getStorageSync('user_id');
-      if (user_id == personInfo.user.user_id){
+      console.log(user_id, personInfo.user.user_id)
+      if (user_id == personInfo.user.user_id) {
         return ShareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
-      }else{
+      } else {
         wx.hideShareMenu({})
       }
     } else {
       return ShareModel.sharePageShare(that);
     }
+  },
+  // 非本人不能分享提示
+  message() {
+    app.errorHide(this, '红包非本人不可转发', 2000)
   },
   // 微信授权绑定
   getPhoneNumber(e) {

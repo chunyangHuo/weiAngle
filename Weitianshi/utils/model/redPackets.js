@@ -231,14 +231,22 @@ export class redPackets {
     }, this, res => {
       if (res.data.error_msg == '红包已被领完') {
         app.redirectTo("/redPackets/pages/openedHB/openedHB?unique_id=" + unique_id + '&&shareTicket=' + shareTicket)
+        this.setData({
+          preventQuickClick: true
+        })
       }
     }).then(res => {
       let bounce_money = res.data.data.bounce_money;
       this.setData({
         show: false,
         bounce_money,
-        kai: true
+        kai: true,
+        preventQuickClick: true
       });
+    }).catch(res => {
+      this.setData({
+        preventQuickClick: true
+      })
     })
 
   }
@@ -276,8 +284,8 @@ export class redPackets {
   makeSureHB() {
     app.httpPost({
       url: url_common + '/api/payment/checkPacketStatus',
-      data:{},
-    },this).then(res =>{
+      data: {},
+    }, this).then(res => {
       this.setData({
         packetStatus: res.data.packet_status
       })
