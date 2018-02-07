@@ -308,10 +308,10 @@ Page({
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
     let index = thisData.index;
-    let user_id = wx.getStorageSync("user_id");
+    let user_id = this.data.user_id;
     let followed_user_id = this.data.followed_user_id;
     // followed_user_id 存在:他人的店铺详情;不存在:自己的店铺详情
-    if (followed_user_id && followed_user_id != user_id) {
+    if (followed_user_id) {
       app.href('/pages/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&share_id=" + user_id);
     } else {
       app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index);
