@@ -843,18 +843,21 @@ App({
     let options = currentPage.options;
     let str = '';
     if (JSON.stringify(options) != "{}"){
+      console.log(1111111)
       let key = Object.keys(options);
-      let value = Object.values(options);
+      console.log(2222222)
+      console.log(' Object.keys(options)', Object.keys(options), Object.values(options))
+      let o_value = Object.values(options);
       key.forEach((x, index) => {
         if (index == 0) {
           str = '?';
           if (key[0] == '') {
             str += 'hello=hello'
           } else {
-            str += key[0] + '=' + value[0]
+            str += key[0] + '=' + o_value[0]
           }
         } else {
-          str += '&&' + key[index] + '=' + value[index]
+          str += '&&' + key[index] + '=' + o_value[index]
         }
       }) 
     }

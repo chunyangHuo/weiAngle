@@ -31,7 +31,7 @@
 					"id": 0,
 					"name": "名片分享页面",
 					"pathName": "pages/my/sharePage/sharePage",
-					"query": "share_id=e0qk38gp&user_id=e0qk38gp",
+					"query": "share_id=e0qk35np&user_id=e0qk35np",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群1",
