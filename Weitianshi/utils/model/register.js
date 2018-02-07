@@ -92,9 +92,9 @@ export class register {
         let code = res.code;
         let open_session = wx.getStorageSync('open_session');
         if (!user_mobile) {
-          app.errorHide(that, '手机号码不能为空', 3000)
+          app.errorHide(_this, '手机号码不能为空', 3000)
         } else if (!captcha) {
-          app.errorHide(that, '验证码不能为空', 3000)
+          app.errorHide(_this, '验证码不能为空', 3000)
         } else {
           app.httpPost({
             url: url_common + '/api/user/bindUser',
@@ -107,7 +107,7 @@ export class register {
           }, _this).then(res => {
             wx.setStorageSync('user_id', res.data.user_id);
             app.globalData.user_id = res.data.user_id;
-            app.href('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email)
+            app.href('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email + '&&user_real_name=' + user_real_name)
           })
         }
       }

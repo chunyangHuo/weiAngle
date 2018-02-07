@@ -44,9 +44,12 @@ Page({
         return app.href('/pages/my/myCard/myCard');
       }
       // 检查注册信息是否完整
-      if (!is_redPackets) {
+      that.checkRegisterComplete(user_id);
+      // 载入被分享者的个人信息
+      that.getShareIdInfo(share_id, followed_user_id, view_id);
+      // 查看是红包还是名片
+      if (is_redPackets) {
         that.checkRegisterComplete(user_id);
-      } else {
         // 载入被分享者的个人信息
         that.getShareIdInfo(share_id, followed_user_id, view_id);
         // 发布红包的用户相关信息
@@ -238,7 +241,7 @@ Page({
     //走正常申请流程
     let user_id = this.data.user_id;//我的id,查看者的id
     let followed_user_id = this.data.followed_user_id;
-    app.checkUserInfo(this, res => {})
+    app.checkUserInfo(this, res => { })
   },
   // 跳转到推送项目页面
   pushProject: function () {

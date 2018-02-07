@@ -42,7 +42,8 @@ Page({
         company: res.data.user_company_name,
         position: res.data.user_company_career,
         email: res.data.user_email,
-        brand: res.data.user_brand
+        brand: res.data.user_brand,
+        name: res.data.user_real_name
       });
     })
   },
