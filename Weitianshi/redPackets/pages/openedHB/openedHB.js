@@ -8,6 +8,7 @@ Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     open: app.globalData.picUrl.open,
+    currentPage:1
   },
   onLoad: function (options) {
     //红包分享人的id
@@ -20,6 +21,7 @@ Page({
     rp.getHBRecord.call(this, user_id, unique_id)
     // 发红包人和红包信息
     rp.pushHBPerson.call(this, unique_id)
+    rp.makeSureHB.call(this)
     this.setData({
       user_id: wx.getStorageSync("user_id"),
       unique_id
@@ -123,5 +125,22 @@ Page({
     } else {
       app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id)
     }
+  },
+  // 加载更多
+  loadMore() {
+    let currentPage = this.data.currentPage;
+    console.log(currentPage)
+    let page_end = this.data.page_end;
+    let unique_id = this.data.unique_id;
+    let user_id = wx.getStorageSync('user_id');
+    if (page_end == true) {
+      return app.errorHide(this, '没有更多了');
+    }
+    currentPage++;
+    this.setData({
+      currentPage
+    })
+    // rp.groupInsideHB.call(this, groupId, currentPage);
+    rp.getHBRecord.call(this, user_id, unique_id, currentPage)
   }
 })

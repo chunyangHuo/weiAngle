@@ -143,16 +143,36 @@ export class redPackets {
   }
 
   // 红包领取记录
-  getHBRecord(user_id, unique_id) {
+  getHBRecord(user_id, unique_id, currentPage) {
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    });
     app.httpPost({
       url: url_common + '/api/payment/getDrawedRecord',
       data: {
-        user_id, unique_id
+        user_id, unique_id,
+        page: currentPage
       }
     }, this).then(res => {
-      this.setData({
-        whoGet: res.data.data
-      })
+      console.log(res)
+      wx.hideLoading()
+      if (!currentPage) {
+        this.setData({
+          whoGet: res.data.data
+        })
+      } else {
+        let whoGet = this.data.whoGet;
+        whoGet.forEach((x) => {
+          console.log(x)
+        });
+        let newPage = res.data.data;
+        whoGet = whoGet.concat(newPage);
+        this.setData({
+          whoGet: whoGet,
+          page_end: res.data.page_end
+        })
+      }
     })
   }
 
@@ -255,10 +275,12 @@ export class redPackets {
   // 确认红包功能状态
   makeSureHB() {
     app.httpPost({
-      url: url_common + '/api/payment/getUserPacketStatistic',
-      data: {},
-    }, this).then(res => {
-      console.log(res)
+      url: url_common + '/api/payment/checkPacketStatus',
+      data:{},
+    },this).then(res =>{
+      this.setData({
+        packetStatus: res.data.packet_status
+      })
     })
   }
 }
