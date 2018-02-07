@@ -45,13 +45,10 @@ Page({
       if (user_id == followed_user_id && !is_redPackets) {
         return app.href('/pages/my/myCard/myCard');
       }
-      // 检查注册信息是否完整
-      that.checkRegisterComplete(user_id);
       // 载入被分享者的个人信息
       that.getShareIdInfo(share_id, followed_user_id, view_id);
       // 查看是红包还是名片
       if (is_redPackets) {
-        that.checkRegisterComplete(user_id);
         // 载入被分享者的个人信息
         that.getShareIdInfo(share_id, followed_user_id, view_id);
         // 发布红包的用户相关信息
@@ -272,7 +269,12 @@ Page({
     if (this.data.unique_id) {
       let unique_id = this.data.unique_id;
       let personInfo = this.data.personInfo;
-      return ShareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
+      let user_id = wx.getStorageSync('user_id');
+      if (user_id == personInfo.user.user_id){
+        return ShareModel.redPacketsShare(personInfo.user.user_real_name, personInfo.packet.money, unique_id)
+      }else{
+        wx.hideShareMenu({})
+      }
     } else {
       return ShareModel.sharePageShare(that);
     }

@@ -859,68 +859,69 @@ Page({
         });
       }
     })
-  },
+  }, 
   //商业计划书
   businessBook: function () {
     let BPath = this.data.BPath;
-    console.log(BPath);
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
-    if (BPath) {
-      wx.showActionSheet({
-        itemList: ['直接预览', '发送到邮箱'],
-        success: function (res) {
-          console.log(res.tapIndex);
-          if (res.tapIndex == 1) {
-            app.checkUserInfo(this, res => {
-              let userEmail = res.data.user_email;
-              if (userEmail) {
-                that.setData({
-                  userEmail: userEmail,
-                  sendPc: 1,
-                  checkEmail: true,
-                });
-              } else {
-                that.setData({
-                  sendPc: 1,
-                  checkEmail: false
-                });
-              }
-            })
-          } else if (res.tapIndex == 0) {
-            wx.downloadFile({
-              url: BPath,
-              success: function (res) {
-                console.log(res);
-                var filePath = res.tempFilePath;
-                console.log(res);
-                wx.openDocument({
-                  filePath: filePath,
-                  success: function (res) {
-                    console.log(res);
-                    wx.hideLoading();
-                    console.log('打开文档成功');
-                  },
-                  fail: function (res) {
-                    console.log('fail');
-                    console.log(res);
-                  },
-                });
-              }
-            });
+    app.checkUserInfo(this,res=>{
+      if (BPath) {
+        wx.showActionSheet({
+          itemList: ['直接预览', '发送到邮箱'],
+          success: function (res) {
+            console.log(res.tapIndex);
+            if (res.tapIndex == 1) {
+              app.checkUserInfo(this, res => {
+                let userEmail = res.data.user_email;
+                if (userEmail) {
+                  that.setData({
+                    userEmail: userEmail,
+                    sendPc: 1,
+                    checkEmail: true,
+                  });
+                } else {
+                  that.setData({
+                    sendPc: 1,
+                    checkEmail: false
+                  });
+                }
+              })
+            } else if (res.tapIndex == 0) {
+              wx.downloadFile({
+                url: BPath,
+                success: function (res) {
+                  console.log(res);
+                  var filePath = res.tempFilePath;
+                  console.log(res);
+                  wx.openDocument({
+                    filePath: filePath,
+                    success: function (res) {
+                      console.log(res);
+                      wx.hideLoading();
+                      console.log('打开文档成功');
+                    },
+                    fail: function (res) {
+                      console.log('fail');
+                      console.log(res);
+                    },
+                  });
+                }
+              });
+            }
+          },
+          fail: function (res) {
+            console.log(res.errMsg);
           }
-        },
-        fail: function (res) {
-          console.log(res.errMsg);
-        }
-      });
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '未上传商业计划书',
-      });
-    }
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '未上传商业计划书',
+        });
+      }
+    })
   },
   // 更改邮箱
   writeBpEmail: function (e) {

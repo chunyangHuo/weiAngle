@@ -171,7 +171,7 @@ App({
   checkUserInfo(that, callBack) {
     let _this = this;
     let user_id = wx.getStorageSync('user_id');
-    if(user_id == 0){
+    if (user_id == 0) {
       that.setData({
         registerModalShow: true
       })
@@ -847,7 +847,11 @@ App({
     key.forEach((x, index) => {
       if (index == 0) {
         str = '?';
-        str += key[0] + '=' + value[0]
+        if (key[0] == ''){
+          str+= 'hello=hello'
+        }else{
+          str += key[0] + '=' + value[0]
+        }
       } else {
         str += '&&' + key[index] + '=' + value[index]
       }

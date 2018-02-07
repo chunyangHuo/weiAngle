@@ -1210,7 +1210,7 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
     let pro_id = this.data.id;
-    app.operationModel('projectApply',this, pro_id, res => {
+    app.operationModel('projectApply', this, pro_id, res => {
       if (res.data.status_code = 2000000) {
         this.setData({
           button_type: 0
@@ -1304,10 +1304,9 @@ Page({
     let user = this.data.user_id;
     let project_id = this.data.id;
     let competition = this.data.competition_id;
-    app.operationModel('checkUserInfo', res => {
+    app.checkUserInfo(this, res => {
       app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
     })
-
   },
   // 机构版买家图谱跳转
   toMap: function () {

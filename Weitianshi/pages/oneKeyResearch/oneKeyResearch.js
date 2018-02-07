@@ -866,75 +866,77 @@ Page({
     let that = this;
     app.errorHide(that, "收藏项目近期开放", 3000);
   },
-  //商业计划书
+  //商业计划书 
   businessBook: function () {
     let BPath = this.data.BPath;
     let user_id = wx.getStorageSync('user_id');
     let project_id = this.data.id;
     let that = this;
-    if (BPath) {
-      wx.showActionSheet({
-        itemList: ['直接预览', '发送到邮箱'],
-        success: function (res) {
-          console.log(res.tapIndex);
-          if (res.tapIndex == 1) {
-            app.checkUserInfo(this, res => {
-              let userEmail = res.data.user_email;
-              if (userEmail) {
-                that.setData({
-                  userEmail: userEmail,
-                  sendPc: 1,
-                  checkEmail: true,
-                });
-              } else {
-                that.setData({
-                  sendPc: 1,
-                  checkEmail: false
-                });
-              }
-            })
-          } else if (res.tapIndex == 0) {
-            wx.downloadFile({
-              url: BPath,
-              success: function (res) {
-                var filePath = res.tempFilePath;
-                wx.openDocument({
-                  filePath: filePath,
-                  success: function (res) {
-                    console.log('打开文档成功');
-                    wx.request({
-                      url: url_common + '/api/project/insertViewBpRecord',
-                      data: {
-                        type: 'preview',
-                        open_session: wx.getStorageSync("open_session"),
-                        user_id: user_id,
-                        project_id: project_id
-                      },
-                      method: 'POST',
-                      success: function (res) {
-                        console.log(res);
-                      }
-                    });
-                  }
-                });
-              },
-              fail() {
-                wx.hideLoading();
-                app.errorHide(that, '预览文件过大,请发送到邮箱查看', 3000);
-              }
-            });
+    app.checkUserInfo(this, x => {
+      if (BPath) {
+        wx.showActionSheet({
+          itemList: ['直接预览', '发送到邮箱'],
+          success: function (res) {
+            console.log(res.tapIndex);
+            if (res.tapIndex == 1) {
+              app.checkUserInfo(this, res => {
+                let userEmail = res.data.user_email;
+                if (userEmail) {
+                  that.setData({
+                    userEmail: userEmail,
+                    sendPc: 1,
+                    checkEmail: true,
+                  });
+                } else {
+                  that.setData({
+                    sendPc: 1,
+                    checkEmail: false
+                  });
+                }
+              })
+            } else if (res.tapIndex == 0) {
+              wx.downloadFile({
+                url: BPath,
+                success: function (res) {
+                  var filePath = res.tempFilePath;
+                  wx.openDocument({
+                    filePath: filePath,
+                    success: function (res) {
+                      console.log('打开文档成功');
+                      wx.request({
+                        url: url_common + '/api/project/insertViewBpRecord',
+                        data: {
+                          type: 'preview',
+                          open_session: wx.getStorageSync("open_session"),
+                          user_id: user_id,
+                          project_id: project_id
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                          console.log(res);
+                        }
+                      });
+                    }
+                  });
+                },
+                fail() {
+                  wx.hideLoading();
+                  app.errorHide(that, '预览文件过大,请发送到邮箱查看', 3000);
+                }
+              });
+            }
+          },
+          fail: function (res) {
+            console.log(res.errMsg);
           }
-        },
-        fail: function (res) {
-          console.log(res.errMsg);
-        }
-      });
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '未上传商业计划书',
-      });
-    }
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '未上传商业计划书',
+        });
+      }
+    })
   },
   //联系项目方
   contactPerson: function () {
@@ -1102,7 +1104,7 @@ Page({
   applyProject: function (e) {
     let user_id = this.data.user_id;
     let pro_id = this.data.id;
-    app.operationModel('projectApply',this, pro_id, res => {
+    app.operationModel('projectApply', this, pro_id, res => {
       if (res.data.status_code = 2000000) {
         this.setData({
           button_type: 0
@@ -1195,10 +1197,9 @@ Page({
     let user = this.data.user_id;
     let project_id = this.data.id;
     let competition = this.data.competition_id;
-    app.operationModel('checkUserInfo', res => {
+    app.checkUserInfo(this, res => {
       app.href('/pages/projectScale/projectEvaluation/projectEvaluation?project_id=' + project_id + "&user_id=" + user + "&competition_id=" + competition);
-    });
-
+    })
   },
   potential: function () {
     let that = this;

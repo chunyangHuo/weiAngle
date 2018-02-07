@@ -78,14 +78,14 @@ Page({
             getCode: endTime + 's后重新获取'
           })
         }
-        setTimeout(function () {
-          that.setData({
-            time: "0",
-            getCode: "获取验证码"
-          });
-          clearInterval(_time)
-        }, 60000);
       }, 1000)
+      setTimeout(function () {
+        that.setData({
+          time: "0",
+          getCode: "获取验证码"
+        });
+        clearInterval(_time)
+      }, 60000);
     }).catch(res => {
       this.setData({
         checking: "0",

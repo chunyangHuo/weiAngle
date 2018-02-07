@@ -89,14 +89,23 @@ Page({
     let that = this;
     let email = e.detail.value;
     app.globalData.verify.email(this, email, res => {
-      that.setData({
-        email
-      });
+      
+    })
+    that.setData({
+      email
     })
   },
   //点击跳转
   backHome() {
-    register.companyInfoRegister.call(this);
+    let email = this.data.email;
+    // 邮箱为非必填项,但是如果填写格式必须正确
+    if(email == ''){
+      register.companyInfoRegister.call(this);
+    }else{
+      app.globalData.verify.email(this, email, res => {
+        register.companyInfoRegister.call(this);
+      })
+    }
   },
   // 重新加载
   refresh() {
