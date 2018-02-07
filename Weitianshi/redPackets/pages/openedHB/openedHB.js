@@ -8,7 +8,7 @@ Page({
   data: {
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     open: app.globalData.picUrl.open,
-    currentPage:1
+    currentPage: 1
   },
   onLoad: function (options) {
     //红包分享人的id
@@ -45,39 +45,27 @@ Page({
     app.href("/redPackets/pages/publishHB/publishHB")
   },
   // 加人脉成功后处理(辅助函数)
-  contactsAddSuccessFunc(res, added_user_id, num, onlyPerson) {
+  contactsAddSuccessFunc(res, added_user_id, num, ) {
     let that = this;
     let whoGet = this.data.whoGet;
-    console.log(whoGet)
     let personInfo = this.data.personInfo;
-    if (onlyPerson) {
-      personInfo.is_card = num;
-      whoGet.forEach(x => {
-        if (x.user.user_id == added_user_id) {
-          x.is_card = num;
+    if (res.data.status_code == 2000000) {
+      if (whoGet) {
+        whoGet.forEach(x => {
+          if (x.user.user_id == added_user_id) {
+            x.is_card = num;
+          }
+        });
+        if (personInfo.user.user_id == added_user_id) {
+          personInfo.is_card = num;
         }
-      });
-      this.setData({
-        personInfo: personInfo,
-        whoGet: whoGet,
-      })
-    } else if (!onlyPerson) {
-      if (res.data.status_code == 2000000) {
-        personInfo.is_card = num;
-        if (whoGet) {
-          whoGet.forEach(x => {
-            if (x.user.user_id == added_user_id) {
-              x.is_card = num;
-            }
-          });
-          that.setData({
-            whoGet: whoGet,
-            personInfo: personInfo
-          });
-        }
-      } else {
-        app.errorHide(that, res.data.error_Msg, 3000);
+        that.setData({
+          whoGet: whoGet,
+          personInfo: personInfo
+        });
       }
+    } else {
+      app.errorHide(that, res.data.error_Msg, 3000);
     }
   },
   // 申请加人脉
