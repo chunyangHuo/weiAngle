@@ -122,18 +122,17 @@ export class redPackets {
         insideHB.forEach((x, index) => {
           insideHB[index].per = (x.packet.drawed_num) / (x.packet.number) * 100;
         });
-        console.log(insideHB)
         this.setData({
           insideHB: insideHB
         })
       } else {
-        console.log(222)
         let insideHB = this.data.insideHB;
-        insideHB.forEach((x) => {
-          console.log(x)
-        });
         let newPage = res.data.data;
+        console.log(newPage)
         insideHB = insideHB.concat(newPage);
+        insideHB.forEach((x, index) => {
+          insideHB[index].per = (x.packet.drawed_num) / (x.packet.number) * 100;
+        });
         this.setData({
           insideHB: insideHB,
           page_end: res.data.page_end
