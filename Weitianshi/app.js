@@ -843,21 +843,19 @@ App({
     let options = currentPage.options;
     let str = '';
     if (JSON.stringify(options) != "{}"){
-      console.log(1111111)
       let key = Object.keys(options);
-      console.log(2222222)
-      console.log(' Object.keys(options)', Object.keys(options), Object.values(options))
-      let o_value = Object.values(options);
       key.forEach((x, index) => {
         if (index == 0) {
           str = '?';
           if (key[0] == '') {
             str += 'hello=hello'
           } else {
-            str += key[0] + '=' + o_value[0]
+            let name = key[0]
+            str += key[0] + '=' + options[name]
           }
         } else {
-          str += '&&' + key[index] + '=' + o_value[index]
+          let name = key[index]
+          str += '&&' + key[index] + '=' + options[name]
         }
       }) 
     }
@@ -880,10 +878,10 @@ App({
     verify: verify, // 验证文件
     registerModalShow: false, // 是否显示注册弹框
 
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
-    url: "https://wx.dev.weitianshi.cn",
-    url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://wx.weitianshi.cn",
+    url_common: "https://wx.weitianshi.cn"
+    // url: "https://wx.dev.weitianshi.cn",
+    // url_common: "https://wx.dev.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
   },
