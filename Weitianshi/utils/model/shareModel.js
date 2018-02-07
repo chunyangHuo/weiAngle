@@ -171,12 +171,10 @@ function redPacketsShare(name, num , unique_id) {
   let _this = this;
   let user_id = wx.getStorageSync('user_id');
   let share_id = wx.getStorageSync('user_id');
-  app.log(user_id, share_id)
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id + '&&is_redPackets=' + true + '&&unique_id=' + unique_id;
   let json = {
     title: name + '给您拜年了，抢红包换名片',
     path: path,
-    imageUrl: '/img/HBshare.png',
     success: (res) => {
       _this.shareLog(res, path, unique_id);
     }
@@ -192,7 +190,6 @@ function sharePage(user_id, share_id, name) {
     title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
     path: path,
     success: (res) => {
-      console.log(111111111,res)
       console.log(path)
       // _this.shareLog(res, path);
     }

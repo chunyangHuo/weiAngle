@@ -25,13 +25,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "名片分享页面",
 					"pathName": "pages/my/sharePage/sharePage",
-					"query": "share_id=e0qk38gp&user_id=e0qk38gp&is_redPackets=true&unique_id=60950717643053761827212782",
+					"query": "share_id=e0qk38gp&user_id=e0qk38gp",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群1",

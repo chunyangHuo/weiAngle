@@ -838,11 +838,11 @@ App({
     let pages = getCurrentPages();
     let currentPage = pages[pages.length - 1];
     let prePage = pages[pages.length - 2];
-    console.log(currentPage)
+    console.log('options', currentPage.options)
     // 把options里的参数重新拼回url后面
     let options = currentPage.options;
     let str = '';
-    if (options){
+    if (JSON.stringify(options) != "{}"){
       let key = Object.keys(options);
       let value = Object.values(options);
       key.forEach((x, index) => {

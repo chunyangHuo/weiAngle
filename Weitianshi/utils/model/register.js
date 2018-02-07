@@ -149,49 +149,30 @@ export class register {
           // 是否是直接加人脉
           if (driectAdd) {
             app.httpPost({
-              url: url + '/api/user/followUser',
+              url: url_common + '/api/user/followUser',
               data: {
                 user_id,
                 followed_user_id
               },
             }, _this).then(res => {
-              wx.showModal({
-                title: "提示",
-                content: "添加成功,请到人脉列表查看",
-                showCancel: false,
-                confirmText: "到人脉库",
-                success: function () {
-                  app.href('/pages/discoverInvest/discoverInvest')
-                }
-              });
               wx.removeStorageSync("driectAdd");
               wx.removeStorageSync('followed_user_id');
             })
           } else {
             app.htttpPost({
-              url: url + '/api/user/UserApplyFollowUser',
+              url: url_common + '/api/user/UserApplyFollowUser',
               data: {
                 user_id,
                 applied_user_id
               },
             }, _this).then(res => {
-              wx.showModal({
-                title: "提示",
-                content: "添加成功,等待对方同意",
-                showCancel: false,
-                confirmText: "到人脉库",
-                success: function () {
-                  wx.removeStorageSync('followed_user_id');
-                  app.href('/pages/discoverInvest/discoverInvest')
-                }
-              });
+              wx.removeStorageSync("driectAdd");
+              wx.removeStorageSync('followed_user_id');
             })
           }
-        } else {
-          let path = app.globalData.registerInitPage;
-          console.log(path)
-          app.href(path);
         }
+        let path = app.globalData.registerInitPage;
+        app.href(path);
       })
     }
   }
