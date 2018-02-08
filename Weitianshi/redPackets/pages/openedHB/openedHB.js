@@ -14,7 +14,6 @@ Page({
     //红包分享人的id
     let unique_id = options.unique_id;
     let user_id = wx.getStorageSync('user_id');
-    console.log(options)
     // 更多群红包信息
     rp.otherGroupHB.call(this)
     // 其他领取人信息

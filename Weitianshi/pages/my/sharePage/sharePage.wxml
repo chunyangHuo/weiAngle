@@ -8,7 +8,8 @@
     </view>
     <view class="modalBox" wx:if="{{!show}}">
       <image class="tankuang" src="{{tankuang}}"></image>
-      <view class="getMoney">￥
+      <view class="getMoney">
+        <label>￥</label>
         <label>{{bounce_money}}</label>
       </view>
       <view wx:if='{{share_id != user_id}}'>

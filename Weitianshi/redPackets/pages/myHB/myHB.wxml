@@ -13,7 +13,7 @@
     </view>
     <view class="rgInfoContent">
       累计获得了
-      <label class="rgInfoNum">{{packetStatic.drawed_count}}</label> 个新创投圈好友。
+      <label class="rgInfoNum">{{packetStatic.drawed_count}}</label> 个创投圈新好友。
     </view>
   </view>
   <view class='outBox' wx:if="{{HBInfo.length != 0}}">
