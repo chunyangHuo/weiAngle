@@ -101,7 +101,8 @@
   padding-top: 4rpx;
   padding-left: 4rpx;
 }
-#groupHB .groupPicLittle{
+
+#groupHB .groupPicLittle {
   background: #f0f0f0;
   width: 104rpx;
   height: 104rpx;
@@ -166,19 +167,33 @@
   position: relative;
 }
 
+#openHB .packetMoney {
+  position: absolute;
+  top: 96rpx;
+  font-size: 48rpx;
+  color: #f7c660;
+  line-height: 56rpx;
+  text-align: center;
+  margin-bottom: 12rpx;
+  z-index: 666;
+  margin-left: 8%;
+  width: 100%;
+  max-width: 622rpx;
+}
+
 #openHB .openTitle {
   width: 100%;
   max-width: 560rpx;
   position: absolute;
-  top: 93rpx;
+  top: 164rpx;
   margin-left: 13%;
-  font-size: 34rpx;
+  font-size: 28rpx;
   color: #f7c660;
   z-index: 666;
   text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   overflow: hidden;
 }
 
@@ -251,7 +266,7 @@
 }
 
 #openHB   .openMoney {
-  font-size: 144rpx;
+  font-size: 132rpx;
   color: #f7c660;
   width: 100%;
   max-width: 590rpx;
@@ -260,10 +275,11 @@
   margin-left: 10%;
   z-index: 666;
   text-align: center;
-  overflow: hidden;
+  font-weight: bold;
+  /* overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: bold;
+  font-weight: bold; */
 }
 
 #openHB .openSave {
