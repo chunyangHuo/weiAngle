@@ -13,7 +13,7 @@
   <view class="boxStyle">
     <view class="projectBoxContent flex">
       <view class="projectTitle">品牌</view>
-      <input placeholder="请输入品牌名称，如：微天使" placeholder-style='color:#ccc' class="newBox" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
+      <input placeholder="公司主打称号/产品/简称，如：微天使" placeholder-style='color:#ccc' class="newBox" bindblur="checkBrand" value="{{brand}}" maxlength="40" />
     </view>
   </view>
   <!--公司  -->

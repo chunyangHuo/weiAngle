@@ -62,7 +62,7 @@
 <template name="openHB">
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
-      <view class="packetMoney">总额:￥{{personInfo.packet.money}}</view>
+       <view class="packetMoney">￥{{personInfo.packet.money}}元红包</view> 
       <view class="openTitle">{{personInfo.packet.title}}</view>
       <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}"></image>
       <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
@@ -94,7 +94,7 @@
 <template name="openHB1">
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
-      <view class="packetMoney">总额:￥{{personInfo.packet.money}}</view>
+       <view class="packetMoney">￥{{personInfo.packet.money}}元红包</view> 
       <view class="openTitle">{{personInfo.packet.title}}</view>
       <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}" catchtap='toUserDetail' data-id="{{personInfo.user.user_id}}"></image>
       <image src="/img/img-touxiang@2x.png" class="openImg" wx:if="{{!personInfo.user.avatarUrl}}"></image>
@@ -122,7 +122,7 @@
       <view class="opentishi1">红包池：
         <label>{{personInfo.packet.drawed_num}}</label> /
         <label>{{personInfo.packet.number}}</label>个，
-        <label>{{personInfo.packet.drawed_money}}</label>/
+        <label>{{personInfo.packet.drawed_money}}</label> /
         <label>{{personInfo.packet.money}}</label>元
       </view>
     </image>
