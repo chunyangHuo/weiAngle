@@ -55,8 +55,8 @@ Page({
           let status = res.data.data.packet.drawed_user.drawed_status;
           if (status != 0) app.redirectTo('/redPackets/pages/openedHB/openedHB?unique_id=' + unique_id + '&&shareTicket=' + shareTicket);
         });
-        // 向后台传群信息和红包信息
-        app.clickLog(options);
+        // // 向后台传群信息和红包信息
+        // app.clickLog(options);
       }
     });
     app.netWorkChange(that);

@@ -486,12 +486,11 @@ textarea {
   margin-top: 18rpx;
   position: absolute;
   right: 32rpx;
-}
-
+} 
 .t-contactsPic {
   width: 750rpx;
   height: 280rpx;
-  background: url(https://cdn.weitianshi.cn/image/banner/share_top.jpg) no-repeat;
+  background: url(http://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/share_top.jpg) no-repeat;
   background-size: 100%;
 }
 

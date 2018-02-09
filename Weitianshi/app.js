@@ -14,9 +14,14 @@ App({
       this.globalData.shareTicket = options.shareTicket;
       this.globalData.path = options.path;
     }
+    if(options.scene == 1044){
+      console.log(options)
+     this.clickLog(options)
+    }
   },
   // 在群里点击进入小程序时向后台传群信息和红包信息
   clickLog(options) {
+    console.log(options.query.unique_id)
     let _this = this;
     let url_common = this.globalData.url_common;
     // 向后台传群信息和红包信息
@@ -26,7 +31,7 @@ App({
         if (code) {
           let path = _this.globalData.path;
           let shareTicket = _this.globalData.shareTicket;
-          let unique_id = options.unique_id || '';
+          let unique_id = options.query.unique_id || '';
           //获取群ID
           if (!shareTicket) return
           wx.getShareInfo({
@@ -878,10 +883,10 @@ App({
     verify: verify, // 验证文件
     registerModalShow: false, // 是否显示注册弹框
  
-    // url: "https://wx.weitianshi.cn",
-    // url_common: "https://wx.weitianshi.cn"
-    url: "https://wx.dev.weitianshi.cn",
-    url_common: "https://wx.dev.weitianshi.cn"
+    url: "https://balance.weitianshi.cn",
+    url_common: "https://balance.weitianshi.cn"
+    // url: "https://wx.dev.weitianshi.cn",
+    // url_common: "https://wx.dev.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
   },
