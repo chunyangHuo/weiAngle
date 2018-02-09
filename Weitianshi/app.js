@@ -877,11 +877,11 @@ App({
     registerInitPage: '', // 记录进入注册时的页面
     verify: verify, // 验证文件
     registerModalShow: false, // 是否显示注册弹框
-
-    url: "https://wx.weitianshi.cn",
-    url_common: "https://wx.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
+ 
+    // url: "https://wx.weitianshi.cn",
+    // url_common: "https://wx.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
     // url: "https://wx.debug.weitianshi.cn",
     // url_common: "https://wx.debug.weitianshi.cn"
   },

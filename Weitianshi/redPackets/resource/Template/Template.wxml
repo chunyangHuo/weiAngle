@@ -29,6 +29,7 @@
       <view class="recordadd" wx:if="{{item.is_card == 3}}" data-id="{{item.user.user_id}}" catchtap='contactsAddDirect'>加好友</view>
       <view class="recordadd" wx:if="{{item.is_card == 0}}" data-id="{{item.user.user_id}}" catchtap='contactsAdd' data-status="{{item.is_card}}">加好友</view>
       <view class="recordadd" wx:if="{{item.is_card == 2}}">待通过</view>
+      <view class="recordadd" style="border:none;" wx:if="{{item.is_card == 1}}">查看名片</view>
     </view>
   </view>
 </template>
