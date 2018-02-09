@@ -1495,6 +1495,7 @@
 <template name="openHB">
   <view id="openHB">
     <image src="{{bg_hongbao2}}" class="openHB">
+      <view class="packetMoney">￥{{personInfo.packet.money}}元红包</view>
       <view class="openTitle">{{personInfo.packet.title}}</view>
       <view class="openImgBox">
         <image src="{{personInfo.user.avatarUrl}}" class="openImg" wx:if="{{personInfo.user.avatarUrl}}"></image>
