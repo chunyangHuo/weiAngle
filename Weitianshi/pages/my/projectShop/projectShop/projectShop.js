@@ -412,32 +412,14 @@ Page({
   },
   // -----------------------分享------------------------------------------
   //  分享页面
-  // onShareAppMessage: function () {
-  //   let that = this;
-  //   return ShareModel.projectShopShare(that);
-  // },
+  onShareAppMessage: function () {
+    let that = this;
+    return ShareModel.projectShopShare(that);
+  },
   //  分享店铺二维码
   toShareShop() {
     let user_id = this.data.user_id;
     app.href("/pages/my/projectShop/shopShare/shopShare?user_id=" + user_id);
-  },
-  //  分享页面
-  onShareAppMessage: function () {
-    let that = this;
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      app.log(that, "target", res.target);
-    }
-    return {
-      title: '自定义转发标题',
-      path: '/page/user?id=123',
-      success: function (res) {
-        app.log(that, "res成功", res);
-      },
-      fail: function (res) {
-        app.log(that, "res失败", res);
-      }
-    };
   },
   onUnload: function () {
     app.initTran();
