@@ -16,7 +16,6 @@
     "pages/form/personInfo/personInfo",
     "pages/register/personInfo/personInfo",
     "pages/register/companyInfo/companyInfo",
-    "pages/register/bindSuccess/bindSuccess",
     "pages/message/message/message",
     "pages/message/viewProjectUser/viewProjectUser",
     "pages/message/applyProject/applyProject",
