@@ -185,7 +185,7 @@
           </view>
           <view>
             <view class="successRightArea">
-              <label wx:if="{{item.case_money}}">{{item.case_money}}</label>
+              <label wx:if="{{item.case_money}}">{{item.case_money}}万元</label>
               ·
               <label wx:if="{{item.case_area}}">{{item.case_area.area_title}}</label>
             </view>
