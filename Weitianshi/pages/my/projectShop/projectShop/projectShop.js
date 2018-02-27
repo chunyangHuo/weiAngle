@@ -146,7 +146,7 @@ Page({
       method: 'POST',
       success: function (res) {
         let myProject = res.data.data;
-        app.log(that, "myProject", myProject);
+        app.log( "myProject", myProject);
         wx.hideLoading();
         //刷新数据
         that.setData({
@@ -237,7 +237,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.log(that, 'getMyProjectList', res);
+        app.log('getMyProjectList', res);
         wx.hideLoading();
         if (res.data.data.length == 0) {
           that.setData({

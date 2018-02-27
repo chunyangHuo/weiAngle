@@ -167,7 +167,7 @@ Page({
         case_stage_id = x.stage_id;
       }
     });
-    app.log(that,"名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID");
+    app.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID");
     // console.log(user_id, case_name, industry, case_industry, case_stage_id, case_money, case_time, case_province, case_city, tran_area)
     if (case_name == undefined) {
       app.errorHide(that, "项目名称不能为空", 1500);

@@ -57,7 +57,7 @@ Page({
       },
     }
     app.loadMore2(that, request, res => {
-      app.log(that,"在职成员", res)
+      app.log("在职成员", res)
       let newPage = res.data.data;
       let list = res.data.data.member_list;
       let page_end = res.data.data.page_end;

@@ -54,8 +54,7 @@ Page({
     //   showLoading : true
     // })
   },
-  onShow() {
-  },
+  onShow() {},
   onReady() {
     let that = this;
     // 无缓存用户FilterModel预处理

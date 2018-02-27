@@ -71,7 +71,6 @@ App({
       let session_time = this.globalData.session_time;
       let differenceTime = timeNow - session_time;
       if (differenceTime > 432000000) {//432000000代表2个小时
-        // this.log(this,"已超时");
         this.getSession(cb);
       } else {
         typeof cb == 'function' && cb(this.globalData.user_id);
@@ -124,7 +123,6 @@ App({
                 app_key: that.globalData.app_key
               }
             }, that).then(res => {
-              // this.log(this,"这里是用户没授权后调用returnOauth,获取并设置了open_session,session_time,user_id")
               //在globalData里存入open_session,session_time,user_id;
               that.globalData.open_session = res.data.open_session;
               wx.setStorageSync('open_session', res.data.open_session);
@@ -240,8 +238,6 @@ App({
     } else {
       dataCard.css = "";
     }
-    // this.log(this, dataCard.value);
-    // this.log(this, dataCard.id)
   },
 
   //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataStr为取值数据字段)
@@ -418,7 +414,6 @@ App({
         }
       });
     } else {
-      // this.log(this,"addType写错了")
     }
   },
   //展开
@@ -581,7 +576,6 @@ App({
     let func = arguments[0];
     let parameter = [];
     if (typeof func != 'string') {
-      // this.log(this,'第一个参数必需为调用函数名')
       return;
     }
     for (let i = 0; i < arguments.length; i++) {
@@ -621,7 +615,6 @@ App({
         });
         break;
       default:
-        // this.log(this,'app.shareJump()参数错数');
         break;
     }
   },
@@ -669,7 +662,6 @@ App({
   buttonSubmit(that, submitData, buttonOneText, callBack) {
     this.disableButton(that);
     this.httpPost(submitData, that).then(res => {
-      // this.log(this,'res', res)
       if (res.data.status_code == 2000000) {
         wx.hideLoading();
         callBack(res);
@@ -700,10 +692,8 @@ App({
 
   //非表单提交按钮防连续点击处理
   delayDeal(callBack) {
-    // this.log(this,this.globalData.delay_time)
     if (this.globalData.delay_time == 0) {
       this.globalData.delay_time == 1000;
-      // this.log(this,this.globalData.delay_time)
       setTimeout(x => {
         this.globalData.delay_time == 0;
       }, 1000);
@@ -722,10 +712,8 @@ App({
     if (!routerPage.includes(url)) {
       // 记录路由
       routerPage.push(url);
-      // this.log(this, this.globalData.url);
       setTimeout(rex => {
         routerPage.pop();
-        // this.log(this, this.globalData.url);
       }, 1000);
       if (indexList.includes(url)) wx.switchTab({ url: url });
       else wx.navigateTo({ url: url });
@@ -793,11 +781,9 @@ App({
   },
 
   // console.log 显示
-  log(text, res) {
+  log() {
     if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
-      console.log(text, res);
-    } else {
-
+      console.log(...arguments);
     }
   },
 
@@ -883,11 +869,9 @@ App({
     verify: verify, // 验证文件
     registerModalShow: false, // 是否显示注册弹框
  
-    url: "https://balance.weitianshi.cn",
-    url_common: "https://balance.weitianshi.cn"
-    // url: "https://wx.dev.weitianshi.cn",
-    // url_common: "https://wx.dev.weitianshi.cn"
-    // url: "https://wx.debug.weitianshi.cn",
-    // url_common: "https://wx.debug.weitianshi.cn"
+    // url: "https://balance.weitianshi.cn",
+    // url_common: "https://balance.weitianshi.cn"
+    url: "https://wx.dev.weitianshi.cn",
+    url_common: "https://wx.dev.weitianshi.cn"
   },
 }); 

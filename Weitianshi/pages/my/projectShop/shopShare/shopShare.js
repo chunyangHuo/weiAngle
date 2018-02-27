@@ -66,7 +66,7 @@ Page({
                       });
                     },
                     fail: function (res) {
-                      app.log(that,"filePath",filePath);
+                      app.log("filePath",filePath);
                     }
                   });
                 }

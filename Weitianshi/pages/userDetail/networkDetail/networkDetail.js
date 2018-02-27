@@ -56,7 +56,7 @@ Page({
         wx.setNavigationBarTitle({
           title: user_name + "的投资名片",
         })
-        app.log(that, user.active_status)
+        app.log(user.active_status)
         if (tel.indexOf("*") != -1) {
           that.setData({
             blue: 1
@@ -121,16 +121,16 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.log(that, "正常申请添加人脉")
+            app.log("正常申请添加人脉")
             that.setData({
               button_type: 2
             })
           }
         })
       } else if (button_type == 1) {
-        app.log(that, "我的人脉--不显示内容")
+        app.log("我的人脉--不显示内容")
       } else if (button_type == 2) {
-        app.log(that, "待验证===显示待验证")
+        app.log("待验证===显示待验证")
       } else if (button_type == 3) {
         wx.request({
           url: url + '/api/user/handleApplyFollowUser',
@@ -142,7 +142,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.log(that, "同意申請")
+            app.log("同意申請")
             that.setData({
               button_type: 1
             })

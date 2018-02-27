@@ -47,7 +47,7 @@ Page({
         competition_id: that.data.competition_id,
       },
       success: function (res) {
-        app.log(that,'input填写', res);
+        app.log('input填写', res);
         let score_list1 = res.data.data.list;
         // 历史消息接口没有这个最大值字段 需要人为添加到数组
         let view_id = [];
@@ -93,7 +93,7 @@ Page({
       },
 
       success: function (res) {
-        app.log(that,'历史', res);
+        app.log('历史', res);
         let list1 = res.data.data.score_list;
         let remark = res.data.data.remark;
         let competition_name = res.data.data.competition_name;
