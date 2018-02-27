@@ -269,7 +269,7 @@ Page({
     let name = that.data.name;
     let code = that.data.code;
     wx.request({
-      url: 'https://www.weitianshi.cn/api/wx/returnWxOauthMobile',
+      url: 'https://wx.weitianshi.cn/api/wx/returnWxOauthMobile',
       data: {
         app_key:app.globalData.app_key,
         code: code,
