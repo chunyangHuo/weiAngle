@@ -231,7 +231,6 @@ page {
 }
 
 .outsideBox {
-  margin: 0 30rpx;
   position: relative;
 }
 
@@ -243,12 +242,6 @@ page {
   line-height: 88rpx;
   text-align: left;
   height: 88rpx;
-  margin-left: 30rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 691rpx;
-  /* padding-left: 16rpx; */
 }
 
 #introduce .introduce {
@@ -258,13 +251,12 @@ page {
   color: #666;
   line-height: 88rpx;
   text-align: left;
-  /* height: 88rpx; */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  width: 670rpx;
+  width: 686rpx;
   padding-left: 32rpx;
 }
 
@@ -328,21 +320,22 @@ page {
 }
 
 .agreeBtn, .refuseBtn {
-  font-size: 28rpx;
-  color: #40587a;
-  line-height: 28rpx;
-  text-align: left;
-  margin-left: 16rpx;
+  font-size: 30rpx;
+  line-height: 86rpx;
 }
 
 .agreeBox {
-  padding: 28rpx 122rpx 30rpx 94rpx;
+  width: 50%;
   background: white;
+  justify-content: center;
+  color: #3378e0;
 }
 
 .refuseBox {
   background: white;
-  padding: 28rpx 134rpx 30rpx 88rpx;
+  color: #333;
+  width: 50%;
+  justify-content: center;
 }
 
 .iconStyle {
@@ -352,11 +345,10 @@ page {
 }
 
 .agreed {
-  font-size: 28rpx;
-  color: #40587a;
   letter-spacing: 0;
-  line-height: 28rpx;
-  text-align: left;
+  line-height: 86rpx;
+  font-size: 30rpx;
+  color: #ccc;
 }
 
 .renzheng {
@@ -448,12 +440,9 @@ page {
 .noLight {
   color: #999;
 }
-.allContent{
-  background:white;
-}
-.bottomTabAfter {
-  padding-top: 28rpx;
-  padding-bottom: 30rpx;
+
+.allContent {
+  background: white;
 }
 
 .bottomTab {
@@ -533,4 +522,11 @@ page {
 .aLine {
   border-top: 1rpx solid #e6e6e6;
   margin: 0 32rpx;
+}
+
+.t-line {
+  width: 1rpx;
+  height: 40rpx;
+  background: #f0f0f0;
+  margin-top: 20rpx;
 }

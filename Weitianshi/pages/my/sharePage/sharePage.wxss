@@ -103,3 +103,9 @@ button {
   font-size: 24rpx;
   color: #f14b50;
 }
+.contactLine {
+  background: #f0f0f0;
+  width: 686rpx;
+  height: 1rpx;
+  margin: 0 32rpx;
+}
