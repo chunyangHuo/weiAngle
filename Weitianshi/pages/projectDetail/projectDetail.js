@@ -162,8 +162,8 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        app.log(that, "show_detail", show_detail);
-        app.log(that, "show_company", show_company);
+        app.log( "show_detail", show_detail);
+        app.log( "show_company", show_company);
         that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
@@ -188,7 +188,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         // console.log(user_id, id, is_share)
-        app.log(that, "bp", res)
+        app.log( "bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -685,7 +685,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investor2 = res.data.data;
-        app.log(that, "投资人", investor2)
+        app.log("投资人", investor2)
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -713,7 +713,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investment_list = res.data.data.investment_list;
-        app.log(that, "投资机构", investment_list)
+        app.log("投资机构", investment_list)
         let investment_total_num = res.data.data.investment_total_num;
         that.setData({
           investment_list: investment_list,
@@ -743,7 +743,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "investor2");
-    app.log(that, '投资人', this.data.page_end);
+    app.log('投资人', this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -765,7 +765,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMoreM(that, request, "investment_list");
-    app.log(that, '投资机构', this.data.page_end1);
+    app.log('投资机构', this.data.page_end1);
     if (this.data.page_end1 == true) {
       that.setData({
         jiandi1: true
@@ -996,16 +996,16 @@ Page({
                   title: 'loading',
                   mask: true,
                 })
-                app.log(that, "BP", BPath)
+                app.log("BP", BPath)
                 wx.downloadFile({
                   url: BPath,
                   success: function (res) {
                     var filePath = res.tempFilePath;
-                    app.log(that, "bp", filePath)
+                    app.log("bp", filePath)
                     wx.openDocument({
                       filePath: filePath,
                       success: function (res) {
-                        app.log(that, '打开文档成功')
+                        app.log('打开文档成功')
                         wx.hideLoading();
                         wx.request({
                           url: url_common + '/api/project/insertViewBpRecord',

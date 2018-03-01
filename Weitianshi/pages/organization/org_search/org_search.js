@@ -33,7 +33,7 @@ Page({
       }).then(res => {
         wx.hideLoading();
         let searchData = res.data.data;
-        app.log(that,"searchData",searchData);
+        app.log("searchData",searchData);
         let investment_list = [];
         let memberList = [];
         let industry_list = [];

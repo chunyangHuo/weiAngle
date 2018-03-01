@@ -31,30 +31,32 @@ Page({
     atBottom: false,
     nonet: true,
     loadingGif: app.globalData.picUrl.loadingGif,
-    showLoading: false
+    showLoading: false,
+    firstTime: true
   },
   onLoad(options) {
     let that = this;
     this.noSearch();
-    //初始化数据
+    // 初始化数据
     app.initPage(that);
     wx.showLoading({
       title: 'loading',
       mask: true,
     });
-    //请求精选项目数据
+    // 请求精选项目数据
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id
       });
-      that.selectProject();
+      // 载入项目列表数据
+      that.selectedAndMarketProjectList();
     });
     app.netWorkChange(that);
-    // this.setData({
-    //   showLoading : true
-    // })
   },
   onShow() {
+    if (!this.data.firseTime) {
+      this.selectedAndMarketProjectList();
+    }
   },
   onReady() {
     let that = this;
@@ -119,7 +121,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh() {
-    this.selectProject();
+    this.selectedAndMarketProjectList();
   },
   // 请求最新tab页面项目数据(辅助函数)
   newestProject() {
@@ -156,7 +158,7 @@ Page({
     });
   },
   // 请求精选tab页面数据(辅助函数)
-  selectProject() {
+  selectedAndMarketProjectList() {
     let that = this;
     if (!that.data.slectProject) {
       wx.showLoading({
@@ -187,7 +189,7 @@ Page({
     });
   },
   // 上拉加载
-  loadMore: function () {
+  loadMore() {
     //请求上拉加载接口所需要的参数
     let that = this;
     let user_id = this.data.user_id;
@@ -218,7 +220,7 @@ Page({
     app.loadMore(that, request, "financingNeed");
   },
   // 项目详情
-  projectDetail: function (e) {
+  projectDetail(e) {
     var project_id = e.currentTarget.dataset.project;
     // 判斷項目是不是自己的
     wx.request({
@@ -239,7 +241,7 @@ Page({
     });
   },
   // 分享当前页面
-  onShareAppMessage: function () {
+  onShareAppMessage() {
     return ShareModel.discoverProjectShare();
   },
   // 申请查看
@@ -270,10 +272,13 @@ Page({
       });
     });
   },
-
+  //  跳转到项目店铺筛选页面
+  tagFilter() {
+    app.href('/pages/my/projectShop/tagFilter/tagFilter');
+  },
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
-  toCreateProject: function () {
+  toCreateProject() {
     CreateProject.toCreateProject.call(this);
   },
   // 跳转投资机构
