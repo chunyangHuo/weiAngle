@@ -73,7 +73,7 @@ Page({
         success: function (res) {
           let user_info = res.data.user_info;
           let invest_info = res.data.invest_info;
-          app.log("invest_info",invest_info);
+          app.log(that,"invest_info",invest_info);
           wx.setStorageSync("tran_scale", invest_info.invest_scale);
           wx.setStorageSync("tran_stage", invest_info.invest_stage);
           wx.setStorageSync("tran_hotCity", invest_info.invest_area);
@@ -91,7 +91,7 @@ Page({
     let that=this;
     //更改某一项表单值后返回表单页面数据更新
     let invest_info = this.data.invest_info;
-    app.log("invest_info",invest_info);
+    app.log(that,"invest_info",invest_info);
     // let user_info = this.data.user_info;
     let tran_industry = wx.getStorageSync('tran_industry') || [];
     let tran_scale = wx.getStorageSync('tran_scale') || [];

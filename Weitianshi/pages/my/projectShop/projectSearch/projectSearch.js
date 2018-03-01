@@ -100,8 +100,8 @@ Page({
     let id = e.currentTarget.dataset.id;
     let user_id = this.data.user_id;
     let currentUser = wx.getStorageSync('user_id');
-    app.log("user_id",user_id);
-    app.log("currentUser",currentUser);
+    app.log(that,"user_id",user_id);
+    app.log(that,"currentUser",currentUser);
     if (user_id == currentUser) {
       app.href('/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0);
     } else if (user_id != currentUser){

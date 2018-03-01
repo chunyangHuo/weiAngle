@@ -204,7 +204,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var financingNeed = res.data.data;
-        app.log('最新', financingNeed);
+        app.log(that,'最新', financingNeed);
         that.setData({
           projects_list: financingNeed,
         });
@@ -230,7 +230,7 @@ Page({
         word: searchValue
       },
       success: function (res) {
-        app.log("投资机构", res);
+        app.log(that,"投资机构", res);
         wx.hideLoading();
         let investments_list = res.data.data.investments_list.list;
         that.setData({
@@ -262,7 +262,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log('投资人列表', res.data.data);
+          app.log(that,'投资人列表', res.data.data);
           wx.hideLoading();
           let investors_list = res.data.data;
           that.setData({
@@ -297,7 +297,7 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.status_code == '2000000') {
-          app.log('FA列表', res.data.data);
+          app.log(that,'FA列表', res.data.data);
           wx.hideLoading();
           that.setData({
             fa_list: res.data.data,

@@ -75,7 +75,7 @@ Page({
         let statusCode = res.data.status_code;
         if (statusCode == 2000000) {
           var pages = getCurrentPages();
-          app.log("pages",pages);
+          app.log(that,"pages",pages);
           var num = pages.length - 1;
           wx.navigateBack({
             delta: 3

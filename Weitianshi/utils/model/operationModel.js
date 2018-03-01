@@ -221,7 +221,7 @@ function getPushProjectTimes(that, callBack) {
     },
     method: "POST",
     success(res) {
-      app.log('getPushProjectTimes', res);
+      app.log(that, 'getPushProjectTimes', res);
       let remain_time = res.data.data.remain_times;
       if (remain_time < 1) {
         app.errorHide(that, "您今日的提交次数已经用光了", 3000)
