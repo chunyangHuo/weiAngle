@@ -6,7 +6,7 @@ Page({
     type_id: 2,
     count: 0,
     nonet: true,
-    atBottom: false
+    jiandi: false
   },
   onLoad: function () {
     let that = this;
@@ -192,7 +192,7 @@ Page({
     app.loadMore(that, request, "contacts");
     if (this.data.page_end == true) {
       that.setData({
-        atBottom: true
+        jiandi: true
       });
     }
   },

@@ -168,17 +168,19 @@ Page({
             data: request.data,
             method: 'POST',
             success: function (res) {
-              var newPage = res.data.list.users;
-              var page_end = res.data.page_end;
-              for (var i = 0; i < newPage.length; i++) {
-                dataSum.push(newPage[i]);
+              if(res.data.list.users){
+                var newPage = res.data.list.users;
+                for (var i = 0; i < newPage.length; i++) {
+                  dataSum.push(newPage[i]);
+                }
               }
+              var page_end = res.data.page_end;
               that.setData({
                 [str]: dataSum,
                 page_end: page_end,
                 requestCheck: true
               });
-              app.log("page_end",that.data.page_end);
+              console.log("page_end",that.data.page_end);
               if (that.data.page_end == true) {
                 that.setData({
                   jiandi: true,
