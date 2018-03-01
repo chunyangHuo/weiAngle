@@ -1,15 +1,14 @@
 var app = getApp();
 var url_common = app.globalData.url_common;
+let ShareModel = require('../../../utils/model/shareModel.js')
 Page({
-
   data: {
     banner_organization: app.globalData.picUrl.banner_organization,
     nonet: true,
     show:false
   },
-
   onLoad: function (options) {
-    let that = this;
+    let that = this; 
     app.netWorkChange(that);
   },
   onShow: function () {
@@ -79,5 +78,9 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
-  }
+  },
+  //分享
+  onShareAppMessage: function () {
+    return ShareModel.institutionalInvestShare();
+  },
 });

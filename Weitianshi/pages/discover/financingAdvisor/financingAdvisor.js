@@ -160,7 +160,7 @@ Page({
   },
   // 分享当前页面
   onShareAppMessage: function () {
-    return ShareModel.discoverInvestShare();
+    return ShareModel.FAShare();
   },
   // 项目推送
   projectPush(e) {

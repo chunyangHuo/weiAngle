@@ -166,18 +166,18 @@ Page({
 
 
   // -----------------------------------------------------------------------------------------
-  //跳转帮助
+  // 跳转帮助
   guideHelp() {
     app.href('/pages/organization/subPage/guide_help/guide_help');
   },
-  //机构详情跳转
+  // 机构详情跳转
   institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + id);
   },
-
-  onShareAppMessage: function () {
-    return ShareModel.projectListShare();
+  // 分享
+  onShareAppMessage () {
+    return ShareModel.institutionalInvestShare();
   },
   applyList() {
     let that = this;

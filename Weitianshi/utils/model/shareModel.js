@@ -40,20 +40,32 @@ function projectDetailShare(that) {
   }
   return shareProjectPage(id, title, share_id)
 }
-
+//投资机构首页和列表分享
+function institutionalInvestShare(){
+  return {
+    title: '您可以在微天使查询30000+投资机构的投资偏好、历史投资记录',
+    path: '/pages/discoverInvest/institutionalInvest/institutionalInvest'
+  }
+}
 //找项目分享
-function discoverProjectShare() {
+function discoverProjectShare() { 
   return {
     title: '来微天使找优质项目',
     path: '/pages/discoverProject/discoverProject'
   }
 }
-
 //找投资分享
 function discoverInvestShare() {
   return {
-    title: '来微天使找优质人脉',
+    title: '您可以与5000+认证投资人互加好友、交换电话号码',
     path: '/pages/discoverInvest/discoverInvest'
+  }
+}
+//FA融资顾问分享
+function FAShare(){
+  return {
+    title: '您可以找2000+FA融资顾问协助您融资项目',
+    path: '/pages/discover/financingAdvisor/financingAdvisor'
   }
 }
 //项目库分享
@@ -262,8 +274,10 @@ export {
   match1,
   orgDetail,
   myCardShare,
+  institutionalInvestShare,
   discoverInvestShare,
   discoverProjectShare,
+  FAShare,
   projectShopShare,
   qrCodeShare,
   sharePageShare,
