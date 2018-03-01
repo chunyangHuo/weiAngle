@@ -220,7 +220,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect',this, added_user_id, function (res) {
-      app.log('直接添加人脉完成', res);
+      app.log(that,'直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },

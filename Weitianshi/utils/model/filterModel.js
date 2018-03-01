@@ -340,7 +340,7 @@ function tagsCheck(e, that) {
   // 有联动关系的下拉表
   if (item[0].child) {
     let linkItem = item[firstIndex].child[secondIndex];
-    app.log(linkItem)
+    app.log(that,linkItem)
     if (linkItem.check == false) {
       linkItem.check = true;
       linkItem.firstIndex = firstIndex;
@@ -750,7 +750,7 @@ function page_tagsCheck(e, that) {
 function page_reset(that) {
   let filterList = that.data.filterList;
   filterList.forEach((x, index) => {
-    x.arry.forEach((y, idx) => { 
+    x.arry.forEach((y, idx) => {
       y.check = false
     })
   })
@@ -763,7 +763,7 @@ function page_certain(that) {
   let pages = getCurrentPages();
   let currentPage = pages[pages.length - 1];
   let prePage = pages[pages.length - 2];
-  let searchData = prePage.data.searchData || prePage.data.SearchInit.searchData;
+  let searchData = prePage.data.searchData;
   let filterList = that.data.filterList;
   filterList.forEach((x, index) => {
     let arry = [];
@@ -774,8 +774,7 @@ function page_certain(that) {
     })
     searchData[x.name] = arry;
   })
-  app.log(searchData, filterList)
-  app.log("tagFilterSearchData", searchData)
+  app.log(that,"tagFilterSearchData", searchData)
   prePage.setData({
     searchData: searchData,
     firstTime: false

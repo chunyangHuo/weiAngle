@@ -1595,6 +1595,57 @@
   </view>
 </template>
 
+<!--认证弹框  -->
+<template name="authenModel">
+  <view class="modalBox" hidden="{{authenModelBox === 0}}">
+    <view class="authenModalBox">
+      <view class="modalTitle">温馨提示</view>
+      <!-- 未认证过 -->
+      <view wx:if="{{status === 0}}">
+        <view class='authenModalTop'>
+          <view class="authenModalTips">只有投资人和买方FA才可联系项目方</view>
+          <view class="authenModalTips">您还未认证过，是否去认证</view>
+        </view>
+        <view class='bottomBtn'>
+          <button class='authBtn noTempBtn' bindtap="noAccreditation">暂不认证</button>
+          <button class='authBtn tempBtn' bindtap="toAccreditation">立即认证</button>
+        </view>
+      </view>
+
+      <!-- 认证中 -->
+      <view wx:if="{{status === 1}}">
+        <view class='authenModalTop'>
+          <view class="authenModalTips">您的身份正在认证中，暂时无法联系项目方</view>
+        </view>
+        <view>
+          <button class='yesBtn' bindtap="noAccreditation">确定</button>
+        </view>
+      </view>
+      
+      <!-- 未通过 -->
+      <view wx:if="{{status === 3}}">
+        <view class='authenModalTop'>
+          <view class="authenModalTips">您的身份认证未通过，是否重新认证</view>
+        </view>
+        <view class='bottomBtn'>
+          <button class='authBtn noTempBtn' bindtap="noAccreditation">暂不认证</button>
+          <button class='authBtn tempReloadBtn' bindtap="toAccreditation">重新认证</button>
+        </view>
+      </view>
+
+      <!-- 不符合 -->
+      <view wx:if="{{status === 2}}">
+        <view class='authenModalTop' wx:if="{{group_id !== 18 || group_id !== 6}}">
+          <view class="authenModalTips">您的身份是其他，只有投资人和买方FA才可联系项目方</view>
+        </view>
+        <view>
+          <button class='yesBtn' bindtap="noAccreditation">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
 <!--浏览了我中的样式  -->
 <template name="InvestorCardOfMy">
   <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">

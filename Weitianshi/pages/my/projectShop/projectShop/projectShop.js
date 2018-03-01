@@ -146,7 +146,7 @@ Page({
       method: 'POST',
       success: function (res) {
         let myProject = res.data.data;
-        app.log( "myProject", myProject);
+        app.log(that, "myProject", myProject);
         wx.hideLoading();
         //刷新数据
         that.setData({
@@ -220,6 +220,7 @@ Page({
     this.setData({
       node_list: node_list,
       searchData: searchData,
+
     });
     // 发送筛选请求
     this.requestPost();
@@ -236,7 +237,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.log('getMyProjectList', res);
+        app.log(that, 'getMyProjectList', res);
         wx.hideLoading();
         if (res.data.data.length == 0) {
           that.setData({
@@ -392,6 +393,7 @@ Page({
   },
   //  跳转到项目店铺筛选页面
   tagFilter() {
+
     app.href('/pages/my/projectShop/tagFilter/tagFilter');
   },
   //  身份验证
