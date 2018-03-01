@@ -491,3 +491,17 @@
 .t_image1 {
   margin-top: 548rpx;
 }
+
+.search_img {
+  width: 104rpx;
+  height: 104rpx;
+  position: fixed;
+  bottom: 184rpx;
+  right: 32rpx;
+  text-align: center;
+}
+
+.search_img image {
+  width: 54rpx;
+  height: 54rpx;
+}

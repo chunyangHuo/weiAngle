@@ -750,7 +750,7 @@ function page_tagsCheck(e, that) {
 function page_reset(that) {
   let filterList = that.data.filterList;
   filterList.forEach((x, index) => {
-    x.arry.forEach((y, idx) => {
+    x.arry.forEach((y, idx) => { 
       y.check = false
     })
   })
@@ -763,7 +763,7 @@ function page_certain(that) {
   let pages = getCurrentPages();
   let currentPage = pages[pages.length - 1];
   let prePage = pages[pages.length - 2];
-  let searchData = prePage.data.searchData;
+  let searchData = prePage.data.searchData || prePage.data.SearchInit.searchData;
   let filterList = that.data.filterList;
   filterList.forEach((x, index) => {
     let arry = [];
