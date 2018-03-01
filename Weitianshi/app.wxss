@@ -7,6 +7,7 @@
 @import '/utils/wxss/oneadd.wxss';
 @import '/utils/wxss/HB.wxss';
 @import '/utils/wxss/registerModal.wxss';
+@import '/utils/wxss/projectApply.wxss';
 
 .page__hd {
   padding: 40px;

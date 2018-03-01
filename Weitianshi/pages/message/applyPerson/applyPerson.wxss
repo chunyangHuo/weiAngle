@@ -184,6 +184,7 @@ page {
   margin: 20rpx 0 0 0;
 }
 
+
 #time {
   font-size: 20rpx;
   color: #999;
@@ -191,7 +192,6 @@ page {
   text-align: right;
   margin: 10rpx 0 20rpx 0;
 }
-
 /*==========我申请查看的项目===============  */
 
 .apply {
@@ -211,7 +211,6 @@ page {
 }
 
 .outsideBox {
-  margin: 0 30rpx;
   position: relative;
 }
 
@@ -224,21 +223,6 @@ page {
   text-align: left;
   height: 88rpx;
   margin-left: 30rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 670rpx;
-  padding-left: 16rpx;
-}
-
-.introduce {
-  background: #f3f4f8;
-  border-radius: 4rpx 4rpx 0 0;
-  font-size: 26rpx;
-  color: #666;
-  line-height: 88rpx;
-  text-align: left;
-  height: 88rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -299,23 +283,23 @@ page {
 }
 
 .agreeBtn, .refuseBtn {
-  font-size: 28rpx;
-  color: #40587a;
-  line-height: 28rpx;
-  text-align: left;
-  margin-left: 16rpx;
+  font-size: 30rpx;
+  line-height: 86rpx;
 }
 
 .agreeBox {
-  padding-left: 94rpx;
+  width: 50%;
+  background: white;
+  justify-content: center;
+  color: #3378e0;
 }
 
 .refuseBox {
-  padding-left: 88rpx;
-  padding-right: 122rpx;
-  border-right: 1rpx solid #e6e6e6;
+  background: white;
+  color: #333;
+  width: 50%;
+  justify-content: center;
 }
-
 .iconStyle {
   width: 24rpx;
   height: 26rpx;
@@ -412,12 +396,6 @@ page {
   padding-bottom: 30rpx;
 }
 
-.bottomTab {
-  border-top: 1rpx solid #e6e6e6;
-  padding-top: 28rpx;
-  padding-bottom: 30rpx;
-  background: white;
-}
 
 .user_text {
   background: #f2f2f2;
@@ -464,4 +442,17 @@ page {
   width: 90%;
   height: 2rpx;
   background: #e6e6e6;
+}
+.t-line {
+  width: 1rpx;
+  height: 40rpx;
+  background: #f0f0f0;
+  margin-top: 13rpx;
+}
+.allContent {
+  background: white;
+}
+.aLine {
+  border-top: 1rpx solid #e6e6e6;
+  margin: 0 32rpx;
 }
