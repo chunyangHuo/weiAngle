@@ -5,11 +5,13 @@
     <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" style="height:1334rpx;">
       <template is="allNumber" data="{{count:count,text:'约谈的项目'}}"></template>
       <template is="selectProject" data="{{list:projectList,type:3,timeShow:true}}"></template>
+      <template is="theBottom" wx:if="{{jiandi == true}}"></template>
+      <view style="height:40rpx;width:100%;"></view>
     </scroll-view>
   </view>
 
   <!--没有更多-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+  <!-- <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view> -->
   <!--空状态  -->
   <template is="hasNothing" data="{{emptyNumber:projectList}}"></template>
 </view>

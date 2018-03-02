@@ -42,6 +42,9 @@ Page({
         wx.hideLoading();
         let pushToList = res.data.data;
         let count1 = res.data.count;
+        if (count1 >= 999) {
+          count1 = "999+"
+        }
         that.setData({
           count1: count1,
           pushToList: pushToList,
@@ -59,6 +62,9 @@ Page({
       success: function (res) {
         let pushProjectList = res.data.data;
         let count = res.data.count;
+        if (count >= 999) {
+          count = "999+"
+        }
         that.setData({
           count: count,
           pushProjectList: pushProjectList

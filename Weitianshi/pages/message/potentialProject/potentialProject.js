@@ -31,6 +31,9 @@ Page({
         wx.hideLoading();
         let count = res.data.count;
         let applyList = res.data.data;
+        if (count >= 999) {
+          count = "999+"
+        }
         that.setData({
           count: count,
           applyList: applyList
@@ -47,6 +50,9 @@ Page({
       success: function (res) {
         let pushToList = res.data.data;
         let count1 = res.data.count;
+        if (count1 >= 999) {
+          count1 = "999+"
+        }
         that.setData({
           count1: count1,
           pushToList: pushToList
@@ -66,6 +72,9 @@ Page({
           let count2 = res.data.data.match_count;
           let getMatchList = res.data.data.projects;
           // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
+          if (count2 >= 999) {
+            count2 = "999+"
+          }
           that.setData({
             count2: count2,
             getMatchList: getMatchList
@@ -321,7 +330,7 @@ Page({
     let that = this;
     let getMatchList = this.data.getMatchList;
     let pro_id = e.currentTarget.dataset.project;
-    app.operationModel('projectApply',this, pro_id, res => {
+    app.operationModel('projectApply', this, pro_id, res => {
       getMatchList.forEach((x) => {
         if (x.project_id == pro_id) {
           x.relationship_button = 0;

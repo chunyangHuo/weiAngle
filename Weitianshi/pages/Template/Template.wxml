@@ -329,7 +329,7 @@
     <view class="outBox">
       <view class="redPoint" wx:if="{{type != 2}}" wx:if="{{item.message_status ==0 }}"></view>
       <view class="insideBox project-detailm" hover-class="t-hoverColor">
-       <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+        <image src="/img/img-dujia@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
         <view data-project="{{item.project_id}}" catchtap="projectDetail">
           <view class="describle" wx:if="{{item.pro_intro != ''}}">
             <label> {{item.pro_intro}}</label>
@@ -505,14 +505,11 @@
             <view class="status statusNoInterest" wx:if="{{item.handle_status == 2}}">没兴趣</view>
             <view class="status readed" wx:if="{{item.handle_status == 3}}">已读</view>
           </view>
-          <view wx:if="{{type == 0}}">
-            <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
-            <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
-          </view>
           <view class="allContent" hover-class='t-hoverColor'>
-            <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
-            <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
-
+            <view wx:if="{{type == 0}}">
+              <view class="allNet" wx:if="{{item.user.follow_status != 1}}">全网</view>
+              <view class='onlyMy' wx:if="{{item.user.follow_status == 1}}">我的</view>
+            </view>
             <view class="t-outsideBox">
               <view class="t-applyMyProject t-contacts-detailm">
                 <view class="t-introduceBox flex">
@@ -751,43 +748,41 @@
 <!--精选项目卡片 -->
 <template name="selectProject">
   <block wx:for="{{list}}" wx:key="{{index}}">
-    <view class="t-outBox" wx:if="{{item.handle_status != 2 }}">
+    <view class="outBox" wx:if="{{item.handle_status != 2 }}">
       <view class="t-redPoint" wx:if="{{type != 2}}" wx:if="{{item.message_status ==0 }}"></view>
-      <view class="t-insideBox t-project-detailm" hover-class="t-hoverColor">
+      <view class="insideBox project-detailm" hover-class="t-hoverColor">
         <view data-project="{{item.project_id}}" catchtap="projectDetail">
-          <view class="flex">
-            <view class="t-describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-            <image src="/img/img-dujia@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-            <image src="/img/img-feidujiaqianyue@2x.png" class="t-projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+          <view class="describle" wx:if="{{item.pro_intro != ''}}">
+            <label> {{item.pro_intro}}</label>
           </view>
-          <view class="t-allIndustry" style="text-align:left">
+          <view class='flex industryBox' wx:if="{{item.pro_industry.length != 0}}">
             <block wx:for="{{item.pro_industry}}" wx:key="{{index}}" wx:for-item='industry'>
-              <label class='t-noLight' wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label>
-              <label class='t-noLight' wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+              <view class="allIndustry">{{industry.industry_name}}</view>
             </block>
           </view>
-          <view class="t-allProjectDetail flex" wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-            <view class="{{item.pro_scale.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
-            <view class="{{item.pro_finance_stock_after.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
-            <view class="{{item.pro_stage.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
-            <view class="{{item.pro_area.is_match == 1 ? 't-projectDetailLight' : 't-projectDetailLine'}}" wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
-          </view>
-          <view class="t-otherInfo flex">
-            <view>
-              <image src="{{item.user.investor_logo_url}}" class="t-others_pic" wx:if="{{item.user.investor_logo_url}}" />
-              <view class="t-user_image flex" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
+          <view class='flex otherInfo' wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+            <view class="allProjectDetail flex">
+              <view class="projectDetailLine" wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}} </view>
+              <view class="projectDetailLine" wx:if="{{item.pro_finance_stock_after != ''}}">· {{item.pro_finance_stock_after}}% </view>
+              <view class="projectDetailLine" wx:if="{{item.pro_stage != ''}}"> · {{item.pro_stage.stage_name}}</view>
+              <view class="projectDetailLine" wx:if="{{item.pro_area != ''}}">· {{item.pro_area.area_title}}</view>
             </view>
-            <view>
-              <view class="t-userInfo flex">
-                <view class="t-userName">{{item.user.user_name}}</view>
-                <view class="t-userCareer">{{item.user.user_career}}</view>
-                <view class="t-userCompany" style="text-align:left">{{item.user.user_company}}</view>
+          </view>
+          <view class="userInfo flex">
+            <image src="{{item.user.investor_logo_url}}" class="userPic" wx:if="{{item.user.investor_logo_url}}" />
+            <view class="userPicText flex " wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
+            <view id="userInfoRight">
+              <view class='userName'>{{item.user.user_name}}</view>
+              <view class='userCompany'>
+                <label>{{item.user.user_career}}</label> ·
+                <label>{{item.user.user_company}}</label>
               </view>
             </view>
           </view>
         </view>
         <!--匹配推荐  -->
         <view class="t-projectInfo flex" wx:if="{{type == 2}}">
+          <image class="personNumPic" src='/img/icon-chakan@2x.png'></image>
           <view class="t-seeNum">{{item.view_count}}人看过项目</view>
           <view class="t-interest flex">
             <view class="t-appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
@@ -801,8 +796,8 @@
         </view>
         <view class="t-classname" wx:if="{{type == 3}}"></view>
       </view>
-      <view class="t-time" wx:if='{{timeShow}}'>{{item.created_at||item.pro_time}}</view>
-      <view class="t-time" wx:else></view>
+      <view id="t-time" wx:if='{{timeShow}}'>{{item.created_at||item.pro_time}}</view>
+      <view id="t-time" wx:else></view>
     </view>
   </block>
   <view class="t-highBox"></view>
@@ -811,6 +806,7 @@
 <!--投资人卡片  -->
 <template name="InvestorCard">
   <view class="t-outsideBox" data-id="{{item.user_id}}" catchtap="userDetail">
+    <view class="redPoint" wx:if="{{item.message_status == 0}}"></view>
     <view class="t-applyMyProject t-contacts-detailm">
       <view class="t-introduceBox flex">
         <image src="{{item.investor_logo_url}}" class="t-userPic" wx:if="{{item.investor_logo_url}}"></image>
@@ -1687,8 +1683,8 @@
       <view class="outsideBox" data-project="{{item.user.user_id}}" catchtap="personDetail">
         <view class="redPoint" wx:if="{{item.message_status == 0}}"></view>
         <view class="allContent" hover-class='t-hoverColor'>
-        <view class="allNet"  wx:if="{{item.user.follow_status != 1}}">全网</view>
-        <view class='onlyMy' wx:if="{{item.user.follow_status == 1}}">我的</view>
+          <view class="allNet" wx:if="{{item.user.follow_status != 1}}">全网</view>
+          <view class='onlyMy' wx:if="{{item.user.follow_status == 1}}">我的</view>
           <view class="t-outsideBox">
             <view class="t-applyMyProject t-contacts-detailm">
               <view class="t-introduceBox flex">
