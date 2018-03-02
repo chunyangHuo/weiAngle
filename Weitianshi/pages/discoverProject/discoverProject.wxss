@@ -474,6 +474,7 @@
   margin-top: 548rpx;
 }
 
+/*筛选图标  */
 .search_img {
   width: 104rpx;
   height: 104rpx;
@@ -484,6 +485,10 @@
 }
 
 .search_img image {
-  width: 54rpx;
-  height: 54rpx;
+  width: 104rpx;
+  height: 104rpx;
+}
+
+.t-hoverColor{
+
 }

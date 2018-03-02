@@ -16,6 +16,7 @@ Page({
     hidden: true,
     //筛选搜索
     SearchInit: FilterModel.data,
+    search_img:'/img/btn-shaixuan-n@2x.png',// 首页筛选图标
     //banner 
     bannerIndex: 0,
     modalBox: 0,
@@ -272,10 +273,6 @@ Page({
       });
     });
   },
-  //  跳转到项目店铺筛选页面
-  tagFilter() {
-    app.href('/pages/my/projectShop/tagFilter/tagFilter');
-  },
   //----------------------创建项目引导------------------------------------------------ 
   // 跳转创建项目页面
   toCreateProject() {
@@ -314,7 +311,6 @@ Page({
     }, 1500);
 
   },
-
   // 微信授权绑定
   getPhoneNumber(e) {
     register.getPhoneNumber.call(this, e);
@@ -326,5 +322,22 @@ Page({
   // 关闭绑定方式选择弹框
   closeRegisterModal() {
     register.closeRegisterModal.call(this);
+  },
+  //----------------------项目筛选------------------------------------------------ 
+  // 跳转到筛选页面
+  tagFilter() {
+    app.href('/pages/my/projectShop/tagFilter/tagFilter');
+  },
+  // 筛选图标点击态
+  filterStart(){
+    this.setData({
+      search_img:'/img/btn-shaixuan-s@2x.png'
+    })
+  },
+  // 筛选图标点击态恢复
+  filterEnd(){
+    this.setData({
+      search_img:'/img/btn-shaixuan-n@2x.png'
+    })
   }
 });
