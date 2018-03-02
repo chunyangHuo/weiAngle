@@ -8,7 +8,9 @@ Page({
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目,
     hasRedPoint: true,
-    nonet: true
+    nonet: true,
+    jiandi: false,
+    atBottom: false
   },
   onLoad: function (options) {
     let type = options.type;
@@ -33,7 +35,7 @@ Page({
         wx.hideLoading();
         let contentList = res.data.data;
         let count1 = res.data.count;
-        if(count1 >= 999){
+        if (count1 >= 999) {
           count1 = "999+"
         }
         that.setData({
@@ -208,9 +210,10 @@ Page({
             }
           });
         } else {
-          app.errorHide(that, "没有更多了", that, 3000);
+          // app.errorHide(that, "没有更多了", that, 3000);
           that.setData({
-            requestCheckBoolean: true
+            requestCheckBoolean: true,
+            jiandi: true
           });
         }
       }

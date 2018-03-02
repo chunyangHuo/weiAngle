@@ -16,7 +16,7 @@
       </view>
     </block>
     <template is="theBottom" wx:if="{{jiandi==true}}"></template>
-    <view class="high"></view>
+    <view class="t-highBox"></view>
   </scroll-view>
 </view>
 <!--空状态-->

@@ -15,6 +15,7 @@
       <scroll-view scroll-y="true" bindscrolltolower="pushMore" scroll-top="{{scroll}}">
         <template is="personModal" data="{{list:pushToList,type:0}}"></template>
         <template is="hasNothing" data="{{emptyNumber:pushToList}}"></template>
+        <template is="theBottom" wx:if="{{jiandi1 == true}}"></template>
       </scroll-view>
     </swiper-item>
     <!--我申请查看的项目  -->
@@ -22,6 +23,7 @@
       <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
         <template is="personModal" data="{{list:applyList,type:1,push_id:0,project_id:project_id}}"></template>
         <template is="hasNothing" data="{{emptyNumber:applyList}}"></template>
+        <template is="theBottom" wx:if="{{atBottom == true}}"></template>
       </scroll-view>
     </swiper-item>
     <!--匹配推荐  -->
@@ -29,6 +31,7 @@
       <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="matchMore">
         <template is="selectProject" data="{{list:getMatchList,type:2,push_id:0}}"></template>
         <template is="hasNothing" data="{{emptyNumber:getMatchList}}"></template>
+        <template is="theBottom" wx:if="{{jiandi == true}}"></template>
       </scroll-view>
     </swiper-item>
   </swiper>

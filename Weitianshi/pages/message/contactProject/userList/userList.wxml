@@ -6,7 +6,6 @@
       <template is="allNumber" data="{{count:count,text:'约谈的项目'}}"></template>
       <template is="selectProject" data="{{list:projectList,type:3,timeShow:true}}"></template>
       <template is="theBottom" wx:if="{{jiandi == true}}"></template>
-      <view style="height:40rpx;width:100%;"></view>
     </scroll-view>
   </view>
 

@@ -10,7 +10,10 @@ Page({
     currentTab: 0,//选项卡
     modalBox: 0,
     buttonOneText: "确定",
-    nonet: true
+    nonet: true,
+    atBottom : false,
+    jinadi : false,
+    jiandi1 : false
   },
   onLoad: function (e) {
     let that = this;
@@ -243,9 +246,10 @@ Page({
             }
           });
         } else {
-          app.errorHide(that, "没有更多了", that, 3000);
+          // app.errorHide(that, "没有更多了", that, 3000);
           that.setData({
-            requestCheckThird: true
+            requestCheckThird: true,
+            jiandi : true
           });
         }
       }
@@ -280,6 +284,7 @@ Page({
             success: function (res) {
               var newPage = res.data.data;
               var page_end = res.data.page_end;
+              console.log(page_end)
               for (var i = 0; i < newPage.length; i++) {
                 pushToList.push(newPage[i]);
               }
@@ -291,9 +296,10 @@ Page({
             }
           });
         } else {
-          app.errorHide(that, "没有更多了", that, 3000);
+          // app.errorHide(that, "没有更多了", that, 3000);
           that.setData({
-            requestCheckBoolean: true
+            requestCheckBoolean: true,
+            jiandi1 : true
           });
         }
       }

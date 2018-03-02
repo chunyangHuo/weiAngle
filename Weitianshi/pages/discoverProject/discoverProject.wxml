@@ -79,9 +79,8 @@
           </view>
         </view>
       </block>
-
       <template is="theBottom" wx:if="{{atBottom == true}}"></template>
-      <view class='whiteSpace'></view>
+      <view class="t-highBox"></view>
     </scroll-view>
   </view>
 

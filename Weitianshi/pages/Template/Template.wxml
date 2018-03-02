@@ -800,7 +800,6 @@
       <view id="t-time" wx:else></view>
     </view>
   </block>
-  <view class="t-highBox"></view>
 </template>
 
 <!--投资人卡片  -->
