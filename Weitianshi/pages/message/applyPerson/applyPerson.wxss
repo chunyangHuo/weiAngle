@@ -215,19 +215,29 @@ page {
 }
 
 #introduce {
-  background: #f3f4f8;
+  background: #fafafa;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;
   color: #666;
   line-height: 88rpx;
   text-align: left;
   height: 88rpx;
-  margin-left: 30rpx;
-  white-space: nowrap;
+}
+
+#introduce .introduce {
+  background: #fafafa;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 88rpx;
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 670rpx;
-  padding-left: 16rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  width: 686rpx;
+  padding-left: 32rpx;
 }
 
 .applyMyProject .userPosition {

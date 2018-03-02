@@ -4,7 +4,8 @@ var url_common = app.globalData.url_common;
 Page({
 
   data: {
-    nonet: true
+    nonet: true,
+    jiandi : false
   },
 
   onLoad: function (options) {
@@ -89,7 +90,8 @@ Page({
         that.setData({
           projectList: newRank_list,
           page_end: page_end,
-          requestCheck: true
+          requestCheck: true,
+          jiandi:true
         });
       }
     });

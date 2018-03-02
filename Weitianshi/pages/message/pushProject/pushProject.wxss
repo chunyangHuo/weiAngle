@@ -21,12 +21,17 @@ page {
   border: none;
 }
 
-.on {
+.on::after {
+  content: '';
   color: #40587a;
+  width: 40rpx;
+  height: 4rpx;
+  border-radius: 4rpx;
   text-align: center;
-  font-size: 26rpx;
-  line-height: 80rpx;
-  border-bottom: 4rpx solid #40587a;
+  z-index: 666;
+  display: block !important;
+  background: #3378e0;
+  margin-left: 38%;
 }
 
 .empty {

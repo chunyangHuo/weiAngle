@@ -19,12 +19,25 @@ page {
   border: none;
 }
 
-.on {
+/* .on {
   color: #40587a;
   text-align: center;
   font-size: 26rpx;
   line-height: 80rpx;
   border-bottom: 4rpx solid #40587a;
+} */
+
+.on::after {
+  content: '';
+  color: #40587a;
+  width: 40rpx;
+  height: 4rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  z-index: 666;
+  display: block !important;
+  background: #3378e0;
+  margin-left: 38%;
 }
 
 .empty {
@@ -72,7 +85,6 @@ page {
   white-space: nowrap;
   margin-bottom: 20rpx;
 }
-
 
 .userInfo {
   margin-bottom: 20rpx;
@@ -392,6 +404,7 @@ page {
   border-top: 1rpx solid #e6e6e6;
   margin: 0 32rpx;
 }
+
 .t-line {
   width: 1rpx;
   height: 40rpx;

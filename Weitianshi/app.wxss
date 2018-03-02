@@ -538,16 +538,10 @@ textarea {
 
 /*---------------------------------项目卡片------------------------------------*/
 
-.t-outBox {
-  /* margin: 0 32rpx 0 32rpx; */
+.outBox {
   width: auto;
   height: auto;
   position: relative;
-  /* border-radius: 8rpx; */
-}
-
-.t-outBox:first-child {
-  /* margin-top: 32rpx; */
 }
 
 .t-insideBox {
@@ -770,7 +764,7 @@ textarea {
   color: #40587a;
 }
 
-.t-outBox .t-time {
+#t-time {
   font-size: 20rpx;
   color: #999;
   line-height: 20rpx;

@@ -33,6 +33,9 @@ Page({
         wx.hideLoading();
         let contentList = res.data.data;
         let count1 = res.data.count;
+        if(count1 >= 999){
+          count1 = "999+"
+        }
         that.setData({
           count1: count1,
           contentList: contentList
@@ -50,6 +53,9 @@ Page({
       success: function (res) {
         let count = res.data.count;
         let applyList = res.data.data;
+        if (count >= 999) {
+          count = "999+"
+        }
         that.setData({
           count: count,
           applyList: applyList
