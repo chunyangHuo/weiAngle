@@ -40,7 +40,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.log(that, 'myInfo', res);
+            app.log('myInfo', res);
             wx.hideLoading();
             var user = res.data.data.user;
             var count = res.data.data.count;
@@ -171,7 +171,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.log(that, "taxNum", res);
+        app.log("taxNum", res);
         let data = res.data;
         if (data.status_code == 460004) {
           that.setData({

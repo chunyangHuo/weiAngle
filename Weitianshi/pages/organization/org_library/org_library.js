@@ -12,7 +12,7 @@ Page({
     linkDataShow: FilterModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
     nonet: true
-  }, 
+  },
   onLoad: function (options) {
     let label = options.label;
     let itemId = options.itemId;
@@ -38,20 +38,20 @@ Page({
         SearchInit[x.label] = wx.getStorageSync(x.label);
       });
       that.setData({
-        SearchInit: SearchInit 
+        SearchInit: SearchInit
       });
     }
 
     // 页面间跳转传值筛选
     if (label) {
       FilterModel.detialItemSearch(label, itemId, that, searchData => {
-        app.log(that,"searchData",searchData);
+        app.log("searchData", searchData);
       });
     }
     this.applyList();
     app.netWorkChange(that);
   },
- 
+
   onShow: function () {
     this.setData({
       requestCheck: true,
@@ -83,7 +83,7 @@ Page({
           page_end: page_end,
           requestCheck: true
         });
-        app.log(that,"investment_list",investment_list);
+        app.log("investment_list", investment_list);
       }
       if (page_end == true) {
         app.errorHide(that, '没有更多了', 3000);
@@ -150,14 +150,13 @@ Page({
     FilterModel.labelDelete(e, this);
   },
   // 一级联动选择
-  linkFirstStair(e){
-    let that=this;
-    app.log(that,"industry",this.data.label_industry);
-    FilterModel.linkFirstStair(e,this);
+  linkFirstStair(e) {
+    app.log("industry", this.data.label_industry);
+    FilterModel.linkFirstStair(e, this);
   },
   // 二级联动选择
-  linkSecondStair(e){
-    FilterModel.linkSecondStair(e,this);
+  linkSecondStair(e) {
+    FilterModel.linkSecondStair(e, this);
   },
   // 联动选择全部
   linkCheckAll(e) {

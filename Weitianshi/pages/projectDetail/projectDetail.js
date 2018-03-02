@@ -45,9 +45,6 @@ Page({
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
     nonet: true,
     projectImg: app.globalData.picUrl.projectBac,
-    status: 0, // 是否认证过0:未认证1:待审核 2 审核通过 3审核未通过
-    authenModelBox: 0, // 控制联系项目方是否显示
-    group_id: 18 //买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
   },
   onLoad: function (options) {
     var that = this;
@@ -126,10 +123,8 @@ Page({
         success: function (res) {
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
-          let group_id = res.data.group.group_id;
           that.setData({
-            status: status,
-            group_id: group_id
+            status: status
           })
           // wx.showLoading({
           //   title: 'loading',
@@ -142,7 +137,9 @@ Page({
         status: 5
       })
     }
+
     wx.hideLoading()
+
   },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取
@@ -165,8 +162,8 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        app.log(that, "show_detail", show_detail);
-        app.log(that, "show_company", show_company);
+        app.log( "show_detail", show_detail);
+        app.log( "show_company", show_company);
         that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
@@ -191,7 +188,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         // console.log(user_id, id, is_share)
-        app.log(that, "bp", res)
+        app.log( "bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -688,7 +685,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investor2 = res.data.data;
-        app.log(that, "投资人", investor2)
+        app.log("投资人", investor2)
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -716,7 +713,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investment_list = res.data.data.investment_list;
-        app.log(that, "投资机构", investment_list)
+        app.log("投资机构", investment_list)
         let investment_total_num = res.data.data.investment_total_num;
         that.setData({
           investment_list: investment_list,
@@ -746,7 +743,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "investor2");
-    app.log(that, '投资人', this.data.page_end);
+    app.log('投资人', this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -768,7 +765,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMoreM(that, request, "investment_list");
-    app.log(that, '投资机构', this.data.page_end1);
+    app.log('投资机构', this.data.page_end1);
     if (this.data.page_end1 == true) {
       that.setData({
         jiandi1: true
@@ -999,16 +996,16 @@ Page({
                   title: 'loading',
                   mask: true,
                 })
-                app.log(that, "BP", BPath)
+                app.log("BP", BPath)
                 wx.downloadFile({
                   url: BPath,
                   success: function (res) {
                     var filePath = res.tempFilePath;
-                    app.log(that, "bp", filePath)
+                    app.log("bp", filePath)
                     wx.openDocument({
                       filePath: filePath,
                       success: function (res) {
-                        app.log(that, '打开文档成功')
+                        app.log('打开文档成功')
                         wx.hideLoading();
                         wx.request({
                           url: url_common + '/api/project/insertViewBpRecord',
@@ -1051,26 +1048,10 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     app.checkUserInfo(this, res => {
-      //如果信息完整就
-      // 身份通过
-      if (this.data.status === 2) {
-        // 如果身份是买方FA，投资人，就去联系项目方
-        if (this.data.group_id === 18 || this.data.group_id === 6){
-          //可以联系项目方
-          that.setData({
-            modalBox: 1
-          })
-        } else {
-          that.setData({
-            authenModelBox: 1
-          })
-        }
-        // 其他全部去那边
-      } else {
-        that.setData({
-          authenModelBox: 1
-        })
-      }
+      //如果信息完整就可以联系项目方
+      that.setData({
+        modalBox: 1
+      })
     })
   },
   //关闭模态框
@@ -1200,25 +1181,28 @@ Page({
       //如果信息完整就可以显示去认证
       if (status == 0) {
         app.href('/pages/my/identity/indentity/indentity')
-      } else {
-        wx.request({
-          url: url_common + '/api/user/getUserGroupByStatus',
-          data: {
-            user_id: user_id
-          },
-          method: 'POST',
+      } else if (status == 3) {
+        wx.showModal({
+          title: '友情提示',
+          content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
+          confirmColor: "#333333;",
+          confirmText: "重新认证",
+          showCancel: false,
           success: function (res) {
-            let group_id = res.data.group.group_id;
-            app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id + '&&recertification=' + 1)
+            wx.request({
+              url: url_common + '/api/user/getUserGroupByStatus',
+              data: {
+                user_id: user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                let group_id = res.data.group.group_id;
+                app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
+              }
+            })
           }
         })
       }
-    })
-  },
-  // 暂不认证
-  noAccreditation: function () {
-    this.setData({
-      authenModelBox: 0
     })
   },
   // 申请查看

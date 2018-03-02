@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
-	"appid": "wxdf2eba3b79b83110",
+	"appid": "wxca0abf6f55deb8d8",
 	"projectname": "%E7%BB%BF%E6%9F%A5%E5%A6%B9",
 	"condition": {
 		"search": {
@@ -122,12 +122,6 @@
 					"name": "多个红包",
 					"pathName": "pages/register/companyInfo/companyInfo",
 					"query": "unique_id=60952447941767761813912087"
-				},
-				{
-					"id": -1,
-					"name": "项目详情",
-					"pathName": "pages/projectDetail/projectDetail",
-					"query": "id=1ryQJLr3"
 				}
 			]
 		}

@@ -259,6 +259,3 @@
 </button>
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-
-<!--认证弹框  -->
-<template is="authenModel" data="{{status, group_id, authenModelBox}}"/>

@@ -120,7 +120,7 @@ Page({
   //私密性取值
   _privacyData() {
     let setPrivacy = wx.getStorageSync('setPrivacy');
-    app.log(that,setPrivacy);
+    app.log(setPrivacy);
     if (setPrivacy) {
       this.setData({
         open_status: setPrivacy.open_status,
@@ -350,7 +350,7 @@ Page({
         app.errorHide(that, successText, 1000);
         // 提交中过渡态处理
         setTimeout(x => {
-          app.href('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId);
+          app.redirectTo('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId);
         }, 1000);
       });
     }
