@@ -107,6 +107,6 @@
 </view>
 
 <!--筛选图标  -->
-<view class="search_img" hover-class='t-hoverColor' bindtap='tagFilter'>
-  <image src="/img/icon-shaixuan@2x.png"></image>
+<view class="search_img" bindtap='tagFilter' bindtouchstart='filterStart' bindtouchend='filterEnd'>
+  <image src="{{search_img}}"></image>
 </view>
