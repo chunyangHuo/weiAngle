@@ -46,7 +46,6 @@ Page({
       app.href("/redPackets/pages/publishHB/publishHB")
     })
   },
-
   // 微信授权绑定
   getPhoneNumber(e) {
     register.getPhoneNumber.call(this, e);
