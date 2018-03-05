@@ -16,7 +16,7 @@ Page({
     hidden: true,
     //筛选搜索
     SearchInit: FilterModel.data,
-    search_img:'/img/btn-shaixuan-n@2x.png',// 首页筛选图标
+    search_img: '/img/btn-shaixuan-n@2x.png',// 首页筛选图标
     //banner 
     bannerIndex: 0,
     modalBox: 0,
@@ -161,6 +161,10 @@ Page({
   },
   // 请求精选tab页面数据(辅助函数)
   selectedAndMarketProjectList() {
+    wx.showToast({
+      title: 'loading...',
+      icon: 'loading'
+    });
     let that = this;
     if (!that.data.slectProject) {
       wx.showLoading({
@@ -185,9 +189,12 @@ Page({
         });
       }
       that.setData({
-        slectProject: slectProject,
+        slectProject,
+        page_end: res.data.page_end
         // showLoading:false
       });
+    }).catch(res => {
+      wx.hideLoading()
     });
   },
   // 上拉加载
@@ -328,21 +335,21 @@ Page({
     app.href('/pages/my/projectShop/tagFilter/tagFilter');
   },
   // 筛选图标点击态
-  filterStart(){
+  filterStart() {
     this.setData({
-      search_img:'/img/btn-shaixuan-s@2x.png'
+      search_img: '/img/btn-shaixuan-s@2x.png'
     })
   },
   // 筛选图标点击态恢复
-  filterEnd(){
+  filterEnd() {
     this.setData({
-      search_img:'/img/btn-shaixuan-n@2x.png'
+      search_img: '/img/btn-shaixuan-n@2x.png'
     })
   },
   //总数展示
-  countShow(){
+  countShow() {
     let user_id = this.data.user_id || "0";
-    let  that = this;
+    let that = this;
     wx.request({
       url: url_common + '/api/home/homeCount',
       data: {
@@ -353,7 +360,7 @@ Page({
         console.log(res)
         let count = res.data.data;
         that.setData({
-          count : count
+          count: count
         })
       }
     });

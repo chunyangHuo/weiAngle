@@ -263,7 +263,7 @@ App({
           data: request.data,
           method: 'POST',
           success: function (res) {
-            let newPage = res.data.data;
+            let newPage = res.data.data; 
             let page_end = res.data.page_end;
             if (dataStr && typeof dataStr == "string") {
               newPage = res.data[dataStr];
