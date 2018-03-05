@@ -56,6 +56,8 @@ Page({
     app.netWorkChange(that);
   },
   onShow() {
+    let Pages = getCurrentPages();
+    let preRoute = Pages[Pages.length-2];
     if (!this.data.firseTime) {
       this.selectedAndMarketProjectList();
     }
@@ -364,5 +366,8 @@ Page({
         })
       }
     });
+  },
+  onUnload(){
+    console.log(666)
   }
 });
