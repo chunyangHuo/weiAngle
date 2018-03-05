@@ -838,7 +838,7 @@ textarea {
 .t-applyMyProject .t-careerCompany {
   margin-left: 128rpx;
   margin-bottom: 56rpx;
-  max-width: 364rpx;
+  max-width:552rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1236,7 +1236,7 @@ textarea {
   color: #999;
   line-height: 20rpx;
   text-align: right;
-  margin: 10rpx 0 20rpx 0;
+  margin: 10rpx 32rpx 20rpx 0;
 }
 
 /*绑定页面  */

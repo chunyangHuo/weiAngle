@@ -953,6 +953,7 @@ page {
   color: #666;
   line-height: 26rpx;
   text-align: left;
+  margin-bottom: 0;
 }
 
 .projectDetailLine {

@@ -229,10 +229,10 @@
   text-align: center;
   padding: 44rpx 0 40rpx 0;
   height: 140rpx;
+  position: relative;
 }
 
 .jumpImage {
-  background: rgba(58, 158, 244, 0.34);
   width: 90rpx;
   height: 88rpx;
   border-radius: 100%;
@@ -268,6 +268,7 @@
   position: relative;
   background: #fff;
 }
+
 .insideBox:last-child {
   border-bottom: none;
 }
@@ -475,6 +476,7 @@
 }
 
 /*筛选图标  */
+
 .search_img {
   width: 104rpx;
   height: 104rpx;
@@ -489,6 +491,14 @@
   height: 104rpx;
 }
 
-.t-hoverColor{
+.t-hoverColor {
+}
 
+.countShowNum {
+  position: absolute;
+  top: 40rpx;
+  left: 116rpx;
+  font-size:20rpx;
+  line-height: 28rpx;
+  color: #666;
 }
