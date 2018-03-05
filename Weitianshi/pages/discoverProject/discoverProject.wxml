@@ -21,9 +21,9 @@
       </swiper>
 
       <view class='jumpBox flex'>
-        <template is="jumpBlock" data="{{text:'投资机构',tapName:'jumpOrg',src:'/img/icon-touzijigou@2x.png',countShow:count.fa}}"></template>
+        <template is="jumpBlock" data="{{text:'投资机构',tapName:'jumpOrg',src:'/img/icon-touzijigou@2x.png',countShow:count.investment}}"></template>
         <template is="jumpBlock" data="{{text:'投资人',tapName:'jumpInvestor',src:'/img/icon-touziren@2x.png',countShow:count.investor}}"></template>
-        <template is="jumpBlock" data="{{text:'融资顾问',tapName:'jumpFinancingAdvisor',src:'/img/icon-FA@2x.png',countShow:count.investment}}"></template>
+        <template is="jumpBlock" data="{{text:'融资顾问',tapName:'jumpFinancingAdvisor',src:'/img/icon-FA@2x.png',countShow:count.fa}}"></template>
         <template is="jumpBlock" data="{{text:'潜在投资方',tapName:'potentialInvestor',src:'/img/icon-qianzai@2x.png',countShow:count.match}}"></template>
       </view>
 
