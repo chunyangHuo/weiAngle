@@ -64,8 +64,8 @@
             </view>
           </view>
         </block>
-        <view class="highBox"></view>
         <template is="hasNothing" data="{{emptyNumber:pushToList}}"></template>
+        <template is="theBottom"  wx:if="{{atBottom == true}}"></template>
       </scroll-view>
     </swiper-item>
     <!--我推送的项目 -->
@@ -73,6 +73,7 @@
       <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply">
         <template is="pushProjectTo" data="{{contentList:pushProjectList,record_id:0,type:1}}"></template>
         <template is="hasNothing" data="{{emptyNumber:pushProjectList}}"></template>
+        <template is="theBottom" wx:if="{{jiandi == true}}"></template>
       </scroll-view>
     </swiper-item>
   </swiper>

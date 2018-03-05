@@ -13,7 +13,9 @@ Page({
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
     modalBox: 0,
     buttonOneText: "确定",
-    nonet: true
+    nonet: true,
+    jiandi : false,
+    atBottom : false
   },
   onLoad: function (options) {
     let type = options.type;
@@ -290,9 +292,10 @@ Page({
             }
           });
         } else {
-          app.errorHide(that, "没有更多了", that, 3000);
+          // app.errorHide(that, "没有更多了", that, 3000);
           that.setData({
-            requestCheckBoolean: true
+            requestCheckBoolean: true,
+            jiandi : true
           });
         }
       }
