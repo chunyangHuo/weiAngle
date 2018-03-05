@@ -764,6 +764,7 @@ function page_certain(that) {
   let currentPage = pages[pages.length - 1];
   let prePage = pages[pages.length - 2];
   let searchData = prePage.data.searchData || prePage.data.SearchInit.searchData;
+  let SearchInit = prePage.data.SearchInit; // 若SearchInit为undefine则为项目店铺,若有值则走模块筛选
   let filterList = that.data.filterList;
   filterList.forEach((x, index) => {
     let arry = [];
@@ -776,10 +777,18 @@ function page_certain(that) {
   })
   app.log(searchData, filterList)
   app.log("tagFilterSearchData", searchData)
-  prePage.setData({
-    searchData: searchData,
-    firstTime: false
-  })
+  if(SearchInit){
+    SearchInit.searchData = searchData;
+    prePage.setData({
+      SearchInit,
+      firstTime: false
+    })
+  }else{
+    prePage.setData({
+      searchData,
+      firstTime: false
+    })
+  }
   // 存入缓存
   wx.setStorageSync('projectShopFilterCache', searchData)
   wx.navigateBack({
