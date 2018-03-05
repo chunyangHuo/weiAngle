@@ -45,6 +45,9 @@ Page({
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
     nonet: true,
     projectImg: app.globalData.picUrl.projectBac,
+    status: 0, // 是否认证过0:未认证1:待审核 2 审核通过 3审核未通过
+    authenModelBox: 0, // 控制联系项目方是否显示
+    group_id: 18 //买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
   },
   onLoad: function (options) {
     var that = this;
@@ -123,8 +126,10 @@ Page({
         success: function (res) {
           // 0:未认证1:待审核 2 审核通过 3审核未通过
           let status = res.data.status;
+          let group_id = res.data.group.group_id;
           that.setData({
-            status: status
+            status: status,
+            group_id: group_id
           })
           // wx.showLoading({
           //   title: 'loading',
@@ -162,8 +167,8 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        app.log( "show_detail", show_detail);
-        app.log( "show_company", show_company);
+        app.log("show_detail", show_detail);
+        app.log("show_company", show_company);
         that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
@@ -188,7 +193,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         // console.log(user_id, id, is_share)
-        app.log( "bp", res)
+        app.log("bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -1048,10 +1053,26 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     app.checkUserInfo(this, res => {
-      //如果信息完整就可以联系项目方
-      that.setData({
-        modalBox: 1
-      })
+      //如果信息完整就
+      // 身份通过
+      if (this.data.status === 2) {
+        // 如果身份是买方FA，投资人，就去联系项目方
+        if (this.data.group_id === 18 || this.data.group_id === 6) {
+          //可以联系项目方
+          that.setData({
+            modalBox: 1
+          })
+        } else {
+          that.setData({
+            authenModelBox: 1
+          })
+        }
+        // 其他全部去那边
+      } else {
+        that.setData({
+          authenModelBox: 1
+        })
+      }
     })
   },
   //关闭模态框
@@ -1181,28 +1202,25 @@ Page({
       //如果信息完整就可以显示去认证
       if (status == 0) {
         app.href('/pages/my/identity/indentity/indentity')
-      } else if (status == 3) {
-        wx.showModal({
-          title: '友情提示',
-          content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-          confirmColor: "#333333;",
-          confirmText: "重新认证",
-          showCancel: false,
+      } else {
+        wx.request({
+          url: url_common + '/api/user/getUserGroupByStatus',
+          data: {
+            user_id: user_id
+          },
+          method: 'POST',
           success: function (res) {
-            wx.request({
-              url: url_common + '/api/user/getUserGroupByStatus',
-              data: {
-                user_id: user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                let group_id = res.data.group.group_id;
-                app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id)
-              }
-            })
+            let group_id = res.data.group.group_id;
+            app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id + '&&recertification=' + 1)
           }
         })
       }
+    })
+  },
+  // 暂不认证
+  noAccreditation: function () {
+    this.setData({
+      authenModelBox: 0
     })
   },
   // 申请查看
