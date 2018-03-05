@@ -27,7 +27,7 @@ Page({
   },
   continueEdit() {
     let projectId = this.data.projectId;
-    app.href('/pages/myProject/publishedProject/publishedProject?pro_id=' + projectId + '&&fromPublish=' + 3);
+    app.href('/pages/myProject/maintainProject/maintainProject?pro_id=' + projectId + '&&fromPublish=' + 3);
   },
   // 重新加载
   refresh() {

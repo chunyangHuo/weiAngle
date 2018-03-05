@@ -119,11 +119,11 @@ Page({
     let user_company_career = this.data.user_company_career;
     let pages = getCurrentPages();
     // let currPage = pages[pages.length - 1];
-    let prevPage = pages[pages.length - 2];
-    let user_info = prevPage.data.user_info;
+    let prePage = pages[pages.length - 2];
+    let user_info = prePage.data.user_info;
     if (type == 2) {
       if (team_name != '') {
-        prevPage.setData({
+        prePage.setData({
           team_name: team_name
         });
         wx.navigateBack({
@@ -134,7 +134,7 @@ Page({
       }
     } else if (type == 3) {
       if (team_founder != '') {
-        prevPage.setData({
+        prePage.setData({
           team_founder: team_founder
         });
         wx.navigateBack({
@@ -144,7 +144,7 @@ Page({
     }
     else if (type == 3) {
       if (team_founder != '') {
-        prevPage.setData({
+        prePage.setData({
           team_founder: team_founder
         });
         wx.navigateBack({
@@ -154,7 +154,7 @@ Page({
     } else if (type == 4) {
       if (user_real_name != '') {
         user_info.user_real_name = user_real_name;
-        prevPage.setData({
+        prePage.setData({
           user_info: user_info
         });
         wx.navigateBack({
@@ -164,7 +164,7 @@ Page({
     } else if (type == 5) {
       if (user_company_name != '') {
         user_info.user_company_name = user_company_name;
-        prevPage.setData({
+        prePage.setData({
           user_info: user_info
         });
         wx.navigateBack({
@@ -173,7 +173,7 @@ Page({
       }
     } else if (type == 6) {
       user_info.user_brand = user_brand;
-      prevPage.setData({
+      prePage.setData({
         user_info: user_info
       });
       wx.navigateBack({
@@ -183,7 +183,7 @@ Page({
     else if (type == 7) {
       if (user_company_career != '') {
         user_info.user_company_career = user_company_career;
-        prevPage.setData({
+        prePage.setData({
           user_info: user_info
         });
         wx.navigateBack({

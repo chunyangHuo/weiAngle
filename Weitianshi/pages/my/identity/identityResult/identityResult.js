@@ -79,8 +79,7 @@ Page({
           var num = pages.length - 1;
           wx.navigateBack({
             delta: 3
-          });
-          
+          });    
         } else {
         }
       }

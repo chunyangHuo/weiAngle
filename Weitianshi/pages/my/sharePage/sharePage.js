@@ -246,16 +246,16 @@ Page({
     let followed_user_id = this.data.followed_user_id;
     app.checkUserInfo(this, res => { })
   },
-  // 跳转到推送项目页面
+  // 跳转到推送项目页面 
   pushProject: function () {
     // 推送给数据显示的人 push_id = followed_user_id
-    //查看的人 view_id = user_id
-
+    // 查看的人 view_id = user_id
+    let that = this;
     let share_id = this.data.share_id;
     let view_id = this.data.view_id;
     let push_id = this.data.followed_user_id;
     app.checkUserInfo(this, res => {
-      app.href('/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id);
+      app.operationModel('projectPush', that, push_id);
     })
   },
   // 分享引导跳转

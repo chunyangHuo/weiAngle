@@ -159,9 +159,26 @@ function projectPush(that, pushTo_user_id) {
   let url_common = app.globalData.url_common;
   let user_id = wx.getStorageSync('user_id');
   app.checkUserInfo(that, x => {
-    getPushProjectTimes(that, res => {
-      app.href('/pages/myProject/pushTo/pushTo?user_id=' + user_id + '&&pushId=' + pushTo_user_id)
-    })
+    // 获取我的项目列表
+    wx.request({
+      url: url_common + '/api/project/getMyProjectListOrderByMatch',
+      data: {
+        user_id: user_id,
+        pushed_user_id: pushTo_user_id,
+        page: 1
+      },
+      method: 'POST',
+      success: function (res) {
+        let dataList = res.data.data;
+        if (dataList.length == 0){
+          app.href('/pages/myProject/publishProject/publishProject?enterance=pushProject&&pushTo_user_id='+ pushTo_user_id);
+        }else{
+          getPushProjectTimes(that, res => {
+            app.href('/pages/myProject/pushTo/pushTo?pushId=' + pushTo_user_id)
+          })
+        }
+      }
+    });
   })
 }
 
@@ -272,7 +289,6 @@ function projectApplyDirect(pro_id, callBack) {
     }
   })
 }
-
 
 
 export {

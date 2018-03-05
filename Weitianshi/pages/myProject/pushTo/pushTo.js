@@ -11,11 +11,11 @@ Page({
   },
   onLoad: function (options) {
     let pushed_user_id = options.pushId;
-    let that = this;
-    that.setData({
-      pushed_user_id: pushed_user_id
+    let projectId = options.projectId;
+    this.setData({
+      pushed_user_id, projectId
     });
-    app.netWorkChange(that);
+    app.netWorkChange(this);
   },
   onShow: function () {
     var that = this;
@@ -33,6 +33,7 @@ Page({
       title: 'loading',
       mask: true,
     });
+    // 获取我的项目列表
     wx.request({
       url: url_common + '/api/project/getMyProjectListOrderByMatch',
       data: {
@@ -45,25 +46,31 @@ Page({
         wx.hideLoading();
         let dataList = res.data.data;
         let pushTimes = res.data.push_times;
-        var page_end = res.data.page_end;
+        let checkObject = that.data.checkObject || [];
+        let page_end = res.data.page_end;
         if (dataList.length != 0) {
           dataList.forEach((x, index) => {
-            dataList[index] = x;
+            if (x.project_id == that.data.projectId) {
+              x.check = true;
+              checkObject.push(x)
+            }
           });
         }
+        app.log(dataList)
         // is_exclusive是否独家 1独家 2非独家 0其他
         that.setData({
-          dataList: dataList,
-          pushTimes: pushTimes,
-          pushed_user_id: pushed_user_id
+          dataList,
+          checkObject,
+          pushTimes,
+          pushed_user_id,
         });
       }
     });
   },
-
   // 创建项目
-  createProject: function () {
-    app.href('/pages/myProject/publishedProject/publishedProject');
+  createProject() {
+    let pushed_user_id = this.data.pushed_user_id;
+    app.href('/pages/myProject/publishProject/publishProject?enterance=pushProject&&pushTo_user_id=' + pushed_user_id);
   },
   //点击选中标签
   checkboxChange(e) {
@@ -103,11 +110,11 @@ Page({
       }
     });
     that.setData({
-      checkObject: checkObject
+      checkObject
     });
   },
   //提交
-  pushTo: function () {
+  pushTo() {
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = this.data.pushed_user_id;
     let time = this.data.pushTimes;
@@ -120,13 +127,13 @@ Page({
         projectList.push(x.project_id);
       });
     }
-    if(remainTimes===0){
+    if (remainTimes === 0) {
       app.errorHide(that, "今日提交次数已用完", 1000);
-    } else if (!checkObject){
+    } else if (!checkObject) {
       app.errorHide(that, "没有选择任何项目", 1000);
-    }else{
+    } else {
       that.setData({
-        clicked:true
+        clicked: true
       });
       wx.request({
         url: url_common + '/api/project/pushProjectToUser',
@@ -139,11 +146,6 @@ Page({
         success: function (res) {
           let statusCode = res.data.status_code;
           if (statusCode == 2000000) {
-            // wx.showToast({
-            //     title: '成功',
-            //     icon: 'success',
-            //     duration: 2000
-            // })
             setTimeout(function () {
               app.href('/pages/myProject/pushToSuccess/pushToSuccess');
             }, 1000);

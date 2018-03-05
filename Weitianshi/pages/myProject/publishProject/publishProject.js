@@ -59,6 +59,13 @@ Page({
     this._pickerDeal(stage, stage_arry, 'stage_name', 'stage', 'stage_arry');
     this._pickerDeal(scale, scale_arry, 'scale_money', 'scale', 'scale_arry');
     app.netWorkChange(that);
+    // 查看入口是否为推送项目
+    let enterance = options.enterance;
+    let pushTo_user_id = options.pushTo_user_id;
+    console.log(options)
+    this.setData({
+      enterance, pushTo_user_id
+    })
   },
   //页面显示
   onShow: function () {
@@ -149,7 +156,6 @@ Page({
   industryChoice() {
     app.href('/pages/form/industry/industry?current=0');
   },
-
   //是否独家的效果实现
   tipsOn: function (e) {
     this.setData({
@@ -301,6 +307,7 @@ Page({
     let that = this;
     let theData = this.data;
     let privacy = this.privacyDeal();
+    let pushTo_user_id = this.data.pushTo_user_id;
     // --------------------表单的各项值-------------------------------------
     // let describe = that.data.describe;
     let industry = that.data.industryCard.id;
@@ -343,14 +350,19 @@ Page({
       };
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         let projectId = res.data.project_id;
+        let enterance = that.data.enterance;
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
         wx.removeStorageSync('setPrivacy');
         app.errorHide(that, successText, 1000);
         // 提交中过渡态处理
-        setTimeout(x => {
-          app.redirectTo('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId);
+        setTimeout(x => { 
+          if(enterance == 'pushProject'){ 
+            app.redirectTo('/pages/myProject/pushTo/pushTo?pushId=' + pushTo_user_id + '&&projectId=' + projectId);
+          }else{
+            app.redirectTo('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId);
+          }
         }, 1000);
       });
     }
