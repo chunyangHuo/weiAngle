@@ -21,10 +21,10 @@
       </swiper>
 
       <view class='jumpBox flex'>
-        <template is="jumpBlock" data="{{text:'投资机构',tapName:'jumpOrg',src:'/img/icon-touzijigou@2x.png'}}"></template>
-        <template is="jumpBlock" data="{{text:'投资人',tapName:'jumpInvestor',src:'/img/icon-touziren@2x.png'}}"></template>
-        <template is="jumpBlock" data="{{text:'融资顾问',tapName:'jumpFinancingAdvisor',src:'/img/icon-FA@2x.png'}}"></template>
-        <template is="jumpBlock" data="{{text:'潜在投资方',tapName:'potentialInvestor',src:'/img/icon-qianzai@2x.png'}}"></template>
+        <template is="jumpBlock" data="{{text:'投资机构',tapName:'jumpOrg',src:'/img/icon-touzijigou@2x.png',countShow:count.fa}}"></template>
+        <template is="jumpBlock" data="{{text:'投资人',tapName:'jumpInvestor',src:'/img/icon-touziren@2x.png',countShow:count.investor}}"></template>
+        <template is="jumpBlock" data="{{text:'融资顾问',tapName:'jumpFinancingAdvisor',src:'/img/icon-FA@2x.png',countShow:count.investment}}"></template>
+        <template is="jumpBlock" data="{{text:'潜在投资方',tapName:'potentialInvestor',src:'/img/icon-qianzai@2x.png',countShow:count.match}}"></template>
       </view>
 
       <view class="selectProject flex">
@@ -32,7 +32,6 @@
         微天使FA精选项目
         <label style="width:26rpx;height:2rpx;background:#333;margin-left:8rpx;"></label>
       </view>
-
       <block wx:for="{{slectProject}}" wx:key="{{index}}">
         <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor' catchtap="projectDetail">
           <view class="describle" wx:if="{{item.pro_intro != ''}}">
@@ -90,10 +89,11 @@
       <view class="t-btnToAccreditation" hover-class='t-hoverColor' bindtap="toCreateProject">马上创建</view>
     </view>
   </view>
-
   <template name="jumpBlock">
     <view class="jumpTo" bindtap='{{tapName}}' hover-class='t-hoverColor'>
       <image class='jumpImage' src='{{src}}'></image>
+      <view class="countShowNum" wx:if="{{countShow <= 999}}">{{countShow}}</view>
+      <view class="countShowNum" wx:if="{{countShow > 999}}">999+</view>
       <view class='jumpToContent'>{{text}}</view>
     </view>
   </template>

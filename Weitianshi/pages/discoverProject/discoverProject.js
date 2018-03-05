@@ -40,6 +40,7 @@ Page({
     this.noSearch();
     // 初始化数据
     app.initPage(that);
+    this.countShow();
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -208,8 +209,6 @@ Page({
   },
   loadMore2() {
     let that = this;
-    // let user_id = this.data.user_id;
-    // let currentPage = this.data.currentPage;
     let request = {
       url: url_common + '/api/project/getMarketProjectList',
       data: {
@@ -339,5 +338,24 @@ Page({
     this.setData({
       search_img:'/img/btn-shaixuan-n@2x.png'
     })
+  },
+  //总数展示
+  countShow(){
+    let user_id = this.data.user_id || "0";
+    let  that = this;
+    wx.request({
+      url: url_common + '/api/home/homeCount',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        let count = res.data.data;
+        that.setData({
+          count : count
+        })
+      }
+    });
   }
 });
