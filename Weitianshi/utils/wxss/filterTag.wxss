@@ -50,7 +50,7 @@
 
 .buttonArry {
   background: white;
-  padding: 32rpx 32rpx;
+  padding: 23rpx 32rpx;
   position: fixed;
   left: 0;
   bottom: 0;
