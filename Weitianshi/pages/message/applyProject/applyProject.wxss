@@ -13,7 +13,7 @@ page {
   display: inline-block;
   width: 50%;
   font-size: 26rpx;
-  color: #999;
+  color: #333;
   line-height: 62rpx;
   text-align: center;
   border: none;
@@ -104,11 +104,11 @@ page {
 }
 
 #time {
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #999;
-  line-height: 20rpx;
+  line-height: 32rpx;
   text-align: right;
-  margin: 10rpx 32rpx 20rpx 0;
+  margin: 12rpx 32rpx 32rpx 0;
 }
 
 /*==========我申请查看的项目===============  */

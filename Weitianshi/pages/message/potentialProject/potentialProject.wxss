@@ -11,7 +11,7 @@
   display: inline-block;
   width: 33.3%;
   font-size: 26rpx;
-  color: #999;
+  color: #333;
   line-height: 62rpx;
   text-align: center;
   border: none;
