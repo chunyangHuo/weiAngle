@@ -137,7 +137,7 @@
 
 .btnHaveInterest {
   margin: 20rpx 0 0 0;
-  padding: 0 8rpx;
+  padding: 0 20rpx;
   color: #fff;
   background: #3378e0;
 }
@@ -152,7 +152,7 @@
 
 .addProjectTo {
   margin: 20rpx 16rpx 0 0;
-  padding: 0 8rpx;
+  padding: 0 20rpx;
   color: #3378e0;
   background: #fff;
 }

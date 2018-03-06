@@ -8,7 +8,7 @@
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我申请查看的项目({{count}})</view>
 
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1120rpx" bindchange="bindChange">
     <!--申请查看我的项目  -->
     <swiper-item>
       <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply">
