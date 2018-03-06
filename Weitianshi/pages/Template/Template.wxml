@@ -1554,7 +1554,7 @@
         </view>
         <view class='bottomBtn'>
           <button class='authBtn noTempBtn' bindtap="noAccreditation">暂不认证</button>
-          <button class='authBtn tempBtn' bindtap="toAccreditation">立即认证</button>
+          <button class='authBtn tempBtn' bindtap="toAccreditation" hover-class='t-project-apply'>立即认证</button>
         </view>
       </view>
 
