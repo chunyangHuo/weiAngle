@@ -33,7 +33,8 @@ Page({
     nonet: true,
     loadingGif: app.globalData.picUrl.loadingGif,
     showLoading: false,
-    firstTime: true
+    firstTime: true,
+    scrollTop: 0
   },
   onLoad(options) {
     let that = this;
@@ -57,8 +58,12 @@ Page({
   },
   onShow() {
     let Pages = getCurrentPages();
-    let preRoute = Pages[Pages.length-2];
-    if (!this.data.firseTime) {
+    let preRoute = Pages[Pages.length - 2];
+    if (!this.data.firstTime) {
+      this.setData({
+        currentPage: 1,
+        scrollTop: 0,
+      })
       this.selectedAndMarketProjectList();
     }
   },
@@ -367,7 +372,7 @@ Page({
       }
     });
   },
-  onUnload(){
+  onUnload() {
     console.log(666)
   }
 });
