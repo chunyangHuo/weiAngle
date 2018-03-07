@@ -145,5 +145,9 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
-  }
+  },
+  personDetail(e){
+    var id = e.currentTarget.dataset.id;
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
+  },
 });

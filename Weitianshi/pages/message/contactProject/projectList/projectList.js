@@ -168,5 +168,16 @@ Page({
       wx.hideLoading();
       this.onShow();
     }, 1500);
+  },
+  // 一键拨号
+  telephone: function (e) {
+    let telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    });
+  },
+  userDetail(e){
+    var id = e.currentTarget.dataset.id;
+    app.href('/pages/userDetail/networkDetail/networkDetail?id=' + id);
   }
 });

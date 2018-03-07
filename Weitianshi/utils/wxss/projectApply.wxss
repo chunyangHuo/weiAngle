@@ -150,8 +150,6 @@
 .onlyMy {
   background: rgba(51, 120, 224, 0.1);
   border-radius: 4rpx;
-  width: 56rpx;
-  height: 36rpx;
   position: absolute;
   top: 42rpx;
   right: 32rpx;
