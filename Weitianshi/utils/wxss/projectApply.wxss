@@ -139,8 +139,6 @@
 .allNet {
   background: rgba(246, 166, 35, 0.1);
   border-radius: 4rpx;
-  width: 56rpx;
-  height: 36rpx;
   position: absolute;
   top: 42rpx;
   right: 32rpx;

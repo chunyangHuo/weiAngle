@@ -227,10 +227,10 @@ page {
 }
 
 #introduce .introduce {
-  background: #fafafa;
+  background: #F9FAFC;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 30rpx;
-  color:;
+  color:#333;
   line-height: 88rpx;
   text-align: left;
   height: 88rpx;
