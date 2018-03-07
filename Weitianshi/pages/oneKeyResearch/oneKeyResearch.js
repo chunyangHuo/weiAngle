@@ -385,7 +385,6 @@ Page({
           if (res.data.data.project_product) {
             projectInfoList = res.data.data.project_product;
           }
-
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
@@ -550,11 +549,12 @@ Page({
               });
             }
           });
-          // 相似公司
+          // 相似公司 
           wx.request({
             url: url_common + '/api/dataTeam/getCrawlerCompeting',
             data: {
-              com_id: com_id
+              com_id: com_id,
+              project_id: that.data.id,
             },
             method: 'POST',
             success: function (res) {

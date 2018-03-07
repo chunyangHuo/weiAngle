@@ -641,10 +641,12 @@ Page({
             }
           })
           // 相似公司
+          console.log('id',that.data.id);
           wx.request({
             url: url_common + '/api/dataTeam/getCrawlerCompeting',
             data: {
-              com_id: com_id
+              com_id: com_id,
+              project_id:that.data.id,
             },
             method: 'POST',
             success: function (res) {

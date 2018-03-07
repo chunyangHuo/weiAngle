@@ -57,7 +57,7 @@ Page({
     nonet: true,
     jiandi: false
   },
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       index: options.index,
       id: options.id,
@@ -68,7 +68,7 @@ Page({
     let that = this;
     app.netWorkChange(that);
   },
-  onShow: function () {
+  onShow() {
     let share_id = this.data.share_id;
     console.log('share_id', share_id);
     //返回上一页时启动onShow;
@@ -573,7 +573,8 @@ Page({
           wx.request({
             url: url_common + '/api/dataTeam/getCrawlerCompeting',
             data: {
-              com_id: com_id
+              com_id: com_id,
+              project_id: that.data.id,
             },
             method: 'POST',
             success: function (res) {
@@ -656,7 +657,7 @@ Page({
     });
   },
   // 买家图谱上拉加载
-  loadMore: function () {
+  loadMore() {
     let that = this;
     let user_id = this.data.user_id;
     let id = this.data.id;
@@ -703,23 +704,23 @@ Page({
     }
   },
   //下拉刷新
-  onPullDownRefresh: function () {
+  onPullDownRefresh() {
     wx.stopPullDownRefresh();
   },
 
   // 跳转详情页
-  institutionalDetails1: function (e) {
+  institutionalDetails1(e) {
     let thisData = e.currentTarget.dataset;
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + thisData.id);
   },
   /*滑动切换tab*/
-  bindChange: function (e) {
+  bindChange(e) {
     let that = this;
     let current = e.detail.current;
     that.setData({ currentTab: e.detail.current });
   },
   /*点击tab切换*/
-  swichNav: function (e) {
+  swichNav(e) {
     let that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
@@ -730,7 +731,7 @@ Page({
     }
   },
   // 用户详情
-  userDetail: function (e) {
+  userDetail(e) {
     var id = e.currentTarget.dataset.id;
     let pages = getCurrentPages();
     pages.splice(0, 1);
