@@ -5,7 +5,7 @@
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">提交给我的项目({{count1}})</view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我提交的项目({{count}})</view>
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:1120rpx" bindchange="bindChange">
     <!--推送给我的项目  -->
     <swiper-item>
       <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">

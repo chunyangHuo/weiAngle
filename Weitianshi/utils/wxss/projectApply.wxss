@@ -139,11 +139,9 @@
 .allNet {
   background: rgba(246, 166, 35, 0.1);
   border-radius: 4rpx;
-  width: 56rpx;
-  height: 36rpx;
   position: absolute;
-  top: 20rpx;
-  right: 20rpx;
+  top: 42rpx;
+  right: 32rpx;
   font-size: 20rpx;
   color: #f6a623;
   padding: 5rpx 8rpx;
@@ -155,8 +153,8 @@
   width: 56rpx;
   height: 36rpx;
   position: absolute;
-  top: 20rpx;
-  right: 20rpx;
+  top: 42rpx;
+  right: 32rpx;
   font-size: 20rpx;
   color: #3378e0;
   padding: 5rpx 8rpx;
