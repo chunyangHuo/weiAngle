@@ -131,10 +131,6 @@ Page({
             status: status,
             group_id: group_id
           })
-          // wx.showLoading({
-          //   title: 'loading',
-          //   mask: true,
-          // })
         }
       })
     } else {
@@ -142,9 +138,7 @@ Page({
         status: 5
       })
     }
-
     wx.hideLoading()
-
   },
 
   //是否能查看项目详情和买家图谱,一键尽调状态获取

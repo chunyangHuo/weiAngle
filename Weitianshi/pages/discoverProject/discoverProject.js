@@ -353,7 +353,7 @@ Page({
       search_img: '/img/btn-shaixuan-n@2x.png'
     })
   },
-  //总数展示
+  // 总数展示
   countShow() {
     let user_id = this.data.user_id || "0";
     let that = this;
@@ -372,7 +372,4 @@ Page({
       }
     });
   },
-  onUnload() {
-    console.log(666)
-  }
 });

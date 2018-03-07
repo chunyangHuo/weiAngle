@@ -15,13 +15,13 @@ App({
       this.globalData.path = options.path;
     }
     if(options.scene == 1044){
-      console.log(options)
-     this.clickLog(options)
+      console.log(options);
+      this.clickLog(options);
     }
   },
   // 在群里点击进入小程序时向后台传群信息和红包信息
   clickLog(options) {
-    console.log(options.query.unique_id)
+    console.log(options.query.unique_id);
     let _this = this;
     let url_common = this.globalData.url_common;
     // 向后台传群信息和红包信息
@@ -33,7 +33,7 @@ App({
           let shareTicket = _this.globalData.shareTicket;
           let unique_id = options.query.unique_id || '';
           //获取群ID
-          if (!shareTicket) return
+          if (!shareTicket) return;
           wx.getShareInfo({
             shareTicket: shareTicket,
             success(res) {
@@ -177,7 +177,7 @@ App({
     if (user_id == 0) {
       that.setData({
         registerModalShow: true
-      })
+      });
       return;
     }
     wx.request({
@@ -194,9 +194,8 @@ App({
               callBack(res);
             }
           } else if (complete == 0) {
-            console.log(111111)
             _this.getCurrentRouter();
-            _this.href('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email)
+            _this.href('/pages/register/companyInfo/companyInfo?user_career=' + res.data.user_career + "&&user_company=" + res.data.user_company + "&&uer_email=" + res.data.uer_email);
           }
         }
       }
@@ -584,38 +583,38 @@ App({
       }
     }
     switch (parameter.length) {
-      case 0:
-        OperationModel[func]();
-        break;
-      case 1:
-        OperationModel[func](parameter[0]);
-        break;
-      default:
-        OperationModel[func](...parameter);
-        break;
+    case 0:
+      OperationModel[func]();
+      break;
+    case 1:
+      OperationModel[func](parameter[0]);
+      break;
+    default:
+      OperationModel[func](...parameter);
+      break;
     }
   },
 
   //分享引导模块跳转
   shareJump(num) {
     switch (num) {
-      case '0':
-        wx.switchTab({
-          url: '/pages/discoverProject/discoverProject',
-        });
-        break;
-      case '1':
-        wx.switchTab({
-          url: '/pages/discoverProject/discoverProject',
-        });
-        break;
-      case '2':
-        wx.switchTab({
-          url: '/pages/discoverProject/discoverProject',
-        });
-        break;
-      default:
-        break;
+    case '0':
+      wx.switchTab({
+        url: '/pages/discoverProject/discoverProject',
+      });
+      break;
+    case '1':
+      wx.switchTab({
+        url: '/pages/discoverProject/discoverProject',
+      });
+      break;
+    case '2':
+      wx.switchTab({
+        url: '/pages/discoverProject/discoverProject',
+      });
+      break;
+    default:
+      break;
     }
   },
 
@@ -724,7 +723,7 @@ App({
   redirectTo(url) {
     wx.redirectTo({
       url: url,
-    })
+    });
   },
 
   //多选
@@ -782,9 +781,9 @@ App({
 
   // console.log 显示
   log() {
-    if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
-      console.log(...arguments);
-    }
+    // if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
+    //   console.log(...arguments);
+    // }
   },
 
   // 传formID到后台
@@ -794,13 +793,13 @@ App({
       data = {
         open_session: this.globalData.open_session,
         form_id: e.detail.formId
-      }
+      };
     } else {
       data = {
         open_session: this.globalData.open_session,
         form_id: e,
         scene: "payment"
-      }
+      };
     }
 
     this.httpPost({
@@ -808,9 +807,9 @@ App({
       data: data
     }, this).then(res => {
       if (res.data.status_code != 2000000) {
-        app.log(res.data)
+        app.log(res.data);
       }
-    })
+    });
   },
 
   // 获取当前微信群信息
@@ -818,10 +817,10 @@ App({
     wx.getShareInfo({
       shareTicket: options.shareTicket,
       complete(res) {
-        console.log(res)
+        console.log(res);
         cb();
       }
-    })
+    });
   },
 
   // 获取当前页面路径
@@ -829,7 +828,7 @@ App({
     let pages = getCurrentPages();
     let currentPage = pages[pages.length - 1];
     let prePage = pages[pages.length - 2];
-    console.log('options', currentPage.options)
+    console.log('options', currentPage.options);
     // 把options里的参数重新拼回url后面
     let options = currentPage.options;
     let str = '';
@@ -839,16 +838,16 @@ App({
         if (index == 0) {
           str = '?';
           if (key[0] == '') {
-            str += 'hello=hello'
+            str += 'hello=hello';
           } else {
-            let name = key[0]
-            str += key[0] + '=' + options[name]
+            let name = key[0];
+            str += key[0] + '=' + options[name];
           }
         } else {
-          let name = key[index]
-          str += '&&' + key[index] + '=' + options[name]
+          let name = key[index];
+          str += '&&' + key[index] + '=' + options[name];
         }
-      }) 
+      }); 
     }
     console.log('/' + currentPage.route + str);
     this.globalData.registerInitPage = '/' + currentPage.route + str;
