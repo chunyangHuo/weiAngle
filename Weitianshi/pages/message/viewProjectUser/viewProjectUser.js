@@ -211,7 +211,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAdd',this, added_user_id, function (res) {
-      app.log('申请添加人脉完成', res);
+      console.log('申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
   },
@@ -220,7 +220,7 @@ Page({
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
     app.operationModel('contactsAddDirect',this, added_user_id, function (res) {
-      app.log('直接添加人脉完成', res);
+      console.log('直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
   },
@@ -232,7 +232,7 @@ Page({
     if (res.data.status_code == 2000000) {
       contacts.forEach((x) => {
         if (x.user_id == added_user_id) {
-          x.follow_status = 1;
+          x.follow_status = num;
         }
       });
       that.setData({

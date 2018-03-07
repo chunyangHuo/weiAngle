@@ -781,6 +781,7 @@
           </view>
         </view>
         <!--匹配推荐  -->
+        <view class='userLine'></view>
         <view class="t-projectInfo flex" wx:if="{{type == 2}}">
           <image class="personNumPic" src='/img/icon-chakan@2x.png'></image>
           <view class="t-seeNum">{{item.view_count}}人看过项目</view>
@@ -1567,7 +1568,7 @@
           <button class='yesBtn' bindtap="noAccreditation">确定</button>
         </view>
       </view>
-      
+
       <!-- 未通过 -->
       <view wx:if="{{status === 3}}">
         <view class='authenModalTop'>
@@ -1622,14 +1623,14 @@
             <view>好友</view>
           </view>
         </view>
-        <view class='t-cardBottomItem t-add  flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status==1}}' data-telephone="{{item.user_mobile}}" catchtap="telephone">
+        <view class='t-cardBottomItem t-add  flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status == 1}}' data-telephone="{{item.user_mobile}}" catchtap="telephone">
 
           <view>打电话</view>
         </view>
-        <view class='t-cardBottomItem t-wait flex' wx:if='{{item.follow_status==2}}'>
+        <view class='t-cardBottomItem t-wait flex' wx:if='{{item.follow_status == 2}}'>
           <view style='color:#999;'>待通过</view>
         </view>
-        <view class='t-cardBottomItem t-add flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
+        <view class='t-cardBottomItem t-add flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status == 3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
           <view class="t-addFri flex">
             <image class="t-addFriend" src="/img/icon-jia@2x.png"></image>
             <view>好友</view>
