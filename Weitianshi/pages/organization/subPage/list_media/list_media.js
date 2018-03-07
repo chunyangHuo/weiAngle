@@ -15,7 +15,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       investment_id: options.investment_id,
     });
@@ -26,14 +26,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow() {
     let that = this;
     that.setData({
       requestCheck: true,

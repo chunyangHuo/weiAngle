@@ -21,7 +21,7 @@ Page({
     buttonOneText: '提交',
     nonet: true
   },
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       project_id: options.project_id,
       user_id: options.user_id,
@@ -30,7 +30,7 @@ Page({
     let that = this;
     app.netWorkChange(that);
   },
-  onShow: function () {
+  onShow() {
     let that = this;
     this.history();
 
@@ -46,7 +46,7 @@ Page({
         project_id: that.data.project_id,
         competition_id: that.data.competition_id,
       },
-      success: function (res) {
+      success(res) {
         app.log('input填写', res);
         let score_list1 = res.data.data.list;
         // 历史消息接口没有这个最大值字段 需要人为添加到数组
@@ -92,7 +92,7 @@ Page({
         competition_id: that.data.competition_id,
       },
 
-      success: function (res) {
+      success(res) {
         app.log('历史', res);
         let list1 = res.data.data.score_list;
         let remark = res.data.data.remark;
@@ -149,7 +149,7 @@ Page({
     });
   },
   // 描述
-  leaveMessage: function (e) {
+  leaveMessage(e) {
     let leaveMessage = e.detail.value;
     let leaveMessage_length = e.detail.value.length;
     let that = this;
@@ -162,7 +162,7 @@ Page({
     }
   },
   // 相加取值
-  totalNum: function (e) {
+  totalNum(e) {
     let that = this;
     let score = that.data.score;
     let score_list = that.data.score_list;
@@ -188,7 +188,7 @@ Page({
     // console.log(that.data.score, that.data.totalNum1);
   },
   // 提交
-  submit: function () {
+  submit() {
     let that = this;
     let score = that.data.score;
     let score_list = that.data.score_list;

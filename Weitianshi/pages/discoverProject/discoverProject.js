@@ -75,7 +75,7 @@ Page({
       wx.request({
         url: url_common + '/api/category/getProjectCategory',
         method: 'POST',
-        success: function (res) {
+        success(res) {
           // console.log('getProjectCategory',res)
           let thisData = res.data.data;
           thisData.area.forEach((x) => {
@@ -148,7 +148,7 @@ Page({
         filter: this.data.SearchInit.searchData
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         var financingNeed = res.data.data;
         app.log('最新', financingNeed);
         // 将无筛选条件的最新列表存入变量以备使用
@@ -243,7 +243,7 @@ Page({
         project_id: project_id
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
         if (userId == user) {
@@ -363,7 +363,7 @@ Page({
         user_id: user_id
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         console.log(res)
         let count = res.data.data;
         that.setData({

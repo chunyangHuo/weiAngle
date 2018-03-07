@@ -66,7 +66,7 @@ function getCache() {
   wx.request({
     url: url_common + '/api/category/getProjectCategory',
     method: 'POST',
-    success: function (res) {
+    success(res) {
       let thisData = res.data.data;
       thisData.area.forEach((x) => { x.check = false })
       thisData.industry.forEach((x) => { x.check = false })
@@ -490,7 +490,7 @@ function searchCertain(that) {
       filter: searchData
     },
     method: 'POST',
-    success: function (res) {
+    success(res) {
       this.initData(that);
       let SerachInit = that.data.SearchInit;
       SearchInit.currentInit = 99;

@@ -15,7 +15,7 @@ Page({
     placeHold: "请输入姓名、公司、品牌",
     nonet: true
   },
-  onLoad: function (options) {
+  onLoad(options) {
     let that = this;
     let user_id = options.user_id;
     let entrance = options.entrance;
@@ -61,7 +61,7 @@ Page({
     app.netWorkChange(that);
   },
   //搜索事件
-  searchSth: function (e) {
+  searchSth(e) {
     let that = this;
     let user_id = this.data.user_id;
     let currentUser = wx.getStorageSync('user_id');
@@ -105,13 +105,13 @@ Page({
     });
   },
   // 取消
-  searchEsc: function () {
+  searchEsc() {
     wx.navigateBack({
       delta: 1
     });
   },
   //点击进入项目详情
-  projectDetail: function (e) {
+  projectDetail(e) {
     var project_id = e.currentTarget.dataset.project;
     // 判斷項目是不是自己的
     app.httpPost({
@@ -146,7 +146,7 @@ Page({
     }
   },
   //上拉加载
-  loadMore: function () {
+  loadMore() {
     let entrance = this.data.entrance;
     let that = this;
     let user_id = wx.getStorageSync('user_id');
@@ -365,7 +365,7 @@ Page({
         filter: this.data.SearchInit.searchData
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         if (res.data.status_code == '2000000') {
           app.log('投资人列表', res.data.data);
           wx.hideLoading();
@@ -395,7 +395,7 @@ Page({
         filter: this.data.SearchInit.searchData
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         if (res.data.status_code == '2000000') {
           app.log('FA列表', res.data.data);
           wx.hideLoading();
@@ -435,7 +435,7 @@ Page({
           filter: SearchInit.searchData
         },
         method: 'POST',
-        success: function (res) {
+        success(res) {
           wx.hideLoading();
           app.log('我的人脉列表', res);
           if (res.data.status_code == '2000000') {
@@ -451,7 +451,7 @@ Page({
     }
   },
   // 一键拨号
-  telephone: function (e) {
+  telephone(e) {
     let telephone = e.currentTarget.dataset.telephone;
     wx.makePhoneCall({
       phoneNumber: telephone,

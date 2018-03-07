@@ -46,7 +46,7 @@ Page({
     modalBox: 0,
     buttonOneText: '保存',
   },
-  onLoad: function (options) {
+  onLoad(options) {
     let that = this;
     let editProId = options.pro_id;
     let edit = options.edit;
@@ -68,7 +68,7 @@ Page({
     })
   },
   //页面显示
-  onShow: function () {
+  onShow() {
     // 项目领域取值
     this._tranIndustryDeal();
     this._tranAreaDeal();
@@ -143,11 +143,11 @@ Page({
     }
   },
   //下拉刷新
-  onPullDownRefresh: function () {
+  onPullDownRefresh() {
     wx.stopPullDownRefresh();
   },
   //项目名称
-  projectName: function (e) {
+  projectName(e) {
     this.setData({
       projectName: e.detail.value
     });
@@ -157,55 +157,55 @@ Page({
     app.href('/pages/form/industry/industry?current=0');
   },
   //是否独家的效果实现
-  tipsOn: function (e) {
+  tipsOn(e) {
     this.setData({
       tips_index: e.detail.value
     });
   },
   //项目阶段
-  stage: function (e) {
+  stage(e) {
     this.setData({
       stage_index: e.detail.value,
     });
   },
   //期望融资
-  scale: function (e) {
+  scale(e) {
     this.setData({
       scale_index: e.detail.value,
     });
   },
   //关闭模态框
-  closeModal: function () {
+  closeModal() {
     this.setData({
       modalBox: 0
     });
   },
   //去电脑上传
-  toPc: function () {
+  toPc() {
     this.setData({
       modalBox: 1
     });
   },
   //需要Bp美化
-  switchChange1: function (e) {
+  switchChange1(e) {
     this.setData({
       service_ps_bp: e.detail.value
     });
   },
   //需要融资股份(FA)服务
-  switchChange2: function (e) {
+  switchChange2(e) {
     this.setData({
       service_fa: e.detail.value
     });
   },
   //是否需要云投行服务
-  switchChange3: function (e) {
+  switchChange3(e) {
     this.setData({
       service_yun: e.detail.value
     });
   },
   //私密性跳转
-  initPrivacy: function () {
+  initPrivacy() {
     let project = this.data.pro_id;
     if (project) {
       app.href('/pages/myProject/initPrivacy/initPrivacy?project=' + project);
@@ -240,7 +240,7 @@ Page({
 
   },
   //完整度(辅助函数)
-  totalScore: function (name) {
+  totalScore(name) {
     let pro_total_score = this.data.pro_total_score;
     if (name) {
       pro_total_score = pro_total_score + 2.4;
@@ -250,7 +250,7 @@ Page({
     }
   },
   //到电脑
-  upLoadPc: function () {
+  upLoadPc() {
     let that = this;
     let privacy = this.privacyDeal();
     let type = 'create';
@@ -258,7 +258,7 @@ Page({
       type = 'update';
     }
     wx.scanCode({
-      success: function (res) {
+      success(res) {
         wx.request({
           url: app.globalData.url_common + '/api/auth/writeUserInfo',
           data: {
@@ -286,7 +286,7 @@ Page({
             }
           },
           method: 'POST',
-          success: function (res) {
+          success(res) {
             if (res.data.status_code == 2000000) {
               //清除数据
               wx.setStorageSync('tran_industry', []);
@@ -303,7 +303,7 @@ Page({
     });
   },
   //点击发布
-  public: function () {
+  public() {
     let that = this;
     let theData = this.data;
     let privacy = this.privacyDeal();
@@ -367,7 +367,7 @@ Page({
       });
     }
   },
-  onUnload: function () {
+  onUnload() {
     app.initTran();
   },
   // 重新加载

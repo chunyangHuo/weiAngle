@@ -13,7 +13,7 @@ Page({
     imgUrls: app.globalData.picUrl.invest_org,
     nonet: true
   },
-  onLoad: function (options) {
+  onLoad(options) {
     let label = options.label;
     let itemId = options.itemId;
     let that = this;
@@ -52,7 +52,7 @@ Page({
     app.netWorkChange(that);
   },
 
-  onShow: function () {
+  onShow() {
     this.setData({
       requestCheck: true,
       currentPage: 1,
@@ -60,7 +60,7 @@ Page({
     });
   },
   // 上拉加载
-  loadMore: function () {
+  loadMore() {
     let that = this;
     let investment_list = this.data.investment_list;
     let currentPage = this.data.currentPage;
@@ -92,7 +92,7 @@ Page({
   },
 
   //跳转机构详情
-  institutionalDetails: function (e) {
+  institutionalDetails(e) {
     let id = e.currentTarget.dataset.id;
 
   },
@@ -186,7 +186,7 @@ Page({
       data: {
         filter: this.data.SearchInit.searchData
       },
-      success: function (res) {
+      success(res) {
         wx.hideLoading();
         let investormentList = res.data.data;
         let investment_list = investormentList.investment_list.list;

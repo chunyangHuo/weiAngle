@@ -9,7 +9,7 @@ Page({
     showSth: false,
     nonet: true
   },
-  onLoad: function (options) {
+  onLoad(options) {
     let user_id = wx.getStorageSync('user_id');
     this.setData({
       user_id: user_id
@@ -17,11 +17,11 @@ Page({
     let that = this;
     app.netWorkChange(that);
   },
-  onShow: function () {
+  onShow() {
 
   },
   // 点击tab切换
-  swichNav: function (e) {
+  swichNav(e) {
     let that = this;
     let current = e.target.dataset.current;
     let searchValue = this.data.searchValue;
@@ -36,7 +36,7 @@ Page({
     }
   },
   // 滑动切换tab
-  bindChange: function (e) {
+  bindChange(e) {
     let that = this;
     let searchValue = this.data.searchValue;
     that.setData({
@@ -98,7 +98,7 @@ Page({
   },
 
   // 上拉加载
-  loadMore: function () {
+  loadMore() {
     //请求上拉加载接口所需要的参数
     let that = this;
     let user_id = this.data.user_id;
@@ -202,7 +202,7 @@ Page({
         filter: { search: searchValue }
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         var financingNeed = res.data.data;
         app.log('最新', financingNeed);
         that.setData({
@@ -229,7 +229,7 @@ Page({
         user_id: this.data.user_id,
         word: searchValue
       },
-      success: function (res) {
+      success(res) {
         app.log("投资机构", res);
         wx.hideLoading();
         let investments_list = res.data.data.investments_list.list;
@@ -260,7 +260,7 @@ Page({
         search: searchValue
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         if (res.data.status_code == '2000000') {
           app.log('投资人列表', res.data.data);
           wx.hideLoading();
@@ -295,7 +295,7 @@ Page({
         search: searchValue
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         if (res.data.status_code == '2000000') {
           app.log('FA列表', res.data.data);
           wx.hideLoading();
@@ -315,7 +315,7 @@ Page({
     });
   },
   //项目详情跳转
-  detail: function (e) {
+  detail(e) {
     let thisData = e.currentTarget.dataset;
     let id = thisData.id;
     let user_id = this.data.user_id;
@@ -326,7 +326,7 @@ Page({
         project_id: id
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         var that = this;
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');

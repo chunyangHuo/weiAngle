@@ -10,7 +10,7 @@ export class register {
     let iv = e.detail.iv;
     let _this = this;
     wx.login({
-      success: function (login) {
+      success(login) {
         let code = login.code;
         app.httpPost({
           url: 'https://wx.weitianshi.cn/api/wx/returnWxOauthMobile',
@@ -86,7 +86,7 @@ export class register {
   personInfoRegister() {
     let _this = this;
     wx.login({
-      success: function (res) {
+      success(res) {
         let user_mobile = _this.data.telephone;
         let captcha = _this.data.checkCode;
         let code = res.code;

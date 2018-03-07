@@ -26,7 +26,7 @@ App({
     let url_common = this.globalData.url_common;
     // 向后台传群信息和红包信息
     wx.login({
-      success: function (login) {
+      success(login) {
         let code = login.code;
         if (code) {
           let path = _this.globalData.path;
@@ -85,13 +85,13 @@ App({
     let that = this;
     //获取code
     wx.login({
-      success: function (login) {
+      success(login) {
         let code = login.code;
         that.globalData.code = code;
         //获取encryptedData和iv
         wx.getUserInfo({
           //用户授权
-          success: function (res) {
+          success(res) {
             that.globalData.userInfo = res.userInfo;//这里,赋完值函数就结束了
             that.globalData.encryptedData = res.encryptedData;
             that.globalData.iv = res.iv;
@@ -115,7 +115,7 @@ App({
             });
           },
           //用户不授权
-          fail: function () {
+          fail() {
             that.httpPost({
               url: that.globalData.url + '/api/wx/returnOauth',
               data: {
@@ -147,7 +147,7 @@ App({
         user_id: user_id
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         if (res.data.status_code == 2000000) {
           let complete = res.data.is_complete;
           if (complete == 1) {
@@ -186,7 +186,7 @@ App({
         user_id: user_id
       },
       method: 'POST',
-      complete: function (res) {
+      complete(res) {
         if (res.data.status_code == 2000000) {
           let complete = res.data.is_complete;
           if (complete == 1) {
@@ -261,7 +261,7 @@ App({
           url: request.url,
           data: request.data,
           method: 'POST',
-          success: function (res) {
+          success(res) {
             let newPage = res.data.data; 
             let page_end = res.data.page_end;
             if (dataStr && typeof dataStr == "string") {
@@ -341,7 +341,7 @@ App({
           url: request.url,
           data: request.data,
           method: 'POST',
-          success: function (res) {
+          success(res) {
             let newPage = res.data.data.investment_list;
             let page_end1 = res.data.data.page_end;
             if (dataStr && typeof dataStr == "string") {
@@ -396,7 +396,7 @@ App({
           followed_user_id: followed_id
         },
         method: 'POST',
-        success: function (res) {
+        success(res) {
           callBack1(res);
         }
       });
@@ -408,7 +408,7 @@ App({
           applied_user_id: followed_id
         },
         method: 'POST',
-        success: function (res) {
+        success(res) {
           callBack2(res);
         }
       });
@@ -509,7 +509,7 @@ App({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
+      success(res) {
         let tempFilePaths = res.tempFilePaths;
         let avatar = tempFilePaths[0];
         let size = res.tempFiles[0].size;
@@ -525,7 +525,7 @@ App({
             formData: {
               user_id: user_id,
             },
-            success: function (res) {
+            success(res) {
               let data = JSON.parse(res.data);
               if (data.status_code === 2000000) {
                 wx.hideLoading();

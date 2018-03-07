@@ -9,7 +9,7 @@ Page({
     nonet:true
   },
 
-  onLoad: function (options) {
+  onLoad(options) {
     let that = this;
     let company = options.company;
     let user_id = options.user_id;
@@ -22,11 +22,11 @@ Page({
     })
   },
 
-  onShow: function () {
+  onShow() {
 
   },
   //获取输入内容
-  inputValue: function (e) {
+  inputValue(e) {
     let companyName = e.detail.value;
     let that = this;
     that.setData({
@@ -34,7 +34,7 @@ Page({
     })
   },
   // 查找公司名字
-  searchCompany: function () {
+  searchCompany() {
     let that = this;
     let company_name = this.data.company_name;
     var user_id = wx.getStorageSync('user_id');
@@ -46,7 +46,7 @@ Page({
         company_name: company_name
       },
       method: 'POST',
-      success: function (res) {
+      success(res) {
         let company = res.data.data;
         that.setData({
           company: company,
@@ -56,7 +56,7 @@ Page({
     })
   },
   // 选择其中的一个
-  checkOne: function (e) {
+  checkOne(e) {
     let tags = e.currentTarget.dataset.id;
     let company_name = e.currentTarget.dataset.name;
     let that = this;
@@ -67,7 +67,7 @@ Page({
 
   },
   // 保存公司名称
-  save: function () {
+  save() {
     let that = this;
     let type = this.data.type;
     let user_id = this.data.user_id;
@@ -107,7 +107,7 @@ Page({
             project_id: id
           },
           method: 'POST',
-          success: function (res) {
+          success(res) {
             prePage.setData({
               project: project,
               options: {
