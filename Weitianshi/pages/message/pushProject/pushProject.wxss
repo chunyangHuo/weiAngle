@@ -178,6 +178,10 @@ page {
   background: #3378e0;
 }
 
+.btnNoInterest {
+  padding: 0 20rpx;
+}
+
 #time {
   font-size: 22rpx;
   color: #999;
@@ -446,7 +450,6 @@ page {
 
 .status {
   border-radius: 4rpx;
-  height: 36rpx;
   font-size: 20rpx;
   text-align: center;
   position: absolute;
