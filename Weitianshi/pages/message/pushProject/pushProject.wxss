@@ -471,7 +471,7 @@ page {
 .statusHasInterest {
   background:rgba(71, 192, 85, 0.1);
   color: #47c055;
-  width:76rpx;
+  /* width:76rpx; */
 }
 
 .readed {
