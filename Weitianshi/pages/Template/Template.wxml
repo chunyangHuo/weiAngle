@@ -495,7 +495,7 @@
         <view class="introduce">{{item.project.pro_intro}}</view>
       </view>
       <!--名片内容  -->
-      <view class="outsideBox" data-project="{{item.user.user_id}}" catchtap="personDetail">
+      <view class="outsideBox" data-project="{{item.user.user_id}}" data-id="{{item.user.user_id}}" catchtap="personDetail">
         <view class="redPoint" wx:if="{{item.message_status == 0}}"></view>
         <view>
           <!--我推送的项目样式  -->
@@ -836,7 +836,6 @@
           </view>
         </view>
         <view class='t-cardBottomItem t-add  flex' hover-class='t-hoverColor' hover-stop-propagation='true' wx:if='{{item.follow_status==1}}' data-telephone="{{item.user_mobile}}" catchtap="telephone">
-
           <view>打电话</view>
         </view>
         <view class='t-cardBottomItem t-wait flex' wx:if='{{item.follow_status==2}}'>
