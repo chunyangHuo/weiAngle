@@ -4,17 +4,9 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/model/shareModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     nonet: true
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     this.setData({
       investment_id: options.investment_id,
@@ -22,17 +14,6 @@ Page({
     let that = this;
     app.netWorkChange(that)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
     let that = this;
     that.setData({
@@ -75,40 +56,6 @@ Page({
         app.errorHide(that, '没有更多了', 3000)
       }
     })
-  },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
   },
   // 重新加载
   refresh() {

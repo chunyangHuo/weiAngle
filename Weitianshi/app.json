@@ -66,7 +66,6 @@
     "pages/activtyPage/activtyPage/activtyPage",
     "pages/FAIndustryAlliance/FAIndustryAlliance/FAIndustryAlliance",
     "pages/FAIndustryAlliance/FAIndustryAllianceRegister/FAIndustryAllianceRegister",
-    "pages/FAIndustryAlliance/FAIndustryAllianceShare/FAIndustryAllianceShare",
     "pages/organization/org_search/org_search",
     "pages/organization/org_library/org_library",
     "pages/organization/org_detail/org_detail",
@@ -84,7 +83,8 @@
     "pages/myProject/historyFiance/historyFiance",
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
-    "pages/myProject/proMilestone/proMilestone"
+    "pages/myProject/proMilestone/proMilestone",
+    "pages/bigData/projectDetail/projectDetail"
   ],
   "subPackages": [
     {

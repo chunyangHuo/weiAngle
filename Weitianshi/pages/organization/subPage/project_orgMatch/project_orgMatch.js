@@ -4,18 +4,10 @@ let url = app.globalData.url;
 let url_common = app.globalData.url_common;
 import * as ShareModel from '../../../../utils/model/shareModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     project_id: '',
     nonet: true
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     this.setData({
       project_id: options.project_id,
@@ -23,17 +15,6 @@ Page({
     let that = this;
     app.netWorkChange(that)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
     let that = this;
     that.setData({
@@ -87,24 +68,6 @@ Page({
     let thisData = e.currentTarget.dataset;
     app.href('/pages/organization/org_detail/org_detail?investment_id=' + thisData.id)
   },
-  /**
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage() {
     let that = this;
     return ShareModel.match1(that);
