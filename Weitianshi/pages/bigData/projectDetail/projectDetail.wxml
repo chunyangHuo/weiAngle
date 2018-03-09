@@ -1,0 +1,112 @@
+<scroll-view>
+  <view class="projectDetailBox">
+    <view class="flex projectDetailTop">
+      <view class="projectDetailLeft">
+        <!-- <image></image> -->
+      </view>
+      <view class="projectDetailRight">
+        <view class="projectDetailTitle">这里是项目的名称，最多显示一行行最多显示一行字</view>
+        <view class="projectDetailContent">这里是一句话介绍，字数可能会有点多，要两行展点击PS底部的“时间轴”面板，激活它，然后按如图的样式显示</view>
+      </view>
+    </view>
+    <view class="projectDetailCenter">
+      <view class="flex">
+        <image class="t-roundGroupTitle" src="/img/icon-lunci@2x.png"></image>
+        <view>
+          <!-- <block wx:for="{{item.user.industry}}" wx:key="{{industryItem.industry_id}}" wx:for-item='industryItem'>
+          <label wx:if="{{index < item.user.industry.length-1}}">{{industryItem.industry_name}}、</label>
+          <label wx:if="{{index == item.user.industry.length-1}}">
+            {{industryItem.industry_name}}
+          </label>
+        </block> -->
+        </view>
+        <view>暂未透露</view>
+      </view>
+      <view class="flex stageBox">
+        <image class="t-roundGroupTitle" src="/img/icon-lingyu1@2x.png"></image>
+        <view>
+          500-1000万 · 天使轮 · 呼和浩特市
+          <!-- <block wx:for="{{item.user.stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
+          <label wx:if="{{index < item.user.stage.length-1}}">{{stageItem.stage_name}}、</label>
+          <label wx:if="{{index == item.user.stage.length-1}}">{{stageItem.stage_name}}</label>
+        </block> -->
+        </view>
+        <!-- <view>暂未透露</view>  -->
+      </view>
+      <view class="flex">
+        <label class="otherProject">知名媒体报道</label>
+      </view>
+    </view>
+  </view>
+  <view class="userInfo flex">
+    <!-- <image src="{{item.user.investor_logo_url}}" class="userPic"/> -->
+    <view class="userPicText flex">霍</view>
+    <view id="userInfoRight">
+      <view class='userName'>姓名</view>
+      <view class='userCompany'>
+        <label>投资经理</label> ·
+        <label>杭州投着乐网络科技有限公司</label>
+      </view>
+    </view>
+  </view>
+
+  <view class="companyDetailBox">
+    <!--公司介绍  -->
+    <view class="companyIntro">
+      <view class='companyName'>公司介绍</view>
+      <view class="flex">
+        <view class="detailCompanyName">杭州投着乐网络科技有限公司</view>
+        <view class="detailOneDetail">一键尽调</view>
+      </view>
+      <view class="detailContent">
+        杭州投着乐网络科技有限公司成立于2016年9月，同年全资收购天津微天使网络科技有限公司及旗下微天使APP产品及相关品牌（微天使网、中国微天使节、微天使投资俱乐部、社群号等），并将互联网化FA平台（创
+      </view>
+      <view class="clickAll">点击查看全部</view>
+    </view>
+    <!--投资亮点  -->
+    <view class="companypPoint">
+      <view class='detailTitle'>投资亮点</view>
+      <view class="detailContent otherContent">
+        · 全部展示：杭州投着乐网络科技有限公司成立于2016年9月，同年全资收购天津微天使网络科技有限公司及旗下微天使APP产品及相关品牌（微天使网、中国 · 写的标题：杭州投着乐网络科技有限公司成立于2016年9月
+      </view>
+      <view class='detailTitle'>市场概况</view>
+      <view class="detailContent otherContent">
+        · 全部展示：杭州投着乐网络科技有限公司成立于2016年9月，同年全资收购天津微天使网络科技有限公司及旗下微天使APP产品及相关品牌（微天使网、中国 · 写的标题：杭州投着乐网络科技有限公司成立于2016年9月
+      </view>
+      <view class='detailTitle'>产品概况</view>
+      <view class="detailContent otherContent">
+        · 全部展示：杭州投着乐网络科技有限公司成立于2016年9月，同年全资收购天津微天使网络科技有限公司及旗下微天使APP产品及相关品牌（微天使网、中国 · 写的标题：杭州投着乐网络科技有限公司成立于2016年9月
+      </view>
+    </view>
+    <!--项目背书  -->
+    <view class="companypBook">
+      <view class='detailTitle'>项目背书</view>
+      <view class="companyBookBlock">
+        <view class="bookBlockTitle flex">
+          <label class="bookPoint"></label> 铅笔道
+        </view>
+        <view class="bookBlockContent">
+          <view class='flex'>
+            <view class="bookReason">推荐理由：</view>
+            <view class='bookReasonContent'>
+              <view>产品业务：专注中小商家的海报设计印刷服务平台。</view>
+              <view>产品业务：专注中小商家的海报设计印刷服务平台。</view>
+            </view>
+          </view>
+          <view  class='flex'>
+            <view class="bookReason">相关新闻：</view>
+            <view class='bookReasonContent'>
+              <view>查看</view>
+            </view>
+          </view>
+          <view  class='flex'>
+            <view class="bookReason">联系方式：</view>
+            <view class='bookReasonContent'>
+              <view>查看</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

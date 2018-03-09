@@ -502,3 +502,6 @@
   line-height: 28rpx;
   color: #666;
 }
+.allProjectDetail{
+  margin-bottom: 0;
+}
