@@ -46,6 +46,12 @@
   line-height: 34rpx;
 }
 
+.projectSpecial {
+  word-break: break-all;
+  flex-wrap: wrap;
+  max-width: 556rpx;
+}
+
 .t-roundGroupTitle {
   width: 24rpx;
   height: 24rpx;
@@ -56,6 +62,10 @@
   margin: 20rpx 0 32rpx 0;
 }
 
+.otherProjectBox {
+  margin-bottom: 14rpx;
+}
+
 .otherProject {
   background: rgba(51, 120, 224, 0.10);
   border-radius: 4rpx;
@@ -63,6 +73,7 @@
   margin-right: 24rpx;
   font-size: 24rpx;
   color: #3378e0;
+  /* white-space: nowrap; */
 }
 
 .userInfo {
@@ -127,6 +138,15 @@
   color: #333;
   text-align: left;
   margin-bottom: 32rpx;
+  font-weight: bold;
+}
+
+.detailTitle {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 42rpx;
+  text-align: left;
+  font-weight: bold;
 }
 
 .detailCompanyName {
@@ -170,7 +190,8 @@
   width: 100%;
 }
 
-.companypPoint, .companypBook {
+.companypPoint, .companypBook, .companyMainProject, .companyHistory,
+.companyCorePerson, .companyStone, .similarProject, .mediaReport {
   padding: 0 32rpx;
   background: #fff;
   margin-bottom: 32rpx;
@@ -192,10 +213,6 @@
 }
 
 .bookBlockContent {
-  /* opacity: 0.2;
-  background: #40587a;
-  width: 8rpx;
-  height: auto; */
   border-left: 8rpx solid #40587a;
   margin-left: 24rpx;
 }
@@ -219,4 +236,277 @@
   color: #666;
   text-align: left;
   line-height: 40rpx;
+}
+
+.bookContentPadding {
+  margin-bottom: 48rpx;
+}
+
+.contentPadding {
+  padding-bottom: 20rpx;
+}
+
+/*主要产品  */
+
+.mainProjectBox, .historyBox, .corePersonBox, .similarProjectBox,
+.mediaReportBox {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.title {
+  justify-content: space-between;
+}
+
+.littleTitle {
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  line-height: 42rpx;
+  margin-bottom: 8rpx;
+}
+
+.allNumber {
+  font-size: 24rpx;
+  color: #3378e0;
+  text-align: right;
+  position: relative;
+  top: 36rpx;
+}
+
+.projectImage {
+  height: 104rpx;
+  width: 104rpx;
+  margin-right: 32rpx;
+  background: blue;
+}
+
+.detailType, .similarScale {
+  border: 1rpx solid #40587a;
+  border-radius: 68rpx;
+  font-size: 20rpx;
+  line-height: 46rpx;
+  padding: 0 12rpx;
+  color: #40587a;
+  /* border-radius: 98rpx; */
+  text-align: center;
+  width: auto;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.mainProject {
+  font-size: 24rpx;
+  color: #999;
+  text-align: left;
+  line-height: 34rpx;
+  max-width: 552rpx;
+}
+
+.mainProjectBox:last-child {
+  border-bottom: none;
+}
+
+/*历史融资  */
+
+.historyBox {
+  border-bottom: none;
+}
+
+.left {
+  text-align: right;
+  width: 18%;
+  padding-right: 22rpx;
+  border-right: 1rpx solid #ccc;
+}
+
+.right {
+  width: 82%;
+  margin-left: 22rpx;
+}
+
+.mainProjectTime, .mainProjectScale, .mainProjectMoney, .mainProjectOther {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 40rpx;
+}
+
+.mainProjectTime {
+  margin-bottom: 12rpx;
+}
+
+.mainProjectScale {
+  color: #333;
+  text-align: right;
+}
+
+.mainProjectMoney {
+  color: #f6a623;
+  text-align: left;
+  margin-bottom: 12rpx;
+}
+
+.mainProjectOther {
+  text-align: left;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+/*核心成员  */
+
+.corePersonBox {
+  border-bottom: none;
+}
+
+.corePersonImage {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  margin-right: 24rpx;
+}
+
+.corePersonNoImage {
+  background: #f0f0f0;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  font-size: 40rpx;
+  color: #293b55;
+  line-height: 104rpx;
+  text-align: center;
+  margin-right: 24rpx;
+}
+
+.corePersonInfo, .corePersonPercent {
+  margin-bottom: 12rpx;
+}
+
+.corePersonName {
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 16rpx;
+}
+
+.corePersonPosition {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 24rpx;
+  text-align: left;
+  position: relative;
+  bottom: -12rpx;
+}
+
+/*持股比例  */
+
+.corePersonPercent {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 34rpx;
+  width: 558rpx;
+}
+
+.realPercent {
+  color: #f6a623;
+}
+
+.corePersonIntro {
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  padding: 24rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 36rpx;
+  max-width: 558rpx;
+}
+
+/*里程碑  */
+
+.companyStone {
+  border-bottom: none;
+}
+
+.companyStoneBox {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 40rpx;
+  padding: 32rpx 30rpx 32rpx 40rpx;
+}
+
+/*相似公司  */
+
+.similarProjectBox {
+  padding: 40rpx 0;
+}
+
+.similarPic {
+  width: 104rpx;
+  height: 104rpx;
+  background: pink;
+  margin-right: 24rpx;
+}
+
+.similarProjectInro {
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  max-width: 240rpx;
+  line-height: 42rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 8rpx;
+}
+
+.similarScale {
+  border: 1rpx solid #c5a837;
+  border-radius: 68rpx;
+  color: #c5a837;
+}
+
+.similarInro {
+  font-size: 24rpx;
+  color: #666;
+  max-width: 558rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 8rpx;
+}
+
+.similarMain {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+  max-width: 558rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.similarProjectBox:last-child {
+  border-bottom: none;
+}
+
+/*媒体报道  */
+
+.mediaReportBox:last-child {
+  border-bottom: none;
+}
+
+.mediaReportTime {
+  font-size: 24rpx;
+  color: #c5a837;
+  text-align: left;
+  margin-bottom: 16rpx;
+}
+
+.mediaReportContent {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.mediaReportFrom {
+  font-size: 20rpx;
+  color: #999;
 }
