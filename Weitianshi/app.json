@@ -84,14 +84,24 @@
     "pages/myProject/proBrand/proBrand",
     "pages/myProject/proTeam/proTeam",
     "pages/myProject/proMilestone/proMilestone",
-    "pages/bigData/projectDetail/projectDetail"
+    "pages/bigData/index/index",
+    "pages/bigData/projectDetail/projectDetail",
+    "pages/bigData/projectLib/projectLib",
+    "pages/bigData/daliyRecommend/index/index",
+    "pages/bigData/daliyRecommend/investPrefer/investPrefer",
+    "pages/bigData/hotIndustry/hotIndustry",
+    "pages/bigData/investIdea/index/index",
+    "pages/bigData/investIdea/ideaDetail/ideaDetail",
+    "pages/bigData/memberDetail/index/index",
+    "pages/bigData/memberDetail/entrepreneurial/entrepreneurial",
+    "pages/bigData/memberDetail/work/work",
+    "pages/bigData/memberDetail/education/education",
+    "pages/specialColumn/ColumnDetail"
   ],
   "subPackages": [
     {
       "root": "activitySignIn/",
       "pages": [
-        "pages/activityDetail/activityDetail",
-        "pages/activityAgenda/activityAgenda",
         "pages/signScan/signScan",
         "pages/signCheckIndentity/signCheckIndentity",
         "pages/signIndentityCard/signIndentityCard",
