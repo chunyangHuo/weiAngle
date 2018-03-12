@@ -1,66 +1,97 @@
-// pages/bigData/projectLib/projectLib.js
+let app =getApp();
+import * as FilterModel from '../../../utils/model/filterModel';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    //筛选搜索
+    searchText: '请输入姓名、公司、品牌',
+    SearchInit: FilterModel.data,
+    label_industry: FilterModel._label_industry,
+    linkDataShow: FilterModel._linkDataShow,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad() {
+    let that = this;
+    //更改搜索模块初始化设置
+    FilterModel.reInitSearch(that, {
+      tab: [
+        { type: 2, name: '领域', label: 'label_industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false, page: '0' },
+        { type: 1, name: '地区', label: "hotCity", itemId: 'area_id', itemName: 'area_title', longCheckBox: false },
+        { type: 1, name: '风格', label: "label_style", itemId: 'style_id', itemName: 'style_name', longCheckBox: false },
+        { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: true },
+      ],
+    });
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
+    if (SearchInit.industry.length < 1) {
+      tab.forEach(x => {
+        SearchInit[x.label] = wx.getStorageSync(x.label);
+      });
+      that.setData({
+        SearchInit
+      });
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // --------------------------筛选搜索--------------------------------------------------
+  // 下拉框
+  move(e) {
+    let that = this;
+    let SearchInit = this.data.SearchInit;
+    FilterModel.move(e, that);
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 标签选择
+  tagsCheck(e) {
+    FilterModel.tagsCheck(e, this);
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 筛选重置
+  reset() {
+    FilterModel.reset(this);
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  // 筛选全部重置
+  allReset() {
+    FilterModel.allReset(this);
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 筛选确定
+  searchCertain() {
+    let that = this;
+    let current = this.data.currentTab;
+    let SearchInit = this.data.SearchInit;
+    let searchData = FilterModel.searchCertain(that);
+    SearchInit.searchData = searchData;
+    this.setData({
+      searchInit: SearchInit
+    });
+    this.applyList();
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  // 点击modal层
+  modal() {
+    let that = this;
+    FilterModel.modal(that);
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+  // 搜索
+  searchSth() {
+    let that = this;
+    let str;
+    str = this.data.currentTab == 0 ? "selected" : "newest";
+    FilterModel.searchSth(that, str, x => {
+      app.href(
+        "/pages/search/globalSearch/globalSearch"
+      );
+    });
+  },
+  // 展示项删除
+  labelDelete(e) {
+    FilterModel.labelDelete(e, this);
+  },
+  // 一级联动选择
+  linkFirstStair(e) {
+    app.log("industry", this.data.label_industry);
+    FilterModel.linkFirstStair(e, this);
+  },
+  // 二级联动选择
+  linkSecondStair(e) {
+    FilterModel.linkSecondStair(e, this);
+  },
+  // 联动选择全部
+  linkCheckAll(e) {
+    FilterModel.linkCheckAll(e, this);
+  },
 })

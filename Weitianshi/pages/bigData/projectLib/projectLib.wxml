@@ -1,2 +1,7 @@
-<!--pages/bigData/projectLib/projectLib.wxml-->
-<text>pages/bigData/projectLib/projectLib.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<scroll-view id='projectLib'>
+  <!--搜索  -->
+  <!-- <template is="newSearch2" data="{{text:'搜索项目、投资机构、投资人、FA'}}"></template> -->
+  <!--筛选  -->
+  <template is='search' data='{{SearchInit,linkDataShow,currentTab,hidden:true}}'></template>
+</scroll-view>

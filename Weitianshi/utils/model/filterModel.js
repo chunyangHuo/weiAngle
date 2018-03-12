@@ -569,7 +569,7 @@ function modal(that) {
 function searchSth(that, str, callBack) {
   let user_id = that.data.user_id;
   if (!callBack) {
-    app.href('/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str)
+    app.href('/pages/search/contactProjectSearch/contactProjectSearch?user_id=' + user_id + '&&entrance=' + str)
   } else {
     callBack()
   }

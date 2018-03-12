@@ -17,9 +17,6 @@ Page({
     let that = this;
     app.netWorkChange(that);
   },
-  onShow() {
-
-  },
   // 点击tab切换
   swichNav(e) {
     let that = this;
@@ -96,7 +93,6 @@ Page({
       show: true
     });
   },
-
   // 上拉加载
   loadMore() {
     //请求上拉加载接口所需要的参数

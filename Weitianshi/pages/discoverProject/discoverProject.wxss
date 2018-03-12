@@ -201,7 +201,7 @@
   height: auto;
 }
 
-.seachSth {
+.searchSth {
   width: 684rpx;
   border-radius: 92rpx;
   background: #fff;

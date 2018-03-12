@@ -5,7 +5,7 @@
 <view wx:if="{{nonet}}">
   <view style='margin-top:100rpx;'>
     <view class="searchBox" bindtap='searchMore'>
-      <view class="seachSth flex">
+      <view class="searchSth flex">
         <icon type="search" size="14" class="search_icon1"></icon>
         <label> 搜索项目、投资机构、投资人、FA</label>
       </view>

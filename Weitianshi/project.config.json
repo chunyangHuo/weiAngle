@@ -25,103 +25,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
-					"id": 0,
-					"name": "名片分享页面",
-					"pathName": "pages/my/sharePage/sharePage",
-					"query": "share_id=mrKLG9a0&user_id=mrKLG9a0",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群1",
-						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
-						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
-					}
-				},
-				{
-					"id": 1,
-					"name": "openedHB",
-					"pathName": "redPackets/pages/openedHB/openedHB",
-					"query": "unique_id=60954047347256501821049865",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群1",
-						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
-						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
-					}
-				},
-				{
 					"id": -1,
-					"name": "publishHB",
-					"pathName": "redPackets/pages/publishHB/publishHB",
-					"query": ""
-				},
-				{
-					"id": 3,
-					"name": "publishedHB",
-					"pathName": "redPackets/pages/publishedHB/publishedHB",
-					"query": "unique_id=60956047105573921821043266",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群1",
-						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
-						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
-					}
-				},
-				{
-					"id": -1,
-					"name": "publishedHB",
-					"pathName": "redPackets/pages/publishedHB/publishedHB",
-					"query": "shareTicket=GblEJ0dKCN5Q5b2lBxp_pqtzN3Kw"
-				},
-				{
-					"id": -1,
-					"name": "crowdDetail",
-					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
-					"query": "shareTicket=GblEJ0dKCN5Q5b2lBxp_pqtzN3Kw"
-				},
-				{
-					"id": -1,
-					"name": "我发布过的红包",
-					"pathName": "redPackets/pages/myHB/myHB",
-					"query": "",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群1",
-						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
-						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
-					}
-				},
-				{
-					"id": -1,
-					"name": "crowdDetail",
-					"pathName": "redPackets/pages/crowdDetail/crowdDetail",
-					"query": "groupId=GblEJ0cs98HWB6SHmm4zqU2nrsq8"
-				},
-				{
-					"id": -1,
-					"name": "注册-手机验证码",
-					"pathName": "pages/register/personInfo/personInfo",
+					"name": "项目库",
+					"pathName": "pages/bigData/projectLib/projectLib",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "注册-公司信息",
-					"pathName": "pages/register/companyInfo/companyInfo",
+					"name": "全局搜索",
+					"pathName": "pages/search/globalSearch/globalSearch",
 					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "多个红包",
-					"pathName": "redPackets/pages/openedHB/openedHB",
-					"query": "unique_id=60952447941767761813912087"
-				},
-				{
-					"id": -1,
-					"name": "多个红包",
-					"pathName": "pages/register/companyInfo/companyInfo",
-					"query": "unique_id=60952447941767761813912087"
 				}
 			]
 		}

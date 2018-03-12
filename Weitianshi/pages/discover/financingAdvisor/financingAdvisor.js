@@ -222,7 +222,7 @@ Page({
     let user_id = this.data.user_id;
     let str;
     str = 'faList';
-    app.href('/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str);
+    app.href('/pages/search/contactProjectSearch/contactProjectSearch?user_id=' + user_id + '&&entrance=' + str);
   },
   //  跳转到项目店铺筛选页面
   tagFilter() {

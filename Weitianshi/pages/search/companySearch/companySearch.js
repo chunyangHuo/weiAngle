@@ -2,13 +2,11 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
-
   data: {
     tags: '',
     com_id: 0,
-    nonet:true
+    nonet: true
   },
-
   onLoad(options) {
     let that = this;
     let company = options.company;
@@ -20,10 +18,6 @@ Page({
       type: type,
       user_id: user_id
     })
-  },
-
-  onShow() {
-
   },
   //获取输入内容
   inputValue(e) {
@@ -122,9 +116,9 @@ Page({
           }
         })
       } else {
-      app.errorHide(that, "公司不能为空", 1500)
+        app.errorHide(that, "公司不能为空", 1500)
       }
-     
+
     }
   },
   // 重新加载

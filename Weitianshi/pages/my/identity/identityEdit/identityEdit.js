@@ -155,7 +155,7 @@ Page({
     }
     else if (type == 3) {
       // 跳转公司模糊搜索
-      app.href('/pages/search/search1/search1?company=' + writeCompany + '&&type=3');
+      app.href('/pages/search/companySearch/companySearch?company=' + writeCompany + '&&type=3');
     }
     else if (type == 4) {
       app.href('/pages/form/personInfo/personInfo?career=' + writeCareer + '&&type=4');

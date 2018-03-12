@@ -8,7 +8,7 @@ Page({
   data: {
     //筛选搜索
     SearchInit: FilterModel.data,
-    label_industry: FilterModel._label_industry,
+    label_industry: FilterModel._label_industry, 
     linkDataShow: FilterModel._linkDataShow,
     imgUrls: app.globalData.picUrl.invest_org,
     nonet: true

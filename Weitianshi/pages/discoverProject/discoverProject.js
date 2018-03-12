@@ -309,7 +309,7 @@ Page({
   },
   //跳转搜索页面
   searchMore() {
-    app.href('/pages/search/search2/search2');
+    app.href('/pages/search/globalSearch/globalSearch');
   },
   // 重新加载
   refresh() {

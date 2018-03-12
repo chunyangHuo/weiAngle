@@ -836,7 +836,7 @@ Page({
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let companyName = that.data.pro_company_name;
-    app.href('/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id);
+    app.href('/pages/search/companySearch/companySearch?company=' + companyName + '&&type=8' + '&&user_id=' + user_id);
     that.setData({
       nothing: 1
     });
