@@ -33,7 +33,7 @@
         </view>
         <!-- <view>暂未透露</view>  -->
       </view>
-      <view class="flex">
+      <view class="flex projectSpecial">
         <label class="otherProject">知名媒体报道</label>
       </view>
     </view>
@@ -86,27 +86,252 @@
           <label class="bookPoint"></label> 铅笔道
         </view>
         <view class="bookBlockContent">
-          <view class='flex'>
+          <view class='flex bookContentPadding'>
             <view class="bookReason">推荐理由：</view>
             <view class='bookReasonContent'>
               <view>产品业务：专注中小商家的海报设计印刷服务平台。</view>
               <view>产品业务：专注中小商家的海报设计印刷服务平台。</view>
             </view>
           </view>
-          <view  class='flex'>
+          <view class='flex bookContentPadding'>
             <view class="bookReason">相关新闻：</view>
             <view class='bookReasonContent'>
               <view>查看</view>
             </view>
           </view>
-          <view  class='flex'>
+          <view class='flex bookContentPadding'>
             <view class="bookReason">联系方式：</view>
             <view class='bookReasonContent'>
-              <view>查看</view>
+              <view class="contentPadding">王宽</view>
+              <view class="contentPadding">微信:</view>
+              <view class="contentPadding">邮箱</view>
             </view>
           </view>
         </view>
       </view>
     </view>
+    <!--主要产品  -->
+    <view class="companyMainProject">
+      <view class="flex title">
+        <view class="detailTitle">主要产品</view>
+        <view class="allNumber">全部
+          <label>（12）</label>
+        </view>
+      </view>
+      <view class='flex mainProjectBox'>
+        <!-- <image></image> -->
+        <view class="projectImage"></view>
+        <view>
+          <view class="flex title">
+            <view class="littleTitle">蜂融网络</view>
+            <view class="detailType">类型</view>
+          </view>
+          <view class="mainProject">让信用变现的互联网产品让信用变现的互联网产品让信用变现的互联网产品</view>
+        </view>
+      </view>
+      <view class='flex mainProjectBox'>
+        <!-- <image></image> -->
+        <view class="projectImage"></view>
+        <view>
+          <view class="flex title">
+            <view class="littleTitle">蜂融网络金融</view>
+            <view class="detailType">一个类型</view>
+          </view>
+          <view class="mainProject">让信用变现的互联网产品让信用变现的互联网产品让信用变现的互联网产品</view>
+        </view>
+      </view>
+    </view>
+    <!--历史融资  -->
+    <view class="companyHistory">
+      <view class="flex title">
+        <view class="detailTitle">历史融资</view>
+        <view class="allNumber">全部
+          <label>（12）</label>
+        </view>
+      </view>
+      <view class="historyBox flex">
+        <view class="left">
+          <view class="mainProjectTime">2017.10</view>
+          <view class="mainProjectScale">C轮</view>
+        </view>
+        <view class="right">
+          <view class="mainProjectMoney">4.6亿美元</view>
+          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
+          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
+        </view>
+      </view>
+      <view class="historyBox flex">
+        <view class="left">
+          <view class="mainProjectTime">2017.10</view>
+          <view class="mainProjectScale">Pre-A轮</view>
+        </view>
+        <view class="right">
+          <view class="mainProjectMoney">4.6亿美元</view>
+          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
+          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
+        </view>
+      </view>
+    </view>
+    <!--核心成员  -->
+    <view class="companyCorePerson">
+      <view class="flex title">
+        <view class="detailTitle">核心成员</view>
+        <view class="allNumber">全部
+          <label>（12）</label>
+        </view>
+      </view>
+      <view class="corePersonBox flex">
+        <!-- <image class="corePersonImage"></image> -->
+        <view class="corePersonNoImage">霍</view>
+        <view>
+          <view class="corePersonInfo flex">
+            <view class='corePersonName'>张孙峰</view>
+            <view class='corePersonPosition'>联合创始人</view>
+          </view>
+          <view class='flex corePersonPercent title'>
+            <view>持股比例:
+              <label class="realPercent">30%</label>
+            </view>
+            <view>拥有公司:
+              <label class="realPercent">0家</label>
+            </view>
+          </view>
+          <view class="corePersonIntro">
+            这里是个人简介这里是个人简介 这里是个人简介这里是个人简介，字数可能会有点长这里是个人简介这里是个人简介 这里是个人简介这里是个人简介，字数可能会有点长
+          </view>
+        </view>
+      </view>
+      <view class="corePersonBox flex">
+        <!-- <image class="corePersonImage"></image> -->
+        <view class="corePersonNoImage">霍</view>
+        <view>
+          <view class="corePersonInfo flex">
+            <view class='corePersonName'>张孙峰</view>
+            <view class='corePersonPosition'>联合创始人</view>
+          </view>
+          <view class='flex corePersonPercent title'>
+            <view>持股比例:
+              <label class="realPercent">30%</label>
+            </view>
+            <view>拥有公司:
+              <label class="realPercent">0家</label>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--里程碑  -->
+    <view class='companyStone'>
+      <view class="flex title">
+        <view class="detailTitle">里程碑</view>
+        <view class="allNumber">全部
+          <label>（12）</label>
+        </view>
+      </view>
+      <view class="companyStoneBox flex">
+        <view class="left">2017.10</view>
+        <view class="right">滴滴出行资深副总裁陶然离职，滴滴出行资深副总裁陶然离职。</view>
+      </view>
+      <view class="companyStoneBox flex">
+        <view class="left">2017.05</view>
+        <view class="right">滴滴出行资深副总裁陶然离职，滴滴出行资深副总裁陶然离职。滴滴出行资深副总裁陶然离职，</view>
+      </view>
+    </view>
+    <!--相似项目  -->
+    <view class='similarProject'>
+      <view class="flex title">
+        <view class="detailTitle">相似项目</view>
+        <view class="allNumber">全部
+          <label>（12）</label>
+        </view>
+      </view>
+      <view class="similarProjectBox flex">
+        <!-- <image></image> -->
+        <view class="similarPic"></view>
+        <view>
+          <view class="flex">
+            <view class="similarProjectInro">这里是项目的名称,足底啊120px</view>
+            <view class="similarScale">A轮</view>
+          </view>
+          <view class="similarInro">这里是机构的介绍，就显示一行最大宽度279超过...</view>
+          <view class="similarMain">无人零售 · 人脸识别 · 大数据</view>
+          <view class="projectSpecial flex">
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="similarProjectBox flex">
+        <!-- <image></image> -->
+        <view class="similarPic"></view>
+        <view>
+          <view class="flex">
+            <view class="similarProjectInro">这里是项目的名称,足底啊120px</view>
+            <view class="similarScale">A轮</view>
+          </view>
+          <view class="similarInro">这里是机构的介绍，就显示一行最大宽度279超过...</view>
+          <view class="similarMain">无人零售 · 人脸识别 · 大数据</view>
+          <view class="projectSpecial flex">
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+            <view class="otherProjectBox">
+              <label class='otherProject'>项目的特色标签</label>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--媒体报道  -->
+    <view class='mediaReport'>
+      <view class="flex title">
+        <view class="detailTitle">媒体报道</view>
+        <view class="allNumber">全部
+          <label>（12）</label>
+        </view>
+      </view>
+      <view class="mediaReportBox">
+        <view class="mediaReportTime">2017-07-07</view>
+        <view class="mediaReportContent">这里是新闻的标题，最多久显示两行，比如张淡淡的说昨天签署了一份协议</view>
+        <view class='mediaReportFrom'>人工智能 · 36氪</view>
+      </view>
+      <view class="mediaReportBox">
+        <view class="mediaReportTime">2017-07-07</view>
+        <view class="mediaReportContent">这里是新闻的标题，最多久显示两行，比如张淡淡的说昨天签署了一份协议</view>
+        <view class='mediaReportFrom'>人工智能 · 36氪</view>
+      </view>
+    </view>
+  </view>
+  <view style='height:104rpx;'></view>
+  <view class="flex t-aboutNetwork">
+    <view class="t-flexBox1" hover-class="t-hoverColor" bindtap="moreProject">
+      <image src='/img/icon-shouye@2x.png' class="t-shopPic1"></image>
+      <view class='t-shopBlock'>首页</view>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox1" hover-class="t-hoverColor">
+      <image src='/img/icon-fenxiang@2x.png' class="t-shopPic1"></image>
+      <button class='t-shopBlock' open-type="share">收藏</button>
+    </view>
+    <view class="t-line"></view>
+    <view class="t-flexBox1" catchtap="businessBook" hover-class="t-hoverColor">
+      <image src='/img/icon-jihuashu@2x.png' class="t-shopPic1"></image>
+      <view class='t-shopBlock'>商业计划书</view>
+    </view>
+    <view class="t-line"></view>
+    <view class='t-creatProject' catchtap="contactPerson" hover-class="t-redColor">联系项目方</view>
   </view>
 </scroll-view>
