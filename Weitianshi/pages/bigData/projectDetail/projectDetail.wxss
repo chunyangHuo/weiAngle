@@ -126,12 +126,6 @@
   margin-bottom: 32rpx;
 }
 
-.detailTitle {
-  font-size: 30rpx;
-  color: #333;
-  text-align: left;
-  padding: 32rpx 0;
-}
 
 .companyName {
   font-size: 30rpx;
@@ -147,6 +141,7 @@
   line-height: 42rpx;
   text-align: left;
   font-weight: bold;
+  padding: 32rpx 0;
 }
 
 .detailCompanyName {

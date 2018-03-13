@@ -1,1 +1,75 @@
-<text>pages/bigData/index/index.wxml</text>
+<view style='margin-top:100rpx;'>
+  <view class="searchBox" bindtap='searchMore'>
+    <view class="searchSth flex">
+      <icon type="search" size="14" class="search_icon1"></icon>
+      <label> 搜索项目、投资人、投资机构、创投人脉...</label>
+    </view>
+  </view>
+</view>
+<!--全网项目库  -->
+<view class='allNetProject'>
+  <view class="flex title">
+    <view class="detailTitle1">全网项目库</view>
+    <view class="allNumber">全部
+      <label>（12）</label>
+    </view>
+  </view>
+</view>
+
+<!--项目特色  -->
+<view class="projectSpecial">
+  <view class="flex title">
+    <view class="detailTitle">项目特色</view>
+  </view>
+  <view class="blockIntro">* 机器人Angel深度挖掘项目特色</view>
+  <view class="flex projectSpecialBox">
+    <!-- <block wx:for="{{investormentList.style_list}}" wx:key="{{index}}"> -->
+    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+      <view class="projectSpecialTitle">優秀團隊</view>
+      <view class="projectSpecialWord">
+        <label class="projectSpecialNum">10</label> 个项目</view>
+    </view>
+    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+      <view class="projectSpecialTitle">優秀團隊</view>
+      <view class="projectSpecialWord">
+        <label class="projectSpecialNum">10</label> 个项目</view>
+    </view>
+    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+      <view class="projectSpecialTitle">優秀團隊</view>
+      <view class="projectSpecialWord">
+        <label class="projectSpecialNum">10</label> 个项目</view>
+    </view>
+    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+      <view class="projectSpecialTitle">優秀團隊</view>
+      <view class="projectSpecialWord">
+        <label class="projectSpecialNum">10</label> 个项目</view>
+    </view>
+    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+      <view class="projectSpecialTitle">優秀團隊</view>
+      <view class="projectSpecialWord">
+        <label class="projectSpecialNum">10</label> 个项目</view>
+    </view>
+    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+      <view class="projectSpecialTitle">優秀團隊</view>
+      <view class="projectSpecialWord">
+        <label class="projectSpecialNum">10</label> 个项目</view>
+    </view>
+    <!-- </block> -->
+  </view>
+</view>
+
+<!--最新获投  -->
+<view class='newProject'>
+  <view>
+    <view class="flex title">
+      <view class="detailTitle">最新获投</view>
+      <view class="allNumber">全部
+        <label>（12）</label>
+      </view>
+    </view>
+    <view class="blockIntro">* 第一时间为您送达最近获得投资的项目</view>
+  </view>
+<view>
+
+</view>
+</view>
