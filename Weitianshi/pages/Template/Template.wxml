@@ -625,7 +625,7 @@
       <view class='flex dropFlex' scroll-y='true'>
         <block wx:for='{{SearchInit.tab}}' wx:key='{{item.label}}'>
           <template wx:if='{{item.type==1}}' is='searchDropItem' data='{{SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index}}'></template>
-          <template wx:if='{{item.type==2}}' is='searchDropItem3' data='{{linkDataShow,SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
+          <template wx:if='{{item.type==2}}' is='searchDropItem2' data='{{linkDataShow,SearchInit,item,label:item.label,itemId:item.itemId,itemName:item.itemName,longCheckBox:item.longCheckBox,index,page:item.page}}'></template>
         </block>
       </view>
       <!--重置确定  -->
@@ -639,46 +639,20 @@
   </view>
 </template>
 
-<!--筛选下拉框(单个)  type1-->
+<!--筛选下拉框(单个式)  type1-->
 <template name='searchDropItem'>
+  <button hidden='{{SearchInit.currentIndex!=index}}' class='checkbox {{item1.check==true?"checkOne":""}} {{longCheckBox==true?"longCheckBox":""}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheckAll'>
+    全部
+  </button>
   <block wx:for='{{SearchInit[label]}}' wx:for-item='item1' wx:for-index='index1' wx:key='item1[itemId]'>
-    <view hidden='{{SearchInit.currentIndex!=index}}' class='checkbox {{item1.check==true?"checkOne":""}} {{longCheckBox==true?"longCheckBox":""}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
+    <button hidden='{{SearchInit.currentIndex!=index}}' class='checkbox {{item1.check==true?"checkOne":""}} {{longCheckBox==true?"longCheckBox":""}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item1}}" data-index="{{index1}}" bindtap='tagsCheck'>
       {{item1[itemName]}}
-    </view>
+    </button>
   </block>
 </template>
 
-<!--筛选下拉框(单个)  type2 -->
+<!--筛选下拉框(联动式)  type2 -->
 <template name='searchDropItem2'>
-  <view id="linkedDrop" class="flex" hidden='{{SearchInit.currentIndex!=index}}'>
-    <!--一级标签  -->
-    <scroll-view scroll-y="true" class="frame_province">
-      <view>
-        <block wx:for="{{SearchInit[label]}}" wx:for-index='idx' wx:key="{{item[itemId]}}">
-          <view class="province" bindtap="firstLinkCheck" data-label='{{label}}' data-tabIndex='{{index}}' data-firstIndex="{{idx}}" data-id='{{item[itemId]}}' style="background:{{SearchInit[label][idx].check==true?'white':''}}">
-            {{item[itemName]}}
-          </view>
-        </block>
-      </view>
-    </scroll-view>
-    <!--二级标签  -->
-    <scroll-view scroll-y="true" class="frame_city">
-      <view style='height:100%;'>
-        <view class="city" data-label='{{label}}' data-firstIndex='{{page}}' data-page='{{page}}' style="background:{{backgroundcity[idx2]==1?'#ccc':''}}" bindtap='linkCheckAll'>全部</view>
-        <block wx:for="{{SearchInit.label_industry[page].child}}" wx:for-item='item2' wx:for-index='idx2' wx:key="{{item2[itemId]}}">
-          <!--page代表一级联动的index,idx2代表二级联动的index  -->
-          <view class="city" bindtap="tagsCheck" data-firstIndex='{{page}}' data-secondIndex='{{idx2}}' data-str='{{label}}' data-itemIdStr='{{itemId}}' data-item="{{item2}}" data-index="{{idx2}}" wx:key="{{item2[itemId]}}" style="background:{{backgroundcity[idx2]==1?'#ccc':''}}">
-            {{item2[itemName]}}
-            <image wx:if='{{item2.check == true}}' class='gouhao' src='/img/icon-gou@2x.png'></image>
-          </view>
-        </block>
-      </view>
-    </scroll-view>
-  </view>
-</template>
-
-<!--筛选下拉框(单个)  type3 -->
-<template name='searchDropItem3'>
   <view id="linkedDrop" class="flex" hidden='{{SearchInit.currentIndex != index}}'>
     <!--一级标签  -->
     <scroll-view scroll-y="true" class="frame_province">

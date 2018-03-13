@@ -5,7 +5,7 @@ var url_common = app.globalData.url_common;
 import * as FilterModel from '../../../utils/model/filterModel';
 import * as ShareModel from '../../../utils/model/shareModel';
 Page({
-  data: {
+  data: { 
     //筛选搜索
     SearchInit: FilterModel.data,
     label_industry: FilterModel._label_industry, 

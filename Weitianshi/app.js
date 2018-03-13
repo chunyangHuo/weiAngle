@@ -781,9 +781,9 @@ App({
 
   // console.log 显示
   log() {
-    // if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
-    //   console.log(...arguments);
-    // }
+    if (this.globalData.url_common == 'https://wx.dev.weitianshi.cn') {
+      console.log(...arguments);
+    }
   },
 
   // 传formID到后台

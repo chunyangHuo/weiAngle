@@ -1,7 +1,14 @@
 <import src="/pages/Template/Template.wxml" />
-<scroll-view id='projectLib'>
-  <!--搜索  -->
-  <!-- <template is="newSearch2" data="{{text:'搜索项目、投资机构、投资人、FA'}}"></template> -->
-  <!--筛选  -->
-  <template is='search' data='{{SearchInit,linkDataShow,currentTab,hidden:true}}'></template>
+<!--搜索  -->
+<template is="newSearch2" data="{{text:'搜索项目、投资人、投资机构、创投人脉...'}}"></template>
+<!--筛选  -->
+<template is='search' data='{{SearchInit,linkDataShow,currentTab,hidden:true}}'></template>
+<!--项目列表  -->
+<scroll-view id='projectLib' scroll-top='{{scrollTop}}'>
+
+
 </scroll-view>
+<!--错误提示  -->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--置顶图标  -->
+<toTopIcon bind:toTop="_toTop"></toTopIcon>

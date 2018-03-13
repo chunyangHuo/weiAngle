@@ -1,15 +1,16 @@
-let app =getApp();
+let app = getApp();
 import * as FilterModel from '../../../utils/model/filterModel';
 Page({
   data: {
     //筛选搜索
-    searchText: '请输入姓名、公司、品牌',
     SearchInit: FilterModel.data,
     label_industry: FilterModel._label_industry,
     linkDataShow: FilterModel._linkDataShow,
+    //置顶
+    scrollTop:3000
   },
   onLoad() {
-    let that = this;
+    let that = this; 
     //更改搜索模块初始化设置
     FilterModel.reInitSearch(that, {
       tab: [
@@ -40,6 +41,10 @@ Page({
   // 标签选择
   tagsCheck(e) {
     FilterModel.tagsCheck(e, this);
+  },
+  // 标签全选(单项式)
+  tagsCheckAll(e) {
+    FilterModel.tagsCheckAll.call(this, e);
   },
   // 筛选重置
   reset() {
@@ -94,4 +99,10 @@ Page({
   linkCheckAll(e) {
     FilterModel.linkCheckAll(e, this);
   },
+  //----------------------置顶-------------------------------------
+  _toTop(){
+    this.setData({
+      scrollTop:0
+    })
+  }
 })

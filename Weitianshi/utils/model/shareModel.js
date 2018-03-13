@@ -68,7 +68,7 @@ function FAShare(){
     path: '/pages/discover/financingAdvisor/financingAdvisor'
   }
 }
-//项目库分享
+//机构库分享
 function projectListShare() {
   return {
     title: '来微天使找优质人脉',
