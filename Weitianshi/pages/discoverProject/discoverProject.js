@@ -12,7 +12,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     currentTab: 0,
-    slectProject: '',
+    slectProject: '', 
     hidden: true,
     //筛选搜索
     SearchInit: FilterModel.data,

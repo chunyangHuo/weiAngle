@@ -92,8 +92,8 @@
   <template name="jumpBlock">
     <view class="jumpTo" bindtap='{{tapName}}' hover-class='t-hoverColor'>
       <image class='jumpImage' src='{{src}}'></image>
-      <view class="countShowNum" wx:if="{{countShow <= 999}}">{{countShow}}</view>
-      <view class="countShowNum" wx:if="{{countShow > 999}}">999+</view>
+      <view class="countShowNum" wx:if="{{text != '潜在投资方'}}">{{countShow}}</view>
+      <view class="countShowNum" wx:if="{{text == '潜在投资方'}}">999+</view>
       <view class='jumpToContent'>{{text}}</view>
     </view>
   </template>
