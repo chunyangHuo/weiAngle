@@ -45,9 +45,12 @@ Page({
     buttonOneText: "确定",
     imgUrls1: app.globalData.picUrl.projectDetailpotential,
     nonet: true,
-    projectImg: app.globalData.picUrl.projectBac,
+    projectImg: app.globalData.picUrl.projectBac, 
+    status: 0, // 是否认证过0:未认证1:待审核 2 审核通过 3审核未通过
+    authenModelBox: 0, // 控制联系项目方是否显示
+    group_id: 18 //买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
   },
-  onLoad: function (options) {
+  onLoad(options) {
     var that = this;
     var id = options.id;//当前被查看用户的项目id
     var share_id = options.share_id;
@@ -65,7 +68,7 @@ Page({
 
     //判断页面进入场景    option.share_id存在是分享页面,share_id不存在则不是分享页面
     that.showStatus(that, id, "", 0);
-    // 判斷項目是不是自己的
+    //判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
       data: {
@@ -86,8 +89,10 @@ Page({
       }
     });
     app.netWorkChange(that);
+    //判断身份认证状态
+    this.identityInfo(this);
   },
-  onShow: function () {
+  onShow() {
     let that = this;
     // 机构版买家图谱信息修改
     that.setData({
@@ -107,7 +112,33 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     that.projectDetailInfo(that, pro_id, is_share, share_id, 1);
   },
-
+  //是否完成身份认证状态
+  identityInfo(that) {
+    let user_id = wx.getStorageSync('user_id');
+    if (user_id) {
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          let status = res.data.status;
+          let group_id = res.data.group.group_id;
+          that.setData({
+            status: status,
+            group_id: group_id
+          })
+        }
+      })
+    } else {
+      that.setData({
+        status: 5
+      })
+    }
+    wx.hideLoading()
+  },
 
   //项目详情信息
   projectDetailInfo(that, id, is_share, share_id, show_company) {
@@ -943,10 +974,27 @@ Page({
     let user_id = wx.getStorageSync('user_id');
     let that = this;
     app.checkUserInfo(this, res => {
-      //如果信息完整就可以联系项目方
-      that.setData({
-        modalBox: 1
-      });
+      //如果信息完整就
+      // 身份通过
+      console.log(this.data.status)
+      if (this.data.status === 2) {
+        // 如果身份是买方FA，投资人，就去联系项目方
+        if (this.data.group_id === 18 || this.data.group_id === 6) {
+          //可以联系项目方
+          that.setData({
+            modalBox: 1
+          })
+        } else {
+          that.setData({
+            authenModelBox: 1
+          })
+        }
+        // 其他全部去那边
+      } else {
+        that.setData({
+          authenModelBox: 1
+        })
+      }
     })
   },
   //关闭模态框
@@ -1075,29 +1123,26 @@ Page({
     app.checkUserInfo(this, res => {
       //如果信息完整就可以显示去认证
       if (status == 0) {
-        app.href('/pages/my/identity/indentity/indentity');
-      } else if (status == 3) {
-        wx.showModal({
-          title: '友情提示',
-          content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
-          confirmColor: "#333333;",
-          confirmText: "重新认证",
-          showCancel: false,
+        app.href('/pages/my/identity/indentity/indentity')
+      } else {
+        wx.request({
+          url: url_common + '/api/user/getUserGroupByStatus',
+          data: {
+            user_id: user_id
+          },
+          method: 'POST',
           success: function (res) {
-            wx.request({
-              url: url_common + '/api/user/getUserGroupByStatus',
-              data: {
-                user_id: user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                let group_id = res.data.group.group_id;
-                app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id);
-              }
-            });
+            let group_id = res.data.group.group_id;
+            app.href('/pages/my/identity/indentity/indentity?group_id=' + group_id + '&&recertification=' + 1)
           }
-        });
+        })
       }
+    })
+  },
+  // 暂不认证
+  noAccreditation: function () {
+    this.setData({
+      authenModelBox: 0
     })
   },
   // 申请查看

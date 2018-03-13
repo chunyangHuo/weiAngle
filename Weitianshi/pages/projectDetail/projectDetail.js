@@ -24,7 +24,7 @@ Page({
     projectName: "",
     companyName: "",
     stock: 0,
-    load: 0,
+    load: 0, 
     isChecked0: true,
     isChecked1: true,
     isChecked2: true,
