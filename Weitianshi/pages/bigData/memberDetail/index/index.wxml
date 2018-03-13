@@ -1,2 +1,127 @@
-<!--pages/bigData/memberDetail/index/index.wxml-->
-<text>pages/bigData/memberDetail/index/index.wxml</text>
+<view class="memberInfoBox flex">
+  <!-- <image class="memberPic"></image> -->
+  <view class="memberNoPic">霍</view>
+  <view class="memberUserBox">
+    <view class="memberUserName">张三</view>
+    <view class="t-roundGroupPush flex">
+      <image class="t-roundGroupTitle" src="/img/icon-lunci@2x.png"></image>
+      <view class="t-roundGroupContent">
+        <label>猎虎星座</label> ·
+        <label>创始合伙人猎户星座的归属人</label>
+      </view>
+      <!-- <view class="t-roundGroupContent">暂未透露</view> -->
+    </view>
+    <view class="t-roundGroupPush flex">
+      <image class="t-roundGroupTitle" src="/icon-diqu-s@2x.png"></image>
+      <view class="t-roundGroupContent">
+        <label>猎虎星座</label> ·
+        <label>创始合伙人猎户星座的归属人</label>
+      </view>
+      <!-- <view class="t-roundGroupContent">暂未透露</view> -->
+    </view>
+  </view>
+</view>
+<view style='height:312rpx;'></view>
+<!--个人简介  -->
+
+<view class='memberPersonInfo'>
+  <view class="flex title">
+    <view class="detailTitle">个人简介</view>
+  </view>
+  <view class="memberPersonTitle flex">
+    <view class="mptBox">
+      <label class='mptboxContent'>项目的特色标签</label>
+    </view>
+    <view class="mptBox">
+      <label class='mptboxContent'>项目的特色标签</label>
+    </view>
+    <view class="mptBox">
+      <label class='mptboxContent'>项目的特色标签</label>
+    </view>
+    <view class="mptBox">
+      <label class='mptboxContent'>项目的特色标签</label>
+    </view>
+    <view class="mptBox">
+      <label class='mptboxContent'>项目的特色标签</label>
+    </view>
+  </view>
+  <view class="memberPersonContent">杭州投着乐网络科技有限公司成立于2016年9月，同年全资收购天津微天使网络科技有限公司及旗下微天使APP产品及相关品牌（微天使网、中国微天使节、微天使投资俱乐部、社群号等），并将互联网化FA平台（创</view>
+</view>
+
+<!--创业经历  -->
+<view class='memberPersonStart'>
+  <view class="flex title">
+    <view class="detailTitle">创业经历</view>
+    <view class="allNumber">全部
+      <label>（12）</label>
+    </view>
+  </view>
+  <view class="memberPersonBox">
+    <view class="mpSTime">2017-09</view>
+    <view class="mpSContent flex">
+      <view class="mpSContentPic"></view>
+      <view>
+        <view class="flex title">
+          <view class="mpSTitle">字的最大宽度得是172...</view>
+          <view class="mpST">工具软件</view>
+        </view>
+        <view class='mpsInfo'>介绍最多显示两行让信用变现的互联网产品让信用变现的互联网产品让信用变现的互联网产品...</view>
+      </view>
+      <image class='userIcon' src="/img/icon-jiantou3@2x.png"></image>
+    </view>
+  </view>
+  <view class="memberPersonBox">
+    <view class="mpSTime">2017-09</view>
+    <view class="mpSContent flex">
+      <view class="mpSContentPic"></view>
+      <view>
+        <view class="flex title">
+          <view class="mpSTitle">字的最大宽度得是172...</view>
+          <view class="mpST">工具软件</view>
+        </view>
+        <view class='mpsInfo'>介绍最多显示两行让信用变现的互联网产品让信用变现的互联网产品让信用变现的互联网产品...</view>
+      </view>
+      <image class='userIcon' src="/img/icon-jiantou3@2x.png"></image>
+    </view>
+  </view>
+</view>
+
+<!--工作经历  -->
+<view class='memberPersonWork'>
+  <view class="flex title">
+    <view class="detailTitle">工作经历</view>
+    <view class="allNumber">全部
+      <label>（12）</label>
+    </view>
+  </view>
+  <view class="mpWbox flex">
+    <image class="case_pic" src="/img/dot@3x.png"></image>
+    <view class="mpWC">金山(金山网络CEO)</view>
+  </view>
+  <view class="mpWbox flex">
+    <image class="case_pic" src="/img/dot@3x.png"></image>
+    <view class="mpWC">金山(金山网络CEO)</view>
+  </view>
+  <view class="mpWbox flex">
+    <image class="case_pic" src="/img/dot@3x.png"></image>
+    <view class="mpWC">金山(金山网络CEO)</view>
+  </view>
+</view>
+
+<!--教育经历  -->
+<view class='memberPersonEdu'>
+  <view class="flex title">
+    <view class="detailTitle">教育经历</view>
+    <view class="allNumber">全部
+      <label>（12）</label>
+    </view>
+  </view>
+  <view class="mpWbox flex">
+    <image class="case_pic" src="/img/dot@3x.png"></image>
+    <view class="mpWC">山东科技大学</view>
+  </view>
+  <view class="mpWbox flex">
+    <image class="case_pic" src="/img/dot@3x.png"></image>
+    <view class="mpWC">山东科技大学</view>
+  </view>
+</view>

@@ -296,7 +296,7 @@
       </view>
     </view>
     <!--媒体报道  -->
-    <view class='mediaReport'>
+    <view class='mediaReport'> 
       <view class="flex title">
         <view class="detailTitle">媒体报道</view>
         <view class="allNumber">全部
