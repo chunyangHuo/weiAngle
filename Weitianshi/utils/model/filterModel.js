@@ -2,7 +2,7 @@ import { httpPost } from './httpModel.js'
 let app = getApp();
 let url_common = app.globalData.url_common;
 //searchData
-let data = { 
+let data = {
   firstTime: true,
   tab: [
     { type: 1, name: '领域', label: 'industry', itemId: 'industry_id', itemName: 'industry_name', longCheckBox: false },
@@ -54,7 +54,7 @@ let data = {
   label_time: wx.getStorageSync('label_time')
 }
 let _label_industry = []
-let _linkDataShow = { 
+let _linkDataShow = {
   selectData: [],
   firstStair: [],
   secondStair: '',
@@ -383,24 +383,36 @@ function tagsCheck(e, that) {
     SearchInit: SearchInit
   })
 }
-// 标签全选
-function tagsCheckAll(e){
+// 单项式标签全选
+function tagsCheckAll(that, e) {
   let str = e.currentTarget.dataset.str;
   let itemIdStr = e.currentTarget.dataset.itemidstr;
-  let SearchInit = this.data.SearchInit;
+  let SearchInit = that.data.SearchInit;
   let itemArrStr = str + 'Arr';
   let item = SearchInit[str];
   let itemArr = SearchInit[itemArrStr];
-  let target = e.currentTarget.dataset.item;
-  let index = e.currentTarget.dataset.index;
-  app.log('str',str);
-  app.log('itemIdStr',itemIdStr);
+  app.log('str', str);
+  app.log('itemIdStr', itemIdStr);
   app.log('SearchInit', SearchInit);
   app.log('itemArrStr', itemArrStr);
   app.log('item', item);
   app.log('itemArr', itemArr);
-  app.log('target', target);
-  app.log('index', index);
+  // 未全选时,点全部全选,否则取消全选
+  if (itemArr.length != item.length) {
+    // 清空已选中项，选中所有项，并填入已选中项
+    itemArr = [];
+    item.forEach(x => {
+      x.check = true;
+      itemArr.push(x)
+    });
+    SearchInit[itemArrStr] = itemArr;
+    that.setData({
+      SearchInit
+    })
+  } else {
+    console.log(1)
+    this.reset(that)
+  }
 }
 // 筛选重置 
 function reset(that) {
@@ -768,7 +780,7 @@ function page_tagsCheck(e, that) {
 function page_reset(that) {
   let filterList = that.data.filterList;
   filterList.forEach((x, index) => {
-    x.arry.forEach((y, idx) => { 
+    x.arry.forEach((y, idx) => {
       y.check = false
     })
   })
@@ -795,13 +807,13 @@ function page_certain(that) {
   })
   app.log(searchData, filterList)
   app.log("tagFilterSearchData", searchData)
-  if(SearchInit){
+  if (SearchInit) {
     SearchInit.searchData = searchData;
     prePage.setData({
       SearchInit,
       firstTime: false
     })
-  }else{
+  } else {
     prePage.setData({
       searchData,
       firstTime: false

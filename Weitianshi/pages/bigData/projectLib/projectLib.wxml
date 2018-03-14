@@ -1,10 +1,10 @@
 <import src="/pages/Template/Template.wxml" />
 <!--搜索  -->
-<template is="newSearch2" data="{{text:'搜索项目、投资人、投资机构、创投人脉...'}}"></template>
+<template is="newSearch2" data="{{text:'搜索项目、投资人、投资机构、创投人脉'}}"></template>
 <!--筛选  -->
 <template is='search' data='{{SearchInit,linkDataShow,currentTab,hidden:true}}'></template>
 <!--项目列表  -->
-<scroll-view id='projectLib' scroll-top='{{scrollTop}}'>
+<scroll-view id='projectLib' scroll-top='{{scrollTop}}'> 
 
 
 </scroll-view>

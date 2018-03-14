@@ -44,7 +44,7 @@ Page({
   },
   // 标签全选(单项式)
   tagsCheckAll(e) {
-    FilterModel.tagsCheckAll.call(this, e);
+    FilterModel.tagsCheckAll(this,e);
   },
   // 筛选重置
   reset() {
