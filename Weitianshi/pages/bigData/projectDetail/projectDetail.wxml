@@ -1,12 +1,10 @@
 <scroll-view>
   <view class="projectDetailBox">
     <view class="flex projectDetailTop">
-      <view class="projectDetailLeft">
-        <!-- <image></image> -->
-      </view>
+      <image class="projectDetailLeft" src="{{projectInfo.info.project_logo}}"></image>
       <view class="projectDetailRight">
-        <view class="projectDetailTitle">这里是项目的名称，最多显示一行行最多显示一行字</view>
-        <view class="projectDetailContent">这里是一句话介绍，字数可能会有点多，要两行展点击PS底部的“时间轴”面板，激活它，然后按如图的样式显示</view>
+        <view class="projectDetailTitle">{{projectInfo.info.project_name}}</view>
+        <view class="projectDetailContent">{{projectInfo.info.project_intro}}</view>
       </view>
     </view>
     <view class="projectDetailCenter">
@@ -25,13 +23,11 @@
       <view class="flex stageBox">
         <image class="t-roundGroupTitle" src="/img/icon-lingyu1@2x.png"></image>
         <view>
-          500-1000万 · 天使轮 · 呼和浩特市
-          <!-- <block wx:for="{{item.user.stage}}" wx:key="{{stageItem.stage_id}}" wx:for-item='stageItem'>
-          <label wx:if="{{index < item.user.stage.length-1}}">{{stageItem.stage_name}}、</label>
-          <label wx:if="{{index == item.user.stage.length-1}}">{{stageItem.stage_name}}</label>
-        </block> -->
+          <label>{{projectInfo.info.expected_amount}}</label> ·
+          <label>{{projectInfo.info.stage_name}}</label> ·
+          <label>{{projectInfo.info.area_name}}</label>
         </view>
-        <!-- <view>暂未透露</view>  -->
+        <view wx:if="{{!projectInfo.info.area_name && !projectInfo.info.stage_name &&!projectInfo.info.expected_amount}}">暂未透露</view>
       </view>
       <view class="flex projectSpecial">
         <label class="otherProject">知名媒体报道</label>
@@ -55,7 +51,7 @@
     <view class="companyIntro">
       <view class='companyName'>公司介绍</view>
       <view class="flex">
-        <view class="detailCompanyName">杭州投着乐网络科技有限公司</view>
+        <view class="detailCompanyName">{{projectInfo.info.company_name}}</view>
         <view class="detailOneDetail">一键尽调</view>
       </view>
       <view class="detailContent">
@@ -146,96 +142,70 @@
       <view class="flex title">
         <view class="detailTitle">历史融资</view>
         <view class="allNumber">全部
-          <label>（12）</label>
+          <label>（{{projectInfo.history_finance.total_num}}）</label>
         </view>
       </view>
-      <view class="historyBox flex">
-        <view class="left">
-          <view class="mainProjectTime">2017.10</view>
-          <view class="mainProjectScale">C轮</view>
+      <block wx:for="{{projectInfo.history_finance.list}}" wx:key="{{index}}">
+        <view class="historyBox flex">
+          <view class="left">
+            <view class="mainProjectTime">{{item.finance_time}}</view>
+            <view class="mainProjectScale">{{item.stage_name}}</view>
+          </view>
+          <view class="right">
+            <view class="mainProjectMoney">{{item.finance_money}}</view>
+            <block wx:for="{{projectInfo.history_finance.list}}" wx:key="{{index}}" wx:for-item="investment">
+              <view class="mainProjectOther">{{investment.investment_name}}</view>
+            </block>
+          </view>
         </view>
-        <view class="right">
-          <view class="mainProjectMoney">4.6亿美元</view>
-          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
-          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
-        </view>
-      </view>
-      <view class="historyBox flex">
-        <view class="left">
-          <view class="mainProjectTime">2017.10</view>
-          <view class="mainProjectScale">Pre-A轮</view>
-        </view>
-        <view class="right">
-          <view class="mainProjectMoney">4.6亿美元</view>
-          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
-          <view class="mainProjectOther">中国国有资本风险投资基金管理</view>
-        </view>
-      </view>
+      </block>
     </view>
     <!--核心成员  -->
     <view class="companyCorePerson">
       <view class="flex title">
         <view class="detailTitle">核心成员</view>
         <view class="allNumber">全部
-          <label>（12）</label>
+          <label>（{{projectInfo.member_list.total_num}}）</label>
         </view>
       </view>
-      <view class="corePersonBox flex">
-        <!-- <image class="corePersonImage"></image> -->
-        <view class="corePersonNoImage">霍</view>
-        <view>
-          <view class="corePersonInfo flex">
-            <view class='corePersonName'>张孙峰</view>
-            <view class='corePersonPosition'>联合创始人</view>
-          </view>
-          <view class='flex corePersonPercent title'>
-            <view>持股比例:
-              <label class="realPercent">30%</label>
+      <block wx:for="{{projectInfo.member_list.list}}" wx:key="{{index}}">
+        <view class="corePersonBox flex">
+          <image class="corePersonImage" src="{{item.member_avatar}}" wx:if="{{item.member_avatar}}"></image>
+          <view class="corePersonNoImage" wx:if="{{!item.member_avatar}}">{{item.member_avatar_text}}</view>
+          <view>
+            <view class="corePersonInfo flex">
+              <view class='corePersonName'>{{item.member_name}}</view>
+              <view class='corePersonPosition'>{{item.member_position}}</view>
             </view>
-            <view>拥有公司:
-              <label class="realPercent">0家</label>
+            <view class='flex corePersonPercent title'>
+              <view>持股比例:
+                <label class="realPercent">{{item.hold_rate}}</label>
+              </view>
+              <view>拥有公司:
+                <label class="realPercent">{{item.company_num}}家</label>
+              </view>
             </view>
-          </view>
-          <view class="corePersonIntro">
-            这里是个人简介这里是个人简介 这里是个人简介这里是个人简介，字数可能会有点长这里是个人简介这里是个人简介 这里是个人简介这里是个人简介，字数可能会有点长
-          </view>
-        </view>
-      </view>
-      <view class="corePersonBox flex">
-        <!-- <image class="corePersonImage"></image> -->
-        <view class="corePersonNoImage">霍</view>
-        <view>
-          <view class="corePersonInfo flex">
-            <view class='corePersonName'>张孙峰</view>
-            <view class='corePersonPosition'>联合创始人</view>
-          </view>
-          <view class='flex corePersonPercent title'>
-            <view>持股比例:
-              <label class="realPercent">30%</label>
-            </view>
-            <view>拥有公司:
-              <label class="realPercent">0家</label>
+            <view class="corePersonIntro">
+              {{item.member_introduce}}
             </view>
           </view>
         </view>
-      </view>
+      </block>
     </view>
     <!--里程碑  -->
     <view class='companyStone'>
       <view class="flex title">
         <view class="detailTitle">里程碑</view>
         <view class="allNumber">全部
-          <label>（12）</label>
+          <label>（{{projectInfo.milestone_list.total_num}}）</label>
         </view>
       </view>
-      <view class="companyStoneBox flex">
-        <view class="left">2017.10</view>
-        <view class="right">滴滴出行资深副总裁陶然离职，滴滴出行资深副总裁陶然离职。</view>
-      </view>
-      <view class="companyStoneBox flex">
-        <view class="left">2017.05</view>
-        <view class="right">滴滴出行资深副总裁陶然离职，滴滴出行资深副总裁陶然离职。滴滴出行资深副总裁陶然离职，</view>
-      </view>
+      <block wx:for="{{projectInfo.milestone_list.list}}" wx:key="{{index}}">
+        <view class="companyStoneBox flex">
+          <view class="left">{{item.milestone_time}}</view>
+          <view class="right">{{item.milestone_event}}</view>
+        </view>
+      </block>
     </view>
     <!--相似项目  -->
     <view class='similarProject'>
@@ -296,7 +266,7 @@
       </view>
     </view>
     <!--媒体报道  -->
-    <view class='mediaReport'> 
+    <view class='mediaReport'>
       <view class="flex title">
         <view class="detailTitle">媒体报道</view>
         <view class="allNumber">全部

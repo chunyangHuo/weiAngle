@@ -10,66 +10,82 @@
 <view class='allNetProject'>
   <view class="flex title">
     <view class="detailTitle1">全网项目库</view>
-    <view class="allNumber">全部
+    <view class="allNumber" catchtap='allNetProject'>全部
       <label>（12）</label>
     </view>
   </view>
 </view>
 
 <!--项目特色  -->
-<view class="projectSpecial">
+<view class="projectSpecialy">
   <view class="flex title">
     <view class="detailTitle">项目特色</view>
   </view>
   <view class="blockIntro">* 机器人Angel深度挖掘项目特色</view>
   <view class="flex projectSpecialBox">
-    <!-- <block wx:for="{{investormentList.style_list}}" wx:key="{{index}}"> -->
-    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
-      <view class="projectSpecialTitle">優秀團隊</view>
-      <view class="projectSpecialWord">
-        <label class="projectSpecialNum">10</label> 个项目</view>
-    </view>
-    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
-      <view class="projectSpecialTitle">優秀團隊</view>
-      <view class="projectSpecialWord">
-        <label class="projectSpecialNum">10</label> 个项目</view>
-    </view>
-    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
-      <view class="projectSpecialTitle">優秀團隊</view>
-      <view class="projectSpecialWord">
-        <label class="projectSpecialNum">10</label> 个项目</view>
-    </view>
-    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
-      <view class="projectSpecialTitle">優秀團隊</view>
-      <view class="projectSpecialWord">
-        <label class="projectSpecialNum">10</label> 个项目</view>
-    </view>
-    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
-      <view class="projectSpecialTitle">優秀團隊</view>
-      <view class="projectSpecialWord">
-        <label class="projectSpecialNum">10</label> 个项目</view>
-    </view>
-    <view class="projectSpecialBlock" data-style="{{item.style_id}}" hover-class='t-hoverColor' bindtap="toStyle">
-      <view class="projectSpecialTitle">優秀團隊</view>
-      <view class="projectSpecialWord">
-        <label class="projectSpecialNum">10</label> 个项目</view>
-    </view>
-    <!-- </block> -->
+    <block wx:for="{{sourceData.special_list}}" wx:key="{{index}}">
+      <view class="projectSpecialBlock" data-style="{{item.special_id}}" hover-class='t-hoverColor' bindtap="toStyle">
+        <view class="projectSpecialTitle">{{item.special_name}}</view>
+        <view class="projectSpecialWord">
+          <label class="projectSpecialNum">{{item.project_num}}</label> 个项目</view>
+      </view>
+    </block>
   </view>
 </view>
 
 <!--最新获投  -->
 <view class='newProject'>
-  <view>
-    <view class="flex title">
-      <view class="detailTitle">最新获投</view>
-      <view class="allNumber">全部
-        <label>（12）</label>
-      </view>
+  <view class="flex title">
+    <view class="detailTitle">最新获投</view>
+    <view class="allNumber" catchtap='newProject'>全部
+      <label>（{{sourceData.events_list.total_num}}）</label>
     </view>
-    <view class="blockIntro">* 第一时间为您送达最近获得投资的项目</view>
   </view>
-<view>
-
-</view>
+  <view class="blockIntro noBottom">* 第一时间为您送达最近获得投资的项目</view>
+  <block wx:for="{{sourceData.events_list.list}}" wx:key="{{index}}">
+    <view class='newProjectBox' data-id="{{item.project_id}}">
+      <view class="boxTop flex">
+        <image class="belongTo" src='/img/img-weitianshi@2x(1).png'></image>
+        <image class="npLeft" src='{{item.project_logo}}' wx:if="{{item.project_logo}}"></image>
+        <image class="npLeft" src='/img/img-logo@2x.png' wx:if="{{!item.project_logo}}"></image>
+        <view class="npRight">
+          <view class="npRightTitle">{{item.project_name}}</view>
+          <view class="npRightInfo">{{item.project_intro}}</view>
+          <view class="npRightOther flex">
+            <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:for-item='industryList'>
+              <label>{{industryList.industry_name}}
+                <label wx:if="{{index != item.industry_list.length-1}}">·
+                  <text decode="true" space="true">&nbsp;</text>
+                </label>
+              </label>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="projectSpecial  flex">
+        <block wx:for="{{item.special_list}}" wx:key="{{index}}" wx:for-item='specialList'>
+          <view class="otherProjectBox">
+            <label class='otherProject'>{{specialList.special_name}}</label>
+          </view>
+        </block>
+      </view>
+      <block wx:for="{{item.events_list}}" wx:key="{{index}}" wx:for-item='eventList'>
+        <view class="boxBottom flex">
+          <view class="boxBottomLeft">
+            <view class="boxBottomTime">{{eventList.finance_time}}</view>
+            <view class="boxBottomScale">{{eventList.stage_name}}</view>
+          </view>
+          <image src="/img/img-dianx.png" class="boxDot"></image>
+          <view class="boxBottomRight">
+            <view class="boxBottomRightMoney">{{eventList.finance_money}}</view>
+            <block wx:for="{{eventList.investment_list}}" wx:key="{{index}}" wx:for-item='investList'>
+              <view class="boxBottomContent">{{investList.investment_name}}
+                <label wx:if="{{investList.project_lead}}">【{{investList.project_lead}}】</label>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
 </view>
