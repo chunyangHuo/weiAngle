@@ -1,4 +1,5 @@
 let app = getApp();
+let url_common = app.globalData.url_common;
 import * as FilterModel from '../../../utils/model/filterModel';
 Page({
   data: {
@@ -30,7 +31,39 @@ Page({
         SearchInit
       });
     }
+    //----------------------------------------------------
+    let user_id = wx.getStorageSync('user_id');
+    // app.httpPost({
+    //   url: url_common + '/api/source',
+    //   data: {
+    //     user_id: user_id,
+    //   }
+    // }, that).then(res => {
+    //   let sourceData = res.data.data;
+    //   console.log(sourceData.events_list.list)
+    //   that.setData({
+    //     sourceData: sourceData
+    //   })
+    // })
+    this.getProjectList();
   }, 
+  // -----------------------------------------------------------------------------------
+  getProjectList(pageNum = 0){
+    app.httpPost({
+      url: url_common + '/api/source/projectLists',
+      data:{
+        user_id: wx.getStorageSync('user_id'),
+        page: pageNum,
+        filter:this.data.SearchInit.searchData,
+      }.then(res=>{
+        app.log(res)
+      })
+    })
+  },
+
+
+
+
   // --------------------------筛选搜索--------------------------------------------------
   // 下拉框
   move(e) {

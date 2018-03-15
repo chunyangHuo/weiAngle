@@ -1,4 +1,5 @@
 /* pages/bigData/projectLib/projectLib.wxss */
+@import '../index/index.wxss';
 page{
   height: 100%;
 }
@@ -24,3 +25,7 @@ scroll-view{
 .t-modal {
   top: 176rpx;
 }
+.search_icon1{
+  padding-top: 10rpx;
+  margin: 0;
+} 
