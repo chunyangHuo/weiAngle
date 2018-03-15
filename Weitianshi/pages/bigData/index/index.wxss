@@ -60,7 +60,7 @@
   top: 36rpx;
 }
 
-.allNetProject, .projectSpecial, .newProject {
+.allNetProject, .projectSpecialy, .newProject {
   padding: 0 32rpx;
   background: #fff;
   margin-bottom: 32rpx;
@@ -68,7 +68,7 @@
 
 /*项目特色  */
 
-.projectSpecial {
+.projectSpecialy {
   padding-bottom: 20rpx;
 }
 
@@ -79,7 +79,9 @@
   text-align: left;
   margin-bottom: 40rpx;
 }
-
+.noBottom{
+  margin-bottom: 0;
+}
 .projectSpecialBox {
   flex-wrap: wrap;
 }
@@ -115,4 +117,118 @@
   color: #40587a;
   line-height: 25rpx;
   font-weight: bold;
+}
+
+.newProjectBox {
+  border-bottom: 1rpx solid #666;
+  padding: 40rpx 0;
+}
+
+.newProjectBox:last-child {
+  border: none;
+}
+
+.npRight, .boxMiddle {
+  margin-bottom: 32rpx;
+}
+
+/*整合代码  */
+.boxTop{
+  position: relative;
+}
+.belongTo{
+  position: absolute;
+  top: -16rpx;
+  left: -18rpx;
+  width: 116rpx;
+  height: 36rpx;
+}
+.boxDot{
+  height: 24rpx;
+  width: 24rpx;
+  margin: 2rpx 24rpx; 
+}
+.projectSpecial {
+  word-break: break-all;
+  flex-wrap: wrap;
+  max-width: 556rpx;
+  margin-bottom: 16rpx;
+}
+.otherProjectBox {
+  margin-bottom: 16rpx;
+}
+
+.otherProject {
+  background: rgba(51, 120, 224, 0.10);
+  border-radius: 4rpx;
+  padding: 6rpx 12rpx 8rpx 12rpx;
+  margin-right: 24rpx;
+  font-size: 24rpx;
+  color: #3378e0;
+  /* white-space: nowrap; */
+}
+
+.boxBottom {
+  background: #f9fafc;
+  border-radius: 4rpx;
+  padding: 20rpx 24rpx;
+}
+
+.boxBottomTime {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.boxBottomScale {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.boxBottomRightMoney {
+  font-size: 28rpx;
+  color: #c5a837;
+  margin-bottom: 12rpx;
+}
+
+.boxBottomContent {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.npLeft {
+  width: 104rpx;
+  height: 104rpx;
+  margin-right: 24rpx;
+}
+
+.npRightTitle {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240rpx;
+}
+
+.npRightInfo {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 558rpx;
+}
+
+.npRightOther {
+  font-size: 24rpx;
+  color: #999;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  max-width: 558rpx;
+  word-break: break-all;
+  flex-wrap: wrap;
 }

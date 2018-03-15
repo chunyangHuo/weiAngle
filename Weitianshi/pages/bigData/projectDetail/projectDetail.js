@@ -1,7 +1,31 @@
-// pages/bigData/projectDetail/projectDetail.js
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
   data: {
-  
+
+  },
+  onLoad(options) {
+    let project_id = options.project_id;
+    let user_id = wx.getStorageSync("user_id");
+    let that = this;
+    app.httpPost({
+      url: url_common + '/api/source/projectInfo',
+      data: {
+        user_id: user_id,
+        project_id: project_id,
+        project_source: "scrapy"
+      }
+    }, that).then(res => {
+      let projectInfo = res.data.data;
+      that.setData({
+        projectInfo: projectInfo
+      })
+      console.log(projectInfo)
+    })
+  },
+  onshow() {
+
   },
   // 跳转到首页
   moreProject() {
