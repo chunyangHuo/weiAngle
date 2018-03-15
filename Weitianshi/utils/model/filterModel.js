@@ -38,7 +38,6 @@ let data = {
   stageArr: [],
   scaleArr: [],
   hotCityArr: [],
-  // label_industryArr: [],
   label_areaArr: [],
   label_styleArr: [],
   label_typeArr: [],
@@ -47,12 +46,12 @@ let data = {
   stage: wx.getStorageSync('stage'),
   scale: wx.getStorageSync('scale'),
   hotCity: wx.getStorageSync('hotCity'),
-  // label_industry: label_industry || wx.getStorageSync('label_industry'),
   label_area: wx.getStorageSync('label_area'),
   label_style: wx.getStorageSync('label_style'),
   label_type: wx.getStorageSync('label_type'),
-  label_time: wx.getStorageSync('label_time')
+  label_time: wx.getStorageSync('label_time'),
 }
+// 联动式筛选(label_industry)
 let _label_industry = []
 let _linkDataShow = {
   selectData: [],
@@ -145,7 +144,6 @@ function getCache() {
     })
   }).catch(error => console.log(error))
 }
-
 
 getCache();
 //-------------------------------------------------------------------------------------------------
@@ -391,12 +389,6 @@ function tagsCheckAll(that, e) {
   let itemArrStr = str + 'Arr';
   let item = SearchInit[str];
   let itemArr = SearchInit[itemArrStr];
-  app.log('str', str);
-  app.log('itemIdStr', itemIdStr);
-  app.log('SearchInit', SearchInit);
-  app.log('itemArrStr', itemArrStr);
-  app.log('item', item);
-  app.log('itemArr', itemArr);
   // 未全选时,点全部全选,否则取消全选
   if (itemArr.length != item.length) {
     // 清空已选中项，选中所有项，并填入已选中项
