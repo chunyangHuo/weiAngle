@@ -1,3 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
 <view style='margin-top:100rpx;'>
   <view class="searchBox" bindtap='searchMore'>
     <view class="searchSth flex">
@@ -36,56 +37,13 @@
 <!--最新获投  -->
 <view class='newProject'>
   <view class="flex title">
-    <view class="detailTitle">最新获投</view>
-    <view class="allNumber" catchtap='newProject'>全部
+    <view class="detailTitle">最新获投</view> 
+    <view class="allNumber" catchtap='allNewProject'>全部
       <label>（{{sourceData.events_list.total_num}}）</label>
     </view>
   </view>
   <view class="blockIntro noBottom">* 第一时间为您送达最近获得投资的项目</view>
   <block wx:for="{{sourceData.events_list.list}}" wx:key="{{index}}">
-    <view class='newProjectBox' data-id="{{item.project_id}}">
-      <view class="boxTop flex">
-        <image class="belongTo" src='/img/img-weitianshi@2x(1).png' wx:if="{{item.wts_project_id != 0}}"></image>
-        <image class="npLeft" src='{{item.project_logo}}' wx:if="{{item.project_logo}}"></image>
-        <image class="npLeft" src='/img/img-logo@2x.png' wx:if="{{!item.project_logo}}"></image>
-        <view class="npRight">
-          <view class="npRightTitle">{{item.project_name}}</view>
-          <view class="npRightInfo">{{item.project_intro}}</view>
-          <view class="npRightOther flex">
-            <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:for-item='industryList'>
-              <label>{{industryList.industry_name}}
-                <label wx:if="{{index != item.industry_list.length-1}}">·
-                  <text decode="true" space="true">&nbsp;</text>
-                </label>
-              </label>
-            </block>
-          </view>
-        </view>
-      </view>
-      <view class="projectSpecial  flex">
-        <block wx:for="{{item.special_list}}" wx:key="{{index}}" wx:for-item='specialList'>
-          <view class="otherProjectBox">
-            <label class='otherProject'>{{specialList.special_name}}</label>
-          </view>
-        </block>
-      </view>
-      <block wx:for="{{item.events_list}}" wx:key="{{index}}" wx:for-item='eventList'>
-        <view class="boxBottom flex">
-          <view class="boxBottomLeft">
-            <view class="boxBottomTime">{{eventList.finance_time}}</view>
-            <view class="boxBottomScale">{{eventList.stage_name}}</view>
-          </view>
-          <image src="/img/img-dianx.png" class="boxDot"></image>
-          <view class="boxBottomRight">
-            <view class="boxBottomRightMoney">{{eventList.finance_money}}</view>
-            <block wx:for="{{eventList.investment_list}}" wx:key="{{index}}" wx:for-item='investList'>
-              <view class="boxBottomContent">{{investList.investment_name}}
-                <label wx:if="{{investList.project_lead}}">【{{investList.project_lead}}】</label>
-              </view>
-            </block>
-          </view>
-        </view>
-      </block>
-    </view>
+    <template is='bigDataProject' data='{{item,type:1}}'></template>
   </block>
 </view>

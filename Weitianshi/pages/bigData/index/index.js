@@ -29,8 +29,13 @@ Page({
   allNetProject() {
 
   },
-  // 最新获投跳转全部
-  newProject() {
-
+  //最新火头全部
+  allNewProject() {
+    app.href('/pages/bigData/allNewProject/allNewProject');
+  },
+  // 项目跳转
+  newProject(e) {
+    let project_id = e.currentTarget.dataset.id;
+    app.href('/pages/bigData/projectDetail/projectDetail?project_id=' + project_id);
   }
 })

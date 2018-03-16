@@ -18,6 +18,14 @@
   text-align: center;
   line-height: 160rpx;
 }
+.memberPic {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 100%;
+  margin-right: 32rpx;
+  text-align: center;
+  line-height: 160rpx;
+}
 
 .memberUserName {
   font-size: 36rpx;

@@ -96,7 +96,8 @@
     "pages/bigData/memberDetail/entrepreneurial/entrepreneurial",
     "pages/bigData/memberDetail/work/work",
     "pages/bigData/memberDetail/education/education",
-    "pages/specialColumn/ColumnDetail"
+    "pages/specialColumn/ColumnDetail",
+    "pages/bigData/allNewProject/allNewProject"
   ],
   "subPackages": [
     {

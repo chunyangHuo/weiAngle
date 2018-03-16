@@ -219,7 +219,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 558rpx;
+  max-width: 526rpx;
 }
 
 .npRightOther {
@@ -228,7 +228,7 @@
   /* overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; */
-  max-width: 558rpx;
+  max-width: 526rpx;
   word-break: break-all;
   flex-wrap: wrap;
 }

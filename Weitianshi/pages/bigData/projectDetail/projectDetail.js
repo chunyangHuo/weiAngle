@@ -152,4 +152,9 @@ Page({
       modalBox: 0
     })
   },
+
+  userDetail(e) {
+    let member_id = e.currentTarget.dataset.user;
+    app.href('/pages/bigData/memberDetail/index/index?member_id=' + member_id)
+  }
 })

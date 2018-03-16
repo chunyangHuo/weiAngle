@@ -15,6 +15,13 @@
   width: 116rpx;
   height: 36rpx;
 }
+.belongTo1 {
+  position: absolute;
+  top: 22rpx;
+  left: -18rpx;
+  width: 116rpx;
+  height: 36rpx;
+}
 
 .projectDetailLeft {
   width: 104rpx;
@@ -81,6 +88,7 @@
   margin-right: 24rpx;
   font-size: 24rpx;
   color: #3378e0;
+  margin-bottom: 8rpx;
   /* white-space: nowrap; */
 }
 
@@ -215,7 +223,7 @@
 }
 
 .bookBlockContent {
-  border-left: 8rpx solid #40587a;
+  border-left: 8rpx solid rgba(64, 88, 122, 0.2);
   margin-left: 24rpx;
 }
 
@@ -437,6 +445,7 @@
 
 .similarProjectBox {
   padding: 40rpx 0;
+  position: relative;
 }
 
 .similarPic {

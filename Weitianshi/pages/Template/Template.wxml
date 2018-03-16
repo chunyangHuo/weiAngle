@@ -1730,9 +1730,9 @@
 <!------------------------大数据部分---------------------------------------  -->
 <!--大数据项目  -->
 <template name='bigDataProject'>
-  <view class='newProjectBox' data-id="{{item.project_id}}">
+  <view class='newProjectBox' data-id="{{item.project_ori_id}}" catchtap='newProject'>
     <view class="boxTop flex">
-      <image class="belongTo" src='/img/img-weitianshi@2x(1).png'></image>
+      <image class="belongTo" src='/img/img-weitianshi@2x(1).png' wx:if="{{item.wts_project_id != 0}}"></image>
       <image class="npLeft" src='{{item.project_logo}}' wx:if="{{item.project_logo}}"></image>
       <image class="npLeft" src='/img/img-logo@2x.png' wx:if="{{!item.project_logo}}"></image>
       <view class="npRight">
@@ -1756,5 +1756,22 @@
         </view>
       </block>
     </view>
+    <block wx:for="{{item.events_list}}" wx:key="{{index}}" wx:for-item='eventList' wx:if="{{type == 1}}">
+      <view class="boxBottom flex">
+        <view class="boxBottomLeft">
+          <view class="boxBottomTime">{{eventList.finance_time}}</view>
+          <view class="boxBottomScale">{{eventList.stage_name}}</view>
+        </view>
+        <image src="/img/img-dianx.png" class="boxDot"></image>
+        <view class="boxBottomRight">
+          <view class="boxBottomRightMoney">{{eventList.finance_money}}</view>
+          <block wx:for="{{eventList.investment_list}}" wx:key="{{index}}" wx:for-item='investList'>
+            <view class="boxBottomContent">{{investList.investment_name}}
+              <label wx:if="{{investList.project_lead}}">【{{investList.project_lead}}】</label>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
   </view>
 </template>
