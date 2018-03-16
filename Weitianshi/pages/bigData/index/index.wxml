@@ -45,7 +45,7 @@
   <block wx:for="{{sourceData.events_list.list}}" wx:key="{{index}}">
     <view class='newProjectBox' data-id="{{item.project_id}}">
       <view class="boxTop flex">
-        <image class="belongTo" src='/img/img-weitianshi@2x(1).png'></image>
+        <image class="belongTo" src='/img/img-weitianshi@2x(1).png' wx:if="{{item.wts_project_id != 0}}"></image>
         <image class="npLeft" src='{{item.project_logo}}' wx:if="{{item.project_logo}}"></image>
         <image class="npLeft" src='/img/img-logo@2x.png' wx:if="{{!item.project_logo}}"></image>
         <view class="npRight">
