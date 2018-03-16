@@ -4,8 +4,10 @@
 <!--筛选  -->
 <template is='search' data='{{SearchInit,linkDataShow,currentTab,hidden:true}}'></template>
 <!--项目列表  -->
-<scroll-view id='projectLib' scroll-top='{{scrollTop}}'> 
-  
+<scroll-view id='projectLib' scroll-top='{{scrollTop}}' scroll-y>
+  <block wx:for="{{projectList}}" wx:key="{{index}}">
+    <template is='bigDataProject' data='{{item}}'></template>
+  </block>
 </scroll-view>
 <!--错误提示  -->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

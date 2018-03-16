@@ -121,7 +121,7 @@
 
 .newProjectBox {
   border-bottom: 1rpx solid #666;
-  padding: 40rpx 0;
+  padding: 40rpx 16rpx;
 }
 
 .newProjectBox:last-child {

@@ -1,4 +1,5 @@
 let app = getApp();
+let url_common = app.globalData.url_common;
 import * as FilterModel from '../../../utils/model/filterModel';
 Page({
   data: {
@@ -7,10 +8,10 @@ Page({
     label_industry: FilterModel._label_industry,
     linkDataShow: FilterModel._linkDataShow,
     //置顶
-    scrollTop:3000
+    scrollTop: 3000
   },
   onLoad() {
-    let that = this; 
+    let that = this;
     //更改搜索模块初始化设置
     FilterModel.reInitSearch(that, {
       tab: [
@@ -30,79 +31,103 @@ Page({
         SearchInit
       });
     }
-  }, 
-  // --------------------------筛选搜索--------------------------------------------------
-  // 下拉框
-  move(e) {
-    let that = this;
-    let SearchInit = this.data.SearchInit;
-    FilterModel.move(e, that);
+    //----------------------------------------------------
+    let user_id = wx.getStorageSync('user_id');
+    // 获得项目列表
+    this.getProjectList();
   },
-  // 标签选择
-  tagsCheck(e) {
-    FilterModel.tagsCheck(e, this);
-  },
-  // 标签全选(单项式)
-  tagsCheckAll(e) {
-    FilterModel.tagsCheckAll(this,e);
-  },
-  // 筛选重置
-  reset() {
-    FilterModel.reset(this);
-  },
-  // 筛选全部重置
-  allReset() {
-    FilterModel.allReset(this);
-  },
-  // 筛选确定
-  searchCertain() {
-    let that = this;
-    let current = this.data.currentTab;
-    let SearchInit = this.data.SearchInit;
-    let searchData = FilterModel.searchCertain(that);
-    SearchInit.searchData = searchData;
-    this.setData({
-      searchInit: SearchInit
-    });
-    app.log(this.data.searchInit)
-  },
-  // 点击modal层
-  modal() {
-    let that = this;
-    FilterModel.modal(that);
-  },
-  // 搜索
-  searchSth() {
-    let that = this;
-    let str;
-    str = this.data.currentTab == 0 ? "selected" : "newest";
-    FilterModel.searchSth(that, str, x => {
-      app.href(
-        "/pages/search/globalSearch/globalSearch"
-      );
-    });
-  },
-  // 展示项删除
-  labelDelete(e) {
-    FilterModel.labelDelete(e, this);
-  },
-  // 一级联动选择
-  linkFirstStair(e) {
-    app.log("industry", this.data.label_industry);
-    FilterModel.linkFirstStair(e, this);
-  },
-  // 二级联动选择
-  linkSecondStair(e) {
-    FilterModel.linkSecondStair(e, this);
-  },
-  // 联动选择全部
-  linkCheckAll(e) {
-    FilterModel.linkCheckAll(e, this);
-  },
-  //----------------------置顶-------------------------------------
-  _toTop(){
-    this.setData({
-      scrollTop:0
+  // -----------------------------------------------------------------------------------
+  getProjectList(pageNum = 0) {
+    app.httpPost({
+      url: url_common + '/api/source/projectLists',
+      data: {
+        user_id: wx.getStorageSync('user_id'),
+        page: pageNum,
+        filter: this.data.SearchInit.searchData,
+      }
+    }, this).then(res => {
+      app.log(res)
+      this.setData({
+        projectList:res.data.data.list
+      })
     })
-  }
+  },
+
+
+
+
+// --------------------------筛选搜索--------------------------------------------------
+// 下拉框
+move(e) {
+  let that = this;
+  let SearchInit = this.data.SearchInit;
+  FilterModel.move(e, that);
+},
+// 标签选择
+tagsCheck(e) {
+  FilterModel.tagsCheck(e, this);
+},
+// 标签全选(单项式)
+tagsCheckAll(e) {
+  FilterModel.tagsCheckAll(this, e);
+},
+// 筛选重置
+reset() {
+  FilterModel.reset(this);
+},
+// 筛选全部重置
+allReset() {
+  FilterModel.allReset(this);
+},
+// 筛选确定
+searchCertain() {
+  let that = this;
+  let current = this.data.currentTab;
+  let SearchInit = this.data.SearchInit;
+  let searchData = FilterModel.searchCertain(that);
+  SearchInit.searchData = searchData;
+  this.setData({
+    searchInit: SearchInit
+  });
+  app.log(this.data.searchInit)
+},
+// 点击modal层
+modal() {
+  let that = this;
+  FilterModel.modal(that);
+},
+// 搜索
+searchSth() {
+  let that = this;
+  let str;
+  str = this.data.currentTab == 0 ? "selected" : "newest";
+  FilterModel.searchSth(that, str, x => {
+    app.href(
+      "/pages/search/globalSearch/globalSearch"
+    );
+  });
+},
+// 展示项删除
+labelDelete(e) {
+  FilterModel.labelDelete(e, this);
+},
+// 一级联动选择
+linkFirstStair(e) {
+  app.log("industry", this.data.label_industry);
+  FilterModel.linkFirstStair(e, this);
+},
+// 二级联动选择
+linkSecondStair(e) {
+  FilterModel.linkSecondStair(e, this);
+},
+// 联动选择全部
+linkCheckAll(e) {
+  FilterModel.linkCheckAll(e, this);
+},
+//----------------------置顶-------------------------------------
+_toTop(){
+  this.setData({
+    scrollTop: 0
+  })
+}
 })

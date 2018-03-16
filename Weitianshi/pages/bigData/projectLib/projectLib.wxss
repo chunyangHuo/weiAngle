@@ -1,9 +1,12 @@
 /* pages/bigData/projectLib/projectLib.wxss */
+@import '../index/index.wxss';
 page{
   height: 100%;
+  overflow: hidden;
 }
 scroll-view{
-  height: 1158rpx;
+  height: 1030rpx;
+  padding:12rpx 16rpx;
 }
 /*----------------筛选--------------------------------  */
 .search_icon{
@@ -24,3 +27,7 @@ scroll-view{
 .t-modal {
   top: 176rpx;
 }
+.search_icon1{
+  padding-top: 10rpx;
+  margin: 0;
+} 
