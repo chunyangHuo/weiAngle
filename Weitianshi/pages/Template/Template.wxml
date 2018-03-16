@@ -1725,3 +1725,36 @@
     </view>
   </block>
 </template>
+
+
+<!------------------------大数据部分---------------------------------------  -->
+<!--大数据项目  -->
+<template name='bigDataProject'>
+  <view class='newProjectBox' data-id="{{item.project_id}}">
+    <view class="boxTop flex">
+      <image class="belongTo" src='/img/img-weitianshi@2x(1).png'></image>
+      <image class="npLeft" src='{{item.project_logo}}' wx:if="{{item.project_logo}}"></image>
+      <image class="npLeft" src='/img/img-logo@2x.png' wx:if="{{!item.project_logo}}"></image>
+      <view class="npRight">
+        <view class="npRightTitle">{{item.project_name}}</view>
+        <view class="npRightInfo">{{item.project_intro}}</view>
+        <view class="npRightOther flex">
+          <block wx:for="{{item.industry_list}}" wx:key="{{index}}" wx:for-item='industryList'>
+            <label>{{industryList.industry_name}}
+              <label wx:if="{{index != item.industry_list.length-1}}">·
+                <text decode="true" space="true">&nbsp;</text>
+              </label>
+            </label>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="projectSpecial  flex">
+      <block wx:for="{{item.special_list}}" wx:key="{{index}}" wx:for-item='specialList'>
+        <view class="otherProjectBox">
+          <label class='otherProject'>{{specialList.special_name}}</label>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
