@@ -76,10 +76,12 @@ function projectListShare() {
   }
 }
 // 机构详情分享
-function orgDetail() {
+function orgDetail(that) {
+  let investment_id = that.data.investment_id;
+  console.log(investment_id)
   return {
     title: '机构详情',
-    path: '/pages/organization/org_detail/org_detail'
+    path: '/pages/organization/org_detail/org_detail?investment_id=' + investment_id
   }
 }
 // 机构版买家图谱分享

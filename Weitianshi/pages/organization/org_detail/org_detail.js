@@ -192,7 +192,8 @@ Page({
   },
   // 分享当前页面
   onShareAppMessage: function () {
-    return ShareModel.institutionalInvestShare();
+    let  that = this;
+    return ShareModel.orgDetail(that);
   },
   // 重新加载
   refresh() {
