@@ -27,11 +27,15 @@
         <template is="jumpBlock" data="{{text:'潜在投资方',tapName:'potentialInvestor',src:'/img/icon-qianzai@2x.png',countShow:count.match}}"></template>
       </view>
 
-      <view class="selectProject flex">
+      <!-- <view class="selectProject flex">
         <label style="width:26rpx;height:2rpx;background:#333;margin-right:8rpx"></label>
         微天使FA精选项目
         <label style="width:26rpx;height:2rpx;background:#333;margin-left:8rpx;"></label>
+      </view> -->
+      <view class="projectColumn">
+      
       </view>
+      <view class='clickMore'>查看更多(400)</view>
       <block wx:for="{{slectProject}}" wx:key="{{index}}">
         <view class="selectProjectBox" data-project="{{item.project_id}}" hover-class='t-hoverColor' catchtap="projectDetail">
           <view class="describle" wx:if="{{item.pro_intro != ''}}">

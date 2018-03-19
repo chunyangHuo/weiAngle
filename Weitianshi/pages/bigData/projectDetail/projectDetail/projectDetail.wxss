@@ -15,6 +15,7 @@
   width: 116rpx;
   height: 36rpx;
 }
+
 .belongTo1 {
   position: absolute;
   top: 22rpx;
@@ -130,9 +131,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   max-height: 554rpx;
-}
-
-.companyDetailBox {
 }
 
 .companyIntro {
@@ -519,4 +517,17 @@
 .mediaReportFrom {
   font-size: 20rpx;
   color: #999;
+}
+
+.doingThing {
+  background: #c5a837;
+  width: 106rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 20rpx;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 70rpx;
+  left: -2rpx;
 }

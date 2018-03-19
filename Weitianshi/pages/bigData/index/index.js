@@ -36,6 +36,6 @@ Page({
   // 项目跳转
   newProject(e) {
     let project_id = e.currentTarget.dataset.id;
-    app.href('/pages/bigData/projectDetail/projectDetail?project_id=' + project_id);
+    app.href('/pages/bigData/projectDetail/projectDetail/projectDetail?project_id=' + project_id);
   }
 })

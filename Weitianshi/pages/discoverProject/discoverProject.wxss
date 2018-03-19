@@ -498,10 +498,27 @@
   position: absolute;
   top: 40rpx;
   left: 116rpx;
-  font-size:20rpx;
+  font-size: 20rpx;
   line-height: 28rpx;
   color: #666;
 }
-.allProjectDetail{
+
+.allProjectDetail {
   margin-bottom: 0;
+}
+
+.projectColumn {
+  height: 162rpx;
+  width: 100%;
+  background: blue;
+  margin-top: 36rpx;
+}
+
+.clickMore {
+  height: 98rpx;
+  width: 100%;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 98rpx;
+  text-align: center;
 }

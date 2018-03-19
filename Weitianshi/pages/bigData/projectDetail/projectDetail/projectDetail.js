@@ -19,9 +19,9 @@ Page({
     }, that).then(res => {
       let projectInfo = res.data.data;
       that.setData({
-        projectInfo: projectInfo
+        projectInfo: projectInfo,
+        project_id: project_id
       })
-      console.log(projectInfo)
     })
   },
   onshow() {
@@ -152,9 +152,34 @@ Page({
       modalBox: 0
     })
   },
-
+  // 跳转用户详情
   userDetail(e) {
     let member_id = e.currentTarget.dataset.user;
     app.href('/pages/bigData/memberDetail/index/index?member_id=' + member_id)
+  },
+  //主要产品
+  mainProject() {
+    let project_id = this.data.project_id;
+    app.href('/pages/bigData/projectDetail/mainProject/mainProject?project_id=' + project_id)
+  },
+  //历史融资
+  historyFinance() {
+    app.href('/pages/bigData/projectDetail/historyList/historyList')
+  },
+  //核心成员
+  coreMember() {
+    app.href('/pages/bigData/projectDetail/coreMember/coreMember')
+  },
+  //里程碑
+  milestone() {
+    app.href('/pages/bigData/projectDetail/milestone/milestone')
+  },
+  // 相似项目
+  similarProject() {
+    app.href('/pages/bigData/projectDetail/similarProject/similarProject')
+  },
+  //媒体报道
+  mediaReport() {
+    app.href('/pages/bigData/projectDetail/mediaReport/mediaReport')
   }
 })

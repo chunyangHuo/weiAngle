@@ -4,6 +4,7 @@
       <image class="belongTo" src='/img/img-weitianshi@2x(1).png' wx:if="{{projectInfo.info.wts_project_id != 0}}"></image>
       <image class="projectDetailLeft" src='/img/img-logo@2x.png' wx:if="{{!projectInfo.info.project_logo}}"></image>
       <image class="projectDetailLeft" src="{{projectInfo.info.project_logo}}" wx:if="{{projectInfo.info.project_logo}}"></image>
+      <view class="doingThing">正在融资</view>
       <view class="projectDetailRight">
         <view class="projectDetailTitle">{{projectInfo.info.project_name}}</view>
         <view class="projectDetailContent">{{projectInfo.info.project_intro}}</view>
@@ -176,9 +177,9 @@
 
     <!--主要产品  -->
     <view class="companyMainProject" wx:if="{{projectInfo.product_list.total_num != 0}}">
-      <view class="flex title">
+      <view class="flex title" bindtap='mainProject'>
         <view class="detailTitle">主要产品</view>
-        <view class="allNumber">全部
+        <view class="allNumber" wx:if="{{projectInfo.product_list.total_num > 3}}">全部
           <label>（{{projectInfo.product_list.total_num}}）</label>
         </view>
       </view>
@@ -199,9 +200,9 @@
 
     <!--历史融资  -->
     <view class="companyHistory" wx:if="{{projectInfo.history_finance.total_num != 0}}">
-      <view class="flex title">
-        <view class="detailTitle ">历史融资</view>
-        <view class="allNumber ">全部
+      <view class="flex title" bindtap="historyFinance">
+        <view class="detailTitle">历史融资</view>
+        <view class="allNumber" wx:if="{{projectInfo.history_finance.total_num > 3}}">全部
           <label>（{{projectInfo.history_finance.total_num}}）</label>
         </view>
       </view>
@@ -223,7 +224,7 @@
 
     <!--核心成员  -->
     <view class="companyCorePerson" wx:if="{{projectInfo.member_list.total_num != 0}}">
-      <view class="flex title">
+      <view class="flex title" bindtap="coreMember">
         <view class="detailTitle">核心成员</view>
         <view class="allNumber" wx:if="{{projectInfo.member_list.total_num > 3}}">全部
           <label>（{{projectInfo.member_list.total_num}}）</label>
@@ -256,9 +257,9 @@
 
     <!--里程碑  -->
     <view class='companyStone' wx:if="{{projectInfo.milestone_list.total_num != 0}}">
-      <view class="flex title">
+      <view class="flex title" bindtap='milestone'>
         <view class="detailTitle">里程碑</view>
-        <view class="allNumber">全部
+        <view class="allNumber" wx:if="{{projectInfo.milestone_list.total_num > 3}}">全部
           <label>（{{projectInfo.milestone_list.total_num}}）</label>
         </view>
       </view>
@@ -272,9 +273,9 @@
 
     <!--相似项目  -->
     <view class='similarProject' wx:if="{{projectInfo.competition_company.total_num != 0}}">
-      <view class="flex title">
+      <view class="flex title" bindtap='similarProject'>
         <view class="detailTitle">相似项目</view>
-        <view class="allNumber">全部
+        <view class="allNumber" wx:if="{{projectInfo.competition_company.total_num > 3}}">全部
           <label>（{{projectInfo.competition_company.total_num}}）</label>
         </view>
       </view>
@@ -310,9 +311,9 @@
 
     <!--媒体报道  -->
     <view class='mediaReport' wx:if="{{projectInfo.news_list.total_num !=0}}">
-      <view class="flex title">
+      <view class="flex title" bindtap='mediaReport'>
         <view class="detailTitle">媒体报道</view>
-        <view class="allNumber">全部
+        <view class="allNumber" wx:if="{{projectInfo.news_list.total_num > 3}}">全部
           <label>（{{projectInfo.news_list.total_num}}）</label>
         </view>
       </view>
