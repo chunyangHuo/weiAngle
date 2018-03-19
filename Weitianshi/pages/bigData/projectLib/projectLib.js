@@ -3,7 +3,7 @@ let url_common = app.globalData.url_common;
 import * as FilterModel from '../../../utils/model/filterModel';
 Page({
   data: {
-    //筛选搜索
+    //筛选搜索 
     SearchInit: FilterModel.data,
     label_industry: FilterModel._label_industry,
     linkDataShow: FilterModel._linkDataShow,
@@ -12,6 +12,9 @@ Page({
   },
   onLoad() {
     let that = this;
+    let user_id = wx.getStorageSync('user_id');
+    let SearchInit = that.data.SearchInit;
+    let tab = SearchInit.tab;
     //更改搜索模块初始化设置
     FilterModel.reInitSearch(that, {
       tab: [
@@ -21,8 +24,6 @@ Page({
         { type: 1, name: '类型', label: "label_type", itemId: 'type_id', itemName: 'type_name', longCheckBox: true },
       ],
     });
-    let SearchInit = that.data.SearchInit;
-    let tab = SearchInit.tab;
     if (SearchInit.industry.length < 1) {
       tab.forEach(x => {
         SearchInit[x.label] = wx.getStorageSync(x.label);
@@ -32,29 +33,46 @@ Page({
       });
     }
     //----------------------------------------------------
-    let user_id = wx.getStorageSync('user_id');
+    app.initPage(this)
+
     // 获得项目列表
     this.getProjectList();
   },
-  // -----------------------------------------------------------------------------------
-  getProjectList(pageNum = 0) {
+// -----------------------------------------------------------------------------------
+  // 获取项目列表
+  getProjectList() {
     app.httpPost({
       url: url_common + '/api/source/projectLists',
       data: {
         user_id: wx.getStorageSync('user_id'),
-        page: pageNum,
+        page: this.data.currentPage,
         filter: this.data.SearchInit.searchData,
       }
     }, this).then(res => {
-      app.log(res)
+      let currentPage = this.data.currentPage;
+      let projectList = this.data.projectList || [];
+      let newList = res.data.data.list;
+      projectList = projectList.concat(newList);
+      currentPage++;
       this.setData({
-        projectList:res.data.data.list
+        projectList,
+        page_end:res.data.data.page_end,
+        currentPage
       })
+      wx.hideLoading();
     })
   },
-
-
-
+  // 上拉加载
+  loadMore(){
+    wx.showLoading({
+      title: 'loading',
+    })
+    if(this.data.page_end == true){
+      wx.hideLoading();
+      return app.errorHide(this,'没有更多了')
+    }
+    this.getProjectList();
+  },
 
 // --------------------------筛选搜索--------------------------------------------------
 // 下拉框

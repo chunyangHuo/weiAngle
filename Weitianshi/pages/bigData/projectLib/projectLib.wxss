@@ -6,7 +6,8 @@ page{
 }
 scroll-view{
   height: 1030rpx;
-  padding:12rpx 16rpx;
+  width: 686rpx;
+  padding:0 32rpx;
 }
 /*----------------筛选--------------------------------  */
 .search_icon{
