@@ -16,7 +16,7 @@
   height: 36rpx;
 }
 
-.belongTo1 {
+.belongTo1 { 
   position: absolute;
   top: 22rpx;
   left: -18rpx;

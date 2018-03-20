@@ -1,66 +1,30 @@
-// pages/bigData/projectDetail/mediaReport/mediaReport.js
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onLoad(options) {
+    let project_id = options.project_id;
+    console.log(project_id)
+    let user_id = wx.getStorageSync("user_id");
+    let that = this;
+    app.httpPost({
+      url: url_common + '/api/source/newsList',
+      data: {
+        project_id: project_id,
+        page: 1
+      }
+    }, that).then(res => {
+      let newsList = res.data.data;
+      console.log(newsList)
+      that.setData({
+        newsList: newsList
+      })
+    })
   },
+  onshow() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
