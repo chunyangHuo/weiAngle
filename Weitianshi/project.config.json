@@ -20,6 +20,10 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"current": -1,
 			"list": []
@@ -170,6 +174,18 @@
 					"name": "一键尽调",
 					"pathName": "pages/oneKeyResearch/oneKeyResearch",
 					"query": "id=6RpAmpx7"
+				},
+				{
+					"id": 20,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/signUpList/signUpList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "名片列表",
+					"pathName": "activitySignIn/pages/signUpList/signUpList",
+					"query": ""
 				}
 			]
 		}

@@ -92,10 +92,11 @@
       "pages": [
         "pages/activityDetail/activityDetail",
         "pages/activityAgenda/activityAgenda",
-        "pages/signScan/signScan",
         "pages/signCheckIndentity/signCheckIndentity",
         "pages/signIndentityCard/signIndentityCard",
-        "pages/signNoIndentity/signNoIndentity"
+        "pages/signNoIndentity/signNoIndentity",
+        "pages/signUpList/signUpList",
+        "pages/publishProject/publishProject"
       ]
     },
     {

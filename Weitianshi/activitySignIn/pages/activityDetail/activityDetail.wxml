@@ -1,2 +1,68 @@
-<!--pages/activity_detailPreview/activity_detailPreview.wxml-->
-<text>11111111111</text>
+<view class="activityBox">
+  <view class="topBox flex">
+    <view class="activityPic"></view>
+    <!-- <view class="activityPic"></view> -->
+    <view class="activityContent">全国城市合伙人招募计划暨股权投资机器人Angel 1.0 beta版小型发布会</view>
+  </view>
+  <view class="middleLine"></view>
+  <view class='bottomBox flex'>
+    <view class="bottomPic"></view>
+    <view class="bottomNum">已报名400人</view>
+  </view>
+</view>
+<!--基本介绍  -->
+<view class="outBox">
+  <view class="baseIntro">基本介绍</view>
+  <view class="baseTime flex">
+    <view class="baseTitle">时
+      <text space='true' decode='true'>&nbsp;&nbsp;</text>间</view>
+    <view class="baseContent">2018-01-18 14:00 ~ 2018 01-19 17:00</view>
+  </view>
+  <view class="baseArea flex">
+    <view class="baseTitle">地
+      <text space='true' decode='true'>&nbsp;&nbsp;</text>点</view>
+    <view class="baseContent">浙江省杭州市西湖区文三路90号东部软件园创新大厦一楼智云社</view>
+  </view>
+  <view class="baseWho flex">
+    <view class="baseTitle">主办方</view>
+    <view class="baseContent">浙江省杭州市西湖区文三路90号东部软件园创新大厦一楼智云社</view>
+  </view>
+  <view class="baseIndustry flex">
+    <view class="baseTitle">行
+      <text space='true' decode='true'>&nbsp;&nbsp;</text>业</view>
+    <view class="baseContent">微天使乐投平台</view>
+  </view>
+</view>
+<!--活动详情  -->
+<view class="outBox">
+  <view class="baseIntro">活动详情</view>
+  <view class='activityContent'>
+    <label> 100个创投机器人免费接入嗟开抢啦!现在报名，马上赋能公众号。</label>
+    <label>你可以得到什么?</label>
+  </view>
+  <view class="activityPic"></view>
+  <view class='activityContent'>
+    100个创投机器人免费接入嗟开抢啦!现在报名，马上赋能公众号。
+  </view>
+</view>
+<view style="height:104rpx;width:100%"></view>
+
+<view class="flex aboutNetwork">
+  <view class="flexBox" hover-class="t-hoverColor" catchtap="toShareShop">
+    <image src='/img/icon-erweima12.png' class='shopPic'></image>
+    <view class='shopBlock'>进入微天使</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="flexBox" bindtap="decorate" hover-class="t-hoverColor">
+    <image src='/img/icon-dianpu@2x.png' class='shopPic'></image>
+    <view class='shopBlock'>发布活动</view>
+  </view>
+  <view class="t-line"></view>
+  <view class="flexBox">
+    <button class='shopBlock' open-type="share" id="shareFriend" hover-class="t-hoverColor">
+      <image src='/img/icon-fenxiang@2x.png' class='shopPic'></image>
+      分享</button>
+  </view>
+  <view class="t-line"></view>
+  <view bindtap="editDetail" class='creatProject' hover-class="t-redColor">报名</view>
+</view>
