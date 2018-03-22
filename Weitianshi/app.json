@@ -96,7 +96,8 @@
         "pages/signIndentityCard/signIndentityCard",
         "pages/signNoIndentity/signNoIndentity",
         "pages/signUpList/signUpList",
-        "pages/publishProject/publishProject"
+        "pages/publishActive/publishActive",
+        "pages/projectList/projectList"
       ]
     },
     {
