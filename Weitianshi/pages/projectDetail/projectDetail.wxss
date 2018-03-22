@@ -1489,3 +1489,8 @@ button::after {
   height: 1rpx;
   background: #f0f0f0;
 }
+
+.allIndustry {
+  background: white;
+  padding: 0;
+}
