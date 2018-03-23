@@ -8,7 +8,35 @@ Page({
 
   },
   onLoad: function (options) {
- 
+    let activity_id = options.activity_id;
+    let user_id = wx.getStorageSync("user_id");
+    let that = this;
+    app.httpPost({
+      url: url_common + '/api/activity/show',
+      data: {
+        "user_id": user_id,
+        "activity_id": 21
+      },
+    }, this, res => {
+      console.log(res)
+      let data = res.data.data;
+      that.setData({
+        data: data
+      })
+    })
   },
+  // 报名
+  signIn() {
+    app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity")
+  },
+  //进入微天使
+  toWTS() {
+    app.href("/pages/discoverProject/discoverProject")
+  },
+  //发布活动
+  publishActive() {
+    app.href("/activitySignIn/pages/publishActive/publishActive")
+  },
+  //分享
 
 })

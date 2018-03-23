@@ -314,9 +314,9 @@
   margin-bottom: 20rpx;
 }
 
-.otherInfo {
+/* .otherInfo {
   margin-bottom: 44rpx;
-}
+} */
 
 .allProjectDetail {
   font-size: 26rpx;
