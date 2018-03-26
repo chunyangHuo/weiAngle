@@ -5,115 +5,61 @@ Page({
   data: {
     jiandi: false,
     firstTime: true,
-    investorList: '',
+    idCardList: '',
     hidden: true,
     nonet: true
   },
   onLoad(options) {
     let that = this;
-    // let searchData = that.data.searchData;
     app.initPage(that);
+    let  user_id = wx.getStorageSync("user_id");
+    let activity_id = options.activity_id;
     app.netWorkChange(that);
     wx.showLoading({
       title: 'loading',
       mask: true,
     });
+    that.setData({
+      activity_id : activity_id
+    })
     //请求精选项目数据
     app.loginPage(function (user_id) {
       that.setData({
         user_id: user_id
       });
-      // 身份认证状态获取
-      wx.request({
-        url: url_common + '/api/user/getUserGroupByStatus',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          app.log('身份状态获取', res);
-          // 0:未认证1:待审核 2 审核通过 3审核未通过
-          let status = res.data.status;
-          if (status != 0) {
-            let group_id = res.data.group.group_id;
-            that.setData({
-              group_id: group_id
-            });
-          }
-          that.setData({
-            status: status
-          });
-        }
-      });
-      that.investorList();
+      that.idCardList(user_id);
     });
   },
   onShow() {
-    if (!this.data.firstTime) {
-      this.investorList();
-    }
-    // this.investorList();
     this.setData({
       requestCheck: true,
       currentPage: 1,
       page_end: false
     });
   },
-  //下拉刷新
-  onPullDownRefresh() {
-    //请求投资人列表
-    this.investorList();
-  },
+
   //投资人列表信息
-  investorList() {
+  idCardList(user_id) {
     let that = this;
-    // let SearchInit = this.data.SearchInit;
     wx.showLoading({
       title: 'loading',
       mask: true,
     });
-    wx.request({
-      url: url_common + '/api/investor/getInvestorListByGroup',
+    app.httpPost({
+      url: url_common + '/api/activity/applyUserList',
       data: {
-        user_id: this.data.user_id,
-        type: 'investor',
-        filter: this.data.searchData
+        "user_id": user_id,
+        "activity_id": 21,
+        "page": 1
       },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.status_code == '2000000') {
-          app.log('投资人列表', res.data.data);
-          wx.hideLoading();
-          let investorList = res.data.data;
-          // let page_end = res.data.data.page_end;
-          // searchData.currentIndex = 99;
-          // 存入无筛选项的投资人列表以备他用
-          if (!that.data.investorList) {
-            that.setData({
-              investorList2: investorList
-            });
-          }
-          that.setData({
-            investorList: investorList,
-            // searchData: searchData
-          });
-        }
-      },
-      complete() {
-        wx.hideLoading();
-      }
-    });
-  },
-  // 搜索
-  searchSth() {
-    let user_id = this.data.user_id;
-    let str;
-    str = 'investorList';
-    app.href('/pages/search/search3/search3?user_id=' + user_id + '&&entrance=' + str);
-  },
-  //  跳转到项目店铺筛选页面
-  tagFilter() {
-    app.href('/pages/my/projectShop/tagFilter/tagFilter');
+    }).then(res => {
+      console.log(res)
+      let idCardList = res.data.data.list;
+      that.setData({
+        idCardList: idCardList
+      })
+      wx.hideLoading();
+    })
   },
   // 用户详情
   userDetail: function (e) {
@@ -130,25 +76,21 @@ Page({
     //请求上拉加载接口所需要的参数
     let that = this;
     let user_id = this.data.user_id;
-    // let currentPage = this.data.currentPage;
-
     let request = {
-      url: url_common + '/api/investor/getInvestorListByGroup',
+      url: url_common + '/api/activity/applyUserList',
       data: {
         user_id: user_id,
-        type: 'investor',
         page: this.data.currentPage,
-        filter: this.data.searchData
+        "activity_id": this.data.activity_id,
       }
     };
     //调用通用加载函数
-    app.loadMore(that, request, "investorList");
+    app.loadMore(that, request, "idCardList");
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
       });
     }
-
   },
   // 分享当前页面
   onShareAppMessage: function () {
@@ -181,28 +123,17 @@ Page({
   // 加人脉成功后处理(辅助函数)
   contactsAddSuccessFunc(res, added_user_id, num) {
     let that = this;
-    let investorList = this.data.investorList;
-    let faList = this.data.faList;
+    let idCardList = this.data.idCardList;
     if (res.data.status_code == 2000000) {
       //更改投资人和FA列表中该人的加人脉按钮的字段
-      if (investorList) {
-        investorList.forEach(x => {
+      if (idCardList) {
+        idCardList.forEach(x => {
           if (x.user_id == added_user_id) {
             x.follow_status = num;
           }
         });
         that.setData({
-          investorList: investorList
-        });
-      }
-      if (faList) {
-        faList.forEach(x => {
-          if (x.user_id == added_user_id) {
-            x.follow_status = num;
-          }
-        });
-        that.setData({
-          faList: faList
+          idCardList: idCardList
         });
       }
     } else {

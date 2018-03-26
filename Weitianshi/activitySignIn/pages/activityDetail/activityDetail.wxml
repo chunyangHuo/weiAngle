@@ -5,7 +5,7 @@
     <view class="activityContent">{{data.activity_title}}</view>
   </view>
   <view class="middleLine"></view>
-  <view class='bottomBox flex'>
+  <view class='bottomBox flex' bindtap='personList'>
     <view class="bottomPic"></view>
     <view class="bottomNum">已报名{{data.apply_count}}人</view>
   </view>

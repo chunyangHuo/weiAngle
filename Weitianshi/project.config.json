@@ -186,6 +186,90 @@
 					"name": "名片列表",
 					"pathName": "activitySignIn/pages/signUpList/signUpList",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mignpian ",
+					"pathName": "activitySignIn/signNoIndentity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mignpian ",
+					"pathName": "activitySignIn/pages/signNoIndentity/signNoIndentity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mignpian ",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mignpian ",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/pages/projectList/projectList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/pages/projectList/projectList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/signUpList/signUpList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/pages/signUpList/signUpList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "pages/my/activityList/activityList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "pages/my/activityList/activityList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目列表",
+					"pathName": "pages/my/activityList/activityList",
+					"query": ""
 				}
 			]
 		}

@@ -15,7 +15,7 @@ Page({
       url: url_common + '/api/activity/show',
       data: {
         "user_id": user_id,
-        "activity_id": 21
+        "activity_id": activity_id
       },
     }, this, res => {
       console.log(res)
@@ -23,6 +23,9 @@ Page({
       that.setData({
         data: data
       })
+    })
+    that.setData({
+      activity_id: activity_id
     })
   },
   // 报名
@@ -38,5 +41,9 @@ Page({
     app.href("/activitySignIn/pages/publishActive/publishActive")
   },
   //分享
-
+//报名列表
+  personList(){
+    let activity_id = this.data.activity_id;
+    app.href("/activitySignIn/pages/signUpList/signUpList?activity_id=" + activity_id)
+  }
 })

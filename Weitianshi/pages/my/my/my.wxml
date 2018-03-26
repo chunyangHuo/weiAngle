@@ -68,7 +68,7 @@
     </view>
   </view>
   <!--红包页面  -->
-  <view  bindtap='sendBag' wx:if="{{packetStatus == 'SUCCESS'}}">
+  <view bindtap='sendBag' wx:if="{{packetStatus == 'SUCCESS'}}">
     <image src="{{sendHB}}" class='redBag'></image>
   </view>
   <!--项目店铺  -->
@@ -137,6 +137,17 @@
       <view class="flex">
         <image src="/img/icon-yuetan@2x.png" class="blockPic"></image>
         <view class="blockTitle">我约谈的项目</view>
+      </view>
+      <view class="flex">
+        <view class="number">{{count.meet_project_count}}</view>
+        <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
+      </view>
+    </view>
+    <view class="aline"></view>
+    <view class="blockInfo flex" bindtap="activity" hover-class="t-hoverColor">
+      <view class="flex">
+        <image src="/img/icon-yuetan@2x.png" class="blockPic"></image>
+        <view class="blockTitle">活动详情</view>
       </view>
       <view class="flex">
         <view class="number">{{count.meet_project_count}}</view>

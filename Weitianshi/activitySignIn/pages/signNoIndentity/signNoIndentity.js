@@ -279,4 +279,8 @@ Page({
   nextPage() {
     register.personInfoRegister.call(this);
   },
+  //跳转
+  jumpto(){
+    app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard")
+  }
 })

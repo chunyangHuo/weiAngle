@@ -285,5 +285,9 @@ Page({
   // 关闭绑定方式选择弹框
   closeRegisterModal(){
     register.closeRegisterModal.call(this);
+  },
+  activity(){
+    app.href("/pages/my/activityList/activityList")
   }
+  
 });

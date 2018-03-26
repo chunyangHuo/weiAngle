@@ -3,7 +3,7 @@
 <view wx:if="{{nonet}}">
   <!--投资人  -->
   <scroll-view style="height:1334rpx;" scroll-y="true" bindscrolltolower='loadMore'>
-    <block wx:for="{{investorList}}" wx:key="{{investorList}}">
+    <block wx:for="{{idCardList}}" wx:key="{{idCardList}}">
       <view class='investorCard'>
         <view class="t-investorColor" hover-class='t-hoverColor'>
           <template is='InvestorCard' data='{{item,user_id,user_mobile}}'></template>
