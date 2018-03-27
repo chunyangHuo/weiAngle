@@ -150,7 +150,6 @@
         <view class="blockTitle">活动详情</view>
       </view>
       <view class="flex">
-        <view class="number">{{count.meet_project_count}}</view>
         <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
       </view>
     </view>

@@ -3,7 +3,6 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 
 Page({
-
   data: {
 
   },
@@ -20,6 +19,7 @@ Page({
     }, this, res => {
       console.log(res)
       let data = res.data.data;
+this.check(data)
       that.setData({
         data: data
       })
@@ -41,9 +41,21 @@ Page({
     app.href("/activitySignIn/pages/publishActive/publishActive")
   },
   //分享
-//报名列表
-  personList(){
+  //报名列表
+  personList() {
     let activity_id = this.data.activity_id;
     app.href("/activitySignIn/pages/signUpList/signUpList?activity_id=" + activity_id)
+  },
+  check(data) {
+    let detail = data.detail;
+    let hasThing = false;
+    detail.forEach(x => {
+      console.log(x)
+      if (x.describle || x.image.length != 0) {
+        this.setData({
+          hasThing : true
+        })
+      } 
+    })
   }
 })

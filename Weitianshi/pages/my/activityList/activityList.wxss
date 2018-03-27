@@ -53,3 +53,8 @@
   color: #151515;
   line-height: 34rpx;
 }
+
+.backgroundPic{
+  width: 750rpx;
+  height: 2852rpx;
+}

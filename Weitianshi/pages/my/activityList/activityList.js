@@ -4,14 +4,16 @@ Page({
   data: {
     nonet: true,
     jiandi: false,
+    imgUrls: app.globalData.picUrl.activityIntro,
   },
   onLoad: function (options) {
     let user_id = wx.getStorageSync("user_id");
     let that = this;
     wx.request({
-      url: url_common + '/api/activity/myActivity',
+      url: url_common + '/api/activity/myApplyActivity',
       data: {
         user_id: "V0VznXa0",
+        // user_id : user_id,
         page: 1
       },
       method: 'GET',
@@ -54,7 +56,7 @@ Page({
           });
           //请求加载数据
           wx.request({
-            url: url_common + '/api/activity/myActivity',
+            url: url_common + '/api/activity/myApplyActivity',
             data: {
               user_id: "V0VznXa0",
               page: this.data.currentPage
@@ -86,5 +88,6 @@ Page({
   activityDetail(e){
     let activity_id = e.currentTarget.dataset.id;
     app.href("/activitySignIn/pages/activityDetail/activityDetail?activity_id=" + activity_id)
-  }
+  },
+  
 })

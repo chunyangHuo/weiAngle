@@ -44,6 +44,7 @@ const picUrl = {
   openHover: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-shengcheng-hover.png",
   openHover2: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-shengcheng2-hover.png",
   zhanfaHover: "https://weitianshi-2017.oss-cn-shanghai.aliyuncs.com/image/banner/packet/btn-zhuanfa-hover.png",
+  activityIntro: "https://cdn.weitianshi.cn/image/banner/activity-intro.png"
 
 }
 

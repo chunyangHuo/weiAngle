@@ -1,7 +1,7 @@
 <include src='/utils/wxml/common' />
 
-<scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="loadMore" style="height:1120rpx" >
-  <view>
+<scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="loadMore" style="height:1334rpx" >
+  <view wx:if="{{activity.length != 0}}">
     <block wx:for="{{activity}}" wx:key="{{index}}">
       <view class="activityBox" data-id="{{item.activity_id}}" bindtap='activityDetail'>
         <view class="topBox flex">
@@ -26,4 +26,6 @@
       </view>
     </block>
   </view>
+  <!-- 为空-->
+<image src="{{imgUrls}}" class="backgroundPic" wx:if="{{activity.length == 0}}"></image>
 </scroll-view>

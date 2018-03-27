@@ -114,10 +114,11 @@ Page({
           "user_brand": user_brand,
           "user_email": user_email,
           "user_wechat": user_wechat,
-          "captcha": 123456,
+          "captcha": captcha,
           "open_session": app.globalData.open_session
         },
       }).then(res => {
+        console.log(user_info)
         let user_info = res.data.user_info;
         that.setData({
           user_info: user_info
@@ -215,6 +216,7 @@ Page({
   },
   //获取验证码按钮倒计时动效
   checkCode(e) {
+    console.log(e)
     e.detail.disabled = true;
     let telephone = this.data.telephone;
     let checking = this.data.checking;

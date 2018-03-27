@@ -94,7 +94,7 @@
   </view>
   <!--手机  -->
   <view class="boxStyle">
-    <view class="projectBoxContent flex">
+    <view class="projectBoxContent flex {{telephone.length == 0 ? ' ' : 'bottomStyle noBorder'}}">
       <view class="projectTitle">手机*</view>
       <input placeholder="请输入" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telephone}}" placeholder-style='color:#999' maxlength="40" class="newBox" />
     </view>
@@ -103,7 +103,10 @@
   <view class="boxStyle">
     <view class="projectBoxContent flex bottomStyle noBorder">
       <view class="projectTitle">获取验证码</view>
-      <input placeholder="请输入" placeholder-style='color:#ccc' class="newBox" maxlength="40" value="{{checkCode}}" bindblur="checkCode2" />
+      <view>
+        <input placeholder="请输入" placeholder-style='color:#ccc' class="newBoxs" maxlength="40" value="{{checkCode}}" bindblur="checkCode2" />
+        <button class="clear {{time =='1'?'clearOn':''}}" bindtap="checkCode" disabled="{{time == 1}}" loading="{{checking == 1}}">{{getCode}}</button>
+      </view>
     </view>
   </view>
 
