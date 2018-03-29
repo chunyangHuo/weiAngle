@@ -36,6 +36,7 @@ Page({
     // let searchData = that.data.searchData;
     app.initPage(that);
     app.netWorkChange(that);
+    this.investorList();
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -69,17 +70,18 @@ Page({
       });
       that.investorList();
     });
-  },
-  onShow() {
-    if (!this.data.firstTime) {
-      this.investorList();
-    }
-    // this.investorList();
     this.setData({
       requestCheck: true,
       currentPage: 1,
       page_end: false
     });
+  },
+  onShow() {
+    // if (!this.data.firstTime) {
+    //   this.investorList();
+    // }
+
+
   },
   //下拉刷新
   onPullDownRefresh() {
@@ -153,7 +155,6 @@ Page({
     let that = this;
     let user_id = this.data.user_id;
     // let currentPage = this.data.currentPage;
-
     let request = {
       url: url_common + '/api/investor/getInvestorListByGroup',
       data: {
@@ -186,7 +187,7 @@ Page({
   contactsAdd(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAdd',this, added_user_id, function (res) {
+    app.operationModel('contactsAdd', this, added_user_id, function (res) {
       app.log('申请添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 2);
     });
@@ -195,7 +196,7 @@ Page({
   contactsAddDirect(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAddDirect',this, added_user_id, function (res) {
+    app.operationModel('contactsAddDirect', this, added_user_id, function (res) {
       app.log('直接添加人脉完成', res);
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });

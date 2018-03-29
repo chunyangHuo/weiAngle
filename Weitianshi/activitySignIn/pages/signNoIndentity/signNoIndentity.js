@@ -18,16 +18,22 @@ Page({
     endTime: 60,//多少秒后验证码得发
     nonet: true
   },
-  onLoad() {
+  onLoad(options) {
     let that = this;
+    let activity_id = options.activity_id;
     let user_id = wx.getStorageSync("user_id");
     if (user_id) {
+      console.log("我是user_ID")
       this.userInfo(user_id)
       this.setData({
-        user_id: user_id
+        user_id: user_id,
+        activity_id: activity_id
       })
     } else {
-
+      this.noSign();
+      this.setData({
+        activity_id: activity_id
+      })
     }
   },
   //跳转微天使首页
@@ -77,7 +83,7 @@ Page({
       url: url_common + '/api/activity/apply',
       data: {
         "user_id": this.data.user_id,
-        "activity_id": 21,
+        "activity_id": activity_id,
         "user_mobile": user_mobile,
         "user_name": user_name,
         "user_company_name": user_company_name,
@@ -86,8 +92,12 @@ Page({
         "user_email": user_email,
         "user_wechat": user_wechat
       },
-    }).then(res => {
-      console.log(res)
+    }, this).then(res => {
+      if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
+        this.jumpto();
+      } else {
+          app.errorHide(that, res.data.error_msg, 3000)
+      }
     })
   },
   //未注册的用户
@@ -102,36 +112,40 @@ Page({
     let user_email = this.data.checkEmail;
     let user_wechat = this.data.checkWechart;
     let captcha = this.data.checkCode;
-      app.httpPost({
-        url: url_common + '/api/activity/applyAndRegister',
-        data: {
-          "user_id": 0,
-          "activity_id": 21,
-          "user_mobile": user_mobile,
-          "user_name": user_name,
-          "user_company_name": user_company_name,
-          "user_company_career": user_company_career,
-          "user_brand": user_brand,
-          "user_email": user_email,
-          "user_wechat": user_wechat,
-          "captcha": captcha,
-          "open_session": app.globalData.open_session
-        },
-      }).then(res => {
-        console.log(user_info)
+    app.httpPost({
+      url: url_common + '/api/activity/applyAndRegister',
+      data: {
+        "user_id": 0,
+        "activity_id": activity_id,
+        "user_mobile": user_mobile,
+        "user_name": user_name,
+        "user_company_name": user_company_name,
+        "user_company_career": user_company_career,
+        "user_brand": user_brand,
+        "user_email": user_email,
+        "user_wechat": user_wechat,
+        "captcha": captcha,
+        "open_session": app.globalData.open_session
+      },
+    }, this).then(res => {
+      if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
+        this.jumpto();
         let user_info = res.data.user_info;
         that.setData({
           user_info: user_info
         })
-      })
+      } else {
+        app.errorHide(that, res.data.error_msg, 3000)
+      }
+    })
   },
   //提交
   pushInfo() {
     let user_id = this.data.user_id;
     if (user_id) {
-      this.signed()
+      this.signed(user_id)
     } else {
-
+      this.noSign()
     }
   },
   //姓名
@@ -282,7 +296,7 @@ Page({
     register.personInfoRegister.call(this);
   },
   //跳转
-  jumpto(){
+  jumpto() {
     app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard")
   }
 })

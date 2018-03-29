@@ -19,7 +19,7 @@ Page({
     }, this, res => {
       console.log(res)
       let data = res.data.data;
-this.check(data)
+      this.check(data)
       that.setData({
         data: data
       })
@@ -30,7 +30,8 @@ this.check(data)
   },
   // 报名
   signIn() {
-    app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity")
+    let activity_id = this.data.activity_id;
+    app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity?activity_id=" + activity_id)
   },
   //进入微天使
   toWTS() {
@@ -53,9 +54,9 @@ this.check(data)
       console.log(x)
       if (x.describle || x.image.length != 0) {
         this.setData({
-          hasThing : true
+          hasThing: true
         })
-      } 
+      }
     })
   }
 })

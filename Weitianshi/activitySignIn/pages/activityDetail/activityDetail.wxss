@@ -167,3 +167,9 @@
   /* padding: 6rpx 0; */
   margin-left: 16rpx;
 }
+.t-line {
+  width: 2rpx;
+  height: 35rpx;
+  background: #f2f2f2;
+  margin-top: 15px;
+}

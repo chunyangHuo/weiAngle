@@ -62,17 +62,16 @@ Page({
       });
       that.faList();
     });
-  },
-  onShow() {
-    if (!this.data.firstTime) {
-      this.faList();
-    }
     this.setData({
       requestCheck: true,
       currentPage: 1,
       page_end: false
     });
-    // this.faList();
+  },
+  onShow() {
+    if (!this.data.firstTime) {
+      this.faList();
+    }
   },
 
 
@@ -80,7 +79,6 @@ Page({
   onPullDownRefresh() {
     //请求FA列表
     this.faList();
-
   },
 
   //FA列表信息
