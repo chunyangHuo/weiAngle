@@ -22,6 +22,7 @@ Page({
     let that = this;
     let activity_id = options.activity_id;
     let user_id = wx.getStorageSync("user_id");
+    console.log(user_id)
     if (user_id) {
       console.log("我是user_ID")
       this.userInfo(user_id)
@@ -83,7 +84,7 @@ Page({
       url: url_common + '/api/activity/apply',
       data: {
         "user_id": this.data.user_id,
-        "activity_id": activity_id,
+        "activity_id": 21,
         "user_mobile": user_mobile,
         "user_name": user_name,
         "user_company_name": user_company_name,
@@ -94,7 +95,7 @@ Page({
       },
     }, this).then(res => {
       if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-        this.jumpto();
+        this.jumpto(this.data.user_id);
       } else {
           app.errorHide(that, res.data.error_msg, 3000)
       }
@@ -129,7 +130,8 @@ Page({
       },
     }, this).then(res => {
       if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-        this.jumpto();
+        console.log(res)
+        // this.jumpto();
         let user_info = res.data.user_info;
         that.setData({
           user_info: user_info
@@ -180,6 +182,7 @@ Page({
   //职位项的特殊符号过滤和值的双向绑定
   position(e) {
     let position = e.detail.value;
+    console.log(position)
     position = app.globalData.verify.deleteSymbol(position);
     this.setData({
       position
@@ -291,12 +294,9 @@ Page({
       checkCode: e.detail.value
     });
   },
-  // personInfo点击跳转
-  nextPage() {
-    register.personInfoRegister.call(this);
-  },
+
   //跳转
-  jumpto() {
-    app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard")
+  jumpto(user_id) {
+    app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard?user_id=" + user_id)
   }
 })

@@ -192,10 +192,10 @@
 
 .activityWei {
   background: #293b55;
-  border-radius: 2px;
-  width: 438rpx;
+  border-radius: 4rpx;
+  width: 686rpx;
   height: 88rpx;
-  font-size: 15px;
+  font-size: 30rpx;
   color: #fff;
   text-align: center;
   line-height: 88rpx;

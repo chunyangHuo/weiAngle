@@ -31,14 +31,14 @@ Page({
     app.httpPost({
       url: url_common + '/api/activity/applyUserInfo',
       data: {
-        activity_id: 21,
-        user_id: user_id
+        "user_id": "V0VznXa0",
+        "activity_id": 35,
       }
     }, this).then(res => {
       console.log(res)
       this.setData({
         activity: res.data.data.activity,
-        userInfo: res.data.data.user
+        userInfo: res.data.data.user.belongs_to_user
       })
       wx.hideLoading();
       this.getSignForm(activity_id, user_id)
@@ -48,7 +48,6 @@ Page({
   },
   // 获取签到名单
   getSignForm(activity_id, user_id) {
-    console.log(this.data.page_end)
     if (this.data.page_end) {
       app.errorHide(this, '没有更多了')
     } else {

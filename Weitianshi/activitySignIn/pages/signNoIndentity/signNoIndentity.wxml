@@ -100,7 +100,7 @@
     </view>
   </view>
   <!--获取验证码  -->
-  <view class="boxStyle">
+  <view class="boxStyle" wx:if="{{user_id == 0}}">
     <view class="projectBoxContent flex bottomStyle noBorder">
       <view class="projectTitle">获取验证码</view>
       <view>

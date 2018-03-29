@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:1108rpx;" scroll-y="true" bindscrolltolower='loadMore'>
   <image src="{{signIndentityCard}}" class="activityImg">
-    <image class="activityUrl" wx:if='{{userInfo.user_logo_url}}' src="{{userInfo.user_logo_url}}"></image>
+    <image class="activityUrl" wx:if='{{userInfo.avatar.user_avatar_url}}' src="{{userInfo.avatar.user_avatar_url}}"></image>
     <view class="activityUrl" wx:if='{{userInfo.user_logo_text}}'>{{userInfo.user_logo_text}}</view>
     <view class="activityName">{{userInfo.user_name}}</view>
     <view class="activityCom">{{userInfo.user_company_name}}</view>
@@ -48,7 +48,6 @@
 <view style='height:128rpx;'></view>
 <!-- 操作按钮 -->
 <view class="activityBottom flex">
-  <button class="activityMeet" disabled='true' style='border-color:#ccc;' bindtap='goToActivityAgenda'>活动议程</button>
   <button class="activityWei" bindtap='goToIndex'>去微天使看看</button>
 </view>
 <!--报错  -->
