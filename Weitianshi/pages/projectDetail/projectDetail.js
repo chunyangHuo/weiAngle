@@ -98,10 +98,6 @@ Page({
       })
     };
     app.netWorkChange(that)
-  },
-  onShow: function () {
-    let that = this;
-    // 机构版买家图谱信息修改
     that.setData({
       newPage: '',
       requestCheck: true,
@@ -110,6 +106,18 @@ Page({
       page_end: false,
       investment_list: []
     })
+  },
+  onShow: function () {
+    let that = this;
+    // 机构版买家图谱信息修改
+    // that.setData({
+    //   newPage: '',
+    //   requestCheck: true,
+    //   currentPage: 1,
+    //   currentPage1: 1,
+    //   page_end: false,
+    //   investment_list: []
+    // })
     this.identityInfo(that);
   },
   /* -----------------------数据获取------------------------------------------- */
@@ -161,8 +169,8 @@ Page({
           show_detail: show_detail,
           show_company: show_company
         });
-        app.log("show_detail", show_detail);
-        app.log("show_company", show_company);
+        console.log("show_detail", show_detail);
+        console.log("show_company", show_company);
         that.projectDetailInfo(that, pro_id, is_share, share_id, show_company);
       }
     })
@@ -187,7 +195,7 @@ Page({
           competition_id: res.data.data.competition_id,
         })
         // console.log(user_id, id, is_share)
-        app.log("bp", res)
+        console.log("bp", res)
         if (project.pro_BP) {
           let BPath = project.pro_BP.file_url;
           that.setData({
@@ -651,6 +659,7 @@ Page({
             method: 'POST',
             success: function (res) {
               let competeList = res.data.data;
+              console.log(res)
               let projectLabelList = [];
               let projectArray = [];
               let arr1 = [];
@@ -660,6 +669,7 @@ Page({
                 competeList[index].project_location = x.project_location;
                 competeList[index].project_logo = x.project_logo;
                 competeList[index].project_label = x.project_label;
+                console.log(x.project_label)
                 competeList[index].history_financing = x.history_financing;
               })
               that.setData({
@@ -686,7 +696,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investor2 = res.data.data;
-        app.log("投资人", investor2)
+        console.log("投资人", investor2)
         let matchCount = res.data.match_count;
         that.setData({
           investor2: investor2,
@@ -714,7 +724,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         let investment_list = res.data.data.investment_list;
-        app.log("投资机构", investment_list)
+        console.log("投资机构", investment_list)
         let investment_total_num = res.data.data.investment_total_num;
         that.setData({
           investment_list: investment_list,
@@ -744,7 +754,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "investor2");
-    app.log('投资人', this.data.page_end);
+    console.log('投资人', this.data.page_end);
     if (this.data.page_end == true) {
       that.setData({
         jiandi: true
@@ -766,7 +776,7 @@ Page({
     }
     //调用通用加载函数
     app.loadMoreM(that, request, "investment_list");
-    app.log('投资机构', this.data.page_end1);
+    console.log('投资机构', this.data.page_end1);
     if (this.data.page_end1 == true) {
       that.setData({
         jiandi1: true
