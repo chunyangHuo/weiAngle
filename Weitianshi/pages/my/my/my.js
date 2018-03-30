@@ -3,10 +3,10 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 import * as ShareModel from '../../../utils/model/shareModel';
 let RG = require('../../../utils/model/register.js');
-let register = new RG.register(); 
+let register = new RG.register();
 let RP = require('../../../utils/model/redPackets.js');
 let rp = new RP.redPackets();
-Page({ 
+Page({
   data: {
     modalBox: 0,
     modal: 0,
@@ -86,14 +86,14 @@ Page({
         });
       }
     });
-  }, 
+  },
   //登录
   entry() {
-    app.checkUserInfo(this, res => {})
+    app.checkUserInfo(this, res => { })
   },
   //进入我的名片
   toMyCard: function () {
-    app.checkUserInfo(this, res => { 
+    app.checkUserInfo(this, res => {
       app.href('/pages/my/myCard/myCard');
     })
   },
@@ -131,7 +131,7 @@ Page({
       } else if (status == 3) {
         app.href('/pages/my/identity/identityResult/identityResult?type=' + 3);
       }
-     })  
+    })
   },
   //项目店铺
   projectShop: function () {
@@ -270,7 +270,7 @@ Page({
   sendedBag(e) {
     app.checkUserInfo(this, res => {
       app.href('/redPackets/pages/myHB/myHB')
-    
+
     })
   },
 
@@ -283,11 +283,13 @@ Page({
     register.telephoneRegister.call(this);
   },
   // 关闭绑定方式选择弹框
-  closeRegisterModal(){
+  closeRegisterModal() {
     register.closeRegisterModal.call(this);
   },
-  activity(){
-    app.href("/pages/my/activityList/activityList")
+  activity() {
+    app.checkUserInfo(this, res => {
+      app.href("/pages/my/activityList/activityList")
+    })
   }
-  
+
 });

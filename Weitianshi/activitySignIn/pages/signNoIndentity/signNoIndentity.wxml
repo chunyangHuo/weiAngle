@@ -96,7 +96,8 @@
   <view class="boxStyle">
     <view class="projectBoxContent flex {{telephone.length == 0 ? ' ' : 'bottomStyle noBorder'}}">
       <view class="projectTitle">手机*</view>
-      <input placeholder="请输入" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telephone}}" placeholder-style='color:#999' maxlength="40" class="newBox" />
+      <input placeholder="请输入" type="number" bindinput="checkPhone" bindconfirm="checkPhone" value="{{telephone}}" placeholder-style='color:#999' maxlength="40" class="newBox"  wx:if="{{!telephone}}"/>
+      <input wx:if="{{telephone}}" value="{{telephone}}" placeholder-style='color:#999' maxlength="40" class="newBox" disabled="true" />
     </view>
   </view>
   <!--获取验证码  -->

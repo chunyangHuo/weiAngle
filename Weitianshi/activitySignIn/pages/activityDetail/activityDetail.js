@@ -17,7 +17,6 @@ Page({
         "activity_id": activity_id
       },
     }, this, res => {
-      console.log(res)
       let data = res.data.data;
       this.check(data)
       that.setData({
@@ -51,7 +50,6 @@ Page({
     let detail = data.detail;
     let hasThing = false;
     detail.forEach(x => {
-      console.log(x)
       if (x.describle || x.image.length != 0) {
         this.setData({
           hasThing: true

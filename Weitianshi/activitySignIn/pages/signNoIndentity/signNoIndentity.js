@@ -16,30 +16,26 @@ Page({
     loading: "0",//加载动画控制
     getCode: "获取验证码",
     endTime: 60,//多少秒后验证码得发
-    nonet: true
+    nonet: true,
+    user_info: ""
   },
   onLoad(options) {
     let that = this;
     let activity_id = options.activity_id;
     let user_id = wx.getStorageSync("user_id");
-    console.log(user_id)
     if (user_id) {
-      console.log("我是user_ID")
       this.userInfo(user_id)
       this.setData({
         user_id: user_id,
         activity_id: activity_id
       })
     } else {
-      this.noSign();
+      console.log("no user_id")
       this.setData({
-        activity_id: activity_id
+        activity_id: activity_id,
+        user_id: user_id
       })
     }
-  },
-  //跳转微天使首页
-  goToIndex() {
-    app.href('/pages/discoverProject/discoverProject');
   },
   //有user_id
   userInfo(user_id) {
@@ -68,87 +64,6 @@ Page({
         weChat: weChat
       })
     })
-  },
-  //注册过的用户
-  signed() {
-    let that = this;
-    let activity_id = this.data.activity_id;
-    let user_name = this.data.name;
-    let user_mobile = this.data.telephone;
-    let user_company_name = this.data.company;
-    let user_company_career = this.data.position;
-    let user_brand = this.data.checkBrand;
-    let user_email = this.data.checkEmail;
-    let user_wechat = this.data.checkWechart;
-    app.httpPost({
-      url: url_common + '/api/activity/apply',
-      data: {
-        "user_id": this.data.user_id,
-        "activity_id": 21,
-        "user_mobile": user_mobile,
-        "user_name": user_name,
-        "user_company_name": user_company_name,
-        "user_company_career": user_company_career,
-        "user_brand": user_brand,
-        "user_email": user_email,
-        "user_wechat": user_wechat
-      },
-    }, this).then(res => {
-      if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-        this.jumpto(this.data.user_id);
-      } else {
-          app.errorHide(that, res.data.error_msg, 3000)
-      }
-    })
-  },
-  //未注册的用户
-  noSign() {
-    let that = this;
-    let activity_id = this.data.activity_id;
-    let user_name = this.data.name;
-    let user_mobile = this.data.telephone;
-    let user_company_name = this.data.company;
-    let user_company_career = this.data.position;
-    let user_brand = this.data.checkBrand;
-    let user_email = this.data.checkEmail;
-    let user_wechat = this.data.checkWechart;
-    let captcha = this.data.checkCode;
-    app.httpPost({
-      url: url_common + '/api/activity/applyAndRegister',
-      data: {
-        "user_id": 0,
-        "activity_id": activity_id,
-        "user_mobile": user_mobile,
-        "user_name": user_name,
-        "user_company_name": user_company_name,
-        "user_company_career": user_company_career,
-        "user_brand": user_brand,
-        "user_email": user_email,
-        "user_wechat": user_wechat,
-        "captcha": captcha,
-        "open_session": app.globalData.open_session
-      },
-    }, this).then(res => {
-      if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-        console.log(res)
-        // this.jumpto();
-        let user_info = res.data.user_info;
-        that.setData({
-          user_info: user_info
-        })
-      } else {
-        app.errorHide(that, res.data.error_msg, 3000)
-      }
-    })
-  },
-  //提交
-  pushInfo() {
-    let user_id = this.data.user_id;
-    if (user_id) {
-      this.signed(user_id)
-    } else {
-      this.noSign()
-    }
   },
   //姓名
   name(e) {
@@ -294,7 +209,108 @@ Page({
       checkCode: e.detail.value
     });
   },
-
+  //注册过的用户
+  signed() {
+    let that = this;
+    let activity_id = this.data.activity_id;
+    let name = this.data.name;
+    let telephone = this.data.telephone;
+    let company = this.data.company;
+    let position = this.data.position;
+    let user_brand = this.data.checkBrand;
+    let user_email = this.data.checkEmail;
+    let user_wechat = this.data.checkWechart;
+    if (!name) {
+      app.errorHide(this, '姓名不能为空')
+    } else if (!company) {
+      app.errorHide(this, '公司不能为空')
+    } else if (!position) {
+      app.errorHide(this, '职位不能为空')
+    } else {
+      app.httpPost({
+        url: url_common + '/api/activity/apply',
+        data: {
+          "user_id": this.data.user_id,
+          "activity_id": 21,
+          "user_mobile": telephone,
+          "user_name": name,
+          "user_company_name": company,
+          "user_company_career": position,
+          "user_brand": user_brand,
+          "user_email": user_email,
+          "user_wechat": user_wechat
+        },
+      }, this).then(res => {
+        if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
+          this.jumpto(this.data.user_id);
+        } else {
+          app.errorHide(that, res.data.error_msg, 3000)
+        }
+      })
+    }
+  },
+  //未注册的用户
+  noSign() {
+    let that = this;
+    let activity_id = this.data.activity_id;
+    let name = this.data.name;
+    let telephone = this.data.telephone;
+    let company = this.data.company;
+    let position = this.data.position;
+    let user_brand = this.data.checkBrand;
+    let user_email = this.data.checkEmail;
+    let user_wechat = this.data.checkWechart;
+    let captcha = this.data.checkCode;
+    if (!name) {
+      app.errorHide(this, '姓名不能为空')
+    } else if (!telephone) {
+      app.errorHide(this, '电话不能为空')
+    } else if (!company) {
+      app.errorHide(this, '公司不能为空')
+    } else if (!position) {
+      app.errorHide(this, '职位不能为空')
+    } else if (!captcha) {
+      app.errorHide(this, '验证码不能为空')
+    } else {
+      app.httpPost({
+        url: url_common + '/api/activity/applyAndRegister',
+        data: {
+          "user_id": 0,
+          "activity_id": activity_id,
+          "user_mobile": telephone,
+          "user_name": name,
+          "user_company_name": company,
+          "user_company_career": position,
+          "user_brand": user_brand,
+          "user_email": user_email,
+          "user_wechat": user_wechat,
+          "captcha": captcha,
+          "open_session": wx.getStorageSync('open_session')
+        },
+      }, this).then(res => {
+        if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
+          console.log(res)
+          let user_info = res.data.data;
+          wx.setStorageSync("user_id", res.data.user_id);
+          this.jumpto(user_info.user_id);
+          that.setData({
+            user_info: user_info
+          })
+        } else {
+          app.errorHide(that, res.data.error_msg, 3000)
+        }
+      })
+    }
+  },
+  //提交
+  pushInfo() {
+    let user_id = this.data.user_id;
+    if (user_id) {
+      this.signed(user_id)
+    } else {
+      this.noSign()
+    }
+  },
   //跳转
   jumpto(user_id) {
     app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard?user_id=" + user_id)

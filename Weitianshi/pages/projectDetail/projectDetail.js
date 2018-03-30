@@ -48,7 +48,7 @@ Page({
     status: 0, // 是否认证过0:未认证1:待审核 2 审核通过 3审核未通过
     authenModelBox: 0, // 控制联系项目方是否显示
     group_id: 18 //买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
-  },
+  }, 
   onLoad: function (options) {
     var that = this;
     var id = options.id;//当前被查看用户的项目id
@@ -505,7 +505,9 @@ Page({
           let company = res.data.data.company;
           let com_id = company.com_id;
           let com_time = company.company_register_date;
+
           let time = app.changeTime(com_time);
+          console.log(com_time,time)
           if (projectInfoList.length != 0) {
             projectInfoList.forEach((x, index) => {
               projectInfoList[index] = x;
@@ -659,7 +661,6 @@ Page({
             method: 'POST',
             success: function (res) {
               let competeList = res.data.data;
-              console.log(res)
               let projectLabelList = [];
               let projectArray = [];
               let arr1 = [];
@@ -669,8 +670,9 @@ Page({
                 competeList[index].project_location = x.project_location;
                 competeList[index].project_logo = x.project_logo;
                 competeList[index].project_label = x.project_label;
-                console.log(x.project_label)
                 competeList[index].history_financing = x.history_financing;
+                competeList[index].history_financing.history_financing_time = app.changeTime(x.history_financing.history_financing_time)
+                competeList[index].company_register_date = app.changeTime(x.company_register_date)
               })
               that.setData({
                 competeList: competeList,
