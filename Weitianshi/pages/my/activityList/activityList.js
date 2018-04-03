@@ -57,7 +57,7 @@ Page({
           wx.request({
             url: url_common + '/api/activity/myApplyActivity',
             data: {
-              user_id: "V0VznXa0",
+              user_id: user_id,
               page: this.data.currentPage
             },
             method: 'GET',

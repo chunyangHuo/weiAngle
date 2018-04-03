@@ -14,7 +14,7 @@
         <image class="noBottomPic" wx:if="{{item.user_avatar_url}}" src='{{item.user_avatar_url}}'></image>
       </block>
     </view>
-    <view class="flex">
+    <view class="flex" hover-class="t-hoverColor">
       <view class="bottomNum">已报名{{data.apply_count}}人</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
@@ -74,7 +74,7 @@
       分享</button>
   </view>
   <view class="t-line"></view>
-  <view catchtap="signIn" class='creatProject' hover-class="t-redColor" wx:if="{{data.is_end == 0 && data.is_apply == false}}">报名</view>
+  <view catchtap="signIn" class='creatProject' hover-class="t-redColor" wx:if="{{data.is_end == 0 && data.is_apply == false}}" data-competition="{{data.competition_id}}">报名</view>
 
   <view class='createdProject' wx:if="{{data.is_end == 0 && data.is_apply}}">已报名</view>
 

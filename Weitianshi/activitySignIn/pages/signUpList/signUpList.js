@@ -38,9 +38,10 @@ Page({
     });
   },
 
-  //投资人列表信息
+  //列表信息
   idCardList(user_id) {
     let that = this;
+    let activity_id = this.data.activity_id;
     wx.showLoading({
       title: 'loading',
       mask: true,
@@ -49,7 +50,7 @@ Page({
       url: url_common + '/api/activity/applyUserList',
       data: {
         "user_id": user_id,
-        "activity_id": 21,
+        "activity_id": activity_id,
         "page": 1
       },
     }).then(res => {

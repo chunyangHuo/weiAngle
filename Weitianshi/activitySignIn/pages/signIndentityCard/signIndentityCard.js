@@ -31,8 +31,8 @@ Page({
     app.httpPost({
       url: url_common + '/api/activity/applyUserInfo',
       data: {
-        "user_id": "V0VznXa0",
-        "activity_id": 35,
+        "user_id": user_id,
+        "activity_id": activity_id,
       }
     }, this).then(res => {
       console.log(res)
@@ -58,7 +58,7 @@ Page({
       app.httpPost({
         url: url_common + '/api/activity/applyUserList',
         data: {
-          activity_id: 21,
+          activity_id: activity_id,
           user_id: user_id || 0,
           page: this.data.currentPage
         }

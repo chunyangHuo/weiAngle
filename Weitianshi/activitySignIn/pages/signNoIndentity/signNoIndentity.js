@@ -20,20 +20,24 @@ Page({
     user_info: ""
   },
   onLoad(options) {
+    console.log(options)
     let that = this;
     let activity_id = options.activity_id;
+    let competition_id = options.competition_id;
     let user_id = wx.getStorageSync("user_id");
     if (user_id) {
       this.userInfo(user_id)
       this.setData({
         user_id: user_id,
-        activity_id: activity_id
+        activity_id: activity_id,
+        competition_id: competition_id
       })
     } else {
       console.log("no user_id")
       this.setData({
         activity_id: activity_id,
-        user_id: user_id
+        user_id: user_id,
+        competition_id: competition_id
       })
     }
   },
@@ -231,7 +235,7 @@ Page({
         url: url_common + '/api/activity/apply',
         data: {
           "user_id": this.data.user_id,
-          "activity_id": 21,
+          "activity_id": activity_id,
           "user_mobile": telephone,
           "user_name": name,
           "user_company_name": company,
@@ -291,7 +295,7 @@ Page({
         if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
           console.log(res)
           let user_info = res.data.data;
-          wx.setStorageSync("user_id", res.data.user_id);
+          wx.setStorageSync("user_id", res.data.data.user_id);
           this.jumpto(user_info.user_id);
           that.setData({
             user_info: user_info
@@ -313,6 +317,12 @@ Page({
   },
   //跳转
   jumpto(user_id) {
-    app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard?user_id=" + user_id)
+    let competition_id = this.data.competition_id;
+    let activity_id = this.data.activity_id;
+    if (competition_id) {
+      app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+    } else {
+      app.href("/activitySignIn/pages/signIndentityCard/signIndentityCard?user_id=" + user_id + "&&activity_id=" + activity_id)
+    }
   }
 })

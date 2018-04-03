@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
 	"appid": "wxca0abf6f55deb8d8",
-	"projectname": "%E7%BB%BF%E6%9F%A5%E5%A6%B9",
+	"projectname": "%E5%BE%AE%E5%A4%A9%E4%BD%BF",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -20,16 +20,16 @@
 			"current": -1,
 			"list": []
 		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
 		"game": {
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 45,
+			"current": 52,
 			"list": [
 				{
 					"id": 0,
@@ -330,6 +330,65 @@
 					"name": "身份",
 					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
 					"query": "activity_id=21"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=21",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群1",
+						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
+						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=107",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群1",
+						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
+						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": "activity_id=107",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群1",
+						"shareName": "rDHe0AofXIZpmsWzgLNctyY-rZhQ82kJOowrjgm-Qsw@cr4dev",
+						"shareKey": "bpUcodjKK5Y_djykaA2wYEoXY7fhy1-lOfdgU7CsQgcxoegMBV2GGOSMX1XunAILJUyEfPHoqX7_yosgx8tF8Q~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=107"
+				},
+				{
+					"id": -1,
+					"name": "555",
+					"pathName": "/activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "555",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard"
 				}
 			]
 		}

@@ -62,9 +62,13 @@ Page({
     // 查看入口是否为推送项目
     let enterance = options.enterance;
     let pushTo_user_id = options.pushTo_user_id;
+    let competition_id = options.competition_id;
+    let activity_id = options.activity_id;
+    let  user_id = wx.getStorageSync("user_id");
+    console.log("user_id",user_id)
     console.log(options)
     this.setData({
-      enterance, pushTo_user_id
+      enterance, pushTo_user_id, competition_id, activity_id
     })
   },
   //页面显示
@@ -80,7 +84,7 @@ Page({
   _pickerDeal(item, itemArr, itemName, string_item, string_itemArr) {
     if (string_itemArr == 'stage_arry') {
       item.unshift({ stage_name: '请选择' });
-    } else{
+    } else {
       item.unshift({ scale_money: '请选择' });
     }
     item.forEach(x => {
@@ -214,7 +218,7 @@ Page({
     }
   },
   //地区跳转
-  areaJump(){
+  areaJump() {
     app.href('/pages/form/area1/area1?current=0');
   },
   //私密性处理(辅助函数)
@@ -266,6 +270,8 @@ Page({
             user_id: wx.getStorageSync('user_id'),
             project_id: that.data.pro_id,
             credential: res.result,//二维码扫描信息
+            activity_id: activity_id,
+            competition_id: competition_id,
             pro_data: {
               industry: that.data.industryCard.id,
               pro_finance_stage: that.data.stage[that.data.stage_index].stage_id || '',
@@ -282,7 +288,8 @@ Page({
               open_status: privacy.open_status,
               power_share_status: privacy.power_share_status,
               power_investor_status: privacy.power_investor_status,
-              company_open_status: Number(!privacy.company_open_status),
+              company_open_status: Number(!privacy.company_open_status,
+              ),
             }
           },
           method: 'POST',
@@ -316,8 +323,9 @@ Page({
     let pro_area_province = that.data.provinceNum;
     let pro_area_city = that.data.cityNum;
     let is_exclusive = that.data.tips_index;
-    let  projectName = that.data.projectName;
-
+    let projectName = that.data.projectName;
+    let competition_id = that.data.competition_id;
+    let activity_id = that.data.activity_id;
     // 表单检验和发送表单
     if (!projectName) {
       app.errorHide(that, '请填写项目名称', 3000);
@@ -345,7 +353,9 @@ Page({
           open_status: privacy.open_status,
           power_share_status: privacy.power_share_status,
           power_investor_status: privacy.power_investor_status,
-          company_open_status: Number(!privacy.company_open_status),
+          activity_id: activity_id,
+          competition_id: competition_id,
+          company_open_status: Number(!privacy.company_open_status,),
         },
       };
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
@@ -357,10 +367,10 @@ Page({
         wx.removeStorageSync('setPrivacy');
         app.errorHide(that, successText, 1000);
         // 提交中过渡态处理
-        setTimeout(x => { 
-          if(enterance == 'pushProject'){ 
+        setTimeout(x => {
+          if (enterance == 'pushProject') {
             app.redirectTo('/pages/myProject/pushTo/pushTo?pushId=' + pushTo_user_id + '&&projectId=' + projectId);
-          }else{
+          } else {
             app.redirectTo('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId);
           }
         }, 1000);

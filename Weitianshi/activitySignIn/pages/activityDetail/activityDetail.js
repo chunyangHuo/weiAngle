@@ -10,6 +10,11 @@ Page({
     let activity_id = options.activity_id;
     let user_id = wx.getStorageSync("user_id");
     let that = this;
+    app.loginPage(function (user_id) {
+      that.setData({
+        user_id: user_id
+      });
+    });
     app.httpPost({
       url: url_common + '/api/activity/show',
       data: {
@@ -28,9 +33,14 @@ Page({
     })
   },
   // 报名
-  signIn() {
+  signIn(e) {
+    let competition_id = e.currentTarget.dataset.competition;
     let activity_id = this.data.activity_id;
-    app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity?activity_id=" + activity_id)
+    if (competition_id && competition_id != 0){
+      app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+    }else{
+      app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity?activity_id=" + activity_id)
+    }
   },
   //进入微天使
   toWTS() {

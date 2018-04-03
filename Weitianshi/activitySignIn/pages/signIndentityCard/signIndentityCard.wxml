@@ -7,23 +7,23 @@
     <view class="activityCom">{{userInfo.user_company_name}}</view>
     <view class="activityMobile flex">
       <view class="activityMobile1">手机</view>
-      <view class="activityMobile2">{{userInfo.user_mobile}}</view>
+      <view class="activityMobile2" wx:if="{{userInfo.user_mobile}}">{{userInfo.user_mobile}}</view>
       <view wx:if="{{!userInfo.user_mobile}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
     </view>
     <view class="activityChat flex">
       <view class="activityMobile1">微信</view>
-      <view class="activityMobile2">{{userInfo.user_wechat}}</view>
-      <view wx:if="{{!userInfo.user_wechat}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view class="activityMobile2" wx:if="{{userInfo.user_wechat}}" >{{userInfo.user_wechat}}</view>
+      <view wx:if="{{!userInfo.user_wechat}}" style="font-size:28rpx;color:#cccccc;margin-left:32rpx;">暂未填写</view>
     </view>
     <view class="activityMail flex">
       <view class="activityMobile1">邮箱</view>
       <view class="activityMobile2">{{userInfo.user_email}}</view>
-      <view wx:if="{{!userInfo.user_email}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view wx:if="{{!userInfo.user_email}}" style="font-size:28rpx;color:#cccccc;margin-left:32rpx;">暂未填写</view>
     </view>
     <view class="activityCareer flex">
       <view class="activityMobile1">职位</view>
-      <view class="activityMobile2">{{userInfo.user_company_career}}</view>
-      <view wx:if="{{!userInfo.user_company_career}}" style="font-size:14px;color:#cccccc;">暂未填写</view>
+      <view class="activityMobile2" wx:if="{{userInfo.user_company_career}}">{{userInfo.user_company_career}}</view>
+      <view wx:if="{{!userInfo.user_company_career}}" style="font-size:28rpx;color:#cccccc;margin-left:32rpx;">暂未填写</view>
     </view>
     <view class="activityacName">{{activity.activity_title}}</view>
     <view class="activityacTime">{{activity.start_time || '暂时未定'}} ~ {{activity.end_time || '暂时未定'}}</view>

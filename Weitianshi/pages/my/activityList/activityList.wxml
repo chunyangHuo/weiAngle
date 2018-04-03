@@ -3,7 +3,7 @@
 <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="loadMore" style="height:1334rpx" >
   <view wx:if="{{activity.length != 0}}">
     <block wx:for="{{activity}}" wx:key="{{index}}">
-      <view class="activityBox" data-id="{{item.activity_id}}" bindtap='activityDetail'>
+      <view class="activityBox" data-id="{{item.activity_id}}" bindtap='activityDetail' hover-class="t-hoverColor">
         <view class="topBox flex">
           <view class="activityPic" wx:if="{{!item.main_image}}"></view>
           <image class="activityPic" src='{{item.main_image}}' wx:if="{{item.main_image}}"></image>
