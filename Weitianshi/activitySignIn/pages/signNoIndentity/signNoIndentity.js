@@ -20,7 +20,6 @@ Page({
     user_info: ""
   },
   onLoad(options) {
-    console.log(options)
     let that = this;
     let activity_id = options.activity_id;
     let competition_id = options.competition_id;
