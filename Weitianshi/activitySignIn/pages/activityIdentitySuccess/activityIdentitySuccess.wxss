@@ -64,12 +64,12 @@
 }
 
 .activityMobile1 {
-  font-size: 12px;
+  font-size: 24rpx;
   color: #999;
 }
 
 .activityMobile2 {
-  font-size: 14px;
+  font-size: 28rpx;
   color: #333;
   margin-left: 32rpx;
 }
@@ -192,10 +192,10 @@
 
 .activityWei {
   background: #293b55;
-  border-radius: 2px;
-  width: 438rpx;
+  border-radius: 4rpx;
+  width: 686rpx;
   height: 88rpx;
-  font-size: 15px;
+  font-size: 30rpx;
   color: #fff;
   text-align: center;
   line-height: 88rpx;

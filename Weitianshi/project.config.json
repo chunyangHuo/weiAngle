@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 52,
+			"current": 65,
 			"list": [
 				{
 					"id": 0,
@@ -388,7 +388,86 @@
 				{
 					"id": -1,
 					"name": "555",
-					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard"
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "777",
+					"pathName": "activity/pages/activityDetail/activityDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "777",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "777",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=107"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/activityDetail/activityDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=107"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=104"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityDetail/activityDetail",
+					"query": "activity_id=152"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": "user_id=undefined&activity_id=152"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/signCheckIndentity/signCheckIndentity",
+					"query": "user_id=undefined&activity_id=152"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/signCheckIndentity/signCheckIndentity",
+					"query": "user_id=undefined&activity_id=152"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/signIndentityCard/signIndentityCard",
+					"query": "user_id=undefined&activity_id=152"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess",
+					"query": "user_id=undefined&activity_id=152"
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "activitySignIn/pages/activityIdentityInfo/activityIdentityInfo",
+					"query": "user_id=undefined&activity_id=152"
 				}
 			]
 		}

@@ -14,35 +14,33 @@ Page({
     page_end: false
   },
   onLoad(options) {
-    let apply_id = options.apply_id;
     let activity_id = options.activity_id;
+    let user_id = wx.getStorageSync("user_id")
     this.setData({
-      apply_id: apply_id,
       activity_id: activity_id
     })
     app.getSession(user_id => {
       this.setData({
         user_id
       })
-      this.getActivityDetail(apply_id, activity_id, user_id);
+      this.getActivityDetail(activity_id, user_id);
     })
   },
   // 获取项目详情和用户信息
-  getActivityDetail(apply_id, activity_id, user_id) {
+  getActivityDetail(activity_id, user_id) {
     app.httpPost({
-      url: url_common + '/api/activity/getActivityEntrance',
+      url: url_common + '/api/activity/applyUserInfo',
       data: {
-        activity_id: activity_id,
-        apply_id: apply_id,
-        open_session: app.globalData.open_session
+        "user_id": user_id,
+        "activity_id": activity_id,
       }
     }, this).then(res => {
-      console.log(res.data.data.activity);
-      console.log(res.data.data.user);
+      console.log(res)
       this.setData({
         activity: res.data.data.activity,
-        userInfo: res.data.data.user
+        userInfo: res.data.data.user.belongs_to_user
       })
+      wx.hideLoading();
       this.getSignForm(activity_id, user_id)
     }).catch(res => {
       app.errorHide(this, res.data.error_msg);
@@ -50,7 +48,6 @@ Page({
   },
   // 获取签到名单
   getSignForm(activity_id, user_id) {
-    console.log(this.data.page_end)
     if (this.data.page_end) {
       app.errorHide(this, '没有更多了')
     } else {
@@ -59,7 +56,7 @@ Page({
         mask: true
       })
       app.httpPost({
-        url: url_common + '/api/activity/getSignApply',
+        url: url_common + '/api/activity/applyUserList',
         data: {
           activity_id: activity_id,
           user_id: user_id || 0,
@@ -98,7 +95,7 @@ Page({
   contactsAddDirect(e) {
     let added_user_id = e.currentTarget.dataset.id;
     let that = this;
-    app.operationModel('contactsAddDirect', that,added_user_id, function (res) {
+    app.operationModel('contactsAddDirect', that, added_user_id, function (res) {
       console.log('直接添加人脉完成', res)
       that.contactsAddSuccessFunc(res, added_user_id, 1);
     });
@@ -106,7 +103,7 @@ Page({
   // 加好友
   contactsAdd(e) {
     let id = e.currentTarget.dataset.id;
-    app.operationModel('contactsAdd',this, id, res => {
+    app.operationModel('contactsAdd', this, id, res => {
       console.log(res)
       let investorList = this.data.investorList;
       this.contactsAddSuccessFunc(res, id, 2);

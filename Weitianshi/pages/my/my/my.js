@@ -21,7 +21,9 @@ Page({
 
   onShow: function () {
     var that = this;
+    let user_id = wx.getStorageSync("user_id")
     app.loginPage(function (user_id) {
+      console.log(user_id)
       that.setData({
         user_id: user_id,
       });

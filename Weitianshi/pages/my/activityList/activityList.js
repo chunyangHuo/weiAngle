@@ -86,7 +86,7 @@ Page({
   //跳转
   activityDetail(e){
     let activity_id = e.currentTarget.dataset.id;
-    app.href("/activitySignIn/pages/activityDetail/activityDetail?activity_id=" + activity_id)
+    app.href("/activitySignIn/pages/activityProjectInfo/activityProjectInfo?activity_id=" + activity_id)
   },
   
 })

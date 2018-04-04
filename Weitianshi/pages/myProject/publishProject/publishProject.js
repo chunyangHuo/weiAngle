@@ -311,6 +311,7 @@ Page({
   },
   //点击发布
   public: function () {
+    console.log(wx.getStorageSync('user_id'))
     let that = this;
     let theData = this.data;
     let privacy = this.privacyDeal();
@@ -361,6 +362,9 @@ Page({
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {
         let projectId = res.data.project_id;
         let enterance = that.data.enterance;
+        let competition_id = that.data.competition_id;
+        let activity_id = that.data.activity_id;
+        let user_id = that.data.user_id;
         //数据清空
         wx.setStorageSync('tran_industry', []);
         wx.setStorageSync('tran_area', []);
@@ -368,7 +372,9 @@ Page({
         app.errorHide(that, successText, 1000);
         // 提交中过渡态处理
         setTimeout(x => {
-          if (enterance == 'pushProject') {
+          if (competition_id){
+            app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
+          }else if (enterance == 'pushProject') {
             app.redirectTo('/pages/myProject/pushTo/pushTo?pushId=' + pushTo_user_id + '&&projectId=' + projectId);
           } else {
             app.redirectTo('/pages/myProject/publishSuccess/publishSuccess?type=' + 8 + '&&projectId=' + projectId);

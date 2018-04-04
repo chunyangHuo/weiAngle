@@ -78,7 +78,6 @@ function projectListShare() {
 // 机构详情分享
 function orgDetail(that) {
   let investment_id = that.data.investment_id;
-  console.log(investment_id)
   return {
     title: '机构详情',
     path: '/pages/organization/org_detail/org_detail?investment_id=' + investment_id
@@ -271,6 +270,15 @@ function shareLog(res, path, unique_id) {
   });
 }
 
+//分享活动
+function shareActivity(that){
+  let activity_id = that.data.activity_id;
+  return {
+    title: '机构详情',
+    path: '/activitySignIn/pages/activityProjectInfo/activityProjectInfo?activity_id=' + activity_id
+  }
+}
+
 /* --------------------------------------------------------------------- */
 export {
   match1,
@@ -292,6 +300,7 @@ export {
   warbandMemberShare,
   projectListShare,
   redPacketsShare,
-  shareLog
+  shareLog,
+  shareActivity
 }
 

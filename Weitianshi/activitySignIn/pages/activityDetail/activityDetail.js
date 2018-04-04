@@ -1,70 +1,66 @@
-var app = getApp();
-var url = app.globalData.url;
-var url_common = app.globalData.url_common;
-
+// pages/activity_detailPreview/activity_detailPreview.js
 Page({
-  data: {
 
+  /**
+   * 页面的初始数据
+   */
+  data: {
+  
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
-    let activity_id = options.activity_id;
-    let user_id = wx.getStorageSync("user_id");
-    let that = this;
-    app.loginPage(function (user_id) {
-      that.setData({
-        user_id: user_id
-      });
-    });
-    app.httpPost({
-      url: url_common + '/api/activity/show',
-      data: {
-        "user_id": user_id,
-        "activity_id": activity_id
-      },
-    }, this, res => {
-      let data = res.data.data;
-      this.check(data)
-      that.setData({
-        data: data
-      })
-    })
-    that.setData({
-      activity_id: activity_id
-    })
+  
   },
-  // 报名
-  signIn(e) {
-    let competition_id = e.currentTarget.dataset.competition;
-    let activity_id = this.data.activity_id;
-    if (competition_id && competition_id != 0){
-      app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity?activity_id=" + activity_id + "&&competition_id=" + competition_id)
-    }else{
-      app.href("/activitySignIn/pages/signNoIndentity/signNoIndentity?activity_id=" + activity_id)
-    }
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
   },
-  //进入微天使
-  toWTS() {
-    app.href("/pages/discoverProject/discoverProject")
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
   },
-  //发布活动
-  publishActive() {
-    app.href("/activitySignIn/pages/publishActive/publishActive")
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
   },
-  //分享
-  //报名列表
-  personList() {
-    let activity_id = this.data.activity_id;
-    app.href("/activitySignIn/pages/signUpList/signUpList?activity_id=" + activity_id)
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
   },
-  check(data) {
-    let detail = data.detail;
-    let hasThing = false;
-    detail.forEach(x => {
-      if (x.describle || x.image.length != 0) {
-        this.setData({
-          hasThing: true
-        })
-      }
-    })
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
   }
 })

@@ -98,7 +98,10 @@
         "pages/signNoIndentity/signNoIndentity",
         "pages/signUpList/signUpList",
         "pages/publishActive/publishActive",
-        "pages/projectList/projectList"
+        "pages/projectList/projectList",
+        "pages/activityIdentityInfo/activityIdentityInfo",
+        "pages/activityIdentitySuccess/activityIdentitySuccess",
+        "pages/activityProjectInfo/activityProjectInfo"
       ]
     },
     {
