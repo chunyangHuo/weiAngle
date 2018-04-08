@@ -13,3 +13,21 @@
   top: 0rpx;
   position: absolute;
 }
+
+.empty {
+  padding-top: 0;
+  margin-top: 344rpx;
+  width: 252rpx;
+  height: 190rpx;
+}
+
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+
+.hasNothing {
+  color: #666;
+}

@@ -220,9 +220,9 @@ Page({
     let telephone = this.data.telephone;
     let company = this.data.company;
     let position = this.data.position;
-    let user_brand = this.data.checkBrand;
-    let user_email = this.data.checkEmail;
-    let user_wechat = this.data.checkWechart;
+    let user_brand = this.data.brand;
+    let user_email = this.data.email;
+    let user_wechat = this.data.weChat;
     if (!name) {
       app.errorHide(this, '姓名不能为空')
     } else if (!company) {
@@ -260,9 +260,9 @@ Page({
     let telephone = this.data.telephone;
     let company = this.data.company;
     let position = this.data.position;
-    let user_brand = this.data.checkBrand;
-    let user_email = this.data.checkEmail;
-    let user_wechat = this.data.checkWechart;
+    let user_brand = this.data.brand;
+    let user_email = this.data.email;
+    let user_wechat = this.data.weChat;
     let captcha = this.data.checkCode;
     if (!name) {
       app.errorHide(this, '姓名不能为空')
@@ -316,13 +316,28 @@ Page({
   },
   //跳转
   jumpto(user_id) {
+    let email = this.data.email;
     let competition_id = this.data.competition_id;
     let activity_id = this.data.activity_id;
-    if (competition_id && competition_id != 0) {
-      console.log(user_id)
-      app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+    // 邮箱为非必填项,但是如果填写格式必须正确
+    if (email == '') {
+      if (competition_id && competition_id != 0) {
+        console.log(user_id)
+        app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+      } else {
+        app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
+      }
     } else {
-      app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
+      app.globalData.verify.email(this, email, res => {
+        if (competition_id && competition_id != 0) {
+          console.log(user_id)
+          app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+        } else {
+          app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
+        }
+      })
     }
+
+
   }
 })

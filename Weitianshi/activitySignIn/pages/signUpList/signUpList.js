@@ -12,7 +12,7 @@ Page({
   onLoad(options) {
     let that = this;
     app.initPage(that);
-    let  user_id = wx.getStorageSync("user_id");
+    let user_id = wx.getStorageSync("user_id");
     let activity_id = options.activity_id;
     app.netWorkChange(that);
     wx.showLoading({
@@ -20,8 +20,11 @@ Page({
       mask: true,
     });
     that.setData({
-      activity_id : activity_id
+      activity_id: activity_id
     })
+  },
+  onShow() {
+    let that = this;
     //请求精选项目数据
     app.loginPage(function (user_id) {
       that.setData({
@@ -29,9 +32,7 @@ Page({
       });
       that.idCardList(user_id);
     });
-  },
-  onShow() {
-    this.setData({
+    that.setData({
       requestCheck: true,
       currentPage: 1,
       page_end: false
@@ -54,7 +55,6 @@ Page({
         "page": 1
       },
     }).then(res => {
-      console.log(res)
       let idCardList = res.data.data.list;
       that.setData({
         idCardList: idCardList
@@ -73,26 +73,51 @@ Page({
     }
   },
   // 上拉加载
-  loadMore: function () {
-    //请求上拉加载接口所需要的参数
-    let that = this;
-    let user_id = this.data.user_id;
-    let request = {
-      url: url_common + '/api/activity/applyUserList',
-      data: {
-        user_id: user_id,
-        page: this.data.currentPage,
-        "activity_id": this.data.activity_id,
+  loadMore() {
+    var that = this;
+    let idCardList = this.data.idCardList;
+    if (that.data.requestCheck) {
+      if (that.data.page_end == false) {
+        wx.showToast({
+          title: 'loading...',
+          icon: 'loading'
+        });
+        that.data.currentPage++;
+        that.setData({
+          currentPage: this.data.currentPage,
+          requestCheck: false
+        });
+        //请求加载数据
+        wx.request({
+          url: url_common + '/api/activity/applyUserList',
+          data: {
+            user_id: wx.getStorageSync("user_id"),
+            page: this.data.currentPage,
+            "activity_id": this.data.activity_id,
+          },
+          method: 'POST',
+          success: function (res) {
+            let newPage = res.data.data.list;
+            let page_end = res.data.data.page_end;
+            for (let i = 0; i < newPage.length; i++) {
+              idCardList.push(newPage[i]);
+            }
+            that.setData({
+              idCardList: idCardList,
+              page_end: page_end,
+              requestCheck: true
+            });
+          }
+        });
+      } else {
+        that.setData({
+          requestCheck: true,
+          jiandi: true
+        });
       }
-    };
-    //调用通用加载函数
-    app.loadMore(that, request, "idCardList");
-    if (this.data.page_end == true) {
-      that.setData({
-        jiandi: true
-      });
     }
   },
+
   // 分享当前页面
   onShareAppMessage: function () {
     return ShareModel.discoverInvestShare();

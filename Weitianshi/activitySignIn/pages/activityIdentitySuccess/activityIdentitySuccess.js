@@ -8,7 +8,7 @@ Page({
     activity: '',
     userInfo: '',
     user_id: '',
-    signIndentityCard: app.globalData.picUrl.signIndentityCard,
+    apply_bg: app.globalData.picUrl.apply_bg,
     investorList: [],
     currentPage: 1,
     page_end: false

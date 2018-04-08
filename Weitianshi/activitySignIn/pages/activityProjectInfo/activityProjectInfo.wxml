@@ -60,12 +60,12 @@
 
 <view class="flex aboutNetwork">
   <view class="flexBox" hover-class="t-hoverColor" catchtap="toWTS">
-    <image src='/img/icon-erweima12.png' class='shopPic'></image>
+    <image src='/img/icon-shouye@2x.png' class='shopPic'></image>
     <view class='shopBlock'>进入微天使</view>
   </view>
   <view class="t-line"></view>
   <view class="flexBox" bindtap="publishActive" hover-class="t-hoverColor">
-    <image src='/img/icon-dianpu@2x.png' class='shopPic'></image>
+    <image src='/img/icon-fabu2@2x.png' class='shopPic'></image>
     <view class='shopBlock'>发布活动</view>
   </view>
   <view class="t-line"></view>

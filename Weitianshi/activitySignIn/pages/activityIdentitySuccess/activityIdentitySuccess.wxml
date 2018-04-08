@@ -1,6 +1,6 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:1108rpx;" scroll-y="true" bindscrolltolower='loadMore'>
-  <image src="{{signIndentityCard}}" class="activityImg">
+  <image src="{{apply_bg}}" class="activityImg">
     <image class="activityUrl" wx:if='{{userInfo.avatar.user_avatar_url}}' src="{{userInfo.avatar.user_avatar_url}}"></image>
     <view class="activityUrl" wx:if='{{userInfo.user_logo_text}}'>{{userInfo.user_logo_text}}</view>
     <view class="activityName">{{userInfo.user_real_name}}</view>

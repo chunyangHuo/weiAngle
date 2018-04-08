@@ -245,7 +245,9 @@ App({
     let user_id = wx.getStorageSync("user_id");
     let dataSum = that.data[str];
     if (that.data.requestCheck) {
+      console.log("requestCheck")
       if (that.data.page_end == false) {
+        console.log("page_end")
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -262,6 +264,7 @@ App({
           data: request.data,
           method: 'POST',
           success: function (res) {
+            console.log("res",res)
             let newPage = res.data.data; 
             let page_end = res.data.page_end;
             if (dataStr && typeof dataStr == "string") {

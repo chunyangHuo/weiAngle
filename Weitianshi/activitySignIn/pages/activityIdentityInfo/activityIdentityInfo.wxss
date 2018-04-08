@@ -151,8 +151,8 @@
   border-radius: 8rpx;
   text-align: center;
   position: fixed;
-  height: 45rpx;
-  line-height: 45rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

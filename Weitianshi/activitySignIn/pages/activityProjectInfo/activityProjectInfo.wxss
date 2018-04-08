@@ -11,12 +11,14 @@
   height: 120rpx;
   width: 180rpx;
   margin-right: 24rpx;
+  border-radius: 4rpx;
 }
 
 .activityBox .activityContent {
   font-size: 32rpx;
   color: #333;
   max-width: 482rpx;
+  font-weight: bold;
 }
 
 .activityBox .middleLine {
@@ -34,6 +36,7 @@
   line-height: 48rpx;
   background: #f0f0f0;
 }
+
 .activityBox .noBottomPic {
   margin-right: 6rpx;
   height: 48rpx;
@@ -86,16 +89,16 @@
 
 /*活动详情  */
 
-.activityContent {
+.outBox .activityContent {
   font-size: 28rpx;
   color: #333;
   line-height: 44rpx;
 }
 
-.activityPic {
+.outBox .activityPic {
   height: 396rpx;
   width: 686rpx;
-  margin-bottom: 32rpx;
+  margin: 32rpx 0;
 }
 
 .aboutNetwork {
@@ -160,6 +163,7 @@
   background: #ccc;
   width: 236rpx;
 }
+
 .arrowStyle {
   margin-top: 8rpx;
   width: 12rpx;
@@ -167,6 +171,7 @@
   /* padding: 6rpx 0; */
   margin-left: 16rpx;
 }
+
 .t-line {
   width: 2rpx;
   height: 35rpx;
