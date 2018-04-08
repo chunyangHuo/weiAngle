@@ -148,7 +148,7 @@
 
 .error {
   background: rgba(0, 0, 0, 0.80);
-  border-radius: 4px;
+  border-radius: 8rpx;
   text-align: center;
   position: fixed;
   height: 45rpx;

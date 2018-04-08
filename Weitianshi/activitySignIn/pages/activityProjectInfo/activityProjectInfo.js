@@ -25,7 +25,8 @@ Page({
       let data = res.data.data;
       this.check(data)
       that.setData({
-        data: data
+        data: data,
+        competition_id: data.competition_id
       })
     })
     that.setData({
@@ -37,9 +38,9 @@ Page({
     let competition_id = e.currentTarget.dataset.competition;
     let activity_id = this.data.activity_id;
     if (competition_id && competition_id != 0){
-      app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+      app.href("/activitySignIn/pages/activityIdentityInfo/activityIdentityInfo?activity_id=" + activity_id + "&&competition_id=" + competition_id)
     }else{
-      app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?activity_id=" + activity_id)
+      app.href("/activitySignIn/pages/activityIdentityInfo/activityIdentityInfo?activity_id=" + activity_id)
     }
   },
   //进入微天使
@@ -58,7 +59,13 @@ Page({
   //报名列表
   personList() {
     let activity_id = this.data.activity_id;
-    app.href("/activitySignIn/pages/signUpList/signUpList?activity_id=" + activity_id)
+    let competition_id = this.data.competition_id;
+    if (competition_id != 0){
+      app.href("/activitySignIn/pages/projectList/projectList?activity_id=" + activity_id)
+    }else{
+      app.href("/activitySignIn/pages/signUpList/signUpList?activity_id=" + activity_id)
+    }
+
   },
   check(data) {
     let detail = data.detail;

@@ -5,38 +5,38 @@ Page({
     jiandi: false,
     nonet: true
   },
-  onLoad() {
+  onLoad(options) {
     let that = this;
+    let activity_id = options.activity_id;
     let user_id = wx.getStorageSync("user_id");
     app.httpPost({
       url: url_common + '/api/activity/applyProjectList',
       data: {
         "user_id": user_id,
-        "activity_id": 21,
+        "activity_id": activity_id,
         "page": 1
       },
     }).then(res => {
-      console.log(res)
       let applyList = res.data.data.list;
       that.setData({
-        applyList : applyList
+        applyList: applyList
       })
     })
     that.setData({
       requestCheck: true,
       currentPage: 1,
-      page_end: false
+      page_end: false,
+      activity_id: activity_id
     });
   },
   //加载更多
-  loadMore(){
-    console.log(1111)
+  loadMore() {
     var that = this;
-    var user_id = wx.getStorageSync('user_id');
     var request = {
       url: url_common + '/api/activity/applyProjectList',
       data: {
-        user_id: user_id,
+        "user_id": wx.getStorageSync('user_id'),
+        "activity_id": this.data.activity_id,
         page: this.data.currentPage
       }
     };

@@ -7,7 +7,7 @@
     <view class="activityContent">{{data.activity_title}}</view>
   </view>
   <view class="middleLine"></view>
-  <view class='bottomBox flex' bindtap='personList'  hover-class="t-hoverColor">
+  <view class='bottomBox flex' bindtap='personList' hover-class="t-hoverColor">
     <view class='flex'>
       <block wx:for="{{data.apply}}" wx:key="{{index}}">
         <view class="bottomPic" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
@@ -15,13 +15,14 @@
       </block>
     </view>
     <view class="flex">
-      <view class="bottomNum">已报名{{data.apply_count}}人</view>
+      <view class="bottomNum" wx:if="{{data.competition_id == 0}}">已报名{{data.apply_count}}人</view>
+      <view class="bottomNum"  wx:if="{{data.competition_id != 0}}">已报名{{data.apply_count}}个项目</view>
       <image src="/img/icon-jiantou3@2x.png" class="arrowStyle"></image>
     </view>
   </view>
 </view>
 <!--基本介绍  -->
-<view class="outBox"  wx:if="{{data.start_time || data.end_time||data.activity_address||data.activity_user ||data.industry}}">
+<view class="outBox" wx:if="{{data.start_time || data.end_time||data.activity_address||data.activity_user ||data.industry}}">
   <view class="baseIntro">基本介绍</view>
   <view class="baseTime flex" wx:if="{{data.activity_address||data.end_time}}">
     <view class="baseTitle">时
@@ -50,7 +51,7 @@
     <view class='activityContent' wx:if="{{item.description}}">
       <label>{{item.description}}</label>
     </view>
-    <block wx:for="{{item.image}}" wx:for-item="imageList" wx:key="{{index}}">
+    <block wx:for="{{item.image}}" wx:for-item="imageList" wx:key="{{item.image.index}}">
       <image src="{{imageList.image_src}}" class="activityPic" wx:if="{{imageList.image_src}}"></image>
     </block>
   </block>
