@@ -274,7 +274,7 @@ function shareLog(res, path, unique_id) {
 function shareActivity(that){
   let activity_id = that.data.activity_id;
   return {
-    title: '机构详情',
+    title: '活动详情',
     path: '/activitySignIn/pages/activityProjectInfo/activityProjectInfo?activity_id=' + activity_id
   }
 }

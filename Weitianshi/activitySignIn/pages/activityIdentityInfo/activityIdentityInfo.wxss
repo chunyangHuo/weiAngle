@@ -191,6 +191,7 @@
   font-size: 32rpx;
   color: #333;
   line-height: 112rpx;
+  width: 180rpx;
 }
 
 .newBoxs {
@@ -202,7 +203,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-right: 200rpx;
+  margin-right: 187rpx;
 }
 
 .newBox {

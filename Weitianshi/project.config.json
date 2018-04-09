@@ -29,32 +29,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
-				{
-					"id": -1,
-					"name": "项目列表",
-					"pathName": "activitySignIn/pages/projectList/projectList",
-					"query": "activity_id=152"
-				},
-				{
-					"id": 1,
-					"name": "活动列表",
-					"pathName": "pages/my/activityList/activityList",
-					"query": "activity_id=152"
-				},
-				{
-					"id": 2,
-					"name": "活动列表",
-					"pathName": "activitySignIn/pages/activityIdentityInfo/activityIdentityInfo",
-					"query": "activity_id=150"
-				},
-				{
-					"id": -1,
-					"name": "注册",
-					"pathName": "pages/register/companyInfo/companyInfo",
-					"query": "activity_id=150"
-				}
 			]
 		}
 	}
