@@ -29,8 +29,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 0,
 			"list": [
+				{
+					"id": -1,
+					"name": "活动詳情",
+					"pathName": "activitySignIn/pages/activityIdentityInfo/activityIdentityInfo",
+					"query": "activity_id=159"
+				}
 			]
 		}
 	}
