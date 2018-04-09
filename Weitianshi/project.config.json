@@ -29,26 +29,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 5,
 			"list": [
-				{
-					"id": -1,
-					"name": "名片列表",
-					"pathName": "activitySignIn/pages/activityProjectInfo/activityProjectInfo",
-					"query": "activity_id=159"
-				},
-				{
-					"id": 1,
-					"name": "名片列表",
-					"pathName": "activitySignIn/pages/activityProjectInfo/activityProjectInfo",
-					"query": "activity_id=152"
-				},
-				{
-					"id": 2,
-					"name": "名片列表",
-					"pathName": "activitySignIn/pages/activityIdentityInfo/activityIdentityInfo",
-					"query": "activity_id=159"
-				}
 			]
 		}
 	}

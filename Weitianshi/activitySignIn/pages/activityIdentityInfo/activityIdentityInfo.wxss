@@ -152,7 +152,7 @@
   text-align: center;
   position: fixed;
   height: 90rpx;
-  line-height: 90rpx;
+  line-height: 45rpx;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

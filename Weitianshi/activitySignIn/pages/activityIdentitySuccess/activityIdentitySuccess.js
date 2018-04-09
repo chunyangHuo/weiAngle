@@ -38,7 +38,7 @@ Page({
       console.log(res)
       this.setData({
         activity: res.data.data.activity,
-        userInfo: res.data.data.user.belongs_to_user
+        userInfo: res.data.data.user
       })
       wx.hideLoading();
       this.getSignForm(activity_id, user_id)

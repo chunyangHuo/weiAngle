@@ -3,7 +3,7 @@
   <image src="{{apply_bg}}" class="activityImg">
     <image class="activityUrl" wx:if='{{userInfo.avatar.user_avatar_url}}' src="{{userInfo.avatar.user_avatar_url}}"></image>
     <view class="activityUrl" wx:if='{{userInfo.user_logo_text}}'>{{userInfo.user_logo_text}}</view>
-    <view class="activityName">{{userInfo.user_real_name}}</view>
+    <view class="activityName">{{userInfo.user_name}}</view>
     <view class="activityCom">{{userInfo.user_company_name}}</view>
     <view class="activityMobile flex">
       <view class="activityMobile1">手机</view>
@@ -31,7 +31,7 @@
   </image>
   <view class="selectProject flex">
     <label style="width:26rpx;height:2rpx;background:#333;margin-right:20rpx"></label>
-    已签到用户
+    已报名用户
     <label style="width:26rpx;height:2rpx;background:#333;margin-left:20rpx;"></label>
   </view>
   <!-- 已经报名用户列表 -->

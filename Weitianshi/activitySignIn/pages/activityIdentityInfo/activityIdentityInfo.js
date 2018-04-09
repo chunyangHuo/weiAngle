@@ -32,7 +32,6 @@ Page({
         competition_id: competition_id
       })
     } else {
-      console.log("no user_id")
       this.setData({
         activity_id: activity_id,
         user_id: user_id,

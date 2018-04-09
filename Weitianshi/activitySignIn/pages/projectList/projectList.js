@@ -59,7 +59,7 @@ Page({
             let newPage = res.data.data.list;
             let page_end = res.data.data.page_end;
             for (let i = 0; i < newPage.length; i++) {
-              applyUserList.push(newPage[i]);
+              applyList.push(newPage[i]);
             }
             that.setData({
               applyList: applyList,
