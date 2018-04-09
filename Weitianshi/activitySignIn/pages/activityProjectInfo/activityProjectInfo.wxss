@@ -149,7 +149,7 @@
 
 .picThing {
   position: absolute;
-  top: 20rpx;
+  top: 38rpx;
   left: 16rpx;
   height: 36rpx;
   width: 74rpx;

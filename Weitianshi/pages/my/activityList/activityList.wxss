@@ -2,6 +2,7 @@
   padding: 32rpx;
   background: white;
   margin-bottom: 32rpx;
+  padding-bottom: 26rpx;
 }
 
 .topBox {
@@ -20,6 +21,7 @@
   font-size: 32rpx;
   color: #333;
   max-width: 482rpx;
+  font-weight: bold;
 }
 
 .activityBox .middleLine {
@@ -46,15 +48,16 @@
 
 .activityBox .title {
   font-size: 24rpx;
-  color: #999ca0;
+  color: #999999;
+  line-height: 34rpx;
+  height: 40rpx;
 }
 
 .activityInfo {
   color: #151515;
-  line-height: 34rpx;
 }
 
-.backgroundPic{
+.backgroundPic {
   width: 750rpx;
   height: 2852rpx;
 }

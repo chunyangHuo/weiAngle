@@ -327,6 +327,7 @@ Page({
     let projectName = that.data.projectName;
     let competition_id = that.data.competition_id;
     let activity_id = that.data.activity_id;
+    let subscribe = that.data.subscribe;
     // 表单检验和发送表单
     if (!projectName) {
       app.errorHide(that, '请填写项目名称', 3000);
@@ -357,6 +358,7 @@ Page({
           activity_id: activity_id,
           competition_id: competition_id,
           company_open_status: Number(!privacy.company_open_status,),
+          subscribe: subscribe
         },
       };
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {

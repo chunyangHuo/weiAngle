@@ -1,6 +1,8 @@
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
+let RG = require('../../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     name: '',
@@ -110,7 +112,6 @@ Page({
     let that = this;
     let email = e.detail.value;
     app.globalData.verify.email(this, email, res => {
-
     })
     that.setData({
       email
@@ -213,94 +214,25 @@ Page({
   },
   //注册过的用户
   signed() {
-    let that = this;
-    let activity_id = this.data.activity_id;
-    let name = this.data.name;
-    let telephone = this.data.telephone;
-    let company = this.data.company;
-    let position = this.data.position;
-    let user_brand = this.data.brand;
-    let user_email = this.data.email;
-    let user_wechat = this.data.weChat;
-    if (!name) {
-      app.errorHide(this, '姓名不能为空')
-    } else if (!company) {
-      app.errorHide(this, '公司不能为空')
-    } else if (!position) {
-      app.errorHide(this, '职位不能为空')
+    let email = this.data.email;
+    // 邮箱为非必填项,但是如果填写格式必须正确
+    if (email == '') {
+      register.identityRegister.call(this);
     } else {
-      app.httpPost({
-        url: url_common + '/api/activity/apply',
-        data: {
-          "user_id": this.data.user_id,
-          "activity_id": activity_id,
-          "user_mobile": telephone,
-          "user_name": name,
-          "user_company_name": company,
-          "user_company_career": position,
-          "user_brand": user_brand,
-          "user_email": user_email,
-          "user_wechat": user_wechat
-        },
-      }, this).then(res => {
-        if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-          this.jumpto(this.data.user_id);
-        } else {
-          app.errorHide(that, res.data.error_msg, 3000)
-        }
+      app.globalData.verify.email(this, email, res => {
+        register.identityRegister.call(this);
       })
     }
   },
   //未注册的用户
   noSign() {
-    let that = this;
-    let activity_id = this.data.activity_id;
-    let name = this.data.name;
-    let telephone = this.data.telephone;
-    let company = this.data.company;
-    let position = this.data.position;
-    let user_brand = this.data.brand;
-    let user_email = this.data.email;
-    let user_wechat = this.data.weChat;
-    let captcha = this.data.checkCode;
-    if (!name) {
-      app.errorHide(this, '姓名不能为空')
-    } else if (!telephone) {
-      app.errorHide(this, '电话不能为空')
-    } else if (!company) {
-      app.errorHide(this, '公司不能为空')
-    } else if (!position) {
-      app.errorHide(this, '职位不能为空')
-    } else if (!captcha) {
-      app.errorHide(this, '验证码不能为空')
+    let email = this.data.email;
+    // 邮箱为非必填项,但是如果填写格式必须正确
+    if (email == '') {
+      register.identityRegister2.call(this);
     } else {
-      app.httpPost({
-        url: url_common + '/api/activity/applyAndRegister',
-        data: {
-          "user_id": 0,
-          "activity_id": activity_id,
-          "user_mobile": telephone,
-          "user_name": name,
-          "user_company_name": company,
-          "user_company_career": position,
-          "user_brand": user_brand,
-          "user_email": user_email,
-          "user_wechat": user_wechat,
-          "captcha": captcha,
-          "open_session": wx.getStorageSync('open_session')
-        },
-      }, this).then(res => {
-        if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-          console.log(res)
-          let user_info = res.data.data;
-          wx.setStorageSync("user_id", res.data.data.user_id);
-          this.jumpto(user_info.user_id);
-          that.setData({
-            user_info: user_info
-          })
-        } else {
-          app.errorHide(that, res.data.error_msg, 3000)
-        }
+      app.globalData.verify.email(this, email, res => {
+        register.identityRegister2.call(this);
       })
     }
   },
@@ -315,28 +247,13 @@ Page({
   },
   //跳转
   jumpto(user_id) {
-    let email = this.data.email;
     let competition_id = this.data.competition_id;
     let activity_id = this.data.activity_id;
     // 邮箱为非必填项,但是如果填写格式必须正确
-    if (email == '') {
-      if (competition_id && competition_id != 0) {
-        console.log(user_id)
-        app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
-      } else {
-        app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
-      }
+    if (competition_id && competition_id != 0) {
+      app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
     } else {
-      app.globalData.verify.email(this, email, res => {
-        if (competition_id && competition_id != 0) {
-          console.log(user_id)
-          app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
-        } else {
-          app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
-        }
-      })
+      app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
     }
-
-
   }
 })
