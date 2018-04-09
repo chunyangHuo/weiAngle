@@ -29,12 +29,18 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "活动詳情",
 					"pathName": "activitySignIn/pages/activityIdentityInfo/activityIdentityInfo",
+					"query": "activity_id=159"
+				},
+				{
+					"id": 1,
+					"name": "未注册用户",
+					"pathName": "activitySignIn/pages/activityProjectInfo/activityProjectInfo",
 					"query": "activity_id=159"
 				}
 			]

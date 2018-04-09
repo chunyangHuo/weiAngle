@@ -2,6 +2,7 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 let RG = require('../../../utils/model/register.js');
+let register = new RG.register();
 Page({
   data: {
     jiandi: false,
