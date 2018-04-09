@@ -8,7 +8,7 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
   data: {
-    //选项卡
+    //选项卡 
     winWidth: 0,
     winHeight: 0,
     currentTab: 0,
