@@ -49,6 +49,7 @@ Page({
   onLoad: function (options) {
     let that = this;
     let editProId = options.pro_id;
+    let apply_id = options.apply_id;
     let edit = options.edit;
     let stage = wx.getStorageSync('stage');
     let scale = wx.getStorageSync('scale');
@@ -68,7 +69,7 @@ Page({
     console.log("user_id",user_id)
     console.log(options)
     this.setData({
-      enterance, pushTo_user_id, competition_id, activity_id
+      enterance, pushTo_user_id, competition_id, activity_id, apply_id
     })
   },
   //页面显示
@@ -327,6 +328,7 @@ Page({
     let projectName = that.data.projectName;
     let competition_id = that.data.competition_id;
     let activity_id = that.data.activity_id;
+    let apply_id = that.data.apply_id;
     let subscribe = that.data.subscribe;
     // 表单检验和发送表单
     if (!projectName) {
@@ -358,7 +360,8 @@ Page({
           activity_id: activity_id,
           competition_id: competition_id,
           company_open_status: Number(!privacy.company_open_status,),
-          subscribe: subscribe
+          subscribe: subscribe,
+          apply_id: apply_id
         },
       };
       app.buttonSubmit(that, submitData, that.data.buttonOneText, res => {

@@ -235,7 +235,7 @@
 .clear {
   position: absolute;
   top: 24rpx;
-  right: 16rpx;
+  right: -3rpx;
   z-index: 999;
   border: none;
   font-size: 26rpx;

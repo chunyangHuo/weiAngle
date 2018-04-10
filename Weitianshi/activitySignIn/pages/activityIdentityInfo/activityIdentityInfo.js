@@ -246,12 +246,12 @@ Page({
     }
   },
   //跳转
-  jumpto(user_id) {
+  jumpto(user_id,apply_id) {
     let competition_id = this.data.competition_id;
     let activity_id = this.data.activity_id;
     // 邮箱为非必填项,但是如果填写格式必须正确
     if (competition_id && competition_id != 0) {
-      app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id)
+      app.href("/pages/myProject/publishProject/publishProject?activity_id=" + activity_id + "&&competition_id=" + competition_id + "&apply_id=" + apply_id)
     } else {
       app.href("/activitySignIn/pages/activityIdentitySuccess/activityIdentitySuccess?user_id=" + user_id + "&&activity_id=" + activity_id)
     }

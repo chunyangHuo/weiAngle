@@ -208,7 +208,8 @@ export class register {
         },
       }, this).then(res => {
       if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
-        this.jumpto(this.data.user_id);
+        let apply_id = res.data.data.apply_id;
+        this.jumpto(this.data.user_id,apply_id);
       } else {
         app.errorHide(that, res.data.error_msg, 3000)
       }
@@ -255,9 +256,10 @@ export class register {
       }, this).then(res => {
         if (res.data.status_code === 2000000 || res.data.status_code === 20000) {
           console.log(res)
-          let user_info = res.data.data;
-          wx.setStorageSync("user_id", res.data.data.user_id);
-          this.jumpto(user_info.user_id);
+          let user_info = res.data.data.user;
+          let apply_id = res.data.data.apply_id;
+          wx.setStorageSync("user_id", res.data.data.user.user_id);
+          this.jumpto(user_info.user_id, apply_id);
           that.setData({
             user_info: user_info
           })

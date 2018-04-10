@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -41,7 +41,19 @@
 					"id": 1,
 					"name": "未注册用户",
 					"pathName": "activitySignIn/pages/activityProjectInfo/activityProjectInfo",
-					"query": "activity_id=159"
+					"query": "activity_id=199"
+				},
+				{
+					"id": 2,
+					"name": "未注册用户",
+					"pathName": "activitySignIn/pages/activityIdentityInfo/activityIdentityInfo",
+					"query": "user_id=RrZk37Q0&activity_id=199"
+				},
+				{
+					"id": -1,
+					"name": "未注册用户",
+					"pathName": "activitySignIn/pages/activityProjectInfo/activityProjectInfo",
+					"query": "activity_id=199"
 				}
 			]
 		}

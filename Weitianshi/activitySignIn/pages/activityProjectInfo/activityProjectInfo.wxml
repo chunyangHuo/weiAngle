@@ -52,7 +52,7 @@
       <label>{{item.description}}</label>
     </view>
     <block wx:for="{{item.image}}" wx:for-item="imageList" wx:key="{{item.image.index}}">
-      <image src="{{imageList.image_src}}" class="activityPic" wx:if="{{imageList.image_src}}"></image>
+      <image src="{{imageList.image_src}}" class="activityPic" wx:if="{{imageList.image_src}}" mode="aspectFit"></image>
     </block>
   </block>
 </view>
