@@ -1,7 +1,10 @@
 <import src="/pages/Template/Template.wxml" />
 <include src='/utils/wxml/common' />
 <view wx:if="{{nonet}}">
-  <template is="pointPC">用电脑创建项目，体验更好更流畅</template>
+  <view wx:if="{{!competition_id}}">
+    <template is="pointPC">用电脑创建项目，体验更好更流畅</template>
+  </view>
+
   <view class='whiteSpace'></view>
   <view class="modalBox" hidden="{{modalBox==0}}">
     <view class="classname" bindtap="closeModal">
