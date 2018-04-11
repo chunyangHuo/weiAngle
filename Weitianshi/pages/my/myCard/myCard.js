@@ -292,20 +292,19 @@ Page({
   phoneNumTap(e) {
     let phoneNum = e.currentTarget.dataset.telephone;
     let name = e.currentTarget.dataset.name;
+    let company = e.currentTarget.dataset.company;
+    let email = e.currentTarget.dataset.email;
+    let position = e.currentTarget.dataset.position;
     var that = this;
-    // 提示呼叫号码还是将号码添加到手机通讯录  
-    wx.showActionSheet({
-      itemList: ['添加联系人'],
-      success: function (res) {
-        if (res.tapIndex == 0) {
-          // 添加到手机通讯录  
-          wx.addPhoneContact({
-            firstName: name,//联系人姓名  
-            mobilePhoneNumber: phoneNum,//联系人手机号  
-          })
-        }
-      }
+    // 添加到手机通讯录  
+    wx.addPhoneContact({
+      lastName: name,//联系人姓名  
+      mobilePhoneNumber: phoneNum,//联系人手机号  
+      organization: company,//公司
+      title: position,//职位
+      email: email
     })
+
   },
   // 重新加载
   refresh() {

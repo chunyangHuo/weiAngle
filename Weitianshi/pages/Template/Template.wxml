@@ -31,8 +31,8 @@
       <view class="personCompany flex">
         <image class='bottomPic' src='/img/icon-T@2x.png'></image>
         <view class="personTelephone flex" wx:if="{{user.user_mobile}}">
-          <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
-          <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'hold':''}}" catchtap="phoneNumTap" data-name="{{user.user_real_name}}" wx:if="{{button_type == 1}}">保存到通讯录</label>
+          <label data-telephone="{{user.user_mobile}}" id="{{blue == -1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
+          <label data-telephone="{{user.user_mobile}}" id="{{blue == -1?'hold':''}}" catchtap="phoneNumTap" data-name="{{user.user_real_name}}" data-position="{{user.user_company_career}}" data-email="{{user.user_email}}"data-company="{{user.user_company_name}}"wx:if="{{blue == -1}}">保存到通讯录</label>
         </view>
         <view wx:if="{{!user.user_mobile}}" class="personEmail">暂未透露</view>
       </view>

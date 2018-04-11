@@ -22,8 +22,8 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    let followed_user_id = options.user_id;
-    let share_id = options.share_id;
+    // let followed_user_id = options.user_id;
+    // let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
     let unique_id = options.unique_id;
     let shareTicket = options.shareTicket;
@@ -74,6 +74,7 @@ Page({
       }
     }, this).then(res => {
       let user = res.data.user_info;
+      var tel = user.user_mobile;
       let count = res.data.count;
       app.log("count", count);
       let invest = res.data.invest_info;
@@ -92,6 +93,11 @@ Page({
         view_id: view_id,
         user_id: view_id
       });
+      if (tel.indexOf("*") != -1) {
+        that.setData({
+          blue: 1
+        })
+      }
       wx.setNavigationBarTitle({
         title: res.data.user_info.user_real_name + "的投资名片",
       });
@@ -112,9 +118,9 @@ Page({
     let unique_id = this.data.unique_id;
     let added_user_id = this.data.personInfo.user.user_id;
     let user_id = wx.getStorageSync('user_id');
-    if (this.data.preventQuickClick){
+    if (this.data.preventQuickClick) {
       this.setData({
-        preventQuickClick:false
+        preventQuickClick: false
       })
       app.checkUserInfo(this, res => {
         // 开红包动效
@@ -123,7 +129,7 @@ Page({
         })
         rp.openHB.call(this, unique_id)
       });
-    }  
+    }
   },
   // 打开红包后,点击确定跳转
   makeSure(e) {
@@ -288,19 +294,17 @@ Page({
   phoneNumTap(e) {
     let phoneNum = e.currentTarget.dataset.telephone;
     let name = e.currentTarget.dataset.name;
+    let company = e.currentTarget.dataset.company;
+    let email = e.currentTarget.dataset.email;
+    let position = e.currentTarget.dataset.position;
     var that = this;
-    // 提示呼叫号码还是将号码添加到手机通讯录  
-    wx.showActionSheet({
-      itemList: ['添加联系人'],
-      success: function (res) {
-        if (res.tapIndex == 0) {
-          // 添加到手机通讯录  
-          wx.addPhoneContact({
-            firstName: name,//联系人姓名  
-            mobilePhoneNumber: phoneNum,//联系人手机号  
-          })
-        }
-      }
+    // 添加到手机通讯录  
+    wx.addPhoneContact({
+      lastName: name,//联系人姓名  
+      mobilePhoneNumber: phoneNum,//联系人手机号  
+      organization: company,//公司
+      title: position,//职位
+      email: email
     })
   },
   // 非本人不能分享提示
