@@ -22,7 +22,7 @@ function myProjectDetailShare(that) {
   let share_id = wx.getStorageSync('user_id');
   console.log(share_id);
   return {
-    title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
+    title: '精选融资项目，可约谈排会',
     path: '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id,
   }
 }
@@ -35,7 +35,7 @@ function projectDetailShare(that) {
   let path = '/pages/projectDetail/projectDetail?id=' + id + "&&share_id=" + share_id;
   let title = pro_intro;
   return {
-    title: '【融资项目】打开连接点击：申请查看或联系发布方|微天使-互联网化FA平台',
+    title: '精选融资项目，可约谈排会',
     path: path,
   }
   return shareProjectPage(id, title, share_id)
@@ -43,7 +43,7 @@ function projectDetailShare(that) {
 //投资机构首页和列表分享
 function institutionalInvestShare(){
   return {
-    title: '您可以在微天使查询30000+投资机构的投资偏好、历史投资记录',
+    title: '3W+投资机构投资偏好分析',
     path: '/pages/discoverInvest/institutionalInvest/institutionalInvest'
   }
 }
@@ -57,14 +57,14 @@ function discoverProjectShare() {
 //找投资分享
 function discoverInvestShare() {
   return {
-    title: '您可以与5000+认证投资人互加好友、交换电话号码',
-    path: '/pages/discoverInvest/discoverInvest'
+    title: '5W+投资人加好友换名片',
+    path: '/pages/discover/discoverPerson/discoverPerson'
   }
 }
 //FA融资顾问分享
 function FAShare(){
   return {
-    title: '您可以找2000+FA融资顾问协助您融资项目',
+    title: '2K+融资顾问协助项目融资',
     path: '/pages/discover/financingAdvisor/financingAdvisor'
   }
 }
@@ -201,7 +201,7 @@ function sharePage(user_id, share_id, name) {
   let _this = this;
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
   let json = {
-    title: '【换】' + name + '的投资名片--项目融资交易、资源对接的智动匹配神器',
+    title: '名片加好友，手机存入通讯录',
     path: path,
     success: (res) => {
       console.log(path)

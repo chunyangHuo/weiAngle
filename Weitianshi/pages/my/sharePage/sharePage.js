@@ -17,7 +17,8 @@ Page({
     bg_hongbao2: app.globalData.picUrl.bg_hongbao2,
     kai: true,
     open: app.globalData.picUrl.open,
-    preventQuickClick: true
+    preventQuickClick: true,
+    blue: -1,
   },
   onLoad: function (options) {
     let that = this;
@@ -282,6 +283,25 @@ Page({
     } else {
       return ShareModel.sharePageShare(that);
     }
+  },
+  // 长按号码响应函数  
+  phoneNumTap(e) {
+    let phoneNum = e.currentTarget.dataset.telephone;
+    let name = e.currentTarget.dataset.name;
+    var that = this;
+    // 提示呼叫号码还是将号码添加到手机通讯录  
+    wx.showActionSheet({
+      itemList: ['添加联系人'],
+      success: function (res) {
+        if (res.tapIndex == 0) {
+          // 添加到手机通讯录  
+          wx.addPhoneContact({
+            firstName: name,//联系人姓名  
+            mobilePhoneNumber: phoneNum,//联系人手机号  
+          })
+        }
+      }
+    })
   },
   // 非本人不能分享提示
   message() {

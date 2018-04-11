@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -54,6 +54,24 @@
 					"name": "未注册用户",
 					"pathName": "activitySignIn/pages/activityProjectInfo/activityProjectInfo",
 					"query": "activity_id=199"
+				},
+				{
+					"id": -1,
+					"name": "222",
+					"pathName": "pages/test/test",
+					"query": "11"
+				},
+				{
+					"id": -1,
+					"name": "投资名片",
+					"pathName": "pages/userDetail/networkDetail/networkDetail",
+					"query": "id=EWgXx6ep"
+				},
+				{
+					"id": 6,
+					"name": "分享",
+					"pathName": "pages/my/sharePage/sharePage",
+					"query": "followed_user_id=EWgXx6ep&share_id=EWgXx6ep&view_id=RrZk37Q0"
 				}
 			]
 		}
