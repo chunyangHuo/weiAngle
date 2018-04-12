@@ -230,7 +230,7 @@ Page({
     // 提示呼叫号码还是将号码添加到手机通讯录  
     // 添加到手机通讯录  
     wx.addPhoneContact({
-      lastName: name,//联系人姓名  
+      firstName: name,//联系人姓名  
       mobilePhoneNumber: phoneNum,//联系人手机号  
       organization: company,//公司
       title: position,//职位

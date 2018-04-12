@@ -67,7 +67,9 @@ Page({
           member_list: member_list,
           memberList: memberList,
           leave_member_list: leave_member_list,
-          leaveList: leaveList
+          leaveList: leaveList,
+          org_name: info.investment_name,
+          org_number: investment_events.investment_event_total_num
         });
         wx.setNavigationBarTitle({
           title: info.investment_name
@@ -193,6 +195,9 @@ Page({
   // 分享当前页面
   onShareAppMessage: function () {
     let  that = this;
+    let org_name = this.data.org_name;
+    let org_number = this.data.org_number;
+    console.log(org_name,org_number)
     return ShareModel.orgDetail(that);
   },
   // 重新加载

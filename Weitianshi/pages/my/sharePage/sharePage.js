@@ -22,8 +22,8 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    // let followed_user_id = options.user_id;
-    // let share_id = options.share_id;
+    let followed_user_id = options.user_id;
+    let share_id = options.share_id;
     let is_redPackets = options.is_redPackets;
     let unique_id = options.unique_id;
     let shareTicket = options.shareTicket;
@@ -300,7 +300,7 @@ Page({
     var that = this;
     // 添加到手机通讯录  
     wx.addPhoneContact({
-      lastName: name,//联系人姓名  
+      firstName: name,//联系人姓名  
       mobilePhoneNumber: phoneNum,//联系人手机号  
       organization: company,//公司
       title: position,//职位

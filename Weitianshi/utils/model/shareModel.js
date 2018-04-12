@@ -78,8 +78,10 @@ function projectListShare() {
 // 机构详情分享
 function orgDetail(that) {
   let investment_id = that.data.investment_id;
+  let org_name = that.data.org_name;
+  let org_number = that.data.org_number;
   return {
-    title: '机构详情',
+    title:"已收录" +  org_name + org_number + "个投资案例",
     path: '/pages/organization/org_detail/org_detail?investment_id=' + investment_id
   }
 }
