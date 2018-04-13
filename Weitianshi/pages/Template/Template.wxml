@@ -32,7 +32,8 @@
         <image class='bottomPic' src='/img/icon-T@2x.png'></image>
         <view class="personTelephone flex" wx:if="{{user.user_mobile}}">
           <label data-telephone="{{user.user_mobile}}" id="{{blue == -1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
-          <label data-telephone="{{user.user_mobile}}" id="{{blue == -1?'hold':''}}" catchtap="phoneNumTap" data-name="{{user.user_real_name}}" data-position="{{user.user_company_career}}" data-email="{{user.user_email}}"data-company="{{user.user_company_name}}"wx:if="{{blue == -1}}">保存到通讯录</label>
+          <label data-telephone="{{user.user_mobile}}" id="{{blue == -1?'hold':''}}" catchtap="phoneNumTap" data-name="{{user.user_real_name}}" data-position="{{user.user_company_career}}" data-email="{{user.user_email}}" data-company="{{user.user_company_name}}"
+            wx:if="{{blue == -1}}">保存到通讯录</label>
         </view>
         <view wx:if="{{!user.user_mobile}}" class="personEmail">暂未透露</view>
       </view>
@@ -887,27 +888,6 @@
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>提交项目</span>
     </view>
-    <!-- <view class='t-cardBottomItem flex'>
-      <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
-      <span>已推送</span>
-    </view> -->
-    <!-- <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
-      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>加人脉</view>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==1}}'>
-      <image class='t-itemPic' src='/img/icon-huweirenmai@2x.png'></image>
-      <view style='color:#999;'>已为人脉</view>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==2}}'>
-      <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
-      <view style='color:#999;'>待验证</view>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
-      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>加人脉</view>
-    </view> -->
-
   </view>
   <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
 </template>
@@ -989,26 +969,6 @@
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>提交项目</span>
     </view>
-    <!-- <view class='t-cardBottomItem flex'>
-      <image class='t-itemPic' src='/img/icon-tuisongxiangmu@2x.png'></image>
-      <span>已提交</span>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
-      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>加人脉</view>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==1}}'>
-      <image class='t-itemPic' src='/img/icon-huweirenmai@2x.png'></image>
-      <view style='color:#999;'>已为人脉</view>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==2}}'>
-      <image class='t-itemPic' src='/img/icon-daiyanzheng@3x.png'></image>
-      <view style='color:#999;'>待验证</view>
-    </view>
-    <view class='t-cardBottomItem flex' wx:if='{{item.follow_status==3}}' data-id='{{item.user_id}}' catchtap='contactsAddDirect'>
-      <image class='t-itemPic' src='/img/icon-jiarenmai@2x.png'></image>
-      <view>加人脉</view>
-    </view> -->
   </view>
   <view class='t-cardBottom flex' wx:if='{{item.user_id==user_id}}'></view>
 </template>
@@ -1395,16 +1355,12 @@
         <image src="{{item.investor_logo_url}}" class="t-userPic" wx:if="{{item.investor_logo_url}}"></image>
         <view class="t-userName">{{item.investor_name}}</view>
         <view class="t-userPart flex" wx:if="{{item.authentication[0].group_title}}">
-          <!-- <image src="/img/icon-renzheng@2x.png" class="t-renzheng"></image>
-          <view class="t-userPart1">{{item.authentication[0].group_title}}</view> -->
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='投资方'}}" src="/img/img-touziren@2x.png"></image>
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='买方FA'}}" src="/img/img-maifang1@2x.png"></image>
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='卖方FA'}}" src="/img/img-maifang2@2x.png"></image>
           <image class="t-renzheng" wx:if="{{item.authentication[0].group_title=='创业者'}}" src="/img/img-chuangyezhe1@2x.png"></image>
         </view>
-        <!-- <view class="t-record">{{item.active_status}}</view> -->
         <view class="t-user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
-
       </view>
       <view class="t-careerCompany flex">
         <view class="t-userPosition t-carCom">{{item.investor_career}}</view>
@@ -1494,16 +1450,6 @@
   </view>
 </template>
 
-<!--网络状态  -->
-<!-- <template name="network">
-  <scroll-view scroll-y style="height:1108rpx;">
-    <view style="position:relative">
-      <image class="N-netWorkImg" src="/img/img-duanwang.png"></image>
-      <view class="N-text">网络不给力</view>
-      <view class="N-refresh" bindtap='refresh'>刷新试试</view>
-    </view>
-  </scroll-view>
-</template> -->
 
 <!--开红包  -->
 <template name="openHB">

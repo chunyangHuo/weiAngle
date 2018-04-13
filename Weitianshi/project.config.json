@@ -29,13 +29,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
 					"name": "投资机构",
 					"pathName": "pages/organization/org_detail/org_detail",
 					"query": "investment_id=264"
+				},
+				{
+					"id": -1,
+					"name": "dd",
+					"pathName": "pages/projectDetail/projectDetail",
+					"query": "id=QrYDEKpz"
+				},
+				{
+					"id": 2,
+					"name": "4",
+					"pathName": "pages/activtyPage/activtyPage/activtyPage",
+					"query": "index=2"
 				}
 			]
 		}

@@ -12,7 +12,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     currentTab: 0,
-    slectProject: '', 
+    slectProject: '',
     hidden: true,
     //筛选搜索
     SearchInit: FilterModel.data,
@@ -126,7 +126,11 @@ Page({
   // 轮播图跳转
   bannerLink(e) {
     let index = e.currentTarget.dataset.index + 1;
-    app.href('/pages/activtyPage/activtyPage/activtyPage?index=' + index);
+    if (index == 2) {
+      app.href("/pages/projectDetail/projectDetail?id=" + "bpjBV7p9")
+    } else {
+      app.href('/pages/activtyPage/activtyPage/activtyPage?index=' + index);
+    }
   },
   // 下拉刷新
   onPullDownRefresh() {
