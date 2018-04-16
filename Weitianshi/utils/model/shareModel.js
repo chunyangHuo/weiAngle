@@ -203,11 +203,10 @@ function sharePage(user_id, share_id, name) {
   let _this = this;
   let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
   let json = {
-    title: '名片好友，手机存入通讯录',
+    title: '加好友，手机号存入通讯录',
     path: path,
     success: (res) => {
       console.log(path)
-      // _this.shareLog(res, path);
     }
   }
   return json
