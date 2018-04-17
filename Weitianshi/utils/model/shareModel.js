@@ -273,9 +273,10 @@ function shareLog(res, path, unique_id) {
 
 //分享活动
 function shareActivity(that){
-  let activity_id = that.data.activity_id;
+  let activity_id = that.data.activity_id; 
+  let name = that.data.name;
   return {
-    title: '活动详情',
+    title: name,
     path: '/activitySignIn/pages/activityProjectInfo/activityProjectInfo?activity_id=' + activity_id
   }
 }

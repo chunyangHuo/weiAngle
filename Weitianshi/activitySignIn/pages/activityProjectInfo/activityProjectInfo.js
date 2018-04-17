@@ -26,7 +26,8 @@ Page({
       this.check(data)
       that.setData({
         data: data,
-        competition_id: data.competition_id
+        competition_id: data.competition_id,
+        name: data.activity_title
       })
     })
     that.setData({
