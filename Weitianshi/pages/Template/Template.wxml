@@ -831,7 +831,7 @@
         <view class="t-userCompany1" wx:if="{{item.investor_company}}">·{{item.investor_company}}</view>
       </view>
       <view class='t-people flex' wx:if='{{item.user_id != user_id}}'>
-        <view class='t-cardBottomItem t-add flex' wx:if='{{item.follow_status==0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
+        <view class='t-cardBottomItem t-add flex' wx:if='{{item.follow_status==0 && item.user_id != 0}}' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='contactsAdd'>
           <view class="t-addFri flex">
             <image class="t-addFriend" src="/img/icon-jia@2x.png"></image>
             <view>好友</view>
@@ -884,7 +884,7 @@
       <label class="t-historyNum">{{item.view_project_count}}</label>
       个项目</view>
     <view class="t-line"></view>
-    <view class='t-cardBottomItem1 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush'>
+    <view class='t-cardBottomItem1 flex' hover-class='t-hoverColor' hover-stop-propagation='true' data-id='{{item.user_id}}' catchtap='projectPush' wx:if="{{item.user_id != 0}}">
       <image class='t-itemPic' src='/img/icon-tijiao@2x.png'></image>
       <span>提交项目</span>
     </view>
